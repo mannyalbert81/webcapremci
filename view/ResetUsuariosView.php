@@ -56,7 +56,7 @@
 		    	if (cedula_usuarios == "")
 		    	{
 			    	
-		    		$("#mensaje_cedula_usuarios").text("Introduzca Identificación");
+		    		$("#mensaje_cedula_usuarios").text("Introduzca Cedula");
 		    		$("#mensaje_cedula_usuarios").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
@@ -188,8 +188,8 @@
                     		 <div class="row">
                     		    <div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
-                                                      <label for="cedula_usuarios" class="control-label">Identificación Usuario</label>
-                                                      <input type="number" class="form-control" id="cedula_usuarios" name="cedula_usuarios" value=""  placeholder="ci - ruc..">
+                                                      <label for="cedula_usuarios" class="control-label">Cedula</label>
+                                                      <input type="number" class="form-control" id="cedula_usuarios" name="cedula_usuarios" value=""  placeholder="cedula..">
                                                       <div id="mensaje_cedula_usuarios" class="errores"></div>
                                 </div>
                                 </div>
@@ -199,6 +199,8 @@
                     		    <div class="col-xs-12 col-md-3 col-lg-3" style="text-align: center; margin-top:20px">
                     		    <div class="form-group">
                                                       <button type="submit" id="Guardar" name="Guardar" class="btn btn-success">Restablecer</button>
+                                                      <button type="submit" id="Cancelar" name="Cancelar" class="btn btn-danger">Cancelar</button>
+                               
                                 </div>
                     		    </div>
                     		    </div>

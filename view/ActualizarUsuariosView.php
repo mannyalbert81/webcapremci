@@ -52,7 +52,7 @@
 
 		    	var cedula_usuarios = $("#cedula_usuarios").val();
 		    	var nombre_usuarios = $("#nombre_usuarios").val();
-		    	var usuario_usuario = $("#usuario_usuario").val();
+		    	//var usuario_usuario = $("#usuario_usuario").val();
 		    	var clave_usuarios = $("#clave_usuarios").val();
 		    	var cclave_usuarios = $("#clave_usuarios_r").val();
 		    	var celular_usuarios = $("#celular_usuarios").val();
@@ -86,7 +86,7 @@
 		    		$("#mensaje_nombre_usuarios").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
-		    	
+		    	/*
 		    	if (usuario_usuario == "")
 		    	{
 			    	
@@ -100,7 +100,7 @@
 		            
 				}   
 						    	
-			
+			*/
 		    	if (clave_usuarios == "")
 		    	{
 		    		
@@ -218,10 +218,10 @@
 				$( "#nombre_usuarios" ).focus(function() {
 					$("#mensaje_nombre_usuarios").fadeOut("slow");
     			});
-				$( "#usuario_usuario" ).focus(function() {
+				/*$( "#usuario_usuario" ).focus(function() {
 					$("#mensaje_usuario_usuario").fadeOut("slow");
     			});
-    			
+    			*/
 				$( "#clave_usuarios" ).focus(function() {
 					$("#mensaje_clave_usuarios").fadeOut("slow");
     			});
@@ -347,16 +347,16 @@
                     		 <div class="row">
                     		    <div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
-                                                      <label for="cedula_usuarios" class="control-label">Identificación Usuario</label>
+                                                      <label for="cedula_usuarios" class="control-label">Cedula:</label>
                                                       <input type="text" class="form-control" id="cedula_usuarios" name="cedula_usuarios" value="<?php echo $resEdit->cedula_usuarios; ?>"  placeholder="ci-ruc..">
                                                       <div id="mensaje_cedula_usuarios" class="errores"></div>
                                 </div>
                                 </div>
                     		    
                     		    
-                    		    <div class="col-lg-4 col-xs-12 col-md-4">
+                    		    <div class="col-lg-6 col-xs-12 col-md-6">
                     		    <div class="form-group">
-                                                      <label for="nombre_usuarios" class="control-label">Nombres Usuario</label>
+                                                      <label for="nombre_usuarios" class="control-label">Nombres:</label>
                                                       <input type="text" class="form-control" id="nombre_usuarios" name="nombre_usuarios" value="<?php echo $resEdit->nombre_usuarios; ?>" placeholder="nombres..">
                                                       <div id="mensaje_nombre_usuarios" class="errores"></div>
                                 </div>
@@ -364,18 +364,19 @@
                                 
                     		    </div>
                     		    
+                    		    <!-- 
                     		    <div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
                                                       <label for="usuario_usuario" class="control-label">Usuario</label>
-                                                      <input type="text" class="form-control" id="usuario_usuario" name="usuario_usuario" value="<?php echo $resEdit->usuario_usuario; ?>" placeholder="usuario..">
+                                                      <input type="text" class="form-control" id="usuario_usuario" name="usuario_usuario" value="" placeholder="usuario..">
                                                       <div id="mensaje_usuario_usuario" class="errores"></div>
                                 </div>
                                 </div>
-                    			
+                    			 -->
                     			
                     				<div class="col-lg-2 col-xs-12 col-md-2">
                         		    <div class="form-group">
-                                                          <label for="clave_usuarios" class="control-label">Password</label>
+                                                          <label for="clave_usuarios" class="control-label">Password:</label>
                                                           <input type="password" class="form-control" id="clave_usuarios" name="clave_usuarios" value="<?php echo $resEdit->pass_sistemas_usuarios; ?>" placeholder="password..">
                                                           <div id="mensaje_clave_usuarios" class="errores"></div>
                                     </div>
@@ -383,7 +384,7 @@
                         		    
                         		    <div class="col-lg-2 col-xs-12 col-md-2">
                         		    <div class="form-group">
-                                                          <label for="clave_usuarios_r" class="control-label">Repita Password</label>
+                                                          <label for="clave_usuarios_r" class="control-label">Repita Password:</label>
                                                           <input type="password" class="form-control" id="clave_usuarios_r" name="clave_usuarios_r" value="<?php echo $resEdit->pass_sistemas_usuarios; ?>" placeholder="repita password..">
                                                           <div id="mensaje_clave_usuarios_r" class="errores"></div>
                                     </div>
@@ -395,7 +396,7 @@
                     			<div class="row">
                     		       <div class="col-lg-2 col-xs-12 col-md-2">
                             		    <div class="form-group">
-                                                              <label for="telefono_usuarios" class="control-label">Teléfono Usuario</label>
+                                                              <label for="telefono_usuarios" class="control-label">Teléfono:</label>
                                                               <input type="text" class="form-control" id="telefono_usuarios" name="telefono_usuarios" value="<?php echo $resEdit->telefono_usuarios; ?>"  placeholder="teléfono..">
                                                               <div id="mensaje_telefono_usuarios" class="errores"></div>
                                         </div>
@@ -405,14 +406,14 @@
                     			
                         			<div class="col-lg-2 col-xs-12 col-md-2">
                                 		    <div class="form-group">
-                                                                  <label for="celular_usuarios" class="control-label">Celular Usuario</label>
+                                                                  <label for="celular_usuarios" class="control-label">Celular:</label>
                                                                   <input type="text" class="form-control" id="celular_usuarios" name="celular_usuarios" value="<?php echo $resEdit->celular_usuarios; ?>"  placeholder="celular..">
                                                                   <div id="mensaje_celular_usuarios" class="errores"></div>
                                             </div>
                                     </div>
                         		    <div class="col-lg-4 col-xs-12 col-md-4">
                         		    <div class="form-group">
-                                                          <label for="correo_usuarios" class="control-label">Correo Usuario</label>
+                                                          <label for="correo_usuarios" class="control-label">Correo:</label>
                                                           <input type="email" class="form-control" id="correo_usuarios" name="correo_usuarios" value="<?php echo $resEdit->correo_usuarios; ?>" placeholder="email..">
                                                           <div id="mensaje_correo_usuarios" class="errores"></div>
                                     </div>
@@ -422,7 +423,7 @@
                         		    
                         		    <div class="col-lg-4 col-xs-12 col-md-4">
                         		    <div class="form-group">
-                                                          <label for="fotografia_usuarios" class="control-label">Fotografía Usuario</label>
+                                                          <label for="fotografia_usuarios" class="control-label">Fotografía:</label>
                                                           <input type="file" class="form-control" id="fotografia_usuarios" name="fotografia_usuarios" value="">
                                                           <div id="mensaje_usuario" class="errores"></div>
                                     </div>
@@ -433,8 +434,8 @@
                         		    
                         		     <div class="col-xs-12 col-md-3 col-md-3">
                         		   <div class="form-group">
-                                                          <label for="id_rol" class="control-label">Rol </label>
-                                                          <select name="id_rol" id="id_rol"  class="form-control" >
+                                                          <label for="id_rol" class="control-label">Rol:</label>
+                                                          <select name="id_rol" id="id_rol"  class="form-control" disabled>
                                                           <option value="0" selected="selected">--Seleccione--</option>
                         									<?php foreach($resultRol as $res) {?>
                         										<option value="<?php echo $res->id_rol; ?>" <?php if ($res->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $res->nombre_rol; ?> </option>
@@ -446,8 +447,8 @@
                                     
                                     <div class="col-xs-12 col-md-3 col-md-3">
                         		   <div class="form-group">
-                                                          <label for="id_estado" class="control-label">Estado </label>
-                                                          <select name="id_estado" id="id_estado"  class="form-control" >
+                                                          <label for="id_estado" class="control-label">Estado:</label>
+                                                          <select name="id_estado" id="id_estado"  class="form-control" disabled>
                                                           <option value="0" selected="selected">--Seleccione--</option>
                         									<?php foreach($resultEst as $res) {?>
                         										<option value="<?php echo $res->id_estado; ?>" <?php if ($res->id_estado == $resEdit->id_estado )  echo  ' selected="selected" '  ;  ?> ><?php echo $res->nombre_estado; ?> </option>

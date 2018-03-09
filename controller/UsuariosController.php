@@ -30,7 +30,6 @@ public function index(){
 					$columnas = " usuarios.id_usuarios, 
 								  usuarios.cedula_usuarios, 
 								  usuarios.nombre_usuarios, 
-								  usuarios.usuario_usuario, 
 								  usuarios.clave_usuarios, 
 								  usuarios.pass_sistemas_usuarios, 
 								  usuarios.telefono_usuarios, 
@@ -100,6 +99,126 @@ public function index(){
 	}
 	
 	
+	
+	
+	
+	public function llenar_fotografia_usuarios(){
+	
+		session_start();
+		$resultado = null;
+		$usuarios=new UsuariosModel();
+	
+	
+		
+		if ($_FILES['fotografia_usuarios']['tmp_name']!="")
+		{
+	
+		$columnas = "usuarios.cedula_usuarios,
+	   			     usuarios.pass_sistemas_usuarios";
+			
+		$tablas   = "public.usuarios";
+			
+		$where    = "1=1";
+			
+		$id       = "usuarios.id_usuarios";
+			
+		$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
+	
+	
+		$directorio = $_SERVER['DOCUMENT_ROOT'].'/template_2018/fotografias_usuarios/';
+		 
+		$nombre = $_FILES['fotografia_usuarios']['name'];
+		$tipo = $_FILES['fotografia_usuarios']['type'];
+		$tamano = $_FILES['fotografia_usuarios']['size'];
+		 
+		move_uploaded_file($_FILES['fotografia_usuarios']['tmp_name'],$directorio.$nombre);
+		$data = file_get_contents($directorio.$nombre);
+		$imagen_usuarios = pg_escape_bytea($data);
+		 
+		 
+		
+	
+		if(!empty($resultSet)){
+				
+			foreach ($resultSet as $res){
+	
+				$cedula=$res->cedula_usuarios;
+				
+				$colval = "fotografia_usuarios='$imagen_usuarios'";
+				$tabla = "usuarios";
+				$where = "cedula_usuarios = '$cedula'";
+				$resultado=$usuarios->UpdateBy($colval, $tabla, $where);
+	
+	
+			}
+				
+		}
+		
+		
+		
+		$this->redirect("Roles", "index");
+		
+	 }
+	 
+	 
+	 $this->view("SubirFotosUsuarios",array(
+	 		"resultSet"=>""
+	 
+	 ));
+	 
+	
+	}
+	
+	
+	
+	
+	
+	
+	public function desencriptar(){
+		
+		session_start();
+		$resultado = null;
+		$usuarios=new UsuariosModel();
+		
+		
+		
+		$columnas = "usuarios.cedula_usuarios,
+	   			     usuarios.pass_sistemas_usuarios";
+			
+		$tablas   = "public.usuarios";
+			
+		$where    = "1=1";
+			
+		$id       = "usuarios.id_usuarios";
+			
+		$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
+		
+		
+		
+		if(!empty($resultSet)){
+			
+			foreach ($resultSet as $res){
+				
+				$cedula=$res->cedula_usuarios;
+				$clave_usuarios = $usuarios->encriptar($res->pass_sistemas_usuarios);
+				
+				
+				
+				
+				$colval = "cedula_usuarios= '$cedula', clave_usuarios='$clave_usuarios'";
+				$tabla = "usuarios";
+				$where = "cedula_usuarios = '$cedula'";
+				$resultado=$usuarios->UpdateBy($colval, $tabla, $where);
+				
+				
+			}
+			
+		}
+		
+	}
+	
+	
+	
 	public function InsertaUsuarios(){
 			
 		session_start();
@@ -113,7 +232,7 @@ public function index(){
 		{
 			$_cedula_usuarios    = $_POST["cedula_usuarios"];
 			$_nombre_usuarios     = $_POST["nombre_usuarios"];
-			$_usuario_usuario     = $_POST["usuario_usuario"];
+			//$_usuario_usuario     = $_POST["usuario_usuario"];
 			$_clave_usuarios      = $usuarios->encriptar($_POST["clave_usuarios"]);
 			$_pass_sistemas_usuarios      = $_POST["clave_usuarios"];
 			$_telefono_usuarios   = $_POST["telefono_usuarios"];
@@ -142,7 +261,7 @@ public function index(){
 		    		$imagen_usuarios = pg_escape_bytea($data);
 		    			
 		    			
-		    		$colval = "cedula_usuarios= '$_cedula_usuarios', nombre_usuarios = '$_nombre_usuarios',  clave_usuarios = '$_clave_usuarios', pass_sistemas_usuarios='$_pass_sistemas_usuarios',  telefono_usuarios = '$_telefono_usuarios', celular_usuarios = '$_celular_usuarios', correo_usuarios = '$_correo_usuarios', id_rol = '$_id_rol', id_estado = '$_id_estado', usuario_usuario = '$_usuario_usuario', fotografia_usuarios ='$imagen_usuarios'";
+		    		$colval = "cedula_usuarios= '$_cedula_usuarios', nombre_usuarios = '$_nombre_usuarios',  clave_usuarios = '$_clave_usuarios', pass_sistemas_usuarios='$_pass_sistemas_usuarios',  telefono_usuarios = '$_telefono_usuarios', celular_usuarios = '$_celular_usuarios', correo_usuarios = '$_correo_usuarios', id_rol = '$_id_rol', id_estado = '$_id_estado', fotografia_usuarios ='$imagen_usuarios'";
 		    		$tabla = "usuarios";
 		    		$where = "id_usuarios = '$_id_usuarios'";
 		    		$resultado=$usuarios->UpdateBy($colval, $tabla, $where);
@@ -151,7 +270,7 @@ public function index(){
 		    	else
 		    	{
 		    	
-		    		$colval = "cedula_usuarios= '$_cedula_usuarios', nombre_usuarios = '$_nombre_usuarios',  clave_usuarios = '$_clave_usuarios', pass_sistemas_usuarios='$_pass_sistemas_usuarios',  telefono_usuarios = '$_telefono_usuarios', celular_usuarios = '$_celular_usuarios', correo_usuarios = '$_correo_usuarios', id_rol = '$_id_rol', id_estado = '$_id_estado', usuario_usuario = '$_usuario_usuario'";
+		    		$colval = "cedula_usuarios= '$_cedula_usuarios', nombre_usuarios = '$_nombre_usuarios',  clave_usuarios = '$_clave_usuarios', pass_sistemas_usuarios='$_pass_sistemas_usuarios',  telefono_usuarios = '$_telefono_usuarios', celular_usuarios = '$_celular_usuarios', correo_usuarios = '$_correo_usuarios', id_rol = '$_id_rol', id_estado = '$_id_estado'";
 		    		$tabla = "usuarios";
 		    		$where = "id_usuarios = '$_id_usuarios'";
 		    		$resultado=$usuarios->UpdateBy($colval, $tabla, $where);
@@ -182,8 +301,7 @@ public function index(){
 		    	$funcion = "ins_usuarios";
 		    	$parametros = "'$_cedula_usuarios',
 		    				   '$_nombre_usuarios',
-		    				   '$_usuario_usuario',
-		    	               '$_clave_usuarios',
+		    				   '$_clave_usuarios',
 		    	               '$_pass_sistemas_usuarios',
 		    	               '$_telefono_usuarios',
 		    	               '$_celular_usuarios',
@@ -205,7 +323,7 @@ public function index(){
 		    	if ( !empty($result) )
 		    	{
 		    		 
-		    		$colval = "nombre_usuarios = '$_nombre_usuarios',  clave_usuarios = '$_clave_usuarios', pass_sistemas_usuarios='$_pass_sistemas_usuarios',  telefono_usuarios = '$_telefono_usuarios', celular_usuarios = '$_celular_usuarios', correo_usuarios = '$_correo_usuarios', id_rol = '$_id_rol', id_estado = '$_id_estado', usuario_usuario = '$_usuario_usuario'";
+		    		$colval = "nombre_usuarios = '$_nombre_usuarios',  clave_usuarios = '$_clave_usuarios', pass_sistemas_usuarios='$_pass_sistemas_usuarios',  telefono_usuarios = '$_telefono_usuarios', celular_usuarios = '$_celular_usuarios', correo_usuarios = '$_correo_usuarios', id_rol = '$_id_rol', id_estado = '$_id_estado'";
 		    		$tabla = "usuarios";
 		    		$where = "cedula_usuarios = '$_cedula_usuarios'";
 		    		$resultado=$usuarios->UpdateBy($colval, $tabla, $where);
@@ -217,7 +335,6 @@ public function index(){
 		        	$funcion = "ins_usuarios";
 		        	$parametros = "'$_cedula_usuarios',
 		        	'$_nombre_usuarios',
-		        	'$_usuario_usuario',
 		        	'$_clave_usuarios',
 		        	'$_pass_sistemas_usuarios',
 		        	'$_telefono_usuarios',
@@ -233,6 +350,34 @@ public function index(){
 		    
 		    }
 		  }
+		  
+		  
+		  
+		  $participes = new ParticipeModel();
+		  	
+		  if($_correo_usuarios!=""){
+		  	
+		  	try {
+		  		$colval1 = "nombre= '$_nombre_usuarios',
+		  		correo='$_correo_usuarios',
+		  		telefono = '$_telefono_usuarios',
+		  		celular = '$_celular_usuarios',
+		  		id_estado= '$_id_estado'";
+		  		
+		  		$tabla1 = "afiliado_extras";
+		  		
+		  		$where1 = "cedula = '$_cedula_usuarios'";
+		  		
+		  		$resultado=$participes->UpdateBy($colval1, $tabla1, $where1);
+		  		
+		  	} catch (Exception $e) {
+		  	}
+		  	
+		  	
+		  }
+		  
+		  
+		  
 		    $this->redirect("Usuarios", "index");
 		}
 		
@@ -291,7 +436,6 @@ public function index(){
 			
 			if(!empty($resultUsu))
 			{
-				
 				foreach ($resultUsu as $res){
 					
 					$correo_usuario=$res->correo_usuarios;
@@ -317,7 +461,6 @@ public function index(){
 				$mensaje = "Este Usuario no existe resgistrado en nuestro sistema.";
 		
 				$error = TRUE;
-		
 		
 			}
 			else
@@ -354,7 +497,7 @@ public function index(){
 		
 				if(mail("$destino","Claves de Acceso Capremci","$resumen","$cabeceras"))
 				{
-					$mensaje = "Hemos enviado un correo electrónico con sus datos de acceso.";
+					$mensaje = "Te hemos enviado un correo electrónico con tus datos de acceso.";
 					
 		
 				}else{
@@ -367,8 +510,6 @@ public function index(){
 				
 		}
 		
-		
-		
 		$this->view("ResetUsuarios",array(
 				"resultSet"=>$mensaje , "error"=>$error
 		));
@@ -378,6 +519,158 @@ public function index(){
 	
 	
 	
+	
+	public function resetear_clave_inicio()
+	{
+		session_start();
+		$_usuario_usuario = "";
+		$_clave_usuario = "";
+		$usuarios = new UsuariosModel();
+		$error = FALSE;
+	
+	
+		$mensaje = "";
+	
+		if (isset($_POST['cedula_usuarios']))
+		{
+			$_cedula_usuarios = $_POST['cedula_usuarios'];
+	
+			$where = "cedula_usuarios = '$_cedula_usuarios'   ";
+			$resultUsu = $usuarios->getBy($where);
+				
+			if(!empty($resultUsu))
+			{
+	
+				foreach ($resultUsu as $res){
+						
+					$correo_usuario=$res->correo_usuarios;
+					$id_estado=$res->id_estado;
+					$nombre_usuario   = $res->nombre_usuarios;
+				}
+	
+	
+				$cadena = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+				$longitudCadena=strlen($cadena);
+				$pass = "";
+				$longitudPass=10;
+				for($i=1 ; $i<=$longitudPass ; $i++){
+					$pos=rand(0,$longitudCadena-1);
+					$pass .= substr($cadena,$pos,1);
+				}
+				$_clave_usuario= $pass;
+				$_encryp_pass = $usuarios->encriptar($_clave_usuario);
+					
+			}
+	
+			if ($_clave_usuario == "")
+			{
+				$mensaje = "Este Usuario no existe resgistrado en nuestro sistema.";
+	
+				$error = TRUE;
+	
+	
+			}
+			else
+			{
+	
+				
+				if($id_estado==1){
+				
+				$usuarios->UpdateBy("clave_usuarios = '$_encryp_pass', pass_sistemas_usuarios='$_clave_usuario'", "usuarios", "cedula_usuarios = '$_cedula_usuarios'  ");
+					
+					
+				$cabeceras = "MIME-Version: 1.0 \r\n";
+				$cabeceras .= "Content-type: text/html; charset=utf-8 \r\n";
+				$cabeceras.= "From: info@masoft.net \r\n";
+				$destino="$correo_usuario";
+				$asunto="Claves de Acceso Capremci";
+				$fecha=date("d/m/y");
+				$hora=date("H:i:s");
+	
+	
+				$resumen="
+				<table rules='all'>
+				<tr><td WIDTH='1000' HEIGHT='50'><center><img src='http://www.capremci.com.ec/www2/wp-content/uploads/2016/10/Logo-Capremci-h-600.jpg' WIDTH='300' HEIGHT='90'/></center></td></tr>
+				</tabla>
+				<p><table rules='all'></p>
+				<tr style='background: #FFFFFF;'><td  WIDTH='1000' align='center'><b> BIENVENIDO A CAPREMCI </b></td></tr></p>
+				<tr style='background: #FFFFFF;'><td  WIDTH='1000' align='justify'>Somos un Fondo Previsional orientado a asegurar el futuro de sus partícipes, prestando servicios complementarios para satisfacer sus necesidades; con infraestructura tecnológica – operativa de vanguardia y talento humano competitivo.</td></tr>
+				</tabla>
+				<p><table rules='all'></p>
+				<tr style='background: #FFFFFF'><td WIDTH='1000' align='center'><b> TUS DATOS DE ACCESO SON: </b></td></tr>
+				<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>Usuario:</b> $_cedula_usuarios</td></tr>
+				<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>Clave Temporal:</b> $_clave_usuario </td></tr>
+				</tabla>
+				<p><table rules='all'></p>
+				<tr style='background:#1C1C1C'><td WIDTH='1000' HEIGHT='50' align='center'><font color='white'>Capremci - <a href='http://www.capremci.com.ec'><FONT COLOR='#7acb5a'>www.capremci.com.ec</FONT></a> - Copyright © 2018-</font></td></tr>
+				</table>
+				";
+	
+	
+				if(mail("$destino","Claves de Acceso Capremci","$resumen","$cabeceras"))
+				{
+					$mensaje = "Te hemos enviado un correo electrónico con tus datos de acceso.";
+						
+	
+				}else{
+					$mensaje = "No se pudo enviar el correo con la informacion. Intentelo nuevamente.";
+					$error = TRUE;
+	
+				}
+			
+				
+				}else{
+					
+					
+					$error = TRUE;
+					$mensaje = "Hola $nombre_usuario tu usuario se encuentra inactivo.";
+						
+						
+					$this->view("Login",array(
+							"resultSet"=>"$mensaje", "error"=>$error
+					));
+						
+						
+					die();
+					
+					
+					
+				}
+			
+			
+			
+			
+			}
+			 
+			$this->view("Login",array(
+					"resultSet"=>"$mensaje", "error"=>$error
+			));
+			 
+			 
+			die();
+			
+		}else{
+			
+			$mensaje = "Ingresa tu cedula para recuperar tu clave.";
+			$error = TRUE;
+		}
+	
+	
+	
+		$this->view("ResetUsuariosInicio",array(
+				"resultSet"=>$mensaje , "error"=>$error
+		));
+	
+	}
+	
+	public function Inicio(){
+	
+		session_start();
+		
+		$this->view("Login",array(
+				"allusers"=>""
+		));
+	}
     
     
     public function Login(){
@@ -413,16 +706,17 @@ public function index(){
     public function Loguear(){
     	
     	$error=FALSE;
-    	if (isset ($_POST["usuario"]) && ($_POST["clave"] ) )
-    	
+    	if (isset($_POST["usuario"]) && ($_POST["clave"] ) )
     	{
+    	
+    		
     		$usuarios=new UsuariosModel();
     		$_usuario = $_POST["usuario"];
     		$_clave =   $usuarios->encriptar($_POST["clave"]);
     		
     		 
     		
-    		$where = "  usuario_usuario = '$_usuario' AND  clave_usuarios ='$_clave' AND id_estado=1";
+    		$where = "cedula_usuarios = '$_usuario' AND  clave_usuarios ='$_clave'";
     	
     		$result=$usuarios->getBy($where);
 
@@ -437,41 +731,66 @@ public function index(){
     			foreach($result as $res) 
     			{
     				$id_usuario  = $res->id_usuarios;
-    				$usuario_usuario  = $res->usuario_usuario;
+    			    $usuario_usuario  = $res->usuario_usuario;
 	    			$id_rol           = $res->id_rol;
 	    			$nombre_usuario   = $res->nombre_usuarios;
 	    			$correo_usuario   = $res->correo_usuarios;
+	    			$id_estado        = $res->id_estado;
+	    			$cedula_usuarios        = $res->cedula_usuarios;
 	    			
     			}	
-    			//obtengo ip
-    			$ip_usuario = $usuarios->getRealIP();
+    			
+    			if($id_estado==1){
+    				
+    				
+    				//obtengo ip
+    				$ip_usuario = $usuarios->getRealIP();
+    				 
+    				 
+    				///registro sesion
+    				$usuarios->registrarSesion($id_usuario, $usuario_usuario, $id_rol, $nombre_usuario, $correo_usuario, $ip_usuario, $cedula_usuarios);
+    				 
+    				//inserto en la tabla
+    				$_id_usuario = $_SESSION['id_usuarios'];
+    				 
+    				$sesiones = new SesionesModel();
+    				
+    				$funcion = "ins_sesiones";
+    				 
+    				$parametros = " '$_id_usuario' ,'$ip_usuario' ";
+    				$sesiones->setFuncion($funcion);
+    				
+    				$_id_rol=$_SESSION['id_rol'];
+    				$usuarios->MenuDinamico($_id_rol);
+    				 
+    				$sesiones->setParametros($parametros);
+    				 
+    				 
+    				$resultado=$sesiones->Insert();
+    				 
+    				 
+    				$this->view("Bienvenida",array(
+    						"allusers"=>$_usuario
+    				));
+    				
+    				die();
+    				
+    			}else{
+    				
+    				
+    				$error = TRUE;
+    				$mensaje = "Hola $nombre_usuario tu usuario se encuentra inactivo.";
+    				 
+    				 
+    				$this->view("Login",array(
+    						"resultSet"=>"$mensaje", "error"=>$error
+    				));
+    				 
+    				 
+    				die();
+    			}
     			
     			
-    			///registro sesion
-    			$usuarios->registrarSesion($id_usuario, $usuario_usuario, $id_rol, $nombre_usuario, $correo_usuario, $ip_usuario);
-    			
-    			//inserto en la tabla
-    			$_id_usuario = $_SESSION['id_usuarios'];
-    			
-    			$sesiones = new SesionesModel();
-
-    			$funcion = "ins_sesiones";
-    			
-    			$parametros = " '$_id_usuario' ,'$ip_usuario' ";
-    			$sesiones->setFuncion($funcion);
-				
-				$_id_rol=$_SESSION['id_rol'];
-    			$usuarios->MenuDinamico($_id_rol);
-    			
-    			$sesiones->setParametros($parametros);
-    			
-    			
-    			$resultado=$sesiones->Insert();
-    			
-    			
-    		    $this->view("Bienvenida",array(
-    		        "allusers"=>$_usuario
-	    		));
     		}
     		else
     		{
@@ -490,9 +809,16 @@ public function index(){
     	} 
     	else
     	{
-    		$this->view("Login",array(
-    				"allusers"=>""
-    		));
+    		    $error = TRUE;
+    			$mensaje = "Ingrese su cedula y su clave.";
+    			
+    			
+	    		$this->view("Login",array(
+	    				"resultSet"=>"$mensaje", "error"=>$error
+	    		));
+	    		
+	    		
+	    		die();
     		
     	}
     	
@@ -578,7 +904,6 @@ public function index(){
 				$columnas = " usuarios.id_usuarios,
 								  usuarios.cedula_usuarios,
 								  usuarios.nombre_usuarios,
-								  usuarios.usuario_usuario,
 								  usuarios.clave_usuarios,
 								  usuarios.pass_sistemas_usuarios,
 								  usuarios.telefono_usuarios,
@@ -611,7 +936,7 @@ public function index(){
 					
 					$_cedula_usuarios    = $_POST["cedula_usuarios"];
 					$_nombre_usuarios     = $_POST["nombre_usuarios"];
-					$_usuario_usuario     = $_POST["usuario_usuario"];
+					//$_usuario_usuario     = $_POST["usuario_usuario"];
 					$_clave_usuarios      = $usuarios->encriptar($_POST["clave_usuarios"]);
 					$_pass_sistemas_usuarios      = $_POST["clave_usuarios"];
 					$_telefono_usuarios   = $_POST["telefono_usuarios"];
@@ -636,7 +961,7 @@ public function index(){
 						$imagen_usuarios = pg_escape_bytea($data);
 					
 					
-						    $colval = "cedula_usuarios= '$_cedula_usuarios', nombre_usuarios = '$_nombre_usuarios',  clave_usuarios = '$_clave_usuarios', pass_sistemas_usuarios='$_pass_sistemas_usuarios',  telefono_usuarios = '$_telefono_usuarios', celular_usuarios = '$_celular_usuarios', correo_usuarios = '$_correo_usuarios', id_rol = '$_id_rol', id_estado = '$_id_estado', usuario_usuario = '$_usuario_usuario', fotografia_usuarios ='$imagen_usuarios'";
+						    $colval = "cedula_usuarios= '$_cedula_usuarios', nombre_usuarios = '$_nombre_usuarios',  clave_usuarios = '$_clave_usuarios', pass_sistemas_usuarios='$_pass_sistemas_usuarios',  telefono_usuarios = '$_telefono_usuarios', celular_usuarios = '$_celular_usuarios', correo_usuarios = '$_correo_usuarios', fotografia_usuarios ='$imagen_usuarios'";
 							$tabla = "usuarios";
 							$where = "id_usuarios = '$_id_usuario'";
 							$resultado=$usuarios->UpdateBy($colval, $tabla, $where);
@@ -645,12 +970,33 @@ public function index(){
 					else
 					{
 						
-						$colval = "cedula_usuarios= '$_cedula_usuarios', nombre_usuarios = '$_nombre_usuarios',  clave_usuarios = '$_clave_usuarios', pass_sistemas_usuarios='$_pass_sistemas_usuarios',  telefono_usuarios = '$_telefono_usuarios', celular_usuarios = '$_celular_usuarios', correo_usuarios = '$_correo_usuarios', id_rol = '$_id_rol', id_estado = '$_id_estado', usuario_usuario = '$_usuario_usuario'";
+						$colval = "cedula_usuarios= '$_cedula_usuarios', nombre_usuarios = '$_nombre_usuarios',  clave_usuarios = '$_clave_usuarios', pass_sistemas_usuarios='$_pass_sistemas_usuarios',  telefono_usuarios = '$_telefono_usuarios', celular_usuarios = '$_celular_usuarios', correo_usuarios = '$_correo_usuarios'";
 						$tabla = "usuarios";
 						$where = "id_usuarios = '$_id_usuario'";
 						$resultado=$usuarios->UpdateBy($colval, $tabla, $where);
 						
 					}
+					
+					$participes = new ParticipeModel();
+					
+					if($_correo_usuarios!=""){
+						try {
+							$colval1 = "nombre= '$_nombre_usuarios',
+							correo='$_correo_usuarios',
+							telefono = '$_telefono_usuarios',
+							celular = '$_celular_usuarios'";
+								
+							$tabla1 = "afiliado_extras";
+								
+							$where1 = "cedula = '$_cedula_usuarios'";
+								
+							$resultado=$participes->UpdateBy($colval1, $tabla1, $where1);
+						} catch (Exception $e) {
+						}	
+						
+					}
+					
+					
 					
 					
 					$this->redirect("Usuarios", "actualizo_perfil");

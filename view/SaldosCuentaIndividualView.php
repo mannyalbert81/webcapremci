@@ -24,7 +24,6 @@
 		
 		    <!-- Custom Theme Style -->
 		    <link href="view/build/css/custom.min.css" rel="stylesheet">
-				
 			
 			<!-- Datatables -->
 		    <link href="view/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
@@ -36,7 +35,7 @@
 
 			<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-       
+            <script src="view/js/jquery.inputmask.bundle.js"></script>
        
        
        
@@ -50,7 +49,12 @@
 			   }); 	
 			 </script>
        
-       
+       <script>
+      $(document).ready(function(){
+      $(".cantidades1").inputmask();
+      });
+	  </script>
+	
        
 			        
     </head>
@@ -176,7 +180,7 @@
                   <div class="x_content">
                     
                   
-                  
+                   <?php if (!empty($resultCredOrdi_Cabec) && !empty($resultCredOrdi_Detall)) {?>
                   
                      <div class="row">
                     		    <div class="col-lg-2 col-xs-12 col-md-2">
@@ -291,6 +295,20 @@
     					
                       </tbody>
                     </table>
+                    
+                    
+                    <?php }else{?>
+                    
+                    
+                                <div class="col-lg-6 col-md-6 col-xs-12">
+           	                    <div class="alert alert-info alert-dismissable">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<h4>Aviso!!!</h4> No tienes un crédito ordinario para mostrar.
+								</div>
+           	     				</div>
+                    
+                    <?php }?>
+                    
                   </div>
                 </div>
               </div>
@@ -320,6 +338,8 @@
                   </div>
                   <div class="x_content">
                     
+                  
+                    <?php if (!empty($resultCredEmer_Cabec) && !empty($resultCredEmer_Detall)) {?>
                   
                   
                   
@@ -438,6 +458,20 @@
     					
                       </tbody>
                     </table>
+                    
+                    
+                     <?php }else{?>
+                    
+                    
+                                <div class="col-lg-6 col-md-6 col-xs-12">
+           	                    <div class="alert alert-info alert-dismissable">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<h4>Aviso!!!</h4> No tienes un crédito emergente para mostrar.
+								</div>
+           	     				</div>
+                    
+                    <?php }?>
+                    
                   </div>
                 </div>
               </div>
@@ -473,6 +507,8 @@
                   </div>
                   <div class="x_content">
                     
+                  
+                   <?php if (!empty($resultCred2_x_1_Cabec) && !empty($resultCred2_x_1_Detall)) {?>
                   
                   
                   
@@ -591,6 +627,22 @@
     					
                       </tbody>
                     </table>
+                    
+                    
+                    
+                      <?php }else{?>
+                    
+                    
+                                <div class="col-lg-6 col-md-6 col-xs-12">
+           	                    <div class="alert alert-info alert-dismissable">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<h4>Aviso!!!</h4> No tienes un crédito 2x1 para mostrar.
+								</div>
+           	     				</div>
+                    
+                    <?php }?>
+                    
+                    
                   </div>
                 </div>
               </div>
@@ -669,10 +721,10 @@
             	        		   <td> <?php echo $res->fecha_conta; ?>  </td> 
             		               <td> <?php echo $res->descripcion; ?>  </td> 
             		               <td> <?php echo $res->mes_anio; ?> </td>
-            		               <td> <?php echo $res->valorper; ?></td>
-            		               <td> <?php echo $res->valorpat; ?> </td>
-            		               <td> <?php echo $res->saldoper; ?>  </td>
-            		               <td> <?php echo $res->saldopat; ?>      </td>
+            		               <td> <?php echo number_format($res->valorper, 2, '.', ','); ?></td>
+            		               <td> <?php echo number_format($res->valorpat, 2, '.', ','); ?> </td>
+            		               <td> <?php echo number_format($res->saldoper, 2, '.', ','); ?>  </td>
+            		               <td> <?php echo number_format($res->saldopat, 2, '.', ','); ?>      </td>
             		               
             		    		</tr>
             		        <?php } } ?>
@@ -755,10 +807,10 @@
             	        		   <td> <?php echo $res->fecha_conta; ?>  </td> 
             		               <td> <?php echo $res->descripcion; ?>  </td> 
             		               <td> <?php echo $res->mes_anio; ?> </td>
-            		               <td> <?php echo $res->valorper; ?></td>
-            		               <td> <?php echo $res->valorpat; ?> </td>
-            		               <td> <?php echo $res->saldoper; ?>  </td>
-            		               <td> <?php echo $res->saldopat; ?>      </td>
+            		               <td> <?php echo number_format($res->valorper, 2, '.', ','); ?></td>
+            		               <td> <?php echo number_format($res->valorpat, 2, '.', ','); ?> </td>
+            		               <td> <?php echo number_format($res->saldoper, 2, '.', ','); ?>  </td>
+            		               <td> <?php echo number_format($res->saldopat, 2, '.', ','); ?>      </td>
             		               
             		    		</tr>
             		        <?php } } ?>
@@ -771,12 +823,6 @@
               </div>
 		
 		
-		
-           
-           
-           
-           
-           
            
            </form>
           
@@ -790,7 +836,11 @@
            
            <div class="tab-pane" id="mis_datos">
            <br>
-           <form  action="<?php echo $helper->url("Usuarios","InsertaUsuarios"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12 col-md-12 col-xs-12">
+           <form  action="<?php echo $helper->url("SaldosCuentaIndividual","ActualizarParticipe"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12 col-md-12 col-xs-12">
+           
+           
+       
+             <?php if (!empty($resultParticipe)) { foreach($resultParticipe as $resEdit) {?>
            
             <div class="panel panel-info">
 	         <div class="panel-heading">
@@ -801,26 +851,26 @@
 			 <div class="row">
                     		    <div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Cedula:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value=""  placeholder="ci" readonly>
-                                                      <div id="mensaje_cedula_usuarios" class="errores"></div>
+                                                      <label for="cedula" class="control-label">Cedula:</label>
+                                                      <input type="text" class="form-control" id="cedula" name="cedula" value="<?php echo $resEdit->cedula; ?>"  placeholder="cedula.." readonly>
+                                                      <div id="mensaje_cedula" class="errores"></div>
                                 </div>
                                 </div>
                     		    
                     		    
                     		    <div class="col-lg-4 col-xs-12 col-md-4">
                     		    <div class="form-group">
-                                                      <label for="nombre_usuarios" class="control-label">Nombre:</label>
-                                                      <input type="text" class="form-control" id="nombre_usuarios" name="nombre_usuarios" value="" placeholder="nombres..">
-                                                      <div id="mensaje_nombre_usuarios" class="errores"></div>
+                                                      <label for="nombre" class="control-label">Nombre:</label>
+                                                      <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $resEdit->nombre; ?>" placeholder="nombres..">
+                                                      <div id="mensaje_nombre" class="errores"></div>
                                 </div>
                                 </div>
                     		    
                     		    <div class="col-lg-6 col-xs-12 col-md-6">
                     		    <div class="form-group">
-                                                      <label for="usuario_usuario" class="control-label">Dirección:</label>
-                                                      <input type="text" class="form-control" id="usuario_usuario" name="usuario_usuario" value="" placeholder="usuario..">
-                                                      <div id="mensaje_usuario_usuario" class="errores"></div>
+                                                      <label for="direccion" class="control-label">Dirección:</label>
+                                                      <input type="text" class="form-control" id="direccion" name="direccion" value="<?php echo $resEdit->direccion; ?>" placeholder="dirección..">
+                                                      <div id="mensaje_direccion" class="errores"></div>
                                 </div>
                                 </div>
                     			
@@ -833,25 +883,25 @@
 			 <div class="row">
                     		    <div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Cargo:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value=""  placeholder="ci">
-                                                      <div id="mensaje_cedula_usuarios" class="errores"></div>
+                                                      <label for="labor" class="control-label">Cargo:</label>
+                                                      <input type="text" class="form-control" id="labor" name="labor" value="<?php echo $resEdit->labor; ?>"  placeholder="cargo..">
+                                                      <div id="mensaje_labor" class="errores"></div>
                                 </div>
                                 </div>
                     		    
                     		    
                     		    <div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
-                                                      <label for="nombre_usuarios" class="control-label">Email:</label>
-                                                      <input type="text" class="form-control" id="nombre_usuarios" name="nombre_usuarios" value="" placeholder="nombres..">
-                                                      <div id="mensaje_nombre_usuarios" class="errores"></div>
+                                                      <label for="correo" class="control-label">Email:</label>
+                                                      <input type="text" class="form-control" id="correo" name="correo" value="<?php echo $resEdit->correo; ?>" placeholder="email..">
+                                                      <div id="mensaje_correo" class="errores"></div>
                                 </div>
                                 </div>
                     		    
                     		    <div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
-                                                      <label for="usuario_usuario" class="control-label">Teléfono:</label>
-                                                      <input type="text" class="form-control" id="usuario_usuario" name="usuario_usuario" value="" placeholder="usuario..">
+                                                      <label for="telefono" class="control-label">Teléfono:</label>
+                                                      <input type="text" class="form-control" id="telefono" name="telefono" value="<?php echo $resEdit->telefono; ?>" placeholder="teléfono..">
                                                       <div id="mensaje_usuario_usuario" class="errores"></div>
                                 </div>
                                 </div>
@@ -859,8 +909,8 @@
                     		
                     		    <div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
-                                                      <label for="usuario_usuario" class="control-label">Celular:</label>
-                                                      <input type="text" class="form-control" id="usuario_usuario" name="usuario_usuario" value="" placeholder="usuario..">
+                                                      <label for="celular" class="control-label">Celular:</label>
+                                                      <input type="text" class="form-control" id="celular" name="celular" value="<?php echo $resEdit->celular; ?>" placeholder="celular..">
                                                       <div id="mensaje_usuario_usuario" class="errores"></div>
                                 </div>
                                 </div>
@@ -885,35 +935,32 @@
                     		    
                     		    <div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
-                                                      <label for="nombre_usuarios" class="control-label">Fecha Entrada:</label>
-                                                      <input type="date" class="form-control" id="nombre_usuarios" name="nombre_usuarios" value="" placeholder="nombres..">
-                                                      <div id="mensaje_nombre_usuarios" class="errores"></div>
+                                                      <label for="fecha_ingreso" class="control-label">Fecha Entrada:</label>
+                                                      <input type="date" class="form-control" id="fecha_ingreso" name="fecha_ingreso" value="<?php echo $resEdit->fecha_ingreso; ?>" placeholder="fecha entrada..">
+                                                      <div id="mensaje_fecha_ingreso" class="errores"></div>
                                 </div>
                                 </div>
                     		    
                     		    <div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
-                                                      <label for="usuario_usuario" class="control-label">Sueldo:</label>
-                                                      <input type="text" class="form-control" id="usuario_usuario" name="usuario_usuario" value="" placeholder="usuario..">
+                                                      <label for="sueldo" class="control-label">Sueldo:</label>
+                                                      <input type="text" class="form-control cantidades1" id="sueldo" name="sueldo" value='<?php echo $resEdit->sueldo; ?>' 
+                                                      data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false">
                                                       <div id="mensaje_usuario_usuario" class="errores"></div>
                                 </div>
                                 </div>
                     			
-                    		
+                    			
                     		
                     		
                     		    <div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
-                                                          <label for="id_numero_hijos" class="control-label">Número de Hijos:</label>
-                                                          <select name="id_numero_hijos" id="id_numero_hijos"  class="form-control" >
-                                                          <option value="0" selected="selected">--Seleccione--</option>
-                        									<?php foreach($resultNumHijos as $res) {?>
-                        										<option value="<?php echo $res->id_numero_hijos; ?>" <?php if ($res->id_numero_hijos == $resEdit->id_numero_hijos )  echo  ' selected="selected" '  ;  ?> ><?php echo $res->cantidad_hijos; ?> </option>
-                        							        <?php } ?>
-                        								   </select> 
-                                                          <div id="mensaje_id_numero_hijos" class="errores"></div>
+                                                      <label for="hijos" class="control-label">Número Hijos:</label>
+                                                      <input type="number" class="form-control" id="hijos" name="hijos" value="<?php echo $resEdit->hijos; ?>" placeholder="# hijos..">
+                                                      <div id="mensaje_hijos" class="errores"></div>
                                 </div>
-                    		    </div>
+                                </div>
+                    		    
          	  </div>
 			 
 			 
@@ -922,14 +969,9 @@
 			 <div class="row">
                     		    <div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
-                                                      <label for="id_edad" class="control-label">Edad:</label>
-                                                       <select name="id_edad" id="id_edad"  class="form-control" >
-                                                          <option value="0" selected="selected">--Seleccione--</option>
-                        									<?php foreach($resultEdad as $res) {?>
-                        										<option value="<?php echo $res->id_edad; ?>" <?php if ($res->id_edad == $resEdit->id_edad )  echo  ' selected="selected" '  ;  ?> ><?php echo $res->cantidad_edad; ?> </option>
-                        							        <?php } ?>
-                        							   </select> 
-                                                       <div id="mensaje_id_edad" class="errores"></div>
+                                                      <label for="edad" class="control-label">Edad:</label>
+                                                      <input type="number" class="form-control" id="edad" name="edad" value="<?php echo $resEdit->edad; ?>" placeholder="edad..">
+                                                      <div id="mensaje_edad" class="errores"></div>
                                 </div>
                                 </div>
                     		    
@@ -980,7 +1022,7 @@
                     		    <div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="id_estado" class="control-label">Estado:</label>
-                                                      <select name="id_estado" id="id_estado"  class="form-control" >
+                                                      <select name="id_estado" id="id_estado"  class="form-control" disabled>
                                                           <option value="0" selected="selected">--Seleccione--</option>
                         									<?php foreach($resultEstado as $res) {?>
                         										<option value="<?php echo $res->id_estado; ?>" <?php if ($res->id_estado == $resEdit->id_estado )  echo  ' selected="selected" '  ;  ?> ><?php echo $res->nombre_estado; ?> </option>
@@ -1013,36 +1055,43 @@
                     		    
              					<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
-                                                          <label for="id_provincias_hogar" class="control-label">Provincia:</label>
-                                                          <select name="id_provincias_hogar" id="id_provincias_hogar"  class="form-control" >
+                                                          <label for="id_provincias_vivienda" class="control-label">Provincia:</label>
+                                                          <select name="id_provincias_vivienda" id="id_provincias_vivienda"  class="form-control" >
                                                           <option value="0" selected="selected">--Seleccione--</option>
                         									<?php foreach($resultProvincias as $res) {?>
-                        										<option value="<?php echo $res->id_provincias; ?>" <?php if ($res->id_provincias == $resEdit->id_provincias_hogar )  echo  'selected="selected"';  ?> ><?php echo $res->nombre_provincias; ?> </option>
+                        										<option value="<?php echo $res->id_provincias; ?>" <?php if ($res->id_provincias == $resEdit->id_provincias_vivienda )  echo  'selected="selected"';  ?> ><?php echo $res->nombre_provincias; ?> </option>
                         							        <?php } ?>
                         								   </select> 
-                                                          <div id="mensaje_id_provincias_hogar" class="errores"></div>
+                                                          <div id="mensaje_id_provincias_vivienda" class="errores"></div>
                                 </div>
                     		    </div>       		    
                     		   
                     		    
                     		    <div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
-                                                          <label for="id_cantones_hogar" class="control-label">Cantón:</label>
-                                                          <select name="id_cantones_hogar" id="id_cantones_hogar"  class="form-control" >
+                                                          <label for="id_cantones_vivienda" class="control-label">Cantón:</label>
+                                                          <select name="id_cantones_vivienda" id="id_cantones_vivienda"  class="form-control" >
                                                           <option value="0" selected="selected">--Seleccione--</option>
+                                                            <?php foreach($resultCantones as $res) {?>
+                        										<option value="<?php echo $res->id_cantones; ?>" <?php if ($res->id_cantones == $resEdit->id_cantones_vivienda )  echo  ' selected="selected" '  ;  ?> ><?php echo $res->nombre_cantones; ?> </option>
+                        							        <?php } ?>
+                        							      
                         								  </select> 
-                                                          <div id="mensaje_id_cantones_hogar" class="errores"></div>
+                                                          <div id="mensaje_id_cantones_vivienda" class="errores"></div>
                                 </div>
                     		    </div>
                     		   
                     			
                     			<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
-                                                          <label for="id_parroquias_hogar" class="control-label">Parroquia:</label>
-                                                          <select name="id_parroquias_hogar" id="id_parroquias_hogar"  class="form-control" >
+                                                          <label for="id_parroquias_vivienda" class="control-label">Parroquia:</label>
+                                                          <select name="id_parroquias_vivienda" id="id_parroquias_vivienda"  class="form-control" >
                                                           <option value="0" selected="selected">--Seleccione--</option>
+                        								  <?php foreach($resultParroquias as $res) {?>
+                        										<option value="<?php echo $res->id_parroquias; ?>" <?php if ($res->id_parroquias == $resEdit->id_parroquias_vivienda )  echo  ' selected="selected" '  ;  ?> ><?php echo $res->nombre_parroquias; ?> </option>
+                        							        <?php } ?>
                         								  </select> 
-                                                          <div id="mensaje_id_parroquias_hogar" class="errores"></div>
+                                                          <div id="mensaje_id_parroquias_vivienda" class="errores"></div>
                                 </div>
                     		    </div>
                     			
@@ -1080,6 +1129,11 @@
                                                           <label for="id_cantones_asignacion" class="control-label">Cantón:</label>
                                                           <select name="id_cantones_asignacion" id="id_cantones_asignacion"  class="form-control" >
                                                           <option value="0" selected="selected">--Seleccione--</option>
+                        							      
+                        							      <?php foreach($resultCantones as $res) {?>
+                        										<option value="<?php echo $res->id_cantones; ?>" <?php if ($res->id_cantones == $resEdit->id_cantones_asignacion )  echo  ' selected="selected" '  ;  ?> ><?php echo $res->nombre_cantones; ?> </option>
+                        							        <?php } ?>
+                        							      
                         							      </select> 
                                                           <div id="mensaje_id_cantones_asignacion" class="errores"></div>
                                 </div>
@@ -1091,6 +1145,9 @@
                                                           <label for="id_parroquias_asignacion" class="control-label">Parroquia:</label>
                                                           <select name="id_parroquias_asignacion" id="id_parroquias_asignacion"  class="form-control" >
                                                           <option value="0" selected="selected">--Seleccione--</option>
+                        								  <?php foreach($resultParroquias as $res) {?>
+                        										<option value="<?php echo $res->id_parroquias; ?>" <?php if ($res->id_parroquias == $resEdit->id_parroquias_asignacion )  echo  ' selected="selected" '  ;  ?> ><?php echo $res->nombre_parroquias; ?> </option>
+                        							        <?php } ?>
                         								  </select> 
                                                           <div id="mensaje_id_parroquias_asignacion" class="errores"></div>
                                 </div>
@@ -1102,9 +1159,9 @@
 			 	
                     			<div class="col-lg-9 col-xs-12 col-md-9">
                     		    <div class="form-group">
-                                                      <label for="usuario_usuario" class="control-label">Observación:</label>
-                                                      <textarea type="text"  class="form-control" id="disposicion_citar" name="disposicion_citar" value=""  placeholder="Observaciones.."></textarea>
-                                                      <div id="mensaje_usuario_usuario" class="errores"></div>
+                                                      <label for="observacion" class="control-label">Observación:</label>
+                                                      <textarea type="text"  class="form-control" id="observacion" name="observacion" value=""  placeholder="observaciones.."><?php echo $resEdit->observacion; ?></textarea>
+                                                      <div id="mensaje_observacion" class="errores"></div>
                                 </div>
                     		    </div>
                     		    
@@ -1115,13 +1172,25 @@
   			</div>
   			</div>
   			
-  			<!--  
+  			  
 			  			<div class="col-lg-12 col-md-12 col-xs-12 " style="text-align: center; margin-top: 10px">
 				  		 <button type="submit" id="generar" name="generar" value=""   class="btn btn-success" style="margin-top: 10px;"><i class="glyphicon glyphicon-edit"></i> Actualizar Datos</button>         
 					    </div>
-  			-->
+  			
   			
             </div>
+           
+           
+           	     <?php } } else {?>
+           	     
+           	     				<div class="col-lg-6 col-md-6 col-xs-12">
+           	                    <div class="alert alert-warning alert-dismissable">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<h4>Aviso!!!</h4> No hay datos para mostrar
+								</div>
+           	     				</div>
+           	     
+           	     <?php }?>
            
            
            </form>

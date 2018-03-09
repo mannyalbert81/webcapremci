@@ -3,7 +3,7 @@
   <head>
     
 
-    <title>Capremci Servicios en Línea</title>
+    <title>Template 2018</title>
 
 
 	  
@@ -40,14 +40,14 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <img src="view/images/logo.png" width="340" height="200">
-            <form id="form-login" action="<?php echo $helper->url("usuarios","Loguear"); ?>" method="post" ">
+            <img src="view/images/logo.png" width="340" height="150">
+            <form id="form-login" action="<?php echo $helper->url("Usuarios","Loguear"); ?>" method="post" ">
              
              
              
               <h1>Iniciar Sesión</h1>
               <div>
-                <input id="usuario" name="usuario" type="text" class="form-control" placeholder="usuario.."/>
+                <input id="usuario" name="usuario" type="text" class="form-control" placeholder="cedula.."/>
               </div>
               <div>
                 <input id="clave" name="clave"   type="password" class="form-control" placeholder="password.."/>
@@ -60,8 +60,8 @@
               <div class="clearfix"></div>
 			   <div class="separator">
                 <div class="clearfix"></div>
-               
                 <div>
+                 <p><a href="<?php echo $helper->url("Usuarios","resetear_clave_inicio"); ?>" >Olvidaste tu Clave</a> </p>
                  <p>©2018 All Rights Reserved</p>
                 </div>
               </div>
@@ -83,6 +83,9 @@
 								    <div class="alert alert-success" role="alert"><?php echo $resultSet; ?></div>
 								    </div>
 								    </div>
+								    
+								  
+								    
 								 <?php sleep(5); ?>
 				     
 				     			 <?php }?>
