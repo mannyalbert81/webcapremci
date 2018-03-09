@@ -8,37 +8,70 @@
 		
 		<link rel="stylesheet" href="view/css/estilos.css">
 		
-
+	<link rel="stylesheet" href="view/vendors/table-sorter/themes/blue/style.css">
+	
+	
+	
 		    <!-- Bootstrap -->
     		<link href="view/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     		<!-- Font Awesome -->
 		    <link href="view/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 		    <!-- NProgress -->
 		    <link href="view/vendors/nprogress/nprogress.css" rel="stylesheet">
-		    <!-- iCheck -->
-		    <link href="view/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-			
-		    <!-- bootstrap-progressbar -->
-		    <link href="view/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-		    <!-- JQVMap -->
-		    <link href="view/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
-		    <!-- bootstrap-daterangepicker -->
-		    <link href="view/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-		
+		    
+		   
 		    <!-- Custom Theme Style -->
 		    <link href="view/build/css/custom.min.css" rel="stylesheet">
 				
 			
 			<!-- Datatables -->
 		    <link href="view/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-		    <link href="view/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-		    <link href="view/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-		    <link href="view/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-		    <link href="view/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-					
+		    
+		   		
 
 			<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+			<script type="text/javascript" src="view/vendors/table-sorter/jquery.tablesorter.js"></script> 
+        
+        
+        <script type="text/javascript">
+     
+        	   $(document).ready( function (){
+        		   load_usuarios(1);
+	   			});
+
+        	   function load_usuarios(pagina){
+
+
+        		   var search=$("#search").val();
+                   var con_datos={
+           					  action:'ajax',
+           					  page:pagina
+           					  };
+                 $("#load_registrados").fadeIn('slow');
+           	     $.ajax({
+           	               beforeSend: function(objeto){
+           	                 $("#load_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
+           	               },
+           	               url: 'index.php?controller=Usuarios&action=index10&search='+search,
+           	               type: 'POST',
+           	               data: con_datos,
+           	               success: function(x){
+           	                 $("#users_registrados").html(x);
+           	               	 $("#tabla_usuarios").tablesorter(); 
+           	                 $("#load_registrados").html("");
+           	               },
+           	              error: function(jqXHR,estado,error){
+           	                $("#users_registrados").html("Ocurrio un error al cargar la informacion de Usuarios..."+estado+"    "+error);
+           	              }
+           	            });
+
+
+           		   }
+        </script>
+        
+        
         
         
         <script >
@@ -258,7 +291,7 @@
     </head>
     
     
-    <body class="nav-md"  >
+    <body class="nav-md">
     
       <?php
         
@@ -625,58 +658,18 @@
                   <div class="x_content">
                     
 					
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                      <thead>
-                        <tr>
-                          <th></th>
-                          <th>#</th>
-                          <th>Identificación</th>
-                          <th>Nombre</th>
-                          <th>Email</th>
-                          <th>Teléfono</th>
-                          <th>Celular</th>
-                          <th>Rol</th>
-                          <th>Estado</th>
-                          <th></th>
-                          <th></th>
-                        </tr>
-                      </thead>
-
-
-                      <tbody>
-    					
-    					<?php $i=0;?>
-    						<?php if (!empty($resultSet)) {  foreach($resultSet as $res) {?>
-    						
-    							<?php $i++;?>
-            	        		<tr>
-            	        		 <td><img src="view/DevuelveImagenView.php?id_valor=<?php echo $res->id_usuarios; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=fotografia_usuarios" width="80" height="60" /></td>
-		                           <td> <?php echo $i; ?>      </td>
-            	                   <td> <?php echo $res->cedula_usuarios; ?>  </td> 
-            		               <td> <?php echo $res->nombre_usuarios; ?>  </td> 
-            		               <td> <?php echo $res->correo_usuarios; ?></td>
-            		               <td> <?php echo $res->telefono_usuarios; ?> </td>
-            		               <td> <?php echo $res->celular_usuarios; ?>  </td>
-            		               <td> <?php echo $res->nombre_rol; ?>      </td>
-            		               <td> <?php echo $res->nombre_estado; ?>      </td>
-            		           	   <td>
-            			           		<div class="right">
-            			                    <a href="<?php echo $helper->url("Usuarios","index"); ?>&id_usuarios=<?php echo $res->id_usuarios; ?>" class="btn btn-warning" style="font-size:65%;"><i class='glyphicon glyphicon-edit'></i></a>
-            			                </div>
-            			            
-            			             </td>
-            			             <td>   
-            			                	<div class="right">
-            			                    <a href="<?php echo $helper->url("Usuarios","borrarId"); ?>&id_usuarios=<?php echo $res->id_usuarios; ?>" class="btn btn-danger" style="font-size:65%;"><i class="glyphicon glyphicon-trash"></i></a>
-            			                </div>
-            			               
-            		               </td>
-            		    		</tr>
-            		        <?php } } ?>
-                    
-    					
-                      </tbody>
-                    </table>
+				
+					
+					<div class="pull-right">
+					<input type="text" value="" class="form-control" id="search" name="search" onkeyup="load_usuarios(1)" placeholder="search.."/>
+					</div>
+					
+					
+					<div id="load_registrados" ></div>	
+					<div id="users_registrados"></div>	
+				
+					
+                  
                   </div>
                 </div>
               </div>
@@ -706,38 +699,33 @@
     </div>
 
 </div>
-        <!-- jQuery -->
-    <script src="view/vendors/jquery/dist/jquery.min.js"></script>
+    
+    
+    
+    
     <!-- Bootstrap -->
     <script src="view/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="view/vendors/fastclick/lib/fastclick.js"></script>
+    
+    
+    
     <!-- NProgress -->
     <script src="view/vendors/nprogress/nprogress.js"></script>
-    <!-- iCheck -->
-    <script src="view/vendors/iCheck/icheck.min.js"></script>
+   
+   
     <!-- Datatables -->
     <script src="view/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    
+    
     <script src="view/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="view/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="view/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script src="view/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="view/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="view/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="view/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script src="view/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="view/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="view/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script src="view/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-    <script src="view/vendors/jszip/dist/jszip.min.js"></script>
-    <script src="view/vendors/pdfmake/build/pdfmake.min.js"></script>
-    <script src="view/vendors/pdfmake/build/vfs_fonts.js"></script>
-
+    
+    
+    
     <!-- Custom Theme Scripts -->
     <script src="view/build/js/custom.min.js"></script>
 	
 	<!-- codigo de las funciones -->
-	<script src="view/js/funciones.js"></script> 
+
 	
   </body>
 </html>   
