@@ -660,7 +660,7 @@
 					
 				
 					
-					<div class="pull-right">
+					<div class="pull-right" style="margin-right:11px;">
 					<input type="text" value="" class="form-control" id="search" name="search" onkeyup="load_usuarios(1)" placeholder="search.."/>
 					</div>
 					

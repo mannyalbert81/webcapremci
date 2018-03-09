@@ -69,7 +69,7 @@ class UsuariosController extends ControladorBase{
     		
     		$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
     		
-    		$per_page = 5; //la cantidad de registros que desea mostrar
+    		$per_page = 50; //la cantidad de registros que desea mostrar
     		$adjacents  = 9; //brecha entre páginas después de varios adyacentes
     		$offset = ($page - 1) * $per_page;
     		
@@ -86,10 +86,12 @@ class UsuariosController extends ControladorBase{
     	if($cantidadResult>0)
     	{
     
-    		$html.='<div class="pull-left">';
+    		$html.='<div class="pull-left" style="margin-left:11px;">';
     		$html.='<span class="form-control"><strong>Registros: </strong>'.$cantidadResult.'</span>';
     		$html.='<input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>' ;
     		$html.='</div>';
+    		$html.='<div class="col-lg-12 col-md-12 col-xs-12">';
+			$html.='<section style="height:425px; overflow-y:scroll;">';
     		$html.= "<table id='tabla_usuarios' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
     		$html.= "<thead>";
     		$html.= "<tr>";
@@ -132,7 +134,7 @@ class UsuariosController extends ControladorBase{
     		
     		$html.='</tbody>';
     		$html.='</table>';
-    		
+    		$html.='</section></div>';
     		$html.='<div class="table-pagination pull-right">';
     		$html.=''. $this->paginate("index.php", $page, $total_pages, $adjacents).'';
     		$html.='</div>';
@@ -142,12 +144,12 @@ class UsuariosController extends ControladorBase{
     
     		 
     	}else{
-    		 
-    		$html.='<div class="alert alert-warning alert-dismissable">';
+    		$html.='<div class="col-lg-6 col-md-6 col-xs-12">';
+    		$html.='<div class="alert alert-warning alert-dismissable" style="margin-top:40px;">';
     		$html.='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
     		$html.='<h4>Aviso!!!</h4> <b>Actualmente no hay usuarios registrados...</b>';
     		$html.='</div>';
-    	
+    		$html.='</div>';
     	}
     	
     	
@@ -234,7 +236,6 @@ public function index(){
 						"resultado"=>"No tiene Permisos de Acceso a Usuarios"
 			
 				));
-			
 			
 			}
 			
