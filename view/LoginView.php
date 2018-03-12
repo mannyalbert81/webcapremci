@@ -61,7 +61,7 @@
 			   <div class="separator">
                 <div class="clearfix"></div>
                 <div>
-                 <p><a href="<?php echo $helper->url("Usuarios","resetear_clave_inicio"); ?>" >Olvidaste tu Clave</a> </p>
+                 <p><a href="<?php echo $helper->url("Usuarios","resetear_password"); ?>" >Olvidaste tu Clave</a> </p>
                  <p>©2018 All Rights Reserved</p>
                 </div>
               </div>

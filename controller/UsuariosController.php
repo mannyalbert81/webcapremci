@@ -325,10 +325,7 @@ public function index(){
 	
 	
 	
-	
-	
-	
-	public function desencriptar(){
+	public function encriptar_maycol_postgres(){
 		
 		session_start();
 		$resultado = null;
@@ -341,7 +338,7 @@ public function index(){
 			
 		$tablas   = "public.usuarios";
 			
-		$where    = "1=1";
+		$where    = "1=1 AND usuarios.cedula_usuarios='1750402859'";
 			
 		$id       = "usuarios.id_usuarios";
 			
@@ -357,8 +354,6 @@ public function index(){
 				$clave_usuarios = $usuarios->encriptar($res->pass_sistemas_usuarios);
 				
 				
-				
-				
 				$colval = "cedula_usuarios= '$cedula', clave_usuarios='$clave_usuarios'";
 				$tabla = "usuarios";
 				$where = "cedula_usuarios = '$cedula'";
@@ -368,6 +363,8 @@ public function index(){
 			}
 			
 		}
+		
+		$this->redirect("Roles", "index");
 		
 	}
 	
@@ -622,7 +619,7 @@ public function index(){
 		
 				$cabeceras = "MIME-Version: 1.0 \r\n";
 				$cabeceras .= "Content-type: text/html; charset=utf-8 \r\n";
-				$cabeceras.= "From: info@masoft.net \r\n";
+				$cabeceras.= "From: info@capremci.com.ec \r\n";
 				$destino="$correo_usuario";
 				$asunto="Claves de Acceso Capremci";
 				$fecha=date("d/m/y");
@@ -671,6 +668,140 @@ public function index(){
 	}
 	
 	
+	
+	public function resetear_password()
+	{
+		session_start();
+		$_usuario_usuario = "";
+		$_clave_usuario = "";
+		$usuarios = new UsuariosModel();
+		$error = FALSE;
+	
+	
+		$mensaje = "";
+	
+		if (isset($_POST['cedula_usuarios']))
+		{
+			$_cedula_usuarios = $_POST['cedula_usuarios'];
+	
+			$where = "cedula_usuarios = '$_cedula_usuarios'   ";
+			$resultUsu = $usuarios->getBy($where);
+	
+			if(!empty($resultUsu))
+			{
+	
+				foreach ($resultUsu as $res){
+	
+					$correo_usuario=$res->correo_usuarios;
+					$id_estado=$res->id_estado;
+					$nombre_usuario   = $res->nombre_usuarios;
+					$_clave_usuario= $res->pass_sistemas_usuarios;
+				}
+	
+	
+				
+					
+			}
+	
+			if ($_clave_usuario == "")
+			{
+				$mensaje = "Este Usuario no existe resgistrado en nuestro sistema.";
+	
+				$error = TRUE;
+	
+	
+			}
+			else
+			{
+	
+	
+				if($id_estado==1){
+	
+						
+						
+					$cabeceras = "MIME-Version: 1.0 \r\n";
+					$cabeceras .= "Content-type: text/html; charset=utf-8 \r\n";
+					$cabeceras.= "From: info@capremci.com.ec \r\n";
+					$destino="$correo_usuario";
+					$asunto="Claves de Acceso Capremci";
+					$fecha=date("d/m/y");
+					$hora=date("H:i:s");
+	
+	
+					$resumen="
+					<table rules='all'>
+					<tr><td WIDTH='1000' HEIGHT='50'><center><img src='http://www.capremci.com.ec/www2/wp-content/uploads/2016/10/Logo-Capremci-h-600.jpg' WIDTH='300' HEIGHT='90'/></center></td></tr>
+					</tabla>
+					<p><table rules='all'></p>
+					<tr style='background: #FFFFFF;'><td  WIDTH='1000' align='center'><b> BIENVENIDO A CAPREMCI </b></td></tr></p>
+					<tr style='background: #FFFFFF;'><td  WIDTH='1000' align='justify'>Somos un Fondo Previsional orientado a asegurar el futuro de sus partícipes, prestando servicios complementarios para satisfacer sus necesidades; con infraestructura tecnológica – operativa de vanguardia y talento humano competitivo.</td></tr>
+					</tabla>
+					<p><table rules='all'></p>
+					<tr style='background: #FFFFFF'><td WIDTH='1000' align='center'><b> TUS DATOS DE ACCESO SON: </b></td></tr>
+					<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>Usuario:</b> $_cedula_usuarios</td></tr>
+					<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>Clave Temporal:</b> $_clave_usuario </td></tr>
+					</tabla>
+					<p><table rules='all'></p>
+					<tr style='background:#1C1C1C'><td WIDTH='1000' HEIGHT='50' align='center'><font color='white'>Capremci - <a href='http://www.capremci.com.ec'><FONT COLOR='#7acb5a'>www.capremci.com.ec</FONT></a> - Copyright © 2018-</font></td></tr>
+					</table>
+					";
+	
+	
+					if(mail("$destino","Claves de Acceso Capremci","$resumen","$cabeceras"))
+					{
+						$mensaje = "Te hemos enviado un correo electrónico a $correo_usuario con tus datos de acceso.";
+	
+	
+					}else{
+						$mensaje = "No se pudo enviar el correo con la informacion. Intentelo nuevamente.";
+						$error = TRUE;
+	
+					}
+						
+	
+				}else{
+						
+						
+					$error = TRUE;
+					$mensaje = "Hola $nombre_usuario tu usuario se encuentra inactivo.";
+	
+	
+					$this->view("Login",array(
+							"resultSet"=>"$mensaje", "error"=>$error
+					));
+	
+	
+					die();
+						
+						
+						
+				}
+					
+					
+					
+					
+			}
+	
+			$this->view("Login",array(
+					"resultSet"=>"$mensaje", "error"=>$error
+			));
+	
+	
+			die();
+				
+		}else{
+				
+			$mensaje = "Ingresa tu cedula para recuperar tu clave.";
+			$error = TRUE;
+		}
+	
+	
+	
+		$this->view("ResetUsuariosInicio",array(
+				"resultSet"=>$mensaje , "error"=>$error
+		));
+	
+	}
 	
 	
 	
@@ -735,7 +866,7 @@ public function index(){
 					
 				$cabeceras = "MIME-Version: 1.0 \r\n";
 				$cabeceras .= "Content-type: text/html; charset=utf-8 \r\n";
-				$cabeceras.= "From: info@masoft.net \r\n";
+				$cabeceras.= "From: info@capremci.com.ec \r\n";
 				$destino="$correo_usuario";
 				$asunto="Claves de Acceso Capremci";
 				$fecha=date("d/m/y");
@@ -763,7 +894,7 @@ public function index(){
 	
 				if(mail("$destino","Claves de Acceso Capremci","$resumen","$cabeceras"))
 				{
-					$mensaje = "Te hemos enviado un correo electrónico con tus datos de acceso.";
+					$mensaje = "Te hemos enviado un correo electrónico a $correo_usuario con tus datos de acceso.";
 						
 	
 				}else{

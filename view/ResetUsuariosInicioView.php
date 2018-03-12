@@ -83,7 +83,7 @@
         <div class="animate form login_form">
           <section class="login_content">
             <img src="view/images/logo.png" width="340" height="150">
-            <form  action="<?php echo $helper->url("Usuarios","resetear_clave_inicio"); ?>" method="post" ">
+            <form  action="<?php echo $helper->url("Usuarios","resetear_password"); ?>" method="post" ">
              
              
              
