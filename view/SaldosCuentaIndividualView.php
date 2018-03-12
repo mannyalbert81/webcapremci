@@ -302,10 +302,12 @@
  <div class="container">
  
    <section class="content-header">
-         <h1>
          <small><?php echo $fecha; ?></small>
-         </h1>
-   </section>
+         <ol class=" pull-right breadcrumb">
+         <li><a href="<?php echo $helper->url("Usuarios","Bienvenida"); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+         <li class="active">Panel de Consultas</li>
+         </ol>
+         </section>
  
   	
   	<div class="col-md-12 col-lg-12 col-xs-12">

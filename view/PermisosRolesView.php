@@ -222,9 +222,11 @@
 	 	?>
     <div class="container">
    <section class="content-header">
-         <h1>
          <small><?php echo $fecha; ?></small>
-         </h1>
+         <ol class=" pull-right breadcrumb">
+         <li><a href="<?php echo $helper->url("Usuarios","Bienvenida"); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+         <li class="active">Permisos Roles</li>
+         </ol>
          </section>
   	<div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">

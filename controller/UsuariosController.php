@@ -167,6 +167,66 @@ class UsuariosController extends ControladorBase{
     }
     
     
+
+ 
+    
+    
+    public function cargar_global_usuarios(){
+    
+    	session_start();
+    	 
+    	$i=0;
+    	$usuarios = new UsuariosModel();
+    	$columnas = "usuarios.cedula_usuarios";
+    	
+    	$tablas   = "public.usuarios";
+    	
+    	$where    = " 1=1";
+    	
+    	$id       = "usuarios.id_usuarios";
+    
+    
+    
+    	$resultSet = $usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
+    
+    	$i=count($resultSet);
+    
+    	$html="";
+    	if($i>0)
+    	{
+    
+    		$html .= "<div class='col-lg-3 col-xs-12'>";
+    		$html .= "<div class='small-box bg-green'>";
+    		$html .= "<div class='inner'>";
+    		$html .= "<h3>$i</h3>";
+    		$html .= "<p>Usuarios Registrados.</p>";
+    		$html .= "</div>";
+    
+    
+    		$html .= "<div class='icon'>";
+    		$html .= "<i class='ion ion-person-add'></i>";
+    		$html .= "</div>";
+    		$html .= "<a href='index.php?controller=Usuarios&action=index' class='small-box-footer'>Operaciones con usuarios <i class='fa fa-arrow-circle-right'></i></a>";
+    		$html .= "</div>";
+    		$html .= "</div>";
+    
+    
+    	}else{
+    		 
+    		$html = "<b>Actualmente no hay usuarios registrados...</b>";
+    	}
+    
+    	echo $html;
+    	die();
+    
+    
+    
+    
+    
+    
+    
+    }
+    
     
     
 public function index(){
@@ -973,16 +1033,39 @@ public function index(){
     }
     public function Bienvenida(){
     
-    	//Creamos el objeto usuario
-    	$usuarios=new UsuariosModel();
+    	session_start();
     	
-    	//Conseguimos todos los usuarios
-    	$allusers=$usuarios->getLogin();
+    	if(isset($_SESSION['id_usuarios']))
+    	{
+    		$_usuario=$_SESSION['nombre_usuarios'];
+    		$_id_rol=$_SESSION['id_rol'];
+    		
+    		if($_id_rol==1){
+    				
+    		
+    			$this->view("BienvenidaAdmin",array(
+    					"allusers"=>$_usuario
+    			));
+    				
+    			die();
+    				
+    		}else{
+    				
+    			$this->view("Bienvenida",array(
+    					"allusers"=>$_usuario
+    			));
+    		
+    			die();
+    				
+    		}
+    		
+    		 
+    	}else{
     	
-    	//Cargamos la vista index y l e pasamos valores
-    	$this->view("Bienvenida",array(
-    			"allusers"=>$allusers
-    	));
+    		$this->view("Login",array(
+    				"allusers"=>""
+    		));
+    	}
     }
     
     
@@ -1054,11 +1137,26 @@ public function index(){
     				$resultado=$sesiones->Insert();
     				 
     				 
-    				$this->view("Bienvenida",array(
-    						"allusers"=>$_usuario
-    				));
     				
-    				die();
+    				if($_id_rol==1){
+    					
+
+    					$this->view("BienvenidaAdmin",array(
+    							"allusers"=>$_usuario
+    					));
+    					
+    					die();
+    					
+    				}else{
+    					
+    					$this->view("Bienvenida",array(
+    							"allusers"=>$_usuario
+    					));
+    						
+    					die();
+    					
+    				}
+    				
     				
     			}else{
     				
@@ -1110,17 +1208,7 @@ public function index(){
     }
 
     
-    
-    
-    
-    public function BienvenidaOk(){
-                
-                $resultSumarDocumentosCategorias = "";
-    
-                $this->view("Bienvenida",array(
-                    "allusers"=>$_SESSION['nombre_usuario']
-                ));          
-    }
+   
     
     
     
@@ -1315,20 +1403,20 @@ public function index(){
 	
 	////// lo nuevo
 	
-	public function contar_user(){
+	public function contar_roles(){
 	
 		session_start();
-		 
+			
 		$i=0;
-		$usuarios = new UsuariosModel();
-		$columnas = "usuarios.*";
-		$tablas   = "public.rol,  public.usuarios, public.estado";
-		$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado";
-		$id       = "usuarios.nombre_usuario";
+		$roles=new RolesModel();
+		$columnas = " id_rol";
+		$tablas   = "rol";
+		$where    = "id_rol >0 ";
+		$id       = "id_rol";
+			
+		$resultSet = $roles->getCondiciones($columnas ,$tablas ,$where, $id);
+			
 	
-	
-	
-		$resultSet = $usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
 	
 		$i=count($resultSet);
 	
@@ -1336,24 +1424,75 @@ public function index(){
 		if($i>0)
 		{
 	
-			$html .= "<div class='col-md-2 col-sm-4 col-xs-6 tile_stats_count'>";
-			$html .= "<span class='count_top'><i class='fa fa-user'></i> Total de Usuarios</span>";
-			$html .= "<div class='count'>$i</div>";
-			$html .= "<span class='count_bottom'> Registrados</span>";
+			$html .= "<div class='col-lg-3 col-xs-12'>";
+			$html .= "<div class='small-box bg-yellow'>";
+			$html .= "<div class='inner'>";
+			$html .= "<h3>$i</h3>";
+			$html .= "<p>Roles Registrados.</p>";
 			$html .= "</div>";
 	
+	
+			$html .= "<div class='icon'>";
+			$html .= "<i class='ion ion-calendar'></i>";
+			$html .= "</div>";
+			$html .= "<a href='index.php?controller=Roles&action=index' class='small-box-footer'>Operaciones con Roles <i class='fa fa-arrow-circle-right'></i></a>";
+			$html .= "</div>";
+			$html .= "</div>";
+	
+	
 		}else{
-			 
-			$html = "<b>Actualmente no hay usuarios registrados...</b>";
+	
+			$html = "<b>Actualmente no hay permisos registrados...</b>";
 		}
 	
 		echo $html;
 		die();
 	
 	
+	}
 	
 	
+	public function cargar_permisos_roles(){
 	
+		session_start();
+			
+		$i=0;
+		$permisos_rol = new PermisosRolesModel();
+		$columnas = "permisos_rol.id_permisos_rol";
+		$tablas   = "public.controladores,  public.permisos_rol, public.rol";
+		$where    = " controladores.id_controladores = permisos_rol.id_controladores AND permisos_rol.id_rol = rol.id_rol";
+		$id       = " permisos_rol.id_permisos_rol";
+		$resultSet = $permisos_rol->getCondiciones($columnas ,$tablas ,$where, $id);
+	
+		$i=count($resultSet);
+	
+		$html="";
+		if($i>0)
+		{
+	
+			$html .= "<div class='col-lg-3 col-xs-6'>";
+			$html .= "<div class='small-box bg-red'>";
+			$html .= "<div class='inner'>";
+			$html .= "<h3>$i</h3>";
+			$html .= "<p>Permisos Registrados.</p>";
+			$html .= "</div>";
+	
+	
+			$html .= "<div class='icon'>";
+			$html .= "<i class='ion ion-stats-bars'></i>";
+			$html .= "</div>";
+			$html .= "<a href='index.php?controller=PermisosRoles&action=index' class='small-box-footer'>Operaciones con permisos <i class='fa fa-arrow-circle-right'></i></a>";
+			$html .= "</div>";
+			$html .= "</div>";
+	
+	
+		}else{
+	
+			$html = "<b>Actualmente no hay permisos registrados...</b>";
+		}
+	
+		echo $html;
+		die();
 	
 	
 	}
@@ -1361,49 +1500,52 @@ public function index(){
 	
 	
 	
+	public function cargar_sesiones(){
 	
-	public function sumar_sesiones(){
-	    
-	    session_start();
-	    
-	    $i=0;
+		session_start();
+			
+		$i=0;
 	    $usuarios = new UsuariosModel();
 	    $columnas = "sesiones.*";
 	    $tablas   = "public.sesiones, public.usuarios";
-	    $where    = "sesiones.id_usuario = usuarios.id_usuario";
-	    $id       = "usuarios.nombre_usuario";
-	    
-	    
-	    
+	    $where    = "sesiones.id_usuarios = usuarios.id_usuarios";
+	    $id       = "usuarios.nombre_usuarios";
 	    $resultSet = $usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
-	    
-	    $i=count($resultSet);
-	    
-	    $html="";
-	    if($i>0)
-	    {
-	        
-	        $html .= "<div class='col-md-2 col-sm-4 col-xs-6 tile_stats_count'>";
-	        $html .= "<span class='count_top'><i class='fa fa-user'></i> Total de Visitas</span>";
-	        $html .= "<div class='count'>$i</div>";
-	        $html .= "<span class='count_bottom'> Registradas</span>";
-	        $html .= "</div>";
-	        
-	    }else{
-	        
-	        $html = "<b>Actualmente no hay visitas registradas...</b>";
-	    }
-	    
-	    echo $html;
-	    die();
-	    
-	    
-	    
-	    
-	    
-	    
-	    
+	
+		$i=count($resultSet);
+	
+		$html="";
+		if($i>0)
+		{
+	
+			$html .= "<div class='col-lg-3 col-xs-6'>";
+			$html .= "<div class='small-box bg-aqua'>";
+			$html .= "<div class='inner'>";
+			$html .= "<h3>$i</h3>";
+			$html .= "<p>Sesiones Registradas.</p>";
+			$html .= "</div>";
+	
+	
+			$html .= "<div class='icon'>";
+			$html .= "<i class='ion ion-stats-bars'></i>";
+			$html .= "</div>";
+			$html .= "<a href='#' class='small-box-footer'>Leer Mas <i class='fa fa-arrow-circle-right'></i></a>";
+			$html .= "</div>";
+			$html .= "</div>";
+	
+	
+		}else{
+	
+			$html = "<b>Actualmente no hay sesiones registrados...</b>";
+		}
+	
+		echo $html;
+		die();
+	
+	
 	}
+	
+	
 	
 	
 	///lo nuevo

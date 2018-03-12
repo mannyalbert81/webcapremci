@@ -311,10 +311,12 @@
       
 	 	?>
     <div class="container">
-        <section class="content-header">
-         <h1>
+       <section class="content-header">
          <small><?php echo $fecha; ?></small>
-         </h1>
+         <ol class=" pull-right breadcrumb">
+         <li><a href="<?php echo $helper->url("Usuarios","Bienvenida"); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+         <li class="active">Perfil de Usuarios</li>
+         </ol>
          </section>
   	
   	
