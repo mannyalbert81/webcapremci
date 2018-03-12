@@ -187,6 +187,17 @@ class EntidadBase{
     }
     
     
+    public function getCondicionesPagDesc($columnas ,$tablas , $where, $id, $limit){
+    
+    	$query=pg_query($this->con, "SELECT $columnas FROM $tablas WHERE $where ORDER BY $id  DESC  $limit");
+    	$resultSet = array();
+    	while ($row = pg_fetch_object($query)) {
+    		$resultSet[]=$row;
+    	}
+    
+    	return $resultSet;
+    }
+    
     public function UpdateBy($colval ,$tabla , $where){
     	try 
     	{ 

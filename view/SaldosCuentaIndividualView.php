@@ -4,38 +4,231 @@
         <meta charset="utf-8"/>
         <title>SaldosCuentaIndividual - Template 2018</title>
 
-		    <link rel="stylesheet" href="view/css/estilos.css">
-		    
+		<link rel="stylesheet" href="view/css/estilos.css">
+		<link rel="stylesheet" href="view/vendors/table-sorter/themes/blue/style.css">
+	
+	
+	
 		    <!-- Bootstrap -->
     		<link href="view/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     		<!-- Font Awesome -->
 		    <link href="view/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 		    <!-- NProgress -->
 		    <link href="view/vendors/nprogress/nprogress.css" rel="stylesheet">
-		    <!-- iCheck -->
-		    <link href="view/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-			
-		    <!-- bootstrap-progressbar -->
-		    <link href="view/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-		    <!-- JQVMap -->
-		    <link href="view/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
-		    <!-- bootstrap-daterangepicker -->
-		    <link href="view/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-		
+		    
+		   
 		    <!-- Custom Theme Style -->
 		    <link href="view/build/css/custom.min.css" rel="stylesheet">
+				
 			
 			<!-- Datatables -->
 		    <link href="view/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-		    <link href="view/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-		    <link href="view/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-		    <link href="view/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-		    <link href="view/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-					
+		    
+		   		
 
 			<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+			<script type="text/javascript" src="view/vendors/table-sorter/jquery.tablesorter.js"></script> 
+        
+       		
             <script src="view/js/jquery.inputmask.bundle.js"></script>
+       		
+        
+        <script type="text/javascript">
+     
+        	   $(document).ready( function (){
+        		   load_cta_individual(1);
+	   			});
+
+        	   function load_cta_individual(pagina){
+
+
+        		   var search=$("#search").val();
+                   var con_datos={
+           					  action:'ajax',
+           					  page:pagina
+           					  };
+                 $("#load_cta_individual_registrados").fadeIn('slow');
+           	     $.ajax({
+           	               beforeSend: function(objeto){
+           	                 $("#load_cta_individual_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
+           	               },
+           	               url: 'index.php?controller=SaldosCuentaIndividual&action=cargar_cuenta_individual&search='+search,
+           	               type: 'POST',
+           	               data: con_datos,
+           	               success: function(x){
+           	                 $("#cta_registrados").html(x);
+           	               	 $("#tabla_cta_individual").tablesorter(); 
+           	                 $("#load_cta_individual_registrados").html("");
+           	               },
+           	              error: function(jqXHR,estado,error){
+           	                $("#cta_registrados").html("Ocurrio un error al cargar la informacion de Cuenta Individaul..."+estado+"    "+error);
+           	              }
+           	            });
+
+
+           		   }
+        </script>
+
+			
+			
+			
+			<script type="text/javascript">
+     
+        	   $(document).ready( function (){
+        		   load_cta_desembolsar(1);
+	   			});
+
+        	   function load_cta_desembolsar(pagina){
+
+
+        		   var search=$("#search_desembolsar").val();
+                   var con_datos={
+           					  action:'ajax',
+           					  page:pagina
+           					  };
+                 $("#load_cta_desembolsar_registrados").fadeIn('slow');
+           	     $.ajax({
+           	               beforeSend: function(objeto){
+           	                 $("#load_cta_desembolsar_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
+           	               },
+           	               url: 'index.php?controller=SaldosCuentaIndividual&action=cargar_cuenta_desembolsar&search='+search,
+           	               type: 'POST',
+           	               data: con_datos,
+           	               success: function(x){
+           	                 $("#cta_desembolsar_registrados").html(x);
+           	               	 $("#tabla_cta_desembolsar").tablesorter(); 
+           	                 $("#load_cta_desembolsar_registrados").html("");
+           	               },
+           	              error: function(jqXHR,estado,error){
+           	                $("#cta_desembolsar_registrados").html("Ocurrio un error al cargar la informacion de Cuenta Individaul..."+estado+"    "+error);
+           	              }
+           	            });
+
+
+           		   }
+        </script>
+       
+       
+       
+       
+       
+       
+			<script type="text/javascript">
+     
+        	   $(document).ready( function (){
+        		   load_credito_ordinario(1);
+	   			});
+
+        	   function load_credito_ordinario(pagina){
+
+
+        		   var search=$("#search_credito_ordinario").val();
+                   var con_datos={
+           					  action:'ajax',
+           					  page:pagina
+           					  };
+                 $("#load_credito_ordinario_registrados").fadeIn('slow');
+           	     $.ajax({
+           	               beforeSend: function(objeto){
+           	                 $("#load_credito_ordinario_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
+           	               },
+           	               url: 'index.php?controller=SaldosCuentaIndividual&action=cargar_credito_ordinario&search='+search,
+           	               type: 'POST',
+           	               data: con_datos,
+           	               success: function(x){
+           	                 $("#cta_credito_ordinario").html(x);
+           	               	 $("#tabla_credito_ordinario").tablesorter(); 
+           	                 $("#load_credito_ordinario_registrados").html("");
+           	               },
+           	              error: function(jqXHR,estado,error){
+           	                $("#cta_credito_ordinario").html("Ocurrio un error al cargar la informacion de Credito Ordinario..."+estado+"    "+error);
+           	              }
+           	            });
+
+
+           		   }
+        </script>
+       
+       
+       
+       <script type="text/javascript">
+     
+        	   $(document).ready( function (){
+        		   load_credito_emergente(1);
+	   			});
+
+        	   function load_credito_emergente(pagina){
+
+
+        		   var search=$("#search_credito_emergente").val();
+                   var con_datos={
+           					  action:'ajax',
+           					  page:pagina
+           					  };
+                 $("#load_credito_emergente_registrados").fadeIn('slow');
+           	     $.ajax({
+           	               beforeSend: function(objeto){
+           	                 $("#load_credito_emergente_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
+           	               },
+           	               url: 'index.php?controller=SaldosCuentaIndividual&action=cargar_credito_emergente&search='+search,
+           	               type: 'POST',
+           	               data: con_datos,
+           	               success: function(x){
+           	                 $("#cta_credito_emergente").html(x);
+           	               	 $("#tabla_credito_emergente").tablesorter(); 
+           	                 $("#load_credito_emergente_registrados").html("");
+           	               },
+           	              error: function(jqXHR,estado,error){
+           	                $("#cta_credito_emergente").html("Ocurrio un error al cargar la informacion de Credito Emergente..."+estado+"    "+error);
+           	              }
+           	            });
+
+
+           		   }
+        </script>
+       
+       
+       
+       
+       <script type="text/javascript">
+     
+        	   $(document).ready( function (){
+        		   load_credito_2x1(1);
+	   			});
+
+        	   function load_credito_2x1(pagina){
+
+
+        		   var search=$("#search_credito_2x1").val();
+                   var con_datos={
+           					  action:'ajax',
+           					  page:pagina
+           					  };
+                 $("#load_credito_2x1_registrados").fadeIn('slow');
+           	     $.ajax({
+           	               beforeSend: function(objeto){
+           	                 $("#load_credito_2x1_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
+           	               },
+           	               url: 'index.php?controller=SaldosCuentaIndividual&action=cargar_credito_2x1&search='+search,
+           	               type: 'POST',
+           	               data: con_datos,
+           	               success: function(x){
+           	                 $("#cta_credito_2x1").html(x);
+           	               	 $("#tabla_credito_2x1").tablesorter(); 
+           	                 $("#load_credito_2x1_registrados").html("");
+           	               },
+           	              error: function(jqXHR,estado,error){
+           	                $("#cta_credito_2x1").html("Ocurrio un error al cargar la informacion de Credito 2 x 1..."+estado+"    "+error);
+           	              }
+           	            });
+
+
+           		   }
+        </script>
+       
+       
        
        
        
@@ -180,134 +373,14 @@
                   <div class="x_content">
                     
                   
-                   <?php if (!empty($resultCredOrdi_Cabec) && !empty($resultCredOrdi_Detall)) {?>
-                  
-                     <div class="row">
-                    		    <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">No de Solicitud:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCredOrdi_Cabec)){ foreach ($resultCredOrdi_Cabec as $res){ echo $res->numsol;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Cuota:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCredOrdi_Cabec)){ foreach ($resultCredOrdi_Cabec as $res){ echo $res->cuota;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Interes:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCredOrdi_Cabec)){ foreach ($resultCredOrdi_Cabec as $res){ echo $res->interes;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Tipo:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCredOrdi_Cabec)){ foreach ($resultCredOrdi_Cabec as $res){ echo $res->tipo;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">PLazo:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCredOrdi_Cabec)){ foreach ($resultCredOrdi_Cabec as $res){ echo $res->plazo;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Concedido en:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCredOrdi_Cabec)){ foreach ($resultCredOrdi_Cabec as $res){ echo $res->fcred;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                               
-           </div>
-           
-           
-            <div class="row">
-                    	       
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Termina en:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCredOrdi_Cabec)){ foreach ($resultCredOrdi_Cabec as $res){ echo $res->ffin;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Cuenta No:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCredOrdi_Cabec)){ foreach ($resultCredOrdi_Cabec as $res){ echo $res->cuenta;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Banco:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCredOrdi_Cabec)){ foreach ($resultCredOrdi_Cabec as $res){ echo $res->banco;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-            </div>
-              
-              		
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                      <thead>
-                        <tr>
-                          <th>Pago</th>
-                          <th>Mes</th>
-                          <th>A&ntilde;o</th>
-                          <th>Fecha Pago</th>
-                          <th>Capital</th>
-                          <th>Interes</th>
-                          <th>Interes por Mora</th>
-                          <th>Seguro Desgr.</th>
-                          <th>Total</th>
-                          <th>Saldo</th>
-                          <th>Estado</th>
-                        </tr>
-                      </thead>
-
-
-                      <tbody>
-    					
-    				
-    						<?php if (!empty($resultCredOrdi_Detall)) {  foreach($resultCredOrdi_Detall as $res) {?>
-    						
-            	        		<tr>
-            	        		   <td> <?php echo $res->pago; ?>  </td> 
-            		               <td> <?php echo $res->mes; ?>  </td> 
-            		               <td> <?php echo $res->ano; ?> </td>
-            		               <td> <?php echo $res->fecpag; ?></td>
-            		               <td> <?php echo number_format($res->capital, 2, '.', ','); ?> </td>
-            		               <td> <?php echo number_format($res->interes, 2, '.', ','); ?>  </td>
-            		               <td> <?php echo number_format($res->intmor, 2, '.', ','); ?>      </td>
-            		               <td> <?php echo number_format($res->seguros, 2, '.', ','); ?>      </td>
-            		               <td> <?php echo number_format($res->total, 2, '.', ','); ?>      </td>
-            		               <td> <?php echo number_format($res->saldo, 2, '.', ','); ?>      </td>
-            		               <td> <?php echo $res->estado; ?>      </td>
-            		    		</tr>
-            		        <?php } } ?>
-                    
-    					
-                      </tbody>
-                    </table>
-                    
-                    
-                    <?php }else{?>
-                    
-                    
-                                <div class="col-lg-6 col-md-6 col-xs-12">
-           	                    <div class="alert alert-info alert-dismissable">
-								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-								<h4>Aviso!!!</h4> No tienes un crédito ordinario para mostrar.
-								</div>
-           	     				</div>
-                    
-                    <?php }?>
+                    <div class="pull-right" style="margin-right:11px;">
+					<input type="text" value="" class="form-control" id="search_credito_ordinario" name="search_credito_ordinario" onkeyup="load_credito_ordinario(1)" placeholder="search.."/>
+					</div>
+					<br>
+					
+					<div id="load_credito_ordinario_registrados" ></div>	
+					<div id="cta_credito_ordinario"></div>	
+                   
                     
                   </div>
                 </div>
@@ -338,139 +411,13 @@
                   </div>
                   <div class="x_content">
                     
-                  
-                    <?php if (!empty($resultCredEmer_Cabec) && !empty($resultCredEmer_Detall)) {?>
-                  
-                  
-                  
-                     <div class="row">
-                    		    <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">No de Solicitud:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCredEmer_Cabec)){ foreach ($resultCredEmer_Cabec as $res){ echo $res->numsol;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Cuota:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCredEmer_Cabec)){ foreach ($resultCredEmer_Cabec as $res){ echo $res->cuota;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Interes:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCredEmer_Cabec)){ foreach ($resultCredEmer_Cabec as $res){ echo $res->interes;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Tipo:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCredEmer_Cabec)){ foreach ($resultCredEmer_Cabec as $res){ echo $res->tipo;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">PLazo:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCredEmer_Cabec)){ foreach ($resultCredEmer_Cabec as $res){ echo $res->plazo;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Concedido en:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCredEmer_Cabec)){ foreach ($resultCredEmer_Cabec as $res){ echo $res->fcred;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                               
-           </div>
-           
-           
-            <div class="row">
-                    	       
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Termina en:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCredEmer_Cabec)){ foreach ($resultCredEmer_Cabec as $res){ echo $res->ffin;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Cuenta No:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCredEmer_Cabec)){ foreach ($resultCredEmer_Cabec as $res){ echo $res->cuenta;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Banco:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCredEmer_Cabec)){ foreach ($resultCredEmer_Cabec as $res){ echo $res->banco;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-            </div>
-           
-              
-              
-              		
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                      <thead>
-                        <tr>
-                          <th>Pago</th>
-                          <th>Mes</th>
-                          <th>A&ntilde;o</th>
-                          <th>Fecha Pago</th>
-                          <th>Capital</th>
-                          <th>Interes</th>
-                          <th>Interes por Mora</th>
-                          <th>Seguro Desgr.</th>
-                          <th>Total</th>
-                          <th>Saldo</th>
-                          <th>Estado</th>
-                        </tr>
-                      </thead>
-
-
-                      <tbody>
-    					
-    				
-    						<?php if (!empty($resultCredEmer_Detall)) {  foreach($resultCredEmer_Detall as $res) {?>
-    						
-            	        		<tr>
-            	        		   <td> <?php echo $res->pago; ?>  </td> 
-            		               <td> <?php echo $res->mes; ?>  </td> 
-            		               <td> <?php echo $res->ano; ?> </td>
-            		               <td> <?php echo $res->fecpag; ?></td>
-            		               <td> <?php echo number_format($res->capital, 2, '.', ','); ?> </td>
-            		               <td> <?php echo number_format($res->interes, 2, '.', ','); ?>  </td>
-            		               <td> <?php echo number_format($res->intmor, 2, '.', ','); ?>      </td>
-            		               <td> <?php echo number_format($res->seguros, 2, '.', ','); ?>      </td>
-            		               <td> <?php echo number_format($res->total, 2, '.', ','); ?>      </td>
-            		               <td> <?php echo number_format($res->saldo, 2, '.', ','); ?>      </td>
-            		               <td> <?php echo $res->estado; ?>      </td>
-            		    		</tr>
-            		        <?php } } ?>
-                    
-    					
-                      </tbody>
-                    </table>
-                    
-                    
-                     <?php }else{?>
-                    
-                    
-                                <div class="col-lg-6 col-md-6 col-xs-12">
-           	                    <div class="alert alert-info alert-dismissable">
-								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-								<h4>Aviso!!!</h4> No tienes un crédito emergente para mostrar.
-								</div>
-           	     				</div>
-                    
-                    <?php }?>
+                  <div class="pull-right" style="margin-right:11px;">
+					<input type="text" value="" class="form-control" id="search_credito_emergente" name="search_credito_emergente" onkeyup="load_credito_emergente(1)" placeholder="search.."/>
+					</div>
+					<br>
+					
+					<div id="load_credito_emergente_registrados" ></div>	
+					<div id="cta_credito_emergente"></div>	
                     
                   </div>
                 </div>
@@ -508,140 +455,13 @@
                   <div class="x_content">
                     
                   
-                   <?php if (!empty($resultCred2_x_1_Cabec) && !empty($resultCred2_x_1_Detall)) {?>
-                  
-                  
-                  
-                     <div class="row">
-                    		    <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">No de Solicitud:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCred2_x_1_Cabec)){ foreach ($resultCred2_x_1_Cabec as $res){ echo $res->numsol;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Cuota:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCred2_x_1_Cabec)){ foreach ($resultCred2_x_1_Cabec as $res){ echo $res->cuota;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Interes:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCred2_x_1_Cabec)){ foreach ($resultCred2_x_1_Cabec as $res){ echo $res->interes;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Tipo:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCred2_x_1_Cabec)){ foreach ($resultCred2_x_1_Cabec as $res){ echo $res->tipo;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">PLazo:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCred2_x_1_Cabec)){ foreach ($resultCred2_x_1_Cabec as $res){ echo $res->plazo;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Concedido en:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCred2_x_1_Cabec)){ foreach ($resultCred2_x_1_Cabec as $res){ echo $res->fcred;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                               
-           </div>
-           
-           
-            <div class="row">
-                    	       
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Termina en:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCred2_x_1_Cabec)){ foreach ($resultCred2_x_1_Cabec as $res){ echo $res->ffin;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Cuenta No:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCred2_x_1_Cabec)){ foreach ($resultCred2_x_1_Cabec as $res){ echo $res->cuenta;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-                                <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="cedula_participe" class="control-label">Banco:</label>
-                                                      <input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php if(!empty($resultCred2_x_1_Cabec)){ foreach ($resultCred2_x_1_Cabec as $res){ echo $res->banco;}}else{} ?>" readonly>
-                                </div>
-                                </div>
-                                
-            </div>
-           
-              
-              
-              		
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                      <thead>
-                        <tr>
-                          <th>Pago</th>
-                          <th>Mes</th>
-                          <th>A&ntilde;o</th>
-                          <th>Fecha Pago</th>
-                          <th>Capital</th>
-                          <th>Interes</th>
-                          <th>Interes por Mora</th>
-                          <th>Seguro Desgr.</th>
-                          <th>Total</th>
-                          <th>Saldo</th>
-                          <th>Estado</th>
-                        </tr>
-                      </thead>
-
-
-                      <tbody>
-    					
-    				
-    						<?php if (!empty($resultCred2_x_1_Detall)) {  foreach($resultCred2_x_1_Detall as $res) {?>
-    						
-            	        		<tr>
-            	        		   <td> <?php echo $res->pago; ?>  </td> 
-            		               <td> <?php echo $res->mes; ?>  </td> 
-            		               <td> <?php echo $res->ano; ?> </td>
-            		               <td> <?php echo $res->fecpag; ?></td>
-            		               <td> <?php echo number_format($res->capital, 2, '.', ','); ?> </td>
-            		               <td> <?php echo number_format($res->interes, 2, '.', ','); ?>  </td>
-            		               <td> <?php echo number_format($res->intmor, 2, '.', ','); ?>      </td>
-            		               <td> <?php echo number_format($res->seguros, 2, '.', ','); ?>      </td>
-            		               <td> <?php echo number_format($res->total, 2, '.', ','); ?>      </td>
-            		               <td> <?php echo number_format($res->saldo, 2, '.', ','); ?>      </td>
-            		               <td> <?php echo $res->estado; ?>      </td>
-            		    		</tr>
-            		        <?php } } ?>
-                    
-    					
-                      </tbody>
-                    </table>
-                    
-                    
-                    
-                      <?php }else{?>
-                    
-                    
-                                <div class="col-lg-6 col-md-6 col-xs-12">
-           	                    <div class="alert alert-info alert-dismissable">
-								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-								<h4>Aviso!!!</h4> No tienes un crédito 2x1 para mostrar.
-								</div>
-           	     				</div>
-                    
-                    <?php }?>
-                    
+                    <div class="pull-right" style="margin-right:11px;">
+					<input type="text" value="" class="form-control" id="search_credito_2x1" name="search_credito_2x1" onkeyup="load_credito_2x1(1)" placeholder="search.."/>
+					</div>
+					<br>
+					
+					<div id="load_credito_2x1_registrados" ></div>	
+					<div id="cta_credito_2x1"></div>	
                     
                   </div>
                 </div>
@@ -683,55 +503,15 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    
-                    <?php if (!empty($resultDatosMayor_Cta_individual)) {  foreach($resultDatosMayor_Cta_individual as $res) {?>
-                   
-                    <?php
-                    $fecha=$res->fecha;
-                    $total= $res->total; 
-                    ?>
-                    <?php }}?>
-					
-					<center><h5>Total Cuenta Individual Actualizada al <?php if ($fecha !=""){echo $fecha;}else{ echo "";}?> : $ <?php if($total != ""){echo $total;}else{ echo "0.00";}?></h5></center>
+                  
+                    <div class="pull-right" style="margin-right:11px;">
+					<input type="text" value="" class="form-control" id="search" name="search" onkeyup="load_cta_individual(1)" placeholder="search.."/>
+					</div>
 					
 					
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                      <thead>
-                        <tr>
-                         
-                          <th>Fecha</th>
-                          <th>Descripción</th>
-                          <th>Mes/A&ntilde;o</th>
-                          <th>Valor Personal</th>
-                          <th>Valor Patronal</th>
-                          <th>Saldo Personal</th>
-                          <th>Saldo Patronal</th>
-                         
-                        </tr>
-                      </thead>
-
-
-                      <tbody>
-    					
-    				
-    						<?php if (!empty($resultDatos_Cta_individual)) {  foreach($resultDatos_Cta_individual as $res) {?>
-    						
-    							
-            	        		<tr>
-            	        		   <td> <?php echo $res->fecha_conta; ?>  </td> 
-            		               <td> <?php echo $res->descripcion; ?>  </td> 
-            		               <td> <?php echo $res->mes_anio; ?> </td>
-            		               <td> <?php echo number_format($res->valorper, 2, '.', ','); ?></td>
-            		               <td> <?php echo number_format($res->valorpat, 2, '.', ','); ?> </td>
-            		               <td> <?php echo number_format($res->saldoper, 2, '.', ','); ?>  </td>
-            		               <td> <?php echo number_format($res->saldopat, 2, '.', ','); ?>      </td>
-            		               
-            		    		</tr>
-            		        <?php } } ?>
-                    
-    					
-                      </tbody>
-                    </table>
+					<div id="load_cta_individual_registrados" ></div>	
+					<div id="cta_registrados"></div>	
+                  
                   </div>
                 </div>
               </div>
@@ -770,54 +550,17 @@
                   </div>
                   <div class="x_content">
                     
-                    <?php if (!empty($resultDatosMayor_Cta_desembolsar)) {  foreach($resultDatosMayor_Cta_desembolsar as $res) {?>
-                   
-                    <?php
-                    $fecha1=$res->fecha;
-                    $total1= $res->total; 
-                    ?>
-                    <?php }} ?>	
-					
-					 <center><h5>Total Cuenta Por Desembolsar Actualizada al <?php if ($fecha1 !=""){echo $fecha1;}else{ echo "";}?> : $ <?php if($total1 != ""){echo $total1;}else{ echo "0.00";}?></h5></center>
+                  
+                  <div class="pull-right" style="margin-right:11px;">
+					<input type="text" value="" class="form-control" id="search_desembolsar" name="search_desembolsar" onkeyup="load_cta_desembolsar(1)" placeholder="search.."/>
+					</div>
 					
 					
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                      <thead>
-                        <tr>
-                         
-                          <th>Fecha</th>
-                          <th>Descripción</th>
-                          <th>Mes/A&ntilde;o</th>
-                          <th>Valor Personal</th>
-                          <th>Valor Patronal</th>
-                          <th>Saldo Personal</th>
-                          <th>Saldo Patronal</th>
-                         
-                        </tr>
-                      </thead>
-
-
-                      <tbody>
-    					
-    				
-    						<?php if (!empty($resultDatos_Cta_desembolsar)) {  foreach($resultDatos_Cta_desembolsar as $res) {?>
-    						
-    							
-            	        		<tr>
-            	        		   <td> <?php echo $res->fecha_conta; ?>  </td> 
-            		               <td> <?php echo $res->descripcion; ?>  </td> 
-            		               <td> <?php echo $res->mes_anio; ?> </td>
-            		               <td> <?php echo number_format($res->valorper, 2, '.', ','); ?></td>
-            		               <td> <?php echo number_format($res->valorpat, 2, '.', ','); ?> </td>
-            		               <td> <?php echo number_format($res->saldoper, 2, '.', ','); ?>  </td>
-            		               <td> <?php echo number_format($res->saldopat, 2, '.', ','); ?>      </td>
-            		               
-            		    		</tr>
-            		        <?php } } ?>
-                    
-    					
-                      </tbody>
-                    </table>
+					<div id="load_cta_desembolsar_registrados" ></div>	
+					<div id="cta_desembolsar_registrados"></div>	
+                  
+                  
+                  
                   </div>
                 </div>
               </div>
@@ -1313,39 +1056,30 @@
 
 
 
-
-        <!-- jQuery -->
-    <script src="view/vendors/jquery/dist/jquery.min.js"></script>
+ 
     <!-- Bootstrap -->
     <script src="view/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="view/vendors/fastclick/lib/fastclick.js"></script>
+    
+    
+    
     <!-- NProgress -->
     <script src="view/vendors/nprogress/nprogress.js"></script>
-    <!-- iCheck -->
-    <script src="view/vendors/iCheck/icheck.min.js"></script>
+   
+   
     <!-- Datatables -->
     <script src="view/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    
+    
     <script src="view/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="view/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="view/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script src="view/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="view/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="view/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="view/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script src="view/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="view/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="view/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script src="view/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-    <script src="view/vendors/jszip/dist/jszip.min.js"></script>
-    <script src="view/vendors/pdfmake/build/pdfmake.min.js"></script>
-    <script src="view/vendors/pdfmake/build/vfs_fonts.js"></script>
-
+    
+    
+    
     <!-- Custom Theme Scripts -->
     <script src="view/build/js/custom.min.js"></script>
 	
 	<!-- codigo de las funciones -->
-	<script src="view/js/funciones.js"></script> 
+
 	
   </body>
 </html>   
