@@ -8,8 +8,6 @@
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
               </div>
               
-              
-         
          
 			  <?php  
 			     $status = session_status();
