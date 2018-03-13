@@ -3,7 +3,9 @@
       <head>
         <meta charset="utf-8"/>
         <title>SaldosCuentaIndividual - Template 2018</title>
-
+ 
+ 
+ 
 		<link rel="stylesheet" href="view/css/estilos.css">
 		<link rel="stylesheet" href="view/vendors/table-sorter/themes/blue/style.css">
 	
@@ -1055,7 +1057,6 @@
 
    </div>
    </div>
-
 
 
  
