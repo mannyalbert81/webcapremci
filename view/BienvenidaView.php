@@ -70,11 +70,19 @@
         <div class="right_col" role="main">
           <!-- top tiles -->
           <div class="row tile_count">
-           
-           
-           
-           
+            <div id='pone_cta_individual'></div>
+            <div id='pone_cta_desembolsar'></div>
+            <div id='pone_alerta_actualizacion'></div>
           </div>
+          
+           <div class="row tile_count">
+            <div id='pone_credito_ordinario'></div>
+            <div id='pone_credito_emergente'></div>
+            <div id='pone_credito_2x1'></div>
+	       </div>
+          
+          
+          
         </div>
           <!-- /top tiles -->
 
@@ -121,7 +129,147 @@
 	
 	<!-- codigo de las funciones -->
 	
-	
+	 <script type="text/javascript">
+     
+        	   $(document).ready( function (){
+        		   pone_cta_individual();
+        		   pone_cta_desembolsar();
+        		   pone_alerta_actualizacion();
+        		   pone_credito_ordinario();
+        		   pone_credito_emergente();
+        		   pone_credito_2x1();
+        		  
+	   			});
+
+        	   function pone_cta_individual(){
+        		   $(document).ready( function (){
+        		       $.ajax({
+        		                 beforeSend: function(objeto){
+        		                   $("#pone_cta_individual").html('')
+        		                 },
+        		                 url: 'index.php?controller=Usuarios&action=cargar_cta_individual',
+        		                 type: 'POST',
+        		                 data: null,
+        		                 success: function(x){
+        		                   $("#pone_cta_individual").html(x);
+        		                 },
+        		                error: function(jqXHR,estado,error){
+        		                  $("#pone_cta_individual").html("Ocurrio un error al cargar la informacion de cuenta individual..."+estado+"    "+error);
+        		                }
+        		              });
+        		     })
+        		  }
+
+
+        	   function pone_cta_desembolsar(){
+        		   $(document).ready( function (){
+        		       $.ajax({
+        		                 beforeSend: function(objeto){
+        		                   $("#pone_cta_desembolsar").html('')
+        		                 },
+        		                 url: 'index.php?controller=Usuarios&action=cargar_cta_desembolsar',
+        		                 type: 'POST',
+        		                 data: null,
+        		                 success: function(x){
+        		                   $("#pone_cta_desembolsar").html(x);
+        		                 },
+        		                error: function(jqXHR,estado,error){
+        		                  $("#pone_cta_desembolsar").html("Ocurrio un error al cargar la cuenta desembolsar..."+estado+"    "+error);
+        		                }
+        		              });
+        		     })
+        		  }
+
+
+        	   function pone_alerta_actualizacion(){
+        		   $(document).ready( function (){
+        		       $.ajax({
+        		                 beforeSend: function(objeto){
+        		                   $("#pone_alerta_actualizacion").html('')
+        		                 },
+        		                 url: 'index.php?controller=Usuarios&action=alerta_actualizacion',
+        		                 type: 'POST',
+        		                 data: null,
+        		                 success: function(x){
+        		                   $("#pone_alerta_actualizacion").html(x);
+        		                 },
+        		                error: function(jqXHR,estado,error){
+        		                  $("#pone_alerta_actualizacion").html("Ocurrio un error al cargar la alerta de actuaización..."+estado+"    "+error);
+        		                }
+        		              });
+        		     })
+        		  }
+        	   
+
+        	   
+
+        	   
+        	   function pone_credito_ordinario(){
+        		   $(document).ready( function (){
+        		       $.ajax({
+        		                 beforeSend: function(objeto){
+        		                   $("#pone_credito_ordinario").html('')
+        		                 },
+        		                 url: 'index.php?controller=Usuarios&action=cargar_credito_ordinario',
+        		                 type: 'POST',
+        		                 data: null,
+        		                 success: function(x){
+        		                   $("#pone_credito_ordinario").html(x);
+        		                 },
+        		                error: function(jqXHR,estado,error){
+        		                  $("#pone_credito_ordinario").html("Ocurrio un error al cargar la informacion de crédito ordinario..."+estado+"    "+error);
+        		                }
+        		              });
+        		     })
+        		  }
+
+
+        	   function pone_credito_emergente(){
+        		   $(document).ready( function (){
+        		       $.ajax({
+        		                 beforeSend: function(objeto){
+        		                   $("#pone_credito_emergente").html('')
+        		                 },
+        		                 url: 'index.php?controller=Usuarios&action=cargar_credito_emergente',
+        		                 type: 'POST',
+        		                 data: null,
+        		                 success: function(x){
+        		                   $("#pone_credito_emergente").html(x);
+        		                 },
+        		                error: function(jqXHR,estado,error){
+        		                  $("#pone_credito_emergente").html("Ocurrio un error al cargar la informacion de crédito emergente..."+estado+"    "+error);
+        		                }
+        		              });
+        		     })
+        		  }
+
+
+
+        	   function pone_credito_2x1(){
+        		   $(document).ready( function (){
+        		       $.ajax({
+        		                 beforeSend: function(objeto){
+        		                   $("#pone_credito_2x1").html('')
+        		                 },
+        		                 url: 'index.php?controller=Usuarios&action=cargar_credito_2x1',
+        		                 type: 'POST',
+        		                 data: null,
+        		                 success: function(x){
+        		                   $("#pone_credito_2x1").html(x);
+        		                 },
+        		                error: function(jqXHR,estado,error){
+        		                  $("#pone_credito_2x1").html("Ocurrio un error al cargar la informacion de crédito 2x2..."+estado+"    "+error);
+        		                }
+        		              });
+        		     })
+        		  }
+
+
+
+        	   
+
+        	   
+        </script>
 	
   </body>
 </html>

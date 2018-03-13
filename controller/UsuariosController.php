@@ -116,7 +116,7 @@ class UsuariosController extends ControladorBase{
     		{
     			$i++;
     			$html.='<tr>';
-    			$html.='<td style="font-size: 11px;"><img src="view/DevuelveImagenView.php?id_valor='.$res->id_usuarios.'&id_nombre=id_usuarios&tabla=usuarios&campo=fotografia_usuarios" width="80" height="60"</td>';
+    			$html.='<td style="font-size: 11px;"><img src="view/DevuelveImagenView.php?id_valor='.$res->id_usuarios.'&id_nombre=id_usuarios&tabla=usuarios&campo=fotografia_usuarios" width="80" height="60"></td>';
     			$html.='<td style="font-size: 11px;">'.$i.'</td>';
     			$html.='<td style="font-size: 11px;">'.$res->cedula_usuarios.'</td>';
     			$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'</td>';
@@ -1211,6 +1211,23 @@ public function index(){
    
     
     
+    public function  sesion_caducada()
+    {
+    	session_start();
+    	session_destroy();
+    
+    	$error = TRUE;
+	    $mensaje = "Te sesión a caducado, vuelve a iniciar sesión.";
+	    	
+	    $this->view("Login",array(
+	    		"resultSet"=>"$mensaje", "error"=>$error
+	    ));
+	    	
+	    die();
+	    		
+    
+    }
+    
     
 	public function  cerrar_sesion ()
 	{
@@ -1548,67 +1565,7 @@ public function index(){
 	
 	
 	
-	///lo nuevo
 	
-	public function tabla_usuarios (){
-		
-		
-		session_start();
-			
-		$html = '';
-		$i=0;
-		$usuarios = new UsuariosModel();
-		
-		$columnas = " usuarios.id_usuario,  usuarios.nombre_usuario, usuarios.usuario_usuario ,  usuarios.telefono_usuario, usuarios.celular_usuario, usuarios.correo_usuario, rol.nombre_rol, estado.nombre_estado, rol.id_rol, estado.id_estado ";
-		$tablas   = "public.rol,  public.usuarios, public.estado";
-		$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado";
-		$id       = "usuarios.nombre_usuario";
-			
-		
-		$resultSet = $usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
-		
-		$i=count($resultSet);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		if (!empty($resultSet)) {  foreach($resultSet as $res) {
-			
-			
-			$html .= '<tr>';
-			$html .= '<td> '. $res->id_usuario .'  </td>';
-		    $html .= '<td> '. $res->nombre_usuario .'     </td>'; 
-			$html .= '<td> '.  $res->usuario_usuario .'  </td>';
-			$html .= '<td> '.  $res->telefono_usuario .'  </td>';
-			$html .= '<td> '.  $res->celular_usuario .'  </td>';
-			$html .= '<td> '.  $res->correo_usuario .'  </td>';
-			$html .= '<td> '.  $res->nombre_rol .'  </td>';
-			$html .= '<td> '.  $res->nombre_estado .'  </td>';
-			$html .= '<td><a  href="index.php?controller=Usuarios&action=index&id_usuario='.$res->id_usuario.'" ><i class="glyphicon glyphicon-edit"></i></a></td>';
-			$html .= '<td><a href="index.php?controller=Usuarios&action=borrarId&id_usuario=<'.$res->id_usuario.'" ><i class="glyphicon glyphicon-trash"></i></a></td>';
-		    $html .= '</tr>';
-			
-			
-			
-			
-			}
-		}else{
-		
-			$html = "<b>Actualmente no hay usuarios registrados...</b>";
-		}
-		
-		echo $html;
-        die();
-        
-        
-        
-		
-	}
 	
 	
 	
@@ -1681,6 +1638,586 @@ public function index(){
 		$out.= "</ul>";
 		return $out;
 	}
+	
+	
+	
+	
+	
+	///////////////////////////////////////////////// informacion de participes ///////
+	
+	
+	
+	public function alerta_actualizacion(){
+	
+		session_start();
+		$i=0;
+		$usuarios = new UsuariosModel();
+	
+		
+	
+		$cedula_usuarios = $_SESSION["cedula_usuarios"];
+	
+		if(!empty($cedula_usuarios)){
+			
+			$columnas = "usuarios.id_usuarios, usuarios.cedula_usuarios, usuarios.nombre_usuarios, usuarios.correo_usuarios";
+			 
+			$tablas   = "public.usuarios";
+			 
+			$where    = " 1=1 AND usuarios.cedula_usuarios='$cedula_usuarios'";
+			 
+			$id       = "usuarios.id_usuarios";
+			
+			
+			
+			$resultSet = $usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
+	
+			$i=count($resultSet);
+				
+			$html="";
+			if($i>0)
+			{
+				if (!empty($resultSet)) {
+					$_id_usuarios=$resultSet[0]->id_usuarios;
+					$_cedula_usuarios=$resultSet[0]->cedula_usuarios;
+					$_nombre_usuarios=$resultSet[0]->nombre_usuarios;
+					$_correo_usuarios=$resultSet[0]->correo_usuarios;
+					
+						
+				}
+	
+
+				$html .= "<div class='col-md-4 col-sm-6 col-xs-12'>";
+				$html .= "<div class='info-box'>";
+				$html .= "<span class='info-box-icon bg-aqua'><img src='view/DevuelveImagenView.php?id_valor=$_id_usuarios&id_nombre=id_usuarios&tabla=usuarios&campo=fotografia_usuarios' width='80' height='80'></span>";
+				$html .= "<div class='info-box-content'>";
+				$html .= "<span class='info-box-text'>Hola <strong>$_nombre_usuarios</strong><br> ayudanos actualizando tu información<br> personal.</span>";
+				$html .= "</div>";
+				$html .= "</div>";
+				$html .= "</div>";
+	
+	
+			}else{
+	
+
+				$html .= "<div class='col-md-4 col-sm-6 col-xs-12'>";
+				$html .= "<div class='info-box'>";
+				$html .= "<span class='info-box-icon bg-aqua'><i class='ion ion-person-add'></i></span>";
+				$html .= "<div class='info-box-content'>";
+				$html .= "<span class='info-box-text'>Debes iniciar sesión.</span>";
+				$html .= "</div>";
+				$html .= "</div>";
+				$html .= "</div>";
+					
+			}
+	
+			echo $html;
+			die();
+	
+		}
+		else{
+	
+	
+	
+			$this->redirect("Usuarios","sesion_caducada");
+	
+			die();
+	
+		}
+	
+	}
+	
+	
+	
+	
+	
+	
+	public function cargar_cta_individual(){
+	
+		session_start();
+		$i=0;
+		$afiliado_transacc_cta_ind = new Afiliado_transacc_cta_indModel();
+		
+		$cedula_usuarios = $_SESSION["cedula_usuarios"];
+		
+		if(!empty($cedula_usuarios)){
+		$columnas_ind_mayor = "sum(valorper+valorpat) as total, max(fecha_conta) as fecha";
+		$tablas_ind_mayor="afiliado_transacc_cta_ind";
+		$where_ind_mayor="cedula='$cedula_usuarios'";
+		$resultSet=$afiliado_transacc_cta_ind->getCondicionesValorMayor($columnas_ind_mayor, $tablas_ind_mayor, $where_ind_mayor);
+				
+	
+		$i=count($resultSet);
+		$fecha="";
+		$total= 0.00;
+		$html="";
+		if($i>0)
+		{
+			if (!empty($resultSet)) {  foreach($resultSet as $res) {
+				$fecha=$res->fecha;
+				$total= number_format($res->total, 2, '.', ',');
+			}}else{
+					
+				$fecha="";
+				$total= 0.00;
+			
+			}
+	
+			
+	
+			
+			$html .= "<div class='col-md-4 col-sm-6 col-xs-12'>";
+			$html .= "<div class='info-box'>";
+			$html .= "<span class='info-box-icon bg-red'><i class='ion ion-pie-graph'></i></span>";
+			$html .= "<div class='info-box-content'>";
+			$html .= "<span class='info-box-number'>$total</span>";
+			$html .= "<span class='info-box-text'>Cuenta Individual Actualizada<br> al $fecha.</span>";
+			$html .= "</div>";
+			$html .= "</div>";
+			$html .= "</div>";
+			
+			
+			
+	
+		}else{
+			
+			
+			
+			$html .= "<div class='col-md-4 col-sm-6 col-xs-12'>";
+			$html .= "<div class='info-box'>";
+			$html .= "<span class='info-box-icon bg-red'><i class='ion ion-pie-graph'></i></span>";
+			$html .= "<div class='info-box-content'>";
+			$html .= "<span class='info-box-number'>$total</span>";
+			$html .= "<span class='info-box-text'>Actualmente no dispone cuenta<br> individual.</span>";
+			$html .= "</div>";
+			$html .= "</div>";
+			$html .= "</div>";
+			 
+			
+		}
+	
+		echo $html;
+		die();
+	
+		}
+		else{
+			
+			
+			
+			$this->redirect("Usuarios","sesion_caducada");
+			
+			die();
+			
+		}
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+	public function cargar_cta_desembolsar(){
+	
+		session_start();
+		$i=0;
+		$afiliado_transacc_cta_desemb = new Afiliado_transacc_cta_desembModel();
+		
+	
+		$cedula_usuarios = $_SESSION["cedula_usuarios"];
+	
+		if(!empty($cedula_usuarios)){
+			$columnas_desemb_mayor = "sum(valorper+valorpat) as total, max(fecha_conta) as fecha";
+			$tablas_desemb_mayor="afiliado_transacc_cta_desemb";
+			$where_desemb_mayor="cedula='$cedula_usuarios'";
+			$resultSet=$afiliado_transacc_cta_desemb->getCondicionesValorMayor($columnas_desemb_mayor, $tablas_desemb_mayor, $where_desemb_mayor);
+				
+	
+			$i=count($resultSet);
+			$fecha="";
+			$total= 0.00;
+			$html="";
+			if($i>0)
+			{
+				if (!empty($resultSet)) {  foreach($resultSet as $res) {
+					$fecha=$res->fecha;
+					$total= number_format($res->total, 2, '.', ',');
+				}}else{
+						
+					$fecha="";
+					$total= 0.00;
+						
+				}
+				
+				
+				$html .= "<div class='col-md-4 col-sm-6 col-xs-12'>";
+				$html .= "<div class='info-box'>";
+				$html .= "<span class='info-box-icon bg-yellow'><i class='ion ion-stats-bars'></i></span>";
+				$html .= "<div class='info-box-content'>";
+				$html .= "<span class='info-box-number'>$total</span>";
+				$html .= "<span class='info-box-text'>Cuenta Desembolsar Actualizada<br> al $fecha.</span>";
+				$html .= "</div>";
+				$html .= "</div>";
+				$html .= "</div>";
+	
+				
+	
+	
+			}else{
+	
+				
+				$html .= "<div class='col-md-4 col-sm-6 col-xs-12'>";
+				$html .= "<div class='info-box'>";
+				$html .= "<span class='info-box-icon bg-yellow'><i class='ion ion-stats-bars'></i></span>";
+				$html .= "<div class='info-box-content'>";
+				$html .= "<span class='info-box-number'>$total</span>";
+				$html .= "<span class='info-box-text'>Actualmente no dispone Cuenta<br> Por Desembolsar.</span>";
+				$html .= "</div>";
+				$html .= "</div>";
+				$html .= "</div>";
+				
+			
+				
+					
+					
+			}
+	
+			echo $html;
+			die();
+	
+		}
+		else{
+				
+				
+				
+			$this->redirect("Usuarios","sesion_caducada");
+				
+			die();
+				
+		}
+	
+	
+	
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	public function cargar_credito_ordinario(){
+	
+		session_start();
+		$i=0;
+		$ordinario_solicitud = new Ordinario_SolicitudModel();
+		$ordinario_detalle = new Ordinario_DetalleModel();
+	
+		$_numsol_ordinario="";
+		$_cuota_ordinario="";
+		$_interes_ordinario="";
+		$_tipo_ordinario="";
+		$_plazo_ordinario="";
+		$_fcred_ordinario="";
+		$_ffin_ordinario="";
+		$_cuenta_ordinario="";
+		$_banco_ordinario="";
+	
+		$cedula_usuarios = $_SESSION["cedula_usuarios"];
+	
+		if(!empty($cedula_usuarios)){
+			$columnas_ordi_cabec ="*";
+			$tablas_ordi_cabec="ordinario_solicitud";
+			$where_ordi_cabec="cedula='$cedula_usuarios'";
+			$id_ordi_cabec="cedula";
+			$resultSet=$ordinario_solicitud->getCondicionesDesc($columnas_ordi_cabec, $tablas_ordi_cabec, $where_ordi_cabec, $id_ordi_cabec);
+			
+	
+			$i=count($resultSet);
+			
+			$html="";
+			if($i>0)
+			{
+				if (!empty($resultSet)) { 
+					$_numsol_ordinario=$resultSet[0]->numsol;
+					$_cuota_ordinario=$resultSet[0]->cuota;
+					$_interes_ordinario=$resultSet[0]->interes;
+					$_tipo_ordinario=$resultSet[0]->tipo;
+					$_plazo_ordinario=$resultSet[0]->plazo;
+					$_fcred_ordinario=$resultSet[0]->fcred;
+					$_ffin_ordinario=$resultSet[0]->ffin;
+					$_cuenta_ordinario=$resultSet[0]->cuenta;
+					$_banco_ordinario=$resultSet[0]->banco;
+					
+				}
+	
+				$html .= "<div class='col-lg-4 col-xs-12'>";
+				$html .= "<div class='small-box bg-red'>";
+				$html .= "<div class='inner'>";
+				$html .= "<h3>$_numsol_ordinario</h3>";
+				$html .= "<p>Tienes activo un crédito ordinario<br> desde $_fcred_ordinario hasta $_ffin_ordinario.</p>";
+				$html .= "</div>";
+	
+	
+				$html .= "<div class='icon'>";
+				$html .= "<i class='ion ion-calendar'></i>";
+				$html .= "</div>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "</div>";
+				$html .= "</div>";
+	
+	
+			}else{
+	
+				$html .= "<div class='col-lg-4 col-xs-12'>";
+				$html .= "<div class='small-box bg-red'>";
+				$html .= "<div class='inner'>";
+				$html .= "<h3>S/N</h3>";
+				$html .= "<p>Actualmente no dispone un crédito<br> ordinario.</p>";
+				$html .= "</div>";
+					
+					
+				$html .= "<div class='icon'>";
+				$html .= "<i class='ion ion-calendar'></i>";
+				$html .= "</div>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "</div>";
+				$html .= "</div>";
+					
+					
+			}
+	
+			echo $html;
+			die();
+	
+		}
+		else{
+	
+	
+	
+			$this->redirect("Usuarios","sesion_caducada");
+	
+			die();
+	
+		}
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public function cargar_credito_emergente(){
+	
+		session_start();
+		$i=0;
+		$emergente_solicitud = new Emergente_SolicitudModel();
+		$emergente_detalle = new Emergente_DetalleModel();
+	
+		$_numsol_emergente="";
+		$_cuota_emergente="";
+		$_interes_emergente="";
+		$_tipo_emergente="";
+		$_plazo_emergente="";
+		$_fcred_emergente="";
+		$_ffin_emergente="";
+		$_cuenta_emergente="";
+		$_banco_emergente="";
+	
+		$cedula_usuarios = $_SESSION["cedula_usuarios"];
+	
+		if(!empty($cedula_usuarios)){
+			$columnas_emer_cabec ="*";
+				$tablas_emer_cabec="emergente_solicitud";
+				$where_emer_cabec="cedula='$cedula_usuarios'";
+				$id_emer_cabec="cedula";
+				$resultSet=$emergente_solicitud->getCondicionesDesc($columnas_emer_cabec, $tablas_emer_cabec, $where_emer_cabec, $id_emer_cabec);
+					
+	
+			$i=count($resultSet);
+				
+			$html="";
+			if($i>0)
+			{
+				if (!empty($resultSet)) {
+					
+					$_numsol_emergente=$resultSet[0]->numsol;
+					$_cuota_emergente=$resultSet[0]->cuota;
+					$_interes_emergente=$resultSet[0]->interes;
+					$_tipo_emergente=$resultSet[0]->tipo;
+					$_plazo_emergente=$resultSet[0]->plazo;
+					$_fcred_emergente=$resultSet[0]->fcred;
+					$_ffin_emergente=$resultSet[0]->ffin;
+					$_cuenta_emergente=$resultSet[0]->cuenta;
+					$_banco_emergente=$resultSet[0]->banco;
+						
+				}
+	
+				$html .= "<div class='col-lg-4 col-xs-12'>";
+				$html .= "<div class='small-box bg-yellow'>";
+				$html .= "<div class='inner'>";
+				$html .= "<h3>$_numsol_emergente</h3>";
+				$html .= "<p>Tienes activo un crédito emergente<br> desde $_fcred_emergente hasta $_ffin_emergente.</p>";
+				$html .= "</div>";
+	
+	
+				$html .= "<div class='icon'>";
+				$html .= "<i class='ion ion-calendar'></i>";
+				$html .= "</div>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "</div>";
+				$html .= "</div>";
+	
+	
+			}else{
+	
+				$html .= "<div class='col-lg-4 col-xs-12'>";
+				$html .= "<div class='small-box bg-yellow'>";
+				$html .= "<div class='inner'>";
+				$html .= "<h3>S/N</h3>";
+				$html .= "<p>Actualmente no dispone un crédito<br> emergente.</p>";
+				$html .= "</div>";
+					
+					
+				$html .= "<div class='icon'>";
+				$html .= "<i class='ion ion-calendar'></i>";
+				$html .= "</div>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "</div>";
+				$html .= "</div>";
+					
+					
+			}
+	
+			echo $html;
+			die();
+	
+		}
+		else{
+	
+	
+	
+			$this->redirect("Usuarios","sesion_caducada");
+	
+			die();
+	
+		}
+	
+	}
+	
+	
+	
+	
+	
+	
+	public function cargar_credito_2x1(){
+	
+		session_start();
+		$i=0;
+		$c2x1_solicitud = new C2x1_solicitudModel();
+		$c2x1_detalle = new C2x1_detalleModel();
+	
+					$_numsol_2x1="";
+					$_cuota_2x1="";
+					$_interes_2x1="";
+					$_tipo_2x1="";
+					$_plazo_2x1="";
+					$_fcred_2x1="";
+					$_ffin_2x1="";
+					$_cuenta_2x1="";
+					$_banco_2x1="";
+	
+		$cedula_usuarios = $_SESSION["cedula_usuarios"];
+	
+		if(!empty($cedula_usuarios)){
+			$columnas_2_x_1_cabec ="*";
+			$tablas_2_x_1_cabec="c2x1_solicitud";
+			$where_2_x_1_cabec="cedula='$cedula_usuarios'";
+			$id_2_x_1_cabec="cedula";
+			$resultSet=$c2x1_solicitud->getCondicionesDesc($columnas_2_x_1_cabec, $tablas_2_x_1_cabec, $where_2_x_1_cabec, $id_2_x_1_cabec);
+			
+			
+	
+			$i=count($resultSet);
+	
+			$html="";
+			if($i>0)
+			{
+				if (!empty($resultSet)) {
+						
+					$_numsol_2x1=$resultSet[0]->numsol;
+					$_cuota_2x1=$resultSet[0]->cuota;
+					$_interes_2x1=$resultSet[0]->interes;
+					$_tipo_2x1=$resultSet[0]->tipo;
+					$_plazo_2x1=$resultSet[0]->plazo;
+					$_fcred_2x1=$resultSet[0]->fcred;
+					$_ffin_2x1=$resultSet[0]->ffin;
+					$_cuenta_2x1=$resultSet[0]->cuenta;
+					$_banco_2x1=$resultSet[0]->banco;
+	
+				}
+	
+				$html .= "<div class='col-lg-4 col-xs-12'>";
+				$html .= "<div class='small-box bg-aqua'>";
+				$html .= "<div class='inner'>";
+				$html .= "<h3>$_numsol_2x1</h3>";
+				$html .= "<p>Tienes activo un crédito 2 X 1<br> desde $_fcred_2x1 hasta $_ffin_2x1.</p>";
+				$html .= "</div>";
+	
+	
+				$html .= "<div class='icon'>";
+				$html .= "<i class='ion ion-calendar'></i>";
+				$html .= "</div>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "</div>";
+				$html .= "</div>";
+	
+	
+			}else{
+	
+				$html .= "<div class='col-lg-4 col-xs-12'>";
+				$html .= "<div class='small-box bg-aqua'>";
+				$html .= "<div class='inner'>";
+				$html .= "<h3>S/N</h3>";
+				$html .= "<p>Actualmente no dispone un crédito<br> 2 X 1.</p>";
+				$html .= "</div>";
+					
+					
+				$html .= "<div class='icon'>";
+				$html .= "<i class='ion ion-calendar'></i>";
+				$html .= "</div>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "</div>";
+				$html .= "</div>";
+					
+					
+			}
+	
+			echo $html;
+			die();
+	
+		}
+		else{
+	
+	
+	
+			$this->redirect("Usuarios","sesion_caducada");
+	
+			die();
+	
+		}
+	
+	}
+	
+	
+	
+	
 	
 	
 	
