@@ -1578,7 +1578,8 @@ class SaldosCuentaIndividualController extends ControladorBase{
 					id_provincias_asignacion = '$_id_provincias_asignacion',
 					id_cantones_asignacion = '$_id_cantones_asignacion',
 					id_parroquias_asignacion = '$_id_parroquias_asignacion',
-					observacion = '$_observacion'";
+					observacion = '$_observacion',
+					fecha_ingreso= '$_fecha_ingreso'";
 					
 					$tabla = "afiliado_extras";
 					

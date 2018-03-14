@@ -32,17 +32,65 @@
 		    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 			<script type="text/javascript" src="view/vendors/table-sorter/jquery.tablesorter.js"></script> 
-        
-       		
+       		 <script src="view/js/jquery.blockUI.js"></script>
             <script src="view/js/jquery.inputmask.bundle.js"></script>
-       		
+            
+            
+           
+       		<script src="view/input-mask/jquery.inputmask.js"></script>
+			<script src="view/input-mask/jquery.inputmask.date.extensions.js"></script>
+			<script src="view/input-mask/jquery.inputmask.extensions.js"></script>
+        
+    
+	
+		    
+			
+        
+        
+        
+        <script>
+  $(function () {
+   
+    
+    $('#datemask2').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    
+  })
+</script>
+        
+        
+        
         
         <script type="text/javascript">
      
         	   $(document).ready( function (){
+        		   pone_espera();
         		   load_cta_individual(1);
 	   			});
 
+
+        	   function pone_espera(){
+
+        		   $.blockUI({ 
+        				message: '<h4><img src="view/images/load.gif" /> Espere por favor, estamos procesando su requerimiento...</h4>',
+        				css: { 
+        		            border: 'none', 
+        		            padding: '15px', 
+        		            backgroundColor: '#000', 
+        		            '-webkit-border-radius': '10px', 
+        		            '-moz-border-radius': '10px', 
+        		            opacity: .5, 
+        		            color: '#fff',
+        		           
+        	        		}
+        	    });
+            	
+		        setTimeout($.unblockUI, 3500); 
+		        
+        	   }
+        	   
         	   function load_cta_individual(pagina){
 
 
@@ -230,6 +278,419 @@
            		   }
         </script>
        
+       
+       
+       
+       
+       <script >
+		    // cada vez que se cambia el valor del combo
+		    $(document).ready(function(){
+		    
+		    $("#generar").click(function() 
+			{
+		    	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+		    	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
+
+		    	var cedula = $("#cedula").val();
+		    	var nombre = $("#nombre").val();
+		    	var direccion = $("#direccion").val();
+		    	var labor = $("#labor").val();
+		    	var correo = $("#correo").val();
+		    	var telefono = $("#telefono").val();
+		    	var celular  = $("#celular").val();
+		    	var id_entidades  = $("#id_entidades").val();
+		    	var fecha_ingreso  = $("#fecha_ingreso").val();
+
+		    	var sueldo  = $("#sueldo").val();
+		    	var hijos  = $("#hijos").val();
+		    	var edad  = $("#edad").val();
+		    	var id_sexo  = $("#id_sexo").val();
+		    	var id_estado_civil  = $("#id_estado_civil").val();
+		    	var id_tipo_sangre  = $("#id_tipo_sangre").val();
+
+
+		    	var id_estado  = $("#id_estado").val();
+		    	var id_provincias_vivienda  = $("#id_provincias_vivienda").val();
+		    	var id_cantones_vivienda  = $("#id_cantones_vivienda").val();
+		    	var id_parroquias_vivienda  = $("#id_parroquias_vivienda").val();
+
+		    	var id_provincias_asignacion  = $("#id_provincias_asignacion").val();
+		    	var id_cantones_asignacion  = $("#id_cantones_asignacion").val();
+		    	var id_parroquias_asignacion  = $("#id_parroquias_asignacion").val();
+
+		    	var observacion  = $("#observacion").val();
+		    	
+		    	if (cedula == "")
+		    	{
+			    	
+		    		$("#mensaje_cedula").text("Introduzca Cedula");
+		    		$("#mensaje_cedula").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_cedula_usuarios").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}    
+				
+		    	if (nombre == "")
+		    	{
+			    	
+		    		$("#mensaje_nombre").text("Introduzca un Nombre");
+		    		$("#mensaje_nombre").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_nombre").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	if (direccion == "")
+		    	{
+			    	
+		    		$("#mensaje_direccion").text("Introduzca Dirección");
+		    		$("#mensaje_direccion").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_direccion").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}   
+						    	
+			
+		    	if (labor == "")
+		    	{
+		    		
+		    		$("#mensaje_labor").text("Introduzca Cargo");
+		    		$("#mensaje_labor").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_labor").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+
+		    	
+		    	
+		    	
+		    	
+				
+		    	if (correo == "")
+		    	{
+			    	
+		    		$("#mensaje_correo").text("Introduzca un correo");
+		    		$("#mensaje_correo").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else if (regex.test($('#correo').val().trim()))
+		    	{
+		    		$("#mensaje_correo").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	else 
+		    	{
+		    		$("#mensaje_correo").text("Introduzca un correo Valido");
+		    		$("#mensaje_correo").fadeIn("slow"); //Muestra mensaje de error
+		            return false;	
+			    }
+
+
+
+		    	
+		    	if (id_entidades == 0 )
+		    	{
+			    	
+		    		$("#mensaje_id_entidades").text("Seleccione");
+		    		$("#mensaje_id_entidades").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_entidades").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+
+		    	if (fecha_ingreso == "" )
+		    	{
+			    	
+		    		$("#mensaje_fecha_ingreso").text("Seleccione");
+		    		$("#mensaje_fecha_ingreso").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_fecha_ingreso").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+
+		    	
+
+		    	if (sueldo == 0.00 )
+		    	{
+			    	
+		    		$("#mensaje_sueldo").text("Ingrese Sueldo");
+		    		$("#mensaje_sueldo").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_sueldo").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+
+		    	if (hijos == "" )
+		    	{
+			    	
+		    		$("#mensaje_hijos").text("Ingrese # Hijos");
+		    		$("#mensaje_hijos").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_hijos").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+
+
+		    	if (edad == "" || edad == 0 )
+		    	{
+			    	
+		    		$("#mensaje_edad").text("Ingrese Edad");
+		    		$("#mensaje_edad").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_edad").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+
+		    	if (id_sexo == 0 )
+		    	{
+			    	
+		    		$("#mensaje_id_sexo").text("Seleccione");
+		    		$("#mensaje_id_sexo").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_sexo").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+		    	if (id_estado_civil == 0 )
+		    	{
+			    	
+		    		$("#mensaje_id_estado_civil").text("Seleccione");
+		    		$("#mensaje_id_estado_civil").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_estado_civil").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+		    	if (id_tipo_sangre == 0 )
+		    	{
+			    	
+		    		$("#mensaje_id_tipo_sangre").text("Seleccione");
+		    		$("#mensaje_id_tipo_sangre").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_tipo_sangre").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+
+
+		    	if (id_provincias_vivienda == 0 )
+		    	{
+			    	
+		    		$("#mensaje_id_provincias_vivienda").text("Seleccione");
+		    		$("#mensaje_id_provincias_vivienda").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_provincias_vivienda").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+
+
+		    	if (id_cantones_vivienda == 0 )
+		    	{
+			    	
+		    		$("#mensaje_id_cantones_vivienda").text("Seleccione");
+		    		$("#mensaje_id_cantones_vivienda").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_cantones_vivienda").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+    					    
+		    	if (id_parroquias_vivienda == 0 )
+		    	{
+			    	
+		    		$("#mensaje_id_parroquias_vivienda").text("Seleccione");
+		    		$("#mensaje_id_parroquias_vivienda").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_parroquias_vivienda").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+
+		    	if (id_provincias_asignacion == 0 )
+		    	{
+			    	
+		    		$("#mensaje_id_provincias_asignacion").text("Seleccione");
+		    		$("#mensaje_id_provincias_asignacion").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_provincias_asignacion").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+
+		    	if (id_cantones_asignacion == 0 )
+		    	{
+			    	
+		    		$("#mensaje_id_cantones_asignacion").text("Seleccione");
+		    		$("#mensaje_id_cantones_asignacion").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_cantones_asignacion").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+
+		    	if (id_parroquias_asignacion == 0 )
+		    	{
+			    	
+		    		$("#mensaje_id_parroquias_asignacion").text("Seleccione");
+		    		$("#mensaje_id_parroquias_asignacion").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_parroquias_asignacion").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+
+		    	if (observacion == "" )
+		    	{
+			    	
+		    		$("#mensaje_observacion").text("Ingrese observaciones");
+		    		$("#mensaje_observacion").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_observacion").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+			}); 
+
+
+		        $( "#cedula" ).focus(function() {
+				  $("#mensaje_cedula").fadeOut("slow");
+			    });
+				
+				$( "#nombre" ).focus(function() {
+					$("#mensaje_nombre").fadeOut("slow");
+    			});
+				$( "#direccion" ).focus(function() {
+					$("#mensaje_direccion").fadeOut("slow");
+    			});
+    			
+				$( "#labor" ).focus(function() {
+					$("#mensaje_labor").fadeOut("slow");
+    			});
+				$( "#correo" ).focus(function() {
+					$("#mensaje_correo").fadeOut("slow");
+    			});
+				
+				$( "#id_entidades" ).focus(function() {
+					$("#mensaje_id_entidades").fadeOut("slow");
+    			});
+				
+				$( "#fecha_ingreso" ).focus(function() {
+					$("#mensaje_fecha_ingreso").fadeOut("slow");
+    			});
+			
+				$( "#sueldo" ).focus(function() {
+					$("#mensaje_sueldo").fadeOut("slow");
+    			});
+
+				$( "#hijos" ).focus(function() {
+					$("#mensaje_hijos").fadeOut("slow");
+    			});
+				
+				$( "#edad" ).focus(function() {
+					$("#mensaje_edad").fadeOut("slow");
+    			});
+
+				$( "#id_sexo" ).focus(function() {
+					$("#mensaje_id_sexo").fadeOut("slow");
+    			});
+
+
+				$( "#id_estado_civil" ).focus(function() {
+					$("#mensaje_id_estado_civil").fadeOut("slow");
+    			});
+
+				$( "#id_tipo_sangre" ).focus(function() {
+					$("#mensaje_id_tipo_sangre").fadeOut("slow");
+    			});
+				$( "#id_provincias_vivienda" ).focus(function() {
+					$("#mensaje_id_provincias_vivienda").fadeOut("slow");
+    			});
+				$( "#id_cantones_vivienda" ).focus(function() {
+					$("#mensaje_id_cantones_vivienda").fadeOut("slow");
+    			});
+				$( "#id_parroquias_vivienda" ).focus(function() {
+					$("#mensaje_id_parroquias_vivienda").fadeOut("slow");
+    			});
+
+				$( "#id_provincias_asignacion" ).focus(function() {
+					$("#mensaje_id_provincias_asignacion").fadeOut("slow");
+    			});
+				$( "#id_cantones_asignacion" ).focus(function() {
+					$("#mensaje_id_cantones_asignacion").fadeOut("slow");
+    			});
+				$( "#id_parroquias_asignacion" ).focus(function() {
+					$("#mensaje_id_parroquias_asignacion").fadeOut("slow");
+    			});
+				$( "#observacion" ).focus(function() {
+					$("#mensaje_observacion").fadeOut("slow");
+    			});  
+		}); 
+
+	</script>
+        
        
        
        
@@ -683,7 +1144,7 @@
                     		    <div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="fecha_ingreso" class="control-label">Fecha Entrada:</label>
-                                                      <input type="date" class="form-control" id="fecha_ingreso" name="fecha_ingreso" value="<?php echo $resEdit->fecha_ingreso; ?>" placeholder="fecha entrada..">
+                                                      <input type="text" class="form-control" id="fecha_ingreso" name="fecha_ingreso" value="<?php echo $resEdit->fecha_ingreso; ?>" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
                                                       <div id="mensaje_fecha_ingreso" class="errores"></div>
                                 </div>
                                 </div>
@@ -693,7 +1154,7 @@
                                                       <label for="sueldo" class="control-label">Sueldo:</label>
                                                       <input type="text" class="form-control cantidades1" id="sueldo" name="sueldo" value='<?php echo $resEdit->sueldo; ?>' 
                                                       data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false">
-                                                      <div id="mensaje_usuario_usuario" class="errores"></div>
+                                                      <div id="mensaje_sueldo" class="errores"></div>
                                 </div>
                                 </div>
                     			
@@ -1060,7 +1521,7 @@
 
 
  
-    <!-- Bootstrap -->
+     <!-- Bootstrap -->
     <script src="view/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     
     
@@ -1080,7 +1541,7 @@
     
     <!-- Custom Theme Scripts -->
     <script src="view/build/js/custom.min.js"></script>
-	
+	<script src="view/js/jquery.inputmask.bundle.js"></script>
 	<!-- codigo de las funciones -->
 
 	

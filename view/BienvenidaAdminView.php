@@ -120,18 +120,40 @@
     
     <!-- Custom Theme Scripts -->
     <script src="view/build/js/custom.min.js"></script>
-	
+	<script src="view/js/jquery.blockUI.js"></script>
 	<!-- codigo de las funciones -->
 	
 	 <script type="text/javascript">
      
         	   $(document).ready( function (){
+        		   pone_espera();
         		   pone_users();
         		   pone_roles();
         		   pone_permisos_roles();
         		   cargar_sesiones();
 	   			});
 
+
+        	   function pone_espera(){
+
+        		   $.blockUI({ 
+        				message: '<h4><img src="view/images/load.gif" /> Espere por favor, estamos procesando su requerimiento...</h4>',
+        				css: { 
+        		            border: 'none', 
+        		            padding: '15px', 
+        		            backgroundColor: '#000', 
+        		            '-webkit-border-radius': '10px', 
+        		            '-moz-border-radius': '10px', 
+        		            opacity: .5, 
+        		            color: '#fff',
+        		           
+        	        		}
+        	    });
+            	
+		        setTimeout($.unblockUI, 4000); 
+		        
+        	   }
+        	   
         	   function pone_users(){
         		   $(document).ready( function (){
         		       $.ajax({

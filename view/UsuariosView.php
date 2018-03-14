@@ -32,14 +32,36 @@
 		    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 			<script type="text/javascript" src="view/vendors/table-sorter/jquery.tablesorter.js"></script> 
-        
+        <script src="view/js/jquery.blockUI.js"></script>
         
         <script type="text/javascript">
      
         	   $(document).ready( function (){
+        		   pone_espera();
         		   load_usuarios(1);
 	   			});
 
+        	   function pone_espera(){
+
+        		   $.blockUI({ 
+        				message: '<h4><img src="view/images/load.gif" /> Espere por favor, estamos procesando su requerimiento...</h4>',
+        				css: { 
+        		            border: 'none', 
+        		            padding: '15px', 
+        		            backgroundColor: '#000', 
+        		            '-webkit-border-radius': '10px', 
+        		            '-moz-border-radius': '10px', 
+        		            opacity: .5, 
+        		            color: '#fff',
+        		           
+        	        		}
+        	    });
+            	
+		        setTimeout($.unblockUI, 3500); 
+		        
+        	   }
+
+        	   
         	   function load_usuarios(pagina){
 
 

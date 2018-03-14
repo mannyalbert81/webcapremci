@@ -4,39 +4,64 @@
         <meta charset="utf-8"/>
         <title>Controladores - Template 2018</title>
 
-		    <link rel="stylesheet" href="view/css/estilos.css">
-		    
+		
+		<link rel="stylesheet" href="view/css/estilos.css">
+		<link rel="stylesheet" href="view/vendors/table-sorter/themes/blue/style.css">
+	
+	
+	
 		    <!-- Bootstrap -->
     		<link href="view/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     		<!-- Font Awesome -->
 		    <link href="view/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 		    <!-- NProgress -->
 		    <link href="view/vendors/nprogress/nprogress.css" rel="stylesheet">
-		    <!-- iCheck -->
-		    <link href="view/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-			
-		    <!-- bootstrap-progressbar -->
-		    <link href="view/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-		    <!-- JQVMap -->
-		    <link href="view/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
-		    <!-- bootstrap-daterangepicker -->
-		    <link href="view/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-		
+		    
+		   
 		    <!-- Custom Theme Style -->
 		    <link href="view/build/css/custom.min.css" rel="stylesheet">
 				
 			
 			<!-- Datatables -->
 		    <link href="view/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-		    <link href="view/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-		    <link href="view/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-		    <link href="view/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-		    <link href="view/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-					
+		    
+		   		
 
 			<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+			<script type="text/javascript" src="view/vendors/table-sorter/jquery.tablesorter.js"></script> 
+        <script src="view/js/jquery.blockUI.js"></script>
        
+       
+        <script type="text/javascript">
+     
+        	   $(document).ready( function (){
+        		   pone_espera();
+        		   
+	   			});
+
+        	   function pone_espera(){
+
+        		   $.blockUI({ 
+        				message: '<h4><img src="view/images/load.gif" /> Espere por favor, estamos procesando su requerimiento...</h4>',
+        				css: { 
+        		            border: 'none', 
+        		            padding: '15px', 
+        		            backgroundColor: '#000', 
+        		            '-webkit-border-radius': '10px', 
+        		            '-moz-border-radius': '10px', 
+        		            opacity: .5, 
+        		            color: '#fff',
+        		           
+        	        		}
+        	    });
+            	
+		        setTimeout($.unblockUI, 3500); 
+		        
+        	   }
+
+        	   </script>
        
        
        <script >
@@ -135,16 +160,7 @@
          </section>
          
          
-         <section class="content-header">
-      <h1>
-        Dashboard
-        <small>Control panel</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
-    </section>
+         
          
          
   	<div class="col-md-12 col-sm-12 col-xs-12">
@@ -275,37 +291,28 @@
 
 </div>
         <!-- jQuery -->
-    <script src="view/vendors/jquery/dist/jquery.min.js"></script>
+    
     <!-- Bootstrap -->
     <script src="view/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="view/vendors/fastclick/lib/fastclick.js"></script>
+    
+    
+    
     <!-- NProgress -->
     <script src="view/vendors/nprogress/nprogress.js"></script>
-    <!-- iCheck -->
-    <script src="view/vendors/iCheck/icheck.min.js"></script>
+   
+   
     <!-- Datatables -->
     <script src="view/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    
+    
     <script src="view/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="view/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="view/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script src="view/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="view/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="view/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="view/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script src="view/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="view/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="view/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script src="view/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-    <script src="view/vendors/jszip/dist/jszip.min.js"></script>
-    <script src="view/vendors/pdfmake/build/pdfmake.min.js"></script>
-    <script src="view/vendors/pdfmake/build/vfs_fonts.js"></script>
-
+    
+    
+    
     <!-- Custom Theme Scripts -->
     <script src="view/build/js/custom.min.js"></script>
 	
-	<!-- codigo de las funciones -->
-	<script src="view/js/funciones.js"></script> 
 	
   </body>
 </html>   
