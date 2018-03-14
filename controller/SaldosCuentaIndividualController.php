@@ -1978,5 +1978,86 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	public function devuelveCanton()
+	{
+		session_start();
+		$resultCan = array();
+	
+	
+		if(isset($_POST["id_provincias_vivienda"]))
+		{
+	
+			$id_provincias=(int)$_POST["id_provincias_vivienda"];
+	
+			$cantones=new CantonesModel();
+	
+			$resultCan = $cantones->getBy(" id_provincias = '$id_provincias'  ");
+	
+	
+		}
+	
+		if(isset($_POST["id_provincias_asignacion"]))
+		{
+		
+			$id_provincias=(int)$_POST["id_provincias_asignacion"];
+		
+			$cantones=new CantonesModel();
+		
+			$resultCan = $cantones->getBy(" id_provincias = '$id_provincias'  ");
+		
+		
+		}
+			
+		echo json_encode($resultCan);
+	
+	}
+	
+	
+	
+	
+	
+	
+
+	public function devuelveParroquias()
+	{
+		session_start();
+		$resultParr = array();
+	
+	
+		if(isset($_POST["id_cantones_vivienda"]))
+		{
+	
+			$id_cantones_vivienda=(int)$_POST["id_cantones_vivienda"];
+	
+			$parroquias=new ParroquiasModel();
+	
+			$resultParr = $parroquias->getBy(" id_cantones = '$id_cantones_vivienda'  ");
+	
+	
+		}
+		if(isset($_POST["id_cantones_asignacion"]))
+		{
+		
+			$id_cantones_vivienda=(int)$_POST["id_cantones_asignacion"];
+		
+			$parroquias=new ParroquiasModel();
+		
+			$resultParr = $parroquias->getBy(" id_cantones = '$id_cantones_vivienda'  ");
+		
+		
+		}
+			
+		echo json_encode($resultParr);
+	
+	}
+	
+	
 }
 ?>

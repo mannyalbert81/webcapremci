@@ -43,8 +43,256 @@
         
     
 	
+	<script>
+		$(document).ready(function(){
+
+			$("#id_provincias_vivienda").change(function(){
+
+	            // obtenemos el combo de resultado combo 2
+	           var $id_cantones_vivienda = $("#id_cantones_vivienda");
+	       	
+
+	            // lo vaciamos
+	           var id_provincias_vivienda = $(this).val();
+
+	          
+	          
+	            if(id_provincias_vivienda != 0)
+	            {
+	            	 $id_cantones_vivienda.empty();
+	            	
+	            	 var datos = {
+	                   	   
+	            			 id_provincias_vivienda:$(this).val()
+	                  };
+	             
+	            	
+	         	   $.post("<?php echo $helper->url("SaldosCuentaIndividual","devuelveCanton"); ?>", datos, function(resultado) {
+
+	          		  if(resultado.length==0)
+	          		   {
+	          				$id_cantones_vivienda.append("<option value='0' >--Seleccione--</option>");	
+	             	   }else{
+	             		    $id_cantones_vivienda.append("<option value='0' >--Seleccione--</option>");
+	          		 		$.each(resultado, function(index, value) {
+	          		 			$id_cantones_vivienda.append("<option value= " +value.id_cantones +" >" + value.nombre_cantones  + "</option>");	
+	                     		 });
+	             	   }	
+	            	      
+	         		  }, 'json');
+
+
+	            }else{
+
+	            	var id_cantones_vivienda=$("#id_cantones_vivienda");
+	            	id_cantones_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+	            	var id_parroquias_vivienda=$("#id_parroquias_vivienda");
+	            	id_parroquias_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+	            	
+	            	
+	            	
+	            }
+	            
+
+			});
+		});
+	
+       
+
+	</script>
+		 
+		 
+		 
+		 
+		 
+		 
+		 <script>
+		$(document).ready(function(){
+
+			$("#id_cantones_vivienda").change(function(){
+
+	            // obtenemos el combo de resultado combo 2
+	           var $id_parroquias_vivienda = $("#id_parroquias_vivienda");
+	       	
+
+	            // lo vaciamos
+	           var id_cantones_vivienda = $(this).val();
+
+	          
+	          
+	            if(id_cantones_vivienda != 0)
+	            {
+	            	 $id_parroquias_vivienda.empty();
+	            	
+	            	 var datos = {
+	                   	   
+	            			 id_cantones_vivienda:$(this).val()
+	                  };
+	             
+	            	
+	         	   $.post("<?php echo $helper->url("SaldosCuentaIndividual","devuelveParroquias"); ?>", datos, function(resultado) {
+
+	          		  if(resultado.length==0)
+	          		   {
+	          				$id_parroquias_vivienda.append("<option value='0' >--Seleccione--</option>");	
+	             	   }else{
+	             		    $id_parroquias_vivienda.append("<option value='0' >--Seleccione--</option>");
+	          		 		$.each(resultado, function(index, value) {
+	          		 			$id_parroquias_vivienda.append("<option value= " +value.id_parroquias +" >" + value.nombre_parroquias  + "</option>");	
+	                     		 });
+	             	   }	
+	            	      
+	         		  }, 'json');
+
+
+	            }else{
+
+	            	var id_parroquias_vivienda=$("#id_parroquias_vivienda");
+	            	id_parroquias_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+	            	
+	            	
+	            	
+	            }
+	            
+
+			});
+		});
+	
+       
+
+	</script>
 		    
 			
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <script>
+		$(document).ready(function(){
+
+			$("#id_provincias_asignacion").change(function(){
+
+	            // obtenemos el combo de resultado combo 2
+	           var $id_cantones_asignacion = $("#id_cantones_asignacion");
+	       	
+
+	            // lo vaciamos
+	           var id_provincias_asignacion = $(this).val();
+
+	          
+	          
+	            if(id_provincias_asignacion != 0)
+	            {
+	            	 $id_cantones_asignacion.empty();
+	            	
+	            	 var datos = {
+	                   	   
+	            			 id_provincias_asignacion:$(this).val()
+	                  };
+	             
+	            	
+	         	   $.post("<?php echo $helper->url("SaldosCuentaIndividual","devuelveCanton"); ?>", datos, function(resultado) {
+
+	          		  if(resultado.length==0)
+	          		   {
+	          				$id_cantones_asignacion.append("<option value='0' >--Seleccione--</option>");	
+	             	   }else{
+	             		    $id_cantones_asignacion.append("<option value='0' >--Seleccione--</option>");
+	          		 		$.each(resultado, function(index, value) {
+	          		 			$id_cantones_asignacion.append("<option value= " +value.id_cantones +" >" + value.nombre_cantones  + "</option>");	
+	                     		 });
+	             	   }	
+	            	      
+	         		  }, 'json');
+
+
+	            }else{
+
+	            	var id_cantones_asignacion=$("#id_cantones_asignacion");
+	            	id_cantones_asignacion.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+	            	var id_parroquias_asignacion=$("#id_parroquias_asignacion");
+	            	id_parroquias_asignacion.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+	            	
+	            	
+	            	
+	            }
+	            
+
+			});
+		});
+	
+       
+
+	</script>
+		 
+		 
+		 
+		 
+		 
+		 
+		 <script>
+		$(document).ready(function(){
+
+			$("#id_cantones_asignacion").change(function(){
+
+	            // obtenemos el combo de resultado combo 2
+	           var $id_parroquias_asignacion = $("#id_parroquias_asignacion");
+	       	
+
+	            // lo vaciamos
+	           var id_cantones_asignacion = $(this).val();
+
+	          
+	          
+	            if(id_cantones_asignacion != 0)
+	            {
+	            	 $id_parroquias_asignacion.empty();
+	            	
+	            	 var datos = {
+	                   	   
+	            			 id_cantones_asignacion:$(this).val()
+	                  };
+	             
+	            	
+	         	   $.post("<?php echo $helper->url("SaldosCuentaIndividual","devuelveParroquias"); ?>", datos, function(resultado) {
+
+	          		  if(resultado.length==0)
+	          		   {
+	          				$id_parroquias_asignacion.append("<option value='0' >--Seleccione--</option>");	
+	             	   }else{
+	             		    $id_parroquias_asignacion.append("<option value='0' >--Seleccione--</option>");
+	          		 		$.each(resultado, function(index, value) {
+	          		 			$id_parroquias_asignacion.append("<option value= " +value.id_parroquias +" >" + value.nombre_parroquias  + "</option>");	
+	                     		 });
+	             	   }	
+	            	      
+	         		  }, 'json');
+
+
+	            }else{
+
+	            	var id_parroquias_asignacion=$("#id_parroquias_asignacion");
+	            	id_parroquias_asignacion.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+	            	
+	            	
+	            	
+	            }
+	            
+
+			});
+		});
+	
+       
+
+	</script>
+		    
+        
         
         
         
@@ -1412,7 +1660,7 @@
            
            <div class="tab-pane" id="proyecte_cesantia">
            <br>
-           <form  action="<?php echo $helper->url("Usuarios","InsertaUsuarios"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12 col-md-12 col-xs-12">
+           <form  action="<?php echo $helper->url("SaldosCuentaIndividual","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12 col-md-12 col-xs-12">
           
                     		    <div class="row">
                     		    <div class="col-lg-2 col-xs-12 col-md-2">
