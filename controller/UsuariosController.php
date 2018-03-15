@@ -1523,7 +1523,7 @@ public function index(){
 			
 		$i=0;
 	    $usuarios = new UsuariosModel();
-	    $columnas = "sesiones.*";
+	    $columnas = "sesiones.id_sesiones";
 	    $tablas   = "public.sesiones, public.usuarios";
 	    $where    = "sesiones.id_usuarios = usuarios.id_usuarios";
 	    $id       = "usuarios.nombre_usuarios";
