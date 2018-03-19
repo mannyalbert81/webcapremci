@@ -83,6 +83,7 @@
           
            <div class="row tile_count">
             <div id='pone_credito_hipotecario'></div>
+             <div id='pone_acuerdo_pago'></div>
 	       </div>
           
         </div>
@@ -148,12 +149,9 @@
         		   pone_credito_emergente();
         		   pone_credito_2x1();
         		   pone_credito_hipotecario();
+        		   pone_acuerdo_pago();
 
-        		  
-        			       
-        			     
-        			 
-        		  
+        		    
 	   			});
 
 
@@ -173,7 +171,7 @@
         	        		}
         	    });
             	
-		        setTimeout($.unblockUI, 4000); 
+		        setTimeout($.unblockUI, 3000); 
 		        
         	   }
         	   
@@ -323,6 +321,25 @@
         		     })
         		  }
 
+
+        	   function pone_acuerdo_pago(){
+        		   $(document).ready( function (){
+        		       $.ajax({
+        		                 beforeSend: function(objeto){
+        		                   $("#pone_acuerdo_pago").html('')
+        		                 },
+        		                 url: 'index.php?controller=Usuarios&action=cargar_acuerdo_pago',
+        		                 type: 'POST',
+        		                 data: null,
+        		                 success: function(x){
+        		                   $("#pone_acuerdo_pago").html(x);
+        		                 },
+        		                error: function(jqXHR,estado,error){
+        		                  $("#pone_acuerdo_pago").html("Ocurrio un error al cargar la informacion de acuerdo de pago..."+estado+"    "+error);
+        		                }
+        		              });
+        		     })
+        		  }
         	   
         	   
 

@@ -1924,6 +1924,7 @@ public function index(){
 		$_ffin_ordinario="";
 		$_cuenta_ordinario="";
 		$_banco_ordinario="";
+		$_valor_ordinario="";
 	
 		$cedula_usuarios = $_SESSION["cedula_usuarios"];
 	
@@ -1950,13 +1951,14 @@ public function index(){
 					$_ffin_ordinario=$resultSet[0]->ffin;
 					$_cuenta_ordinario=$resultSet[0]->cuenta;
 					$_banco_ordinario=$resultSet[0]->banco;
+					$_valor_ordinario=number_format($resultSet[0]->valor, 2, '.', ',');
 					
 				}
 	
 				$html .= "<div class='col-lg-4 col-xs-12'>";
 				$html .= "<div class='small-box bg-red'>";
 				$html .= "<div class='inner'>";
-				$html .= "<h3>$_numsol_ordinario</h3>";
+				$html .= "<h3>$_valor_ordinario</h3>";
 				$html .= "<p>Tienes activo un crédito ordinario<br> desde $_fcred_ordinario hasta $_ffin_ordinario.</p>";
 				$html .= "</div>";
 	
@@ -1974,7 +1976,7 @@ public function index(){
 				$html .= "<div class='col-lg-4 col-xs-12'>";
 				$html .= "<div class='small-box bg-red'>";
 				$html .= "<div class='inner'>";
-				$html .= "<h3>S/N</h3>";
+				$html .= "<h3>0.00</h3>";
 				$html .= "<p>Actualmente no dispone un crédito<br> ordinario.</p>";
 				$html .= "</div>";
 					
@@ -2029,6 +2031,7 @@ public function index(){
 		$_ffin_emergente="";
 		$_cuenta_emergente="";
 		$_banco_emergente="";
+		$_valor_emergente="";
 	
 		$cedula_usuarios = $_SESSION["cedula_usuarios"];
 	
@@ -2056,13 +2059,13 @@ public function index(){
 					$_ffin_emergente=$resultSet[0]->ffin;
 					$_cuenta_emergente=$resultSet[0]->cuenta;
 					$_banco_emergente=$resultSet[0]->banco;
-						
+					$_valor_emergente=number_format($resultSet[0]->valor, 2, '.', ',');
 				}
 	
 				$html .= "<div class='col-lg-4 col-xs-12'>";
 				$html .= "<div class='small-box bg-yellow'>";
 				$html .= "<div class='inner'>";
-				$html .= "<h3>$_numsol_emergente</h3>";
+				$html .= "<h3>$_valor_emergente</h3>";
 				$html .= "<p>Tienes activo un crédito emergente<br> desde $_fcred_emergente hasta $_ffin_emergente.</p>";
 				$html .= "</div>";
 	
@@ -2080,7 +2083,7 @@ public function index(){
 				$html .= "<div class='col-lg-4 col-xs-12'>";
 				$html .= "<div class='small-box bg-yellow'>";
 				$html .= "<div class='inner'>";
-				$html .= "<h3>S/N</h3>";
+				$html .= "<h3>0.00</h3>";
 				$html .= "<p>Actualmente no dispone un crédito<br> emergente.</p>";
 				$html .= "</div>";
 					
@@ -2132,6 +2135,7 @@ public function index(){
 					$_ffin_2x1="";
 					$_cuenta_2x1="";
 					$_banco_2x1="";
+					$_valor_2x1="";
 	
 		$cedula_usuarios = $_SESSION["cedula_usuarios"];
 	
@@ -2160,13 +2164,13 @@ public function index(){
 					$_ffin_2x1=$resultSet[0]->ffin;
 					$_cuenta_2x1=$resultSet[0]->cuenta;
 					$_banco_2x1=$resultSet[0]->banco;
-	
+					$_valor_2x1=number_format($resultSet[0]->valor, 2, '.', ',');
 				}
 	
 				$html .= "<div class='col-lg-4 col-xs-12'>";
 				$html .= "<div class='small-box bg-aqua'>";
 				$html .= "<div class='inner'>";
-				$html .= "<h3>$_numsol_2x1</h3>";
+				$html .= "<h3>$_valor_2x1</h3>";
 				$html .= "<p>Tienes activo un crédito 2 X 1<br> desde $_fcred_2x1 hasta $_ffin_2x1.</p>";
 				$html .= "</div>";
 	
@@ -2184,7 +2188,7 @@ public function index(){
 				$html .= "<div class='col-lg-4 col-xs-12'>";
 				$html .= "<div class='small-box bg-aqua'>";
 				$html .= "<div class='inner'>";
-				$html .= "<h3>S/N</h3>";
+				$html .= "<h3>0.00</h3>";
 				$html .= "<p>Actualmente no dispone un crédito<br> 2 X 1.</p>";
 				$html .= "</div>";
 					
@@ -2241,6 +2245,7 @@ public function index(){
 		$_ffin_hipotecario="";
 		$_cuenta_hipotecario="";
 		$_banco_hipotecario="";
+		$_valor_hipotecario="";
 	
 		$cedula_usuarios = $_SESSION["cedula_usuarios"];
 	
@@ -2269,13 +2274,13 @@ public function index(){
 					$_ffin_hipotecario=$resultSet[0]->ffin;
 					$_cuenta_hipotecario=$resultSet[0]->cuenta;
 					$_banco_hipotecario=$resultSet[0]->banco;
-	
+					$_valor_hipotecario=number_format($resultSet[0]->valor, 2, '.', ',');
 				}
 	
 				$html .= "<div class='col-lg-4 col-xs-12'>";
 				$html .= "<div class='small-box bg-green'>";
 				$html .= "<div class='inner'>";
-				$html .= "<h3>$_numsol_hipotecario</h3>";
+				$html .= "<h3>$_valor_hipotecario</h3>";
 				$html .= "<p>Tienes activo un crédito hipotecario<br> desde $_fcred_hipotecario hasta $_ffin_hipotecario.</p>";
 				$html .= "</div>";
 	
@@ -2293,7 +2298,7 @@ public function index(){
 				$html .= "<div class='col-lg-4 col-xs-12'>";
 				$html .= "<div class='small-box bg-green'>";
 				$html .= "<div class='inner'>";
-				$html .= "<h3>S/N</h3>";
+				$html .= "<h3>0.00</h3>";
 				$html .= "<p>Actualmente no dispone un crédito<br> hipotecario.</p>";
 				$html .= "</div>";
 					
@@ -2325,6 +2330,111 @@ public function index(){
 	}
 	
 	
+	
+	
+	
+	
+	
+	public function cargar_acuerdo_pago(){
+	
+		session_start();
+		$i=0;
+		$app_solicitud = new app_solicitudModel();
+		$app_detalle = new app_detalleModel();
+	
+		$_numsol_app="";
+		$_cuota_app="";
+		$_interes_app="";
+		$_tipo_app="";
+		$_plazo_app="";
+		$_fcred_app="";
+		$_ffin_app="";
+		$_cuenta_app="";
+		$_banco_app="";
+		$_valor_app="";
+	
+		$cedula_usuarios = $_SESSION["cedula_usuarios"];
+	
+		if(!empty($cedula_usuarios)){
+			$columnas_app_cabec ="*";
+			$tablas_app_cabec="app_solicitud";
+			$where_app_cabec="cedula='$cedula_usuarios'";
+			$id_app_cabec="cedula";
+			$resultSet=$app_solicitud->getCondicionesDesc($columnas_app_cabec, $tablas_app_cabec, $where_app_cabec, $id_app_cabec);
+	
+	
+	
+			$i=count($resultSet);
+	
+			$html="";
+			if($i>0)
+			{
+				if (!empty($resultSet)) {
+	
+					$_numsol_app=$resultSet[0]->numsol;
+					$_cuota_app=$resultSet[0]->cuota;
+					$_interes_app=$resultSet[0]->interes;
+					$_tipo_app=$resultSet[0]->tipo;
+					$_plazo_app=$resultSet[0]->plazo;
+					$_fcred_app=$resultSet[0]->fcred;
+					$_ffin_app=$resultSet[0]->ffin;
+					$_cuenta_app=$resultSet[0]->cuenta;
+					$_banco_app=$resultSet[0]->banco;
+					$_valor_app=number_format($resultSet[0]->valor, 2, '.', ',');
+	
+				}
+	
+				$html .= "<div class='col-lg-4 col-xs-12'>";
+				$html .= "<div class='small-box bg-primary'>";
+				$html .= "<div class='inner'>";
+				$html .= "<h3>$_valor_app</h3>";
+				$html .= "<p>Tienes activo un acuerdo de pago<br> desde $_fcred_app hasta $_ffin_app.</p>";
+				$html .= "</div>";
+	
+	
+				$html .= "<div class='icon'>";
+				$html .= "<i class='ion ion-calendar'></i>";
+				$html .= "</div>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "</div>";
+				$html .= "</div>";
+	
+	
+			}else{
+	
+				$html .= "<div class='col-lg-4 col-xs-12'>";
+				$html .= "<div class='small-box bg-primary'>";
+				$html .= "<div class='inner'>";
+				$html .= "<h3>0.00</h3>";
+				$html .= "<p>Actualmente no dispone un acuerdo<br> de pago.</p>";
+				$html .= "</div>";
+					
+					
+				$html .= "<div class='icon'>";
+				$html .= "<i class='ion ion-calendar'></i>";
+				$html .= "</div>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "</div>";
+				$html .= "</div>";
+					
+					
+			}
+	
+			echo $html;
+			die();
+	
+		}
+		else{
+	
+	
+	
+			$this->redirect("Usuarios","sesion_caducada");
+	
+			die();
+	
+		}
+	
+	}
 	
 	
 	
