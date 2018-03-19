@@ -386,6 +386,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 					$_ffin_ordinario=$resultCredOrdi_Cabec[0]->ffin;
 					$_cuenta_ordinario=$resultCredOrdi_Cabec[0]->cuenta;
 					$_banco_ordinario=$resultCredOrdi_Cabec[0]->banco;
+					$_valor_ordinario= number_format($resultCredOrdi_Cabec[0]->valor, 2, '.', ',');
 					
 					
 						
@@ -457,6 +458,13 @@ class SaldosCuentaIndividualController extends ControladorBase{
 							
 							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
 							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Monto Concedido:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_valor_ordinario.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+							
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
 							$html.='<label for="cedula_participe" class="control-label">Cuota:</label>';
 							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_cuota_ordinario.'" readonly>';
 							$html.='</div>';
@@ -482,17 +490,17 @@ class SaldosCuentaIndividualController extends ControladorBase{
 							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_plazo_ordinario.'" readonly>';
 							$html.='</div>';
 							$html.='</div>';
-							
+							$html.='</div>';
+							 
+							 
+							$html.='<div class="row">';
 							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
 							$html.='<div class="form-group">';
 							$html.='<label for="cedula_participe" class="control-label">Concedido en:</label>';
 							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_fcred_ordinario.'" readonly>';
 							$html.='</div>';
 							$html.='</div>';
-							$html.='</div>';
-							 
-							 
-							$html.='<div class="row">';
+							
 							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
 							$html.='<div class="form-group">';
 							$html.='<label for="cedula_participe" class="control-label">Termina en:</label>';
@@ -669,6 +677,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 					$_ffin_emergente=$resultCredEmer_Cabec[0]->ffin;
 					$_cuenta_emergente=$resultCredEmer_Cabec[0]->cuenta;
 					$_banco_emergente=$resultCredEmer_Cabec[0]->banco;
+					$_valor_emergente= number_format($resultCredEmer_Cabec[0]->valor, 2, '.', ',');
 						
 						
 	
@@ -740,6 +749,14 @@ class SaldosCuentaIndividualController extends ControladorBase{
 							$html.='</div>';
 							$html.='</div>';
 								
+							
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Monto Concedido:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_valor_emergente.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+							
 							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
 							$html.='<div class="form-group">';
 							$html.='<label for="cedula_participe" class="control-label">Cuota:</label>';
@@ -767,17 +784,17 @@ class SaldosCuentaIndividualController extends ControladorBase{
 							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_plazo_emergente.'" readonly>';
 							$html.='</div>';
 							$html.='</div>';
-								
+							$html.='</div>';
+	
+	
+							$html.='<div class="row">';
 							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
 							$html.='<div class="form-group">';
 							$html.='<label for="cedula_participe" class="control-label">Concedido en:</label>';
 							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_fcred_emergente.'" readonly>';
 							$html.='</div>';
 							$html.='</div>';
-							$html.='</div>';
-	
-	
-							$html.='<div class="row">';
+							
 							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
 							$html.='<div class="form-group">';
 							$html.='<label for="cedula_participe" class="control-label">Termina en:</label>';
@@ -958,7 +975,8 @@ class SaldosCuentaIndividualController extends ControladorBase{
 					$_ffin_2x1=$resultCred2_x_1_Cabec[0]->ffin;
 					$_cuenta_2x1=$resultCred2_x_1_Cabec[0]->cuenta;
 					$_banco_2x1=$resultCred2_x_1_Cabec[0]->banco;
-	
+					$_valor_2x1= number_format($resultCred2_x_1_Cabec[0]->valor, 2, '.', ',');
+						
 	
 	
 					if($_numsol_2x1 != ""){
@@ -1029,6 +1047,14 @@ class SaldosCuentaIndividualController extends ControladorBase{
 							$html.='</div>';
 							$html.='</div>';
 	
+							
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Monto Concedido:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_valor_2x1.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+							
 							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
 							$html.='<div class="form-group">';
 							$html.='<label for="cedula_participe" class="control-label">Cuota:</label>';
@@ -1056,17 +1082,17 @@ class SaldosCuentaIndividualController extends ControladorBase{
 							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_plazo_2x1.'" readonly>';
 							$html.='</div>';
 							$html.='</div>';
+							$html.='</div>';
 	
+	
+							$html.='<div class="row">';
 							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
 							$html.='<div class="form-group">';
 							$html.='<label for="cedula_participe" class="control-label">Concedido en:</label>';
 							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_fcred_2x1.'" readonly>';
 							$html.='</div>';
 							$html.='</div>';
-							$html.='</div>';
-	
-	
-							$html.='<div class="row">';
+							
 							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
 							$html.='<div class="form-group">';
 							$html.='<label for="cedula_participe" class="control-label">Termina en:</label>';
@@ -1197,6 +1223,595 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+
+	public function cargar_credito_hipotecario(){
+	
+		session_start();
+		$hipotecario_solicitud = new Hipotecario_SolicitudModel();
+		$hipotecario_detalle = new Hipotecario_DetalleModel();
+		$where_to="";
+	
+	
+		$cedula_usuarios = $_SESSION["cedula_usuarios"];
+	
+		if(!empty($cedula_usuarios)){
+	
+	
+			$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
+			$search =  (isset($_REQUEST['search'])&& $_REQUEST['search'] !=NULL)?$_REQUEST['search']:'';
+	
+	
+			if($action == 'ajax')
+			{
+				$html="";
+	
+				$columnas_hipo_cabec ="*";
+				$tablas_hipo_cabec="hipotecario_solicitud";
+				$where_hipo_cabec="cedula='$cedula_usuarios'";
+				$id_hipo_cabec="cedula";
+				$resultCredHipo_Cabec=$hipotecario_solicitud->getCondicionesDesc($columnas_hipo_cabec, $tablas_hipo_cabec, $where_hipo_cabec, $id_hipo_cabec);
+	
+	
+					
+				if(!empty($resultCredHipo_Cabec)){
+	
+					$_numsol_hipotecario=$resultCredHipo_Cabec[0]->numsol;
+					$_cuota_hipotecario=$resultCredHipo_Cabec[0]->cuota;
+					$_interes_hipotecario=$resultCredHipo_Cabec[0]->interes;
+					$_tipo_hipotecario=$resultCredHipo_Cabec[0]->tipo;
+					$_plazo_hipotecario=$resultCredHipo_Cabec[0]->plazo;
+					$_fcred_hipotecario=$resultCredHipo_Cabec[0]->fcred;
+					$_ffin_hipotecario=$resultCredHipo_Cabec[0]->ffin;
+					$_cuenta_hipotecario=$resultCredHipo_Cabec[0]->cuenta;
+					$_banco_hipotecario=$resultCredHipo_Cabec[0]->banco;
+					$_valor_hipotecario= number_format($resultCredHipo_Cabec[0]->valor, 2, '.', ',');
+						
+	
+	
+					if($_numsol_hipotecario != ""){
+	
+	
+						$columnas_hipo_detall ="numsol,
+										pago,
+										mes,
+										ano,
+										fecpag,ROUND(capital,2) as capital,
+										ROUND(interes,2) as interes,
+										ROUND(intmor,2) as intmor,
+										ROUND(seguros,2) as seguros,
+										ROUND(total,2) as total,
+										ROUND(saldo,2) as saldo,
+										estado";
+	
+						$tablas_hipo_detall="hipotecario_detalle";
+						$where_hipo_detall="numsol='$_numsol_hipotecario'";
+						$id_hipo_detall="pago";
+						//$resultCredEmer_Detall=$emergente_detalle->getCondicionesDesc($columnas_emer_detall, $tablas_emer_detall, $where_emer_detall, $id_emer_detall);
+	
+	
+	
+	
+						if(!empty($search)){
+	
+	
+							$where1=" AND (mes LIKE '%".$search."%' OR estado LIKE '%".$search."%')";
+	
+							$where_to=$where_hipo_detall.$where1;
+						}else{
+	
+							$where_to=$where_hipo_detall;
+	
+						}
+	
+	
+	
+						$resultSet=$hipotecario_detalle->getCantidad("*", $tablas_hipo_detall, $where_to);
+						$cantidadResult=(int)$resultSet[0]->total;
+	
+						$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
+	
+						$per_page = 15; //la cantidad de registros que desea mostrar
+						$adjacents  = 9; //brecha entre páginas después de varios adyacentes
+						$offset = ($page - 1) * $per_page;
+	
+						$limit = " LIMIT   '$per_page' OFFSET '$offset'";
+							
+						$resultSet=$hipotecario_detalle->getCondicionesPagDesc($columnas_hipo_detall, $tablas_hipo_detall, $where_to, $id_hipo_detall, $limit);
+	
+						$count_query   = $cantidadResult;
+						$total_pages = ceil($cantidadResult/$per_page);
+	
+	
+	
+	
+						if($cantidadResult>0)
+						{
+	
+							$html.='<div class="col-lg-12 col-xs-12 col-md-12">';
+							$html.='<div class="row">';
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">No de Solicitud:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_numsol_hipotecario.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+	
+							
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Monto Concedido:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_valor_hipotecario.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+							
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Cuota:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_cuota_hipotecario.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+	
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Interes:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_interes_hipotecario.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+	
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Tipo:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_tipo_hipotecario.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+	
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">PLazo:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_plazo_hipotecario.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+							$html.='</div>';
+	
+	
+							$html.='<div class="row">';
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Concedido en:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_fcred_hipotecario.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+							
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Termina en:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_ffin_hipotecario.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+	
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Cuenta No:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_cuenta_hipotecario.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+	
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Banco:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_banco_hipotecario.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+							$html.='</div>';
+							$html.='</div>';
+	
+	
+	
+	
+							$html.='<div class="pull-left" style="margin-left:11px;">';
+							$html.='<span class="form-control"><strong>Registros: </strong>'.$cantidadResult.'</span>';
+							$html.='<input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>' ;
+							$html.='</div>';
+							$html.='<div class="col-lg-12 col-md-12 col-xs-12">';
+							$html.='<section style="height:425px; overflow-y:scroll;">';
+							$html.= "<table id='tabla_credito_hipotecario' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
+							$html.= "<thead>";
+							$html.= "<tr>";
+							$html.='<th style="text-align: left;  font-size: 12px;"></th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Pago</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Mes</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">A&ntilde;o</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Fecha Pago</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Capital</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Interes</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Interes por Mora</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Seguro Desgr.</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Total</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Saldo</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Estado</th>';
+							$html.='</tr>';
+							$html.='</thead>';
+							$html.='<tbody>';
+	
+							$i=0;
+	
+							foreach ($resultSet as $res)
+							{
+								$i++;
+								$html.='<tr>';
+								$html.='<td style="font-size: 11px;">'.$i.'</td>';
+								$html.='<td style="font-size: 11px;">'.$res->pago.'</td>';
+								$html.='<td style="font-size: 11px;">'.$res->mes.'</td>';
+								$html.='<td style="font-size: 11px;">'.$res->ano.'</td>';
+								$html.='<td style="font-size: 11px;">'.$res->fecpag.'</td>';
+								$html.='<td style="font-size: 11px;">'.number_format($res->capital, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 11px;">'.number_format($res->interes, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 11px;">'.number_format($res->intmor, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 11px;">'.number_format($res->seguros, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 11px;">'.number_format($res->total, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 11px;">'.number_format($res->saldo, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 11px;">'.$res->estado.'</td>';
+								$html.='</tr>';
+							}
+	
+	
+							$html.='</tbody>';
+							$html.='</table>';
+							$html.='</section></div>';
+							$html.='<div class="table-pagination pull-right">';
+							$html.=''. $this->paginate_credito_hipotecario("index.php", $page, $total_pages, $adjacents).'';
+							$html.='</div>';
+	
+	
+	
+						}else{
+							$html.='<div class="col-lg-6 col-md-6 col-xs-12">';
+							$html.='<div class="alert alert-info alert-dismissable" style="margin-top:40px;">';
+							$html.='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+							$html.='<h4>Aviso!!!</h4> <b>Actualmente no hay datos para mostrar...</b>';
+							$html.='</div>';
+							$html.='</div>';
+						}
+	
+	
+	
+					}else{
+	
+						$html.='<div class="col-lg-6 col-md-6 col-xs-12">';
+						$html.='<div class="alert alert-info alert-dismissable" style="margin-top:40px;">';
+						$html.='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+						$html.='<h4>Aviso!!!</h4> <b>Actualmente no hay datos para mostrar...</b>';
+						$html.='</div>';
+						$html.='</div>';
+					}
+	
+	
+				}else{
+	
+					$html.='<div class="col-lg-6 col-md-6 col-xs-12">';
+					$html.='<div class="alert alert-info alert-dismissable" style="margin-top:40px;">';
+					$html.='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+					$html.='<h4>Aviso!!!</h4> <b>Actualmente no hay datos para mostrar...</b>';
+					$html.='</div>';
+					$html.='</div>';
+	
+				}
+	
+	
+	
+				echo $html;
+				die();
+	
+			}
+	
+	
+		}
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	public function cargar_acuerdo_pago(){
+	
+		session_start();
+		$app_solicitud = new app_solicitudModel();
+		$app_detalle = new app_detalleModel();
+		$where_to="";
+	
+	
+		$cedula_usuarios = $_SESSION["cedula_usuarios"];
+	
+		if(!empty($cedula_usuarios)){
+	
+	
+			$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
+			$search =  (isset($_REQUEST['search'])&& $_REQUEST['search'] !=NULL)?$_REQUEST['search']:'';
+	
+	
+			if($action == 'ajax')
+			{
+				$html="";
+	
+				$columnas_app_cabec ="*";
+				$tablas_app_cabec="app_solicitud";
+				$where_app_cabec="cedula='$cedula_usuarios'";
+				$id_app_cabec="cedula";
+				$resultCredApp_Cabec=$app_solicitud->getCondicionesDesc($columnas_app_cabec, $tablas_app_cabec, $where_app_cabec, $id_app_cabec);
+	
+	
+					
+				if(!empty($resultCredApp_Cabec)){
+	
+					$_numsol_app=$resultCredApp_Cabec[0]->numsol;
+					$_cuota_app=$resultCredApp_Cabec[0]->cuota;
+					$_interes_app=$resultCredApp_Cabec[0]->interes;
+					$_tipo_app=$resultCredApp_Cabec[0]->tipo;
+					$_plazo_app=$resultCredApp_Cabec[0]->plazo;
+					$_fcred_app=$resultCredApp_Cabec[0]->fcred;
+					$_ffin_app=$resultCredApp_Cabec[0]->ffin;
+					$_cuenta_app=$resultCredApp_Cabec[0]->cuenta;
+					$_banco_app=$resultCredApp_Cabec[0]->banco;
+					$_valor_app= number_format($resultCredApp_Cabec[0]->valor, 2, '.', ',');
+	
+	
+					if($_numsol_app != ""){
+	
+	
+						$columnas_app_detall ="numsol,
+										pago,
+										mes,
+										ano,
+										fecpag,ROUND(capital,2) as capital,
+										ROUND(interes,2) as interes,
+										ROUND(intmor,2) as intmor,
+										ROUND(seguros,2) as seguros,
+										ROUND(total,2) as total,
+										ROUND(saldo,2) as saldo,
+										estado";
+	
+						$tablas_app_detall="app_detalle";
+						$where_app_detall="numsol='$_numsol_app'";
+						$id_app_detall="pago";
+						//$resultCredEmer_Detall=$emergente_detalle->getCondicionesDesc($columnas_emer_detall, $tablas_emer_detall, $where_emer_detall, $id_emer_detall);
+	
+	
+	
+	
+						if(!empty($search)){
+	
+	
+							$where1=" AND (mes LIKE '%".$search."%' OR estado LIKE '%".$search."%')";
+	
+							$where_to=$where_app_detall.$where1;
+						}else{
+	
+							$where_to=$where_app_detall;
+	
+						}
+	
+	
+	
+						$resultSet=$app_detalle->getCantidad("*", $tablas_app_detall, $where_to);
+						$cantidadResult=(int)$resultSet[0]->total;
+	
+						$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
+	
+						$per_page = 15; //la cantidad de registros que desea mostrar
+						$adjacents  = 9; //brecha entre páginas después de varios adyacentes
+						$offset = ($page - 1) * $per_page;
+	
+						$limit = " LIMIT   '$per_page' OFFSET '$offset'";
+							
+						$resultSet=$app_detalle->getCondicionesPagDesc($columnas_app_detall, $tablas_app_detall, $where_to, $id_app_detall, $limit);
+	
+						$count_query   = $cantidadResult;
+						$total_pages = ceil($cantidadResult/$per_page);
+	
+	
+	
+	
+						if($cantidadResult>0)
+						{
+	
+							$html.='<div class="col-lg-12 col-xs-12 col-md-12">';
+							$html.='<div class="row">';
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">No de Solicitud:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_numsol_app.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+	
+							
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Monto Concedido:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_valor_app.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+							
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Cuota:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_cuota_app.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+	
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Interes:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_interes_app.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+	
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Tipo:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_tipo_app.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+	
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">PLazo:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_plazo_app.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+							$html.='</div>';
+	
+	
+							$html.='<div class="row">';
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Concedido en:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_fcred_app.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+							
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Termina en:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_ffin_app.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+	
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Cuenta No:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_cuenta_app.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+	
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Banco:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_banco_app.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+							$html.='</div>';
+							$html.='</div>';
+	
+	
+	
+	
+							$html.='<div class="pull-left" style="margin-left:11px;">';
+							$html.='<span class="form-control"><strong>Registros: </strong>'.$cantidadResult.'</span>';
+							$html.='<input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>' ;
+							$html.='</div>';
+							$html.='<div class="col-lg-12 col-md-12 col-xs-12">';
+							$html.='<section style="height:425px; overflow-y:scroll;">';
+							$html.= "<table id='tabla_acuerdo_pago' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
+							$html.= "<thead>";
+							$html.= "<tr>";
+							$html.='<th style="text-align: left;  font-size: 12px;"></th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Pago</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Mes</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">A&ntilde;o</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Fecha Pago</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Capital</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Interes</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Interes por Mora</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Seguro Desgr.</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Total</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Saldo</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Estado</th>';
+							$html.='</tr>';
+							$html.='</thead>';
+							$html.='<tbody>';
+	
+							$i=0;
+	
+							foreach ($resultSet as $res)
+							{
+								$i++;
+								$html.='<tr>';
+								$html.='<td style="font-size: 11px;">'.$i.'</td>';
+								$html.='<td style="font-size: 11px;">'.$res->pago.'</td>';
+								$html.='<td style="font-size: 11px;">'.$res->mes.'</td>';
+								$html.='<td style="font-size: 11px;">'.$res->ano.'</td>';
+								$html.='<td style="font-size: 11px;">'.$res->fecpag.'</td>';
+								$html.='<td style="font-size: 11px;">'.number_format($res->capital, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 11px;">'.number_format($res->interes, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 11px;">'.number_format($res->intmor, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 11px;">'.number_format($res->seguros, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 11px;">'.number_format($res->total, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 11px;">'.number_format($res->saldo, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 11px;">'.$res->estado.'</td>';
+								$html.='</tr>';
+							}
+	
+	
+							$html.='</tbody>';
+							$html.='</table>';
+							$html.='</section></div>';
+							$html.='<div class="table-pagination pull-right">';
+							$html.=''. $this->paginate_acuerdo_pago("index.php", $page, $total_pages, $adjacents).'';
+							$html.='</div>';
+	
+	
+	
+						}else{
+							$html.='<div class="col-lg-6 col-md-6 col-xs-12">';
+							$html.='<div class="alert alert-info alert-dismissable" style="margin-top:40px;">';
+							$html.='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+							$html.='<h4>Aviso!!!</h4> <b>Actualmente no hay datos para mostrar...</b>';
+							$html.='</div>';
+							$html.='</div>';
+						}
+	
+	
+	
+					}else{
+	
+						$html.='<div class="col-lg-6 col-md-6 col-xs-12">';
+						$html.='<div class="alert alert-info alert-dismissable" style="margin-top:40px;">';
+						$html.='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+						$html.='<h4>Aviso!!!</h4> <b>Actualmente no hay datos para mostrar...</b>';
+						$html.='</div>';
+						$html.='</div>';
+					}
+	
+	
+				}else{
+	
+					$html.='<div class="col-lg-6 col-md-6 col-xs-12">';
+					$html.='<div class="alert alert-info alert-dismissable" style="margin-top:40px;">';
+					$html.='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+					$html.='<h4>Aviso!!!</h4> <b>Actualmente no hay datos para mostrar...</b>';
+					$html.='</div>';
+					$html.='</div>';
+	
+				}
+	
+	
+	
+				echo $html;
+				die();
+	
+			}
+	
+	
+		}
+	
+	
+	}
 	
 	
 	
@@ -1979,6 +2594,138 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	
 	
+	
+	public function paginate_credito_hipotecario($reload, $page, $tpages, $adjacents) {
+	
+		$prevlabel = "&lsaquo; Prev";
+		$nextlabel = "Next &rsaquo;";
+		$out = '<ul class="pagination pagination-large">';
+	
+		// previous label
+	
+		if($page==1) {
+			$out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
+		} else if($page==2) {
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_credito_hipotecario(1)'>$prevlabel</a></span></li>";
+		}else {
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_credito_hipotecario(".($page-1).")'>$prevlabel</a></span></li>";
+	
+		}
+	
+		// first label
+		if($page>($adjacents+1)) {
+			$out.= "<li><a href='javascript:void(0);' onclick='load_credito_hipotecario(1)'>1</a></li>";
+		}
+		// interval
+		if($page>($adjacents+2)) {
+			$out.= "<li><a>...</a></li>";
+		}
+	
+		// pages
+	
+		$pmin = ($page>$adjacents) ? ($page-$adjacents) : 1;
+		$pmax = ($page<($tpages-$adjacents)) ? ($page+$adjacents) : $tpages;
+		for($i=$pmin; $i<=$pmax; $i++) {
+			if($i==$page) {
+				$out.= "<li class='active'><a>$i</a></li>";
+			}else if($i==1) {
+				$out.= "<li><a href='javascript:void(0);' onclick='load_credito_hipotecario(1)'>$i</a></li>";
+			}else {
+				$out.= "<li><a href='javascript:void(0);' onclick='load_credito_hipotecario(".$i.")'>$i</a></li>";
+			}
+		}
+	
+		// interval
+	
+		if($page<($tpages-$adjacents-1)) {
+			$out.= "<li><a>...</a></li>";
+		}
+	
+		// last
+	
+		if($page<($tpages-$adjacents)) {
+			$out.= "<li><a href='javascript:void(0);' onclick='load_credito_hipotecario($tpages)'>$tpages</a></li>";
+		}
+	
+		// next
+	
+		if($page<$tpages) {
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_credito_hipotecario(".($page+1).")'>$nextlabel</a></span></li>";
+		}else {
+			$out.= "<li class='disabled'><span><a>$nextlabel</a></span></li>";
+		}
+	
+		$out.= "</ul>";
+		return $out;
+	}
+	
+	
+	
+	
+	
+	public function paginate_acuerdo_pago($reload, $page, $tpages, $adjacents) {
+	
+		$prevlabel = "&lsaquo; Prev";
+		$nextlabel = "Next &rsaquo;";
+		$out = '<ul class="pagination pagination-large">';
+	
+		// previous label
+	
+		if($page==1) {
+			$out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
+		} else if($page==2) {
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_acuerdo_pago(1)'>$prevlabel</a></span></li>";
+		}else {
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_acuerdo_pago(".($page-1).")'>$prevlabel</a></span></li>";
+	
+		}
+	
+		// first label
+		if($page>($adjacents+1)) {
+			$out.= "<li><a href='javascript:void(0);' onclick='load_acuerdo_pago(1)'>1</a></li>";
+		}
+		// interval
+		if($page>($adjacents+2)) {
+			$out.= "<li><a>...</a></li>";
+		}
+	
+		// pages
+	
+		$pmin = ($page>$adjacents) ? ($page-$adjacents) : 1;
+		$pmax = ($page<($tpages-$adjacents)) ? ($page+$adjacents) : $tpages;
+		for($i=$pmin; $i<=$pmax; $i++) {
+			if($i==$page) {
+				$out.= "<li class='active'><a>$i</a></li>";
+			}else if($i==1) {
+				$out.= "<li><a href='javascript:void(0);' onclick='load_acuerdo_pago(1)'>$i</a></li>";
+			}else {
+				$out.= "<li><a href='javascript:void(0);' onclick='load_acuerdo_pago(".$i.")'>$i</a></li>";
+			}
+		}
+	
+		// interval
+	
+		if($page<($tpages-$adjacents-1)) {
+			$out.= "<li><a>...</a></li>";
+		}
+	
+		// last
+	
+		if($page<($tpages-$adjacents)) {
+			$out.= "<li><a href='javascript:void(0);' onclick='load_acuerdo_pago($tpages)'>$tpages</a></li>";
+		}
+	
+		// next
+	
+		if($page<$tpages) {
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_acuerdo_pago(".($page+1).")'>$nextlabel</a></span></li>";
+		}else {
+			$out.= "<li class='disabled'><span><a>$nextlabel</a></span></li>";
+		}
+	
+		$out.= "</ul>";
+		return $out;
+	}
 	
 	
 	

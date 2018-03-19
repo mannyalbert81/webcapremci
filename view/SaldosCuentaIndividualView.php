@@ -529,6 +529,81 @@
        
        
        
+         <script type="text/javascript">
+     
+        	   $(document).ready( function (){
+        		   load_credito_hipotecario(1);
+	   			});
+
+        	   function load_credito_hipotecario(pagina){
+
+
+        		   var search=$("#search_credito_hipotecario").val();
+                   var con_datos={
+           					  action:'ajax',
+           					  page:pagina
+           					  };
+                 $("#load_credito_hipotecario_registrados").fadeIn('slow');
+           	     $.ajax({
+           	               beforeSend: function(objeto){
+           	                 $("#load_credito_hipotecario_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
+           	               },
+           	               url: 'index.php?controller=SaldosCuentaIndividual&action=cargar_credito_hipotecario&search='+search,
+           	               type: 'POST',
+           	               data: con_datos,
+           	               success: function(x){
+           	                 $("#cta_credito_hipotecario").html(x);
+           	               	 $("#tabla_credito_hipotecario").tablesorter(); 
+           	                 $("#load_credito_hipotecario_registrados").html("");
+           	               },
+           	              error: function(jqXHR,estado,error){
+           	                $("#cta_credito_hipotecario").html("Ocurrio un error al cargar la informacion de Credito Hipotecario..."+estado+"    "+error);
+           	              }
+           	            });
+
+
+           		   }
+        </script>
+       
+       
+        <script type="text/javascript">
+     
+        	   $(document).ready( function (){
+        		   load_acuerdo_pago(1);
+	   			});
+
+        	   function load_acuerdo_pago(pagina){
+
+
+        		   var search=$("#search_acuerdo_pago").val();
+                   var con_datos={
+           					  action:'ajax',
+           					  page:pagina
+           					  };
+                 $("#load_acuerdo_pago_registrados").fadeIn('slow');
+           	     $.ajax({
+           	               beforeSend: function(objeto){
+           	                 $("#load_acuerdo_pago_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
+           	               },
+           	               url: 'index.php?controller=SaldosCuentaIndividual&action=cargar_acuerdo_pago&search='+search,
+           	               type: 'POST',
+           	               data: con_datos,
+           	               success: function(x){
+           	                 $("#cta_acuerdo_pago").html(x);
+           	               	 $("#tabla_acuerdo_pago").tablesorter(); 
+           	                 $("#load_acuerdo_pago_registrados").html("");
+           	               },
+           	              error: function(jqXHR,estado,error){
+           	                $("#cta_acuerdo_pago").html("Ocurrio un error al cargar la informacion de Acuerdo Pago..."+estado+"    "+error);
+           	              }
+           	            });
+
+
+           		   }
+        </script>
+       
+       
+       
        
        <script >
 		    // cada vez que se cambia el valor del combo
@@ -1064,6 +1139,8 @@
                   <li id="nav-credito_ordinario" class="active"><a href="#credito_ordinario" data-toggle="tab">Ordinario</a></li>
                    <li id="nav-credito_emergente"><a href="#credito_emergente" data-toggle="tab" >Emergente</a></li>
                    <li id="nav-credito_dos_x_uno"><a href="#credito_dos_x_uno" data-toggle="tab">Dos x Uno</a></li>
+                   <li id="nav-credito_hipotecario"><a href="#credito_hipotecario" data-toggle="tab">Hipotecario</a></li>
+                    <li id="nav-acuerdo_pago"><a href="#acuerdo_pago" data-toggle="tab">Acuerdo de Pago</a></li>
                 </ul>
           
            <div class="tab-content">
@@ -1182,9 +1259,86 @@
            
            
            </form>
-          
-          
            </div>
+           
+           
+           
+           
+           
+            <div class="tab-pane" id="credito_hipotecario">
+          <form>
+           <div class="col-md-12 col-lg-12 col-xs-12">
+             <div class="x_panel">
+                  <div class="x_title">
+                    <h2><small>Crédito Hipotecario</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    
+                  
+                    <div class="pull-right" style="margin-right:11px;">
+					<input type="text" value="" class="form-control" id="search_credito_hipotecario" name="search_credito_hipotecario" onkeyup="load_credito_hipotecario(1)" placeholder="search.."/>
+					</div>
+					<br>
+					
+					<div id="load_credito_hipotecario_registrados" ></div>	
+					<div id="cta_credito_hipotecario"></div>	
+                    
+                  </div>
+                </div>
+              </div>
+           
+           
+           </form>
+           </div>
+           
+           
+           
+           
+              <div class="tab-pane" id="acuerdo_pago">
+          <form>
+           <div class="col-md-12 col-lg-12 col-xs-12">
+             <div class="x_panel">
+                  <div class="x_title">
+                    <h2><small>Acuerdo de Pago</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    
+                  
+                    <div class="pull-right" style="margin-right:11px;">
+					<input type="text" value="" class="form-control" id="search_acuerdo_pago" name="search_acuerdo_pago" onkeyup="load_acuerdo_pago(1)" placeholder="search.."/>
+					</div>
+					<br>
+					
+					<div id="load_acuerdo_pago_registrados" ></div>	
+					<div id="cta_acuerdo_pago"></div>	
+                    
+                  </div>
+                </div>
+              </div>
+           
+           
+           </form>
+           </div>
+           
+           
+           
+           
            
            
            </div>

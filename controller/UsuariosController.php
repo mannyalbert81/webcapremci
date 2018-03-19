@@ -2223,5 +2223,111 @@ public function index(){
 	
 	
 	
+	
+
+	public function cargar_credito_hipotecario(){
+	
+		session_start();
+		$i=0;
+		$hipotecario_solicitud = new Hipotecario_SolicitudModel();
+		$hipotecario_detalle = new Hipotecario_DetalleModel();
+	
+		$_numsol_hipotecario="";
+		$_cuota_hipotecario="";
+		$_interes_hipotecario="";
+		$_tipo_hipotecario="";
+		$_plazo_hipotecario="";
+		$_fcred_hipotecario="";
+		$_ffin_hipotecario="";
+		$_cuenta_hipotecario="";
+		$_banco_hipotecario="";
+	
+		$cedula_usuarios = $_SESSION["cedula_usuarios"];
+	
+		if(!empty($cedula_usuarios)){
+			$columnas_hipotecario_cabec ="*";
+			$tablas_hipotecario_cabec="hipotecario_solicitud";
+			$where_hipotecario_cabec="cedula='$cedula_usuarios'";
+			$id_hipotecario_cabec="cedula";
+			$resultSet=$hipotecario_solicitud->getCondicionesDesc($columnas_hipotecario_cabec, $tablas_hipotecario_cabec, $where_hipotecario_cabec, $id_hipotecario_cabec);
+				
+				
+	
+			$i=count($resultSet);
+	
+			$html="";
+			if($i>0)
+			{
+				if (!empty($resultSet)) {
+	
+					$_numsol_hipotecario=$resultSet[0]->numsol;
+					$_cuota_hipotecario=$resultSet[0]->cuota;
+					$_interes_hipotecario=$resultSet[0]->interes;
+					$_tipo_hipotecario=$resultSet[0]->tipo;
+					$_plazo_hipotecario=$resultSet[0]->plazo;
+					$_fcred_hipotecario=$resultSet[0]->fcred;
+					$_ffin_hipotecario=$resultSet[0]->ffin;
+					$_cuenta_hipotecario=$resultSet[0]->cuenta;
+					$_banco_hipotecario=$resultSet[0]->banco;
+	
+				}
+	
+				$html .= "<div class='col-lg-4 col-xs-12'>";
+				$html .= "<div class='small-box bg-green'>";
+				$html .= "<div class='inner'>";
+				$html .= "<h3>$_numsol_hipotecario</h3>";
+				$html .= "<p>Tienes activo un crédito hipotecario<br> desde $_fcred_hipotecario hasta $_ffin_hipotecario.</p>";
+				$html .= "</div>";
+	
+	
+				$html .= "<div class='icon'>";
+				$html .= "<i class='ion ion-calendar'></i>";
+				$html .= "</div>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "</div>";
+				$html .= "</div>";
+	
+	
+			}else{
+	
+				$html .= "<div class='col-lg-4 col-xs-12'>";
+				$html .= "<div class='small-box bg-green'>";
+				$html .= "<div class='inner'>";
+				$html .= "<h3>S/N</h3>";
+				$html .= "<p>Actualmente no dispone un crédito<br> hipotecario.</p>";
+				$html .= "</div>";
+					
+					
+				$html .= "<div class='icon'>";
+				$html .= "<i class='ion ion-calendar'></i>";
+				$html .= "</div>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "</div>";
+				$html .= "</div>";
+					
+					
+			}
+	
+			echo $html;
+			die();
+	
+		}
+		else{
+	
+	
+	
+			$this->redirect("Usuarios","sesion_caducada");
+	
+			die();
+	
+		}
+	
+	}
+	
+	
+	
+	
+	
+	
 }
 ?>

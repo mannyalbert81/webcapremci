@@ -79,9 +79,11 @@
             <div id='pone_credito_ordinario'></div>
             <div id='pone_credito_emergente'></div>
             <div id='pone_credito_2x1'></div>
+           </div>
+          
+           <div class="row tile_count">
+            <div id='pone_credito_hipotecario'></div>
 	       </div>
-          
-          
           
         </div>
           <!-- /top tiles -->
@@ -145,7 +147,7 @@
         		   pone_credito_ordinario();
         		   pone_credito_emergente();
         		   pone_credito_2x1();
-        		   
+        		   pone_credito_hipotecario();
 
         		  
         			       
@@ -292,7 +294,7 @@
         		                   $("#pone_credito_2x1").html(x);
         		                 },
         		                error: function(jqXHR,estado,error){
-        		                  $("#pone_credito_2x1").html("Ocurrio un error al cargar la informacion de crédito 2x2..."+estado+"    "+error);
+        		                  $("#pone_credito_2x1").html("Ocurrio un error al cargar la informacion de crédito 2x1..."+estado+"    "+error);
         		                }
         		              });
         		     })
@@ -300,6 +302,26 @@
 
 
 
+
+
+        	   function pone_credito_hipotecario(){
+        		   $(document).ready( function (){
+        		       $.ajax({
+        		                 beforeSend: function(objeto){
+        		                   $("#pone_credito_hipotecario").html('')
+        		                 },
+        		                 url: 'index.php?controller=Usuarios&action=cargar_credito_hipotecario',
+        		                 type: 'POST',
+        		                 data: null,
+        		                 success: function(x){
+        		                   $("#pone_credito_hipotecario").html(x);
+        		                 },
+        		                error: function(jqXHR,estado,error){
+        		                  $("#pone_credito_hipotecario").html("Ocurrio un error al cargar la informacion de crédito hipotecario..."+estado+"    "+error);
+        		                }
+        		              });
+        		     })
+        		  }
 
         	   
         	   
