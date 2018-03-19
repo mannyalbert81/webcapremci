@@ -2806,5 +2806,204 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	///////////////////////////////////////////////////// AQUI REPORTES /////////////////////////////////////////////////////////////
+	
+	public function generar_reporte()
+	{
+	
+		session_start();
+		$ordinario_detalle = new Ordinario_DetalleModel();
+		$ordinario_solicitud = new Ordinario_SolicitudModel();
+		$html="";
+	
+		
+		
+		            $cedula_usuarios = $_SESSION["cedula_usuarios"];
+		
+		            $fechaactual = getdate();
+		            $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+		            $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+		            
+		            $fechaactual=$dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+		           
+		            $directorio = $_SERVER ['DOCUMENT_ROOT'] . '/webcapremci';
+		            $dom=$directorio.'/view/dompdf/dompdf_config.inc.php';
+		            $domLogo=$directorio.'/view/images/lcaprem.png';
+		            $logo = '<img src="'.$domLogo.'" alt="Responsive image" width="200" height="50">';
+		            	
+		            
+		            
+					if(!empty($cedula_usuarios)){
+					
+					$columnas_ordi_cabec ="*";
+					$tablas_ordi_cabec="ordinario_solicitud";
+					$where_ordi_cabec="cedula='$cedula_usuarios'";
+					$id_ordi_cabec="cedula";
+					$resultCredOrdi_Cabec=$ordinario_solicitud->getCondicionesDesc($columnas_ordi_cabec, $tablas_ordi_cabec, $where_ordi_cabec, $id_ordi_cabec);
+					
+						
+					
+					if(!empty($resultCredOrdi_Cabec)){
+					
+						$_numsol_ordinario=$resultCredOrdi_Cabec[0]->numsol;
+						$_cuota_ordinario=$resultCredOrdi_Cabec[0]->cuota;
+						$_interes_ordinario=$resultCredOrdi_Cabec[0]->interes;
+						$_tipo_ordinario=$resultCredOrdi_Cabec[0]->tipo;
+						$_plazo_ordinario=$resultCredOrdi_Cabec[0]->plazo;
+						$_fcred_ordinario=$resultCredOrdi_Cabec[0]->fcred;
+						$_ffin_ordinario=$resultCredOrdi_Cabec[0]->ffin;
+						$_cuenta_ordinario=$resultCredOrdi_Cabec[0]->cuenta;
+						$_banco_ordinario=$resultCredOrdi_Cabec[0]->banco;
+						$_valor_ordinario= number_format($resultCredOrdi_Cabec[0]->valor, 2, '.', ',');
+							
+							
+					
+						if($_numsol_ordinario != ""){
+					
+							$columnas_ordi_detall ="numsol,
+										pago,
+										mes,
+										ano,
+										fecpag,ROUND(capital,2) as capital,
+										ROUND(interes,2) as interes,
+										ROUND(intmor,2) as intmor,
+										ROUND(seguros,2) as seguros,
+										ROUND(total,2) as total,
+										ROUND(saldo,2) as saldo,
+										estado";
+								
+							$tablas_ordi_detall="ordinario_detalle";
+							$where_ordi_detall="numsol='$_numsol_ordinario'";
+							$id_ordi_detall="pago";
+							$resultSet=$ordinario_detalle->getCondiciones($columnas_ordi_detall, $tablas_ordi_detall, $where_ordi_detall, $id_ordi_detall);
+							
+							
+							
+								
+							$html.='<p style="text-align: right;">'.$logo.'<hr style="height: 2px; background-color: black;"></p>';
+							$html.='<p style="text-align: right; font-size: 13px;"><b>Impreso:</b> '.$fechaactual.'</p>';
+							$html.='<p style="text-align: center; font-size: 15px;"><b>REPORTE CRÉDITO ORDINARIO</b></p>';
+							
+							
+							$html.= "<table style='width: 100%;' border=1 cellspacing=0 >";
+							$html.= "<tr>";
+							$html.='<th style="text-align: left;  font-size: 13px;">No de Solicitud:</th>';
+							$html.='<th style="text-align: left;  font-size: 13px;">Monto Concedido:</th>';
+							$html.='<th style="text-align: left;  font-size: 13px;">Cuota:</th>';
+							$html.='<th style="text-align: left;  font-size: 13px;">Interes:</th>';
+							$html.='<th style="text-align: left;  font-size: 13px;">Tipo:</th>';
+							$html.='</tr>';
+							
+							$html.= "<tr>";
+							$html.='<td style="font-size: 13px;">'.$_numsol_ordinario.'</td>';
+							$html.='<td style="font-size: 13px;">'.$_valor_ordinario.'</td>';
+							$html.='<td style="font-size: 13px;">'.$_cuota_ordinario.'</td>';
+							$html.='<td style="font-size: 13px;">'.$_interes_ordinario.'</td>';
+							$html.='<td style="font-size: 13px;">'.$_tipo_ordinario.'</td>';
+							$html.='</tr>';
+							
+							
+							$html.= "<tr>";
+							$html.='<th style="text-align: left;  font-size: 13px;">PLazo:</th>';
+							$html.='<th style="text-align: left;  font-size: 13px;">Concedido en:</th>';
+							$html.='<th style="text-align: left;  font-size: 13px;">Termina en:</th>';
+							$html.='<th style="text-align: left;  font-size: 13px;">Cuenta No:</th>';
+							$html.='<th style="text-align: left;  font-size: 13px;">Banco:</th>';
+							$html.='</tr>';
+								
+							$html.= "<tr>";
+							$html.='<td style="font-size: 13px;">'.$_plazo_ordinario.'</td>';
+							$html.='<td style="font-size: 13px;">'.$_fcred_ordinario.'</td>';
+							$html.='<td style="font-size: 13px;">'.$_ffin_ordinario.'</td>';
+							$html.='<td style="font-size: 13px;">'.$_cuenta_ordinario.'</td>';
+							$html.='<td style="font-size: 13px;">'.$_banco_ordinario.'</td>';
+							$html.='</tr>';
+							
+							
+							$html.='</table>';
+							
+							
+							
+							
+							
+							
+							$html.= "<table style='margin-top:20px; width: 100%;' border=1 cellspacing=0 cellpadding=2>";
+							$html.= "<thead>";
+							$html.= "<tr>";
+						
+							$html.='<th style="text-align: left;  font-size: 12px;">Pago</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Mes</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">A&ntilde;o</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Fecha Pago</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Capital</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Interes</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Interes por Mora</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Seguro Desgr.</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Total</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Saldo</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Estado</th>';
+							$html.='</tr>';
+							$html.='</thead>';
+							$html.='<tbody>';
+							
+							$i=0;
+							foreach ($resultSet as $res)
+							{
+								$i++;
+								$html.='<tr>';
+								$html.='<td style="font-size: 12px;">'.$res->pago.'</td>';
+								$html.='<td style="font-size: 12px;">'.$res->mes.'</td>';
+								$html.='<td style="font-size: 12px;">'.$res->ano.'</td>';
+								$html.='<td style="font-size: 12px;">'.$res->fecpag.'</td>';
+								$html.='<td style="font-size: 12px;">'.number_format($res->capital, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 12px;">'.number_format($res->interes, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 12px;">'.number_format($res->intmor, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 12px;">'.number_format($res->seguros, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 12px;">'.number_format($res->total, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 12px;">'.number_format($res->saldo, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 12px;">'.$res->estado.'</td>';
+								$html.='</tr>';
+							}
+							
+							
+							$html.='</tbody>';
+							$html.='</table>';
+							
+						}
+					
+					}
+					
+					
+						
+					
+						
+					$this->report("Creditos",array( "resultSet"=>$html));
+						
+			}
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
 ?>
