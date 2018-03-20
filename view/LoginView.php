@@ -3,7 +3,7 @@
   <head>
     
 
-    <title>Template 2018</title>
+    <title>Capremci</title>
 
 
 	  
@@ -54,14 +54,14 @@
               </div>
               <div>
               	<button type="submit"  class="btn btn-success" ><i class="fa fa-unlock fa-spin" aria-hidden="true"></i> Login</button>
-                
+                <button type="button" onclick=" location.href='http://www.capremci.com.ec' " class="btn btn-primary" value="Cancelar" name="Cancelar"><i class="fa fa-times" aria-hidden="true"></i> Cancelar</button> 
               </div>
 
               <div class="clearfix"></div>
 			   <div class="separator">
                 <div class="clearfix"></div>
                 <div>
-                 <p><a href="<?php echo $helper->url("Usuarios","resetear_password"); ?>" >Olvidaste tu Clave</a> </p>
+                 <p><a href="<?php echo $helper->url("Usuarios","resetear_clave_inicio"); ?>" >Olvidaste tu Clave</a> </p>
                  <p>©2018 All Rights Reserved</p>
                 </div>
               </div>

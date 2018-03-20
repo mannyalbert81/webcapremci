@@ -384,6 +384,59 @@ public function index(){
 	}
 	
 	
+
+	public function rellenar_claves_usuarios_nuevos(){
+	
+		session_start();
+		$resultado = null;
+		$usuarios=new UsuariosModel();
+	
+	
+	
+		$columnas = "usuarios.cedula_usuarios";
+			
+		$tablas   = "public.usuarios";
+			
+		$where    = "1=1 AND pass_sistemas_usuarios=''";
+			
+		$id       = "usuarios.id_usuarios";
+			
+		$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
+	
+		if(!empty($resultSet))
+		{
+			foreach ($resultSet as $res){
+					
+				$cedula_usuarios=$res->cedula_usuarios;
+					
+				$cadena = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+				$longitudCadena=strlen($cadena);
+				$pass = "";
+				$longitudPass=10;
+				for($i=1 ; $i<=$longitudPass ; $i++){
+					$pos=rand(0,$longitudCadena-1);
+					$pass .= substr($cadena,$pos,1);
+				}
+				$_clave_usuario= $pass;
+				$_encryp_pass = $usuarios->encriptar($_clave_usuario);
+				$usuarios->UpdateBy("clave_usuarios = '$_encryp_pass', pass_sistemas_usuarios='$_clave_usuario'", "usuarios", "cedula_usuarios = '$cedula_usuarios'  ");
+	
+					
+					
+			}
+	
+	
+				
+		}
+	
+	
+	
+		$this->redirect("Roles", "index");
+	
+	}
+	
+	
+	
 	
 	public function encriptar_maycol_postgres(){
 		
