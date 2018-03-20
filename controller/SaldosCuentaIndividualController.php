@@ -526,6 +526,12 @@ class SaldosCuentaIndividualController extends ControladorBase{
 							
 							
 							
+							$html.='<div class="col-lg-12 col-md-12 col-xs-12" style="margin-top:20px; text-align: center;">';
+							$html.='<a href="index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=ordinario" class="btn btn-success" target="_blank"><i class="glyphicon glyphicon-print"></i> Imprimir</a>';
+							$html.='</div>';
+							
+							
+							
 							
 							$html.='<div class="pull-left" style="margin-left:11px;">';
 							$html.='<span class="form-control"><strong>Registros: </strong>'.$cantidadResult.'</span>';
@@ -819,6 +825,9 @@ class SaldosCuentaIndividualController extends ControladorBase{
 							$html.='</div>';
 								
 								
+							$html.='<div class="col-lg-12 col-md-12 col-xs-12" style="margin-top:20px; text-align: center;">';
+							$html.='<a href="index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=emergente" class="btn btn-success" target="_blank"><i class="glyphicon glyphicon-print"></i> Imprimir</a>';
+							$html.='</div>';
 								
 								
 							$html.='<div class="pull-left" style="margin-left:11px;">';
@@ -1116,7 +1125,9 @@ class SaldosCuentaIndividualController extends ControladorBase{
 							$html.='</div>';
 							$html.='</div>';
 	
-	
+							$html.='<div class="col-lg-12 col-md-12 col-xs-12" style="margin-top:20px; text-align: center;">';
+							$html.='<a href="index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=2_x_1" class="btn btn-success" target="_blank"><i class="glyphicon glyphicon-print"></i> Imprimir</a>';
+							$html.='</div>';
 	
 	
 							$html.='<div class="pull-left" style="margin-left:11px;">';
@@ -1412,7 +1423,9 @@ class SaldosCuentaIndividualController extends ControladorBase{
 							$html.='</div>';
 							$html.='</div>';
 	
-	
+							$html.='<div class="col-lg-12 col-md-12 col-xs-12" style="margin-top:20px; text-align: center;">';
+							$html.='<a href="index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=hipotecario" class="btn btn-success" target="_blank"><i class="glyphicon glyphicon-print"></i> Imprimir</a>';
+							$html.='</div>';
 	
 	
 							$html.='<div class="pull-left" style="margin-left:11px;">';
@@ -1709,7 +1722,9 @@ class SaldosCuentaIndividualController extends ControladorBase{
 							$html.='</div>';
 	
 	
-	
+							$html.='<div class="col-lg-12 col-md-12 col-xs-12" style="margin-top:20px; text-align: center;">';
+							$html.='<a href="index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=acuerdo_pago" class="btn btn-success" target="_blank"><i class="glyphicon glyphicon-print"></i> Imprimir</a>';
+							$html.='</div>';
 	
 							$html.='<div class="pull-left" style="margin-left:11px;">';
 							$html.='<span class="form-control"><strong>Registros: </strong>'.$cantidadResult.'</span>';
@@ -2821,16 +2836,25 @@ class SaldosCuentaIndividualController extends ControladorBase{
 		session_start();
 		$ordinario_detalle = new Ordinario_DetalleModel();
 		$ordinario_solicitud = new Ordinario_SolicitudModel();
+		$emergente_solicitud = new Emergente_SolicitudModel();
+		$emergente_detalle = new Emergente_DetalleModel();
+		$c2x1_solicitud = new C2x1_solicitudModel();
+		$c2x1_detalle = new C2x1_detalleModel();
+		$app_solicitud = new app_solicitudModel();
+		$app_detalle = new app_detalleModel();
+		$hipotecario_solicitud = new Hipotecario_SolicitudModel();
+		$hipotecario_detalle = new Hipotecario_DetalleModel();
+		
+		
+		
 		$html="";
 	
 		
 		
 		            $cedula_usuarios = $_SESSION["cedula_usuarios"];
-		
-		            $fechaactual = getdate();
+					$fechaactual = getdate();
 		            $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
 		            $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-		            
 		            $fechaactual=$dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
 		           
 		            $directorio = $_SERVER ['DOCUMENT_ROOT'] . '/webcapremci';
@@ -2842,32 +2866,41 @@ class SaldosCuentaIndividualController extends ControladorBase{
 		            
 					if(!empty($cedula_usuarios)){
 					
-					$columnas_ordi_cabec ="*";
-					$tablas_ordi_cabec="ordinario_solicitud";
-					$where_ordi_cabec="cedula='$cedula_usuarios'";
-					$id_ordi_cabec="cedula";
-					$resultCredOrdi_Cabec=$ordinario_solicitud->getCondicionesDesc($columnas_ordi_cabec, $tablas_ordi_cabec, $where_ordi_cabec, $id_ordi_cabec);
-					
 						
-					
-					if(!empty($resultCredOrdi_Cabec)){
-					
-						$_numsol_ordinario=$resultCredOrdi_Cabec[0]->numsol;
-						$_cuota_ordinario=$resultCredOrdi_Cabec[0]->cuota;
-						$_interes_ordinario=$resultCredOrdi_Cabec[0]->interes;
-						$_tipo_ordinario=$resultCredOrdi_Cabec[0]->tipo;
-						$_plazo_ordinario=$resultCredOrdi_Cabec[0]->plazo;
-						$_fcred_ordinario=$resultCredOrdi_Cabec[0]->fcred;
-						$_ffin_ordinario=$resultCredOrdi_Cabec[0]->ffin;
-						$_cuenta_ordinario=$resultCredOrdi_Cabec[0]->cuenta;
-						$_banco_ordinario=$resultCredOrdi_Cabec[0]->banco;
-						$_valor_ordinario= number_format($resultCredOrdi_Cabec[0]->valor, 2, '.', ',');
+					if(isset($_GET["credito"])){
+						
+						$credito=$_GET["credito"];
+						
+						
+						if($credito=="ordinario"){
 							
 							
-					
-						if($_numsol_ordinario != ""){
-					
-							$columnas_ordi_detall ="numsol,
+							$columnas_ordi_cabec ="*";
+							$tablas_ordi_cabec="ordinario_solicitud";
+							$where_ordi_cabec="cedula='$cedula_usuarios'";
+							$id_ordi_cabec="cedula";
+							$resultCredOrdi_Cabec=$ordinario_solicitud->getCondicionesDesc($columnas_ordi_cabec, $tablas_ordi_cabec, $where_ordi_cabec, $id_ordi_cabec);
+								
+							
+								
+							if(!empty($resultCredOrdi_Cabec)){
+									
+								$_numsol_ordinario=$resultCredOrdi_Cabec[0]->numsol;
+								$_cuota_ordinario=$resultCredOrdi_Cabec[0]->cuota;
+								$_interes_ordinario=$resultCredOrdi_Cabec[0]->interes;
+								$_tipo_ordinario=$resultCredOrdi_Cabec[0]->tipo;
+								$_plazo_ordinario=$resultCredOrdi_Cabec[0]->plazo;
+								$_fcred_ordinario=$resultCredOrdi_Cabec[0]->fcred;
+								$_ffin_ordinario=$resultCredOrdi_Cabec[0]->ffin;
+								$_cuenta_ordinario=$resultCredOrdi_Cabec[0]->cuenta;
+								$_banco_ordinario=$resultCredOrdi_Cabec[0]->banco;
+								$_valor_ordinario= number_format($resultCredOrdi_Cabec[0]->valor, 2, '.', ',');
+								$_cedula_ordinario=$resultCredOrdi_Cabec[0]->cedula;
+								$_nombres_ordinario=$resultCredOrdi_Cabec[0]->nombres;
+									
+								if($_numsol_ordinario != ""){
+										
+									$columnas_ordi_detall ="numsol,
 										pago,
 										mes,
 										ano,
@@ -2878,114 +2911,709 @@ class SaldosCuentaIndividualController extends ControladorBase{
 										ROUND(total,2) as total,
 										ROUND(saldo,2) as saldo,
 										estado";
+							
+									$tablas_ordi_detall="ordinario_detalle";
+									$where_ordi_detall="numsol='$_numsol_ordinario'";
+									$id_ordi_detall="pago";
+									$resultSet=$ordinario_detalle->getCondiciones($columnas_ordi_detall, $tablas_ordi_detall, $where_ordi_detall, $id_ordi_detall);
+										
+									
+									$html.='<p style="text-align: right;">'.$logo.'<hr style="height: 2px; background-color: black;"></p>';
+									$html.='<p style="text-align: right; font-size: 13px;"><b>Impreso:</b> '.$fechaactual.'</p>';
+									$html.='<p style="text-align: center; font-size: 16px;"><b>DETALLE CRÉDITO ORDINARIO</b></p>';
+										
+									$html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>NOMBRES:</b> '.$_nombres_ordinario.'  <b style="margin-left: 20%;">IDENTIFICACIÓN:</b> '.$_cedula_ordinario.'</p>';
+										
+									$html.= "<table style='width: 100%;' border=1 cellspacing=0 >";
+									$html.= '<tr style="background-color: #D5D8DC;">';
+									$html.='<th style="text-align: left;  font-size: 13px;">No de Solicitud:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Monto Concedido:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Cuota:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Interes:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Tipo:</th>';
+									$html.='</tr>';
+										
+									$html.= "<tr>";
+									$html.='<td style="font-size: 13px;">'.$_numsol_ordinario.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_valor_ordinario.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_cuota_ordinario.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_interes_ordinario.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_tipo_ordinario.'</td>';
+									$html.='</tr>';
+										
+										
+									$html.= '<tr style="background-color: #D5D8DC;">';
+									$html.='<th style="text-align: left;  font-size: 13px;">PLazo:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Concedido en:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Termina en:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Cuenta No:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Banco:</th>';
+									$html.='</tr>';
+							
+									$html.= "<tr>";
+									$html.='<td style="font-size: 13px;">'.$_plazo_ordinario.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_fcred_ordinario.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_ffin_ordinario.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_cuenta_ordinario.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_banco_ordinario.'</td>';
+									$html.='</tr>';
+									
+									$html.='</table>';
+										
+										
+										
+										
+									$html.= "<table style='margin-top:20px; width: 100%;' border=1 cellspacing=0 cellpadding=2>";
+									$html.= "<thead>";
+									$html.= "<tr style='background-color: #D5D8DC;'>";
+							
+									$html.='<th style="text-align: left;  font-size: 12px;">Pago</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Mes</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">A&ntilde;o</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Fecha Pago</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Capital</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Interes</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Interes por Mora</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Seguro Desgr.</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Total</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Saldo</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Estado</th>';
+									$html.='</tr>';
+									$html.='</thead>';
+									$html.='<tbody>';
+										
+									$i=0;
+									foreach ($resultSet as $res)
+									{
+										$i++;
+										$html.='<tr>';
+										$html.='<td style="font-size: 12px;">'.$res->pago.'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->mes.'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->ano.'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->fecpag.'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->capital, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->interes, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->intmor, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->seguros, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->total, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->saldo, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->estado.'</td>';
+										$html.='</tr>';
+									}
+										
+									$html.='</tbody>';
+									$html.='</table>';
+										
+								}
+									
+							}
 								
-							$tablas_ordi_detall="ordinario_detalle";
-							$where_ordi_detall="numsol='$_numsol_ordinario'";
-							$id_ordi_detall="pago";
-							$resultSet=$ordinario_detalle->getCondiciones($columnas_ordi_detall, $tablas_ordi_detall, $where_ordi_detall, $id_ordi_detall);
+							
+							$this->report("Creditos",array( "resultSet"=>$html));
+							die();
+							
+							
+							
+							
+						}elseif ($credito=="emergente"){
+							
+							
+							$columnas_emer_cabec ="*";
+							$tablas_emer_cabec="emergente_solicitud";
+							$where_emer_cabec="cedula='$cedula_usuarios'";
+							$id_emer_cabec="cedula";
+							$resultCredEmer_Cabec=$emergente_solicitud->getCondicionesDesc($columnas_emer_cabec, $tablas_emer_cabec, $where_emer_cabec, $id_emer_cabec);
 							
 							
 							
 								
-							$html.='<p style="text-align: right;">'.$logo.'<hr style="height: 2px; background-color: black;"></p>';
-							$html.='<p style="text-align: right; font-size: 13px;"><b>Impreso:</b> '.$fechaactual.'</p>';
-							$html.='<p style="text-align: center; font-size: 15px;"><b>REPORTE CRÉDITO ORDINARIO</b></p>';
 							
+							if(!empty($resultCredEmer_Cabec)){
+									
+								$_numsol_emergente=$resultCredEmer_Cabec[0]->numsol;
+								$_cuota_emergente=$resultCredEmer_Cabec[0]->cuota;
+								$_interes_emergente=$resultCredEmer_Cabec[0]->interes;
+								$_tipo_emergente=$resultCredEmer_Cabec[0]->tipo;
+								$_plazo_emergente=$resultCredEmer_Cabec[0]->plazo;
+								$_fcred_emergente=$resultCredEmer_Cabec[0]->fcred;
+								$_ffin_emergente=$resultCredEmer_Cabec[0]->ffin;
+								$_cuenta_emergente=$resultCredEmer_Cabec[0]->cuenta;
+								$_banco_emergente=$resultCredEmer_Cabec[0]->banco;
+								$_valor_emergente= number_format($resultCredEmer_Cabec[0]->valor, 2, '.', ',');
+								$_cedula_emergente=$resultCredEmer_Cabec[0]->cedula;
+								$_nombres_emergente=$resultCredEmer_Cabec[0]->nombres;
+									
+								if($_numsol_emergente != ""){
 							
-							$html.= "<table style='width: 100%;' border=1 cellspacing=0 >";
-							$html.= "<tr>";
-							$html.='<th style="text-align: left;  font-size: 13px;">No de Solicitud:</th>';
-							$html.='<th style="text-align: left;  font-size: 13px;">Monto Concedido:</th>';
-							$html.='<th style="text-align: left;  font-size: 13px;">Cuota:</th>';
-							$html.='<th style="text-align: left;  font-size: 13px;">Interes:</th>';
-							$html.='<th style="text-align: left;  font-size: 13px;">Tipo:</th>';
-							$html.='</tr>';
-							
-							$html.= "<tr>";
-							$html.='<td style="font-size: 13px;">'.$_numsol_ordinario.'</td>';
-							$html.='<td style="font-size: 13px;">'.$_valor_ordinario.'</td>';
-							$html.='<td style="font-size: 13px;">'.$_cuota_ordinario.'</td>';
-							$html.='<td style="font-size: 13px;">'.$_interes_ordinario.'</td>';
-							$html.='<td style="font-size: 13px;">'.$_tipo_ordinario.'</td>';
-							$html.='</tr>';
-							
-							
-							$html.= "<tr>";
-							$html.='<th style="text-align: left;  font-size: 13px;">PLazo:</th>';
-							$html.='<th style="text-align: left;  font-size: 13px;">Concedido en:</th>';
-							$html.='<th style="text-align: left;  font-size: 13px;">Termina en:</th>';
-							$html.='<th style="text-align: left;  font-size: 13px;">Cuenta No:</th>';
-							$html.='<th style="text-align: left;  font-size: 13px;">Banco:</th>';
-							$html.='</tr>';
-								
-							$html.= "<tr>";
-							$html.='<td style="font-size: 13px;">'.$_plazo_ordinario.'</td>';
-							$html.='<td style="font-size: 13px;">'.$_fcred_ordinario.'</td>';
-							$html.='<td style="font-size: 13px;">'.$_ffin_ordinario.'</td>';
-							$html.='<td style="font-size: 13px;">'.$_cuenta_ordinario.'</td>';
-							$html.='<td style="font-size: 13px;">'.$_banco_ordinario.'</td>';
-							$html.='</tr>';
-							
-							
-							$html.='</table>';
-							
-							
-							
-							
-							
-							
-							$html.= "<table style='margin-top:20px; width: 100%;' border=1 cellspacing=0 cellpadding=2>";
-							$html.= "<thead>";
-							$html.= "<tr>";
+									$columnas_emer_detall ="numsol,
+										pago,
+										mes,
+										ano,
+										fecpag,ROUND(capital,2) as capital,
+										ROUND(interes,2) as interes,
+										ROUND(intmor,2) as intmor,
+										ROUND(seguros,2) as seguros,
+										ROUND(total,2) as total,
+										ROUND(saldo,2) as saldo,
+										estado";
 						
-							$html.='<th style="text-align: left;  font-size: 12px;">Pago</th>';
-							$html.='<th style="text-align: left;  font-size: 12px;">Mes</th>';
-							$html.='<th style="text-align: left;  font-size: 12px;">A&ntilde;o</th>';
-							$html.='<th style="text-align: left;  font-size: 12px;">Fecha Pago</th>';
-							$html.='<th style="text-align: left;  font-size: 12px;">Capital</th>';
-							$html.='<th style="text-align: left;  font-size: 12px;">Interes</th>';
-							$html.='<th style="text-align: left;  font-size: 12px;">Interes por Mora</th>';
-							$html.='<th style="text-align: left;  font-size: 12px;">Seguro Desgr.</th>';
-							$html.='<th style="text-align: left;  font-size: 12px;">Total</th>';
-							$html.='<th style="text-align: left;  font-size: 12px;">Saldo</th>';
-							$html.='<th style="text-align: left;  font-size: 12px;">Estado</th>';
-							$html.='</tr>';
-							$html.='</thead>';
-							$html.='<tbody>';
+										$tablas_emer_detall="emergente_detalle";
+										$where_emer_detall="numsol='$_numsol_emergente'";
+										$id_emer_detall="pago";
+									
+										$resultSet=$emergente_detalle->getCondiciones($columnas_emer_detall, $tablas_emer_detall, $where_emer_detall, $id_emer_detall);
 							
-							$i=0;
-							foreach ($resultSet as $res)
-							{
-								$i++;
-								$html.='<tr>';
-								$html.='<td style="font-size: 12px;">'.$res->pago.'</td>';
-								$html.='<td style="font-size: 12px;">'.$res->mes.'</td>';
-								$html.='<td style="font-size: 12px;">'.$res->ano.'</td>';
-								$html.='<td style="font-size: 12px;">'.$res->fecpag.'</td>';
-								$html.='<td style="font-size: 12px;">'.number_format($res->capital, 2, '.', ',').'</td>';
-								$html.='<td style="font-size: 12px;">'.number_format($res->interes, 2, '.', ',').'</td>';
-								$html.='<td style="font-size: 12px;">'.number_format($res->intmor, 2, '.', ',').'</td>';
-								$html.='<td style="font-size: 12px;">'.number_format($res->seguros, 2, '.', ',').'</td>';
-								$html.='<td style="font-size: 12px;">'.number_format($res->total, 2, '.', ',').'</td>';
-								$html.='<td style="font-size: 12px;">'.number_format($res->saldo, 2, '.', ',').'</td>';
-								$html.='<td style="font-size: 12px;">'.$res->estado.'</td>';
-								$html.='</tr>';
+										
+									$html.='<p style="text-align: right;">'.$logo.'<hr style="height: 2px; background-color: black;"></p>';
+									$html.='<p style="text-align: right; font-size: 13px;"><b>Impreso:</b> '.$fechaactual.'</p>';
+									$html.='<p style="text-align: center; font-size: 16px;"><b>DETALLE CRÉDITO EMERGENTE</b></p>';
+							
+									$html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>NOMBRES:</b> '.$_nombres_emergente.'  <b style="margin-left: 20%;">IDENTIFICACIÓN:</b> '.$_cedula_emergente.'</p>';
+							
+									$html.= "<table style='width: 100%;' border=1 cellspacing=0 >";
+									$html.= '<tr style="background-color: #D5D8DC;">';
+									$html.='<th style="text-align: left;  font-size: 13px;">No de Solicitud:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Monto Concedido:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Cuota:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Interes:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Tipo:</th>';
+									$html.='</tr>';
+							
+									$html.= "<tr>";
+									$html.='<td style="font-size: 13px;">'.$_numsol_emergente.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_valor_emergente.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_cuota_emergente.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_interes_emergente.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_tipo_emergente.'</td>';
+									$html.='</tr>';
+							
+							
+									$html.= '<tr style="background-color: #D5D8DC;">';
+									$html.='<th style="text-align: left;  font-size: 13px;">PLazo:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Concedido en:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Termina en:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Cuenta No:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Banco:</th>';
+									$html.='</tr>';
+										
+									$html.= "<tr>";
+									$html.='<td style="font-size: 13px;">'.$_plazo_emergente.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_fcred_emergente.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_ffin_emergente.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_cuenta_emergente.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_banco_emergente.'</td>';
+									$html.='</tr>';
+										
+									$html.='</table>';
+							
+							
+							
+							
+									$html.= "<table style='margin-top:20px; width: 100%;' border=1 cellspacing=0 cellpadding=2>";
+									$html.= "<thead>";
+									$html.= "<tr style='background-color: #D5D8DC;'>";
+										
+									$html.='<th style="text-align: left;  font-size: 12px;">Pago</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Mes</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">A&ntilde;o</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Fecha Pago</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Capital</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Interes</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Interes por Mora</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Seguro Desgr.</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Total</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Saldo</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Estado</th>';
+									$html.='</tr>';
+									$html.='</thead>';
+									$html.='<tbody>';
+							
+									$i=0;
+									foreach ($resultSet as $res)
+									{
+										$i++;
+										$html.='<tr>';
+										$html.='<td style="font-size: 12px;">'.$res->pago.'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->mes.'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->ano.'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->fecpag.'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->capital, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->interes, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->intmor, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->seguros, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->total, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->saldo, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->estado.'</td>';
+										$html.='</tr>';
+									}
+							
+									$html.='</tbody>';
+									$html.='</table>';
+							
+								}
+									
 							}
 							
+								
+							$this->report("Creditos",array( "resultSet"=>$html));
+							die();
 							
-							$html.='</tbody>';
-							$html.='</table>';
+							
+							
+						}elseif ($credito=="2_x_1"){
+							
+										
+							$columnas_2_x_1_cabec ="*";
+							$tablas_2_x_1_cabec="c2x1_solicitud";
+							$where_2_x_1_cabec="cedula='$cedula_usuarios'";
+							$id_2_x_1_cabec="cedula";
+							$resultCred2_x_1_Cabec=$c2x1_solicitud->getCondicionesDesc($columnas_2_x_1_cabec, $tablas_2_x_1_cabec, $where_2_x_1_cabec, $id_2_x_1_cabec);
+								
+							
+								
+							if(!empty($resultCred2_x_1_Cabec)){
+									
+								$_numsol_2x1=$resultCred2_x_1_Cabec[0]->numsol;
+								$_cuota_2x1=$resultCred2_x_1_Cabec[0]->cuota;
+								$_interes_2x1=$resultCred2_x_1_Cabec[0]->interes;
+								$_tipo_2x1=$resultCred2_x_1_Cabec[0]->tipo;
+								$_plazo_2x1=$resultCred2_x_1_Cabec[0]->plazo;
+								$_fcred_2x1=$resultCred2_x_1_Cabec[0]->fcred;
+								$_ffin_2x1=$resultCred2_x_1_Cabec[0]->ffin;
+								$_cuenta_2x1=$resultCred2_x_1_Cabec[0]->cuenta;
+								$_banco_2x1=$resultCred2_x_1_Cabec[0]->banco;
+								$_valor_2x1= number_format($resultCred2_x_1_Cabec[0]->valor, 2, '.', ',');
+								$_cedula_2x1=$resultCred2_x_1_Cabec[0]->cedula;
+								$_nombres_2x1=$resultCred2_x_1_Cabec[0]->nombres;
+									
+								if($_numsol_2x1 != ""){
+										
+
+									$columnas_2_x_1_detall ="numsol,
+										pago,
+										mes,
+										ano,
+										fecpag,ROUND(capital,2) as capital,
+										ROUND(interes,2) as interes,
+										ROUND(intmor,2) as intmor,
+										ROUND(seguros,2) as seguros,
+										ROUND(total,2) as total,
+										ROUND(saldo,2) as saldo,
+										estado";
+									$tablas_2_x_1_detall="c2x1_detalle";
+									$where_2_x_1_detall="numsol='$_numsol_2x1'";
+									$id_2_x_1_detall="pago";
+									$resultSet=$c2x1_detalle->getCondiciones($columnas_2_x_1_detall, $tablas_2_x_1_detall, $where_2_x_1_detall, $id_2_x_1_detall);
+										
+							
+									$html.='<p style="text-align: right;">'.$logo.'<hr style="height: 2px; background-color: black;"></p>';
+									$html.='<p style="text-align: right; font-size: 13px;"><b>Impreso:</b> '.$fechaactual.'</p>';
+									$html.='<p style="text-align: center; font-size: 16px;"><b>DETALLE CRÉDITO 2 X 1</b></p>';
+										
+									$html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>NOMBRES:</b> '.$_nombres_2x1.'  <b style="margin-left: 20%;">IDENTIFICACIÓN:</b> '.$_cedula_2x1.'</p>';
+										
+									$html.= "<table style='width: 100%;' border=1 cellspacing=0 >";
+									$html.= '<tr style="background-color: #D5D8DC;">';
+									$html.='<th style="text-align: left;  font-size: 13px;">No de Solicitud:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Monto Concedido:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Cuota:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Interes:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Tipo:</th>';
+									$html.='</tr>';
+										
+									$html.= "<tr>";
+									$html.='<td style="font-size: 13px;">'.$_numsol_2x1.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_valor_2x1.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_cuota_2x1.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_interes_2x1.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_tipo_2x1.'</td>';
+									$html.='</tr>';
+										
+										
+									$html.= '<tr style="background-color: #D5D8DC;">';
+									$html.='<th style="text-align: left;  font-size: 13px;">PLazo:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Concedido en:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Termina en:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Cuenta No:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Banco:</th>';
+									$html.='</tr>';
+							
+									$html.= "<tr>";
+									$html.='<td style="font-size: 13px;">'.$_plazo_2x1.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_fcred_2x1.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_ffin_2x1.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_cuenta_2x1.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_banco_2x1.'</td>';
+									$html.='</tr>';
+							
+									$html.='</table>';
+										
+										
+										
+										
+									$html.= "<table style='margin-top:20px; width: 100%;' border=1 cellspacing=0 cellpadding=2>";
+									$html.= "<thead>";
+									$html.= "<tr style='background-color: #D5D8DC;'>";
+							
+									$html.='<th style="text-align: left;  font-size: 12px;">Pago</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Mes</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">A&ntilde;o</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Fecha Pago</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Capital</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Interes</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Interes por Mora</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Seguro Desgr.</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Total</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Saldo</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Estado</th>';
+									$html.='</tr>';
+									$html.='</thead>';
+									$html.='<tbody>';
+										
+									$i=0;
+									foreach ($resultSet as $res)
+									{
+										$i++;
+										$html.='<tr>';
+										$html.='<td style="font-size: 12px;">'.$res->pago.'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->mes.'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->ano.'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->fecpag.'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->capital, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->interes, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->intmor, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->seguros, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->total, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->saldo, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->estado.'</td>';
+										$html.='</tr>';
+									}
+										
+									$html.='</tbody>';
+									$html.='</table>';
+										
+								}
+									
+							}
+								
+							
+							$this->report("Creditos",array( "resultSet"=>$html));
+							die();
+								
+								
+								
+							
+							
+							
+							
+						}elseif ($credito=="acuerdo_pago"){
+							
+							
+							$columnas_app_cabec ="*";
+							$tablas_app_cabec="app_solicitud";
+							$where_app_cabec="cedula='$cedula_usuarios'";
+							$id_app_cabec="cedula";
+							$resultCredApp_Cabec=$app_solicitud->getCondicionesDesc($columnas_app_cabec, $tablas_app_cabec, $where_app_cabec, $id_app_cabec);
+				
+	
+								
+							
+							if(!empty($resultCredApp_Cabec)){
+									
+								$_numsol_app=$resultCredApp_Cabec[0]->numsol;
+								$_cuota_app=$resultCredApp_Cabec[0]->cuota;
+								$_interes_app=$resultCredApp_Cabec[0]->interes;
+								$_tipo_app=$resultCredApp_Cabec[0]->tipo;
+								$_plazo_app=$resultCredApp_Cabec[0]->plazo;
+								$_fcred_app=$resultCredApp_Cabec[0]->fcred;
+								$_ffin_app=$resultCredApp_Cabec[0]->ffin;
+								$_cuenta_app=$resultCredApp_Cabec[0]->cuenta;
+								$_banco_app=$resultCredApp_Cabec[0]->banco;
+								$_valor_app= number_format($resultCredApp_Cabec[0]->valor, 2, '.', ',');
+								$_cedula_app=$resultCredApp_Cabec[0]->cedula;
+								$_nombres_app=$resultCredApp_Cabec[0]->nombres;
+									
+								if($_numsol_app != ""){
+							
+							
+									$columnas_app_detall ="numsol,
+										pago,
+										mes,
+										ano,
+										fecpag,ROUND(capital,2) as capital,
+										ROUND(interes,2) as interes,
+										ROUND(intmor,2) as intmor,
+										ROUND(seguros,2) as seguros,
+										ROUND(total,2) as total,
+										ROUND(saldo,2) as saldo,
+										estado";
+									
+									$tablas_app_detall="app_detalle";
+									$where_app_detall="numsol='$_numsol_app'";
+									$id_app_detall="pago";
+									$resultSet=$app_detalle->getCondiciones($columnas_app_detall, $tablas_app_detall, $where_app_detall, $id_app_detall);
+							
+										
+									$html.='<p style="text-align: right;">'.$logo.'<hr style="height: 2px; background-color: black;"></p>';
+									$html.='<p style="text-align: right; font-size: 13px;"><b>Impreso:</b> '.$fechaactual.'</p>';
+									$html.='<p style="text-align: center; font-size: 16px;"><b>DETALLE ACUERDO DE PAGO</b></p>';
+							
+									$html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>NOMBRES:</b> '.$_nombres_app.'  <b style="margin-left: 20%;">IDENTIFICACIÓN:</b> '.$_cedula_app.'</p>';
+							
+									$html.= "<table style='width: 100%;' border=1 cellspacing=0 >";
+									$html.= '<tr style="background-color: #D5D8DC;">';
+									$html.='<th style="text-align: left;  font-size: 13px;">No de Solicitud:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Monto Concedido:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Cuota:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Interes:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Tipo:</th>';
+									$html.='</tr>';
+							
+									$html.= "<tr>";
+									$html.='<td style="font-size: 13px;">'.$_numsol_app.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_valor_app.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_cuota_app.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_interes_app.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_tipo_app.'</td>';
+									$html.='</tr>';
+							
+							
+									$html.= '<tr style="background-color: #D5D8DC;">';
+									$html.='<th style="text-align: left;  font-size: 13px;">PLazo:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Concedido en:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Termina en:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Cuenta No:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Banco:</th>';
+									$html.='</tr>';
+										
+									$html.= "<tr>";
+									$html.='<td style="font-size: 13px;">'.$_plazo_app.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_fcred_app.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_ffin_app.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_cuenta_app.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_banco_app.'</td>';
+									$html.='</tr>';
+										
+									$html.='</table>';
+							
+							
+							
+							
+									$html.= "<table style='margin-top:20px; width: 100%;' border=1 cellspacing=0 cellpadding=2>";
+									$html.= "<thead>";
+									$html.= "<tr style='background-color: #D5D8DC;'>";
+										
+									$html.='<th style="text-align: left;  font-size: 12px;">Pago</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Mes</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">A&ntilde;o</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Fecha Pago</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Capital</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Interes</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Interes por Mora</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Seguro Desgr.</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Total</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Saldo</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Estado</th>';
+									$html.='</tr>';
+									$html.='</thead>';
+									$html.='<tbody>';
+							
+									$i=0;
+									foreach ($resultSet as $res)
+									{
+										$i++;
+										$html.='<tr>';
+										$html.='<td style="font-size: 12px;">'.$res->pago.'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->mes.'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->ano.'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->fecpag.'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->capital, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->interes, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->intmor, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->seguros, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->total, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->saldo, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->estado.'</td>';
+										$html.='</tr>';
+									}
+							
+									$html.='</tbody>';
+									$html.='</table>';
+							
+								}
+									
+							}
+							
+								
+							$this->report("Creditos",array( "resultSet"=>$html));
+							die();
+							
+							
+							
+								
+							
+							
+							
+							
+							
+						}elseif ($credito=="hipotecario"){
+							
+							
+
+							$columnas_hipo_cabec ="*";
+							$tablas_hipo_cabec="hipotecario_solicitud";
+							$where_hipo_cabec="cedula='$cedula_usuarios'";
+							$id_hipo_cabec="cedula";
+							$resultCredHipo_Cabec=$hipotecario_solicitud->getCondicionesDesc($columnas_hipo_cabec, $tablas_hipo_cabec, $where_hipo_cabec, $id_hipo_cabec);
+							
+							
+							
+								
+							if(!empty($resultCredHipo_Cabec)){
+									
+								$_numsol_hipotecario=$resultCredHipo_Cabec[0]->numsol;
+								$_cuota_hipotecario=$resultCredHipo_Cabec[0]->cuota;
+								$_interes_hipotecario=$resultCredHipo_Cabec[0]->interes;
+								$_tipo_hipotecario=$resultCredHipo_Cabec[0]->tipo;
+								$_plazo_hipotecario=$resultCredHipo_Cabec[0]->plazo;
+								$_fcred_hipotecario=$resultCredHipo_Cabec[0]->fcred;
+								$_ffin_hipotecario=$resultCredHipo_Cabec[0]->ffin;
+								$_cuenta_hipotecario=$resultCredHipo_Cabec[0]->cuenta;
+								$_banco_hipotecario=$resultCredHipo_Cabec[0]->banco;
+								$_valor_hipotecario= number_format($resultCredHipo_Cabec[0]->valor, 2, '.', ',');
+								$_cedula_hipotecario=$resultCredHipo_Cabec[0]->cedula;
+								$_nombres_hipotecario=$resultCredHipo_Cabec[0]->nombres;
+									
+								if($_numsol_hipotecario != ""){
+										
+										
+									$columnas_hipo_detall ="numsol,
+										pago,
+										mes,
+										ano,
+										fecpag,ROUND(capital,2) as capital,
+										ROUND(interes,2) as interes,
+										ROUND(intmor,2) as intmor,
+										ROUND(seguros,2) as seguros,
+										ROUND(total,2) as total,
+										ROUND(saldo,2) as saldo,
+										estado";
+									
+									$tablas_hipo_detall="hipotecario_detalle";
+									$where_hipo_detall="numsol='$_numsol_hipotecario'";
+									$id_hipo_detall="pago";
+									$resultSet=$hipotecario_detalle->getCondiciones($columnas_hipo_detall, $tablas_hipo_detall, $where_hipo_detall, $id_hipo_detall);
+										
+							
+									$html.='<p style="text-align: right;">'.$logo.'<hr style="height: 2px; background-color: black;"></p>';
+									$html.='<p style="text-align: right; font-size: 13px;"><b>Impreso:</b> '.$fechaactual.'</p>';
+									$html.='<p style="text-align: center; font-size: 16px;"><b>DETALLE CRÉDITO HIPOTECARIO</b></p>';
+										
+									$html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>NOMBRES:</b> '.$_nombres_hipotecario.'  <b style="margin-left: 20%;">IDENTIFICACIÓN:</b> '.$_cedula_hipotecario.'</p>';
+										
+									$html.= "<table style='width: 100%;' border=1 cellspacing=0 >";
+									$html.= '<tr style="background-color: #D5D8DC;">';
+									$html.='<th style="text-align: left;  font-size: 13px;">No de Solicitud:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Monto Concedido:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Cuota:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Interes:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Tipo:</th>';
+									$html.='</tr>';
+										
+									$html.= "<tr>";
+									$html.='<td style="font-size: 13px;">'.$_numsol_hipotecario.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_valor_hipotecario.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_cuota_hipotecario.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_interes_hipotecario.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_tipo_hipotecario.'</td>';
+									$html.='</tr>';
+										
+										
+									$html.= '<tr style="background-color: #D5D8DC;">';
+									$html.='<th style="text-align: left;  font-size: 13px;">PLazo:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Concedido en:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Termina en:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Cuenta No:</th>';
+									$html.='<th style="text-align: left;  font-size: 13px;">Banco:</th>';
+									$html.='</tr>';
+							
+									$html.= "<tr>";
+									$html.='<td style="font-size: 13px;">'.$_plazo_hipotecario.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_fcred_hipotecario.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_ffin_hipotecario.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_cuenta_hipotecario.'</td>';
+									$html.='<td style="font-size: 13px;">'.$_banco_hipotecario.'</td>';
+									$html.='</tr>';
+							
+									$html.='</table>';
+										
+										
+										
+										
+									$html.= "<table style='margin-top:20px; width: 100%;' border=1 cellspacing=0 cellpadding=2>";
+									$html.= "<thead>";
+									$html.= "<tr style='background-color: #D5D8DC;'>";
+							
+									$html.='<th style="text-align: left;  font-size: 12px;">Pago</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Mes</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">A&ntilde;o</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Fecha Pago</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Capital</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Interes</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Interes por Mora</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Seguro Desgr.</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Total</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Saldo</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Estado</th>';
+									$html.='</tr>';
+									$html.='</thead>';
+									$html.='<tbody>';
+										
+									$i=0;
+									foreach ($resultSet as $res)
+									{
+										$i++;
+										$html.='<tr>';
+										$html.='<td style="font-size: 12px;">'.$res->pago.'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->mes.'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->ano.'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->fecpag.'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->capital, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->interes, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->intmor, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->seguros, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->total, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.number_format($res->saldo, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 12px;">'.$res->estado.'</td>';
+										$html.='</tr>';
+									}
+										
+									$html.='</tbody>';
+									$html.='</table>';
+										
+								}
+									
+							}
+								
+							
+							$this->report("Creditos",array( "resultSet"=>$html));
+							die();
 							
 						}
-					
+						
+						
+						
+					}else{
+						
+						$this->redirect("Usuarios","sesion_caducada");
+						
 					}
 					
-					
 						
-					
-						
-					$this->report("Creditos",array( "resultSet"=>$html));
-						
+			}else{
+				
+				$this->redirect("Usuarios","sesion_caducada");
+				
 			}
 	
 	}
