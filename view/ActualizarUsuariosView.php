@@ -375,7 +375,7 @@
                     		    <div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
                                                       <label for="cedula_usuarios" class="control-label">Cedula:</label>
-                                                      <input type="text" class="form-control" id="cedula_usuarios" name="cedula_usuarios" value="<?php echo $resEdit->cedula_usuarios; ?>"  placeholder="ci-ruc..">
+                                                      <input type="text" class="form-control" id="cedula_usuarios" name="cedula_usuarios" value="<?php echo $resEdit->cedula_usuarios; ?>"  placeholder="ci-ruc.." readonly>
                                                       <div id="mensaje_cedula_usuarios" class="errores"></div>
                                 </div>
                                 </div>

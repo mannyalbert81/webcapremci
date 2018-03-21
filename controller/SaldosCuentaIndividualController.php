@@ -91,7 +91,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 				if (!empty($resultDatosMayor_Cta_individual)) {  foreach($resultDatosMayor_Cta_individual as $res) {
 					                    
 				$fecha=$res->fecha;
-				$total= $res->total; 
+				$total= number_format($res->total, 2, '.', ','); 
 				}}else{
 					
 				$fecha="";
@@ -99,7 +99,10 @@ class SaldosCuentaIndividualController extends ControladorBase{
 				
 				}
 				
-				$html.='<center><h5>Total Cuenta Individual Actualizada al '.$fecha.' : $'.$total.'</h5></center><br><br>';
+				$html.='<center><h5>Total Cuenta Individual Actualizada al '.$fecha.' : $'.$total.'</h5></center>';
+				$html.='<div class="col-lg-12 col-md-12 col-xs-12" style="margin-top:20px; text-align: center;">';
+				$html.='<a href="index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=cta_individual" class="btn btn-success" target="_blank"><i class="glyphicon glyphicon-print"></i> Imprimir</a>';
+				$html.='</div>';
 				$html.='<div class="pull-left" style="margin-left:11px;">';
 				$html.='<span class="form-control"><strong>Registros: </strong>'.$cantidadResult.'</span>';
 				$html.='<input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>' ;
@@ -260,7 +263,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 					if (!empty($resultDatosMayor_Cta_desembolsar)) {  foreach($resultDatosMayor_Cta_desembolsar as $res) {
 						 
 						$fecha=$res->fecha;
-						$total= $res->total;
+						$total= number_format($res->total, 2, '.', ',');
 					}}else{
 							
 						$fecha="";
@@ -268,7 +271,11 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 					}
 	
-					$html.='<center><h5>Total Cuenta Por Desembolsar Actualizada al '.$fecha.' : $'.$total.'</h5></center><br><br>';
+					$html.='<center><h5>Total Cuenta Por Desembolsar Actualizada al '.$fecha.' : $'.$total.'</h5></center>';
+					$html.='<div class="col-lg-12 col-md-12 col-xs-12" style="margin-top:20px; text-align: center;">';
+					$html.='<a href="index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=cta_desembolsar" class="btn btn-success" target="_blank"><i class="glyphicon glyphicon-print"></i> Imprimir</a>';
+					$html.='</div>';
+					
 					$html.='<div class="pull-left" style="margin-left:11px;">';
 					$html.='<span class="form-control"><strong>Registros: </strong>'.$cantidadResult.'</span>';
 					$html.='<input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>' ;
@@ -2844,7 +2851,9 @@ class SaldosCuentaIndividualController extends ControladorBase{
 		$app_detalle = new app_detalleModel();
 		$hipotecario_solicitud = new Hipotecario_SolicitudModel();
 		$hipotecario_detalle = new Hipotecario_DetalleModel();
-		
+		$afiliado_transacc_cta_ind = new Afiliado_transacc_cta_indModel();
+		$afiliado_transacc_cta_desemb = new Afiliado_transacc_cta_desembModel();
+		$usuarios= new UsuariosModel();
 		
 		
 		$html="";
@@ -2922,7 +2931,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 									$html.='<p style="text-align: right; font-size: 13px;"><b>Impreso:</b> '.$fechaactual.'</p>';
 									$html.='<p style="text-align: center; font-size: 16px;"><b>DETALLE CRÉDITO ORDINARIO</b></p>';
 										
-									$html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>NOMBRES:</b> '.$_nombres_ordinario.'  <b style="margin-left: 20%;">IDENTIFICACIÓN:</b> '.$_cedula_ordinario.'</p>';
+									$html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>NOMBRES:</b> '.$_nombres_ordinario.'  <b style="margin-left: 20%; font-size: 13px;">IDENTIFICACIÓN:</b> '.$_cedula_ordinario.'</p>';
 										
 									$html.= "<table style='width: 100%;' border=1 cellspacing=0 >";
 									$html.= '<tr style="background-color: #D5D8DC;">';
@@ -3068,7 +3077,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 									$html.='<p style="text-align: right; font-size: 13px;"><b>Impreso:</b> '.$fechaactual.'</p>';
 									$html.='<p style="text-align: center; font-size: 16px;"><b>DETALLE CRÉDITO EMERGENTE</b></p>';
 							
-									$html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>NOMBRES:</b> '.$_nombres_emergente.'  <b style="margin-left: 20%;">IDENTIFICACIÓN:</b> '.$_cedula_emergente.'</p>';
+									$html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>NOMBRES:</b> '.$_nombres_emergente.'  <b style="margin-left: 20%; font-size: 13px;">IDENTIFICACIÓN:</b> '.$_cedula_emergente.'</p>';
 							
 									$html.= "<table style='width: 100%;' border=1 cellspacing=0 >";
 									$html.= '<tr style="background-color: #D5D8DC;">';
@@ -3210,7 +3219,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 									$html.='<p style="text-align: right; font-size: 13px;"><b>Impreso:</b> '.$fechaactual.'</p>';
 									$html.='<p style="text-align: center; font-size: 16px;"><b>DETALLE CRÉDITO 2 X 1</b></p>';
 										
-									$html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>NOMBRES:</b> '.$_nombres_2x1.'  <b style="margin-left: 20%;">IDENTIFICACIÓN:</b> '.$_cedula_2x1.'</p>';
+									$html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>NOMBRES:</b> '.$_nombres_2x1.'  <b style="margin-left: 20%; font-size: 13px;">IDENTIFICACIÓN:</b> '.$_cedula_2x1.'</p>';
 										
 									$html.= "<table style='width: 100%;' border=1 cellspacing=0 >";
 									$html.= '<tr style="background-color: #D5D8DC;">';
@@ -3358,7 +3367,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 									$html.='<p style="text-align: right; font-size: 13px;"><b>Impreso:</b> '.$fechaactual.'</p>';
 									$html.='<p style="text-align: center; font-size: 16px;"><b>DETALLE ACUERDO DE PAGO</b></p>';
 							
-									$html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>NOMBRES:</b> '.$_nombres_app.'  <b style="margin-left: 20%;">IDENTIFICACIÓN:</b> '.$_cedula_app.'</p>';
+									$html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>NOMBRES:</b> '.$_nombres_app.'  <b style="margin-left: 20%; font-size: 13px;">IDENTIFICACIÓN:</b> '.$_cedula_app.'</p>';
 							
 									$html.= "<table style='width: 100%;' border=1 cellspacing=0 >";
 									$html.= '<tr style="background-color: #D5D8DC;">';
@@ -3509,7 +3518,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 									$html.='<p style="text-align: right; font-size: 13px;"><b>Impreso:</b> '.$fechaactual.'</p>';
 									$html.='<p style="text-align: center; font-size: 16px;"><b>DETALLE CRÉDITO HIPOTECARIO</b></p>';
 										
-									$html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>NOMBRES:</b> '.$_nombres_hipotecario.'  <b style="margin-left: 20%;">IDENTIFICACIÓN:</b> '.$_cedula_hipotecario.'</p>';
+									$html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>NOMBRES:</b> '.$_nombres_hipotecario.'  <b style="margin-left: 20%; font-size: 13px;">IDENTIFICACIÓN:</b> '.$_cedula_hipotecario.'</p>';
 										
 									$html.= "<table style='width: 100%;' border=1 cellspacing=0 >";
 									$html.= '<tr style="background-color: #D5D8DC;">';
@@ -3592,6 +3601,221 @@ class SaldosCuentaIndividualController extends ControladorBase{
 									$html.='</table>';
 										
 								}
+									
+							}
+								
+							
+							$this->report("Creditos",array( "resultSet"=>$html));
+							die();
+							
+							
+							
+							
+							
+						}elseif ($credito=="cta_individual"){
+							
+							
+
+							$columnas_ind="afiliado_transacc_cta_ind.id_afiliado_transacc_cta_ind,
+							  afiliado_transacc_cta_ind.ordtran,
+							  afiliado_transacc_cta_ind.histo_transacsys,
+							  afiliado_transacc_cta_ind.cedula,
+							  afiliado_transacc_cta_ind.fecha_conta,
+							  afiliado_transacc_cta_ind.descripcion,
+							  afiliado_transacc_cta_ind.mes_anio,
+							  afiliado_transacc_cta_ind.valorper,
+							  afiliado_transacc_cta_ind.valorpat,
+							  afiliado_transacc_cta_ind.saldoper,
+							  afiliado_transacc_cta_ind.saldopat,
+							  afiliado_transacc_cta_ind.id_afiliado";
+							$tablas_ind="public.afiliado_transacc_cta_ind";
+							$where_ind="1=1 AND afiliado_transacc_cta_ind.cedula='$cedula_usuarios'";
+							$id_ind="afiliado_transacc_cta_ind.ordtran";
+							$resultSet=$afiliado_transacc_cta_ind->getCondicionesDesc($columnas_ind, $tablas_ind, $where_ind, $id_ind);
+							
+							
+							
+								
+							if(!empty($resultSet)){
+								
+								
+								$result_par=$usuarios->getBy("cedula_usuarios='$cedula_usuarios'");
+								
+								if(!empty($result_par)){
+									$_cedula_usuarios=$result_par[0]->cedula_usuarios;
+									$_nombre_usuarios=$result_par[0]->nombre_usuarios;
+									
+								}else{
+									
+									$_cedula_usuarios="";
+									$_nombre_usuarios="";
+								}
+								
+								
+								$columnas_ind_mayor = "sum(valorper+valorpat) as total, max(fecha_conta) as fecha";
+								$tablas_ind_mayor="afiliado_transacc_cta_ind";
+								$where_ind_mayor="cedula='$cedula_usuarios'";
+								$resultDatosMayor_Cta_individual=$afiliado_transacc_cta_ind->getCondicionesValorMayor($columnas_ind_mayor, $tablas_ind_mayor, $where_ind_mayor);
+									
+								if (!empty($resultDatosMayor_Cta_individual)) {  foreach($resultDatosMayor_Cta_individual as $res) {
+									 
+									$fecha=$res->fecha;
+									$total= number_format($res->total, 2, '.', ',');
+								}}else{
+										
+									$fecha="";
+									$total= 0.00;
+								
+								}
+								
+								
+									$html.='<p style="text-align: right;">'.$logo.'<hr style="height: 2px; background-color: black;"></p>';
+									$html.='<p style="text-align: right; font-size: 13px;"><b>Impreso:</b> '.$fechaactual.'</p>';
+									$html.='<p style="text-align: center; font-size: 16px;"><b>DETALLE CUENTA INDIVIDUAL</b></p>';
+									$html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>NOMBRES:</b> '.$_nombre_usuarios.'  <b style="margin-left: 20%; font-size: 13px;">IDENTIFICACIÓN:</b> '.$_cedula_usuarios.'</p>';
+									$html.='<center style="margin-top:5px;"><h4><b>Total Cuenta Individual Actualizada al</b> '.$fecha.' : $'.$total.'</h4></center>';
+									$html.= "<table style='margin-top:5px; width: 100%;' border=1 cellspacing=0 cellpadding=2>";
+									$html.= "<thead>";
+									$html.= "<tr style='background-color: #D5D8DC;'>";
+							
+									$html.='<th style="text-align: left;  font-size: 12px;">Fecha</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Descripción</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Mes/A&ntilde;o</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Valor Personal</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Valor Patronal</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Saldo Personal</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Saldo Patronal</th>';
+									
+									$html.='</tr>';
+									$html.='</thead>';
+									$html.='<tbody>';
+										
+									$i=0;
+									foreach ($resultSet as $res)
+									{
+										$i++;
+										$html.='<tr>';
+										$html.='<td style="font-size: 11px;">'.$res->fecha_conta.'</td>';
+										$html.='<td style="font-size: 11px;">'.$res->descripcion.'</td>';
+										$html.='<td style="font-size: 11px;">'.$res->mes_anio.'</td>';
+										$html.='<td style="font-size: 11px;">'.number_format($res->valorper, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 11px;">'.number_format($res->valorpat, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 11px;">'.number_format($res->saldoper, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 11px;">'.number_format($res->saldopat, 2, '.', ',').'</td>';
+										$html.='</tr>';
+									}
+										
+									$html.='</tbody>';
+									$html.='</table>';
+										
+								
+									
+							}
+								
+							
+							$this->report("Creditos",array( "resultSet"=>$html));
+							die();
+							
+							
+							
+							
+						}elseif ($credito=="cta_desembolsar"){
+							
+							
+
+							$columnas_desemb="afiliado_transacc_cta_desemb.id_afiliado_transacc_cta_desemb,
+						  	afiliado_transacc_cta_desemb.ordtran,
+						  	afiliado_transacc_cta_desemb.histo_transacsys,
+						  	afiliado_transacc_cta_desemb.cedula,
+						  	afiliado_transacc_cta_desemb.fecha_conta,
+						  	afiliado_transacc_cta_desemb.descripcion,
+						  	afiliado_transacc_cta_desemb.mes_anio,
+						  	afiliado_transacc_cta_desemb.valorper,
+						 	afiliado_transacc_cta_desemb.valorpat,
+						  	afiliado_transacc_cta_desemb.saldoper,
+						 	afiliado_transacc_cta_desemb.saldopat,
+						    afiliado_transacc_cta_desemb.id_afiliado";
+							$tablas_desemb="public.afiliado_transacc_cta_desemb";
+							$where_desemb="1=1 AND afiliado_transacc_cta_desemb.cedula='$cedula_usuarios'";
+							$id_desemb="afiliado_transacc_cta_desemb.ordtran";
+							$resultSet=$afiliado_transacc_cta_ind->getCondicionesDesc($columnas_desemb, $tablas_desemb, $where_desemb, $id_desemb);
+							
+							
+							
+								
+							if(!empty($resultSet)){
+								
+								
+								$result_par=$usuarios->getBy("cedula_usuarios='$cedula_usuarios'");
+								
+								if(!empty($result_par)){
+									$_cedula_usuarios=$result_par[0]->cedula_usuarios;
+									$_nombre_usuarios=$result_par[0]->nombre_usuarios;
+									
+								}else{
+									
+									$_cedula_usuarios="";
+									$_nombre_usuarios="";
+								}
+								
+								
+								$columnas_desemb_mayor = "sum(valorper+valorpat) as total, max(fecha_conta) as fecha";
+								$tablas_desemb_mayor="afiliado_transacc_cta_desemb";
+								$where_desemb_mayor="cedula='$cedula_usuarios'";
+								$resultDatosMayor_Cta_desembolsar=$afiliado_transacc_cta_ind->getCondicionesValorMayor($columnas_desemb_mayor, $tablas_desemb_mayor, $where_desemb_mayor);
+									
+								if (!empty($resultDatosMayor_Cta_desembolsar)) {  foreach($resultDatosMayor_Cta_desembolsar as $res) {
+									 
+									$fecha=$res->fecha;
+									$total= number_format($res->total, 2, '.', ',');
+								}}else{
+										
+									$fecha="";
+									$total= 0.00;
+								
+								}
+								
+								
+									$html.='<p style="text-align: right;">'.$logo.'<hr style="height: 2px; background-color: black;"></p>';
+									$html.='<p style="text-align: right; font-size: 13px;"><b>Impreso:</b> '.$fechaactual.'</p>';
+									$html.='<p style="text-align: center; font-size: 16px;"><b>DETALLE CUENTA DESEMBOLSAR</b></p>';
+									$html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>NOMBRES:</b> '.$_nombre_usuarios.'  <b style="margin-left: 20%; font-size: 13px;">IDENTIFICACIÓN:</b> '.$_cedula_usuarios.'</p>';
+									$html.='<center style="margin-top:5px;"><h4><b>Total Cuenta Individual Actualizada al</b> '.$fecha.' : $'.$total.'</h4></center>';
+									$html.= "<table style='margin-top:5px; width: 100%;' border=1 cellspacing=0 cellpadding=2>";
+									$html.= "<thead>";
+									$html.= "<tr style='background-color: #D5D8DC;'>";
+							
+									$html.='<th style="text-align: left;  font-size: 12px;">Fecha</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Descripción</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Mes/A&ntilde;o</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Valor Personal</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Valor Patronal</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Saldo Personal</th>';
+									$html.='<th style="text-align: left;  font-size: 12px;">Saldo Patronal</th>';
+									
+									$html.='</tr>';
+									$html.='</thead>';
+									$html.='<tbody>';
+										
+									$i=0;
+									foreach ($resultSet as $res)
+									{
+										$i++;
+										$html.='<tr>';
+										$html.='<td style="font-size: 11px;">'.$res->fecha_conta.'</td>';
+										$html.='<td style="font-size: 11px;">'.$res->descripcion.'</td>';
+										$html.='<td style="font-size: 11px;">'.$res->mes_anio.'</td>';
+										$html.='<td style="font-size: 11px;">'.number_format($res->valorper, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 11px;">'.number_format($res->valorpat, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 11px;">'.number_format($res->saldoper, 2, '.', ',').'</td>';
+										$html.='<td style="font-size: 11px;">'.number_format($res->saldopat, 2, '.', ',').'</td>';
+										$html.='</tr>';
+									}
+										
+									$html.='</tbody>';
+									$html.='</table>';
+										
+								
 									
 							}
 								

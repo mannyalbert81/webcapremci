@@ -339,7 +339,7 @@ public function index(){
 		$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
 	
 	
-		$directorio = $_SERVER['DOCUMENT_ROOT'].'/template_2018/fotografias_usuarios/';
+		$directorio = $_SERVER['DOCUMENT_ROOT'].'/webcapremci/fotografias_usuarios/';
 		 
 		$nombre = $_FILES['fotografia_usuarios']['name'];
 		$tipo = $_FILES['fotografia_usuarios']['type'];
@@ -514,7 +514,7 @@ public function index(){
 		    	if ($_FILES['fotografia_usuarios']['tmp_name']!="")
 		    	{
 		    			
-		    		$directorio = $_SERVER['DOCUMENT_ROOT'].'/template_2018/fotografias_usuarios/';
+		    		$directorio = $_SERVER['DOCUMENT_ROOT'].'/webcapremci/fotografias_usuarios/';
 		    			
 		    		$nombre = $_FILES['fotografia_usuarios']['name'];
 		    		$tipo = $_FILES['fotografia_usuarios']['type'];
@@ -551,7 +551,7 @@ public function index(){
 		    if ($_FILES['fotografia_usuarios']['tmp_name']!="")
 		    {
 		    
-		    	$directorio = $_SERVER['DOCUMENT_ROOT'].'/template_2018/fotografias_usuarios/';
+		    	$directorio = $_SERVER['DOCUMENT_ROOT'].'/webcapremci/fotografias_usuarios/';
 		    
 		    	$nombre = $_FILES['fotografia_usuarios']['name'];
 		    	$tipo = $_FILES['fotografia_usuarios']['type'];
@@ -828,7 +828,7 @@ public function index(){
 			{
 	
 	
-				if($id_estado==1){
+				if($id_estado==1 || $id_estado==2 ){
 	
 						
 						
@@ -972,7 +972,7 @@ public function index(){
 			{
 	
 				
-				if($id_estado==1){
+				if($id_estado==1 || $id_estado==2 ){
 				
 				$usuarios->UpdateBy("clave_usuarios = '$_encryp_pass', pass_sistemas_usuarios='$_clave_usuario'", "usuarios", "cedula_usuarios = '$_cedula_usuarios'  ");
 					
@@ -1161,7 +1161,7 @@ public function index(){
 	    			
     			}	
     			
-    			if($id_estado==1){
+    			if($id_estado==1 || $id_estado==2 ){
     				
     				
     				//obtengo ip
@@ -1393,7 +1393,7 @@ public function index(){
 					if ($_FILES['fotografia_usuarios']['tmp_name']!="")
 					{
 					
-						$directorio = $_SERVER['DOCUMENT_ROOT'].'/template_2018/fotografias_usuarios/';
+						$directorio = $_SERVER['DOCUMENT_ROOT'].'/webcapremci/fotografias_usuarios/';
 					
 						$nombre = $_FILES['fotografia_usuarios']['name'];
 						$tipo = $_FILES['fotografia_usuarios']['type'];
