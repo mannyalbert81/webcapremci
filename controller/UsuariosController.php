@@ -706,10 +706,10 @@ public function index(){
 				}
 				
 				
-				$cadena = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+				$cadena = "1234567890";
 				$longitudCadena=strlen($cadena);
 				$pass = "";
-				$longitudPass=10;
+				$longitudPass=4;
 				for($i=1 ; $i<=$longitudPass ; $i++){
 					$pos=rand(0,$longitudCadena-1);
 					$pass .= substr($cadena,$pos,1);
@@ -947,10 +947,10 @@ public function index(){
 				}
 	
 	
-				$cadena = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+				$cadena = "1234567890";
 				$longitudCadena=strlen($cadena);
 				$pass = "";
-				$longitudPass=10;
+				$longitudPass=4;
 				for($i=1 ; $i<=$longitudPass ; $i++){
 					$pos=rand(0,$longitudCadena-1);
 					$pass .= substr($cadena,$pos,1);
@@ -1322,7 +1322,7 @@ public function index(){
 	}
 	
 	
-	public function Actualiza ()
+	public function Actualiza()
 	{
 		session_start();
 		
