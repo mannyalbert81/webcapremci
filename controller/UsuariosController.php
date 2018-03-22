@@ -1182,9 +1182,15 @@ public function index(){
     		 
     	}else{
     	
-    		$this->view("Login",array(
-    				"allusers"=>""
-    		));
+    	$error = TRUE;
+	   	$mensaje = "Te sesión a caducado, vuelve a iniciar sesión.";
+	   		
+	   	$this->view("Login",array(
+	   			"resultSet"=>"$mensaje", "error"=>$error
+	   	));
+	   		
+	   		
+	   	die();
     	}
     }
     
@@ -1635,7 +1641,7 @@ public function index(){
 	
 	}
 	
-	
+
 	
 	
 	public function cargar_sesiones(){
@@ -1668,6 +1674,7 @@ public function index(){
 			$html .= "<i class='ion ion-stats-bars'></i>";
 			$html .= "</div>";
 			$html .= "<a href='#' class='small-box-footer'>Leer Mas <i class='fa fa-arrow-circle-right'></i></a>";
+			$html .= "<a href='index.php?controller=Sesiones&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
 			$html .= "</div>";
 			$html .= "</div>";
 	
