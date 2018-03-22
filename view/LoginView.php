@@ -40,7 +40,7 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <img src="view/images/logo.png" width="340" height="150">
+            <img src="view/images/logo.png" width="320" height="190">
             <form id="form-login" action="<?php echo $helper->url("Usuarios","Loguear"); ?>" method="post" ">
              
              

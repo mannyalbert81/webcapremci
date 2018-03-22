@@ -394,7 +394,7 @@ public function index(){
 			
 		$tablas   = "public.usuarios";
 			
-		$where    = "1=1 AND pass_sistemas_usuarios=''";
+		$where    = "1=1 AND CHARACTER_LENGTH(pass_sistemas_usuarios) >4";
 			
 		$id       = "usuarios.id_usuarios";
 			
@@ -406,10 +406,10 @@ public function index(){
 					
 				$cedula_usuarios=$res->cedula_usuarios;
 					
-				$cadena = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+				$cadena = "1234567890";
 				$longitudCadena=strlen($cadena);
 				$pass = "";
-				$longitudPass=10;
+				$longitudPass=4;
 				for($i=1 ; $i<=$longitudPass ; $i++){
 					$pos=rand(0,$longitudCadena-1);
 					$pass .= substr($cadena,$pos,1);
