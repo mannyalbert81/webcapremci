@@ -93,8 +93,31 @@
         </script>
         
         
+         <script >
+		    // cada vez que se cambia el valor del combo
+		    $(document).ready(function(){
+		    $("#Cancelar").click(function() 
+			{
+			 $("#cedula_usuarios").val("");
+		     $("#nombre_usuarios").val("");
+		     $("#clave_usuarios").val("");
+		     $("#clave_usuarios_r").val("");
+		     $("#telefono_usuarios").val("");
+		     $("#celular_usuarios").val("");
+		     $("#correo_usuarios").val("");
+		     $("#id_rol").val("");
+		     $("#id_estado").val("");
+		     $("#fotografia_usuarios").val("");
+		     $("#id_usuarios").val("");
+		     
+		    }); 
+		    }); 
+			</script>
         
         
+        
+        
+         
         <script >
 		    // cada vez que se cambia el valor del combo
 		    $(document).ready(function(){
@@ -161,7 +184,15 @@
 		    		$("#mensaje_clave_usuarios").text("Introduzca una Clave");
 		    		$("#mensaje_clave_usuarios").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
-			    }
+			    }else if (clave_usuarios.length<4){
+			    	$("#mensaje_clave_usuarios").text("Introduzca minimo 4 números");
+		    		$("#mensaje_clave_usuarios").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+				}else if (clave_usuarios.length>4){
+			    	$("#mensaje_clave_usuarios").text("Introduzca máximo 4 números");
+		    		$("#mensaje_clave_usuarios").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+				}
 		    	else 
 		    	{
 		    		$("#mensaje_clave_usuarios").fadeOut("slow"); //Muestra mensaje de error
@@ -308,6 +339,27 @@
         
         
         
+    <script >   
+    function numeros(e){
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = "0123456789";
+    especiales = [8,37,39,46];
+ 
+    tecla_especial = false
+    for(var i in especiales){
+    if(key == especiales[i]){
+     tecla_especial = true;
+     break;
+        } 
+    }
+ 
+    if(letras.indexOf(tecla)==-1 && !tecla_especial)
+        return false;
+     }
+    </script> 
+        
+        
 			        
     </head>
     
@@ -403,7 +455,7 @@
                     		    <div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
                                                       <label for="cedula_usuarios" class="control-label">Cedula:</label>
-                                                      <input type="text" class="form-control" id="cedula_usuarios" name="cedula_usuarios" value="<?php echo $resEdit->cedula_usuarios; ?>"  placeholder="ci-ruc.." readonly>
+                                                      <input type="number" class="form-control" id="cedula_usuarios" name="cedula_usuarios" value="<?php echo $resEdit->cedula_usuarios; ?>"  placeholder="ci-ruc.." readonly>
                                                       <input type="hidden" class="form-control" id="id_usuarios" name="id_usuarios" value="<?php echo $resEdit->id_usuarios; ?>" >
                                                       <div id="mensaje_cedula_usuarios" class="errores"></div>
                                 </div>
@@ -432,7 +484,7 @@
                     				<div class="col-lg-2 col-xs-12 col-md-2">
                         		    <div class="form-group">
                                                           <label for="clave_usuarios" class="control-label">Password:</label>
-                                                          <input type="password" class="form-control" id="clave_usuarios" name="clave_usuarios" value="<?php echo $resEdit->pass_sistemas_usuarios; ?>" placeholder="password..">
+                                                          <input type="password" class="form-control" id="clave_usuarios" name="clave_usuarios" value="<?php echo $resEdit->pass_sistemas_usuarios; ?>" placeholder="(solo números..)" maxlength="4" onkeypress="return numeros(event)">
                                                           <div id="mensaje_clave_usuarios" class="errores"></div>
                                     </div>
                         		    </div>
@@ -440,7 +492,7 @@
                         		    <div class="col-lg-2 col-xs-12 col-md-2">
                         		    <div class="form-group">
                                                           <label for="clave_usuarios_r" class="control-label">Repita Password:</label>
-                                                          <input type="password" class="form-control" id="clave_usuarios_r" name="clave_usuarios_r" value="<?php echo $resEdit->pass_sistemas_usuarios; ?>" placeholder="repita password..">
+                                                          <input type="password" class="form-control" id="clave_usuarios_r" name="clave_usuarios_r" value="<?php echo $resEdit->pass_sistemas_usuarios; ?>" placeholder="(solo números..)" maxlength="4" onkeypress="return numeros(event)">
                                                           <div id="mensaje_clave_usuarios_r" class="errores"></div>
                                     </div>
                                     </div>
@@ -530,7 +582,7 @@
                     		    <div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
                                                       <label for="cedula_usuarios" class="control-label">Cedula:</label>
-                                                      <input type="text" class="form-control" id="cedula_usuarios" name="cedula_usuarios" value=""  placeholder="cedula..">
+                                                      <input type="number" class="form-control" id="cedula_usuarios" name="cedula_usuarios" value=""  placeholder="cedula..">
                                                       <div id="mensaje_cedula_usuarios" class="errores"></div>
                                 </div>
                                 </div>
@@ -558,7 +610,7 @@
                     				<div class="col-lg-2 col-xs-12 col-md-2">
                         		    <div class="form-group">
                                                           <label for="clave_usuarios" class="control-label">Password:</label>
-                                                          <input type="password" class="form-control" id="clave_usuarios" name="clave_usuarios" value="" placeholder="password..">
+                                                          <input type="password" class="form-control" id="clave_usuarios" name="clave_usuarios" value="" placeholder="(solo números..)" maxlength="4" onkeypress="return numeros(event)">
                                                           <div id="mensaje_clave_usuarios" class="errores"></div>
                                     </div>
                         		    </div>
@@ -566,7 +618,7 @@
                         		    <div class="col-lg-2 col-xs-12 col-md-2">
                         		    <div class="form-group">
                                                           <label for="clave_usuarios_r" class="control-label">Repita Password:</label>
-                                                          <input type="password" class="form-control" id="clave_usuarios_r" name="clave_usuarios_r" value="" placeholder="repita password..">
+                                                          <input type="password" class="form-control" id="clave_usuarios_r" name="clave_usuarios_r" value="" placeholder="(solo números..)" maxlength="4" onkeypress="return numeros(event)">
                                                           <div id="mensaje_clave_usuarios_r" class="errores"></div>
                                     </div>
                                     </div>
@@ -649,7 +701,9 @@
                     		    <div class="row">
                     		    <div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center; margin-top:20px">
                     		    <div class="form-group">
-                                                      <button type="submit" id="Guardar" name="Guardar" class="btn btn-success">Guardar</button>
+                                                      <button type="submit" id="Guardar" name="Guardar" class="btn btn-success"><i class="glyphicon glyphicon-floppy-saved"> Guardar</i></button>
+                                					  <button type="button" id="Cancelar" name="Cancelar" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-remove"> Cancelar</i></button>
+                                
                                 </div>
                     		    </div>
                     		    </div>

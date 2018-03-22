@@ -6,9 +6,6 @@ class UsuariosController extends ControladorBase{
     }
     
     
-    
-    
-    
     public function index10(){
     	 
     	session_start();
@@ -617,31 +614,101 @@ public function index(){
 		  
 		  
 		  
-		  $participes = new ParticipeModel();
+		 
+		  $afiliado = new AfiliadoModel();
+		  $resultAfiliado="";
+		  $resultAfiliado=$afiliado->getBy("cedula='$_cedula_usuarios'");
+		  
+		  $_id_afiliado=0;
+		  if(!empty($resultAfiliado)){
 		  	
-		  if($_correo_usuarios!=""){
+		  	$_id_afiliado=$resultAfiliado[0]->id_afiliado;
 		  	
-		  	try {
-		  		$colval1 = "nombre= '$_nombre_usuarios',
-		  		correo='$_correo_usuarios',
-		  		telefono = '$_telefono_usuarios',
-		  		celular = '$_celular_usuarios',
-		  		id_estado= '$_id_estado'";
-		  		
-		  		$tabla1 = "afiliado_extras";
-		  		
-		  		$where1 = "cedula = '$_cedula_usuarios'";
-		  		
-		  		$resultado=$participes->UpdateBy($colval1, $tabla1, $where1);
-		  		
-		  	} catch (Exception $e) {
-		  	}
+		  	$colval_afi = "nombre= '$_nombre_usuarios',
+		  	cedula='$_cedula_usuarios'";
+		  	$tabla_afi = "afiliado";
+		  	$where_afi = "cedula = '$_cedula_usuarios'";
+		  	$resultado=$afiliado->UpdateBy($colval_afi, $tabla_afi, $where_afi);
 		  	
+		  }else{
+		  	
+		  	$funcion = "ins_afiliado_administrador";
+		    $parametros = "'$_cedula_usuarios',
+		  	'$_nombre_usuarios'";
+		  	$afiliado->setFuncion($funcion);
+		  	$afiliado->setParametros($parametros);
+		  	$resultado=$afiliado->Insert();
 		  	
 		  }
 		  
 		  
+		  $participes = new ParticipeModel();
+		  $resultParticipes="";
+		  $resultParticipes=$participes->getBy("cedula='$_cedula_usuarios'");
+		  if(!empty($resultParticipes)){
+		  	
+		  	$colval1 = "nombre= '$_nombre_usuarios',
+		  	correo='$_correo_usuarios',
+		  	telefono = '$_telefono_usuarios',
+		  	celular = '$_celular_usuarios',
+		  	id_estado= '$_id_estado'";
+		  	$tabla1 = "afiliado_extras";
+		  	$where1 = "cedula = '$_cedula_usuarios'";
+		  	$resultado=$participes->UpdateBy($colval1, $tabla1, $where1);
 		  
+		  }else{
+		  	
+		  	
+		  	$resultAfiliado="";
+		  	$resultAfiliado=$afiliado->getBy("cedula='$_cedula_usuarios'");
+		  	if(!empty($resultAfiliado)){
+		  		 
+		  		$_id_afiliado=$resultAfiliado[0]->id_afiliado;
+		  		$_direccion="";
+		  		$_fecha_ingreso="";
+		  		$_id_provincias_vivienda=25;
+		  		$_id_cantones_vivienda=223;
+		  		$_id_parroquias_vivienda=1388;
+		  		$_id_provincias_asignacion=25;
+		  		$_id_cantones_asignacion=223;
+		  		$_id_parroquias_asignacion=1388;
+		  		$_id_sexo=2;
+		  		$_id_tipo_sangre=7;
+		  		$_id_estado_civil=6;
+		  		$_id_entidades=104;
+		  		
+		  		
+		  		
+		  		if($_id_afiliado>0){
+		  			
+		  			$funcion = "afiliado_extras";
+		  			$parametros = "'$_cedula_usuarios',
+		  			'$_nombre_usuarios',
+		  			'$_direccion',
+		  			'$_fecha_ingreso',
+		  			'$_id_afiliado',
+		  			'$_id_provincias_vivienda',
+		  			'$_id_cantones_vivienda',
+		  			'$_id_parroquias_vivienda',
+		  			'$_id_provincias_asignacion',
+		  			'$_id_cantones_asignacion',
+		  			'$_id_parroquias_asignacion',
+		  			'$_id_sexo',
+		  			'$_id_tipo_sangre',
+		  			'$_id_estado_civil',
+		  			'$_id_entidades',
+		  			'$_id_estado'";
+		  			$participes->setFuncion($funcion);
+		  			$participes->setParametros($parametros);
+		  			$resultado=$participes->Insert();
+		  		}
+		  		
+		  	}
+		  	
+		  	 	
+		  }
+		  
+		   
 		    $this->redirect("Usuarios", "index");
 		}
 		
@@ -1421,6 +1488,7 @@ public function index(){
 					}
 					
 					$participes = new ParticipeModel();
+					
 					
 					if($_correo_usuarios!=""){
 						try {

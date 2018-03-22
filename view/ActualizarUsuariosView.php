@@ -132,7 +132,15 @@
 		    		$("#mensaje_clave_usuarios").text("Introduzca una Clave");
 		    		$("#mensaje_clave_usuarios").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
-			    }
+			    }else if (clave_usuarios.length<4){
+			    	$("#mensaje_clave_usuarios").text("Introduzca minimo 4 números");
+		    		$("#mensaje_clave_usuarios").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+				}else if (clave_usuarios.length>4){
+			    	$("#mensaje_clave_usuarios").text("Introduzca máximo 4 números");
+		    		$("#mensaje_clave_usuarios").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+				}
 		    	else 
 		    	{
 		    		$("#mensaje_clave_usuarios").fadeOut("slow"); //Muestra mensaje de error
@@ -277,7 +285,25 @@
 	</script>
         
         
-        
+        <script >   
+    function numeros(e){
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = "0123456789";
+    especiales = [8,37,39,46];
+ 
+    tecla_especial = false
+    for(var i in especiales){
+    if(key == especiales[i]){
+     tecla_especial = true;
+     break;
+        } 
+    }
+ 
+    if(letras.indexOf(tecla)==-1 && !tecla_especial)
+        return false;
+     }
+    </script>   
         
 			        
     </head>
@@ -375,7 +401,7 @@
                     		    <div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
                                                       <label for="cedula_usuarios" class="control-label">Cedula:</label>
-                                                      <input type="text" class="form-control" id="cedula_usuarios" name="cedula_usuarios" value="<?php echo $resEdit->cedula_usuarios; ?>"  placeholder="ci-ruc.." readonly>
+                                                      <input type="number" class="form-control" id="cedula_usuarios" name="cedula_usuarios" value="<?php echo $resEdit->cedula_usuarios; ?>"  placeholder="ci-ruc.." readonly>
                                                       <div id="mensaje_cedula_usuarios" class="errores"></div>
                                 </div>
                                 </div>
@@ -404,7 +430,7 @@
                     				<div class="col-lg-2 col-xs-12 col-md-2">
                         		    <div class="form-group">
                                                           <label for="clave_usuarios" class="control-label">Password:</label>
-                                                          <input type="password" class="form-control" id="clave_usuarios" name="clave_usuarios" value="<?php echo $resEdit->pass_sistemas_usuarios; ?>" placeholder="password..">
+                                                          <input type="password" class="form-control" id="clave_usuarios" name="clave_usuarios" value="<?php echo $resEdit->pass_sistemas_usuarios; ?>" placeholder="(solo números..)" maxlength="4" onkeypress="return numeros(event)">
                                                           <div id="mensaje_clave_usuarios" class="errores"></div>
                                     </div>
                         		    </div>
@@ -412,7 +438,7 @@
                         		    <div class="col-lg-2 col-xs-12 col-md-2">
                         		    <div class="form-group">
                                                           <label for="clave_usuarios_r" class="control-label">Repita Password:</label>
-                                                          <input type="password" class="form-control" id="clave_usuarios_r" name="clave_usuarios_r" value="<?php echo $resEdit->pass_sistemas_usuarios; ?>" placeholder="repita password..">
+                                                          <input type="password" class="form-control" id="clave_usuarios_r" name="clave_usuarios_r" value="<?php echo $resEdit->pass_sistemas_usuarios; ?>" placeholder="(solo números..)" maxlength="4" onkeypress="return numeros(event)">
                                                           <div id="mensaje_clave_usuarios_r" class="errores"></div>
                                     </div>
                                     </div>
@@ -502,7 +528,7 @@
                     		    <div class="row">
                     		    <div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center; margin-top:20px">
                     		    <div class="form-group">
-                                                      <button type="submit" id="Guardar" name="Guardar" class="btn btn-success">Actualizar</button>
+                                                      <button type="submit" id="Guardar" name="Guardar" class="btn btn-success"><i class="glyphicon glyphicon-floppy-saved"> Actualizar</i></button>
                                 </div>
                     		    </div>
                     		    </div>
