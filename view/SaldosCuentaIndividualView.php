@@ -603,6 +603,41 @@
         </script>
        
        
+         <script type="text/javascript">
+     
+        	   $(document).ready( function (){
+        		   load_refinanciamiento(1);
+	   			});
+
+        	   function load_refinanciamiento(pagina){
+
+
+        		   var search=$("#search_credito_refinanciamiento").val();
+                   var con_datos={
+           					  action:'ajax',
+           					  page:pagina
+           					  };
+                 $("#load_credito_refinanciamiento_registrados").fadeIn('slow');
+           	     $.ajax({
+           	               beforeSend: function(objeto){
+           	                 $("#load_credito_refinanciamiento_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
+           	               },
+           	               url: 'index.php?controller=SaldosCuentaIndividual&action=cargar_credito_refinanciamiento&search='+search,
+           	               type: 'POST',
+           	               data: con_datos,
+           	               success: function(x){
+           	                 $("#cta_credito_refinanciamiento").html(x);
+           	               	 $("#tabla_credito_refinanciamiento").tablesorter(); 
+           	                 $("#load_credito_refinanciamiento_registrados").html("");
+           	               },
+           	              error: function(jqXHR,estado,error){
+           	                $("#cta_credito_refinanciamiento").html("Ocurrio un error al cargar la informacion de Credito Refinanciamiento..."+estado+"    "+error);
+           	              }
+           	            });
+
+
+           		   }
+        </script>
        
        
        <script >
@@ -1141,6 +1176,7 @@
                    <li id="nav-credito_dos_x_uno"><a href="#credito_dos_x_uno" data-toggle="tab">Dos x Uno</a></li>
                    <li id="nav-credito_hipotecario"><a href="#credito_hipotecario" data-toggle="tab">Hipotecario</a></li>
                     <li id="nav-acuerdo_pago"><a href="#acuerdo_pago" data-toggle="tab">Acuerdo de Pago</a></li>
+                     <li id="nav-credito_refinanciamiento"><a href="#credito_refinanciamiento" data-toggle="tab">Refinanciamiento</a></li>
                 </ul>
           
            <div class="tab-content">
@@ -1337,6 +1373,43 @@
            </div>
            
            
+           
+           
+           
+           
+            <div class="tab-pane" id="credito_refinanciamiento">
+          <form>
+           <div class="col-md-12 col-lg-12 col-xs-12">
+             <div class="x_panel">
+                  <div class="x_title">
+                    <h2><small>Crédito Refinanciamiento</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    
+                  
+                    <div class="pull-right" style="margin-right:11px;">
+					<input type="text" value="" class="form-control" id="search_credito_refinanciamiento" name="search_credito_refinanciamiento" onkeyup="load_refinanciamiento(1)" placeholder="search.."/>
+					</div>
+					<br>
+					
+					<div id="load_credito_refinanciamiento_registrados" ></div>	
+					<div id="cta_credito_refinanciamiento"></div>	
+                    
+                  </div>
+                </div>
+              </div>
+           
+           
+           </form>
+           </div>
            
            
            

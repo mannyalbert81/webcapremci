@@ -1844,6 +1844,298 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	
 	
+	public function cargar_credito_refinanciamiento(){
+	
+		session_start();
+		$refinanciamiento_solicitud = new Refinanciamiento_SolicitudModel();
+		$refinanciamiento_detalle = new Refinanciamiento_DetalleModel();
+		$where_to="";
+	
+	
+		$cedula_usuarios = $_SESSION["cedula_usuarios"];
+	
+		if(!empty($cedula_usuarios)){
+	
+	
+			$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
+			$search =  (isset($_REQUEST['search'])&& $_REQUEST['search'] !=NULL)?$_REQUEST['search']:'';
+	
+	
+			if($action == 'ajax')
+			{
+				$html="";
+	
+				$columnas_refi_cabec ="*";
+				$tablas_refi_cabec="refinanciamiento_solicitud";
+				$where_refi_cabec="cedula='$cedula_usuarios'";
+				$id_refi_cabec="cedula";
+				$resultCredRefi_Cabec=$refinanciamiento_solicitud->getCondicionesDesc($columnas_refi_cabec, $tablas_refi_cabec, $where_refi_cabec, $id_refi_cabec);
+	
+	
+					
+				if(!empty($resultCredRefi_Cabec)){
+	
+					$_numsol_refinanciamiento=$resultCredRefi_Cabec[0]->numsol;
+					$_cuota_refinanciamiento=$resultCredRefi_Cabec[0]->cuota;
+					$_interes_refinanciamiento=$resultCredRefi_Cabec[0]->interes;
+					$_tipo_refinanciamiento=$resultCredRefi_Cabec[0]->tipo;
+					$_plazo_refinanciamiento=$resultCredRefi_Cabec[0]->plazo;
+					$_fcred_refinanciamiento=$resultCredRefi_Cabec[0]->fcred;
+					$_ffin_refinanciamiento=$resultCredRefi_Cabec[0]->ffin;
+					$_cuenta_refinanciamiento=$resultCredRefi_Cabec[0]->cuenta;
+					$_banco_refinanciamiento=$resultCredRefi_Cabec[0]->banco;
+					$_valor_refinanciamiento= number_format($resultCredRefi_Cabec[0]->valor, 2, '.', ',');
+	
+	
+	
+					if($_numsol_refinanciamiento != ""){
+	
+	
+						$columnas_refi_detall ="numsol,
+										pago,
+										mes,
+										ano,
+										fecpag,ROUND(capital,2) as capital,
+										ROUND(interes,2) as interes,
+										ROUND(intmor,2) as intmor,
+										ROUND(seguros,2) as seguros,
+										ROUND(total,2) as total,
+										ROUND(saldo,2) as saldo,
+										estado";
+	
+						$tablas_refi_detall="refinanciamiento_detalle";
+						$where_refi_detall="numsol='$_numsol_refinanciamiento'";
+						$id_refi_detall="pago";
+						//$resultCredEmer_Detall=$emergente_detalle->getCondicionesDesc($columnas_emer_detall, $tablas_emer_detall, $where_emer_detall, $id_emer_detall);
+	
+	
+	
+	
+						if(!empty($search)){
+	
+	
+							$where1=" AND (mes LIKE '%".$search."%' OR estado LIKE '%".$search."%')";
+	
+							$where_to=$where_refi_detall.$where1;
+						}else{
+	
+							$where_to=$where_refi_detall;
+	
+						}
+	
+	
+	
+						$resultSet=$refinanciamiento_detalle->getCantidad("*", $tablas_refi_detall, $where_to);
+						$cantidadResult=(int)$resultSet[0]->total;
+	
+						$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
+	
+						$per_page = 15; //la cantidad de registros que desea mostrar
+						$adjacents  = 9; //brecha entre páginas después de varios adyacentes
+						$offset = ($page - 1) * $per_page;
+	
+						$limit = " LIMIT   '$per_page' OFFSET '$offset'";
+							
+						$resultSet=$refinanciamiento_detalle->getCondicionesPagDesc($columnas_refi_detall, $tablas_refi_detall, $where_to, $id_refi_detall, $limit);
+	
+						$count_query   = $cantidadResult;
+						$total_pages = ceil($cantidadResult/$per_page);
+	
+	
+	
+	
+						if($cantidadResult>0)
+						{
+	
+							$html.='<div class="col-lg-12 col-xs-12 col-md-12">';
+							$html.='<div class="row">';
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">No de Solicitud:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_numsol_refinanciamiento.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+	
+								
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Monto Concedido:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_valor_refinanciamiento.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+								
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Cuota:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_cuota_refinanciamiento.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+	
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Interes:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_interes_refinanciamiento.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+	
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Tipo:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_tipo_refinanciamiento.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+	
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">PLazo:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_plazo_refinanciamiento.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+							$html.='</div>';
+	
+	
+							$html.='<div class="row">';
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Concedido en:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_fcred_refinanciamiento.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+								
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Termina en:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_ffin_refinanciamiento.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+	
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Cuenta No:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_cuenta_refinanciamiento.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+	
+							$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
+							$html.='<div class="form-group">';
+							$html.='<label for="cedula_participe" class="control-label">Banco:</label>';
+							$html.='<input type="text" class="form-control" id="cedula_participe" name="cedula_participe" value="'.$_banco_refinanciamiento.'" readonly>';
+							$html.='</div>';
+							$html.='</div>';
+							$html.='</div>';
+							$html.='</div>';
+	
+							$html.='<div class="col-lg-12 col-md-12 col-xs-12" style="margin-top:20px; text-align: center;">';
+							$html.='<a href="index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=refinanciamiento" class="btn btn-success" target="_blank"><i class="glyphicon glyphicon-print"></i> Imprimir</a>';
+							$html.='</div>';
+	
+	
+							$html.='<div class="pull-left" style="margin-left:11px;">';
+							$html.='<span class="form-control"><strong>Registros: </strong>'.$cantidadResult.'</span>';
+							$html.='<input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>' ;
+							$html.='</div>';
+							$html.='<div class="col-lg-12 col-md-12 col-xs-12">';
+							$html.='<section style="height:425px; overflow-y:scroll;">';
+							$html.= "<table id='tabla_credito_refinanciamiento' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
+							$html.= "<thead>";
+							$html.= "<tr>";
+							$html.='<th style="text-align: left;  font-size: 12px;"></th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Pago</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Mes</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">A&ntilde;o</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Fecha Pago</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Capital</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Interes</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Interes por Mora</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Seguro Desgr.</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Total</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Saldo</th>';
+							$html.='<th style="text-align: left;  font-size: 12px;">Estado</th>';
+							$html.='</tr>';
+							$html.='</thead>';
+							$html.='<tbody>';
+	
+							$i=0;
+	
+							foreach ($resultSet as $res)
+							{
+								$i++;
+								$html.='<tr>';
+								$html.='<td style="font-size: 11px;">'.$i.'</td>';
+								$html.='<td style="font-size: 11px;">'.$res->pago.'</td>';
+								$html.='<td style="font-size: 11px;">'.$res->mes.'</td>';
+								$html.='<td style="font-size: 11px;">'.$res->ano.'</td>';
+								$html.='<td style="font-size: 11px;">'.$res->fecpag.'</td>';
+								$html.='<td style="font-size: 11px;">'.number_format($res->capital, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 11px;">'.number_format($res->interes, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 11px;">'.number_format($res->intmor, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 11px;">'.number_format($res->seguros, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 11px;">'.number_format($res->total, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 11px;">'.number_format($res->saldo, 2, '.', ',').'</td>';
+								$html.='<td style="font-size: 11px;">'.$res->estado.'</td>';
+								$html.='</tr>';
+							}
+	
+	
+							$html.='</tbody>';
+							$html.='</table>';
+							$html.='</section></div>';
+							$html.='<div class="table-pagination pull-right">';
+							$html.=''. $this->paginate_credito_refinanciamiento("index.php", $page, $total_pages, $adjacents).'';
+							$html.='</div>';
+	
+	
+	
+						}else{
+							$html.='<div class="col-lg-6 col-md-6 col-xs-12">';
+							$html.='<div class="alert alert-info alert-dismissable" style="margin-top:40px;">';
+							$html.='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+							$html.='<h4>Aviso!!!</h4> <b>Actualmente no hay datos para mostrar...</b>';
+							$html.='</div>';
+							$html.='</div>';
+						}
+	
+	
+	
+					}else{
+	
+						$html.='<div class="col-lg-6 col-md-6 col-xs-12">';
+						$html.='<div class="alert alert-info alert-dismissable" style="margin-top:40px;">';
+						$html.='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+						$html.='<h4>Aviso!!!</h4> <b>Actualmente no hay datos para mostrar...</b>';
+						$html.='</div>';
+						$html.='</div>';
+					}
+	
+	
+				}else{
+	
+					$html.='<div class="col-lg-6 col-md-6 col-xs-12">';
+					$html.='<div class="alert alert-info alert-dismissable" style="margin-top:40px;">';
+					$html.='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+					$html.='<h4>Aviso!!!</h4> <b>Actualmente no hay datos para mostrar...</b>';
+					$html.='</div>';
+					$html.='</div>';
+	
+				}
+	
+	
+	
+				echo $html;
+				die();
+	
+			}
+	
+	
+		}
+	
+	
+	}
+	
+	
+	
+	
+	
 	
 
 	public function index(){
@@ -2751,6 +3043,69 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	
 	
+	public function paginate_credito_refinanciamiento($reload, $page, $tpages, $adjacents) {
+	
+		$prevlabel = "&lsaquo; Prev";
+		$nextlabel = "Next &rsaquo;";
+		$out = '<ul class="pagination pagination-large">';
+	
+		// previous label
+	
+		if($page==1) {
+			$out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
+		} else if($page==2) {
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_refinanciamiento(1)'>$prevlabel</a></span></li>";
+		}else {
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_refinanciamiento(".($page-1).")'>$prevlabel</a></span></li>";
+	
+		}
+	
+		// first label
+		if($page>($adjacents+1)) {
+			$out.= "<li><a href='javascript:void(0);' onclick='load_refinanciamiento(1)'>1</a></li>";
+		}
+		// interval
+		if($page>($adjacents+2)) {
+			$out.= "<li><a>...</a></li>";
+		}
+	
+		// pages
+	
+		$pmin = ($page>$adjacents) ? ($page-$adjacents) : 1;
+		$pmax = ($page<($tpages-$adjacents)) ? ($page+$adjacents) : $tpages;
+		for($i=$pmin; $i<=$pmax; $i++) {
+			if($i==$page) {
+				$out.= "<li class='active'><a>$i</a></li>";
+			}else if($i==1) {
+				$out.= "<li><a href='javascript:void(0);' onclick='load_refinanciamiento(1)'>$i</a></li>";
+			}else {
+				$out.= "<li><a href='javascript:void(0);' onclick='load_refinanciamiento(".$i.")'>$i</a></li>";
+			}
+		}
+	
+		// interval
+	
+		if($page<($tpages-$adjacents-1)) {
+			$out.= "<li><a>...</a></li>";
+		}
+	
+		// last
+	
+		if($page<($tpages-$adjacents)) {
+			$out.= "<li><a href='javascript:void(0);' onclick='load_refinanciamiento($tpages)'>$tpages</a></li>";
+		}
+	
+		// next
+	
+		if($page<$tpages) {
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_refinanciamiento(".($page+1).")'>$nextlabel</a></span></li>";
+		}else {
+			$out.= "<li class='disabled'><span><a>$nextlabel</a></span></li>";
+		}
+	
+		$out.= "</ul>";
+		return $out;
+	}
 	
 	
 	
@@ -2854,6 +3209,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 		$afiliado_transacc_cta_ind = new Afiliado_transacc_cta_indModel();
 		$afiliado_transacc_cta_desemb = new Afiliado_transacc_cta_desembModel();
 		$usuarios= new UsuariosModel();
+		
 		
 		
 		$html="";

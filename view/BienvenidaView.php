@@ -83,7 +83,8 @@
           
            <div class="row tile_count">
             <div id='pone_credito_hipotecario'></div>
-             <div id='pone_acuerdo_pago'></div>
+            <div id='pone_acuerdo_pago'></div>
+            <div id='pone_credito_refinanciamiento'></div>
 	       </div>
           
         </div>
@@ -150,7 +151,7 @@
         		   pone_credito_2x1();
         		   pone_credito_hipotecario();
         		   pone_acuerdo_pago();
-
+        		   pone_credito_refinanciamiento();	
         		    
 	   			});
 
@@ -341,7 +342,26 @@
         		     })
         		  }
         	   
-        	   
+
+
+        	   function pone_credito_refinanciamiento(){
+        		   $(document).ready( function (){
+        		       $.ajax({
+        		                 beforeSend: function(objeto){
+        		                   $("#pone_credito_refinanciamiento").html('')
+        		                 },
+        		                 url: 'index.php?controller=Usuarios&action=cargar_credito_refinanciamiento',
+        		                 type: 'POST',
+        		                 data: null,
+        		                 success: function(x){
+        		                   $("#pone_credito_refinanciamiento").html(x);
+        		                 },
+        		                error: function(jqXHR,estado,error){
+        		                  $("#pone_credito_refinanciamiento").html("Ocurrio un error al cargar la informacion de crédito refinanciamiento..."+estado+"    "+error);
+        		                }
+        		              });
+        		     })
+        		  }
 
         	   
         </script>

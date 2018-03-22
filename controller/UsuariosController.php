@@ -2453,9 +2453,6 @@ public function index(){
 	
 	
 	
-	
-	
-	
 	public function cargar_acuerdo_pago(){
 	
 		session_start();
@@ -2556,6 +2553,113 @@ public function index(){
 		}
 	
 	}
+	
+	
+	
+	
+
+	public function cargar_credito_refinanciamiento(){
+	
+		session_start();
+		$i=0;
+		$refinanciamiento_solicitud = new Refinanciamiento_SolicitudModel();
+		$refinanciamiento_detalle = new Refinanciamiento_DetalleModel();
+		
+	
+		$_numsol_refinanciamiento="";
+		$_cuota_refinanciamiento="";
+		$_interes_refinanciamiento="";
+		$_tipo_refinanciamiento="";
+		$_plazo_refinanciamiento="";
+		$_fcred_refinanciamiento="";
+		$_ffin_refinanciamiento="";
+		$_cuenta_refinanciamiento="";
+		$_banco_refinanciamiento="";
+		$_valor_refinanciamiento="";
+	
+		$cedula_usuarios = $_SESSION["cedula_usuarios"];
+	
+		if(!empty($cedula_usuarios)){
+			$columnas_refi_cabec ="*";
+			$tablas_refi_cabec="refinanciamiento_solicitud";
+			$where_refi_cabec="cedula='$cedula_usuarios'";
+			$id_refi_cabec="cedula";
+			$resultSet=$refinanciamiento_solicitud->getCondicionesDesc($columnas_refi_cabec, $tablas_refi_cabec, $where_refi_cabec, $id_refi_cabec);
+	
+	
+	
+			$i=count($resultSet);
+	
+			$html="";
+			if($i>0)
+			{
+				if (!empty($resultSet)) {
+	
+					$_numsol_refinanciamiento=$resultSet[0]->numsol;
+					$_cuota_refinanciamiento=$resultSet[0]->cuota;
+					$_interes_refinanciamiento=$resultSet[0]->interes;
+					$_tipo_refinanciamiento=$resultSet[0]->tipo;
+					$_plazo_refinanciamiento=$resultSet[0]->plazo;
+					$_fcred_refinanciamiento=$resultSet[0]->fcred;
+					$_ffin_refinanciamiento=$resultSet[0]->ffin;
+					$_cuenta_refinanciamiento=$resultSet[0]->cuenta;
+					$_banco_refinanciamiento=$resultSet[0]->banco;
+					$_valor_refinanciamiento=number_format($resultSet[0]->valor, 2, '.', ',');
+				}
+	
+				$html .= "<div class='col-lg-4 col-xs-12'>";
+				$html .= "<div class='small-box bg-info'>";
+				$html .= "<div class='inner'>";
+				$html .= "<h3>$_valor_refinanciamiento</h3>";
+				$html .= "<p>Tienes activo un crédito hipotecario<br> desde $_fcred_refinanciamiento hasta $_ffin_refinanciamiento.</p>";
+				$html .= "</div>";
+	
+	
+				$html .= "<div class='icon'>";
+				$html .= "<i class='ion ion-calendar'></i>";
+				$html .= "</div>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "</div>";
+				$html .= "</div>";
+	
+	
+			}else{
+	
+				$html .= "<div class='col-lg-4 col-xs-12'>";
+				$html .= "<div class='small-box bg-info'>";
+				$html .= "<div class='inner'>";
+				$html .= "<h3>0.00</h3>";
+				$html .= "<p>Actualmente no dispone un crédito<br> de refinanciamiento.</p>";
+				$html .= "</div>";
+					
+					
+				$html .= "<div class='icon'>";
+				$html .= "<i class='ion ion-calendar'></i>";
+				$html .= "</div>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "</div>";
+				$html .= "</div>";
+					
+					
+			}
+	
+			echo $html;
+			die();
+	
+		}
+		else{
+	
+	
+	
+			$this->redirect("Usuarios","sesion_caducada");
+	
+			die();
+	
+		}
+	
+	}
+	
+	
 	
 	
 	
