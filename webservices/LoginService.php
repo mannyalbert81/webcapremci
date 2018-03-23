@@ -18,20 +18,21 @@
 			
 			if(!empty($resultado)){
 				// existe el usuario va lleno.
-				echo json_encode($resultado);
-				die();
+				$resultadosJson = json_encode($resultado);
+				
 			}else{
 				// no existe el usuarios va vacio.
-				echo "Cedula o Contraseña Incorrecta";
-				die();
+				$resultadosJson = "";
 			}
 			
 		}else{
 			// no vienen los datos
-			echo "No podemos establecer conexión, intentelo mas tarde.";
-			die();
+			$resultadosJson = "";
 		}
 	   
+		
+		echo $_GET['jsoncallback'] . '(' . $resultadosJson . ');';
+		
 	}
 	else{
 		
