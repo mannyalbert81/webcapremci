@@ -39,6 +39,61 @@
         	   $(document).ready( function (){
         		   pone_espera();
         		   load_sesiones(1);
+
+
+        		 			  $("#buscar").click(function() 
+        					{
+        				    	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+        				    	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
+
+        				    	var desde = $("#desde").val();
+        				    	var hasta = $("#hasta").val();
+        				    	
+        				    	
+        				    	
+
+
+        						if(desde > hasta){
+
+        							$("#mensaje_desde").text("Fecha desde no puede ser mayor a hasta");
+        				    		$("#mensaje_desde").fadeIn("slow"); //Muestra mensaje de error
+        				            return false;
+        				            
+            					}else 
+        				    	{
+        				    		$("#mensaje_desde").fadeOut("slow"); //Muestra mensaje de error
+        				    		 load_sesiones(1);
+        						} 
+
+
+        						if(hasta < desde){
+
+        							$("#mensaje_hasta").text("Fecha hasta no puede ser menor a desde");
+        				    		$("#mensaje_hasta").fadeIn("slow"); //Muestra mensaje de error
+        				            return false;
+        				            
+            					}else 
+        				    	{
+        				    		$("#mensaje_hasta").fadeOut("slow"); //Muestra mensaje de error
+        				    		 load_sesiones(1);
+        						} 
+        						
+        				    					    
+
+        					}); 
+
+
+        				        $( "#desde" ).focus(function() {
+        						  $("#mensaje_desde").fadeOut("slow");
+        					    });
+        						
+        				        $( "#hasta" ).focus(function() {
+          						  $("#mensaje_hasta").fadeOut("slow");
+          					    });
+        						
+
+
+        		   
 	   			});
 
         	   function pone_espera(){
@@ -66,9 +121,13 @@
 
 
         		   var search=$("#search").val();
+        		   var desde=$("#desde").val();
+        		   var hasta=$("#hasta").val();
                    var con_datos={
            					  action:'ajax',
-           					  page:pagina
+           					  page:pagina,
+           					  desde:desde,
+           					  hasta:hasta
            					  };
                  $("#load_registrados").fadeIn('slow');
            	     $.ajax({
@@ -176,7 +235,33 @@
                   </div>
                   <div class="x_content">
                     
-					
+                    
+					<div class="row" style="margin-left:1px;">
+									<div class="col-lg-2 col-xs-12 col-md-2">
+                        		    <div class="form-group">
+                                                          <label for="desde" class="control-label">Desde:</label>
+                                                          <input type="date" class="form-control" id="desde" name="desde" value="" >
+                                                          <div id="mensaje_desde" class="errores"></div>
+                                    </div>
+                        		    </div>
+                        		    
+                        		    <div class="col-lg-2 col-xs-12 col-md-2">
+                        		    <div class="form-group">
+                                                          <label for="hasta" class="control-label">Hasta:</label>
+                                                          <input type="date" class="form-control" id="hasta" name="hasta" value="">
+                                                          <div id="mensaje_hasta" class="errores"></div>
+                                               
+                                    </div>
+                                    
+                        		    </div>
+                        		    
+                        		    <div class="col-xs-12 col-md-2 col-lg-2" style="text-align: center; margin-top:22px">
+                    		        <div class="form-group">
+                        		    <button type="button" id="buscar" name="buscar" class="btn btn-info"><i class="glyphicon glyphicon-search"></i></button>
+                                	</div>
+                                    </div>
+                        		    
+					</div>
 				
 					
 					<div class="pull-right" style="margin-right:11px;">

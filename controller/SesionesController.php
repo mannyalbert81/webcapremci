@@ -35,8 +35,10 @@ class SesionesController extends ControladorBase{
 		 
 		$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 		$search =  (isset($_REQUEST['search'])&& $_REQUEST['search'] !=NULL)?$_REQUEST['search']:'';
+		$desde=  (isset($_REQUEST['desde'])&& $_REQUEST['desde'] !=NULL)?$_REQUEST['desde']:'';
+		$hasta=  (isset($_REQUEST['hasta'])&& $_REQUEST['hasta'] !=NULL)?$_REQUEST['hasta']:'';
 		 
-		 
+		$where2="";
 		 
 		 
 		if($action == 'ajax')
@@ -44,13 +46,25 @@ class SesionesController extends ControladorBase{
 	
 			if(!empty($search)){
 	
+				
+				if($desde!="" && $hasta!=""){
+					
+					$where2=" AND DATE(sesiones.creado)  BETWEEN '$desde' AND '$hasta'";
+					
+					
+				}
 	
 				$where1=" AND (usuarios.cedula_usuarios LIKE '".$search."%' OR usuarios.nombre_usuarios LIKE '".$search."%' OR usuarios.correo_usuarios LIKE '".$search."%')";
 	
-				$where_to=$where.$where1;
+				$where_to=$where.$where1.$where2;
 			}else{
-	
-				$where_to=$where;
+				if($desde!="" && $hasta!=""){
+						
+					$where2=" AND DATE(sesiones.creado)  BETWEEN '$desde' AND '$hasta'";	
+						
+				}
+				
+				$where_to=$where.$where2;
 	
 			}
 	
