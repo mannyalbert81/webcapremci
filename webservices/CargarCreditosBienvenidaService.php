@@ -39,8 +39,6 @@ if(isset($_GET['cargar'])){
 					}
 				
 						
-				
-						
 					$html .= "<div class='col-md-4 col-sm-6 col-xs-12'>";
 					$html .= "<div class='info-box'>";
 					$html .= "<span class='info-box-icon bg-red'><i class='ion ion-pie-graph'></i></span>";
@@ -177,7 +175,7 @@ if(isset($_GET['cargar'])){
 					$html .= "<div class='icon'>";
 					$html .= "<i class='ion ion-calendar'></i>";
 					$html .= "</div>";
-					$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+					$html .= "<a href='SaldosCuenta.html?cedula="+$cedula_usuarios+"' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
 					$html .= "</div>";
 					$html .= "</div>";
 				
@@ -195,7 +193,7 @@ if(isset($_GET['cargar'])){
 					$html .= "<div class='icon'>";
 					$html .= "<i class='ion ion-calendar'></i>";
 					$html .= "</div>";
-					$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+					$html .= "<a href='SaldosCuenta.html?cedula="+$cedula_usuarios+"' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
 					$html .= "</div>";
 					$html .= "</div>";
 							
@@ -250,7 +248,7 @@ if(isset($_GET['cargar'])){
 					$html .= "<div class='icon'>";
 					$html .= "<i class='ion ion-calendar'></i>";
 					$html .= "</div>";
-					$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+					$html .= "<a href='SaldosCuenta.html?cedula="+$cedula_usuarios+"' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
 					$html .= "</div>";
 					$html .= "</div>";
 				
@@ -268,7 +266,7 @@ if(isset($_GET['cargar'])){
 					$html .= "<div class='icon'>";
 					$html .= "<i class='ion ion-calendar'></i>";
 					$html .= "</div>";
-					$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+					$html .= "<a href='SaldosCuenta.html?cedula="+$cedula_usuarios+"' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
 					$html .= "</div>";
 					$html .= "</div>";
 						
@@ -324,7 +322,7 @@ if(isset($_GET['cargar'])){
 					$html .= "<div class='icon'>";
 					$html .= "<i class='ion ion-calendar'></i>";
 					$html .= "</div>";
-					$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+					$html .= "<a href='SaldosCuenta.html?cedula="+$cedula_usuarios+"' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
 					$html .= "</div>";
 					$html .= "</div>";
 				
@@ -342,7 +340,7 @@ if(isset($_GET['cargar'])){
 					$html .= "<div class='icon'>";
 					$html .= "<i class='ion ion-calendar'></i>";
 					$html .= "</div>";
-					$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+					$html .= "<a href='SaldosCuenta.html?cedula="+$cedula_usuarios+"' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
 					$html .= "</div>";
 					$html .= "</div>";
 						
@@ -399,7 +397,7 @@ if(isset($_GET['cargar'])){
 					$html .= "<div class='icon'>";
 					$html .= "<i class='ion ion-calendar'></i>";
 					$html .= "</div>";
-					$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+					$html .= "<a href='SaldosCuenta.html?cedula="+$cedula_usuarios+"' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
 					$html .= "</div>";
 					$html .= "</div>";
 				
@@ -417,7 +415,7 @@ if(isset($_GET['cargar'])){
 					$html .= "<div class='icon'>";
 					$html .= "<i class='ion ion-calendar'></i>";
 					$html .= "</div>";
-					$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+					$html .= "<a href='SaldosCuenta.html?cedula="+$cedula_usuarios+"' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
 					$html .= "</div>";
 					$html .= "</div>";
 						
@@ -475,7 +473,7 @@ if(isset($_GET['cargar'])){
 					$html .= "<div class='icon'>";
 					$html .= "<i class='ion ion-calendar'></i>";
 					$html .= "</div>";
-					$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+					$html .= "<a href='SaldosCuenta.html?cedula="+$cedula_usuarios+"' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
 					$html .= "</div>";
 					$html .= "</div>";
 				
@@ -493,7 +491,7 @@ if(isset($_GET['cargar'])){
 					$html .= "<div class='icon'>";
 					$html .= "<i class='ion ion-calendar'></i>";
 					$html .= "</div>";
-					$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+					$html .= "<a href='SaldosCuenta.html?cedula="+$cedula_usuarios+"' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
 					$html .= "</div>";
 					$html .= "</div>";
 						
@@ -550,7 +548,7 @@ if(isset($_GET['cargar'])){
 					$html .= "<div class='icon'>";
 					$html .= "<i class='ion ion-calendar'></i>";
 					$html .= "</div>";
-					$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+					$html .= "<a href='SaldosCuenta.html?cedula="+$cedula_usuarios+"' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
 					$html .= "</div>";
 					$html .= "</div>";
 				
@@ -568,7 +566,7 @@ if(isset($_GET['cargar'])){
 					$html .= "<div class='icon'>";
 					$html .= "<i class='ion ion-calendar'></i>";
 					$html .= "</div>";
-					$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+					$html .= "<a href='SaldosCuenta.html?cedula="+$cedula_usuarios+"' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
 					$html .= "</div>";
 					$html .= "</div>";
 						

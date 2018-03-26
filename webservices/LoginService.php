@@ -18,20 +18,43 @@
 			
 			if(!empty($resultado)){
 				// existe el usuario va lleno.
-				$resultadosJson = json_encode($resultado);
+				
+				
+					$listUsr = [];
+				
+					foreach ($resultado as $res)
+					{
+						$rowfoto = new stdClass();
+						
+						$rowfoto->id_usuarios = $res->id_usuarios;
+						$rowfoto->cedula_usuarios = $res->cedula_usuarios;
+						$rowfoto->nombre_usuarios = $res->nombre_usuarios;
+						$rowfoto->correo_usuarios = $res->correo_usuarios;
+						$rowfoto->id_rol = $res->id_rol;
+						$rowfoto->id_estado = $res->id_estado;
+						$rowfoto->fotografia_usuarios=base64_encode(pg_unescape_bytea($res->fotografia_usuarios));//$res->foto_fichas_fotos;
+						$listUsr[]=$rowfoto;
+					}
+				
+				
+				
+					echo json_encode($listUsr);
+				die();
 				
 			}else{
 				// no existe el usuarios va vacio.
 				$resultadosJson = "";
+				die();
 			}
 			
 		}else{
 			// no vienen los datos
 			$resultadosJson = "";
+			die();
 		}
 	   
 		
-		echo $_GET['jsoncallback'] . '(' . $resultadosJson . ');';
+		
 		
 	}
 	else{
