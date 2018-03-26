@@ -21,17 +21,57 @@ if(isset($_GET['cargar'])){
 				$where_ind_mayor="cedula='$cedula_usuarios'";
 				$result_Cta_Ind=$db->getCondicionesValorMayor($columnas_ind_mayor, $tablas_ind_mayor, $where_ind_mayor);
 				
-				if(!empty($result_Cta_Ind))
+				$i=0;
+				$i=count($result_Cta_Ind);
+				$fecha="";
+				$total= 0.00;
+				$html="";
+				if($i>0)
 				{
-					$resultadosJson = json_encode($result_Cta_Ind);
-					
+					if (!empty($result_Cta_Ind)) {  foreach($result_Cta_Ind as $res) {
+						$fecha=$res->fecha;
+						$total= number_format($res->total, 2, '.', ',');
+					}}else{
+							
+						$fecha="";
+						$total= 0.00;
+							
+					}
+				
+						
+				
+						
+					$html .= "<div class='col-md-4 col-sm-6 col-xs-12'>";
+					$html .= "<div class='info-box'>";
+					$html .= "<span class='info-box-icon bg-red'><i class='ion ion-pie-graph'></i></span>";
+					$html .= "<div class='info-box-content'>";
+					$html .= "<span class='info-box-number'>$total</span>";
+					$html .= "<span class='info-box-text'>Cuenta Individual Actualizada<br> al $fecha.</span>";
+					$html .= "</div>";
+					$html .= "</div>";
+					$html .= "</div>";
+						
+				
 				}else{
-					
-					$resultadosJson = "";
+						
+						
+					$html .= "<div class='col-md-4 col-sm-6 col-xs-12'>";
+					$html .= "<div class='info-box'>";
+					$html .= "<span class='info-box-icon bg-red'><i class='ion ion-pie-graph'></i></span>";
+					$html .= "<div class='info-box-content'>";
+					$html .= "<span class='info-box-number'>$total</span>";
+					$html .= "<span class='info-box-text'>Actualmente no dispone cuenta<br> individual.</span>";
+					$html .= "</div>";
+					$html .= "</div>";
+					$html .= "</div>";
+						
 				}
-			
+				
+				
+				$resultadosJson = json_encode($html);
 				echo $_GET['jsoncallback'] . '(' . $resultadosJson . ');';
-			
+				
+				
 			}
 			
 			
@@ -44,16 +84,56 @@ if(isset($_GET['cargar'])){
 				$where_desemb_mayor="cedula='$cedula_usuarios'";
 				$result_Cta_Desem=$db->getCondicionesValorMayor($columnas_desemb_mayor, $tablas_desemb_mayor, $where_desemb_mayor);
 				
-				if(!empty($result_Cta_Desem))
+				$i=0;
+				$i=count($result_Cta_Desem);
+				$fecha="";
+				$total= 0.00;
+				$html="";
+				if($i>0)
 				{
-					$resultadosJson = json_encode($result_Cta_Desem);
-						
+					if (!empty($result_Cta_Desem)) {  foreach($result_Cta_Desem as $res) {
+						$fecha=$res->fecha;
+						$total= number_format($res->total, 2, '.', ',');
+					}}else{
+				
+						$fecha="";
+						$total= 0.00;
+				
+					}
+				
+				
+					$html .= "<div class='col-md-4 col-sm-6 col-xs-12'>";
+					$html .= "<div class='info-box'>";
+					$html .= "<span class='info-box-icon bg-yellow'><i class='ion ion-stats-bars'></i></span>";
+					$html .= "<div class='info-box-content'>";
+					$html .= "<span class='info-box-number'>$total</span>";
+					$html .= "<span class='info-box-text'>Cuenta Desembolsar Actualizada<br> al $fecha.</span>";
+					$html .= "</div>";
+					$html .= "</div>";
+					$html .= "</div>";
+				
+				
+				
+				
 				}else{
+				
+				
+					$html .= "<div class='col-md-4 col-sm-6 col-xs-12'>";
+					$html .= "<div class='info-box'>";
+					$html .= "<span class='info-box-icon bg-yellow'><i class='ion ion-stats-bars'></i></span>";
+					$html .= "<div class='info-box-content'>";
+					$html .= "<span class='info-box-number'>$total</span>";
+					$html .= "<span class='info-box-text'>Actualmente no dispone Cuenta<br> Por Desembolsar.</span>";
+					$html .= "</div>";
+					$html .= "</div>";
+					$html .= "</div>";
+				
 						
-					$resultadosJson = "";
 				}
 					
+				$resultadosJson = json_encode($html);
 				echo $_GET['jsoncallback'] . '(' . $resultadosJson . ');';
+				
 			}
 			
 			

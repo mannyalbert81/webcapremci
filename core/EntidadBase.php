@@ -279,6 +279,16 @@ class EntidadBase{
     }
     
     
+    
+    public function registrarSesionParticipe($cedula_participe)
+    {
+    	
+    	$_SESSION["cedula_participe"]=$cedula_participe;
+    	
+    	 
+    }
+    
+    
     public function getPermisosVer($where){
     	 
     	$query=pg_query($this->con, "SELECT permisos_rol.ver_permisos_rol FROM public.controladores, public.permisos_rol WHERE  controladores.id_controladores = permisos_rol.id_controladores AND  ver_permisos_rol = 'TRUE'   AND   $where ");
