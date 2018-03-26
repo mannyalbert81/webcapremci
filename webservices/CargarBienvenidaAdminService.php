@@ -8,8 +8,8 @@ if(isset($_GET['action'])){
 	
 	if(isset($_GET['cargar'])){
 	
-	
-	
+
+		
 		$cargar=$_GET["cargar"];
 		
 			if($cargar=='cargar_usuarios')
@@ -23,7 +23,7 @@ if(isset($_GET['action'])){
 				
 				$i=0;
 				$i=count($resultSet);
-				$i=number_format($i, 2, '.', ',');
+				
 				
 				$html="";
 				if($i>0)
@@ -69,9 +69,10 @@ if(isset($_GET['action'])){
 		    $where    = "sesiones.id_usuarios = usuarios.id_usuarios";
 		    $id       = "usuarios.nombre_usuarios";
 		    $resultSet = $db->getCondiciones($columnas ,$tablas ,$where, $id);
+		    
 		    $i=0;
 			$i=count($resultSet);
-			$i=number_format($i, 2, '.', ',');
+			
 			$html="";
 			if($i>0)
 			{
@@ -86,11 +87,8 @@ if(isset($_GET['action'])){
 				$html .= "<i class='ion ion-stats-bars'></i>";
 				$html .= "</div>";
 				
-				if($id_rol==1){
 				$html .= "<a href='Sesiones.html' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
-				}else{
-					$html .= "<a href='#' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
-				}
+				
 				$html .= "</div>";
 				$html .= "</div>";
 		
