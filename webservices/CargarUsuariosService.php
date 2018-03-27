@@ -7,9 +7,7 @@ $db = new DB_Functions();
 if(isset($_GET['action'])){
 	
 	if(isset($_GET['cargar'])){
-	
-
-		
+			
 		$cargar=$_GET["cargar"];
 		
 			if($cargar=='cargar_usuarios')
