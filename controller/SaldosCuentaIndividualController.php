@@ -150,7 +150,6 @@ class SaldosCuentaIndividualController extends ControladorBase{
 				$html.=''. $this->paginate_cuenta_individual("index.php", $page, $total_pages, $adjacents).'';
 				$html.='</div>';
 	
-	
 				 
 			}else{
 				$html.='<div class="col-lg-6 col-md-6 col-xs-12">';
@@ -161,8 +160,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 				$html.='</div>';
 			}
 			 
-			 
-	
+			
 			echo $html;
 			die();
 	
@@ -207,13 +205,10 @@ class SaldosCuentaIndividualController extends ControladorBase{
 			$id_desemb="afiliado_transacc_cta_desemb.ordtran";
 				
 				
-				
 			$columnas_desemb_mayor = "sum(valorper+valorpat) as total, max(fecha_conta) as fecha";
 			$tablas_desemb_mayor="afiliado_transacc_cta_desemb";
 			$where_desemb_mayor="cedula='$cedula_usuarios'";
-				
-				
-	
+			
 	
 			$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 			$search =  (isset($_REQUEST['search'])&& $_REQUEST['search'] !=NULL)?$_REQUEST['search']:'';

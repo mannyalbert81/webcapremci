@@ -77,7 +77,7 @@ if(isset($_GET['action'])){
 			if($i>0)
 			{
 		
-				$html .= "<div class='col-lg-3 col-xs-6'>";
+				$html .= "<div class='col-lg-3 col-xs-12'>";
 				$html .= "<div class='small-box bg-aqua'>";
 				$html .= "<div class='inner'>";
 				$html .= "<h3>$i</h3>";

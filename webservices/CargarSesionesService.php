@@ -12,53 +12,62 @@ if(isset($_GET['action'])){
 		
 		$cargar=$_GET["cargar"];
 		
-			if($cargar=='cargar_usuarios')
+			if($cargar=='cargar_sesiones')
 			{
 				
 				$where_to="";
-				$columnas = " usuarios.id_usuarios,
-								  usuarios.cedula_usuarios,
-								  usuarios.nombre_usuarios,
-								  usuarios.clave_usuarios,
-								  usuarios.pass_sistemas_usuarios,
-								  usuarios.telefono_usuarios,
-								  usuarios.celular_usuarios,
-								  usuarios.correo_usuarios,
-								  rol.id_rol,
-								  rol.nombre_rol,
-								  estado.id_estado,
-								  estado.nombre_estado,
-								  usuarios.fotografia_usuarios,
-								  usuarios.creado";
+				$columnas = "sesiones.id_sesiones,
+					  usuarios.id_usuarios,
+					  usuarios.cedula_usuarios,
+					  usuarios.nombre_usuarios,
+					  usuarios.correo_usuarios,
+					  sesiones.ip_sesiones,
+					  sesiones.creado,
+					  sesiones.modificado";
 				
-				$tablas   = "public.usuarios,
-								  public.rol,
-								  public.estado";
+				$tablas   = "public.sesiones,
+					  public.usuarios";
 				
-				$where    = " rol.id_rol = usuarios.id_rol AND
-								  estado.id_estado = usuarios.id_estado";
+				$where    = "usuarios.id_usuarios = sesiones.id_usuarios";
 				
-				$id       = "usuarios.id_usuarios";
+				$id       = "sesiones.id_sesiones";
 				
-				 
+					
+					
+					
+					
 				$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 				$search =  (isset($_REQUEST['search'])&& $_REQUEST['search'] !=NULL)?$_REQUEST['search']:'';
-				 
-				 
-				 
-				 
+				$desde=  (isset($_REQUEST['desde'])&& $_REQUEST['desde'] !=NULL)?$_REQUEST['desde']:'';
+				$hasta=  (isset($_REQUEST['hasta'])&& $_REQUEST['hasta'] !=NULL)?$_REQUEST['hasta']:'';
+					
+				$where2="";
+					
+					
 				if($action == 'ajax')
 				{
 				
 					if(!empty($search)){
 				
 				
-						$where1=" AND (usuarios.cedula_usuarios LIKE '".$search."%' OR usuarios.nombre_usuarios LIKE '".$search."%' OR usuarios.correo_usuarios LIKE '".$search."%' OR rol.nombre_rol LIKE '".$search."%' OR estado.nombre_estado LIKE '".$search."%')";
+						if($desde!="" && $hasta!=""){
+								
+							$where2=" AND DATE(sesiones.creado)  BETWEEN '$desde' AND '$hasta'";
+								
+								
+						}
 				
-						$where_to=$where.$where1;
+						$where1=" AND (usuarios.cedula_usuarios LIKE '".$search."%' OR usuarios.nombre_usuarios LIKE '".$search."%' OR usuarios.correo_usuarios LIKE '".$search."%')";
+				
+						$where_to=$where.$where1.$where2;
 					}else{
+						if($desde!="" && $hasta!=""){
 				
-						$where_to=$where;
+							$where2=" AND DATE(sesiones.creado)  BETWEEN '$desde' AND '$hasta'";
+				
+						}
+				
+						$where_to=$where.$where2;
 				
 					}
 				
@@ -74,11 +83,11 @@ if(isset($_GET['action'])){
 				
 					$limit = " LIMIT   '$per_page' OFFSET '$offset'";
 				
-					$resultSet=$db->getCondicionesPag($columnas, $tablas, $where_to, $id, $limit);
+					$resultSet=$db->getCondicionesPagDesc($columnas, $tablas, $where_to, $id, $limit);
 					$count_query   = $cantidadResult;
 					$total_pages = ceil($cantidadResult/$per_page);
 				
-					 
+				
 				
 				
 				
@@ -91,40 +100,31 @@ if(isset($_GET['action'])){
 						$html.='</div>';
 						$html.='<div class="col-lg-12 col-md-12 col-xs-12">';
 						$html.='<section style="height:380px; overflow-y:scroll;">';
-						$html.= "<table id='tabla_usuarios' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
+						$html.= "<table id='tabla_sesiones' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
 						$html.= "<thead>";
 						$html.= "<tr>";
 						$html.='<th style="text-align: left;  font-size: 12px;"></th>';
-						$html.='<th style="text-align: left;  font-size: 12px;"></th>';
-						$html.='<th style="text-align: left;  font-size: 12px;"></th>';
 						$html.='<th style="text-align: left;  font-size: 12px;">Cedula</th>';
 						$html.='<th style="text-align: left;  font-size: 12px;">Nombre</th>';
-						$html.='<th style="text-align: left;  font-size: 12px;">Teléfono</th>';
-						$html.='<th style="text-align: left;  font-size: 12px;">Celular</th>';
 						$html.='<th style="text-align: left;  font-size: 12px;">Correo</th>';
-						$html.='<th style="text-align: left;  font-size: 12px;">Rol</th>';
-						$html.='<th style="text-align: left;  font-size: 12px;">Estado</th>';
-				       
+						$html.='<th style="text-align: left;  font-size: 12px;">Ip</th>';
+						$html.='<th style="text-align: left;  font-size: 12px;">Fecha Ultimo Acceso</th>';
 						$html.='</tr>';
 						$html.='</thead>';
 						$html.='<tbody>';
-						 
+							
 						$i=0;
 				
 						foreach ($resultSet as $res)
 						{
 							$i++;
 							$html.='<tr>';
-							$html.='<td style="font-size: 11px;"><img src="view/DevuelveImagenView.php?id_valor='.$res->id_usuarios.'&id_nombre=id_usuarios&tabla=usuarios&campo=fotografia_usuarios" width="70" height="50"></td>';
-							$html.='<td style="font-size: 18px;"><span class="pull-right"><a href="index.php?controller=Usuarios&action=search&cedula='.$res->cedula_usuarios.'" target="_blank" class="btn btn-warning" style="font-size:65%;"><i class="glyphicon glyphicon-eye-open"></i></a></span></td>';
 							$html.='<td style="font-size: 11px;">'.$i.'</td>';
 							$html.='<td style="font-size: 11px;">'.$res->cedula_usuarios.'</td>';
 							$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'</td>';
-							$html.='<td style="font-size: 11px;">'.$res->telefono_usuarios.'</td>';
-							$html.='<td style="font-size: 11px;">'.$res->celular_usuarios.'</td>';
 							$html.='<td style="font-size: 11px;">'.$res->correo_usuarios.'</td>';
-							$html.='<td style="font-size: 11px;">'.$res->nombre_rol.'</td>';
-							$html.='<td style="font-size: 11px;">'.$res->nombre_estado.'</td>';
+							$html.='<td style="font-size: 11px;">'.$res->ip_sesiones.'</td>';
+							$html.='<td style="font-size: 11px;">'.date("d/m/Y", strtotime($res->creado)).'</td>';
 							$html.='</tr>';
 						}
 				
@@ -133,19 +133,20 @@ if(isset($_GET['action'])){
 						$html.='</table>';
 						$html.='</section></div>';
 						$html.='<div class="table-pagination pull-right">';
-						$html.=''. $db->paginate("index.php", $page, $total_pages, $adjacents).'';
+						$html.=''. $db->paginate_sesiones("index.php", $page, $total_pages, $adjacents).'';
 						$html.='</div>';
 				
 				
-						 
 					}else{
 						$html.='<div class="col-lg-6 col-md-6 col-xs-12">';
 						$html.='<div class="alert alert-warning alert-dismissable" style="margin-top:40px;">';
 						$html.='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
-						$html.='<h4>Aviso!!!</h4> <b>Actualmente no hay usuarios registrados...</b>';
+						$html.='<h4>Aviso!!!</h4> <b>Actualmente no hay sesiones registradas...</b>';
 						$html.='</div>';
 						$html.='</div>';
 					}
+				
+				
 				
 				$resultadosJson = json_encode($html);
 				echo $_GET['jsoncallback'] . '(' . $resultadosJson . ');';
