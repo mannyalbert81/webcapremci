@@ -93,14 +93,11 @@ class PermisosRolesController extends ControladorBase{
 			}
 			
 		}
-		else
-		{
-	
-			$this->view("ErrorSesion",array(
-					"resultSet"=>""
-		
-						));
-		}
+	else{
+       	
+       	$this->redirect("Usuarios","sesion_caducada");
+       	
+       }
 	
 	}
 	

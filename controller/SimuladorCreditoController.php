@@ -98,14 +98,11 @@ class SimuladorCreditoController extends ControladorBase{
 			}
 				
 		}
-		else 
-		{
-				$this->view("Login",array(
-						"resultSet"=>""
-			
-				));
-		
-		}
+	else{
+       	
+       	$this->redirect("Usuarios","sesion_caducada");
+       	
+       }
 	
 	}
 	

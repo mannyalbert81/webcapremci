@@ -2563,14 +2563,11 @@ public function index(){
 			
 		
 		}
-		else 
-		{
-			$this->view("ErrorSesion",array(
-					"resultSet"=>""
-		
-			));
-			
-		}
+		else{
+       	
+       	$this->redirect("Usuarios","sesion_caducada");
+       	
+       }
 		
 	}
 	
@@ -3446,17 +3443,10 @@ public function index(){
     		
     		 
     	}else{
-    	
-    	$error = TRUE;
-	   	$mensaje = "Te sesión a caducado, vuelve a iniciar sesión.";
-	   		
-	   	$this->view("Login",array(
-	   			"resultSet"=>"$mensaje", "error"=>$error
-	   	));
-	   		
-	   		
-	   	die();
-    	}
+       	
+       	$this->redirect("Usuarios","sesion_caducada");
+       	
+       }
     }
     
     
@@ -3796,13 +3786,11 @@ public function index(){
 				
 
 		}
-		else
-		{
-			$this->view("ErrorSesion",array(
-			"resultSet"=>""
-			));
-					
-		}
+	else{
+       	
+       	$this->redirect("Usuarios","sesion_caducada");
+       	
+       }
 		
 	}
 	
