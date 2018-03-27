@@ -96,7 +96,7 @@ if(isset($_GET['cargar'])){
 				
 						}
 				
-						$html.='<center><h5>Total Cuenta Individual Actualizada al '.$fecha.' : $'.$total.'</h5></center>';
+						$html.='<center style="margin-top:30px; text-align: center;"><h5>Total Cuenta Individual Actualizada al '.$fecha.' : $'.$total.'</h5></center>';
 						$html.='<div class="col-lg-12 col-md-12 col-xs-12" style="margin-top:20px; text-align: center;">';
 						$html.='<a href="index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=cta_individual" class="btn btn-success" target="_blank"><i class="glyphicon glyphicon-print"></i> Imprimir</a>';
 						$html.='</div>';
@@ -252,7 +252,7 @@ if(isset($_GET['cargar'])){
 				
 						}
 				
-						$html.='<center><h5>Total Cuenta Por Desembolsar Actualizada al '.$fecha.' : $'.$total.'</h5></center>';
+						$html.='<center style="margin-top:30px; text-align: center;"><h5>Total Cuenta Por Desembolsar Actualizada al '.$fecha.' : $'.$total.'</h5></center>';
 						$html.='<div class="col-lg-12 col-md-12 col-xs-12" style="margin-top:20px; text-align: center;">';
 						$html.='<a href="index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=cta_desembolsar" class="btn btn-success" target="_blank"><i class="glyphicon glyphicon-print"></i> Imprimir</a>';
 						$html.='</div>';
@@ -416,7 +416,7 @@ if(isset($_GET['cargar'])){
 							if($cantidadResult>0)
 							{
 									
-								$html.='<div class="col-lg-12 col-xs-12 col-md-12">';
+								$html.='<div class="col-lg-12 col-xs-12 col-md-12" style="margin-top:20px;">';
 								$html.='<div class="row">';
 								$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
 								$html.='<div class="form-group">';
@@ -692,7 +692,7 @@ if(isset($_GET['cargar'])){
 							if($cantidadResult>0)
 							{
 				
-								$html.='<div class="col-lg-12 col-xs-12 col-md-12">';
+								$html.='<div class="col-lg-12 col-xs-12 col-md-12" style="margin-top:20px;">';
 								$html.='<div class="row">';
 								$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
 								$html.='<div class="form-group">';
@@ -982,7 +982,7 @@ if(isset($_GET['cargar'])){
 							if($cantidadResult>0)
 							{
 				
-								$html.='<div class="col-lg-12 col-xs-12 col-md-12">';
+								$html.='<div class="col-lg-12 col-xs-12 col-md-12" style="margin-top:20px;">';
 								$html.='<div class="row">';
 								$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
 								$html.='<div class="form-group">';
@@ -1259,7 +1259,7 @@ if(isset($_GET['cargar'])){
 							if($cantidadResult>0)
 							{
 				
-								$html.='<div class="col-lg-12 col-xs-12 col-md-12">';
+								$html.='<div class="col-lg-12 col-xs-12 col-md-12" style="margin-top:20px;">';
 								$html.='<div class="row">';
 								$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
 								$html.='<div class="form-group">';
@@ -1538,7 +1538,7 @@ if(isset($_GET['cargar'])){
 							if($cantidadResult>0)
 							{
 				
-								$html.='<div class="col-lg-12 col-xs-12 col-md-12">';
+								$html.='<div class="col-lg-12 col-xs-12 col-md-12" style="margin-top:20px;">';
 								$html.='<div class="row">';
 								$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
 								$html.='<div class="form-group">';
@@ -1818,7 +1818,7 @@ if(isset($_GET['cargar'])){
 							if($cantidadResult>0)
 							{
 				
-								$html.='<div class="col-lg-12 col-xs-12 col-md-12">';
+								$html.='<div class="col-lg-12 col-xs-12 col-md-12" style="margin-top:20px;">';
 								$html.='<div class="row">';
 								$html.='<div class="col-lg-2 col-xs-12 col-md-2">';
 								$html.='<div class="form-group">';
