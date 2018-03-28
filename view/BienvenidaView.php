@@ -86,6 +86,11 @@
             <div id='pone_acuerdo_pago'></div>
             <div id='pone_credito_refinanciamiento'></div>
 	       </div>
+	       
+	       
+	      <div class="row tile_count">
+          <div id='pone_publicidad'></div> 
+          </div>
           
         </div>
           <!-- /top tiles -->
@@ -152,6 +157,7 @@
         		   pone_credito_hipotecario();
         		   pone_acuerdo_pago();
         		   pone_credito_refinanciamiento();	
+        		   cargar_banner();
         		    
 	   			});
 
@@ -358,6 +364,27 @@
         		                 },
         		                error: function(jqXHR,estado,error){
         		                  $("#pone_credito_refinanciamiento").html("Ocurrio un error al cargar la informacion de crédito refinanciamiento..."+estado+"    "+error);
+        		                }
+        		              });
+        		     })
+        		  }
+
+
+
+        	   function cargar_banner(){
+        		   $(document).ready( function (){
+        		       $.ajax({
+        		                 beforeSend: function(objeto){
+        		                   $("#pone_publicidad").html('')
+        		                 },
+        		                 url: 'index.php?controller=Usuarios&action=cargar_banner',
+        		                 type: 'POST',
+        		                 data: null,
+        		                 success: function(x){
+        		                   $("#pone_publicidad").html(x);
+        		                 },
+        		                error: function(jqXHR,estado,error){
+        		                  $("#pone_publicidad").html("Ocurrio un error al cargar la informacion de publicidad..."+estado+"    "+error);
         		                }
         		              });
         		     })

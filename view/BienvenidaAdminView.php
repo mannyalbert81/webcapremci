@@ -32,8 +32,8 @@
 			<!-- Datatables -->
 		    <link href="view/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
 		    
-		   		
-
+		   	
+		   	
 			<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -77,33 +77,26 @@
            
             
           </div>
-        </div>
-          <!-- /top tiles -->
-
-
-          <br />
-
-	
-                <!-- End to do list -->
-
-                <!-- end of weather widget -->
-              
-            
+          
+          
+         
+          <div class="row tile_count">
+          <div id='pone_publicidad'></div> 
           </div>
         </div>
-        <!-- /page content -->
-
-        <!-- footer content -->
-       
-      </div>
-    </div>
-
+         
+            
+          </div>
+          
+           
+          
+        </div>
+   
+ 
    
     
     <!-- Bootstrap -->
     <script src="view/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    
-    
     
     <!-- NProgress -->
     <script src="view/vendors/nprogress/nprogress.js"></script>
@@ -131,6 +124,7 @@
         		   pone_roles();
         		   pone_permisos_roles();
         		   cargar_sesiones();
+        		   cargar_banner();
 	   			});
 
 
@@ -228,6 +222,27 @@
         		                 },
         		                error: function(jqXHR,estado,error){
         		                  $("#pone_sesiones").html("Ocurrio un error al cargar la informacion de sesiones..."+estado+"    "+error);
+        		                }
+        		              });
+        		     })
+        		  }
+
+
+
+        	   function cargar_banner(){
+        		   $(document).ready( function (){
+        		       $.ajax({
+        		                 beforeSend: function(objeto){
+        		                   $("#pone_publicidad").html('')
+        		                 },
+        		                 url: 'index.php?controller=Usuarios&action=cargar_banner',
+        		                 type: 'POST',
+        		                 data: null,
+        		                 success: function(x){
+        		                   $("#pone_publicidad").html(x);
+        		                 },
+        		                error: function(jqXHR,estado,error){
+        		                  $("#pone_publicidad").html("Ocurrio un error al cargar la informacion de publicidad..."+estado+"    "+error);
         		                }
         		              });
         		     })

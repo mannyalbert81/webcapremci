@@ -3874,7 +3874,7 @@ public function index(){
 		if($i>0)
 		{
 	
-			$html .= "<div class='col-lg-3 col-xs-6'>";
+			$html .= "<div class='col-lg-3 col-xs-12'>";
 			$html .= "<div class='small-box bg-red'>";
 			$html .= "<div class='inner'>";
 			$html .= "<h3>$i</h3>";
@@ -3962,6 +3962,100 @@ public function index(){
 	
 	
 	
+	
+	public function cargar_banner(){
+		
+		session_start();
+		$publicidad_movil = new PublicidadMovilModel();
+		$columnas = "id_publicidad_movil";
+		$tablas   = "publicidad_movil";
+		$where    = "1=1";
+		$id       = "id_publicidad_movil";
+		$resultSet = $publicidad_movil->getCondiciones($columnas ,$tablas ,$where, $id);
+		
+		
+	
+		$i=count($resultSet);
+		
+		$html="";
+		if($i>0)
+		{
+		
+		
+			$html .= "<div  class='col-xs-12 col-md-12 col-lg-12'>";
+			$html .= "<div class='col-xs-12 col-md-4 col-lg-4'>";
+			$html .= "</div>";
+			$html .= "<div class='col-xs-12 col-md-3 col-lg-3'>";
+			$html .= "<div id='myCarousel2' class='carousel slide' data-ride='carousel'>";
+			$html .= "<ol class='carousel-indicators'>";
+			$html .= "<li data-target='#myCarousel1' data-slide-to='0' class='active'></li>";
+			$html .= "<li data-target='#myCarousel2' data-slide-to='0' ></li>";
+			$html .= "</ol>";
+			
+			$html .= "<div class='carousel-inner' role='listbox'>";
+			
+			if(!empty($resultSet)){
+				
+				$numero=0;
+				foreach ($resultSet as $res){
+					
+					$numero++;
+					
+					if($numero==1){
+						
+						
+						$html .= "<div class='item active'>";
+						$html .= '<img src="view/DevuelveImagenView.php?id_valor='.$res->id_publicidad_movil.'&id_nombre=id_publicidad_movil&tabla=publicidad_movil&campo=imagen_baner" style="width:100%; height:100%; ">';
+						$html .= "</div>";
+						
+					}else{
+						
+						
+						
+						$html .= "<div class='item'>";
+						$html .= '<img src="view/DevuelveImagenView.php?id_valor='.$res->id_publicidad_movil.'&id_nombre=id_publicidad_movil&tabla=publicidad_movil&campo=imagen_baner" style="width:100%; height:100%;">';
+						$html .= "</div>";
+						
+					}
+					
+					
+				}
+				
+				
+			}
+			
+			
+		
+			
+			
+			$html .= "<a class='left carousel-control' href='#myCarousel2' role='button' data-slide='prev'>";
+			$html .= "<span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span>";
+			$html .= "<span class='sr-only'>Previous</span>";
+			$html .= "</a>";
+			$html .= "<a class='right carousel-control' href='#myCarousel2' role='button' data-slide='next'>";
+			$html .= "<span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>";
+			$html .= "<span class='sr-only'>Next</span>";
+			$html .= "</a>";
+			$html .= "</div>";
+			$html .= "</div>";
+			$html .= "</div>";
+			$html .= "<div class='col-xs-12 col-md-4 col-lg-4'>";
+			$html .= "</div>";
+			$html .= "</div>";
+			
+			
+		
+		
+		}else{
+		
+			$html = "<b>Actualmente no hay publicidad registrada...</b>";
+		}
+		
+		echo $html;
+		die();
+		
+		
+	}
 	
 	
 	
