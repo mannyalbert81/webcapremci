@@ -44,6 +44,7 @@ $controladores=$_SESSION['controladores'];
                       <li style="<?php echo getcontrolador("Roles",$controladores) ?>"><a href="index.php?controller=Roles&action=index">Roles de Usuario</a></li>
                       <li style="<?php echo getcontrolador("PermisosRoles",$controladores) ?>"><a href="index.php?controller=PermisosRoles&action=index">Permisos Roles</a></li>
                       <li style="<?php echo getcontrolador("Sesiones",$controladores) ?>"><a href="index.php?controller=Sesiones&action=index">Sesiones</a></li>
+                      <li style="<?php echo getcontrolador("PublicidadMovil",$controladores) ?>"><a href="index.php?controller=PublicidadMovil&action=index">Publicidad Movil</a></li>
                       
                       </ul>
                   </li>
