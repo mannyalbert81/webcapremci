@@ -113,7 +113,7 @@ if(isset($_GET['action'])){
 						{
 							$i++;
 							$html.='<tr>';
-							$html.='<td style="font-size: 11px;"><img src="view/DevuelveImagenView.php?id_valor='.$res->id_usuarios.'&id_nombre=id_usuarios&tabla=usuarios&campo=fotografia_usuarios" width="70" height="50"></td>';
+							$html.='<td style="font-size: 11px;"><img src="../view/DevuelveImagenView.php?id_valor='.$res->id_usuarios.'&id_nombre=id_usuarios&tabla=usuarios&campo=fotografia_usuarios" width="70" height="50"></td>';
 							$html.='<td style="font-size: 18px;"><span class="pull-right"><a href="index.php?controller=Usuarios&action=search&cedula='.$res->cedula_usuarios.'" target="_blank" class="btn btn-warning" style="font-size:65%;"><i class="glyphicon glyphicon-eye-open"></i></a></span></td>';
 							$html.='<td style="font-size: 11px;">'.$i.'</td>';
 							$html.='<td style="font-size: 11px;">'.$res->cedula_usuarios.'</td>';
