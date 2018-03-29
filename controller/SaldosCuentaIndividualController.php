@@ -4349,6 +4349,44 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	
 	
+	public function attachment(){
+		
+		
+		session_start();
+		
+		if (isset(  $_SESSION['nombre_usuarios']) )
+		{
+			
+			
+			//prueba con ruta arbitraria
+			$mi_pdf = 'C:\Users\Usuario\Documents/PRESENTACION WEB DIC-2017.pdf';
+			
+			if(file_exists($mi_pdf))
+			{
+				header('Content-type: application/pdf');
+				header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				readfile($mi_pdf);
+			}else
+			{
+				echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR SU PDF, INTENTELO MAS TARDE.';
+			}
+			
+			
+			
+		}else{
+			
+			$this->redirect("Usuarios","sesion_caducada");
+		}
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
 	
 	
 	

@@ -50,12 +50,8 @@
 			die();
 		}
 	   
-		
-		
-		
+			
 	}
-	
-	
 	
 	
 	
@@ -77,13 +73,10 @@
 		{
 		
 		
-			$html .= "<div  class='col-xs-12 col-md-12 col-lg-12'>";
-			$html .= "<div class='col-xs-12 col-md-4 col-lg-4'>";
-			$html .= "</div>";
-			$html .= "<div class='col-xs-12 col-md-3 col-lg-3'>";
+			
 			$html .= "<div id='myCarousel2' class='carousel slide' data-ride='carousel'>";
 			$html .= "<ol class='carousel-indicators'>";
-			$html .= "<li data-target='#myCarousel1' data-slide-to='0' class='active'></li>";
+			$html .= "<li data-target='#myCarousel2' data-slide-to='0' class='active'></li>";
 			$html .= "<li data-target='#myCarousel2' data-slide-to='0' ></li>";
 			$html .= "</ol>";
 				
@@ -119,12 +112,8 @@
 					$imgficha="";
 				}
 		
-		
 			}
-				
-				
-		
-				
+			
 				
 			$html .= "<a class='left carousel-control' href='#myCarousel2' role='button' data-slide='prev'>";
 			$html .= "<span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span>";
@@ -136,14 +125,9 @@
 			$html .= "</a>";
 			$html .= "</div>";
 			$html .= "</div>";
-			$html .= "</div>";
-			$html .= "<div class='col-xs-12 col-md-4 col-lg-4'>";
-			$html .= "</div>";
-			$html .= "</div>";
+			
 				
-				
-		
-		
+			
 		}else{
 		
 			$html = "<b>Actualmente no hay publicidad registrada...</b>";

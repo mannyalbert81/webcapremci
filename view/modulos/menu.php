@@ -37,7 +37,7 @@ $controladores=$_SESSION['controladores'];
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li  style="<?php echo getcontrolador("MenuAdministracion",$controladores) ?>"  ><a    ><i class="fa fa-home"></i> Administración <span class="fa fa-chevron-down"></span></a>
+                  <li  style="<?php echo getcontrolador("MenuAdministracion",$controladores) ?>"  ><a    ><i class="fa fa-users"></i> Administración <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li style="<?php echo getcontrolador("Usuarios",$controladores) ?>"><a href="index.php?controller=Usuarios&action=index">Usuarios</a></li>
                       <li style="<?php echo getcontrolador("Controladores",$controladores) ?>"><a href="index.php?controller=Controladores&action=index">Controladores</a></li>
@@ -49,11 +49,18 @@ $controladores=$_SESSION['controladores'];
                       </ul>
                   </li>
                   
-                  <li  style="<?php echo getcontrolador("MenuServiciosLinea",$controladores) ?>"  ><a    ><i class="fa fa-home"></i> Servicios en Linea <span class="fa fa-chevron-down"></span></a>
+                  <li  style="<?php echo getcontrolador("MenuServiciosLinea",$controladores) ?>"  ><a    ><i class="fa fa-bars"></i> Servicios en Linea <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li style="<?php echo getcontrolador("SaldosCuentaIndividual",$controladores) ?>"><a href="index.php?controller=SaldosCuentaIndividual&action=index">Consulta de Saldos Cuenta Individual y Créditos</a></li>
                       <!--<li style="<?php echo getcontrolador("Usuarios",$controladores) ?>"><a href="index.php?controller=Usuarios&action=resetear_clave">Solicita tu clave personal</a></li>-->
                       <li style="<?php echo getcontrolador("SimuladorCredito",$controladores) ?>"><a href="index.php?controller=SimuladorCredito&action=index">Simulador de Crédito</a></li>
+                      </ul>
+                  </li>
+                  
+                  
+                    <li ><a    ><i class="fa fa-file-o"></i> Documentos <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment" target="_blank">Estados Financieros al 31 de Diciembre del 2017</a></li>
                       </ul>
                   </li>
                 </ul>
