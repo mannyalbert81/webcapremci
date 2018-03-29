@@ -93,14 +93,14 @@
            
            
        <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-          <div class="modal-dialog">
+          <div class="modal-dialog modal-lg">
         <div class="modal-content">
            <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               <h3>BIENVENIDO A CAPREMCI</h3>
            </div>
            <div class="modal-body">
-             <img src="http://static.batanga.com/sites/default/files/styles/full/public/universo-observable-en-una-imagen-3.png?itok=sBpiT7gx" class="img-rounded" alt="Cinque Terre" width="304" height="236" />   
+             <img src="view/images/educacion2017.jpg" class="img-rounded" alt="Cinque Terre" style="max-width:100%"/>   
           </div>
            <div class="modal-footer">
           <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>
