@@ -148,6 +148,7 @@
      
         	   $(document).ready( function (){
         		   pone_espera();
+        		   $("#mostrarmodal").modal("show");
         		   pone_cta_individual();
         		   pone_cta_desembolsar();
         		   pone_alerta_actualizacion();
@@ -161,6 +162,11 @@
         		    
 	   			});
 
+
+        	   
+        	        
+        	     
+        	    
 
         	   function pone_espera(){
 
@@ -178,7 +184,7 @@
         	        		}
         	    });
             	
-		        setTimeout($.unblockUI, 3000); 
+		        setTimeout($.unblockUI, 1500); 
 		        
         	   }
         	   

@@ -4401,14 +4401,31 @@ class SaldosCuentaIndividualController extends ControladorBase{
 						
 						
 				}
-					
+				
+				
+				
+				if($fec=="fec_2018"){
+						
+					$directorio = $_SERVER ['DOCUMENT_ROOT'];
+					 
+					$mi_pdf = $directorio.'/documentos/PRESENTACION WEB FEB-2017.pdf';
+						
+					if(file_exists($mi_pdf))
+					{
+						header('Content-type: application/pdf');
+						header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+						readfile($mi_pdf);
+					}else
+					{
+						echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+					}
+						
+						
+				}
 					
 					
 		
 			}
-				
-				
-				
 				
 				
 				

@@ -83,11 +83,33 @@
           <div class="row tile_count">
           <div id='pone_publicidad'></div> 
           </div>
-        </div>
+         </div>
          
             
           </div>
           
+           
+           
+           
+           
+       <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+          <div class="modal-dialog">
+        <div class="modal-content">
+           <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h3>BIENVENIDO A CAPREMCI</h3>
+           </div>
+           <div class="modal-body">
+             <img src="http://static.batanga.com/sites/default/files/styles/full/public/universo-observable-en-una-imagen-3.png?itok=sBpiT7gx" class="img-rounded" alt="Cinque Terre" width="304" height="236" />   
+          </div>
+           <div class="modal-footer">
+          <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>
+           </div>
+	      </div>
+	     </div>
+	   </div>
+           
+           
            
           
         </div>
@@ -120,6 +142,7 @@
      
         	   $(document).ready( function (){
         		   pone_espera();
+        		   $("#mostrarmodal").modal("show");
         		   pone_users();
         		   pone_roles();
         		   pone_permisos_roles();
@@ -144,7 +167,7 @@
         	        		}
         	    });
             	
-		        setTimeout($.unblockUI, 3000); 
+		        setTimeout($.unblockUI, 1500); 
 		        
         	   }
         	   

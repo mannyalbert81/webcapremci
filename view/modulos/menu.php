@@ -62,7 +62,9 @@ $controladores=$_SESSION['controladores'];
                     <ul class="nav child_menu">
                        <li ><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=dic_2017" target="_blank">Estados Financieros al 31 de Diciembre del 2017</a></li>
                       <li ><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=ene_2018" target="_blank">Estados Financieros al 31 de Enero del 2018</a></li>
+                       <li ><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=fec_2018" target="_blank">Estados Financieros al 28 de Febrero del 2018</a></li>
                       
+					 
                     </ul>
                   </li>
                 </ul>
