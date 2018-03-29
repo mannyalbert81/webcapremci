@@ -4351,30 +4351,71 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	public function attachment(){
 		
-		
+
+
 		session_start();
 		
 		if (isset(  $_SESSION['nombre_usuarios']) )
 		{
-			
-			
-			//prueba con ruta arbitraria
-			$mi_pdf = 'C:\Users\Usuario\Documents/PRESENTACION WEB DIC-2017.pdf';
-			
-			if(file_exists($mi_pdf))
-			{
-				header('Content-type: application/pdf');
-				header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
-				readfile($mi_pdf);
-			}else
-			{
-				echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR SU PDF, INTENTELO MAS TARDE.';
+			if(isset($_GET["fec"])){
+		
+				$fec=$_GET["fec"];
+		
+				if($fec=="dic_2017"){
+						
+					$directorio = $_SERVER ['DOCUMENT_ROOT'];
+					 
+					$mi_pdf = $directorio.'/documentos/PRESENTACION WEB DIC-2017.pdf';
+						
+					if(file_exists($mi_pdf))
+					{
+						header('Content-type: application/pdf');
+						header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+						readfile($mi_pdf);
+					}else
+					{
+						echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+					}
+						
+						
+				}
+		
+		
+		
+		
+				if($fec=="ene_2018"){
+						
+					$directorio = $_SERVER ['DOCUMENT_ROOT'];
+					 
+					$mi_pdf = $directorio.'/documentos/PRESENTACION WEB ENE-2017.pdf';
+						
+					if(file_exists($mi_pdf))
+					{
+						header('Content-type: application/pdf');
+						header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+						readfile($mi_pdf);
+					}else
+					{
+						echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+					}
+						
+						
+				}
+					
+					
+					
+		
 			}
-			
-			
-			
+				
+				
+				
+				
+				
+				
+				
+				
 		}else{
-			
+				
 			$this->redirect("Usuarios","sesion_caducada");
 		}
 		
