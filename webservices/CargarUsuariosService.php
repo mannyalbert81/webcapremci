@@ -77,9 +77,6 @@ if(isset($_GET['action'])){
 					$total_pages = ceil($cantidadResult/$per_page);
 				
 					 
-				
-				
-				
 					if($cantidadResult>0)
 					{
 				
@@ -102,8 +99,7 @@ if(isset($_GET['action'])){
 						$html.='<th style="text-align: left;  font-size: 12px;">Correo</th>';
 						$html.='<th style="text-align: left;  font-size: 12px;">Rol</th>';
 						$html.='<th style="text-align: left;  font-size: 12px;">Estado</th>';
-				       
-						$html.='</tr>';
+				        $html.='</tr>';
 						$html.='</thead>';
 						$html.='<tbody>';
 						 
@@ -117,7 +113,7 @@ if(isset($_GET['action'])){
 							$i++;
 							$html.='<tr>';
 							$html.='<td style="font-size: 11px;"><img src="'.$imgficha.'" width="70" height="50"></td>';
-							$html.='<td style="font-size: 18px;"><span class="pull-right"><a href="index.php?controller=Usuarios&action=search&cedula='.$res->cedula_usuarios.'" target="_blank" class="btn btn-warning" style="font-size:65%;"><i class="glyphicon glyphicon-eye-open"></i></a></span></td>';
+							$html.='<td style="font-size: 18px;"><span class="pull-right"><a href="ConsultaAdmin.html?cedula_participe='.$res->cedula_usuarios.'" class="btn btn-warning" style="font-size:65%;"><i class="glyphicon glyphicon-eye-open"></i></a></span></td>';
 							$html.='<td style="font-size: 11px;">'.$i.'</td>';
 							$html.='<td style="font-size: 11px;">'.$res->cedula_usuarios.'</td>';
 							$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'</td>';
@@ -157,16 +153,10 @@ if(isset($_GET['action'])){
 			}	
 			
 				
-}		
+		}		
 			
 			
-}
-
-
-
-
-
-
+	}
 
 
 
