@@ -4351,17 +4351,20 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	public function attachment(){
 		
-
-
 		session_start();
-		
+		$consulta_documentos= new ConsultaDocumentosModel();
 		if (isset(  $_SESSION['nombre_usuarios']) )
 		{
+			
+			
+			$id_usuarios=$_SESSION['id_usuarios'];
+			
 			if(isset($_GET["fec"])){
 		
 				$fec=$_GET["fec"];
 		
 				if($fec=="dic_2017"){
+					
 						
 					$directorio = $_SERVER ['DOCUMENT_ROOT'];
 					 
@@ -4369,12 +4372,20 @@ class SaldosCuentaIndividualController extends ControladorBase{
 						
 					if(file_exists($mi_pdf))
 					{
+						
+						$funcion = "consulta_documentos";
+						$parametros = " '$id_usuarios', 'Estados Financieros al 31 de Diciembre del 2017'";
+						$consulta_documentos->setFuncion($funcion);
+						$consulta_documentos->setParametros($parametros);
+						$resultado=$consulta_documentos->Insert();
+						
+						
 						header('Content-type: application/pdf');
 						header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
 						readfile($mi_pdf);
 					}else
 					{
-						echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+						echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
 					}
 						
 						
@@ -4391,12 +4402,20 @@ class SaldosCuentaIndividualController extends ControladorBase{
 						
 					if(file_exists($mi_pdf))
 					{
+						
+						$funcion = "consulta_documentos";
+						$parametros = " '$id_usuarios', 'Estados Financieros al 31 de Enero del 2018'";
+						$consulta_documentos->setFuncion($funcion);
+						$consulta_documentos->setParametros($parametros);
+						$resultado=$consulta_documentos->Insert();
+						
+						
 						header('Content-type: application/pdf');
 						header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
 						readfile($mi_pdf);
 					}else
 					{
-						echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+						echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
 					}
 						
 						
@@ -4412,24 +4431,144 @@ class SaldosCuentaIndividualController extends ControladorBase{
 						
 					if(file_exists($mi_pdf))
 					{
+						
+						$funcion = "consulta_documentos";
+						$parametros = " '$id_usuarios', 'Estados Financieros al 28 de Febrero del 2018'";
+						$consulta_documentos->setFuncion($funcion);
+						$consulta_documentos->setParametros($parametros);
+						$resultado=$consulta_documentos->Insert();
+						
+						
 						header('Content-type: application/pdf');
 						header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
 						readfile($mi_pdf);
 					}else
 					{
-						echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+						echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
 					}
 						
 						
 				}
-					
+				
+				
+				
+				
+				
+				if($fec=="dic_2014_Informe_Adtitores_Independientes"){
+				
+					$directorio = $_SERVER ['DOCUMENT_ROOT'];
+				
+					$mi_pdf = $directorio.'/documentos/ESTADOS FINANCIEROS1290318.pdf';
+				
+					if(file_exists($mi_pdf))
+					{
+						
+						
+						$funcion = "consulta_documentos";
+						$parametros = " '$id_usuarios', 'Informe de los auditores independientes 31-12-2014'";
+						$consulta_documentos->setFuncion($funcion);
+						$consulta_documentos->setParametros($parametros);
+						$resultado=$consulta_documentos->Insert();
+						
+						
+						
+						header('Content-type: application/pdf');
+						header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+						readfile($mi_pdf);
+					}else
+					{
+						echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+					}
+				
+				
+				}
+				
+				
+				if($fec=="dic_2014_Informe_Confidencial"){
+				
+					$directorio = $_SERVER ['DOCUMENT_ROOT'];
+				
+					$mi_pdf = $directorio.'/documentos/INFORME CONFIDENCIAL SOBRE EVALUCION CONTROL INTERNO1290318.pdf';
+				
+					if(file_exists($mi_pdf))
+					{
+						
+						$funcion = "consulta_documentos";
+						$parametros = " '$id_usuarios', 'Informe Confidencial Sobre la Evaluación del Control Interno 31-12-2014'";
+						$consulta_documentos->setFuncion($funcion);
+						$consulta_documentos->setParametros($parametros);
+						$resultado=$consulta_documentos->Insert();
+						
+						
+						header('Content-type: application/pdf');
+						header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+						readfile($mi_pdf);
+					}else
+					{
+						echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+					}
+				
+				
+				}
+				
+				
+				
+				if($fec=="dic_2014_Informe_Procedimientos"){
+				
+					$directorio = $_SERVER ['DOCUMENT_ROOT'];
+				
+					$mi_pdf = $directorio.'/documentos/INFORME DE PROCEDIMIENTOS PREVIAMNETE CONVENIDOS1290318.pdf';
+				
+					if(file_exists($mi_pdf))
+					{
+						
+						$funcion = "consulta_documentos";
+						$parametros = " '$id_usuarios', 'Informe de Procedimientos Previamente Convenidos 31-12-2014'";
+						$consulta_documentos->setFuncion($funcion);
+						$consulta_documentos->setParametros($parametros);
+						$resultado=$consulta_documentos->Insert();
+						
+						header('Content-type: application/pdf');
+						header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+						readfile($mi_pdf);
+					}else
+					{
+						echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+					}
+				
+				
+				}
+				
+				
+				
+				if($fec=="dic_2014_Informe_Auditoría_Rubro"){
+				
+					$directorio = $_SERVER ['DOCUMENT_ROOT'];
+				
+					$mi_pdf = $directorio.'/documentos/RUBRO DE INVERSIONES PRIVATIVAS1290318.pdf';
+				
+					if(file_exists($mi_pdf))
+					{
+						$funcion = "consulta_documentos";
+						$parametros = " '$id_usuarios', 'Informe de Auditoría al Rubro de Inversiones Privativas 31-12-2014'";
+						$consulta_documentos->setFuncion($funcion);
+						$consulta_documentos->setParametros($parametros);
+						$resultado=$consulta_documentos->Insert();
+						
+						header('Content-type: application/pdf');
+						header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+						readfile($mi_pdf);
+					}else
+					{
+						echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+					}
+				
+				
+				}
+				
 					
 		
 			}
-				
-				
-				
-				
 				
 		}else{
 				

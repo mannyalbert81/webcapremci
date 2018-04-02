@@ -2,7 +2,7 @@
 <html lang="es">
       <head>
         <meta charset="utf-8"/>
-        <title>Sesiones - Capremci</title>
+        <title>Consulta Documentos - Capremci</title>
 
 	
 		
@@ -38,7 +38,7 @@
      
         	   $(document).ready( function (){
         		   pone_espera();
-        		   load_sesiones(1);
+        		   load_consulta_documentos(1);
 
 
         		 			  $("#buscar").click(function() 
@@ -62,7 +62,7 @@
             					}else 
         				    	{
         				    		$("#mensaje_desde").fadeOut("slow"); //Muestra mensaje de error
-        				    		 load_sesiones(1);
+        				    		load_consulta_documentos(1);
         						} 
 
 
@@ -75,7 +75,7 @@
             					}else 
         				    	{
         				    		$("#mensaje_hasta").fadeOut("slow"); //Muestra mensaje de error
-        				    		 load_sesiones(1);
+        				    		load_consulta_documentos(1);
         						} 
         						
         				    					    
@@ -112,12 +112,12 @@
         	        		}
         	    });
             	
-		        setTimeout($.unblockUI, 3000); 
+		        setTimeout($.unblockUI, 1500); 
 		        
         	   }
 
         	   
-        	   function load_sesiones(pagina){
+        	   function load_consulta_documentos(pagina){
 
 
         		   var search=$("#search").val();
@@ -134,16 +134,16 @@
            	               beforeSend: function(objeto){
            	                 $("#load_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
            	               },
-           	               url: 'index.php?controller=Sesiones&action=search_sesiones&search='+search,
+           	               url: 'index.php?controller=ConsultaDocumentos&action=search_consulta_documentos&search='+search,
            	               type: 'POST',
            	               data: con_datos,
            	               success: function(x){
-           	                 $("#sesiones_registrados").html(x);
-           	               	 $("#tabla_sesiones").tablesorter(); 
+           	                 $("#consulta_documentos_registrados").html(x);
+           	               	 $("#tabla_consulta_documentos").tablesorter(); 
            	                 $("#load_registrados").html("");
            	               },
            	              error: function(jqXHR,estado,error){
-           	                $("#sesiones_registrados").html("Ocurrio un error al cargar la informacion de sesiones..."+estado+"    "+error);
+           	                $("#consulta_documentos_registrados").html("Ocurrio un error al cargar la informacion de consulta documentos..."+estado+"    "+error);
            	              }
            	            });
 
@@ -214,7 +214,7 @@
          <small><?php echo $fecha; ?></small>
          <ol class=" pull-right breadcrumb">
          <li><a href="<?php echo $helper->url("Usuarios","Bienvenida"); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-         <li class="active">Sesiones</li>
+         <li class="active">Consulta Documentos</li>
          </ol>
          </section>
        
@@ -223,7 +223,7 @@
 		<div class="col-md-12 col-lg-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Consulta<small>Sesiones</small></h2>
+                    <h2>Consulta<small>Documentos</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -265,12 +265,12 @@
 				
 					
 					<div class="pull-right" style="margin-right:11px;">
-					<input type="text" value="" class="form-control" id="search" name="search" onkeyup="load_sesiones(1)" placeholder="search.."/>
+					<input type="text" value="" class="form-control" id="search" name="search" onkeyup="load_consulta_documentos(1)" placeholder="search.."/>
 					</div>
 					
 					
 					<div id="load_registrados" ></div>	
-					<div id="sesiones_registrados"></div>	
+					<div id="consulta_documentos_registrados"></div>	
 				
 					
                   

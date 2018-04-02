@@ -74,8 +74,10 @@
             <div id='pone_roles'></div>
             <div id='pone_permisos'></div>
             <div id='pone_sesiones'></div>
-           
-            
+          </div>
+          
+          <div class="row tile_count">
+            <div id='pone_consulta_documentos'></div>
           </div>
           
           
@@ -147,6 +149,7 @@
         		   pone_roles();
         		   pone_permisos_roles();
         		   cargar_sesiones();
+        		   cargar_consulta_documentos();
         		   cargar_banner();
 	   			});
 
@@ -251,6 +254,25 @@
         		  }
 
 
+        	   function cargar_consulta_documentos(){
+        		   $(document).ready( function (){
+        		       $.ajax({
+        		                 beforeSend: function(objeto){
+        		                   $("#pone_consulta_documentos").html('')
+        		                 },
+        		                 url: 'index.php?controller=Usuarios&action=cargar_consulta_documentos',
+        		                 type: 'POST',
+        		                 data: null,
+        		                 success: function(x){
+        		                   $("#pone_consulta_documentos").html(x);
+        		                 },
+        		                error: function(jqXHR,estado,error){
+        		                  $("#pone_consulta_documentos").html("Ocurrio un error al cargar la informacion de consulta documentos..."+estado+"    "+error);
+        		                }
+        		              });
+        		     })
+        		  }
+        	   
 
         	   function cargar_banner(){
         		   $(document).ready( function (){

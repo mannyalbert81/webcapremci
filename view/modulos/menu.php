@@ -60,12 +60,21 @@ $controladores=$_SESSION['controladores'];
                   
                     <li ><a    ><i class="fa fa-file-o"></i> Documentos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                       <li ><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=dic_2017" target="_blank">Estados Financieros al 31 de Diciembre del 2017</a></li>
-                      <li ><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=ene_2018" target="_blank">Estados Financieros al 31 de Enero del 2018</a></li>
-                       <li ><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=fec_2018" target="_blank">Estados Financieros al 28 de Febrero del 2018</a></li>
-                      
-					 
-                    </ul>
+                       <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=dic_2017" target="_blank">Estados Financieros al 31 de Diciembre del 2017</a></li>
+                       <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=ene_2018" target="_blank">Estados Financieros al 31 de Enero del 2018</a></li>
+                       <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=fec_2018" target="_blank">Estados Financieros al 28 de Febrero del 2018</a></li>
+                 
+                        <li><a>Auditoria Nuñez Serrano Asociados<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=dic_2014_Informe_Adtitores_Independientes" target="_blank">Informe de los auditores independientes 31-12-2014</a></li>
+                            <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=dic_2014_Informe_Confidencial" target="_blank">Informe Confidencial Sobre la Evaluación del Control Interno 31-12-2014</a></li>
+                            <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=dic_2014_Informe_Procedimientos" target="_blank">Informe de Procedimientos Previamente Convenidos 31-12-2014</a></li>
+                            <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=dic_2014_Informe_Auditoría_Rubro" target="_blank">Informe de Auditoría al Rubro de Inversiones Privativas 31-12-2014</a></li>
+                            </ul>
+                        </li>
+                 
+                 
+                   </ul>
                   </li>
                 </ul>
               </div>

@@ -3960,6 +3960,61 @@ public function index(){
 	
 	
 	
+	public function cargar_consulta_documentos(){
+	
+		session_start();
+		$id_rol=$_SESSION["id_rol"];
+		$i=0;
+		$consulta_documentos= new ConsultaDocumentosModel();
+		$columnas = "consulta_documentos.id_consulta_documentos, 
+				  consulta_documentos.nombre_documentos, 
+				  consulta_documentos.creado, 
+				  usuarios.cedula_usuarios, 
+				  usuarios.nombre_usuarios, 
+				  usuarios.correo_usuarios";
+		$tablas   = "public.consulta_documentos, 
+  					public.usuarios";
+		$where    = "usuarios.id_usuarios = consulta_documentos.id_usuarios";
+		$id       = "consulta_documentos.id_consulta_documentos";
+		$resultSet = $consulta_documentos->getCondiciones($columnas ,$tablas ,$where, $id);
+	
+		$i=count($resultSet);
+	
+		$html="";
+		if($i>0)
+		{
+	
+			$html .= "<div class='col-lg-3 col-xs-12'>";
+			$html .= "<div class='small-box bg-primary'>";
+			$html .= "<div class='inner'>";
+			$html .= "<h3>$i</h3>";
+			$html .= "<p>Consulta Documentos Registradas.</p>";
+			$html .= "</div>";
+			$html .= "<div class='icon'>";
+			$html .= "<i class='ion ion-stats-bars'></i>";
+			$html .= "</div>";
+				
+			if($id_rol==1){
+				$html .= "<a href='index.php?controller=ConsultaDocumentos&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+			}else{
+				$html .= "<a href='#' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+			}
+			$html .= "</div>";
+			$html .= "</div>";
+	
+	
+		}else{
+	
+			$html = "<b>Actualmente no hay consulta documentos registradas...</b>";
+		}
+	
+		echo $html;
+		die();
+	
+	
+	}
+	
+	
 	
 	
 	
