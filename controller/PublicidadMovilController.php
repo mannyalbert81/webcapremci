@@ -6,17 +6,12 @@ class PublicidadMovilController extends ControladorBase{
 		parent::__construct();
 	}
 
-
-	
-	
-	
 	
 	public function index(){
 	
 		session_start();
 		if (isset(  $_SESSION['nombre_usuarios']) )
 		{
-			
 			$publicidad_movil = new PublicidadMovilModel();
 	
 			$nombre_controladores = "PublicidadMovil";
@@ -33,13 +28,9 @@ class PublicidadMovilController extends ControladorBase{
 					$_id_publicidad_movil = $_GET["id_publicidad_movil"];
 				
 					$columnas = "id_publicidad_movil";
-				
 					$tablas   = "publicidad_movil";
-				
 					$where    = "id_publicidad_movil = '$_id_publicidad_movil' ";
-					
 					$id       = "id_publicidad_movil";
-					
 					$resultEdit = $publicidad_movil->getCondiciones($columnas ,$tablas ,$where, $id);
 				}	
 					
@@ -53,12 +44,9 @@ class PublicidadMovilController extends ControladorBase{
 			{
 				$this->view("Error",array(
 						"resultado"=>"No tiene Permisos de Acceso a Publicidad Movil"
-		
 				));
-					
 			}
-				
-	
+		
 		}
 		else
 		{
@@ -69,14 +57,11 @@ class PublicidadMovilController extends ControladorBase{
 	   			"resultSet"=>"$mensaje", "error"=>$error
 	   	));
 	   		
-	   		
 	   	die();
 				
 		}
 	
 	}
-	
-	
 	
 	
 	
@@ -105,11 +90,8 @@ class PublicidadMovilController extends ControladorBase{
 	
 		if (isset(  $_SESSION['nombre_usuarios']) )
 		{
-	
 			if (isset ($_POST["id_publicidad_movil"]))
 			{
-				
-	
 				$_id_publicidad_movil         = $_POST["id_publicidad_movil"];
 				$_id_usuarios         = $_SESSION['id_usuarios'];
 	
@@ -119,7 +101,6 @@ class PublicidadMovilController extends ControladorBase{
 					 
 					if ($_FILES['imagen_baner']['tmp_name']!="")
 					{
-						 
 						$directorio = $_SERVER['DOCUMENT_ROOT'].'/webcapremci/banner/';
 						 
 						$nombre = $_FILES['imagen_baner']['name'];
@@ -138,19 +119,14 @@ class PublicidadMovilController extends ControladorBase{
 						 
 					}
 					
-					 
-					 
-					 
 				}else{
 	
-					 
 					 
 					 
 					if ($_FILES['imagen_baner']['tmp_name']!="")
 					{
 	
 						$directorio = $_SERVER['DOCUMENT_ROOT'].'/webcapremci/banner/';
-	
 						$nombre = $_FILES['imagen_baner']['name'];
 						$tipo = $_FILES['imagen_baner']['type'];
 						$tamano = $_FILES['imagen_baner']['size'];
@@ -168,6 +144,7 @@ class PublicidadMovilController extends ControladorBase{
 						$resultado=$publicidad_movil->Insert();
 	
 					}
+				
 					
 				}
 	
@@ -193,38 +170,23 @@ class PublicidadMovilController extends ControladorBase{
 	
 	
 	
-	
-	
-	
 	public function cargar_publicidad(){
 	
 		session_start();
 		$publicidad_movil = new PublicidadMovilModel();
 		$where_to="";
+	
 		$columnas = "id_publicidad_movil, id_usuarios, imagen_baner, creado, modificado";
-	
 		$tablas   = "publicidad_movil";
-	
 		$where    = "1=1";
-	
 		$id       = "id_publicidad_movil";
 	
-			
 		$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 		
 			
-		
-			
-			
 		if($action == 'ajax')
 		{
-	
-		
-				
-	
 				$where_to=$where;
-	
-		
 	
 			$html="";
 			$resultSet=$publicidad_movil->getCantidad("*", $tablas, $where_to);
@@ -241,9 +203,6 @@ class PublicidadMovilController extends ControladorBase{
 			$resultSet=$publicidad_movil->getCondicionesPag($columnas, $tablas, $where_to, $id, $limit);
 			$count_query   = $cantidadResult;
 			$total_pages = ceil($cantidadResult/$per_page);
-	
-	
-	
 	
 	
 			if($cantidadResult>0)
@@ -297,8 +256,6 @@ class PublicidadMovilController extends ControladorBase{
 				$html.='</div>';
 				$html.='</div>';
 			}
-	
-	
 	
 	
 			echo $html;
