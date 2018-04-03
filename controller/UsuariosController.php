@@ -3360,13 +3360,8 @@ public function index(){
 						
 					die();
 					
-					
-					
 				}
-			
-			
-			
-			
+				
 			}
 			 
 			$this->view("Login",array(
