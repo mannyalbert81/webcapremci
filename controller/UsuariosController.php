@@ -6798,6 +6798,29 @@ public function index(){
 	
 	
 	
+	///////////////////////////////////////////////////// DESCARGA DE DOCUMENTOS/////////////////////////////
+	
+	
+	
+	
+	
+	
+	
+	
+	public function inicializar(){
+		
+		session_start();				
+		$this->view("Documentos",array(
+					"resultSet"=>""
+	
+		));
+	
+	
+	}
+	
+	
+	
+	
 	
 	
 	

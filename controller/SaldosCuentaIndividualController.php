@@ -4566,8 +4566,9 @@ class SaldosCuentaIndividualController extends ControladorBase{
 				
 				}
 				
-					
-		
+				
+				
+				
 			}
 				
 		}else{
@@ -4592,7 +4593,193 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	
 	
+
+	//////////////////desde aqui documentos/////////////////////////
 	
+	public function attachment1(){
+	
+		session_start();
+		if(isset($_GET["fec"])){
+		
+			$fec=$_GET["fec"];
+		
+	if($fec=="codigo_etica"){
+	
+		$directorio = $_SERVER ['DOCUMENT_ROOT'];
+	
+		$mi_pdf = $directorio.'/documentos/CODIGO DE ETICA.pdf';
+	
+		if(file_exists($mi_pdf))
+		{
+	
+			header('Content-type: application/pdf');
+			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+			readfile($mi_pdf);
+		}else
+		{
+			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+		}
+	
+	
+	}
+	
+	
+	
+	if($fec=="codigo_buen_gobierno"){
+	
+		$directorio = $_SERVER ['DOCUMENT_ROOT'];
+	
+		$mi_pdf = $directorio.'/documentos/CODIGO DEL BUEN GOBIERNO CORPORATIVO.pdf';
+	
+		if(file_exists($mi_pdf))
+		{
+	
+			header('Content-type: application/pdf');
+			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+			readfile($mi_pdf);
+		}else
+		{
+			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+		}
+	
+	
+	}
+	
+	
+	
+	if($fec=="plan_estrategico"){
+	
+		$directorio = $_SERVER ['DOCUMENT_ROOT'];
+	
+		$mi_pdf = $directorio.'/documentos/PLAN ESTRATEGICO.pdf';
+	
+		if(file_exists($mi_pdf))
+		{
+	
+			header('Content-type: application/pdf');
+			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+			readfile($mi_pdf);
+		}else
+		{
+			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+		}
+	
+	
+	}
+	
+	
+	
+	if($fec=="reglamento_estatuto"){
+	
+		$directorio = $_SERVER ['DOCUMENT_ROOT'];
+	
+		$mi_pdf = $directorio.'/documentos/REGLAMENTO AL ESTATUTO CAPREMCI.pdf';
+	
+		if(file_exists($mi_pdf))
+		{
+	
+			header('Content-type: application/pdf');
+			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+			readfile($mi_pdf);
+		}else
+		{
+			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+		}
+	
+	
+	}
+		
+	
+	if($fec=="reglamento_cobranzas"){
+	
+		$directorio = $_SERVER ['DOCUMENT_ROOT'];
+	
+		$mi_pdf = $directorio.'/documentos/REGLAMENTO DE COBRANZAS Y RECUPERACIONES.pdf';
+	
+		if(file_exists($mi_pdf))
+		{
+	
+			header('Content-type: application/pdf');
+			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+			readfile($mi_pdf);
+		}else
+		{
+			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+		}
+	
+	
+	}
+	
+	
+	
+	if($fec=="reglamento_credito"){
+	
+		$directorio = $_SERVER ['DOCUMENT_ROOT'];
+	
+		$mi_pdf = $directorio.'/documentos/REGLAMENTO DE CREDITO.pdf';
+	
+		if(file_exists($mi_pdf))
+		{
+	
+			header('Content-type: application/pdf');
+			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+			readfile($mi_pdf);
+		}else
+		{
+			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+		}
+	
+	
+	}
+	
+	
+	
+	if($fec=="reglamento_viaticos"){
+	
+		$directorio = $_SERVER ['DOCUMENT_ROOT'];
+	
+		$mi_pdf = $directorio.'/documentos/REGLAMENTO DE VIATICOS, SUBSISTENCIAS, MOVILIZACION Y DIETAS.pdf';
+	
+		if(file_exists($mi_pdf))
+		{
+	
+			header('Content-type: application/pdf');
+			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+			readfile($mi_pdf);
+		}else
+		{
+			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+		}
+	
+	
+	}
+	
+	
+	if($fec=="reglamento_contrataciones"){
+	
+		$directorio = $_SERVER ['DOCUMENT_ROOT'];
+	
+		$mi_pdf = $directorio.'/documentos/REGLAMENTOS DE CONTRATACIONES.pdf';
+	
+		if(file_exists($mi_pdf))
+		{
+	
+			header('Content-type: application/pdf');
+			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+			readfile($mi_pdf);
+		}else
+		{
+			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+		}
+	
+	
+	}
+	
+	
+	}
+	
+	
+	}
 	
 	
 }
