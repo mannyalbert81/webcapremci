@@ -3815,8 +3815,9 @@ public function index(){
 		$html="";
 		if($i>0)
 		{
-	
+		
 			$html .= "<div class='col-lg-3 col-xs-12'>";
+			
 			$html .= "<div class='small-box bg-yellow'>";
 			$html .= "<div class='inner'>";
 			$html .= "<h3>$i</h3>";
@@ -3836,8 +3837,10 @@ public function index(){
 				
 			}
 			$html .= "</div>";
+			
+			
 			$html .= "</div>";
-	
+			
 	
 		}else{
 	
@@ -6796,12 +6799,7 @@ public function index(){
 	
 	
 	
-	
-	
 	///////////////////////////////////////////////////// DESCARGA DE DOCUMENTOS/////////////////////////////
-	
-	
-	
 	
 	
 	
@@ -6812,15 +6810,20 @@ public function index(){
 		session_start();				
 		$this->view("Documentos",array(
 					"resultSet"=>""
-	
 		));
-	
 	
 	}
 	
 	
 	
+	public function home(){
 	
+		session_start();
+		$this->view("Home",array(
+				"resultSet"=>""
+		));
+	
+	}
 	
 	
 	
