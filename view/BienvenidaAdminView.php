@@ -78,6 +78,7 @@
           
           <div class="row tile_count">
             <div id='pone_consulta_documentos'></div>
+             <div id='pone_afiliaciones_recomendadas'></div>
           </div>
           
           
@@ -85,10 +86,17 @@
           <div class="row tile_count">
           <div id='pone_publicidad'></div> 
           </div>
-         </div>
          
+         
+      
+         
+         
+         
+         
+         
+         </div>
             
-          </div>
+         </div>
           
            
            
@@ -112,12 +120,13 @@
 	   </div>
            
            
-           
           
-        </div>
-   
+    </div>
  
-   
+
+             			 
+      
+      
     
     <!-- Bootstrap -->
     <script src="view/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -144,12 +153,13 @@
      
         	   $(document).ready( function (){
         		   pone_espera();
-        		   $("#mostrarmodal").modal("show");
+        		   //$("#mostrarmodal").modal("show");
         		   pone_users();
         		   pone_roles();
         		   pone_permisos_roles();
         		   cargar_sesiones();
         		   cargar_consulta_documentos();
+        		   pone_afiliaciones_recomendadas();
         		   cargar_banner();
 	   			});
 
@@ -273,7 +283,28 @@
         		     })
         		  }
         	   
+        	   function pone_afiliaciones_recomendadas(){
+        		   $(document).ready( function (){
+        		       $.ajax({
+        		                 beforeSend: function(objeto){
+        		                   $("#pone_afiliaciones_recomendadas").html('')
+        		                 },
+        		                 url: 'index.php?controller=Afiliacion&action=cargar_afiliado_recomendado',
+        		                 type: 'POST',
+        		                 data: null,
+        		                 success: function(x){
+        		                   $("#pone_afiliaciones_recomendadas").html(x);
+        		                 },
+        		                error: function(jqXHR,estado,error){
+        		                  $("#pone_afiliaciones_recomendadas").html("Ocurrio un error al cargar la informacion de consulta afiliaciones recomendadas..."+estado+"    "+error);
+        		                }
+        		              });
+        		     })
+        		  }
 
+        	   
+
+        	   
         	   function cargar_banner(){
         		   $(document).ready( function (){
         		       $.ajax({
