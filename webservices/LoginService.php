@@ -126,15 +126,15 @@
 			$html .= "</div>";
 			$html .= "</div>";
 			
-				
+			echo json_encode($html);
 			
 		}else{
 		
-			$html = "<b>Actualmente no hay publicidad registrada...</b>";
+			//$html = "<b>Actualmente no hay publicidad registrada...</b>";
 		}
 		
 		
-		echo json_encode($html);
+	
 		
 	}
 
