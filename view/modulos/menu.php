@@ -76,6 +76,16 @@ $controladores=$_SESSION['controladores'];
                  
                    </ul>
                   </li>
+                  
+                  
+                  
+                   <li ><a    ><i class="fa fa-file-o"></i> Información <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                       <li><a href="index.php?controller=Informacion&action=index">Conoce nuestros servicios y convenios.</a></li>
+                   </ul>
+                  </li>
+                  
+                  
                 </ul>
               </div>
 

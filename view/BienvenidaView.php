@@ -46,7 +46,7 @@
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-        <div class="col-md-3 left_col menu_fixed">
+        <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <?php include("view/modulos/logo.php"); ?>
 
@@ -107,16 +107,16 @@
           </div>
           
           
-          
-           <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
+             
+              <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+          <div class="modal-dialog modal-md">
         <div class="modal-content">
            <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h3>BIENVENIDO A CAPREMCI</h3>
+              <h3>Descargate nuestro aplicativo movil.</h3>
            </div>
            <div class="modal-body">
-             <img src="view/images/educacion2017.jpg" class="img-rounded" alt="Cinque Terre" style="max-width:100%"/>   
+             <center><img src="view/images/disponible_play_store.png" class="img-rounded" alt="Cinque Terre" style="width: 50%"/></center>   
           </div>
            <div class="modal-footer">
           <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>
@@ -125,7 +125,7 @@
 	     </div>
 	   </div>
           
-          
+           
           
         </div>
         <!-- /page content -->
@@ -204,7 +204,7 @@
         	        		}
         	    });
             	
-		        setTimeout($.unblockUI, 1500); 
+		        setTimeout($.unblockUI, 1000); 
 		        
         	   }
         	   

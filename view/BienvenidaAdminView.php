@@ -46,7 +46,7 @@
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-        <div class="col-md-3 left_col  menu_fixed">
+        <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <?php include("view/modulos/logo.php"); ?>
 
@@ -78,7 +78,7 @@
           
           <div class="row tile_count">
             <div id='pone_consulta_documentos'></div>
-             <div id='pone_afiliaciones_recomendadas'></div>
+			 <div id='pone_afiliaciones_recomendadas'></div>
           </div>
           
           
@@ -86,22 +86,15 @@
           <div class="row tile_count">
           <div id='pone_publicidad'></div> 
           </div>
-         
-         
-      
-         
-         
-         
-         
-         
          </div>
+         
             
-         </div>
+          </div>
           
            
            
            
-           
+         <!--   
        <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
           <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -119,14 +112,13 @@
 	     </div>
 	   </div>
            
+        -->   
            
           
-    </div>
+        </div>
+   
  
-
-             			 
-      
-      
+   
     
     <!-- Bootstrap -->
     <script src="view/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -153,13 +145,13 @@
      
         	   $(document).ready( function (){
         		   pone_espera();
-        		   //$("#mostrarmodal").modal("show");
+        		   $("#mostrarmodal").modal("show");
         		   pone_users();
         		   pone_roles();
         		   pone_permisos_roles();
         		   cargar_sesiones();
         		   cargar_consulta_documentos();
-        		   pone_afiliaciones_recomendadas();
+				    pone_afiliaciones_recomendadas();
         		   cargar_banner();
 	   			});
 
@@ -180,7 +172,7 @@
         	        		}
         	    });
             	
-		        setTimeout($.unblockUI, 1500); 
+		        setTimeout($.unblockUI, 1000); 
 		        
         	   }
         	   
@@ -283,7 +275,7 @@
         		     })
         		  }
         	   
-        	   function pone_afiliaciones_recomendadas(){
+ function pone_afiliaciones_recomendadas(){
         		   $(document).ready( function (){
         		       $.ajax({
         		                 beforeSend: function(objeto){
@@ -302,9 +294,6 @@
         		     })
         		  }
 
-        	   
-
-        	   
         	   function cargar_banner(){
         		   $(document).ready( function (){
         		       $.ajax({
