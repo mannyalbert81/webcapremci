@@ -145,15 +145,13 @@
         
            <div class="col-lg-12 col-md-12 col-xs-12">
           <div id="dg">
-          
           	<h4>DESCARGATE NUESTRO APLICATIVO MOVIL</h4>
-		    
 		    <div class="row" style="margin-top: 30px;">
 				<div class="col-lg-4 col-md-4 col-xs-12">
 					<div class="tilt">
-					<a href="https://play.google.com/store/apps/details?id=jcaprem.com"><img src="view/images/p01.png" alt=""></a>
+					<a href="https://play.google.com/store/apps/details?id=jcaprem.com" target="_blank"><img src="view/images/p01.png" alt=""></a>
 					</div>
-					ANDROID (Disponible en PlayStore)
+					ANDROID (Disponible en Google Play)
 				</div>
 
 				<div class="col-lg-4 col-md-4 col-xs-12">
@@ -171,11 +169,47 @@
 				</div>
 			</div><!-- row -->
 		
-	</div><!-- DG -->
+		  </div><!-- DG -->
          </div> 
           
           
-        <div class="col-lg-12 col-md-12 col-xs-12">
+          
+          
+        <div class="col-lg-12 col-md-12 col-xs-12" style="margin-top: 15px;">
+            <div id="dg">
+            	<h4>RECOMIENDANOS UNA NUEVA AFILIACIÓN</h4>
+             </div>     
+              <p align="justify"><h5>Estimado Participe, incorporamos en nuestro sistema un formulario de afiliación, ya puedes recomendarnos una persona que forme parte de las Fuerzas Armadas, que este interesada en formar parte de CAPREMCI, ingresa los datos de la nueva persona y nosotros nos pondremos en contacto con tu recomendado.</h5></p>
+            
+                <section>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="margin-top: 15px;">
+                        <div class="row" style="text-align: center;">
+                            <div class="col-xs-12 col-sm-3 col-md-12 col-lg-12">
+                                <img src="view/images/reco_afi_1.png" style="width: 100%; text-align: center;" class="img-responsive">
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="margin-top: 15px;">
+                        <div class="row" style="text-align: center;">
+                            <div class="col-xs-12 col-sm-3 col-md-12 col-lg-12">
+                                <img src="view/images/reco_afi_2.png" style="width: 100%; text-align: center;" class="img-responsive">
+                            </div>
+                           
+                        </div>
+                    </div>
+            </div>
+            </section>
+            
+            
+                      
+        </div>
+          
+          
+          
+          
+        <div class="col-lg-12 col-md-12 col-xs-12" style="margin-top: 30px;">
           
           
             <div id="dg">
