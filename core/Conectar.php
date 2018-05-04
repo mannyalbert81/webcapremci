@@ -18,7 +18,11 @@ class Conectar{
         
         if($this->driver=="pgsql" || $this->driver==null){
        
+<<<<<<< HEAD
         	$con = pg_connect("host=18.218.148.189 port=5432 dbname=web_capremci user=postgres password=Capremci2018 ");
+=======
+        	$con = pg_connect("host=192.168.1.128 port=5432 dbname=web_capremci user=postgres password=Capremci2018 ");
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/webcapremci.git
         	if(!$con){
         		echo "No se puedo Conectar a la Base";
         		exit();
@@ -39,7 +43,11 @@ class Conectar{
         	
         	try
         	{
+<<<<<<< HEAD
         		$pdo = new PDO('pgsql:host=18.218.148.189;port=5432;dbname=web_capremci', 'postgres', 'Capremci2018' );
+=======
+        		$pdo = new PDO('pgsql:host=192.168.1.128;port=5432;dbname=web_capremci', 'postgres', 'Capremci2018' );
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/webcapremci.git
             	
             
          

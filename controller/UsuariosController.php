@@ -4055,8 +4055,43 @@ public function index(){
 		$where    = "1=1";
 		$id       = "id_publicidad_movil";
 		$resultSet = $publicidad_movil->getCondiciones($columnas ,$tablas ,$where, $id);
+		/*
+		$html="";
+		
+		$html .= "<div class='container'>";
+		
+		$html .= "<section id='miSlide' class='carousel slide'>";
+		$html .= "<ol class='carousel-indicators'>";
+		$html .= "<li data-target='#miSlide' data-slide-to='0' class='active'></li>";
+		$html .= "<li data-target='#miSlide' data-slide-to='1'></li>";
+		$html .= "<li data-target='#miSlide' data-slide-to='2'></li>";
+		$html .= "</ol>";
+		
+		$html .= "<div class='carousel-inner'>";
+		$html .= "<div class='item active'>";
+		$html .= "<img src='view/pro/img/img1.jpg' class='adaptar'>";
+		$html .= "</div>";
+		$html .= "<div class='item'>";
+		$html .= "<img src='view/pro/img/img2.jpg' class='adaptar'>";
+		$html .= "</div>";
+		$html .= "<div class='item'>";
+		$html .= "<img src='view/pro/img/img3.jpg' class='adaptar'>";
+		$html .= "</div>";
+		$html .= "</div>";
+		
+		$html .= "<a href='#miSlide' class='left carousel-control' data-slide='prev'><span class='glyphicon glyphicon-chevron-left'></span></a>";
+		$html .= "<a href='#miSlide' class='right carousel-control' data-slide='next'><span class='glyphicon glyphicon-chevron-right'></span></a>";
+		$html .= "</section>";
+		
+		 
+		$html .= "</div>";
 		
 		
+		echo $html;
+		die();
+		
+		
+		*/
 	
 		$i=count($resultSet);
 		
@@ -4069,13 +4104,14 @@ public function index(){
 			$html .= "<div class='col-xs-12 col-md-4 col-lg-4'>";
 			$html .= "</div>";
 			$html .= "<div class='col-xs-12 col-md-3 col-lg-3'>";
-			$html .= "<div id='myCarousel2' class='carousel slide' data-ride='carousel'>";
+			$html .= "<div id='miSlide' class='carousel slide'>";
 			$html .= "<ol class='carousel-indicators'>";
-			$html .= "<li data-target='#myCarousel1' data-slide-to='0' class='active'></li>";
-			$html .= "<li data-target='#myCarousel2' data-slide-to='0' ></li>";
+			$html .= "<li data-target='#miSlide' data-slide-to='0' class='active'></li>";
+			$html .= "<li data-target='#miSlide' data-slide-to='1' ></li>";
 			$html .= "</ol>";
 			
-			$html .= "<div class='carousel-inner' role='listbox'>";
+			$html .= "<div class='carousel-inner'>";
+			
 			
 			if(!empty($resultSet)){
 				
@@ -4108,16 +4144,14 @@ public function index(){
 			}
 			
 			
-		
 			
+			$html .= "<a class='left carousel-control' href='#miSlide' data-slide='prev'>";
+			$html .= "<span class='glyphicon glyphicon-chevron-left'></span>";
 			
-			$html .= "<a class='left carousel-control' href='#myCarousel2' role='button' data-slide='prev'>";
-			$html .= "<span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span>";
-			$html .= "<span class='sr-only'>Previous</span>";
 			$html .= "</a>";
-			$html .= "<a class='right carousel-control' href='#myCarousel2' role='button' data-slide='next'>";
-			$html .= "<span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>";
-			$html .= "<span class='sr-only'>Next</span>";
+			$html .= "<a class='right carousel-control' href='#miSlide' data-slide='next'>";
+			$html .= "<span class='glyphicon glyphicon-chevron-right'></span>";
+		
 			$html .= "</a>";
 			$html .= "</div>";
 			$html .= "</div>";

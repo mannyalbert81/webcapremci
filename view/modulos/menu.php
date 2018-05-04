@@ -78,10 +78,17 @@ $controladores=$_SESSION['controladores'];
                   </li>
                   
                   
+<<<<<<< HEAD
                   <li ><a><i class="fa fa-file-o"></i> Gestión de Trámites <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                        <li style="<?php echo getcontrolador("Memos",$controladores) ?>"><a href="index.php?controller=Memos&action=index">Crear Memorandun</a></li>
                  
+=======
+                  
+                   <li ><a    ><i class="fa fa-file-o"></i> Información <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                       <li><a href="index.php?controller=Informacion&action=index">Conoce nuestros servicios y convenios.</a></li>
+>>>>>>> branch 'master' of https://github.com/mannyalbert81/webcapremci.git
                    </ul>
                   </li>
                   
