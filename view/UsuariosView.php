@@ -109,10 +109,6 @@
 		     $("#id_estado").val("");
 		     $("#fotografia_usuarios").val("");
 		     $("#id_usuarios").val("");
-		     $("#id_departamentos").val("");
-		     $("#cargo_usuarios").val("");
-		     $("#identificador_departamentos").val("");
-		     
 		     
 		    }); 
 		    }); 
@@ -140,9 +136,8 @@
 		    	var correo_usuarios  = $("#correo_usuarios").val();
 		    	var id_rol  = $("#id_rol").val();
 		    	var id_estado  = $("#id_estado").val();
-		    	var id_departamentos  = $("#id_departamentos").val();
-		    	var cargo_usuarios  = $("#cargo_usuarios").val();
-		    	var identificador_departamentos  = $("#identificador_departamentos").val();
+		    	
+		    	
 		    	if (cedula_usuarios == "")
 		    	{
 			    	
@@ -296,21 +291,7 @@
 		    		$("#mensaje_id_estado").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
-
-
-		    	if (id_departamentos == 0 )
-		    	{
-			    	
-		    		$("#mensaje_id_departamentos").text("Seleccione");
-		    		$("#mensaje_id_departamentos").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_id_departamentos").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-								    
+		    					    
 
 			}); 
 
@@ -349,12 +330,7 @@
 					$("#mensaje_id_estado").fadeOut("slow");
     			});
 				
-
-				$( "#id_departamentos" ).focus(function() {
-					$("#mensaje_id_departamentos").fadeOut("slow");
-    			});
-				
-		       
+		      
 				    
 		}); 
 
@@ -411,7 +387,7 @@
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
-            <?php include("view/modulos/menu_profile.php"); ?>		
+            <?php include("view/modulos/menu_profile.php"); ?>
             <!-- /menu profile quick info -->
 
             <br />
@@ -577,7 +553,7 @@
                                     </div>
                                     
                                     <div class="col-xs-12 col-md-3 col-md-3">
-                        		   		<div class="form-group">
+                        		   <div class="form-group">
                                                           <label for="id_estado" class="control-label">Estado:</label>
                                                           <select name="id_estado" id="id_estado"  class="form-control" >
                                                           <option value="0" selected="selected">--Seleccione--</option>
@@ -586,39 +562,8 @@
                         							        <?php } ?>
                         								   </select> 
                                                           <div id="mensaje_id_estado" class="errores"></div>
-                                    	</div>
                                     </div>
-                                    
-                                    <div class="col-xs-12 col-md-3 col-md-3">
-                        		   		<div class="form-group">
-                                                          <label for="id_departamentos" class="control-label">Departamento:</label>
-                                                          <select name="id_departamentos" id="id_departamentos"  class="form-control" >
-                                                          <option value="0" selected="selected">--Seleccione--</option>
-                        									<?php foreach($resultDep as $res) {?>
-                        										<option value="<?php echo $res->id_departamentos; ?>" <?php if ($res->id_departamentos == $resEdit->id_departamentos )  echo  ' selected="selected" '  ;  ?> ><?php echo $res->nombre_departamentos; ?> </option>
-                        							        <?php } ?>
-                        								   </select> 
-                                                          <div id="mensaje_id_departamentos" class="errores"></div>
-                                    	</div>
                                     </div>
-                                    
-                                    <div class="col-lg-3 col-xs-12 col-md-3">
-                        		    <div class="form-group">
-                                                          <label for="cargo_usuarios" class="control-label">Cargo:</label>
-                                                          <input type="text" class="form-control" id="cargo_usuarios" name="cargo_usuarios" value="<?php echo $resEdit->cargo_usuarios; ?>">
-                                                          <div id="cargo_usuario" class="errores"></div>
-                                    </div>
-                        		    </div>
-                        			<div class="col-lg-2 col-xs-12 col-md-2">
-                        		    <div class="form-group">
-                                                          <label for="identificador_departamentos" class="control-label">Identificador:</label>
-                                                          <input type="text" class="form-control" id="identificador_departamentos" name="identificador_departamentos" value="<?php echo $resEdit->identificador_departamentos; ?>">
-                                                          <div id="identificador_departamentos" class="errores"></div>
-                                    </div>
-                        		    </div>
-                        			
-                                    
-                                    
                                 
                                 </div>
                              
@@ -749,36 +694,6 @@
                                     </div>
                                 
                                 
-                                	<div class="col-xs-12 col-md-3 col-md-3">
-                        		   		<div class="form-group">
-                                                          <label for="id_departamentos" class="control-label">Departamento:</label>
-                                                          <select name="id_departamentos" id="id_departamentos"  class="form-control" >
-                                                          <option value="0" selected="selected">--Seleccione--</option>
-                        									<?php foreach($resultDep as $res) {?>
-                        											<option value="<?php echo $res->id_departamentos; ?>" ><?php echo $res->nombre_departamentos; ?> </option>
-                        							        <?php } ?>
-                        								   </select> 
-                                                          <div id="mensaje_id_departamentos" class="errores"></div>
-                                    	</div>
-                                    </div>
-                                    
-                                    <div class="col-lg-3 col-xs-12 col-md-3">
-                        		    <div class="form-group">
-                                                          <label for="cargo_usuarios" class="control-label">Cargo:</label>
-                                                          <input type="text" class="form-control" id="cargo_usuarios" name="cargo_usuarios" value="">
-                                                          <div id="cargo_usuario" class="errores"></div>
-                                    </div>
-                        		    </div>
-                        			<div class="col-lg-2 col-xs-12 col-md-2">
-                        		    <div class="form-group">
-                                                          <label for="identificador_departamentos" class="control-label">Identificador:</label>
-                                                          <input type="text" class="form-control" id="identificador_departamentos" name="identificador_departamentos" value="">
-                                                          <div id="identificador_departamentos" class="errores"></div>
-                                    </div>
-                        		    </div>
-                        			
-                        			
-                                
                                 </div>
                     	           	
                     		     <?php } ?>
@@ -786,8 +701,8 @@
                     		    <div class="row">
                     		    <div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center; margin-top:20px">
                     		    <div class="form-group">
-                                         <button type="submit" id="Guardar" name="Guardar" class="btn btn-success"><i class="glyphicon glyphicon-floppy-saved"> Guardar</i></button>
-                     					  <button type="button" id="Cancelar" name="Cancelar" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-remove"> Cancelar</i></button>
+                                                      <button type="submit" id="Guardar" name="Guardar" class="btn btn-success"><i class="glyphicon glyphicon-floppy-saved"> Guardar</i></button>
+                                					  <button type="button" id="Cancelar" name="Cancelar" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-remove"> Cancelar</i></button>
                                 
                                 </div>
                     		    </div>

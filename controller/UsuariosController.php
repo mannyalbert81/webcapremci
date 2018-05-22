@@ -25,20 +25,14 @@ class UsuariosController extends ControladorBase{
 								  estado.id_estado,
 								  estado.nombre_estado,
 								  usuarios.fotografia_usuarios,
-								  usuarios.creado,
-    							  usuarios.cargo_usuarios, 
-    			                  departamentos.identificador_departamentos,
-    							  usuarios.id_departamentos,
-    			                  departamentos.nombre_departamentos ";
+								  usuarios.creado";
     		
     	$tablas   = "public.usuarios,
 								  public.rol,
-								  public.estado,
-    							  public.departamentos	";
+								  public.estado";
     		
     	$where    = " rol.id_rol = usuarios.id_rol AND
-								  estado.id_estado = usuarios.id_estado
-    			                  AND  usuarios.id_departamentos = departamentos.id_departamentos";
+								  estado.id_estado = usuarios.id_estado";
     		
     	$id       = "usuarios.id_usuarios";
     		
@@ -105,9 +99,6 @@ class UsuariosController extends ControladorBase{
     		$html.='<th style="text-align: left;  font-size: 12px;">Correo</th>';
     		$html.='<th style="text-align: left;  font-size: 12px;">Rol</th>';
     		$html.='<th style="text-align: left;  font-size: 12px;">Estado</th>';
-    		$html.='<th style="text-align: left;  font-size: 12px;">Departamento</th>';
-    		$html.='<th style="text-align: left;  font-size: 12px;">Cargo</th>';
-    		$html.='<th style="text-align: left;  font-size: 12px;">Identificador</th>';
     		
     		if($id_rol==1){
 	    		
@@ -140,9 +131,6 @@ class UsuariosController extends ControladorBase{
     			$html.='<td style="font-size: 11px;">'.$res->correo_usuarios.'</td>';
     			$html.='<td style="font-size: 11px;">'.$res->nombre_rol.'</td>';
     			$html.='<td style="font-size: 11px;">'.$res->nombre_estado.'</td>';
-    			$html.='<td style="font-size: 11px;">'.$res->nombre_departamentos.'</td>';
-    			$html.='<td style="font-size: 11px;">'.$res->cargo_usuarios.'</td>';
-    			$html.='<td style="font-size: 11px;">'.$res->identificador_departamentos.'</td>';
     			
     			if($id_rol==1){
     				
@@ -2515,10 +2503,6 @@ public function index(){
 			$estado = new EstadoModel();
 			$resultEst = $estado->getAll("nombre_estado");
 			
-			
-			$departamentos = new DepartamentosModel();
-			$resultDep = $departamentos->getAll("nombre_departamentos");
-			
 			$usuarios = new UsuariosModel();
 
 			$nombre_controladores = "Usuarios";
@@ -2548,27 +2532,22 @@ public function index(){
 								  estado.id_estado,
 								  estado.nombre_estado,
 								  usuarios.fotografia_usuarios,
-								  usuarios.creado,
-								  usuarios.cargo_usuarios, 
-    			                  departamentos.identificador_departamentos,
-    							  usuarios.id_departamentos,
-    			                  departamentos.nombre_departamentos";
+								  usuarios.creado";
 						
 						$tablas   = "public.usuarios,
 								  public.rol,
-								  public.estado,
-								  public.departamentos";
+								  public.estado";
 						
 						$id       = "usuarios.id_usuarios";
 						
 						$_id_usuarios = $_GET["id_usuarios"];
-						$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND usuarios.id_usuarios = '$_id_usuarios' AND usuarios.id_departamentos = departamentos.id_departamentos "; 
+						$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND usuarios.id_usuarios = '$_id_usuarios' "; 
 						$resultEdit = $usuarios->getCondiciones($columnas ,$tablas ,$where, $id); 
 					}
 			
 					
 					$this->view("Usuarios",array(
-							"resultSet"=>$resultSet, "resultRol"=>$resultRol, "resultEdit" =>$resultEdit, "resultEst"=>$resultEst, "resultDep"=>$resultDep
+							"resultSet"=>$resultSet, "resultRol"=>$resultRol, "resultEdit" =>$resultEdit, "resultEst"=>$resultEst
 				
 					));
 				
@@ -2784,9 +2763,6 @@ public function index(){
 			$_correo_usuarios     = $_POST["correo_usuarios"];
 		    $_id_rol             = $_POST["id_rol"];
 		    $_id_estado          = $_POST["id_estado"];
-		    $_cargo_usuarios    = $_POST["cargo_usuarios"];
-		    $_id_departamentos  = $_POST["id_departamentos"];
-		    
 		    
 		    $_id_usuarios          = $_POST["id_usuarios"];
 		    
@@ -2808,7 +2784,7 @@ public function index(){
 		    		$imagen_usuarios = pg_escape_bytea($data);
 		    			
 		    			
-		    		$colval = "cedula_usuarios= '$_cedula_usuarios', nombre_usuarios = '$_nombre_usuarios',  clave_usuarios = '$_clave_usuarios', pass_sistemas_usuarios='$_pass_sistemas_usuarios',  telefono_usuarios = '$_telefono_usuarios', celular_usuarios = '$_celular_usuarios', correo_usuarios = '$_correo_usuarios', id_rol = '$_id_rol', id_estado = '$_id_estado', fotografia_usuarios ='$imagen_usuarios' , cargo_usuarios = '$_cargo_usuarios' , id_departamentos = '$_id_departamentos'      ";
+		    		$colval = "cedula_usuarios= '$_cedula_usuarios', nombre_usuarios = '$_nombre_usuarios',  clave_usuarios = '$_clave_usuarios', pass_sistemas_usuarios='$_pass_sistemas_usuarios',  telefono_usuarios = '$_telefono_usuarios', celular_usuarios = '$_celular_usuarios', correo_usuarios = '$_correo_usuarios', id_rol = '$_id_rol', id_estado = '$_id_estado', fotografia_usuarios ='$imagen_usuarios'";
 		    		$tabla = "usuarios";
 		    		$where = "id_usuarios = '$_id_usuarios'";
 		    		$resultado=$usuarios->UpdateBy($colval, $tabla, $where);
@@ -2817,7 +2793,7 @@ public function index(){
 		    	else
 		    	{
 		    	
-		    		$colval = "cedula_usuarios= '$_cedula_usuarios', nombre_usuarios = '$_nombre_usuarios',  clave_usuarios = '$_clave_usuarios', pass_sistemas_usuarios='$_pass_sistemas_usuarios',  telefono_usuarios = '$_telefono_usuarios', celular_usuarios = '$_celular_usuarios', correo_usuarios = '$_correo_usuarios', id_rol = '$_id_rol', id_estado = '$_id_estado' , cargo_usuarios = '$_cargo_usuarios' , id_departamentos = '$_id_departamentos'   ";
+		    		$colval = "cedula_usuarios= '$_cedula_usuarios', nombre_usuarios = '$_nombre_usuarios',  clave_usuarios = '$_clave_usuarios', pass_sistemas_usuarios='$_pass_sistemas_usuarios',  telefono_usuarios = '$_telefono_usuarios', celular_usuarios = '$_celular_usuarios', correo_usuarios = '$_correo_usuarios', id_rol = '$_id_rol', id_estado = '$_id_estado'";
 		    		$tabla = "usuarios";
 		    		$where = "id_usuarios = '$_id_usuarios'";
 		    		$resultado=$usuarios->UpdateBy($colval, $tabla, $where);
@@ -2855,9 +2831,7 @@ public function index(){
 		    	               '$_correo_usuarios',
 		    	               '$_id_rol',
 		    	               '$_id_estado',
-		    	               '$imagen_usuarios',
-		    					'$cargo_usuarios',
-		    					'$id_departamentos' ";
+		    	               '$imagen_usuarios'";
 		    	$usuarios->setFuncion($funcion);
 		    	$usuarios->setParametros($parametros);
 		    	$resultado=$usuarios->Insert();
@@ -2872,7 +2846,7 @@ public function index(){
 		    	if ( !empty($result) )
 		    	{
 		    		 
-		    		$colval = "nombre_usuarios = '$_nombre_usuarios',  clave_usuarios = '$_clave_usuarios', pass_sistemas_usuarios='$_pass_sistemas_usuarios',  telefono_usuarios = '$_telefono_usuarios', celular_usuarios = '$_celular_usuarios', correo_usuarios = '$_correo_usuarios', id_rol = '$_id_rol', id_estado = '$_id_estado'  , cargo_usuarios = '$_cargo_usuarios' , id_departamentos = '$_id_departamentos'      ";
+		    		$colval = "nombre_usuarios = '$_nombre_usuarios',  clave_usuarios = '$_clave_usuarios', pass_sistemas_usuarios='$_pass_sistemas_usuarios',  telefono_usuarios = '$_telefono_usuarios', celular_usuarios = '$_celular_usuarios', correo_usuarios = '$_correo_usuarios', id_rol = '$_id_rol', id_estado = '$_id_estado'";
 		    		$tabla = "usuarios";
 		    		$where = "cedula_usuarios = '$_cedula_usuarios'";
 		    		$resultado=$usuarios->UpdateBy($colval, $tabla, $where);
@@ -2891,9 +2865,7 @@ public function index(){
 		        	'$_correo_usuarios',
 		        	'$_id_rol',
 		        	'$_id_estado',
-		        	'$imagen_usuarios',
-		        	'$cargo_usuarios',
-		        	'$id_departamentos'";
+		        	'$imagen_usuarios'";
 		        	$usuarios->setFuncion($funcion);
 		        	$usuarios->setParametros($parametros);
 		        	$resultado=$usuarios->Insert();
@@ -2987,9 +2959,7 @@ public function index(){
 		  			'$_id_tipo_sangre',
 		  			'$_id_estado_civil',
 		  			'$_id_entidades',
-		  			'$_id_estado',
-		  			'$cargo_usuarios',
-		        	'$id_departamentos'";
+		  			'$_id_estado'";
 		  			$participes->setFuncion($funcion);
 		  			$participes->setParametros($parametros);
 		  			$resultado=$participes->Insert();

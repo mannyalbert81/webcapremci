@@ -11,17 +11,7 @@ class MemosController extends ControladorBase{
     	session_start();
     	if (isset(  $_SESSION['nombre_usuarios']) )
     	{
-    		//Creamos el objeto usuario
-    		$rol=new RolesModel();
-    		$resultRol = $rol->getAll("nombre_rol");
-    		$resultSet="";
-    		$estado = new EstadoModel();
-    		$resultEst = $estado->getAll("nombre_estado");
-    			
-    			
-    		$departamentos = new DepartamentosModel();
-    		$resultDep = $departamentos->getAll("nombre_departamentos");
-    			
+    		
     		$usuarios = new UsuariosModel();
     
     		$nombre_controladores = "Usuarios";
@@ -29,92 +19,17 @@ class MemosController extends ControladorBase{
     		$resultPer = $usuarios->getPermisosEditar("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
     
     		
-    		$resultSet= "";
-    		$resultRol = "";
-    		$resultEdit="";
-    		$resultEst = "";
-    		$resultDep = "";
-    	    /*
-    		$_nombre_usuarios = $_POST["nombre_usuarios"];
-    		
-    		if (isset ($_POST["btn_to"])   )
-    		{
-    		
-    			if ($_nombre_usuarios != "")
-    			{
-    				
-    				
-    			}
-    			
-    		
-    		
-    		}
-    		*/
-    		
-    		
-    		/*
-    		if (!empty($resultPer))
-    		{
-    				
-    				
-    			$resultEdit = "";
-    				
-    			if (isset ($_GET["id_usuarios"])   )
-    			{
-    
-    
-    				$columnas = " usuarios.id_usuarios,
-								  usuarios.cedula_usuarios,
-								  usuarios.nombre_usuarios,
-								  usuarios.clave_usuarios,
-								  usuarios.pass_sistemas_usuarios,
-								  usuarios.telefono_usuarios,
-								  usuarios.celular_usuarios,
-								  usuarios.correo_usuarios,
-								  rol.id_rol,
-								  rol.nombre_rol,
-								  estado.id_estado,
-								  estado.nombre_estado,
-								  usuarios.fotografia_usuarios,
-								  usuarios.creado,
-								  usuarios.cargo_usuarios,
-    			                  departamentos.identificador_departamentos,
-    							  usuarios.id_departamentos,
-    			                  departamentos.nombre_departamentos";
-    
-    				$tablas   = "public.usuarios,
-								  public.rol,
-								  public.estado,
-								  public.departamentos";
-    
-    				$id       = "usuarios.id_usuarios";
-    
-    				$_id_usuarios = $_GET["id_usuarios"];
-    				$where    = "rol.id_rol = usuarios.id_rol AND estado.id_estado = usuarios.id_estado AND usuarios.id_usuarios = '$_id_usuarios' AND usuarios.id_departamentos = departamentos.id_departamentos ";
-    				$resultEdit = $usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
-    			}
-    				
-    				
-    			$this->view("Usuarios",array(
-    					"resultSet"=>$resultSet, "resultRol"=>$resultRol, "resultEdit" =>$resultEdit, "resultEst"=>$resultEst, "resultDep"=>$resultDep
-    
-    			));
-    
-    		}
-    		else
-    		{
-    			$this->view("Error",array(
-    					"resultado"=>"No tiene Permisos de Acceso a Usuarios"
-		
-    			));
-    				
-    		}
-    		*/	
+    		if(!empty($resultPer)){
     		
     		$this->view("Memos",array(
-    				"resultSet"=>$resultSet, "resultRol"=>$resultRol, "resultEdit" =>$resultEdit, "resultEst"=>$resultEst, "resultDep"=>$resultDep
+    				"resultSet"=>""
     		
     		));
+    		
+    		}else{
+    			
+    			
+    		}
     
     	}
     	else{
@@ -128,7 +43,181 @@ class MemosController extends ControladorBase{
     
     
     
-   	
+    
+    
+    
+    
+    
+    public function addindex(){
+    
+    	session_start();
+    	if (isset($_SESSION['nombre_usuarios']) )
+    	{	 
+    		$usuarios = new UsuariosModel();
+    
+    		$nombre_controladores = "Usuarios";
+    		$id_rol= $_SESSION['id_rol'];
+    		$resultPer = $usuarios->getPermisosEditar("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+    
+    		if(!empty($resultPer)){
+    			
+    			$this->view("MemosComponer",array(
+    					"resultSet"=>""
+    			
+    			));
+    			
+    	     }else{
+    			
+    		 }
+    		 
+	    	}
+	    	else{
+	    
+	    		$this->redirect("Usuarios","sesion_caducada");
+	    
+	    	}
+    
+    	}
+    
+    
+    
+    	
+
+
+    	public function sentindex(){
+    	
+    		session_start();
+    		if (isset($_SESSION['nombre_usuarios']) )
+    		{
+    			$usuarios = new UsuariosModel();
+    	
+    			$nombre_controladores = "Usuarios";
+    			$id_rol= $_SESSION['id_rol'];
+    			$resultPer = $usuarios->getPermisosEditar("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+    	
+    			if(!empty($resultPer)){
+    				 
+    				$this->view("MemosEnviados",array(
+    						"resultSet"=>""
+    
+    				));
+    				 
+    			}else{
+    				 
+    			}
+    			 
+    		}
+    		else{
+    		  
+    			$this->redirect("Usuarios","sesion_caducada");
+    		  
+    		}
+    	
+    	}
+    	
+    	
+    	
+    	
+    	
+    	
+    	public function draftindex(){
+    		 
+    		session_start();
+    		if (isset($_SESSION['nombre_usuarios']) )
+    		{
+    			$usuarios = new UsuariosModel();
+    			 
+    			$nombre_controladores = "Usuarios";
+    			$id_rol= $_SESSION['id_rol'];
+    			$resultPer = $usuarios->getPermisosEditar("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+    			 
+    			if(!empty($resultPer)){
+    					
+    				$this->view("MemosBorrador",array(
+    						"resultSet"=>""
+    	
+    				));
+    					
+    			}else{
+    					
+    			}
+    	
+    		}
+    		else{
+    	
+    			$this->redirect("Usuarios","sesion_caducada");
+    	
+    		}
+    		 
+    	}
+    	
+    	
+    	
+    	
+    	public function junkindex(){
+    		 
+    		session_start();
+    		if (isset($_SESSION['nombre_usuarios']) )
+    		{
+    			$usuarios = new UsuariosModel();
+    	
+    			$nombre_controladores = "Usuarios";
+    			$id_rol= $_SESSION['id_rol'];
+    			$resultPer = $usuarios->getPermisosEditar("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+    	
+    			if(!empty($resultPer)){
+    					
+    				$this->view("MemosBasura",array(
+    						"resultSet"=>""
+   
+    				));
+    					
+    			}else{
+    					
+    			}
+    			 
+    		}
+    		else{
+    			 
+    			$this->redirect("Usuarios","sesion_caducada");
+    			 
+    		}
+    		 
+    	}
+    	
+    	
+    	
+    	
+    	
+    	public function trashindex(){
+    		 
+    		session_start();
+    		if (isset($_SESSION['nombre_usuarios']) )
+    		{
+    			$usuarios = new UsuariosModel();
+    			 
+    			$nombre_controladores = "Usuarios";
+    			$id_rol= $_SESSION['id_rol'];
+    			$resultPer = $usuarios->getPermisosEditar("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+    			 
+    			if(!empty($resultPer)){
+    					
+    				$this->view("MemosEliminados",array(
+    						"resultSet"=>""
+    				));
+    					
+    			}else{
+    					
+    			}
+    	
+    		}
+    		else{
+    	
+    			$this->redirect("Usuarios","sesion_caducada");
+    	
+    		}
+    		 
+    	}
 	
     public function AutocompleteDirectorio(){
     
@@ -141,7 +230,7 @@ class MemosController extends ControladorBase{
     
     
     	//Tipo de Documento
-    	$resultPol = $usuarios->getCondiciones("nombre_usuarios",
+    	$resultPol = $usuarios->getCondiciones("nombre_usuarios, id_usuarios",
     			"usuarios",
     			"  UPPER(nombre_usuarios) LIKE '%$nombre_usuario%'  AND   (id_rol = 43 OR id_rol = 44 OR id_rol = 45 OR id_rol = 1) ",
     			"nombre_usuarios");
@@ -151,14 +240,14 @@ class MemosController extends ControladorBase{
     
     		foreach ($resultPol as $res){
     
-    			$_nombre_usuario[] = array('id' => $res->nombre_usuarios, 'value' => $res->nombre_usuarios);
+    			$_nombre_usuario[] = array('id' => $res->id_usuarios, 'value' => $res->nombre_usuarios);
     		}
     		//echo json_encode($_ruc_cliente);
     
     	}else
     	{
     		//echo json_encode(array(array('id' =>'0,NO DATA', 'value' =>'NO DATA')));
-    		$_nombre_usuario = array(array('id' =>'', 'value' =>'--TODOS--'));
+    		$_nombre_usuario = array(array('id' =>'', 'value' =>'No Existen Concidencias de '.$nombre_usuario.''));
     	}
     
     	echo  json_encode($_nombre_usuario);
