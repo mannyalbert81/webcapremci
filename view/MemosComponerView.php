@@ -536,20 +536,8 @@
 			}
 
 		   
-		   if (!archivo_1) { 
-
-		        //Si no tengo archivo, es que no se ha seleccionado un archivo en el formulario 
-		      	//mierror = "No has seleccionado ningún archivo"; 
-		      	$("#mensaje_archivo_1").text("Seleccione Archivo");
-	    		$("#mensaje_archivo_1").fadeIn("slow"); //Muestra mensaje de error
-	            return false;
-
-		      	
-		   }else{ 
-		      //recupero la extensión de este nombre de archivo 
+		    if(archivo_1 != ""){ 
 		      extension = (archivo_1.substring(archivo_1.lastIndexOf("."))).toLowerCase(); 
-		      //alert (extension); 
-		      //compruebo si la extensión está entre las permitidas 
 		      permitida = false; 
 		      for (var i = 0; i < extensiones_permitidas.length; i++) { 
 		         if (extensiones_permitidas[i] == extension) { 

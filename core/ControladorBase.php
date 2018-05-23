@@ -52,7 +52,13 @@ class ControladorBase{
         header("Location:index.php?controller=".$controlador."&action=".$accion);
     }
     
-    //Métodos para los controladores
+    public function verReporte($vista,$datos){
+    	foreach ($datos as $id_assoc => $valor) {
+    		${$id_assoc}=$valor;
+    	}
+    
+    	require_once 'view/reportes/'.$vista.'Rpt.php';
+    }
 
 }
 ?>

@@ -51,12 +51,15 @@ class MemosController extends ControladorBase{
     	$_array_usuarios_to=array();
     	$_array_usuarios_cc=array();
     	$asunto="";
-    	$editor_one="";
+    	$editor1="";
     	
     	if (isset($_SESSION['nombre_usuarios']) )
     	{
     		$usuarios = new UsuariosModel();
-    	
+    	    $memos_cabeza = new MemosCabezaModel();
+    	    $memos_detalle = new MemosDetalleModel();
+    		
+    		
     		$nombre_controladores = "Usuarios";
     		$id_rol= $_SESSION['id_rol'];
     		$resultPer = $usuarios->getPermisosEditar("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
@@ -64,7 +67,7 @@ class MemosController extends ControladorBase{
     		if(!empty($resultPer)){
     			
     			if(isset($_POST["enviar"])){
-    				
+    			
     				
     			$_array_usuarios_to = $_POST['usuarios_to'];
     			$_array_usuarios_cc = $_POST['usuarios_cc'];
@@ -72,60 +75,129 @@ class MemosController extends ControladorBase{
     			$asunto =$_POST["asunto"];
     			$editor1 = $_POST["editor1"];
     			
+    			$id_usuarios=$_SESSION["id_usuarios"];
+    			$resultDepartamento = $usuarios->getBy("id_usuarios = '$id_usuarios' ");
+    			$_id_departamentos=$resultDepartamento[0]->id_departamentos;
+    			$_cargo_usuarios=$resultDepartamento[0]->cargo_usuarios;
+    			$_nombre_usuarios=$resultDepartamento[0]->nombre_usuarios;
+    			
+    			$departamentos = new DepartamentosModel();
+    			$resultConsecutivo= $departamentos->getBy("id_departamentos='$_id_departamentos'");
+    			$numero_consecutivo_departamentos=$resultConsecutivo[0]->numero_consecutivo_departamentos;
+    			$identificador_memorando=$resultConsecutivo[0]->identificador_departamentos;
+    			$anio_memorando=$resultConsecutivo[0]->anio;
+    			
+    			date_default_timezone_set('America/Guayaquil');
+    			$fechaActual = date('d-m-Y H:i:s');
+    			
+    			$numero_memorando="No. ".$anio_memorando."-".$numero_consecutivo_departamentos."-".$identificador_memorando;
+    			
+    				
+    			
+    			try {
+    				
+    				$funcion = "ins_memos_cab";
+    				$parametros = "'$fechaActual',
+    				'$numero_memorando',
+    				'$id_usuarios',
+    				'$_id_departamentos',
+    				'$asunto'";
+    				$memos_cabeza->setFuncion($funcion);
+    				$memos_cabeza->setParametros($parametros);
+    				$resultado=$memos_cabeza->Insert();
+    				
+    				
+    				$resultMemosCabeza= $memos_cabeza->getBy("numero_memos_cab='$numero_memorando' AND id_usuarios='$id_usuarios' AND id_departamentos='$_id_departamentos'");
+    				$id_memos_cab=$resultMemosCabeza[0]->id_memos_cab;
+    				
+    				
+    			} catch (Exception $e) {
+    				
+    				echo "Error al Insertar Memos Cabeza";
+    				die();
+    				
+    			}
     			
     			
     			
-    			DIE($editor1);
     			
-    			// FORMAR DESTINATARIOS PARA
+    			
+    			if($id_memos_cab > 0){
+    				
+    				
+    				
+    				
+    				
+    				// FORMAR DESTINATARIOS PARA
     				$count_to=0;
     				$_id_usuarios_to=0;
-    				$_correo_usuarios_to="";
-    				$_grupo_correos_to="";
+    				$_cargo_usuarios_to="";
+    				$_nombre_usuarios_to="";
+    				$_grupo_correos_to="<pre><strong>PARA:     ";
     				$_total_registro_to=count($_array_usuarios_to);
     				
     				
     				if($_total_registro_to>0){
     				
     				
-    				foreach($_array_usuarios_to as $id  )
-    				{
-    					$count_to++;
-    					$_id_usuarios_to = $id;
-    					
-    					if($_id_usuarios_to > 0){
-    						
-    						$resultUsuariosTo = $usuarios->getBy("id_usuarios = '$_id_usuarios_to' ");
-    					
-    						if(!empty($resultUsuariosTo)){
+    					foreach($_array_usuarios_to as $id  )
+    					{
+    						$count_to++;
+    						$_id_usuarios_to = $id;
     							
-    							$_correo_usuarios_to=$resultUsuariosTo[0]->correo_usuarios;
+    						if($_id_usuarios_to > 0){
+    				
+    							$resultUsuariosTo = $usuarios->getBy("id_usuarios = '$_id_usuarios_to' ");
+    								
+    							if(!empty($resultUsuariosTo)){
+    									
+    								$_cargo_usuarios_to=$resultUsuariosTo[0]->cargo_usuarios;
+    								$_nombre_usuarios_to=$resultUsuariosTo[0]->nombre_usuarios;
+    							}
+    							
+    							
+    							$funcion = "ins_memos_det";
+    							$parametros = "'$_id_usuarios_to','1','$id_memos_cab'";
+    							$memos_detalle->setFuncion($funcion);
+    							$memos_detalle->setParametros($parametros);
+    							$resultado=$memos_detalle->Insert();
+    				
     						}
+    							
+    						if($count_to==$_total_registro_to){
+    				
+    							
+    							$_grupo_correos_to.= "$_nombre_usuarios_to</strong></pre><pre><strong>          $_cargo_usuarios_to</strong></pre><br>";
+    								
+    						}else{
+    				
+    							$_grupo_correos_to.= "$_nombre_usuarios_to</strong></pre><pre><strong>          $_cargo_usuarios_to</strong></pre><br>";
     						
+    						}
+    							
     					}
-    					
-    					if($count_to==$_total_registro_to){
-    						
-    						$_grupo_correos_to.= $_correo_usuarios_to;
-    					
-    					}else{
-    						
-    						$_grupo_correos_to.= $_correo_usuarios_to.", ";
-    					}
-    					
-    				}	
-    			
+    					 
     				}
     				
     				// TERMINA DESTINATARIOS PARA
+    				
+    				
+    				
+    				
+    				
+    				
+    				
+    				
+    				
     				
     				
     				// TERMINA DESTINATARIOS COPIA
     				
     				$count_cc=0;
     				$_id_usuarios_cc=0;
-    				$_correo_usuarios_cc="";
-    				$_grupo_correos_cc="";
+    				$_cargo_usuarios_cc="";
+    				$_nombre_usuarios_cc="";
+    				$_grupo_correos_cc="<pre><strong>CC:       ";
     				$_total_registro_cc=count($_array_usuarios_cc);
     				
     				
@@ -141,31 +213,199 @@ class MemosController extends ControladorBase{
     						if($_id_usuarios_cc > 0){
     				
     							$resultUsuariosCc = $usuarios->getBy("id_usuarios = '$_id_usuarios_cc' ");
-    								
+    				
     							if(!empty($resultUsuariosCc)){
     									
-    								$_correo_usuarios_cc=$resultUsuariosCc[0]->correo_usuarios;
+    								$_cargo_usuarios_cc=$resultUsuariosCc[0]->cargo_usuarios;
+    								$_nombre_usuarios_cc=$resultUsuariosCc[0]->nombre_usuarios;
     							}
     				
+    							$funcion = "ins_memos_det";
+    							$parametros = "'$_id_usuarios_cc','2','$id_memos_cab'";
+    							$memos_detalle->setFuncion($funcion);
+    							$memos_detalle->setParametros($parametros);
+    							$resultado=$memos_detalle->Insert();
+    							
     						}
     							
+    						
+    						
     						if($count_cc==$_total_registro_cc){
     				
-    							$_grupo_correos_cc.= $_correo_usuarios_cc;
-    								
+    							$_grupo_correos_cc.="$_nombre_usuarios_cc</strong></pre><pre><strong>          $_cargo_usuarios_cc</strong></pre><br>";
+    				
     						}else{
     				
-    							$_grupo_correos_cc.= $_correo_usuarios_cc.", ";
+    							$_grupo_correos_cc.="$_nombre_usuarios_cc</strong></pre><pre><strong>          $_cargo_usuarios_cc</strong></pre><br>";
+    							
     						}
+    						
+    						
+    						
     							
     					}
-    					 
+    				
     				}
     				
     				
-    				// TERMINA DESTINATARIOS PARA
+    				// TERMINA DESTINATARIOS COPIA
+    				
+    				
+    				
+    				
+    				
+    				
+    				
+    			}
+    				
+    			$departamentos->UpdateBy("numero_consecutivo_departamentos=numero_consecutivo_departamentos+1", "departamentos", "id_departamentos='$_id_departamentos'");
+    			 
     			
     			
+    			$cuadro_infor="";
+    			$cuadro_infor.="<pre><strong>DE:       $_nombre_usuarios</strong></pre><pre><strong>          $_cargo_usuarios</strong></pre><br>";
+    			$cuadro_infor.="$_grupo_correos_to";
+    			$cuadro_infor.="$_grupo_correos_cc";
+    			$cuadro_infor.="<pre><strong>ASUNTO:   $asunto</strong></pre><br>";
+    			$cuadro_infor.="<pre><strong>FECHA:    $fechaActual</strong></pre><pre>";
+    			
+    			
+    			
+    			
+    			
+    			
+    		
+    			
+    			
+    			
+    			
+    			
+    			$dicContenido = array(
+    					'TITULOPAG'=>"Capremci 2018",
+    					'NOMBREFICHA'=>"MEMORANDO",
+    					'NUMEROMEMORANDO'=>$numero_memorando,
+    					'CUERPO'=>$editor1,
+    					'CUADROINFORMACION'=>$cuadro_infor
+    			);
+    			
+    			$this->verReporte('Memorandu',array(
+    					'dicContenido'=>$dicContenido
+    			));
+    			
+    			
+    			
+    			
+    			die();
+    			
+    			
+    			
+    				
+    				
+    				//REGOGIENDO ARCHIVO 1
+    				
+    				if ($_FILES['archivo_1']['tmp_name']!="")
+    				{
+    					$directorio_1 = $_SERVER['DOCUMENT_ROOT'].'/webcapremci/memos_adjuntos/';
+    					$nombre_1 = $_FILES['archivo_1']['name'];
+    					$tipo_1 = $_FILES['archivo_1']['type'];
+    					$tamano_1 = $_FILES['archivo_1']['size'];
+    					 
+    					move_uploaded_file($_FILES['archivo_1']['tmp_name'],$directorio_1.$nombre_1);
+    					$data_1 = file_get_contents($directorio_1.$nombre_1);
+    					$archivo_1 = pg_escape_bytea($data_1);
+    					
+    					
+    				}else{
+    					
+    					$archivo_1="";
+    				}
+    				
+    				//TERMINA ARCHIVO 1
+    				
+    				
+    				
+    				
+    				//REGOGIENDO ARCHIVO 2
+    				
+    				if ($_FILES['archivo_2']['tmp_name']!="")
+    				{
+    					$directorio_2 = $_SERVER['DOCUMENT_ROOT'].'/webcapremci/memos_adjuntos/';
+    					$nombre_2 = $_FILES['archivo_2']['name'];
+    					$tipo_2 = $_FILES['archivo_2']['type'];
+    					$tamano_2 = $_FILES['archivo_2']['size'];
+    				
+    					move_uploaded_file($_FILES['archivo_2']['tmp_name'],$directorio_2.$nombre_2);
+    					$data_2 = file_get_contents($directorio_2.$nombre_2);
+    					$archivo_2 = pg_escape_bytea($data_2);
+    						
+    						
+    				}else{
+    						
+    					$archivo_2="";
+    				}
+    				
+    				//TERMINA ARCHIVO 2
+    				
+    				
+    				
+    				
+    				//REGOGIENDO ARCHIVO 3
+    				
+    				if ($_FILES['archivo_3']['tmp_name']!="")
+    				{
+    					$directorio_3 = $_SERVER['DOCUMENT_ROOT'].'/webcapremci/memos_adjuntos/';
+    					$nombre_3 = $_FILES['archivo_3']['name'];
+    					$tipo_3 = $_FILES['archivo_3']['type'];
+    					$tamano_3 = $_FILES['archivo_3']['size'];
+    				
+    					move_uploaded_file($_FILES['archivo_3']['tmp_name'],$directorio_3.$nombre_3);
+    					$data_3 = file_get_contents($directorio_3.$nombre_3);
+    					$archivo_3 = pg_escape_bytea($data_3);
+    				
+    				
+    				}else{
+    				
+    					$archivo_3="";
+    				
+    				}
+    				
+    				//TERMINA ARCHIVO 3
+    				
+    				
+    				
+    				
+    				
+    				//REGOGIENDO ARCHIVO 4
+    				if ($_FILES['archivo_4']['tmp_name']!="")
+    				{
+    					$directorio_4 = $_SERVER['DOCUMENT_ROOT'].'/webcapremci/memos_adjuntos/';
+    					$nombre_4 = $_FILES['archivo_4']['name'];
+    					$tipo_4 = $_FILES['archivo_4']['type'];
+    					$tamano_4 = $_FILES['archivo_4']['size'];
+    				
+    					move_uploaded_file($_FILES['archivo_4']['tmp_name'],$directorio_4.$nombre_4);
+    					$data_4 = file_get_contents($directorio_4.$nombre_4);
+    					$archivo_4 = pg_escape_bytea($data_4);
+    				
+    				}else{
+    				
+    					$archivo_4="";
+    				
+    				}
+    				//TERMINA ARCHIVO 4
+    				
+    				
+    				
+    				
+    				
+    				
+    				
+    				
+    				
+    				
+    				
+    				
+    				
     			}
     			
     			
