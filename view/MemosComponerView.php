@@ -354,6 +354,7 @@
                  <div class="x_content">
         
         
+            <form action="<?php echo $helper->url("Memos","InsertaMemo"); ?>" method="post" enctype="multipart/form-data">      
         
         
             <div class="row">
@@ -374,16 +375,14 @@
            		   </div>
           </div>
           
-          
-       
-	    
+        
 	    
 	    
 	    <div class="row">
               		 <div class="col-lg-6 col-xs-12 col-md-6">
                           <div class="form-group">
                           <label for="usuarios_to" class="control-label">To:</label>
-                          <select id="usuarios_to" name="usuarios_to" size="4" class="select2_multiple form-control" multiple="multiple">
+                          <select id="usuarios_to" name="usuarios_to[]" size="4" class="form-control" multiple="multiple">
 				          </select>
 				          <div id="mensaje_usuarios_to" class="errores"></div>
                           </div>
@@ -394,7 +393,7 @@
                      <div class="col-lg-6 col-xs-12 col-md-6">
                          <div class="form-group">
                          <label for="usuarios_cc" class="control-label">Cc:</label>
-                         <select id="usuarios_cc"  name="usuarios_cc"  size="4" class="select2_multiple form-control" multiple="multiple">
+                         <select id="usuarios_cc"  name="usuarios_cc[]"  size="4" class="form-control" multiple="multiple">
 				         </select>
 				         <div id="mensaje_usuarios_cc" class="errores"></div>
                      	 </div>
@@ -417,80 +416,16 @@
            
            
             
-        <div class="row">
-        	<div id="alerts"></div>
-                  <div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#editor-one">
-                    <div class="btn-group">
-                      <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="fa fa-font"></i><b class="caret"></b></a>
-                      <ul class="dropdown-menu">
-                      </ul>
-                    </div>
-
-                    <div class="btn-group">
-                      <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a data-edit="fontSize 5">
-                            <p style="font-size:17px">Huge</p>
-                          </a>
-                        </li>
-                        <li>
-                          <a data-edit="fontSize 3">
-                            <p style="font-size:14px">Normal</p>
-                          </a>
-                        </li>
-                        <li>
-                          <a data-edit="fontSize 1">
-                            <p style="font-size:11px">Small</p>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div class="btn-group">
-                      <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
-                      <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
-                      <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
-                      <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
-                    </div>
-
-                    <div class="btn-group">
-                      <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a>
-                      <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a>
-                      <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-dedent"></i></a>
-                      <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent"></i></a>
-                    </div>
-
-                    <div class="btn-group">
-                      <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>
-                      <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>
-                      <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
-                      <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
-                    </div>
-
-                    <div class="btn-group">
-                      <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="fa fa-link"></i></a>
-                      <div class="dropdown-menu input-append">
-                        <input class="span2" placeholder="URL" type="text" data-edit="createLink" />
-                        <button class="btn" type="button">Add</button>
-                      </div>
-                      <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="fa fa-cut"></i></a>
-                    </div>
-
-                    <div class="btn-group">
-                      <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="fa fa-picture-o"></i></a>
-                      <!--<input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" /> -->
-                    </div>
-
-                    <div class="btn-group">
-                      <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
-                      <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
-                    </div>
-                  </div>
-
-               	 <div id="editor-one" name="editor-one" class="editor-wrapper"></div>
-              	   
-                   
+        
+	            <div class="row">
+	        	<div class="col-lg-12 col-md-12 col-xs-12">
+	            <div class="box-body pad">
+	                    <textarea id="editor1" name="editor1" rows="10" cols="80"></textarea>
+	                    <div id="mensaje_editor1" class="errores"></div>
+	            </div>
+	       		</div>
+	        	</div>
+        	       
                  <div class="row" style="margin-top: 20px;">  
                  <div class="col-lg-3 col-xs-12 col-md-3">
                  <div class="form-group">
@@ -526,15 +461,20 @@
                  </div>
                  </div>  
            
-           </div>
-       </div>
+      
            
-            <form action="<?php echo $helper->url("Memos","index"); ?>" method="post">      
-         	<div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center; margin-top: 20px;">
+           
+           
+           <div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center; margin-top: 20px;">
               <button type="submit" id="cancelar" name="cancelar" onclick="this.form.action='<?php echo $helper->url("Memos","index"); ?>'" class="btn btn-primary"><i class="glyphicon glyphicon-refresh"> Cancelar</i></button>
          	  <button type="submit" id="enviar" name="enviar" class="btn btn-success"><i class="glyphicon glyphicon-envelope"> Enviar</i></button>
          	</div>
         	</form>
+           
+           
+       </div>
+           
+         	
         
           </div>
           </div>
@@ -557,7 +497,7 @@
 		   var usuarios_to= $("#usuarios_to").val();
 		   var usuarios_cc= $("#usuarios_cc").val();
 		   var asunto= $("#asunto").val();
-		   //var editor-one= $("#editor-one").val();
+		 
 		   
 		   var archivo_1= $("#archivo_1").val();
 		   var archivo_2= $("#archivo_2").val();
@@ -566,6 +506,8 @@
 
 
 		   var contar_to = $("#usuarios_to option").length;
+
+
 				
 		    if (contar_to==0 || contar_to =="")
 	    	{
@@ -593,7 +535,6 @@
 	            
 			}
 
-		   
 		   
 		   if (!archivo_1) { 
 
@@ -700,6 +641,12 @@
 			      	} 
 
 			}
+
+
+
+			$('#usuarios_to option').prop('selected', 'selected'); 
+			$('#usuarios_cc option').prop('selected', 'selected'); 
+			
 		 
 			 
     	}); 
@@ -711,7 +658,8 @@
     	$( "#asunto" ).focus(function() {
 		  $("#mensaje_asunto").fadeOut("slow");
 	    });
-	    
+
+    	
     	$( "#archivo_1" ).focus(function() {
   		  $("#mensaje_archivo_1").fadeOut("slow");
   	    });
@@ -734,11 +682,25 @@
 
 
     <script src="view/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="view/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
-    <script src="view/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
-    <script src="view/vendors/google-code-prettify/src/prettify.js"></script>
     <script src="view/build/js/custom.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    
+    <script src="view/AdminLTE-2.4.2/bower_components/ckeditor/ckeditor.js"></script>
+	<script src="view/AdminLTE-2.4.2/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+	
+	<script>
+	  $(function () {
+	    // Replace the <textarea id="editor1"> with a CKEditor
+	    // instance, using default configuration.
+	    CKEDITOR.replace('editor1')
+	    //bootstrap WYSIHTML5 - text editor
+	    $('.textarea').wysihtml5()
+	   
+	    
+	  })
+	</script>
+    
+    
     
 		
   </body>

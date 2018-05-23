@@ -44,6 +44,157 @@ class MemosController extends ControladorBase{
     
     
     
+    public function InsertaMemo(){
+    	
+    	session_start();
+    	
+    	$_array_usuarios_to=array();
+    	$_array_usuarios_cc=array();
+    	$asunto="";
+    	$editor_one="";
+    	
+    	if (isset($_SESSION['nombre_usuarios']) )
+    	{
+    		$usuarios = new UsuariosModel();
+    	
+    		$nombre_controladores = "Usuarios";
+    		$id_rol= $_SESSION['id_rol'];
+    		$resultPer = $usuarios->getPermisosEditar("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+    	
+    		if(!empty($resultPer)){
+    			
+    			if(isset($_POST["enviar"])){
+    				
+    				
+    			$_array_usuarios_to = $_POST['usuarios_to'];
+    			$_array_usuarios_cc = $_POST['usuarios_cc'];
+    			
+    			$asunto =$_POST["asunto"];
+    			$editor1 = $_POST["editor1"];
+    			
+    			
+    			
+    			
+    			DIE($editor1);
+    			
+    			// FORMAR DESTINATARIOS PARA
+    				$count_to=0;
+    				$_id_usuarios_to=0;
+    				$_correo_usuarios_to="";
+    				$_grupo_correos_to="";
+    				$_total_registro_to=count($_array_usuarios_to);
+    				
+    				
+    				if($_total_registro_to>0){
+    				
+    				
+    				foreach($_array_usuarios_to as $id  )
+    				{
+    					$count_to++;
+    					$_id_usuarios_to = $id;
+    					
+    					if($_id_usuarios_to > 0){
+    						
+    						$resultUsuariosTo = $usuarios->getBy("id_usuarios = '$_id_usuarios_to' ");
+    					
+    						if(!empty($resultUsuariosTo)){
+    							
+    							$_correo_usuarios_to=$resultUsuariosTo[0]->correo_usuarios;
+    						}
+    						
+    					}
+    					
+    					if($count_to==$_total_registro_to){
+    						
+    						$_grupo_correos_to.= $_correo_usuarios_to;
+    					
+    					}else{
+    						
+    						$_grupo_correos_to.= $_correo_usuarios_to.", ";
+    					}
+    					
+    				}	
+    			
+    				}
+    				
+    				// TERMINA DESTINATARIOS PARA
+    				
+    				
+    				// TERMINA DESTINATARIOS COPIA
+    				
+    				$count_cc=0;
+    				$_id_usuarios_cc=0;
+    				$_correo_usuarios_cc="";
+    				$_grupo_correos_cc="";
+    				$_total_registro_cc=count($_array_usuarios_cc);
+    				
+    				
+    				
+    				if($_total_registro_cc>0){
+    				
+    				
+    					foreach($_array_usuarios_cc as $id  )
+    					{
+    						$count_cc++;
+    						$_id_usuarios_cc = $id;
+    							
+    						if($_id_usuarios_cc > 0){
+    				
+    							$resultUsuariosCc = $usuarios->getBy("id_usuarios = '$_id_usuarios_cc' ");
+    								
+    							if(!empty($resultUsuariosCc)){
+    									
+    								$_correo_usuarios_cc=$resultUsuariosCc[0]->correo_usuarios;
+    							}
+    				
+    						}
+    							
+    						if($count_cc==$_total_registro_cc){
+    				
+    							$_grupo_correos_cc.= $_correo_usuarios_cc;
+    								
+    						}else{
+    				
+    							$_grupo_correos_cc.= $_correo_usuarios_cc.", ";
+    						}
+    							
+    					}
+    					 
+    				}
+    				
+    				
+    				// TERMINA DESTINATARIOS PARA
+    			
+    			
+    			}
+    			
+    			
+    			
+    			
+    			
+    			
+    			$this->redirect("Memos","index");
+    			
+    			
+    			 
+    		}else{
+    			
+    			die("ESTIMADO USUARIO AL MOMENTO NO TIENE PERMISOS PARA GENERAR MEMORANDUM EN EL SISTEMA.");
+    		}
+    		 
+    	}
+    	else{
+    		 
+    		$this->redirect("Usuarios","sesion_caducada");
+    		 
+    	}
+    	
+    }
+    
+    
+    
+    
+    
     
     
     
