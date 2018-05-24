@@ -58,7 +58,7 @@ class MemosController extends ControladorBase{
     		$usuarios = new UsuariosModel();
     	    $memos_cabeza = new MemosCabezaModel();
     	    $memos_detalle = new MemosDetalleModel();
-    		
+    		$memos_pdf = new MemosPdfModel();
     		
     		$nombre_controladores = "Usuarios";
     		$id_rol= $_SESSION['id_rol'];
@@ -80,6 +80,8 @@ class MemosController extends ControladorBase{
     			$_id_departamentos=$resultDepartamento[0]->id_departamentos;
     			$_cargo_usuarios=$resultDepartamento[0]->cargo_usuarios;
     			$_nombre_usuarios=$resultDepartamento[0]->nombre_usuarios;
+    			$_ciudad_trabajo=$resultDepartamento[0]->ciudad_trabajo;
+    			
     			
     			$departamentos = new DepartamentosModel();
     			$resultConsecutivo= $departamentos->getBy("id_departamentos='$_id_departamentos'");
@@ -133,13 +135,14 @@ class MemosController extends ControladorBase{
     				$_id_usuarios_to=0;
     				$_cargo_usuarios_to="";
     				$_nombre_usuarios_to="";
-    				$_grupo_correos_to="<pre><strong>PARA:     ";
+    				$_grupo_correos_to="";
     				$_total_registro_to=count($_array_usuarios_to);
     				
     				
     				if($_total_registro_to>0){
     				
-    				
+    					$_grupo_correos_to="<pre><strong>PARA:     </strong>";
+    					
     					foreach($_array_usuarios_to as $id  )
     					{
     						$count_to++;
@@ -164,15 +167,15 @@ class MemosController extends ControladorBase{
     				
     						}
     							
-    						if($count_to==$_total_registro_to){
+    						if($count_to==1){
     				
+    							$_grupo_correos_to.= "<strong>$_nombre_usuarios_to</strong></pre><pre><strong>          $_cargo_usuarios_to</strong></pre><br>";
     							
-    							$_grupo_correos_to.= "$_nombre_usuarios_to</strong></pre><pre><strong>          $_cargo_usuarios_to</strong></pre><br>";
     								
     						}else{
     				
-    							$_grupo_correos_to.= "$_nombre_usuarios_to</strong></pre><pre><strong>          $_cargo_usuarios_to</strong></pre><br>";
-    						
+    							$_grupo_correos_to.= "<pre><strong>          $_nombre_usuarios_to</strong></pre><pre><strong>          $_cargo_usuarios_to</strong></pre><br>";
+    								
     						}
     							
     					}
@@ -197,14 +200,15 @@ class MemosController extends ControladorBase{
     				$_id_usuarios_cc=0;
     				$_cargo_usuarios_cc="";
     				$_nombre_usuarios_cc="";
-    				$_grupo_correos_cc="<pre><strong>CC:       ";
+    				$_grupo_correos_cc="";
     				$_total_registro_cc=count($_array_usuarios_cc);
     				
     				
     				
     				if($_total_registro_cc>0){
     				
-    				
+    					$_grupo_correos_cc="<pre><strong>CC:       </strong>";
+    					
     					foreach($_array_usuarios_cc as $id  )
     					{
     						$count_cc++;
@@ -230,18 +234,15 @@ class MemosController extends ControladorBase{
     							
     						
     						
-    						if($count_cc==$_total_registro_cc){
+    						if($count_cc==1){
     				
-    							$_grupo_correos_cc.="$_nombre_usuarios_cc</strong></pre><pre><strong>          $_cargo_usuarios_cc</strong></pre><br>";
-    				
+    							$_grupo_correos_cc.="<strong>$_nombre_usuarios_cc</strong></pre><pre><strong>          $_cargo_usuarios_cc</strong></pre><br>";
+    						
     						}else{
-    				
-    							$_grupo_correos_cc.="$_nombre_usuarios_cc</strong></pre><pre><strong>          $_cargo_usuarios_cc</strong></pre><br>";
+
+    							$_grupo_correos_cc.="<pre><strong>          $_nombre_usuarios_cc</strong></pre><pre><strong>          $_cargo_usuarios_cc</strong></pre><br>";
     							
     						}
-    						
-    						
-    						
     							
     					}
     				
@@ -256,51 +257,12 @@ class MemosController extends ControladorBase{
     				
     				
     				
-    			}
-    				
-    			$departamentos->UpdateBy("numero_consecutivo_departamentos=numero_consecutivo_departamentos+1", "departamentos", "id_departamentos='$_id_departamentos'");
-    			 
-    			
-    			
-    			$cuadro_infor="";
-    			$cuadro_infor.="<pre><strong>DE:       $_nombre_usuarios</strong></pre><pre><strong>          $_cargo_usuarios</strong></pre><br>";
-    			$cuadro_infor.="$_grupo_correos_to";
-    			$cuadro_infor.="$_grupo_correos_cc";
-    			$cuadro_infor.="<pre><strong>ASUNTO:   $asunto</strong></pre><br>";
-    			$cuadro_infor.="<pre><strong>FECHA:    $fechaActual</strong></pre><pre>";
-    			
-    			
-    			
-    			
-    			
-    			
-    		
-    			
-    			
-    			
-    			
-    			
-    			$dicContenido = array(
-    					'TITULOPAG'=>"Capremci 2018",
-    					'NOMBREFICHA'=>"MEMORANDO",
-    					'NUMEROMEMORANDO'=>$numero_memorando,
-    					'CUERPO'=>$editor1,
-    					'CUADROINFORMACION'=>$cuadro_infor
-    			);
-    			
-    			$this->verReporte('Memorandu',array(
-    					'dicContenido'=>$dicContenido
-    			));
-    			
-    			
-    			
-    			
-    			die();
-    			
-    			
-    			
     				
     				
+    				
+    				
+
+
     				//REGOGIENDO ARCHIVO 1
     				
     				if ($_FILES['archivo_1']['tmp_name']!="")
@@ -309,14 +271,21 @@ class MemosController extends ControladorBase{
     					$nombre_1 = $_FILES['archivo_1']['name'];
     					$tipo_1 = $_FILES['archivo_1']['type'];
     					$tamano_1 = $_FILES['archivo_1']['size'];
-    					 
+    				
     					move_uploaded_file($_FILES['archivo_1']['tmp_name'],$directorio_1.$nombre_1);
     					$data_1 = file_get_contents($directorio_1.$nombre_1);
     					$archivo_1 = pg_escape_bytea($data_1);
+    						
     					
+    					$funcion = "ins_memos_pdf";
+    					$parametros = "'$id_memos_cab','$archivo_1'";
+    					$memos_pdf->setFuncion($funcion);
+    					$memos_pdf->setParametros($parametros);
+    					$resultado=$memos_pdf->Insert();
     					
+    						
     				}else{
-    					
+    						
     					$archivo_1="";
     				}
     				
@@ -337,10 +306,17 @@ class MemosController extends ControladorBase{
     					move_uploaded_file($_FILES['archivo_2']['tmp_name'],$directorio_2.$nombre_2);
     					$data_2 = file_get_contents($directorio_2.$nombre_2);
     					$archivo_2 = pg_escape_bytea($data_2);
-    						
-    						
+    				
+    				
+    					$funcion = "ins_memos_pdf";
+    					$parametros = "'$id_memos_cab','$archivo_2'";
+    					$memos_pdf->setFuncion($funcion);
+    					$memos_pdf->setParametros($parametros);
+    					$resultado=$memos_pdf->Insert();
+    					
+    					
     				}else{
-    						
+    				
     					$archivo_2="";
     				}
     				
@@ -362,6 +338,11 @@ class MemosController extends ControladorBase{
     					$data_3 = file_get_contents($directorio_3.$nombre_3);
     					$archivo_3 = pg_escape_bytea($data_3);
     				
+    					$funcion = "ins_memos_pdf";
+    					$parametros = "'$id_memos_cab','$archivo_3'";
+    					$memos_pdf->setFuncion($funcion);
+    					$memos_pdf->setParametros($parametros);
+    					$resultado=$memos_pdf->Insert();
     				
     				}else{
     				
@@ -387,6 +368,13 @@ class MemosController extends ControladorBase{
     					$data_4 = file_get_contents($directorio_4.$nombre_4);
     					$archivo_4 = pg_escape_bytea($data_4);
     				
+    					
+    					$funcion = "ins_memos_pdf";
+    					$parametros = "'$id_memos_cab','$archivo_4'";
+    					$memos_pdf->setFuncion($funcion);
+    					$memos_pdf->setParametros($parametros);
+    					$resultado=$memos_pdf->Insert();
+    					
     				}else{
     				
     					$archivo_4="";
@@ -398,24 +386,62 @@ class MemosController extends ControladorBase{
     				
     				
     				
+    				//REGOGIENDO ARCHIVO GENERADO MEMO
     				
-    				
-    				
-    				
+    				//TERMINA ARCHIVO GENERADO MEMO
     				
     				
     				
     				
     			}
+    				
+    			$departamentos->UpdateBy("numero_consecutivo_departamentos=numero_consecutivo_departamentos+1", "departamentos", "id_departamentos='$_id_departamentos'");
+    			 
+    			
+    			$fechaactual = $fechaActual;
+    			$dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+    			$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+    			$fechaactual=$dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+    			 
+    			
+    			$cuadro_infor="";
+    			$cuadro_infor.="<pre><strong>DE:       $_nombre_usuarios</strong></pre><pre><strong>          $_cargo_usuarios</strong></pre><br>";
+    			if($_grupo_correos_to!=""){$cuadro_infor.="$_grupo_correos_to";}
+    			if($_grupo_correos_cc!=""){$cuadro_infor.="$_grupo_correos_cc";}
+    			$cuadro_infor.="<pre><strong>ASUNTO:   $asunto</strong></pre><br>";
+    			$cuadro_infor.="<pre><strong style='text-transform: uppercase;'>FECHA:    $_ciudad_trabajo, $fechaactual</strong></pre><pre>";
     			
     			
     			
+    			$cuadro_firma="<div style='font-family: Arial; font-size:11pt; color:#000000; width: 30%; text-align: left; margin-top:20px;'>";
+    			$cuadro_firma.="<p>Atentamente,</p>";
+    			$cuadro_firma.="<strong><hr style='margin-top:60px; border-color: black;'></strong>";
+    			$cuadro_firma.="<strong>$_nombre_usuarios</strong><br>";
+    			$cuadro_firma.="<strong>$_cargo_usuarios</strong><br>";
+    			$cuadro_firma.="<strong>FCPC EMCIS FF.AA</strong><br>";
+    			$cuadro_firma.="<strong>Fono: 3828870</strong><br>";
+    			$cuadro_firma.="<strong>www.capremci.com.ec</strong>";
+    			$cuadro_firma.="</div>";
     			
     			
+    			$dicContenido = array(
+    					'TITULOPAG'=>"Capremci 2018",
+    					'NOMBREFICHA'=>"MEMORANDO",
+    					'NUMEROMEMORANDO'=>$numero_memorando,
+    					'CUERPO'=>$editor1,
+    					'CUADROINFORMACION'=>$cuadro_infor,
+    					'CUADROFRIMA'=>$cuadro_firma
+    			);
     			
-    			$this->redirect("Memos","index");
+    			$this->verReporte('Memorandu',array(
+    					'dicContenido'=>$dicContenido, 'numero_memorando'=>$numero_memorando, 'id_memos_cab'=>$id_memos_cab
+    			));
     			
+    				
+    				
+    			}
     			
+    				
     			 
     		}else{
     			
@@ -616,7 +642,7 @@ class MemosController extends ControladorBase{
     
     	$nombre_usuario = strtoupper($_GET['term']);
     	$_nombre_usuario = array();
-    
+    	
     	$usuarios = new UsuariosModel();
     
     

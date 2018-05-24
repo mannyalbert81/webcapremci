@@ -2,17 +2,16 @@
  
 include('view/mpdf60/mpdf.php'); 
 
-//echo getcwd().'\n'; //para ver ubicacion de directorio
+include'../../core/Conectar.php';
+$cn = new Conectar();
+$conn = $cn->conexion();
+
 
 $template = file_get_contents('view/reportes/template/Memorandu.html');
 
-//para la numeracion de pagina
 $footer = file_get_contents('view/reportes/template/Footer.html');
 
 
-//$template = str_replace('{detalle}', $detalle, $template);
-
-//cuando ya viene el diccionario de datos
 if(!empty($dicContenido))
 {
 	
@@ -20,15 +19,8 @@ if(!empty($dicContenido))
 		$template = str_replace('{'.$clave.'}', $valor, $template);
 	}
 }
-// var_dump($template);
 
-// echo $template; 
-// die();
 ob_end_clean();
-
-
-//creacion del pdf
-//$mpdf=new mPDF('c','A4','','' , 0 , 0 , 0 , 0 , 0 , 0);
 
 $mpdf=new mPDF();
 $mpdf->SetDisplayMode('fullpage');
@@ -38,9 +30,22 @@ $mpdf->charset_in = 'UTF-8';
 $mpdf->SetHTMLFooter($footer);
 $mpdf->WriteHTML($template);
 $mpdf->debug = true;
- 
-$mpdf->Output();
+$directorio = $_SERVER ['DOCUMENT_ROOT'].'/webcapremci/memos_generados/';
+$filename = $numero_memorando.'.pdf';
+$mpdf->Output($directorio.$filename,'F');
 
+
+	
+$data_5 = file_get_contents($directorio.$filename);
+$archivo_5 = pg_escape_bytea($data_5);
+
+
+$sql="INSERT INTO memos_pdf (id_memos_pdf, id_memos_cab, archivo_memos_pdf) VALUES (DEFAULT,'$id_memos_cab','$archivo_5')";
+$query_new_insert = pg_query($conn,$sql);
+
+
+
+$this->redirect("Memos","index");
 exit();
 
 ?>
