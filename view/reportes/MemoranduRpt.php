@@ -40,7 +40,7 @@ $data_5 = file_get_contents($directorio.$filename);
 $archivo_5 = pg_escape_bytea($data_5);
 
 
-$sql="INSERT INTO memos_pdf (id_memos_pdf, id_memos_cab, archivo_memos_pdf) VALUES (DEFAULT,'$id_memos_cab','$archivo_5')";
+$sql="INSERT INTO memos_pdf (id_memos_pdf, id_memos_cab, archivo_memos_pdf, id_tipo_memos_pdf) VALUES (DEFAULT,'$id_memos_cab','$archivo_5', '1')";
 $query_new_insert = pg_query($conn,$sql);
 
 

@@ -278,7 +278,7 @@ class MemosController extends ControladorBase{
     						
     					
     					$funcion = "ins_memos_pdf";
-    					$parametros = "'$id_memos_cab','$archivo_1'";
+    					$parametros = "'$id_memos_cab','$archivo_1','2'";
     					$memos_pdf->setFuncion($funcion);
     					$memos_pdf->setParametros($parametros);
     					$resultado=$memos_pdf->Insert();
@@ -309,7 +309,7 @@ class MemosController extends ControladorBase{
     				
     				
     					$funcion = "ins_memos_pdf";
-    					$parametros = "'$id_memos_cab','$archivo_2'";
+    					$parametros = "'$id_memos_cab','$archivo_2','2'";
     					$memos_pdf->setFuncion($funcion);
     					$memos_pdf->setParametros($parametros);
     					$resultado=$memos_pdf->Insert();
@@ -339,7 +339,7 @@ class MemosController extends ControladorBase{
     					$archivo_3 = pg_escape_bytea($data_3);
     				
     					$funcion = "ins_memos_pdf";
-    					$parametros = "'$id_memos_cab','$archivo_3'";
+    					$parametros = "'$id_memos_cab','$archivo_3','2'";
     					$memos_pdf->setFuncion($funcion);
     					$memos_pdf->setParametros($parametros);
     					$resultado=$memos_pdf->Insert();
@@ -370,7 +370,7 @@ class MemosController extends ControladorBase{
     				
     					
     					$funcion = "ins_memos_pdf";
-    					$parametros = "'$id_memos_cab','$archivo_4'";
+    					$parametros = "'$id_memos_cab','$archivo_4','2'";
     					$memos_pdf->setFuncion($funcion);
     					$memos_pdf->setParametros($parametros);
     					$resultado=$memos_pdf->Insert();
