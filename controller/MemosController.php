@@ -26,8 +26,6 @@ class MemosController extends ControladorBase{
     		if(!empty($resultPer)){
     			
     			
-    			
-    			
     			if(isset($_GET["ident"]) && isset($_GET["tip"])){
     				
     				
@@ -53,7 +51,6 @@ class MemosController extends ControladorBase{
     					
     					}
     					
-    					
     					/*
     					if($tipo=="Remove"){
     							
@@ -62,8 +59,6 @@ class MemosController extends ControladorBase{
     					}
     					*/
     				}
-    				
-    				
     				
     			}
     			
@@ -74,10 +69,8 @@ class MemosController extends ControladorBase{
     				$tablas="public.memos_det, public.memos_cab";
     				$where="memos_cab.id_memos_cab = memos_det.id_memos_cab AND memos_det.id_usuarios='$id_usuarios' AND (memos_cab.id_estado_tramites=4 OR memos_cab.id_estado_tramites=2)";
     				$totalimbox=$memos_detalle->getCantidad($columnas, $tablas, $where);
-    					
     			
     			}else{
-    			
     				 
     				$columnas1="*";
     				$tablas1="memos_det";
@@ -92,8 +85,6 @@ class MemosController extends ControladorBase{
     			$where2="id_usuarios='$id_usuarios'";
     			$totalsent=$memos_cabeza->getCantidad($columnas2, $tablas2, $where2);
     			$cantidadsent=(int)$totalsent[0]->total;
-    			
-    			
     			
     			
     			
@@ -131,7 +122,6 @@ class MemosController extends ControladorBase{
     		$id_usuarios = $_SESSION["id_usuarios"];
     		$memos_pdf = new MemosPdfModel();
     		$html="";
-    		
     		
     		
     		if (isset($_GET["identi"]) && isset($_GET["tip"])){
@@ -475,8 +465,6 @@ class MemosController extends ControladorBase{
     					"html"=>$html, "cantidadimbox"=>$cantidadimbox, "cantidadsent"=>$cantidadsent
     
     			));
-    
-    		
     
     	}
     	else{
@@ -946,6 +934,7 @@ class MemosController extends ControladorBase{
     			
     	     }else{
     			
+    	     	die('NO TIENE PERMISOS');
     		 }
     		 
 	    	}
@@ -1013,7 +1002,7 @@ class MemosController extends ControladorBase{
     				));
     				 
     			}else{
-    				 
+    				die('NO TIENE PERMISOS');
     			}
     			 
     		}
@@ -1081,7 +1070,7 @@ class MemosController extends ControladorBase{
     				));
     					
     			}else{
-    					
+    				die('NO TIENE PERMISOS');
     			}
     	
     		}
@@ -1146,7 +1135,7 @@ class MemosController extends ControladorBase{
     				));
     					
     			}else{
-    					
+    				die('NO TIENE PERMISOS');
     			}
     			 
     		}
@@ -1211,7 +1200,7 @@ class MemosController extends ControladorBase{
     				));
     					
     			}else{
-    					
+    				die('NO TIENE PERMISOS');
     			}
     	
     		}
@@ -1730,15 +1719,13 @@ class MemosController extends ControladorBase{
     			}
     			
     			
-    			
-    			
     		}
     		
     		
     		
     	}else{
     		
-    		die();
+    			die('NO TIENE PERMISOS');
     	}
     	
     	
@@ -2031,10 +2018,6 @@ class MemosController extends ControladorBase{
     	$out.= "</ul>";
     	return $out;
     }
-    
-    
-    
-    
     
     
     
