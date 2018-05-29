@@ -29,7 +29,7 @@
      
         	   $(document).ready( function (){
         		   pone_espera();
-        		   load_sent();
+        		  
 	   			});
 
         	   function pone_espera(){
@@ -157,13 +157,13 @@
 	            <div class="box-body no-padding">
 	              <ul class="nav nav-pills nav-stacked">
 	                <li><a href="<?php echo $helper->url("Memos","index"); ?>"><i class="fa fa-inbox"></i> Inbox
-	                 <?php if(!empty($cantidadimbox)){  if($cantidadimbox>0){?>
+	                  <?php if(!empty($cantidadimbox)){  if($cantidadimbox>0){?>
 	                  
 	                  <span class="label label-primary pull-right"><?php echo $cantidadimbox;?></span>
 	                  <?php }  }?>
 	                  </a></li>
 	                <li><a href="<?php echo $helper->url("Memos","sentindex"); ?>"><i class="fa fa-envelope-o"></i> Sent
-	                 <?php if(!empty($cantidadsent)){  if($cantidadsent>0){?>
+	                <?php if(!empty($cantidadsent)){  if($cantidadsent>0){?>
 	                  
 	                  <span class="label label-warning pull-right"><?php echo $cantidadsent;?></span>
 	                  <?php }  }?>
@@ -184,7 +184,7 @@
         	 <div class="col-md-10 col-lg-10 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Sent<small></small></h2>
+                    <h2>Revisando<small></small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -196,20 +196,18 @@
                  <div class="x_content">
         
               
-                <div class="pull-right" >
-					<input type="text" value="" class="form-control" id="search" name="search" onkeyup="load_sent(1)" placeholder="search.."/>
-				</div>
+               
+					<?php if (!empty($html)){?>
+					
+					<?php echo $html;?>
+					<?php }?>
 					
 					
-				<div id="load_registrados" ></div>	
-				<div id="sent_registrados"></div>	
+					
+				
               
               
-              
-            
-          
-            
-      
+             
       </div>
      </div>
     </div>
@@ -222,10 +220,26 @@
 
 
 
-    <script src="view/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	  <script src="view/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="view/build/js/custom.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    
+    <script src="view/AdminLTE-2.4.2/bower_components/ckeditor/ckeditor.js"></script>
+	<script src="view/AdminLTE-2.4.2/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 	
+	<script>
+	  $(function () {
+	    // Replace the <textarea id="editor1"> with a CKEditor
+	    // instance, using default configuration.
+	    CKEDITOR.replace('editor1')
+	    //bootstrap WYSIHTML5 - text editor
+	    $('.textarea').wysihtml5()
+	   
+	    
+	  })
+	</script>
+    
 		
   </body>
 </html>   

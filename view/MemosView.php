@@ -29,6 +29,7 @@
      
         	   $(document).ready( function (){
         		   pone_espera();
+        		   load_imbox();
         		  
 	   			});
 
@@ -50,6 +51,39 @@
 		        setTimeout($.unblockUI, 500); 
 		        
         	   }
+
+
+
+
+        	   function load_imbox(pagina){
+
+
+        		   var search=$("#search").val();
+                   var con_datos={
+           					  action:'ajax',
+           					  page:pagina
+           					  };
+                 $("#load_registrados").fadeIn('slow');
+           	     $.ajax({
+           	               beforeSend: function(objeto){
+           	                 $("#load_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
+           	               },
+           	               url: 'index.php?controller=Memos&action=cargar_imbox&search='+search,
+           	               type: 'POST',
+           	               data: con_datos,
+           	               success: function(x){
+           	                 $("#imbox_registrados").html(x);
+           	               	 $("#tabla_cargar_imbox").tablesorter(); 
+           	                 $("#load_registrados").html("");
+           	               },
+           	              error: function(jqXHR,estado,error){
+           	                $("#imbox_registrados").html("Ocurrio un error al cargar la informacion de Memos Recibidos..."+estado+"    "+error);
+           	              }
+           	            });
+
+
+           		   }
+        	   
        </script>
       
       
@@ -124,10 +158,19 @@
 	            <div class="box-body no-padding">
 	              <ul class="nav nav-pills nav-stacked">
 	                <li><a href="<?php echo $helper->url("Memos","index"); ?>"><i class="fa fa-inbox"></i> Inbox
-	                  <span class="label label-primary pull-right">12</span></a></li>
-	                <li><a href="<?php echo $helper->url("Memos","sentindex"); ?>"><i class="fa fa-envelope-o"></i> Sent</a></li>
+	                  <?php if(!empty($cantidadimbox)){  if($cantidadimbox>0){?>
+	                  
+	                  <span class="label label-primary pull-right"><?php echo $cantidadimbox;?></span>
+	                  <?php }  }?>
+	                  </a></li>
+	                <li><a href="<?php echo $helper->url("Memos","sentindex"); ?>"><i class="fa fa-envelope-o"></i> Sent
+	                 <?php if(!empty($cantidadsent)){  if($cantidadsent>0){?>
+	                  
+	                  <span class="label label-warning pull-right"><?php echo $cantidadsent;?></span>
+	                  <?php }  }?>
+	                </a></li>
 	                <li><a href="<?php echo $helper->url("Memos","draftindex"); ?>"><i class="fa fa-file-text-o"></i> Drafts</a></li>
-	                <li><a href="<?php echo $helper->url("Memos","junkindex"); ?>"><i class="fa fa-filter"></i> Junk <span class="label label-warning pull-right">65</span></a>
+	                <li><a href="<?php echo $helper->url("Memos","junkindex"); ?>"><i class="fa fa-filter"></i> Junk</a>
 	                </li>
 	                <li><a href="<?php echo $helper->url("Memos","trashindex"); ?>"><i class="fa fa-trash-o"></i> Trash</a></li>
 	              </ul>
@@ -153,44 +196,14 @@
                   </div>
                  <div class="x_content">
         
-            <div class="col-md-12 col-lg-12 col-xs-12">
-              <div class="box-tools pull-right">
-                <div class="has-feedback">
-                  <input type="text" class="form-control input-sm" placeholder="Search Mail">
-                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                </div>
-              </div>
-              
-            <div class="box-body no-padding">
-               <div class="mailbox-controls">
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
-                </div>
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-               </div>
-              <div class="table-responsive mailbox-messages">
-                <table class="table table-hover table-striped">
-                  <tbody>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">5 mins ago</td>
-                  </tr>
-                 </tbody>
-                </table>
-              </div>
-            </div>
-          
-            
-       </div>
+            <div class="pull-right" >
+					<input type="text" value="" class="form-control" id="search" name="search" onkeyup="load_imbox(1)" placeholder="search.."/>
+				</div>
+					
+					
+				<div id="load_registrados" ></div>	
+				<div id="imbox_registrados"></div>	
+           
       </div>
      </div>
     </div>

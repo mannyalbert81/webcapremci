@@ -269,8 +269,6 @@ class UsuariosController extends ControladorBase{
 		       			$where_participe="afiliado_extras.cedula='$cedula_participe'";
 		       			$id_participe="afiliado_extras.cedula";
 		       			$resultParticipe=$participe->getCondiciones($columnas_participe, $tablas_participe, $where_participe, $id_participe);
-		       				
-		       			
 		       			
 		       		}
 		       		
@@ -2436,7 +2434,7 @@ class UsuariosController extends ControladorBase{
     public function cargar_global_usuarios(){
     
     	session_start();
-    	 
+    	$id_rol=$_SESSION["id_rol"];
     	$i=0;
     	$usuarios = new UsuariosModel();
     	$columnas = "usuarios.cedula_usuarios";
@@ -2468,11 +2466,24 @@ class UsuariosController extends ControladorBase{
     		$html .= "<div class='icon'>";
     		$html .= "<i class='ion ion-person-add'></i>";
     		$html .= "</div>";
+    		
+    	
+    
+    		
+    		if($id_rol==1){
+    		
     		$html .= "<a href='index.php?controller=Usuarios&action=index' class='small-box-footer'>Operaciones con usuarios <i class='fa fa-arrow-circle-right'></i></a>";
+    				
+    		}else{
+    			$html .= "<a href='#' class='small-box-footer'>Operaciones con usuarios <i class='fa fa-arrow-circle-right'></i></a>";
+    		
+    		}
+    
+
     		$html .= "</div>";
     		$html .= "</div>";
-    
-    
+    		
+    		
     	}else{
     		 
     		$html = "<b>Actualmente no hay usuarios registrados...</b>";
@@ -3417,7 +3428,7 @@ public function index(){
     		$_usuario=$_SESSION['nombre_usuarios'];
     		$_id_rol=$_SESSION['id_rol'];
     		
-    		if($_id_rol==1 || $_id_rol==42){
+    		if($_id_rol==1 || $_id_rol==42 || $_id_rol==43 || $_id_rol==44 || $_id_rol==45){
     				
     		
     			$this->view("BienvenidaAdmin",array(
@@ -3514,7 +3525,7 @@ public function index(){
     				 
     				 
     				
-    				if($_id_rol==1 || $_id_rol==42){
+    				if($_id_rol==1 || $_id_rol==42 || $_id_rol==43 || $_id_rol==44 || $_id_rol==45){
     					
 
     					$this->view("BienvenidaAdmin",array(

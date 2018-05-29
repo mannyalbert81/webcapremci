@@ -78,7 +78,7 @@ $controladores=$_SESSION['controladores'];
                   </li>
                   
                   
-                  <li ><a><i class="fa fa-file-o"></i> Gestión de Trámites <span class="fa fa-chevron-down"></span></a>
+                  <li style="<?php echo getcontrolador("MenuMemos",$controladores) ?>"  ><a><i class="fa fa-file-o"></i> Gestión de Trámites <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                        <li style="<?php echo getcontrolador("Memos",$controladores) ?>"><a href="index.php?controller=Memos&action=index">Crear Memorandun</a></li>
                 	</ul>
