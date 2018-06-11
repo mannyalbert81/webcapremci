@@ -861,16 +861,19 @@ class MemosController extends ControladorBase{
     			$cuadro_infor.="<pre><strong style='text-transform: uppercase;'>FECHA:    $_ciudad_trabajo, $fechaactual</strong></pre>";
     			
     			
-    			
-    			$cuadro_firma="<div style='font-family: Arial; font-size:11pt; color:#000000; width: 30%; text-align: left; margin-top:20px;'>";
+    		   //traer la firma  
+    		 	$cuadro_firma="<div style='font-family: Arial; font-size:11pt; color:#000000; width: 30%; text-align: left; margin-top:20px;'>";
     			$cuadro_firma.="<p>Atentamente,</p>";
     			$cuadro_firma.="<strong><hr style='margin-top:60px; border-color: black;'></strong>";
-    			$cuadro_firma.="<strong>$_nombre_usuarios</strong><br>";
-    			$cuadro_firma.="<strong>$_cargo_usuarios</strong><br>";
-    			$cuadro_firma.="<strong>FCPC EMCIS FF.AA</strong><br>";
-    			$cuadro_firma.="<strong>Fono: 3828870</strong><br>";
-    			$cuadro_firma.="<strong>www.capremci.com.ec</strong>";
+    			$cuadro_firma.= " <img src='view/DevuelveImagenView.php?id_valor=15248&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas' > ";
+    			//$cuadro_firma.="<strong>$_nombre_usuarios</strong><br>";
+    			//$cuadro_firma.="<strong>$_cargo_usuarios</strong><br>";
+    			//$cuadro_firma.="<strong>FCPC EMCIS FF.AA</strong><br>";
+    			//$cuadro_firma.="<strong>Fono: 3828870</strong><br>";
+    			//$cuadro_firma.="<strong>www.capremci.com.ec</strong>";
     			$cuadro_firma.="</div>";
+    			
+    			
     			
     			
     			$dicContenido = array(
