@@ -74,7 +74,6 @@ $controladores=$_SESSION['controladores'];
                             </ul>
                         </li>
                  
-                 
                    </ul>
                   </li>
                   
@@ -84,6 +83,14 @@ $controladores=$_SESSION['controladores'];
                        <li style="<?php echo getcontrolador("Memos",$controladores) ?>"><a href="index.php?controller=Memos&action=index">Crear Memorandun</a></li>
                 	</ul>
                  </li>
+                  
+                  
+                  <li style="<?php echo getcontrolador("MenuReportes",$controladores) ?>"  ><a><i class="fa fa-file-o"></i> Reportes <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                       <li style="<?php echo getcontrolador("Reportes",$controladores) ?>"><a href="index.php?controller=Reportes&action=index">Consultar</a></li>
+                	</ul>
+                 </li>
+                  
                   
                    <li ><a    ><i class="fa fa-file-o"></i> Información <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
