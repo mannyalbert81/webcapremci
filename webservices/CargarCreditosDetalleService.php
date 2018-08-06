@@ -32,7 +32,7 @@ if(isset($_GET['cargar'])){
 						  afiliado_transacc_cta_ind.id_afiliado";
 				$tablas_ind="public.afiliado_transacc_cta_ind";
 				$where_ind="1=1 AND afiliado_transacc_cta_ind.cedula='$cedula_usuarios'";
-				$id_ind="afiliado_transacc_cta_ind.ordtran";
+				$id_ind="afiliado_transacc_cta_ind.secuencial_saldos";
 				
 				
 				$columnas_ind_mayor = "sum(valorper+valorpat) as total, max(fecha_conta) as fecha";
@@ -185,7 +185,7 @@ if(isset($_GET['cargar'])){
 						  afiliado_transacc_cta_desemb.id_afiliado";
 				$tablas_desemb="public.afiliado_transacc_cta_desemb";
 				$where_desemb="1=1 AND afiliado_transacc_cta_desemb.cedula='$cedula_usuarios'";
-				$id_desemb="afiliado_transacc_cta_desemb.ordtran";
+				$id_desemb="afiliado_transacc_cta_desemb.secuencial_saldos";
 				
 				
 				$columnas_desemb_mayor = "sum(valorper+valorpat) as total, max(fecha_conta) as fecha";

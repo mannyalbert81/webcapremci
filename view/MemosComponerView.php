@@ -334,7 +334,7 @@
          <small><?php echo $fecha; ?></small>
          <ol class=" pull-right breadcrumb">
          <li><a href="<?php echo $helper->url("Usuarios","Bienvenida"); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-         <li class="active">Crear Memorandum</li>
+         <li class="active">Crear Memorando</li>
          </ol>
          </section>
         
@@ -342,7 +342,7 @@
         <div class="col-md-12 col-lg-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Crear Memorandu<small></small></h2>
+                    <h2>Crear Memorando<small></small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>

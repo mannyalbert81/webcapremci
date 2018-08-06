@@ -133,14 +133,16 @@ class UsuariosController extends ControladorBase{
     			$html.='<td style="font-size: 11px;">'.$res->nombre_estado.'</td>';
     			
     			if($id_rol==1){
-    				
-    				$html.='<td style="font-size: 18px;"><span class="pull-right"><a href="index.php?controller=Firmas&action=index&id_usuarios='.$res->id_usuarios.'" class="btn btn-success" style="font-size:65%;"><i class="glyphicon glyphicon-edit"></i></a></span></td>';
-    				
-    				
-    			}else{
-    				
+    			
+    				$html.='<td style="font-size: 18px;"><span class="pull-right"><a href="index.php?controller=Usuarios&action=index&id_usuarios='.$res->id_usuarios.'" class="btn btn-success" style="font-size:65%;"><i class="glyphicon glyphicon-edit"></i></a></span></td>';
+    				$html.='<td style="font-size: 18px;"><span class="pull-right"><a href="index.php?controller=Usuarios&action=borrarId&id_usuarios='.$res->id_usuarios.'" class="btn btn-danger" style="font-size:65%;"><i class="glyphicon glyphicon-trash"></i></a></span></td>';
     				$html.='<td style="font-size: 18px;"><span class="pull-right"><a href="index.php?controller=Usuarios&action=search&cedula='.$res->cedula_usuarios.'" target="_blank" class="btn btn-warning" style="font-size:65%;"><i class="glyphicon glyphicon-eye-open"></i></a></span></td>';
-    				
+    			
+    			
+    			}else{
+    			
+    				$html.='<td style="font-size: 18px;"><span class="pull-right"><a href="index.php?controller=Usuarios&action=search&cedula='.$res->cedula_usuarios.'" target="_blank" class="btn btn-warning" style="font-size:65%;"><i class="glyphicon glyphicon-eye-open"></i></a></span></td>';
+    			
     			}
     			
     				$html.='</tr>';
@@ -318,8 +320,6 @@ class UsuariosController extends ControladorBase{
        	$cedula_usuarios = $_SESSION["cedula_participe"];
        
        	
-       	
-       	
        	if(!empty($cedula_usuarios)){
        
        		$columnas_ind="afiliado_transacc_cta_ind.id_afiliado_transacc_cta_ind,
@@ -336,7 +336,7 @@ class UsuariosController extends ControladorBase{
 						  afiliado_transacc_cta_ind.id_afiliado";
        		$tablas_ind="public.afiliado_transacc_cta_ind";
        		$where_ind="1=1 AND afiliado_transacc_cta_ind.cedula='$cedula_usuarios'";
-       		$id_ind="afiliado_transacc_cta_ind.ordtran";
+       		$id_ind="afiliado_transacc_cta_ind.secuencial_saldos";
        
        
        		$columnas_ind_mayor = "sum(valorper+valorpat) as total, max(fecha_conta) as fecha";
@@ -503,7 +503,7 @@ class UsuariosController extends ControladorBase{
 						  afiliado_transacc_cta_desemb.id_afiliado";
        		$tablas_desemb="public.afiliado_transacc_cta_desemb";
        		$where_desemb="1=1 AND afiliado_transacc_cta_desemb.cedula='$cedula_usuarios'";
-       		$id_desemb="afiliado_transacc_cta_desemb.ordtran";
+       		$id_desemb="afiliado_transacc_cta_desemb.secuencial_saldos";
        
        
        
@@ -6472,7 +6472,7 @@ public function index(){
 							  afiliado_transacc_cta_ind.id_afiliado";
 					$tablas_ind="public.afiliado_transacc_cta_ind";
 					$where_ind="1=1 AND afiliado_transacc_cta_ind.cedula='$cedula_usuarios'";
-					$id_ind="afiliado_transacc_cta_ind.ordtran";
+					$id_ind="afiliado_transacc_cta_ind.secuencial_saldos";
 					$resultSet=$afiliado_transacc_cta_ind->getCondicionesDesc($columnas_ind, $tablas_ind, $where_ind, $id_ind);
 						
 						
@@ -6579,7 +6579,7 @@ public function index(){
 						    afiliado_transacc_cta_desemb.id_afiliado";
 					$tablas_desemb="public.afiliado_transacc_cta_desemb";
 					$where_desemb="1=1 AND afiliado_transacc_cta_desemb.cedula='$cedula_usuarios'";
-					$id_desemb="afiliado_transacc_cta_desemb.ordtran";
+					$id_desemb="afiliado_transacc_cta_desemb.secuencial_saldos";
 					$resultSet=$afiliado_transacc_cta_ind->getCondicionesDesc($columnas_desemb, $tablas_desemb, $where_desemb, $id_desemb);
 						
 						

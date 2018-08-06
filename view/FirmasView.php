@@ -54,7 +54,7 @@
         	        		}
         	    });
             	
-		        setTimeout($.unblockUI, 3000); 
+		        setTimeout($.unblockUI, 1500); 
 		        
         	   }
 
@@ -72,7 +72,7 @@
            	               beforeSend: function(objeto){
            	                 $("#load_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
            	               },
-           	               url: 'index.php?controller=Usuarios&action=index10&search='+search,
+           	               url: 'index.php?controller=Firmas&action=index10&search='+search,
            	               type: 'POST',
            	               data: con_datos,
            	               success: function(x){
@@ -95,15 +95,7 @@
 		    $(document).ready(function(){
 		    $("#Cancelar").click(function() 
 			{
-			 $("#cedula_usuarios").val("");
-		     $("#nombre_usuarios").val("");
-		     $("#clave_usuarios").val("");
-		     $("#clave_usuarios_r").val("");
-		     $("#telefono_usuarios").val("");
-		     $("#celular_usuarios").val("");
-		     $("#correo_usuarios").val("");
-		     $("#id_rol").val("");
-		     $("#id_estado").val("");
+			 
 		     $("#fotografia_usuarios").val("");
 		     $("#id_usuarios").val("");
 		     
@@ -124,207 +116,48 @@
 		    	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
 		    	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
 
-		    	var cedula_usuarios = $("#cedula_usuarios").val();
-		    	var nombre_usuarios = $("#nombre_usuarios").val();
-		    	//var usuario_usuario = $("#usuario_usuario").val();
-		    	var clave_usuarios = $("#clave_usuarios").val();
-		    	var cclave_usuarios = $("#clave_usuarios_r").val();
-		    	var celular_usuarios = $("#celular_usuarios").val();
-		    	var correo_usuarios  = $("#correo_usuarios").val();
-		    	var id_rol  = $("#id_rol").val();
-		    	var id_estado  = $("#id_estado").val();
+		    	var id_usuarios = $("#id_usuarios").val();
+		    	var fotografia_usuarios = $("#fotografia_usuarios").val();
 		    	
 		    	
-		    	if (cedula_usuarios == "")
+		    	
+		    	if (id_usuarios == 0)
 		    	{
 			    	
-		    		$("#mensaje_cedula_usuarios").text("Introduzca Identificación");
-		    		$("#mensaje_cedula_usuarios").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_id_usuarios").text("Seleccione un Usuario");
+		    		$("#mensaje_id_usuarios").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_cedula_usuarios").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_id_usuarios").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}    
 				
-		    	if (nombre_usuarios == "")
+		    	if (fotografia_usuarios == "")
 		    	{
 			    	
-		    		$("#mensaje_nombre_usuarios").text("Introduzca un Nombre");
-		    		$("#mensaje_nombre_usuarios").fadeIn("slow"); //Muestra mensaje de error
+		    		$("#mensaje_fotografia_usuarios").text("Introduzca Firma");
+		    		$("#mensaje_fotografia_usuarios").fadeIn("slow"); //Muestra mensaje de error
 		            return false;
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_nombre_usuarios").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_fotografia_usuarios").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
 		    	
-		    	/*if (usuario_usuario == "")
-		    	{
-			    	
-		    		$("#mensaje_usuario_usuario").text("Introduzca un Usuario");
-		    		$("#mensaje_usuario_usuario").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_usuario_usuario").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}   */
-						    	
-			
-		    	if (clave_usuarios == "")
-		    	{
-		    		
-		    		$("#mensaje_clave_usuarios").text("Introduzca una Clave");
-		    		$("#mensaje_clave_usuarios").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }else if (clave_usuarios.length<4){
-			    	$("#mensaje_clave_usuarios").text("Introduzca minimo 4 números");
-		    		$("#mensaje_clave_usuarios").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-				}else if (clave_usuarios.length>4){
-			    	$("#mensaje_clave_usuarios").text("Introduzca máximo 4 números");
-		    		$("#mensaje_clave_usuarios").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-				}
-		    	else 
-		    	{
-		    		$("#mensaje_clave_usuarios").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-		    	
-
-		    	if (cclave_usuarios == "")
-		    	{
-		    		
-		    		$("#mensaje_clave_usuarios_r").text("Introduzca una Clave");
-		    		$("#mensaje_clave_usuarios_r").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_clave_usuarios_r").fadeOut("slow"); 
-		            
-				}
-		    	
-		    	if (clave_usuarios != cclave_usuarios)
-		    	{
-			    	
-		    		$("#mensaje_clave_usuarios_r").text("Claves no Coinciden");
-		    		$("#mensaje_clave_usuarios_r").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else
-		    	{
-		    		$("#mensaje_clave_usuarios_r").fadeOut("slow"); 
-			        
-		    	}	
-				
-
-				//los telefonos
-		    	
-		    	if (celular_usuarios == "" )
-		    	{
-			    	
-		    		$("#mensaje_celular_usuarios").text("Ingrese un Celular");
-		    		$("#mensaje_celular_usuarios").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_celular_usuarios").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-
-				// correos
-				
-		    	if (correo_usuarios == "")
-		    	{
-			    	
-		    		$("#mensaje_correo_usuarios").text("Introduzca un correo");
-		    		$("#mensaje_correo_usuarios").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else if (regex.test($('#correo_usuarios').val().trim()))
-		    	{
-		    		$("#mensaje_correo_usuarios").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-		    	else 
-		    	{
-		    		$("#mensaje_correo_usuarios").text("Introduzca un correo Valido");
-		    		$("#mensaje_correo_usuarios").fadeIn("slow"); //Muestra mensaje de error
-		            return false;	
-			    }
-
-		    	
-		    	if (id_rol == 0 )
-		    	{
-			    	
-		    		$("#mensaje_id_rol").text("Seleccione");
-		    		$("#mensaje_id_rol").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_id_rol").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
-
-
-
-		    	if (id_estado == 0 )
-		    	{
-			    	
-		    		$("#mensaje_id_estado").text("Seleccione");
-		    		$("#mensaje_id_estado").fadeIn("slow"); //Muestra mensaje de error
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_id_estado").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
 		    					    
 
 			}); 
 
 
-		        $( "#cedula_usuarios" ).focus(function() {
-				  $("#mensaje_cedula_usuarios").fadeOut("slow");
+		        $( "#id_usuarios" ).focus(function() {
+				  $("#mensaje_id_usuarios").fadeOut("slow");
 			    });
 				
-				$( "#nombre_usuarios" ).focus(function() {
-					$("#mensaje_nombre_usuarios").fadeOut("slow");
-    			});
-				/*$( "#usuario_usuario" ).focus(function() {
-					$("#mensaje_usuario_usuario").fadeOut("slow");
-    			});*/
-    			
-				$( "#clave_usuarios" ).focus(function() {
-					$("#mensaje_clave_usuarios").fadeOut("slow");
-    			});
-				$( "#clave_usuarios_r" ).focus(function() {
-					$("#mensaje_clave_usuarios_r").fadeOut("slow");
-    			});
-				
-				$( "#celular_usuarios" ).focus(function() {
-					$("#mensaje_celular_usuarios").fadeOut("slow");
-    			});
-				
-				$( "#correo_usuarios" ).focus(function() {
-					$("#mensaje_correo_usuarios").fadeOut("slow");
-    			});
-			
-				$( "#id_rol" ).focus(function() {
-					$("#mensaje_id_rol").fadeOut("slow");
-    			});
-
-				$( "#id_estado" ).focus(function() {
-					$("#mensaje_id_estado").fadeOut("slow");
+				$( "#fotografia_usuarios" ).focus(function() {
+					$("#mensaje_fotografia_usuarios").fadeOut("slow");
     			});
 				
 		      
@@ -336,25 +169,7 @@
         
         
         
-    <script >   
-    function numeros(e){
-    key = e.keyCode || e.which;
-    tecla = String.fromCharCode(key).toLowerCase();
-    letras = "0123456789";
-    especiales = [8,37,39,46];
- 
-    tecla_especial = false
-    for(var i in especiales){
-    if(key == especiales[i]){
-     tecla_especial = true;
-     break;
-        } 
-    }
- 
-    if(letras.indexOf(tecla)==-1 && !tecla_especial)
-        return false;
-     }
-    </script> 
+  
         
         
 			        
@@ -443,7 +258,7 @@
                                
                                
                                
-                                <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
+                            <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
                                 
                              
                              		                    		   
@@ -468,7 +283,7 @@
                         		   <div class="form-group">
                                           <label for="fotografia_usuarios" class="control-label">Fotografía:</label>
                                           <input type="file" class="form-control" id="fotografia_usuarios" name="fotografia_usuarios" value="">
-                                          <div id="mensaje_usuario" class="errores"></div>
+                                          <div id="mensaje_fotografia_usuarios" class="errores"></div>
                                     
                                     
                                     </div>
@@ -482,64 +297,7 @@
                              
                              
                              
-                             
-                                
-                                
-                    		     <?php } } else {?>
-                    		    
-                    		   
-									                    		   
-                    		   
-                    		 <div class="row">
-                    		    
-                    		    
-                    		    <div class="form-group">
-                                    
-                                    <div class="col-lg-2 col-xs-12 col-md-2">
-                        		   <div class="form-group">
-                                        <label for="id_rol" class="control-label">Rol:</label>
-                                        <select name="id_rol" id="id_usuarios"  class="form-control" >
-                                        <option value="" selected="selected">--Seleccione--</option>
-                                			<?php foreach($resultUsuarios as $res) {?>
-                        						<option value="<?php echo $res->id_usuarios; ?>" ><?php echo $res->nombre_usuarios; ?> </option>
-                        			        <?php } ?>
-                        		   	   </select> 
-                                       <div id="mensaje_id_rol" class="errores"></div>
-                                    </div>
-                                    
-                                    </div>
-                                    
-                                    
-                                     <div class="col-lg-2 col-xs-12 col-md-2">
-                        		   <div class="form-group">
-                                          <label for="fotografia_usuarios" class="control-label">Fotografía:</label>
-                                          <input type="file" class="form-control" id="fotografia_usuarios" name="fotografia_usuarios" value="">
-                                          <div id="mensaje_usuario" class="errores"></div>
-                                    
-                                    
-                                    </div>
-                                    
-                                    </div>
-                                    
-                                    
-                                    
-                                    </div>
-                                
-                    		    
-                    			
-                        			
-                        		    
-                        		    
-                        		    
-                        		   
-                        		    
-                        		    
-                                
-                                </div>
-                    	           	
-                    		     <?php } ?>
-                    		      
-                    		    <div class="row">
+                               <div class="row">
                     		    <div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center; margin-top:20px">
                     		    <div class="form-group">
                                                       <button type="submit" id="Guardar" name="Guardar" class="btn btn-success"><i class="glyphicon glyphicon-floppy-saved"> Guardar</i></button>
@@ -548,6 +306,17 @@
                                 </div>
                     		    </div>
                     		    </div>
+                                
+                                
+                    		     <?php } } else {?>
+                    		    
+                    		   
+									                    		   
+                    		 
+                    	           	
+                    		     <?php } ?>
+                    		      
+                    		  
   
               </form>
   
@@ -562,7 +331,7 @@
 		<div class="col-md-12 col-lg-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>LISTADO<small>Usuarios</small></h2>
+                    <h2>LISTADO<small>Funcionarios</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -616,7 +385,7 @@
     </div>
 
 </div>
-    
+    </div>
     
     
     

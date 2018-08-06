@@ -124,7 +124,7 @@
          <small><?php echo $fecha; ?></small>
          <ol class=" pull-right breadcrumb">
          <li><a href="<?php echo $helper->url("Usuarios","Bienvenida"); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-         <li class="active">Crear Memorandum</li>
+         <li class="active">Crear Memorando</li>
          </ol>
          </section>
         

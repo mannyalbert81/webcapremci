@@ -8,17 +8,16 @@ $conn = $cn->conexion();
 
 
 $template = file_get_contents('view/reportes/template/Memorandu.html');
-
 $footer = file_get_contents('view/reportes/template/Footer.html');
 
 
 if(!empty($dicContenido))
-{
-	
+{	
 	foreach ($dicContenido as $clave=>$valor) {
 		$template = str_replace('{'.$clave.'}', $valor, $template);
 	}
 }
+
 
 ob_end_clean();
 
@@ -39,10 +38,23 @@ $mpdf->Output($directorio.$filename,'F');
 $data_5 = file_get_contents($directorio.$filename);
 $archivo_5 = pg_escape_bytea($data_5);
 
+if(!empty($proceso)){
+	if($proceso=="nuevo"){
+	
+	$sql="INSERT INTO memos_pdf (id_memos_pdf, id_memos_cab, archivo_memos_pdf, id_tipo_memos_pdf) VALUES (DEFAULT,'$id_memos_cab','$archivo_5', '1')";
+	$query_new_insert = pg_query($conn,$sql);
 
-$sql="INSERT INTO memos_pdf (id_memos_pdf, id_memos_cab, archivo_memos_pdf, id_tipo_memos_pdf) VALUES (DEFAULT,'$id_memos_cab','$archivo_5', '1')";
-$query_new_insert = pg_query($conn,$sql);
-
+	}
+	
+	if($proceso=="revisado"){
+		
+		$sql1="UPDATE memos_pdf SET archivo_memos_pdf ='$archivo_5' WHERE id_memos_cab='$id_memos_cab' AND id_tipo_memos_pdf='1'";
+		$query_new_update = pg_query($conn,$sql1);
+		
+	}
+	
+	
+}
 
 
 $this->redirect("Memos","index");

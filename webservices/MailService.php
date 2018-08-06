@@ -28,7 +28,7 @@
 			
 			$resumen="
 			<table rules='all'>
-			<tr><td WIDTH='1000' HEIGHT='50'><center><img src='http://18.218.148.189:80/view/images/bcaprem.jpg' WIDTH='300' HEIGHT='150'/></center></td></tr>
+			<tr><td WIDTH='1000' HEIGHT='50'><center><img src='http://192.168.1.128:4000/webcapremci/view/images/bcaprem.jpg' WIDTH='300' HEIGHT='150'/></center></td></tr>
 			</tabla>
 			<p><table rules='all'></p>
 			<tr style='background: #FFFFFF'><td WIDTH='1000' align='center'><b> PREGUNTAS CAPREMCI: </b></td></tr>

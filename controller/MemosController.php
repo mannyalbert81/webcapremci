@@ -11,7 +11,6 @@ class MemosController extends ControladorBase{
     	session_start();
     	if (isset(  $_SESSION['nombre_usuarios']) )
     	{
-    		
     		$totalimbox=0;
     		$totalsent=0;
     		$id_usuarios=$_SESSION["id_usuarios"];
@@ -25,6 +24,14 @@ class MemosController extends ControladorBase{
     		
     		if(!empty($resultPer)){
     			
+    			
+    			
+    			$numero_memos_cab="";
+    			$asunto_memos_cab="";
+    			$cuerpo_memos_cab="";
+    			$cuadro_informacion="";
+    			$fecha_rev_sec_memos_cab="";
+    			$fec="";
     			
     			if(isset($_GET["ident"]) && isset($_GET["tip"])){
     				
@@ -42,6 +49,54 @@ class MemosController extends ControladorBase{
     						
     						$memos_cabeza->UpdateBy("apr_ger_memos_cab='TRUE', fecha_apr_ger_memos_cab='$fechaActual', id_estado_tramites=2", "memos_cab", "id_memos_cab='$id_memos_cab'");
     						
+
+    						$columnas="id_memos_cab, numero_memos_cab, asunto_memos_cab, cuerpo_memos_cab, cuadro_informacion, id_usuarios, fecha_rev_sec_memos_cab";
+    						$tablas="public.memos_cab";
+    						$where="id_memos_cab='$id_memos_cab'";
+    						$id="id_memos_cab";
+    						$resultset=$memos_cabeza->getCondiciones($columnas, $tablas, $where, $id);
+    						
+    						
+    						
+    						if(!empty($resultset)){
+    								
+    							$numero_memos_cab=$resultset[0]->numero_memos_cab;
+    							$asunto_memos_cab=$resultset[0]->asunto_memos_cab;
+    							$cuerpo_memos_cab=$resultset[0]->cuerpo_memos_cab;
+    							$cuadro_informacion=$resultset[0]->cuadro_informacion;
+    							$id_usuarios_cab=$resultset[0]->id_usuarios;
+    							$fecha_rev_sec_memos_cab=$resultset[0]->fecha_rev_sec_memos_cab;
+    							$fec = date("d-m-Y H:i:s",strtotime($fecha_rev_sec_memos_cab));
+    								
+    							$cuadro_firma="<div style='font-family: Arial; font-size:11pt; color:#000000; width: 30%; text-align: left; margin-top:20px;'>";
+    							$cuadro_firma.="<p>Atentamente,</p>";
+    							$cuadro_firma.="</div>";
+    							$cuadro_firma.="<table WIDTH='100%'>";
+    							$cuadro_firma.="<tr>";
+    							$cuadro_firma.="<td WIDTH='100%'><img src='view/DevuelveImagenView.php?id_valor=$id_usuarios_cab&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas' width='80%' height='60%'></td>";
+    							$cuadro_firma.="<td WIDTH='100%'><img src='view/DevuelveImagenView.php?id_valor=15408&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas' width='80%' height='60%'><br><center><strong><h2>$fec</h2></strong></center></td>";
+    							$cuadro_firma.="<td WIDTH='100%'><img src='view/DevuelveImagenView.php?id_valor=15411&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas' width='80%' height='60%'><br><center><strong><h2>$fechaActual</h2></strong></center></td>";
+    							$cuadro_firma.="</tr>";
+    							$cuadro_firma.="</table>";
+    								
+    						
+    							$dicContenido = array(
+    									'TITULOPAG'=>"Capremci 2018",
+    									'NOMBREFICHA'=>"MEMORANDO",
+    									'NUMEROMEMORANDO'=>$numero_memos_cab,
+    									'CUERPO'=>$cuerpo_memos_cab,
+    									'CUADROINFORMACION'=>$cuadro_informacion,
+    									'CUADROFRIMA'=>$cuadro_firma
+    							);
+    						
+    							$this->verReporte('Memorandu',array(
+    									'dicContenido'=>$dicContenido, 'numero_memorando'=>$numero_memos_cab, 'id_memos_cab'=>$id_memos_cab, 'proceso'=>'revisado'
+    							));
+    						
+    								
+    							die();
+    						}
+    						
     					}
     					
     					
@@ -49,15 +104,181 @@ class MemosController extends ControladorBase{
     					
     						$memos_cabeza->UpdateBy("rev_sec_memos_cab='TRUE', fecha_rev_sec_memos_cab='$fechaActual', id_estado_tramites=4", "memos_cab", "id_memos_cab='$id_memos_cab'");
     					
+    						
+    						$columnas="id_memos_cab, numero_memos_cab, asunto_memos_cab, cuerpo_memos_cab, cuadro_informacion, id_usuarios";
+    						$tablas="public.memos_cab";
+    						$where="id_memos_cab='$id_memos_cab'";
+    						$id="id_memos_cab";
+    						$resultset=$memos_cabeza->getCondiciones($columnas, $tablas, $where, $id);
+    						
+    						
+    						
+    						if(!empty($resultset)){
+    							
+    							
+    							$numero_memos_cab=$resultset[0]->numero_memos_cab;
+    							$asunto_memos_cab=$resultset[0]->asunto_memos_cab;
+    							$cuerpo_memos_cab=$resultset[0]->cuerpo_memos_cab;
+    							$cuadro_informacion=$resultset[0]->cuadro_informacion;
+    							$id_usuarios_cab=$resultset[0]->id_usuarios;
+    							
+    							$cuadro_firma="<div style='font-family: Arial; font-size:11pt; color:#000000; width: 30%; text-align: left; margin-top:20px;'>";
+    							$cuadro_firma.="<p>Atentamente,</p>";
+    							$cuadro_firma.="</div>";
+    							$cuadro_firma.="<table WIDTH='100%'>";
+    							$cuadro_firma.="<tr>";
+    							$cuadro_firma.="<td WIDTH='100%'><img src='view/DevuelveImagenView.php?id_valor=$id_usuarios_cab&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas' width='80%' height='60%'></td>";
+    							
+    							$cuadro_firma.="<td WIDTH='100%'><img src='view/DevuelveImagenView.php?id_valor=15408&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas' width='80%' height='60%'><br><center><strong><h2>$fechaActual</h2></strong></center></td>";
+    							
+    							$cuadro_firma.="<td WIDTH='100%'></td>";
+    							$cuadro_firma.="</tr>";
+    							$cuadro_firma.="</table>";
+    							
+    							 
+    							
+    							 
+    							$dicContenido = array(
+    									'TITULOPAG'=>"Capremci 2018",
+    									'NOMBREFICHA'=>"MEMORANDO",
+    									'NUMEROMEMORANDO'=>$numero_memos_cab,
+    									'CUERPO'=>$cuerpo_memos_cab,
+    									'CUADROINFORMACION'=>$cuadro_informacion,
+    									'CUADROFRIMA'=>$cuadro_firma
+    							);
+    							 
+    							$this->verReporte('Memorandu',array(
+    									'dicContenido'=>$dicContenido, 'numero_memorando'=>$numero_memos_cab, 'id_memos_cab'=>$id_memos_cab, 'proceso'=>'revisado'
+    							));
+    							 
+    							
+    							die();
+    							
+    						}
+    						
+    						
     					}
     					
-    					/*
+    					
+    					
+    					if($tipo=="Received_usu"){
+    						
+
+
+    						$memos_cabeza->UpdateBy("rev_sec_memos_cab='TRUE', fecha_rev_sec_memos_cab='$fechaActual', id_estado_tramites=4", "memos_cab", "id_memos_cab='$id_memos_cab'");
+    							
+    						
+    						$columnas="id_memos_cab, numero_memos_cab, asunto_memos_cab, cuerpo_memos_cab, cuadro_informacion, id_usuarios";
+    						$tablas="public.memos_cab";
+    						$where="id_memos_cab='$id_memos_cab'";
+    						$id="id_memos_cab";
+    						$resultset=$memos_cabeza->getCondiciones($columnas, $tablas, $where, $id);
+    						
+    						
+    						
+    						if(!empty($resultset)){
+    								
+    								
+    							$numero_memos_cab=$resultset[0]->numero_memos_cab;
+    							$asunto_memos_cab=$resultset[0]->asunto_memos_cab;
+    							$cuerpo_memos_cab=$resultset[0]->cuerpo_memos_cab;
+    							$cuadro_informacion=$resultset[0]->cuadro_informacion;
+    							$id_usuarios_cab=$resultset[0]->id_usuarios;
+    								
+    							$cuadro_firma="<div style='font-family: Arial; font-size:11pt; color:#000000; width: 30%; text-align: left; margin-top:20px;'>";
+    							$cuadro_firma.="<p>Atentamente,</p>";
+    							$cuadro_firma.="</div>";
+    							$cuadro_firma.="<table WIDTH='100%'>";
+    							$cuadro_firma.="<tr>";
+    							$cuadro_firma.="<td WIDTH='100%'><img src='view/DevuelveImagenView.php?id_valor=$id_usuarios_cab&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas' width='80%' height='60%'></td>";
+    								
+    							$cuadro_firma.="<td WIDTH='100%'><img src='view/DevuelveImagenView.php?id_valor=$id_usuarios&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas' width='80%' height='60%'><br><center><strong><h2>$fechaActual</h2></strong></center></td>";
+    								
+    							$cuadro_firma.="<td WIDTH='100%'></td>";
+    							$cuadro_firma.="</tr>";
+    							$cuadro_firma.="</table>";
+    								
+    						
+    								
+    						
+    							$dicContenido = array(
+    									'TITULOPAG'=>"Capremci 2018",
+    									'NOMBREFICHA'=>"MEMORANDO",
+    									'NUMEROMEMORANDO'=>$numero_memos_cab,
+    									'CUERPO'=>$cuerpo_memos_cab,
+    									'CUADROINFORMACION'=>$cuadro_informacion,
+    									'CUADROFRIMA'=>$cuadro_firma
+    							);
+    						
+    							$this->verReporte('Memorandu',array(
+    									'dicContenido'=>$dicContenido, 'numero_memorando'=>$numero_memos_cab, 'id_memos_cab'=>$id_memos_cab, 'proceso'=>'revisado'
+    							));
+    						
+    								
+    							die();
+    								
+    						}
+    						
+    						
+    							
+    					}
+    					
+    					
     					if($tipo=="Remove"){
     							
     						$memos_cabeza->UpdateBy("id_estado_tramites=3", "memos_cab", "id_memos_cab='$id_memos_cab'");
-    							
+    						
+
+    						$columnas="id_memos_cab, numero_memos_cab, asunto_memos_cab, cuerpo_memos_cab, cuadro_informacion, id_usuarios, fecha_rev_sec_memos_cab";
+    						$tablas="public.memos_cab";
+    						$where="id_memos_cab='$id_memos_cab'";
+    						$id="id_memos_cab";
+    						$resultset=$memos_cabeza->getCondiciones($columnas, $tablas, $where, $id);
+    						
+    						
+    						
+    						if(!empty($resultset)){
+    						
+    							$numero_memos_cab=$resultset[0]->numero_memos_cab;
+    							$asunto_memos_cab=$resultset[0]->asunto_memos_cab;
+    							$cuerpo_memos_cab=$resultset[0]->cuerpo_memos_cab;
+    							$cuadro_informacion=$resultset[0]->cuadro_informacion;
+    							$id_usuarios_cab=$resultset[0]->id_usuarios;
+    							$fecha_rev_sec_memos_cab=$resultset[0]->fecha_rev_sec_memos_cab;
+    							$fec = date("d-m-Y H:i:s",strtotime($fecha_rev_sec_memos_cab));
+    						
+    							$cuadro_firma="<div style='font-family: Arial; font-size:11pt; color:#000000; width: 30%; text-align: left; margin-top:20px;'>";
+    							$cuadro_firma.="<p>Atentamente,</p>";
+    							$cuadro_firma.="</div>";
+    							$cuadro_firma.="<table WIDTH='100%'>";
+    							$cuadro_firma.="<tr>";
+    							$cuadro_firma.="<td WIDTH='100%'><img src='view/DevuelveImagenView.php?id_valor=$id_usuarios_cab&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas' width='80%' height='60%'></td>";
+    							$cuadro_firma.="<td WIDTH='100%'><img src='view/DevuelveImagenView.php?id_valor=15408&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas' width='80%' height='60%'><br><center><strong><h2>$fec</h2></strong></center></td>";
+    							$cuadro_firma.="<td WIDTH='100%'><center><strong><h1>RECHAZADO</h1></strong></center><br><center><strong><h2>$fechaActual</h2></strong></center></td>";
+    							$cuadro_firma.="</tr>";
+    							$cuadro_firma.="</table>";
+    						
+    						
+    							$dicContenido = array(
+    									'TITULOPAG'=>"Capremci 2018",
+    									'NOMBREFICHA'=>"MEMORANDO",
+    									'NUMEROMEMORANDO'=>$numero_memos_cab,
+    									'CUERPO'=>$cuerpo_memos_cab,
+    									'CUADROINFORMACION'=>$cuadro_informacion,
+    									'CUADROFRIMA'=>$cuadro_firma
+    							);
+    						
+    							$this->verReporte('Memorandu',array(
+    									'dicContenido'=>$dicContenido, 'numero_memorando'=>$numero_memos_cab, 'id_memos_cab'=>$id_memos_cab, 'proceso'=>'revisado'
+    							));
+    						
+    						
+    							die();
+    						}
+    						
+    						
     					}
-    					*/
+    					
     				}
     				
     			}
@@ -67,31 +288,32 @@ class MemosController extends ControladorBase{
     			
     				$columnas="*";
     				$tablas="public.memos_det, public.memos_cab";
-    				$where="memos_cab.id_memos_cab = memos_det.id_memos_cab AND memos_det.id_usuarios='$id_usuarios' AND (memos_cab.id_estado_tramites=4 OR memos_cab.id_estado_tramites=2)";
+    				$where="memos_cab.id_memos_cab = memos_det.id_memos_cab 
+    				AND memos_det.id_usuarios='$id_usuarios' AND memos_det.revisado_det='FALSE' AND (memos_cab.id_estado_tramites=4 OR memos_cab.id_estado_tramites=2)";
     				$totalimbox=$memos_detalle->getCantidad($columnas, $tablas, $where);
     			
     			}else{
     				 
     				$columnas1="*";
     				$tablas1="memos_det";
-    				$where1="id_usuarios='$id_usuarios'";
+    				$where1="id_usuarios='$id_usuarios' AND revisado_det='FALSE'";
     				$totalimbox=$memos_detalle->getCantidad($columnas1, $tablas1, $where1);
     			
     			}
+    			
     			$cantidadimbox=(int)$totalimbox[0]->total;
     			 
     			$columnas2="*";
     			$tablas2="memos_cab";
-    			$where2="id_usuarios='$id_usuarios'";
+    			$where2="id_usuarios='$id_usuarios' AND 1=0";
     			$totalsent=$memos_cabeza->getCantidad($columnas2, $tablas2, $where2);
     			$cantidadsent=(int)$totalsent[0]->total;
     			
     			
-    			
-    		$this->view("Memos",array(
-    				"cantidadimbox"=>$cantidadimbox, "cantidadsent"=>$cantidadsent
-    		
-    		));
+	    		$this->view("Memos",array(
+	    				"cantidadimbox"=>$cantidadimbox, "cantidadsent"=>$cantidadsent
+	    		
+	    		));
     		
     		}else{
     			
@@ -163,15 +385,16 @@ class MemosController extends ControladorBase{
 					  memos_cab.numero_memos_cab,
 					  memos_cab.asunto_memos_cab,
     			      memos_cab.rev_sec_memos_cab,
+    				  memos_cab.apr_ger_memos_cab,
     				  memos_cab.cuerpo_memos_cab,	
 					  estado_tramites.nombre_estado_tramites,
 					  usuarios.nombre_usuarios";
-    			$tablas  = "public.memos_cab,
+    			$tablas   = "public.memos_cab,
 					  public.estado_tramites,
 				      public.usuarios";
 	    			
-    			$where    = " memos_cab.id_usuarios = usuarios.id_usuarios AND
-    			estado_tramites.id_estado_tramites = memos_cab.id_estado_tramites AND memos_cab.id_memos_cab='$id_memos_cab'";
+    			$where    = "memos_cab.id_usuarios = usuarios.id_usuarios AND
+    				  estado_tramites.id_estado_tramites = memos_cab.id_estado_tramites AND memos_cab.id_memos_cab='$id_memos_cab'";
     			
     			$id       = "memos_cab.id_memos_cab";
     			$resultSet=$memos_cabeza->getCondiciones($columnas, $tablas, $where, $id);
@@ -181,14 +404,14 @@ class MemosController extends ControladorBase{
     			
     			if(!empty($resultSet)){
     				
-	    			foreach($resultSet as $res  )
+	    			foreach($resultSet as $res)
 	    			{
-	    				
 	    			$nombre_usu_de=$res->nombre_usuarios;
 	    			$asunto=$res->asunto_memos_cab;
 	    			$fecha_memos_cab=$res->fecha_memos_cab;
 	    			$cuerpo_memos_cab = $res->cuerpo_memos_cab;
 	    			$nombre_estado_tramites= $res->nombre_estado_tramites;
+	    			$apr_ger_memos_cab=$res->apr_ger_memos_cab;
 	    			}
 	    			$_grupo_correos_de="<pre><strong>DE:</strong>       $nombre_usu_de</pre>";
 	    		
@@ -210,7 +433,7 @@ class MemosController extends ControladorBase{
     			
     				$_grupo_correos_to="<pre><strong>PARA:     </strong>";
     					
-    				foreach($_array_usuarios_to as $res  )
+    				foreach($_array_usuarios_to as $res)
     				{
     					$count_to++;
     					$_id_usuarios_to = $res->id_usuarios;
@@ -260,7 +483,7 @@ class MemosController extends ControladorBase{
     			
     				$_grupo_correos_cc="<pre><strong>CC:       </strong>";
     					
-    				foreach($_array_usuarios_cc as $res  )
+    				foreach($_array_usuarios_cc as $res)
     				{
     					$count_cc++;
     					$_id_usuarios_cc = $res->id_usuarios;;
@@ -318,7 +541,6 @@ class MemosController extends ControladorBase{
     			}
     			$html.="<pre><strong>ASUNTO:</strong>   $asunto</pre>";
     			$html.="<pre><strong>FECHA:</strong>    $fecha_memos_cab</pre>";
-    			
     			$html.="<div class='box-body pad'>";
     			$html.="<textarea id='editor1' name='editor1' rows='10' cols='80'>$cuerpo_memos_cab</textarea>";
     			$html.="<div id='mensaje_editor' class='errores'></div>";
@@ -387,6 +609,7 @@ class MemosController extends ControladorBase{
     					}
     				}
     				
+    				
     				$html.="</tr>";
     				$html.='</tbody>';
     				$html.="</table>";
@@ -397,15 +620,15 @@ class MemosController extends ControladorBase{
     			
     			$id_rol=$_SESSION["id_rol"];
     			
-    			if($id_rol==45){
+    		if($id_rol==45){
     				
-    				if($nombre_estado_tramites=='RECIBIDO'){
+    				if($nombre_estado_tramites=='RECIBIDO' && $apr_ger_memos_cab=='f'){
     					
     					
     					$html.='<div class="col-lg-12 col-md-12 col-xs-12 " style="text-align: center; margin-top: 5px">';
     					$html.='<a href="index.php?controller=Memos&action=index&ident='.$id_memos_cab.'&tip=Cancel" class="btn btn-primary" ><i class="glyphicon glyphicon-floppy-remove"> Cancelar</i></a>';
     					$html.='<a href="index.php?controller=Memos&action=index&ident='.$id_memos_cab.'&tip=Approve" class="btn btn-success" ><i class="glyphicon glyphicon-floppy-saved"> Aprobar</i></a>';
-    					//$html.='<a href="index.php?controller=Memos&action=index&ident='.$id_memos_cab.'&tip=Remove" class="btn btn-danger" ><i class="glyphicon glyphicon-trash"></i> Eliminar</a>';
+    					$html.='<a href="index.php?controller=Memos&action=index&ident='.$id_memos_cab.'&tip=Remove" class="btn btn-danger" ><i class="glyphicon glyphicon-trash"></i> Rechazar</a>';
     					$html.='</div>';
     					 
     					
@@ -417,13 +640,31 @@ class MemosController extends ControladorBase{
     			}elseif ($id_rol==44){
     				
     				
-    				if($nombre_estado_tramites=='PENDIENTE'){
+    				if($nombre_estado_tramites=='PENDIENTE' && $apr_ger_memos_cab=='f'){
     				
     				$html.='<div class="col-lg-12 col-md-12 col-xs-12 " style="text-align: center; margin-top: 5px">';
     				$html.='<a href="index.php?controller=Memos&action=index&ident='.$id_memos_cab.'&tip=Cancel" class="btn btn-primary" ><i class="glyphicon glyphicon-floppy-remove"> Cancelar</i></a>';
     				$html.='<a href="index.php?controller=Memos&action=index&ident='.$id_memos_cab.'&tip=Received" class="btn btn-success" ><i class="glyphicon glyphicon-floppy-saved"> Recibir</i></a>';
-    				//$html.='<a href="index.php?controller=Memos&action=index&ident='.$id_memos_cab.'&tip=Remove" class="btn btn-danger" ><i class="glyphicon glyphicon-trash"></i> Eliminar</a>';
+    				//$html.='<a href="index.php?controller=Memos&action=index&ident='.$id_memos_cab.'&tip=Remove" class="btn btn-danger" ><i class="glyphicon glyphicon-trash"></i> Rechazar</a>';
     				$html.='</div>';
+    				
+    				}
+    			}else{
+    				
+    				
+    				if($nombre_estado_tramites=='PENDIENTE'){
+    				
+    				$result= $memos_detalle->getBy("id_memos_cab='$id_memos_cab' AND id_usuarios='$id_usuarios' AND tipo_memos_det='1'");
+    				
+    				if(!empty($result)){
+    					
+    					$html.='<div class="col-lg-12 col-md-12 col-xs-12 " style="text-align: center; margin-top: 5px">';
+    					$html.='<a href="index.php?controller=Memos&action=index&ident='.$id_memos_cab.'&tip=Cancel" class="btn btn-primary" ><i class="glyphicon glyphicon-floppy-remove"> Cancelar</i></a>';
+    					$html.='<a href="index.php?controller=Memos&action=index&ident='.$id_memos_cab.'&tip=Received_usu" class="btn btn-success" ><i class="glyphicon glyphicon-floppy-saved"> Recibir</i></a>';
+    					//$html.='<a href="index.php?controller=Memos&action=index&ident='.$id_memos_cab.'&tip=Remove" class="btn btn-danger" ><i class="glyphicon glyphicon-trash"></i> Eliminar</a>';
+    					$html.='</div>';
+    				}
+    				
     				
     				}
     			}
@@ -438,7 +679,7 @@ class MemosController extends ControladorBase{
     			 
     			$columnas="*";
     			$tablas="public.memos_det, public.memos_cab";
-    			$where="memos_cab.id_memos_cab = memos_det.id_memos_cab AND memos_det.id_usuarios='$id_usuarios' AND (memos_cab.id_estado_tramites=4 OR memos_cab.id_estado_tramites=2)";
+    			$where="memos_cab.id_memos_cab = memos_det.id_memos_cab AND memos_det.revisado_det='FALSE' AND memos_det.id_usuarios='$id_usuarios' AND (memos_cab.id_estado_tramites=4 OR memos_cab.id_estado_tramites=2)";
     			$totalimbox=$memos_detalle->getCantidad($columnas, $tablas, $where);
     				
     			 
@@ -447,7 +688,7 @@ class MemosController extends ControladorBase{
     				
     			$columnas1="*";
     			$tablas1="memos_det";
-    			$where1="id_usuarios='$id_usuarios'";
+    			$where1="id_usuarios='$id_usuarios' AND revisado_det='FALSE'";
     			$totalimbox=$memos_detalle->getCantidad($columnas1, $tablas1, $where1);
     			 
     		}
@@ -455,7 +696,7 @@ class MemosController extends ControladorBase{
     		
     		$columnas2="*";
     		$tablas2="memos_cab";
-    		$where2="id_usuarios='$id_usuarios'";
+    		$where2="id_usuarios='$id_usuarios' AND 1=0";
     		$totalsent=$memos_cabeza->getCantidad($columnas2, $tablas2, $where2);
     		$cantidadsent=(int)$totalsent[0]->total;
     		
@@ -508,8 +749,11 @@ class MemosController extends ControladorBase{
     			$asunto =$_POST["asunto"];
     			$editor1 = $_POST["editor1"];
     			
+    			
     			$id_usuarios=$_SESSION["id_usuarios"];
-    			$resultDepartamento = $usuarios->getBy("id_usuarios = '$id_usuarios' ");
+    			
+    			
+    			$resultDepartamento = $usuarios->getBy("id_usuarios = '$id_usuarios'");
     			$_id_departamentos=$resultDepartamento[0]->id_departamentos;
     			$_cargo_usuarios=$resultDepartamento[0]->cargo_usuarios;
     			$_nombre_usuarios=$resultDepartamento[0]->nombre_usuarios;
@@ -690,14 +934,19 @@ class MemosController extends ControladorBase{
     				//INSERTANDO PARA RECEPCION
     				
     				
-    				
+    				if($id_rol==45 || $id_rol==44){
+    					
+    					$memos_cabeza->UpdateBy("apr_ger_memos_cab='TRUE', fecha_apr_ger_memos_cab='$fechaActual'", "memos_cab", "id_memos_cab='$id_memos_cab'");
+    					 
+    					
+    				}else{
     				
     				$funcion = "ins_memos_det";
     				$parametros = "'15408','3','$id_memos_cab'";
     				$memos_detalle->setFuncion($funcion);
     				$memos_detalle->setParametros($parametros);
     				$resultado=$memos_detalle->Insert();
-    				
+    				}
     				
     				
     				
@@ -832,9 +1081,6 @@ class MemosController extends ControladorBase{
     				//TERMINA ARCHIVO 4
     				
     				
-    				
-    				
-    				
     				//REGOGIENDO ARCHIVO GENERADO MEMO
     				
     				//TERMINA ARCHIVO GENERADO MEMO
@@ -858,23 +1104,23 @@ class MemosController extends ControladorBase{
     			if($_grupo_correos_to!=""){$cuadro_infor.="$_grupo_correos_to";}
     			if($_grupo_correos_cc!=""){$cuadro_infor.="$_grupo_correos_cc";}
     			$cuadro_infor.="<pre><strong>ASUNTO:   $asunto</strong></pre><br>";
-    			$cuadro_infor.="<pre><strong style='text-transform: uppercase;'>FECHA:    $_ciudad_trabajo, $fechaactual</strong></pre>";
+    			$cuadro_infor.="<pre><strong>FECHA:    $_ciudad_trabajo, $fechaactual</strong></pre>";
+    			//style='text-transform: uppercase;'
     			
-    			
-    		   //traer la firma  
+    		    //traer la firma  
     		 	$cuadro_firma="<div style='font-family: Arial; font-size:11pt; color:#000000; width: 30%; text-align: left; margin-top:20px;'>";
     			$cuadro_firma.="<p>Atentamente,</p>";
-    			$cuadro_firma.="<strong><hr style='margin-top:60px; border-color: black;'></strong>";
-    			$cuadro_firma.= " <img src='view/DevuelveImagenView.php?id_valor=15248&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas' > ";
-    			//$cuadro_firma.="<strong>$_nombre_usuarios</strong><br>";
-    			//$cuadro_firma.="<strong>$_cargo_usuarios</strong><br>";
-    			//$cuadro_firma.="<strong>FCPC EMCIS FF.AA</strong><br>";
-    			//$cuadro_firma.="<strong>Fono: 3828870</strong><br>";
-    			//$cuadro_firma.="<strong>www.capremci.com.ec</strong>";
+    			if($id_rol==44){
+    				$id_usuarios=15409;
+    			}
+    			$cuadro_firma.= "<img src='view/DevuelveImagenView.php?id_valor=$id_usuarios&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas'>";
     			$cuadro_firma.="</div>";
     			
     			
+    				$memos_cabeza->UpdateBy("cuadro_informacion='$cuadro_infor'", "memos_cab", "id_memos_cab='$id_memos_cab'");
+    				 
     			
+    			 
     			
     			$dicContenido = array(
     					'TITULOPAG'=>"Capremci 2018",
@@ -886,7 +1132,7 @@ class MemosController extends ControladorBase{
     			);
     			
     			$this->verReporte('Memorandu',array(
-    					'dicContenido'=>$dicContenido, 'numero_memorando'=>$numero_memorando, 'id_memos_cab'=>$id_memos_cab
+    					'dicContenido'=>$dicContenido, 'numero_memorando'=>$numero_memorando, 'id_memos_cab'=>$id_memos_cab, 'proceso'=>'nuevo'
     			));
     			
     				
@@ -977,7 +1223,7 @@ class MemosController extends ControladorBase{
     					 
     					$columnas="*";
     					$tablas="public.memos_det, public.memos_cab";
-    					$where="memos_cab.id_memos_cab = memos_det.id_memos_cab AND memos_det.id_usuarios='$id_usuarios' AND (memos_cab.id_estado_tramites=4 OR memos_cab.id_estado_tramites=2)";
+    					$where="memos_cab.id_memos_cab = memos_det.id_memos_cab AND memos_det.revisado_det='FALSE' AND memos_det.id_usuarios='$id_usuarios' AND (memos_cab.id_estado_tramites=4 OR memos_cab.id_estado_tramites=2)";
     					$totalimbox=$memos_detalle->getCantidad($columnas, $tablas, $where);
     						
     					 
@@ -986,7 +1232,7 @@ class MemosController extends ControladorBase{
     						
     					$columnas1="*";
     					$tablas1="memos_det";
-    					$where1="id_usuarios='$id_usuarios'";
+    					$where1="id_usuarios='$id_usuarios' AND revisado_det='FALSE'";
     					$totalimbox=$memos_detalle->getCantidad($columnas1, $tablas1, $where1);
     					 
     				}
@@ -994,7 +1240,7 @@ class MemosController extends ControladorBase{
     				
     				$columnas2="*";
     				$tablas2="memos_cab";
-    				$where2="id_usuarios='$id_usuarios'";
+    				$where2="id_usuarios='$id_usuarios' AND 1=0";
     				$totalsent=$memos_cabeza->getCantidad($columnas2, $tablas2, $where2);
     				$cantidadsent=(int)$totalsent[0]->total;
     				
@@ -1045,7 +1291,7 @@ class MemosController extends ControladorBase{
     				
     					$columnas="*";
     					$tablas="public.memos_det, public.memos_cab";
-    					$where="memos_cab.id_memos_cab = memos_det.id_memos_cab AND memos_det.id_usuarios='$id_usuarios' AND (memos_cab.id_estado_tramites=4 OR memos_cab.id_estado_tramites=2)";
+    					$where="memos_cab.id_memos_cab = memos_det.id_memos_cab AND memos_det.revisado_det='FALSE' AND memos_det.id_usuarios='$id_usuarios' AND (memos_cab.id_estado_tramites=4 OR memos_cab.id_estado_tramites=2)";
     					$totalimbox=$memos_detalle->getCantidad($columnas, $tablas, $where);
     				
     				
@@ -1054,7 +1300,7 @@ class MemosController extends ControladorBase{
     				
     					$columnas1="*";
     					$tablas1="memos_det";
-    					$where1="id_usuarios='$id_usuarios'";
+    					$where1="id_usuarios='$id_usuarios' AND revisado_det='FALSE'";
     					$totalimbox=$memos_detalle->getCantidad($columnas1, $tablas1, $where1);
     				
     				}
@@ -1062,7 +1308,7 @@ class MemosController extends ControladorBase{
     				
     				$columnas2="*";
     				$tablas2="memos_cab";
-    				$where2="id_usuarios='$id_usuarios'";
+    				$where2="id_usuarios='$id_usuarios' AND 1=0";
     				$totalsent=$memos_cabeza->getCantidad($columnas2, $tablas2, $where2);
     				$cantidadsent=(int)$totalsent[0]->total;
     				
@@ -1110,7 +1356,7 @@ class MemosController extends ControladorBase{
     				
     					$columnas="*";
     					$tablas="public.memos_det, public.memos_cab";
-    					$where="memos_cab.id_memos_cab = memos_det.id_memos_cab AND memos_det.id_usuarios='$id_usuarios' AND (memos_cab.id_estado_tramites=4 OR memos_cab.id_estado_tramites=2)";
+    					$where="memos_cab.id_memos_cab = memos_det.id_memos_cab AND memos_det.revisado_det='FALSE' AND memos_det.id_usuarios='$id_usuarios' AND (memos_cab.id_estado_tramites=4 OR memos_cab.id_estado_tramites=2)";
     					$totalimbox=$memos_detalle->getCantidad($columnas, $tablas, $where);
     				
     				
@@ -1119,7 +1365,7 @@ class MemosController extends ControladorBase{
     				
     					$columnas1="*";
     					$tablas1="memos_det";
-    					$where1="id_usuarios='$id_usuarios'";
+    					$where1="id_usuarios='$id_usuarios' AND revisado_det='FALSE'";
     					$totalimbox=$memos_detalle->getCantidad($columnas1, $tablas1, $where1);
     				
     				}
@@ -1127,7 +1373,7 @@ class MemosController extends ControladorBase{
     				
     				$columnas2="*";
     				$tablas2="memos_cab";
-    				$where2="id_usuarios='$id_usuarios'";
+    				$where2="id_usuarios='$id_usuarios' AND 1=0";
     				$totalsent=$memos_cabeza->getCantidad($columnas2, $tablas2, $where2);
     				$cantidadsent=(int)$totalsent[0]->total;
     				
@@ -1176,7 +1422,7 @@ class MemosController extends ControladorBase{
     				
     					$columnas="*";
     					$tablas="public.memos_det, public.memos_cab";
-    					$where="memos_cab.id_memos_cab = memos_det.id_memos_cab AND memos_det.id_usuarios='$id_usuarios' AND (memos_cab.id_estado_tramites=4 OR memos_cab.id_estado_tramites=2)";
+    					$where="memos_cab.id_memos_cab = memos_det.id_memos_cab AND memos_det.revisado_det='FALSE' AND memos_det.id_usuarios='$id_usuarios' AND (memos_cab.id_estado_tramites=4 OR memos_cab.id_estado_tramites=2)";
     					$totalimbox=$memos_detalle->getCantidad($columnas, $tablas, $where);
     				
     				
@@ -1185,7 +1431,7 @@ class MemosController extends ControladorBase{
     				
     					$columnas1="*";
     					$tablas1="memos_det";
-    					$where1="id_usuarios='$id_usuarios'";
+    					$where1="id_usuarios='$id_usuarios' AND revisado_det='FALSE'";
     					$totalimbox=$memos_detalle->getCantidad($columnas1, $tablas1, $where1);
     				
     				}
@@ -1193,7 +1439,7 @@ class MemosController extends ControladorBase{
     				
     				$columnas2="*";
     				$tablas2="memos_cab";
-    				$where2="id_usuarios='$id_usuarios'";
+    				$where2="id_usuarios='$id_usuarios' AND 1=0";
     				$totalsent=$memos_cabeza->getCantidad($columnas2, $tablas2, $where2);
     				$cantidadsent=(int)$totalsent[0]->total;
     				
@@ -1228,7 +1474,7 @@ class MemosController extends ControladorBase{
     	//Tipo de Documento
     	$resultPol = $usuarios->getCondiciones("nombre_usuarios, id_usuarios",
     			"usuarios",
-    			"  UPPER(nombre_usuarios) LIKE '%$nombre_usuario%'  AND   (id_rol = 43 OR id_rol = 44 OR id_rol = 45 OR id_rol = 1) ",
+    			"  UPPER(nombre_usuarios) LIKE '%$nombre_usuario%'  AND id_usuarios in  (7047, 9319, 15412, 15248, 15245, 15409, 15247)",
     			"nombre_usuarios");
     
     
@@ -1291,11 +1537,11 @@ class MemosController extends ControladorBase{
     			
     			
     			$where_to="";
-    			$columnas = "*";
+    		
     			
-    			$tablas   = "memos_det";
-    			
-    			$where    = "1=1 AND memos_det.id_usuarios='$id_usuarios'";
+    			$columnas="*";
+    			$tablas="public.memos_det, public.memos_cab";
+    			$where="memos_cab.id_memos_cab = memos_det.id_memos_cab AND memos_det.id_usuarios='$id_usuarios' AND (memos_cab.id_estado_tramites=4 OR memos_cab.id_estado_tramites=2 OR memos_cab.id_estado_tramites=3)";
     			
     			$id       = "memos_det.id_memos_det";
     			
@@ -1313,7 +1559,8 @@ class MemosController extends ControladorBase{
     			
     					  $where1="";
     					//$where1=" AND (UPPER(memos_det.numero_memos_cab) LIKE '%".mb_strtoupper($search)."%' )";
-    			
+    					$where1=" AND (UPPER(memos_cab.numero_memos_cab) LIKE '%".mb_strtoupper($search)."%' OR UPPER(memos_cab.asunto_memos_cab) LIKE '%".mb_strtoupper($search)."%')";
+    					
     					$where_to=$where.$where1;
     				}else{
     			
@@ -1375,7 +1622,7 @@ class MemosController extends ControladorBase{
     						$fecha_memos_cab=$resultCabeza[0]->fecha_memos_cab;
     						$id_estado_tramites=$resultCabeza[0]->id_estado_tramites;
     			
-    						if($id_estado_tramites==4 || $id_estado_tramites==2){
+    						if($id_estado_tramites==4 || $id_estado_tramites==2 || $id_estado_tramites==3){
     						
     						
     						$resultUsuarios= $usuarios->getBy("id_usuarios='$id'");
@@ -1515,13 +1762,17 @@ class MemosController extends ControladorBase{
     			
     			
     			$where_to="";
-    			$columnas = "*";
-    			
+    			/*$columnas = "*";
     			$tablas   = "memos_det";
-    			
     			$where    = "1=1 AND memos_det.id_usuarios='$id_usuarios'";
-    			
     			$id       = "memos_det.id_memos_det";
+    			*/
+    			$columnas="*";
+    			$tablas="public.memos_det, public.memos_cab";
+    			$where="memos_cab.id_memos_cab = memos_det.id_memos_cab AND memos_det.id_usuarios='$id_usuarios'";
+    			 
+    			$id       = "memos_det.id_memos_det";
+    			
     			
     			
     			$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
@@ -1537,7 +1788,8 @@ class MemosController extends ControladorBase{
     			
     					$where1="";
     					//$where1=" AND (UPPER(memos_det.numero_memos_cab) LIKE '%".mb_strtoupper($search)."%' )";
-    			
+    					$where1=" AND (UPPER(memos_cab.numero_memos_cab) LIKE '%".mb_strtoupper($search)."%' OR UPPER(memos_cab.asunto_memos_cab) LIKE '%".mb_strtoupper($search)."%')";
+    						
     					$where_to=$where.$where1;
     				}else{
     			

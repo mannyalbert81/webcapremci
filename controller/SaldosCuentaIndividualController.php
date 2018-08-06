@@ -35,7 +35,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 						  afiliado_transacc_cta_ind.id_afiliado";
 			$tablas_ind="public.afiliado_transacc_cta_ind";
 			$where_ind="1=1 AND afiliado_transacc_cta_ind.cedula='$cedula_usuarios'";
-			$id_ind="afiliado_transacc_cta_ind.ordtran";
+			$id_ind="afiliado_transacc_cta_ind.secuencial_saldos";
 				
 				
 			$columnas_ind_mayor = "sum(valorper+valorpat) as total, max(fecha_conta) as fecha";
@@ -58,6 +58,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 				$where1=" AND (afiliado_transacc_cta_ind.descripcion LIKE '%".$search."%' OR afiliado_transacc_cta_ind.mes_anio LIKE '%".$search."%')";
 	
 				$where_to=$where_ind.$where1;
+				
 			}else{
 	
 				$where_to=$where_ind;
@@ -81,9 +82,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 			$count_query   = $cantidadResult;
 			$total_pages = ceil($cantidadResult/$per_page);
 	
-			 
-	
-	
+			
 			if($cantidadResult>0)
 			{
 				$resultDatosMayor_Cta_individual=$afiliado_transacc_cta_ind->getCondicionesValorMayor($columnas_ind_mayor, $tablas_ind_mayor, $where_ind_mayor);
@@ -202,7 +201,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 						  afiliado_transacc_cta_desemb.id_afiliado";
 			$tablas_desemb="public.afiliado_transacc_cta_desemb";
 			$where_desemb="1=1 AND afiliado_transacc_cta_desemb.cedula='$cedula_usuarios'";
-			$id_desemb="afiliado_transacc_cta_desemb.ordtran";
+			$id_desemb="afiliado_transacc_cta_desemb.secuencial_saldos";
 				
 				
 			$columnas_desemb_mayor = "sum(valorper+valorpat) as total, max(fecha_conta) as fecha";
@@ -3979,7 +3978,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 							  afiliado_transacc_cta_ind.id_afiliado";
 							$tablas_ind="public.afiliado_transacc_cta_ind";
 							$where_ind="1=1 AND afiliado_transacc_cta_ind.cedula='$cedula_usuarios'";
-							$id_ind="afiliado_transacc_cta_ind.ordtran";
+							$id_ind="afiliado_transacc_cta_ind.secuencial_saldos";
 							$resultSet=$afiliado_transacc_cta_ind->getCondicionesDesc($columnas_ind, $tablas_ind, $where_ind, $id_ind);
 							
 							
@@ -4086,7 +4085,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 						    afiliado_transacc_cta_desemb.id_afiliado";
 							$tablas_desemb="public.afiliado_transacc_cta_desemb";
 							$where_desemb="1=1 AND afiliado_transacc_cta_desemb.cedula='$cedula_usuarios'";
-							$id_desemb="afiliado_transacc_cta_desemb.ordtran";
+							$id_desemb="afiliado_transacc_cta_desemb.secuencial_saldos";
 							$resultSet=$afiliado_transacc_cta_ind->getCondicionesDesc($columnas_desemb, $tablas_desemb, $where_desemb, $id_desemb);
 							
 							
@@ -4368,7 +4367,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 						
 					$directorio = $_SERVER ['DOCUMENT_ROOT'];
 					 
-					$mi_pdf = $directorio.'/documentos/PRESENTACION WEB DIC-2017.pdf';
+					$mi_pdf = $directorio.'/webcapremci/documentos/PRESENTACION WEB DIC-2017.pdf';
 						
 					if(file_exists($mi_pdf))
 					{
@@ -4398,7 +4397,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 						
 					$directorio = $_SERVER ['DOCUMENT_ROOT'];
 					 
-					$mi_pdf = $directorio.'/documentos/PRESENTACION WEB ENE-2017.pdf';
+					$mi_pdf = $directorio.'/webcapremci/documentos/PRESENTACION WEB ENE-2017.pdf';
 						
 					if(file_exists($mi_pdf))
 					{
@@ -4427,7 +4426,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 						
 					$directorio = $_SERVER ['DOCUMENT_ROOT'];
 					 
-					$mi_pdf = $directorio.'/documentos/PRESENTACION WEB FEB-2017.pdf';
+					$mi_pdf = $directorio.'/webcapremci/documentos/PRESENTACION WEB FEB-2017.pdf';
 						
 					if(file_exists($mi_pdf))
 					{
@@ -4458,7 +4457,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 				
 					$directorio = $_SERVER ['DOCUMENT_ROOT'];
 				
-					$mi_pdf = $directorio.'/documentos/ESTADOS FINANCIEROS1290318.pdf';
+					$mi_pdf = $directorio.'/webcapremci/documentos/ESTADOS FINANCIEROS1290318.pdf';
 				
 					if(file_exists($mi_pdf))
 					{
@@ -4488,7 +4487,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 				
 					$directorio = $_SERVER ['DOCUMENT_ROOT'];
 				
-					$mi_pdf = $directorio.'/documentos/INFORME CONFIDENCIAL SOBRE EVALUCION CONTROL INTERNO1290318.pdf';
+					$mi_pdf = $directorio.'/webcapremci/documentos/INFORME CONFIDENCIAL SOBRE EVALUCION CONTROL INTERNO1290318.pdf';
 				
 					if(file_exists($mi_pdf))
 					{
@@ -4517,7 +4516,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 				
 					$directorio = $_SERVER ['DOCUMENT_ROOT'];
 				
-					$mi_pdf = $directorio.'/documentos/INFORME DE PROCEDIMIENTOS PREVIAMNETE CONVENIDOS1290318.pdf';
+					$mi_pdf = $directorio.'/webcapremci/documentos/INFORME DE PROCEDIMIENTOS PREVIAMNETE CONVENIDOS1290318.pdf';
 				
 					if(file_exists($mi_pdf))
 					{
@@ -4545,7 +4544,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 				
 					$directorio = $_SERVER ['DOCUMENT_ROOT'];
 				
-					$mi_pdf = $directorio.'/documentos/RUBRO DE INVERSIONES PRIVATIVAS1290318.pdf';
+					$mi_pdf = $directorio.'/webcapremci/documentos/RUBRO DE INVERSIONES PRIVATIVAS1290318.pdf';
 				
 					if(file_exists($mi_pdf))
 					{
@@ -4607,7 +4606,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 		$directorio = $_SERVER ['DOCUMENT_ROOT'];
 	
-		$mi_pdf = $directorio.'/documentos/CODIGO DE ETICA.pdf';
+		$mi_pdf = $directorio.'/webcapremci/documentos/CODIGO DE ETICA.pdf';
 	
 		if(file_exists($mi_pdf))
 		{
@@ -4629,7 +4628,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 		$directorio = $_SERVER ['DOCUMENT_ROOT'];
 	
-		$mi_pdf = $directorio.'/documentos/CODIGO DEL BUEN GOBIERNO CORPORATIVO.pdf';
+		$mi_pdf = $directorio.'/webcapremci/documentos/CODIGO DEL BUEN GOBIERNO CORPORATIVO.pdf';
 	
 		if(file_exists($mi_pdf))
 		{
@@ -4651,7 +4650,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 		$directorio = $_SERVER ['DOCUMENT_ROOT'];
 	
-		$mi_pdf = $directorio.'/documentos/PLAN ESTRATEGICO.pdf';
+		$mi_pdf = $directorio.'/webcapremci/documentos/PLAN ESTRATEGICO.pdf';
 	
 		if(file_exists($mi_pdf))
 		{
@@ -4673,7 +4672,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 		$directorio = $_SERVER ['DOCUMENT_ROOT'];
 	
-		$mi_pdf = $directorio.'/documentos/REGLAMENTO AL ESTATUTO CAPREMCI.pdf';
+		$mi_pdf = $directorio.'/webcapremci/documentos/REGLAMENTO AL ESTATUTO CAPREMCI.pdf';
 	
 		if(file_exists($mi_pdf))
 		{
@@ -4694,7 +4693,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 		$directorio = $_SERVER ['DOCUMENT_ROOT'];
 	
-		$mi_pdf = $directorio.'/documentos/REGLAMENTO DE COBRANZAS Y RECUPERACIONES.pdf';
+		$mi_pdf = $directorio.'/webcapremci/documentos/REGLAMENTO DE COBRANZAS Y RECUPERACIONES.pdf';
 	
 		if(file_exists($mi_pdf))
 		{
@@ -4716,7 +4715,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 		$directorio = $_SERVER ['DOCUMENT_ROOT'];
 	
-		$mi_pdf = $directorio.'/documentos/REGLAMENTO DE CREDITO.pdf';
+		$mi_pdf = $directorio.'/webcapremci/documentos/REGLAMENTO DE CREDITO.pdf';
 	
 		if(file_exists($mi_pdf))
 		{
@@ -4738,7 +4737,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 		$directorio = $_SERVER ['DOCUMENT_ROOT'];
 	
-		$mi_pdf = $directorio.'/documentos/REGLAMENTO DE VIATICOS, SUBSISTENCIAS, MOVILIZACION Y DIETAS.pdf';
+		$mi_pdf = $directorio.'/webcapremci/documentos/REGLAMENTO DE VIATICOS, SUBSISTENCIAS, MOVILIZACION Y DIETAS.pdf';
 	
 		if(file_exists($mi_pdf))
 		{
@@ -4759,7 +4758,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 		$directorio = $_SERVER ['DOCUMENT_ROOT'];
 	
-		$mi_pdf = $directorio.'/documentos/REGLAMENTOS DE CONTRATACIONES.pdf';
+		$mi_pdf = $directorio.'/webcapremci/documentos/REGLAMENTOS DE CONTRATACIONES.pdf';
 	
 		if(file_exists($mi_pdf))
 		{
