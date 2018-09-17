@@ -108,18 +108,44 @@
           
           
              
-              <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-          <div class="modal-dialog modal-md">
+        <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog modal-md">
         <div class="modal-content">
            <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h3>Descargate nuestro aplicativo movil.</h3>
+              <h3 style="margin-left: 15px;">Encuesta Servicios Online.</h3>
            </div>
            <div class="modal-body">
-             <center><img src="view/images/disponible_play_store.png" class="img-rounded" alt="Cinque Terre" style="width: 50%"/></center>   
+          
+          <div class="col-lg-12 col-md-12 col-xs-12">
+          <div class="col-lg-5 col-md-5 col-xs-12">
+          
+          <h4>Estimado Participe.</h4>
+          <br>
+          <p>Porque tu opinión es muy importante para nosotros, ayúdanos a mejorar nuestros servicios online llenando esta breve encuesta.</p>
+           	
+          
+          </div>
+          <div class="col-lg-7 col-md-7 col-xs-12">
+              <img src="view/images/Encuesta.png" class="img-rounded" alt="Cinque Terre" style="width: 100%"/> 
+           
+          </div>
+          
+          </div>
+            <!--
+             <center>
+             
+               <img src="view/images/disponible_play_store.png" class="img-rounded" alt="Cinque Terre" style="width: 50%"/></center>   
+             -->
+             
+              <a href="index.php?controller=Encuestas&action=index"  style="margin-left: 15px;" class="btn btn-warning" ><i class="glyphicon glyphicon-edit"> Comenzar</i></a>
+    	  
+         		
+          
           </div>
            <div class="modal-footer">
-          <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>
+           
+            <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>
            </div>
 	      </div>
 	     </div>

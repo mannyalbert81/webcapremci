@@ -17,7 +17,7 @@ class ControladoresController extends ControladorBase{
 
 		session_start();
 		
-		if (isset(  $_SESSION['nombre_usuarios']) )
+		if (isset($_SESSION['nombre_usuarios']))
 		{
 			$controladores = new ControladoresModel();
 			//NOTIFICACIONES
@@ -31,7 +31,7 @@ class ControladoresController extends ControladorBase{
 			{
 				
 				
-				if (isset ($_GET["id_controladores"])   )
+				if (isset ($_GET["id_controladores"]))
 				{
 					
 					$nombre_controladores = "Controladores";

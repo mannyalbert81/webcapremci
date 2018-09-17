@@ -549,7 +549,6 @@ class MemosController extends ControladorBase{
     			
     			if(!empty($resultSetMem)){
     				
-    				
     				$html.="<table class='table table-hover' style='margin-top:20px;'>";
     				$html.='<thead>';
     				$html.="<tr  class='bg-primary'>";
@@ -593,7 +592,6 @@ class MemosController extends ControladorBase{
     				foreach ($resultSetMem as $res){
     				
     					$id_memos_pdf=$res->id_memos_pdf;
-    					
     					$html.='<td><a target="_blank" href="view/DevuelvePDFView.php?id_valor='.$res->id_memos_pdf.'&id_nombre=id_memos_pdf&tabla=memos_pdf&campo=archivo_memos_pdf"><img src="view/images/logo_pdf.png" width="40" height="40"></a></td>';
     					
     				}
