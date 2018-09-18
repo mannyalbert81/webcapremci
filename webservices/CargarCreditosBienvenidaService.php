@@ -26,17 +26,20 @@ if(isset($_GET['cargar'])){
 				$fecha="";
 				$total= 0.00;
 				$html="";
-				if($i>0)
+				
+				if (!empty($result_Cta_Ind)) {  foreach($result_Cta_Ind as $res) {
+					$fecha=$res->fecha;
+					$total= number_format($res->total, 2, '.', ',');
+				}}else{
+						
+					$fecha="";
+					$total= 0.00;
+						
+				}
+				
+				if($total>0)
 				{
-					if (!empty($result_Cta_Ind)) {  foreach($result_Cta_Ind as $res) {
-						$fecha=$res->fecha;
-						$total= number_format($res->total, 2, '.', ',');
-					}}else{
-							
-						$fecha="";
-						$total= 0.00;
-							
-					}
+					
 				
 						
 					$html .= "<div class='col-md-4 col-sm-6 col-xs-12'>";
@@ -87,17 +90,20 @@ if(isset($_GET['cargar'])){
 				$fecha="";
 				$total= 0.00;
 				$html="";
-				if($i>0)
+				
+				if (!empty($result_Cta_Desem)) {  foreach($result_Cta_Desem as $res) {
+					$fecha=$res->fecha;
+					$total= number_format($res->total, 2, '.', ',');
+				}}else{
+				
+					$fecha="";
+					$total= 0.00;
+				
+				}
+				
+				if($total>0)
 				{
-					if (!empty($result_Cta_Desem)) {  foreach($result_Cta_Desem as $res) {
-						$fecha=$res->fecha;
-						$total= number_format($res->total, 2, '.', ',');
-					}}else{
-				
-						$fecha="";
-						$total= 0.00;
-				
-					}
+					
 				
 				
 					$html .= "<div class='col-md-4 col-sm-6 col-xs-12'>";

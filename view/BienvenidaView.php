@@ -93,15 +93,12 @@
           </div>
           
         </div>
-          <!-- /top tiles -->
+     
 
 
           <br />
 
 	
-                <!-- End to do list -->
-
-                <!-- end of weather widget -->
               
             
           </div>

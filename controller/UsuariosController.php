@@ -4867,24 +4867,27 @@ public function index(){
 		$fecha="";
 		$total= 0.00;
 		$html="";
-		if($i>0)
+		
+		if (!empty($resultSet)) {  foreach($resultSet as $res) {
+			$fecha=$res->fecha;
+			$total= number_format($res->total, 2, '.', ',');
+		}}else{
+				
+			$fecha="";
+			$total= 0.00;
+				
+		}
+		
+		if($total>0)
 		{
-			if (!empty($resultSet)) {  foreach($resultSet as $res) {
-				$fecha=$res->fecha;
-				$total= number_format($res->total, 2, '.', ',');
-			}}else{
-					
-				$fecha="";
-				$total= 0.00;
 			
-			}
 	
 			
 	
 			
 			$html .= "<div class='col-md-4 col-sm-6 col-xs-12'>";
 			$html .= "<div class='info-box'>";
-			$html .= "<span class='info-box-icon bg-red'><i class='ion ion-pie-graph'></i></span>";
+			$html .= "<span class='info-box-icon bg-red'><a href='index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=cta_individual' target='_blank' ><font color='white'><i class='ion ion-pie-graph' ></i></font></a></span>";
 			$html .= "<div class='info-box-content'>";
 			$html .= "<span class='info-box-number'>$total</span>";
 			$html .= "<span class='info-box-text'>Cuenta Individual Actualizada<br> al $fecha.</span>";
@@ -4893,6 +4896,9 @@ public function index(){
 			$html .= "</div>";
 			
 			
+			
+			
+		
 			
 	
 		}else{
@@ -4949,27 +4955,30 @@ public function index(){
 			$where_desemb_mayor="cedula='$cedula_usuarios'";
 			$resultSet=$afiliado_transacc_cta_desemb->getCondicionesValorMayor($columnas_desemb_mayor, $tablas_desemb_mayor, $where_desemb_mayor);
 				
-	
-			$i=count($resultSet);
+			
+			
 			$fecha="";
 			$total= 0.00;
 			$html="";
-			if($i>0)
+			
+			if (!empty($resultSet)) {  foreach($resultSet as $res) {
+				$fecha=$res->fecha;
+				$total= number_format($res->total, 2, '.', ',');
+			}}else{
+			
+				$fecha="";
+				$total= 0.00;
+			
+			}
+			
+			if($total>0)
 			{
-				if (!empty($resultSet)) {  foreach($resultSet as $res) {
-					$fecha=$res->fecha;
-					$total= number_format($res->total, 2, '.', ',');
-				}}else{
-						
-					$fecha="";
-					$total= 0.00;
-						
-				}
+				
 				
 				
 				$html .= "<div class='col-md-4 col-sm-6 col-xs-12'>";
 				$html .= "<div class='info-box'>";
-				$html .= "<span class='info-box-icon bg-yellow'><i class='ion ion-stats-bars'></i></span>";
+				$html .= "<span class='info-box-icon bg-yellow'><a href='index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=cta_desembolsar' target='_blank' ><font color='white'><i class='ion ion-stats-bars' ></i></font></a></span>";
 				$html .= "<div class='info-box-content'>";
 				$html .= "<span class='info-box-number'>$total</span>";
 				$html .= "<span class='info-box-text'>Cuenta Desembolsar Actualizada<br> al $fecha.</span>";
@@ -4988,7 +4997,7 @@ public function index(){
 				$html .= "<span class='info-box-icon bg-yellow'><i class='ion ion-stats-bars'></i></span>";
 				$html .= "<div class='info-box-content'>";
 				$html .= "<span class='info-box-number'>$total</span>";
-				$html .= "<span class='info-box-text'>Actualmente no dispone Cuenta<br> Por Desembolsar.</span>";
+				$html .= "<span class='info-box-text'>Actualmente no dispone saldo Cuenta<br> Por Desembolsar.</span>";
 				$html .= "</div>";
 				$html .= "</div>";
 				$html .= "</div>";
@@ -5083,7 +5092,8 @@ public function index(){
 				$html .= "<div class='icon'>";
 				$html .= "<i class='ion ion-calendar'></i>";
 				$html .= "</div>";
-				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Ver Pagos <i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=ordinario' class='small-box-footer' target='_blank'>Imprimir Pagos <i class='fa fa-print'></i></a>";
 				$html .= "</div>";
 				$html .= "</div>";
 	
@@ -5101,7 +5111,8 @@ public function index(){
 				$html .= "<div class='icon'>";
 				$html .= "<i class='ion ion-calendar'></i>";
 				$html .= "</div>";
-				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Ver Pagos <i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=ordinario' onclick='return false' class='small-box-footer' target='_blank'>Imprimir Pagos <i class='fa fa-print'></i></a>";
 				$html .= "</div>";
 				$html .= "</div>";
 					
@@ -5190,7 +5201,8 @@ public function index(){
 				$html .= "<div class='icon'>";
 				$html .= "<i class='ion ion-calendar'></i>";
 				$html .= "</div>";
-				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Ver Pagos <i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=emergente' class='small-box-footer' target='_blank'>Imprimir Pagos <i class='fa fa-print'></i></a>";
 				$html .= "</div>";
 				$html .= "</div>";
 	
@@ -5208,7 +5220,8 @@ public function index(){
 				$html .= "<div class='icon'>";
 				$html .= "<i class='ion ion-calendar'></i>";
 				$html .= "</div>";
-				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Ver Pagos <i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=emergente' onclick='return false' class='small-box-footer' target='_blank'>Imprimir Pagos <i class='fa fa-print'></i></a>";
 				$html .= "</div>";
 				$html .= "</div>";
 					
@@ -5295,7 +5308,8 @@ public function index(){
 				$html .= "<div class='icon'>";
 				$html .= "<i class='ion ion-calendar'></i>";
 				$html .= "</div>";
-				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Ver Pagos <i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=2_x_1' class='small-box-footer' target='_blank'>Imprimir Pagos <i class='fa fa-print'></i></a>";
 				$html .= "</div>";
 				$html .= "</div>";
 	
@@ -5313,7 +5327,8 @@ public function index(){
 				$html .= "<div class='icon'>";
 				$html .= "<i class='ion ion-calendar'></i>";
 				$html .= "</div>";
-				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Ver Pagos <i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=2_x_1' onclick='return false' class='small-box-footer' target='_blank'>Imprimir Pagos <i class='fa fa-print'></i></a>";
 				$html .= "</div>";
 				$html .= "</div>";
 					
@@ -5405,7 +5420,8 @@ public function index(){
 				$html .= "<div class='icon'>";
 				$html .= "<i class='ion ion-calendar'></i>";
 				$html .= "</div>";
-				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Ver Pagos <i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=hipotecario' class='small-box-footer' target='_blank'>Imprimir Pagos <i class='fa fa-print'></i></a>";
 				$html .= "</div>";
 				$html .= "</div>";
 	
@@ -5423,7 +5439,9 @@ public function index(){
 				$html .= "<div class='icon'>";
 				$html .= "<i class='ion ion-calendar'></i>";
 				$html .= "</div>";
-				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Ver Pagos <i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=hipotecario' onclick='return false' class='small-box-footer' target='_blank'>Imprimir Pagos <i class='fa fa-print'></i></a>";
+				
 				$html .= "</div>";
 				$html .= "</div>";
 					
@@ -5509,7 +5527,8 @@ public function index(){
 				$html .= "<div class='icon'>";
 				$html .= "<i class='ion ion-calendar'></i>";
 				$html .= "</div>";
-				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Ver Pagos <i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=acuerdo_pago' class='small-box-footer' target='_blank'>Imprimir Pagos <i class='fa fa-print'></i></a>";
 				$html .= "</div>";
 				$html .= "</div>";
 	
@@ -5527,7 +5546,9 @@ public function index(){
 				$html .= "<div class='icon'>";
 				$html .= "<i class='ion ion-calendar'></i>";
 				$html .= "</div>";
-				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Ver Pagos <i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=acuerdo_pago' onclick='return false' class='small-box-footer' target='_blank'>Imprimir Pagos <i class='fa fa-print'></i></a>";
+				
 				$html .= "</div>";
 				$html .= "</div>";
 					
@@ -5614,7 +5635,9 @@ public function index(){
 				$html .= "<div class='icon'>";
 				$html .= "<i class='ion ion-calendar'></i>";
 				$html .= "</div>";
-				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Ver Pagos <i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=refinanciamiento' class='small-box-footer' target='_blank'>Imprimir Pagos <i class='fa fa-print'></i></a>";
+				
 				$html .= "</div>";
 				$html .= "</div>";
 	
@@ -5632,7 +5655,9 @@ public function index(){
 				$html .= "<div class='icon'>";
 				$html .= "<i class='ion ion-calendar'></i>";
 				$html .= "</div>";
-				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=index' class='small-box-footer'>Ver Pagos <i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=SaldosCuentaIndividual&action=generar_reporte&credito=refinanciamiento' onclick='return false' class='small-box-footer' target='_blank'>Imprimir Pagos <i class='fa fa-print'></i></a>";
+				
 				$html .= "</div>";
 				$html .= "</div>";
 					
