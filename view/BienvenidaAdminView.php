@@ -79,6 +79,7 @@
           <div class="row tile_count">
             <div id='pone_consulta_documentos'></div>
 			 <div id='pone_afiliaciones_recomendadas'></div>
+			  <div id='pone_encuestas_realizadas'></div>
           </div>
           
           
@@ -152,6 +153,7 @@
         		   cargar_sesiones();
         		   cargar_consulta_documentos();
 				    pone_afiliaciones_recomendadas();
+				    pone_encuestas_realizadas();
         		   cargar_banner();
 	   			});
 
@@ -275,7 +277,7 @@
         		     })
         		  }
         	   
- function pone_afiliaciones_recomendadas(){
+ 			function pone_afiliaciones_recomendadas(){
         		   $(document).ready( function (){
         		       $.ajax({
         		                 beforeSend: function(objeto){
@@ -294,6 +296,28 @@
         		     })
         		  }
 
+
+ 			function pone_encuestas_realizadas(){
+     		   $(document).ready( function (){
+     		       $.ajax({
+     		                 beforeSend: function(objeto){
+     		                   $("#pone_encuestas_realizadas").html('')
+     		                 },
+     		                 url: 'index.php?controller=Encuestas&action=cargar_encuestas',
+     		                 type: 'POST',
+     		                 data: null,
+     		                 success: function(x){
+     		                   $("#pone_encuestas_realizadas").html(x);
+     		                 },
+     		                error: function(jqXHR,estado,error){
+     		                  $("#pone_encuestas_realizadas").html("Ocurrio un error al cargar la informacion de consulta encuestas realizadas..."+estado+"    "+error);
+     		                }
+     		              });
+     		     })
+     		  }
+
+
+ 			
         	   function cargar_banner(){
         		   $(document).ready( function (){
         		       $.ajax({
@@ -312,6 +336,10 @@
         		              });
         		     })
         		  }
+
+
+
+        	 
         	   
         </script>
 	

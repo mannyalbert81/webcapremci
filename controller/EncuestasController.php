@@ -11,50 +11,29 @@ class EncuestasController extends ControladorBase{
 	public function search(){
 	
 		session_start();
-		$afiliacion = new AfiliadoRecomendacionModel();
+		
+		$encuestas_cabeza = new EncuestasCabezaModel();
+		$encuestas_detalle = new EncuestasModel();
 		$where_to="";
-		$columnas = " usuarios.cedula_usuarios, 
+		$columnas = " 
+				  encuentas_participes_cabeza.id_encuentas_participes_cabeza,  
+				  encuentas_participes_cabeza.id_usuarios, 
+				  usuarios.cedula_usuarios, 
 				  usuarios.nombre_usuarios, 
-				  afiliado_recomendacion.cedula, 
-				  afiliado_recomendacion.nombre, 
-				  afiliado_recomendacion.direccion, 
-				  afiliado_recomendacion.telefono, 
-				  afiliado_recomendacion.celular, 
-				  afiliado_recomendacion.correo, 
-				  afiliado_recomendacion.edad, 
-				  afiliado_recomendacion.hijos, 
-				  afiliado_recomendacion.sueldo, 
-				  afiliado_recomendacion.fecha_ingreso, 
-				  parroquias.nombre_parroquias, 
-				  provincias.nombre_provincias, 
-				  cantones.nombre_cantones, 
-				  tipo_sangre.nombre_tipo_sangre, 
-				  sexo.nombre_sexo, 
-				  estado_civil.nombre_estado_civil, 
-				  entidades.nombre_entidades,
-				  afiliado_recomendacion.creado";
+				  usuarios.celular_usuarios, 
+				  usuarios.correo_usuarios, 
+				  usuarios.fotografia_usuarios, 
+				  estado.nombre_estado, 
+				  encuentas_participes_cabeza.creado";
 	
-		$tablas   = "public.afiliado_recomendacion, 
-				  public.usuarios, 
-				  public.parroquias, 
-				  public.provincias, 
-				  public.cantones, 
-				  public.sexo, 
-				  public.tipo_sangre, 
-				  public.estado_civil, 
-				  public.entidades";
+		$tablas   = "public.usuarios, 
+				  public.encuentas_participes_cabeza, 
+				  public.estado";
 	
-		$where    = "
-				  afiliado_recomendacion.id_provincias_asignacion = provincias.id_provincias AND
-				  afiliado_recomendacion.id_cantones_asignacion = cantones.id_cantones AND
-				  afiliado_recomendacion.id_parroquias_asignacion = parroquias.id_parroquias AND
-				  usuarios.id_usuarios = afiliado_recomendacion.id_usuarios_sugiere AND
-				  sexo.id_sexo = afiliado_recomendacion.id_sexo AND
-				  tipo_sangre.id_tipo_sangre = afiliado_recomendacion.id_tipo_sangre AND
-				  estado_civil.id_estado_civil = afiliado_recomendacion.id_estado_civil AND
-				  entidades.id_entidades = afiliado_recomendacion.id_entidades";
+		$where    = "encuentas_participes_cabeza.id_usuarios = usuarios.id_usuarios AND
+  				  estado.id_estado = usuarios.id_estado";
 	
-		$id       = "afiliado_recomendacion.id_afiliado_recomendacion";
+		$id       = "encuentas_participes_cabeza.id_encuentas_participes_cabeza";
 	
 		 
 		 
@@ -76,18 +55,18 @@ class EncuestasController extends ControladorBase{
 				
 				if($desde!="" && $hasta!=""){
 					
-					$where2=" AND DATE(afiliado_recomendacion.creado)  BETWEEN '$desde' AND '$hasta'";
+					$where2=" AND DATE(encuentas_participes_cabeza.creado)  BETWEEN '$desde' AND '$hasta'";
 					
 					
 				}
 	
-				$where1=" AND (usuarios.cedula_usuarios LIKE '".$search."%' OR usuarios.nombre_usuarios LIKE '".$search."%' OR usuarios.correo_usuarios LIKE '".$search."%' OR afiliado_recomendacion.cedula_usuarios LIKE '".$search."%' OR afiliado_recomendacion.nombre_usuarios LIKE '".$search."%' OR afiliado_recomendacion.correo_usuarios LIKE '".$search."%')";
+				$where1=" AND (usuarios.cedula_usuarios LIKE '".$search."%' OR usuarios.nombre_usuarios LIKE '".$search."%' OR usuarios.correo_usuarios LIKE '".$search."%' OR usuarios.celular_usuarios LIKE '".$search."%' )";
 	
 				$where_to=$where.$where1.$where2;
 			}else{
 				if($desde!="" && $hasta!=""){
 						
-					$where2=" AND DATE(afiliado_recomendacion.creado)  BETWEEN '$desde' AND '$hasta'";	
+					$where2=" AND DATE(encuentas_participes_cabeza.creado)  BETWEEN '$desde' AND '$hasta'";	
 						
 				}
 				
@@ -96,7 +75,7 @@ class EncuestasController extends ControladorBase{
 			}
 	
 			$html="";
-			$resultSet=$afiliacion->getCantidad("*", $tablas, $where_to);
+			$resultSet=$encuestas_cabeza->getCantidad("*", $tablas, $where_to);
 			$cantidadResult=(int)$resultSet[0]->total;
 	
 			$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
@@ -107,7 +86,7 @@ class EncuestasController extends ControladorBase{
 	
 			$limit = " LIMIT   '$per_page' OFFSET '$offset'";
 	
-			$resultSet=$afiliacion->getCondicionesPagDesc($columnas, $tablas, $where_to, $id, $limit);
+			$resultSet=$encuestas_cabeza->getCondicionesPagDesc($columnas, $tablas, $where_to, $id, $limit);
 			$count_query   = $cantidadResult;
 			$total_pages = ceil($cantidadResult/$per_page);
 	
@@ -124,24 +103,16 @@ class EncuestasController extends ControladorBase{
 				$html.='</div>';
 				$html.='<div class="col-lg-12 col-md-12 col-xs-12">';
 				$html.='<section style="height:425px; overflow-y:scroll;">';
-				$html.= "<table id='tabla_afiliaciones_recomendadas' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
+				$html.= "<table id='tabla_encuestas_realizadas' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
 				$html.= "<thead>";
 				$html.= "<tr>";
 				$html.='<th style="text-align: left;  font-size: 12px;"></th>';
-				$html.='<th style="text-align: left;  font-size: 12px;">Cedula Sugiere</th>';
-				$html.='<th style="text-align: left;  font-size: 12px;">Nombre Sugiere</th>';
 				$html.='<th style="text-align: left;  font-size: 12px;">Cedula</th>';
 				$html.='<th style="text-align: left;  font-size: 12px;">Nombre</th>';
 				$html.='<th style="text-align: left;  font-size: 12px;">Correo</th>';
 				$html.='<th style="text-align: left;  font-size: 12px;">Celular</th>';
-				$html.='<th style="text-align: left;  font-size: 12px;">Fuerza</th>';
-				$html.='<th style="text-align: left;  font-size: 12px;">Sueldo</th>';
-				$html.='<th style="text-align: left;  font-size: 12px;">Edad</th>';
-				$html.='<th style="text-align: left;  font-size: 12px;">Hijos</th>';
-				$html.='<th style="text-align: left;  font-size: 12px;">Provincia Asig.</th>';
-				$html.='<th style="text-align: left;  font-size: 12px;">Cantón Asig.</th>';
-				$html.='<th style="text-align: left;  font-size: 12px;">Parroquia Asig.</th>';
-				$html.='<th style="text-align: left;  font-size: 12px;">Creado</th>';
+				$html.='<th style="text-align: left;  font-size: 12px;">Fecha Encuesta</th>';
+				$html.='<th style="text-align: left;  font-size: 12px;">Ver Encuesta</th>';
 				$html.='</tr>';
 				$html.='</thead>';
 				$html.='<tbody>';
@@ -155,20 +126,10 @@ class EncuestasController extends ControladorBase{
 					$html.='<td style="font-size: 11px;">'.$i.'</td>';
 					$html.='<td style="font-size: 11px;">'.$res->cedula_usuarios.'</td>';
 					$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'</td>';
-					$html.='<td style="font-size: 11px;">'.$res->cedula.'</td>';
-					$html.='<td style="font-size: 11px;">'.$res->nombre.'</td>';
-					
-					$html.='<td style="font-size: 11px;">'.$res->correo.'</td>';
-					$html.='<td style="font-size: 11px;">'.$res->celular.'</td>';
-					$html.='<td style="font-size: 11px;">'.$res->nombre_entidades.'</td>';
-					$html.='<td style="font-size: 11px;">'.$res->sueldo.'</td>';
-					$html.='<td style="font-size: 11px;">'.$res->edad.'</td>';
-					$html.='<td style="font-size: 11px;">'.$res->hijos.'</td>';
-					$html.='<td style="font-size: 11px;">'.$res->nombre_provincias.'</td>';
-					$html.='<td style="font-size: 11px;">'.$res->nombre_cantones.'</td>';
-					$html.='<td style="font-size: 11px;">'.$res->nombre_parroquias.'</td>';
-					
+					$html.='<td style="font-size: 11px;">'.$res->correo_usuarios.'</td>';
+					$html.='<td style="font-size: 11px;">'.$res->celular_usuarios.'</td>';
 					$html.='<td style="font-size: 11px;">'.date("d/m/Y", strtotime($res->creado)).'</td>';
+					$html.='<td style="font-size: 11px;"><a href="index.php?controller=Encuestas&action=print_enc&id_encuestas='.$res->id_encuentas_participes_cabeza.'" target="_blank" class="btn btn-warning" style="font-size:85%;"><i class="glyphicon glyphicon-eye-open"></i></a></td>';
 					$html.='</tr>';
 				}
 	
@@ -177,7 +138,7 @@ class EncuestasController extends ControladorBase{
 				$html.='</table>';
 				$html.='</section></div>';
 				$html.='<div class="table-pagination pull-right">';
-				$html.=''. $this->paginate_load_afiliaciones_recomendadas("index.php", $page, $total_pages, $adjacents).'';
+				$html.=''. $this->paginate_load_encuestas_realizadas("index.php", $page, $total_pages, $adjacents).'';
 				$html.='</div>';
 	
 	 
@@ -185,7 +146,7 @@ class EncuestasController extends ControladorBase{
 				$html.='<div class="col-lg-6 col-md-6 col-xs-12">';
 				$html.='<div class="alert alert-warning alert-dismissable" style="margin-top:40px;">';
 				$html.='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
-				$html.='<h4>Aviso!!!</h4> <b>Actualmente no hay afiliaciones recomendadas registradas...</b>';
+				$html.='<h4>Aviso!!!</h4> <b>Actualmente no hay encuestas registradas...</b>';
 				$html.='</div>';
 				$html.='</div>';
 			}
@@ -625,17 +586,17 @@ class EncuestasController extends ControladorBase{
 	
 	
 	
-	public function cargar_afiliado_recomendado(){
+	public function cargar_encuestas(){
 	
 		session_start();
 		$id_rol=$_SESSION["id_rol"];
 		$i=0;
-	    $afiliacion = new AfiliadoRecomendacionModel();
-		$columnas = "afiliado_recomendacion.cedula";
-		$tablas   = "public.afiliado_recomendacion, public.usuarios";
-		$where    = "usuarios.id_usuarios = afiliado_recomendacion.id_usuarios_sugiere";
-		$id       = "afiliado_recomendacion.cedula";
-		$resultSet = $afiliacion->getCondiciones($columnas ,$tablas ,$where, $id);
+	    $encuestas = new EncuestasCabezaModel();
+		$columnas = "id_encuentas_participes_cabeza";
+		$tablas   = "public.encuentas_participes_cabeza";
+		$where    = "1=1";
+		$id       = "id_encuentas_participes_cabeza";
+		$resultSet = $encuestas->getCondiciones($columnas ,$tablas ,$where, $id);
 	
 		$i=count($resultSet);
 	
@@ -644,17 +605,17 @@ class EncuestasController extends ControladorBase{
 		{
 	
 			$html .= "<div class='col-lg-3 col-xs-12'>";
-			$html .= "<div class='small-box bg-green'>";
+			$html .= "<div class='small-box bg-yellow'>";
 			$html .= "<div class='inner'>";
 			$html .= "<h3>$i</h3>";
-			$html .= "<p>Afiliaciones Recomendadas.</p>";
+			$html .= "<p>Encuestas Realizadas.</p>";
 			$html .= "</div>";
 			$html .= "<div class='icon'>";
-			$html .= "<i class='ion ion-stats-bars'></i>";
+			$html .= "<i class='ion ion-pie-graph'></i>";
 			$html .= "</div>";
 				
 			if($id_rol==1){
-				$html .= "<a href='index.php?controller=Afiliacion&action=index2' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+				$html .= "<a href='index.php?controller=Encuestas&action=index2' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
 			}else{
 				$html .= "<a href='#' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
 			}
@@ -664,7 +625,7 @@ class EncuestasController extends ControladorBase{
 	
 		}else{
 	
-			$html = "<b>Actualmente no hay afiliaciones recomendadas...</b>";
+			$html = "<b>Actualmente no hay encuestas realizadas...</b>";
 		}
 	
 		echo $html;
@@ -688,7 +649,7 @@ class EncuestasController extends ControladorBase{
 	
 	
 	
-	public function paginate_load_afiliaciones_recomendadas($reload, $page, $tpages, $adjacents) {
+	public function paginate_load_encuestas_realizadas($reload, $page, $tpages, $adjacents) {
 	
 		$prevlabel = "&lsaquo; Prev";
 		$nextlabel = "Next &rsaquo;";
@@ -699,15 +660,15 @@ class EncuestasController extends ControladorBase{
 		if($page==1) {
 			$out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
 		} else if($page==2) {
-			$out.= "<li><span><a href='javascript:void(0);' onclick='load_afiliaciones_recomendadas(1)'>$prevlabel</a></span></li>";
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_encuestas_realizadas(1)'>$prevlabel</a></span></li>";
 		}else {
-			$out.= "<li><span><a href='javascript:void(0);' onclick='load_afiliaciones_recomendadas(".($page-1).")'>$prevlabel</a></span></li>";
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_encuestas_realizadas(".($page-1).")'>$prevlabel</a></span></li>";
 	
 		}
 	
 		// first label
 		if($page>($adjacents+1)) {
-			$out.= "<li><a href='javascript:void(0);' onclick='load_afiliaciones_recomendadas(1)'>1</a></li>";
+			$out.= "<li><a href='javascript:void(0);' onclick='load_encuestas_realizadas(1)'>1</a></li>";
 		}
 		// interval
 		if($page>($adjacents+2)) {
@@ -722,9 +683,9 @@ class EncuestasController extends ControladorBase{
 			if($i==$page) {
 				$out.= "<li class='active'><a>$i</a></li>";
 			}else if($i==1) {
-				$out.= "<li><a href='javascript:void(0);' onclick='load_afiliaciones_recomendadas(1)'>$i</a></li>";
+				$out.= "<li><a href='javascript:void(0);' onclick='load_encuestas_realizadas(1)'>$i</a></li>";
 			}else {
-				$out.= "<li><a href='javascript:void(0);' onclick='load_afiliaciones_recomendadas(".$i.")'>$i</a></li>";
+				$out.= "<li><a href='javascript:void(0);' onclick='load_encuestas_realizadas(".$i.")'>$i</a></li>";
 			}
 		}
 	
@@ -737,13 +698,13 @@ class EncuestasController extends ControladorBase{
 		// last
 	
 		if($page<($tpages-$adjacents)) {
-			$out.= "<li><a href='javascript:void(0);' onclick='load_afiliaciones_recomendadas($tpages)'>$tpages</a></li>";
+			$out.= "<li><a href='javascript:void(0);' onclick='load_encuestas_realizadas($tpages)'>$tpages</a></li>";
 		}
 	
 		// next
 	
 		if($page<$tpages) {
-			$out.= "<li><span><a href='javascript:void(0);' onclick='load_afiliaciones_recomendadas(".($page+1).")'>$nextlabel</a></span></li>";
+			$out.= "<li><span><a href='javascript:void(0);' onclick='load_encuestas_realizadas(".($page+1).")'>$nextlabel</a></span></li>";
 		}else {
 			$out.= "<li class='disabled'><span><a>$nextlabel</a></span></li>";
 		}
@@ -751,6 +712,549 @@ class EncuestasController extends ControladorBase{
 		$out.= "</ul>";
 		return $out;
 	}
+	
+	
+	
+	
+	public function print_enc()
+	{
+	
+		session_start();
+		$usuarios= new UsuariosModel();
+	
+		$encuestas_cabeza = new EncuestasCabezaModel();
+		$encuestas_detalle = new EncuestasModel();
+		
+		$html="";
+	
+	
+	
+		$cedula_usuarios = $_SESSION["cedula_usuarios"];
+		$fechaactual = getdate();
+		$dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+		$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+		$fechaactual=$dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+		 
+		$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/webcapremci';
+		$dom=$directorio.'/view/dompdf/dompdf_config.inc.php';
+		$domLogo=$directorio.'/view/images/lcaprem.png';
+		$logo = '<img src="'.$domLogo.'" alt="Responsive image" width="200" height="50">';
+		 
+	
+	
+		if(!empty($cedula_usuarios)){
+				
+	
+			if(isset($_GET["id_encuestas"])){
+	
+				    $id_encuestas=$_GET["id_encuestas"];
+						
+					$columnas_encuestas_cabec ="encuentas_participes_cabeza.id_encuentas_participes_cabeza, encuentas_participes_cabeza.id_usuarios, 
+											  usuarios.cedula_usuarios, 
+											  usuarios.nombre_usuarios, 
+											  usuarios.celular_usuarios, 
+											  usuarios.correo_usuarios, 
+											  usuarios.fotografia_usuarios, 
+											  estado.nombre_estado, 
+											  encuentas_participes_cabeza.creado";
+					$tablas_encuestas_cabec="public.usuarios, 
+										  public.encuentas_participes_cabeza, 
+										  public.estado";
+					$where_encuestas_cabec="encuentas_participes_cabeza.id_usuarios = usuarios.id_usuarios AND
+  											estado.id_estado = usuarios.id_estado AND encuentas_participes_cabeza.id_encuentas_participes_cabeza='$id_encuestas'";
+					$id_encuestas_cabec="encuentas_participes_cabeza.id_encuentas_participes_cabeza";
+					$resultEncuestas_Cabec=$encuestas_cabeza->getCondicionesDesc($columnas_encuestas_cabec, $tablas_encuestas_cabec, $where_encuestas_cabec, $id_encuestas_cabec);
+	
+						
+	
+					if(!empty($resultEncuestas_Cabec)){
+							
+						$_id_encuentas_participes_cabeza=$resultEncuestas_Cabec[0]->id_encuentas_participes_cabeza;
+						$_id_usuarios=$resultEncuestas_Cabec[0]->id_usuarios;
+						$_fecha_encuesta=date("d/m/Y", strtotime($resultEncuestas_Cabec[0]->creado));
+						$_nombre_usuarios=$resultEncuestas_Cabec[0]->nombre_usuarios;
+						$_cedula_usuarios=$resultEncuestas_Cabec[0]->cedula_usuarios;
+						
+							
+						if($_id_encuentas_participes_cabeza > 0 && $_id_usuarios > 0){
+	
+							$columnas_encuestas_detall =" encuentas_participes_detalle.id_preguntas_encuestas_participes, 
+														  preguntas_encuestas_participes.nombre_preguntas_encuestas_participes, 
+														  encuentas_participes_detalle.respuestas_encuestas_participes, 
+														  encuentas_participes_detalle.comentario_encuestas_participes";
+								
+							$tablas_encuestas_detall="public.encuentas_participes_detalle, 
+ 													 public.preguntas_encuestas_participes";
+							$where_encuestas_detall="preguntas_encuestas_participes.id_preguntas_encuestas_participes = encuentas_participes_detalle.id_preguntas_encuestas_participes
+							AND encuentas_participes_detalle.id_encuentas_participes_cabeza='$_id_encuentas_participes_cabeza'";
+							$id_encuestas_detall="encuentas_participes_detalle.id_preguntas_encuestas_participes";
+							$resultSet=$encuestas_detalle->getCondiciones($columnas_encuestas_detall, $tablas_encuestas_detall, $where_encuestas_detall, $id_encuestas_detall);
+	
+							
+							
+							
+								
+							$html.='<p style="text-align: right;">'.$logo.'<hr style="height: 2px; background-color: black;"></p>';
+							$html.='<p style="text-align: right; font-size: 13px;"><b>Impreso:</b> '.$fechaactual.'</p>';
+							$html.='<p style="text-align: center; font-size: 16px;"><b>ENCUESTA SERVICIOS ONLINE</b></p>';
+	
+							$html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>NOMBRES:</b> '.$_nombre_usuarios.'  <b style="margin-left: 20%; font-size: 13px;">IDENTIFICACIÓN:</b> '.$_cedula_usuarios.'</p>';
+	                        $html.= '<p style="margin-top:15px; text-align: justify; font-size: 13px;"><b>ENCUESTA REALIZADA EL:</b> '.$_fecha_encuesta.'</p>';
+							
+	                        
+	                        if (!empty($resultSet)){
+	                        	
+	                        	$pregunta="";
+	                        	$respuesta="";
+	                        	$comentario="";
+	                        	
+		                        foreach ($resultSet as $res){
+		                       
+		                        $numero = $res->id_preguntas_encuestas_participes;
+		                        $pregunta = $res->nombre_preguntas_encuestas_participes;
+		                        $respuesta = $res->respuestas_encuestas_participes;
+		                        $comentario = $res->comentario_encuestas_participes;
+		                        
+		                        
+		                        if($numero==1){
+		                        
+		                        	$html.= "<b>$pregunta</b>";
+		                        	
+		                        	$html.= "<table style='width: 100%; margin-top:10px;'>";
+		                        	$html.= '<tr>';
+		                        	
+		                        	if($respuesta=='Bueno'){
+		                        		
+		                        	$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>Bueno</u></b></th>';
+		                        		 
+		                        	}else{
+		                        		
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">Bueno</th>';
+		                        		 
+		                        	}	
+		                        	
+		                        	if($respuesta=='Intermedio'){
+		                        	
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>Intermedio</u></b></th>';
+		                        		 
+		                        	}else{
+		                        	
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">Intermedio</th>';
+		                        		 
+		                        	}
+		                        	 
+		                        	
+		                        	if($respuesta=='Malo'){
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>Malo</u></b></th>';
+		                        		 
+		                        	}else{
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">Malo</th>';
+		                        		 
+		                        	}
+			                    $html.='</tr>';
+			                    
+			                    
+			                    if($comentario!=''){
+			                    
+			                    $html.= '<tr>';
+			                    $html.='<td  colspan="3" style="text-align: justify;  font-size: 15px;"><b>Porque:</b> '.$comentario.'</td>';
+			                    $html.='</tr>';
+			                    
+			                    }
+			                    
+			                    $html.='</table>';
+		                        
+		                        } elseif ($numero==2){
+		                        	
+		                        	$html.= "<br>";
+		                        	$html.= "<b>$pregunta</b>";
+		                        	$html.= "<table style='width: 100%; margin-top:10px;'>";
+		                        	$html.= '<tr>';
+		                        	
+		                        	if($respuesta=='Si'){
+		                        		
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>Si</u></b></th>';
+		                        		 
+		                        	}else{
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">Si</th>';
+		                        		
+		                        	}
+		                        	
+		                        	
+		                        	if($respuesta=='Algo'){
+		                        	
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>Algo</u></b></th>';
+		                        		 
+		                        	}else{
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">Algo</th>';
+		                        	
+		                        	}
+		                        	
+		                        	
+		                        	if($respuesta=='Nada'){
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>Nada</u></b></th>';
+		                        		 
+		                        	}else{
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">Nada</th>';
+		                        		 
+		                        	}
+		                        	
+		                        	$html.='</tr>';
+		                        	
+		                        	if($comentario!=''){
+		                        	
+		                        	$html.= '<tr>';
+		                        	$html.='<td  colspan="3" style="text-align: justify;  font-size: 15px;"><b>Porque:</b> '.$comentario.'</td>';
+		                        	$html.='</tr>';
+		                        	}
+		                        	$html.='</table>';
+		                        }
+		                        
+		                        elseif ($numero==3){
+		                        	$html.= "<br>";
+		                        	$html.= "<b>$pregunta</b>";
+		                        	$html.= "<table style='width: 100%; margin-top:10px;'>";
+		                        	$html.= '<tr>';
+		                        	
+		                        	if($respuesta=='Los Colores'){
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>Los Colores</u></b></th>';
+		                        		 
+		                        	}else{
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">Los Colores</th>';
+		                        		 
+		                        	}
+		                        	
+		                        	if($respuesta=='La Información'){
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>La Información</u></b></th>';
+		                        		 
+		                        	}else{
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">La Información</th>';
+		                        		 
+		                        	}
+		                        	
+		                        	if($respuesta=='Las Imágenes'){
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>Las Imágenes</u></b></th>';
+		                        		 
+		                        	}else{
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">Las Imágenes</th>';
+		                        		 
+		                        	}
+		                        	
+		                        	if($respuesta=='Nada'){
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>Nada</u></b></th>';
+		                        		 
+		                        	}else{
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">Nada</th>';
+		                        		 
+		                        	}
+		                        	
+		                        	$html.='</tr>';
+		                        	 
+		                        	
+		                        	if($comentario!=''){
+		                        	$html.= '<tr>';
+		                        	$html.='<td  colspan="4" style="text-align: justify;  font-size: 15px;"><b>Porque:</b> '.$comentario.'</td>';
+		                        	$html.='</tr>';
+		                        	}
+		                        	$html.='</table>';
+		                        	
+		                        	 
+		                        }
+		                        
+		                        elseif ($numero==4){
+		                        	$html.= "<br>";
+		                        	$html.= "<b>$pregunta</b>";
+		                        	$html.= "<table style='width: 100%; margin-top:10px;'>";
+		                        	$html.= '<tr>';
+		                        	
+		                        	if($respuesta=='1'){
+		                        		
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>1</u></b></th>';
+		                        	}else{
+		                        		
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">1</th>';
+		                        	}
+		                        	
+		                        	if($respuesta=='2'){
+		                        	
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>2</u></b></th>';
+		                        	}else{
+		                        	
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">2</th>';
+		                        	}
+		                        	
+		                        	if($respuesta=='3'){
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>3</u></b></th>';
+		                        	}else{
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">3</th>';
+		                        	}
+		                        	
+		                        	if($respuesta=='4'){
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>4</u></b></th>';
+		                        	}else{
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">4</th>';
+		                        	}
+		                        	
+		                        	if($respuesta=='5'){
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>5</u></b></th>';
+		                        	}else{
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">5</th>';
+		                        	}
+		                        	
+		                        	if($respuesta=='6'){
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>6</u></b></th>';
+		                        	}else{
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">6</th>';
+		                        	}
+		                        	
+		                        	if($respuesta=='7'){
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>7</u></b></th>';
+		                        	}else{
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">7</th>';
+		                        	}
+		                        	
+		                        	if($respuesta=='8'){
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>8</u></b></th>';
+		                        	}else{
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">8</th>';
+		                        	}
+		                        	
+		                        	if($respuesta=='9'){
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>9</u></b></th>';
+		                        	}else{
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">9</th>';
+		                        	}
+		                        	
+		                        	if($respuesta=='10'){
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>10</u></b></th>';
+		                        	}else{
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">10</th>';
+		                        	}
+		                        	 
+		                        	$html.='</tr>';
+		                        	 
+		                        	if($comentario!=''){
+		                        	$html.= '<tr>';
+		                        	$html.='<td  colspan="10" style="text-align: justify;  font-size: 15px;"><b>Porque:</b> '.$comentario.'</td>';
+		                        	$html.='</tr>';
+		                        	}
+		                        	$html.='</table>';
+		                        	
+		                        	
+		                        }elseif ($numero==5){
+		                        	$html.= "<br>";
+		                        	$html.= "<b>$pregunta</b>";
+		                        	$html.= "<table style='width: 100%; margin-top:10px;'>";
+		                        	$html.= '<tr>';
+		                        	
+		                        	if($respuesta=='Si'){
+		                        		
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>Si</u></b></th>';
+		                        	}else{
+		                        		
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">Si</th>';
+		                        	}
+		                        	
+		                        	if($respuesta=='Intermedio'){
+		                        	
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>Intermedio</u></b></th>';
+		                        	}else{
+		                        	
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">Intermedio</th>';
+		                        	}
+		                        	
+		                        	
+		                        	if($respuesta=='No'){
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>No</u></b></th>';
+		                        	}else{
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">No</th>';
+		                        	}
+		                        	
+		                        	$html.='</tr>';
+		                        	 
+		                        	if($comentario!=''){
+		                        	
+		                        	$html.= '<tr>';
+		                        	$html.='<td  colspan="3" style="text-align: justify;  font-size: 15px;"><b>Porque:</b> '.$comentario.'</td>';
+		                        	$html.='</tr>';
+		                        	}
+		                        	$html.='</table>';
+		                        	
+		                        	
+		                        }elseif ($numero==6){
+		                        	$html.= "<br>";
+		                        	$html.= "<b>$pregunta</b>";
+		                        	$html.= "<table style='width: 100%; margin-top:10px;'>";
+		                        	$html.= '<tr>';
+		                        	
+		                        	if($respuesta=='Si'){
+		                        		
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>Si</u></b></th>';
+		                        		 
+		                        	}else {
+		                        		
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">Si</th>';
+		                        	}
+		                        	
+		                        	if($respuesta=='No'){
+		                        	
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>No</u></b></th>';
+		                        		 
+		                        	}else {
+		                        	
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">No</th>';
+		                        	}
+		                        	
+		                        	$html.='</tr>';
+		                        	
+		                        	if($comentario!=''){
+		                        	
+		                        	$html.= '<tr>';
+		                        	$html.='<td  colspan="2" style="text-align: justify;  font-size: 15px;"><b>Porque:</b> '.$comentario.'</td>';
+		                        	$html.='</tr>';
+		                        	}
+		                        	$html.='</table>';
+		                        	
+		                        }elseif ($numero==7){
+		                        	$html.= "<br>";
+		                        	$html.= "<b>$pregunta</b>";
+		                        	$html.= "<table style='width: 100%; margin-top:10px;'>";
+		                        	$html.= '<tr>';
+		                        	if($respuesta=='Si'){
+		                        	
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>Si</u></b></th>';
+		                        		 
+		                        	}else {
+		                        	
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">Si</th>';
+		                        	}
+		                        	 
+		                        	if($respuesta=='No'){
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>No</u></b></th>';
+		                        		 
+		                        	}else {
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">No</th>';
+		                        	}
+		                        	$html.='</tr>';
+		                        	 
+		                        	if($comentario!=''){
+		                        	
+		                        	$html.= '<tr>';
+		                        	$html.='<td  colspan="2" style="text-align: justify;  font-size: 15px;"><b>Porque:</b> '.$comentario.'</td>';
+		                        	$html.='</tr>';
+		                        	}
+		                        	$html.='</table>';
+		                        	
+		                        }elseif ($numero==8){
+		                        	$html.= "<br>";
+		                        	$html.= "<b>$pregunta</b>";
+		                        	$html.= "<table style='width: 100%; margin-top:10px;'>";
+		                        	$html.= '<tr>';
+		                        	if($respuesta=='Si'){
+		                        	
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>Si</u></b></th>';
+		                        	}else{
+		                        	
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">Si</th>';
+		                        	}
+		                        	 
+		                        	if($respuesta=='Intermedio'){
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>Intermedio</u></b></th>';
+		                        	}else{
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">Intermedio</th>';
+		                        	}
+		                        	 
+		                        	 
+		                        	if($respuesta=='No'){
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;"><b><u>No</u></b></th>';
+		                        	}else{
+		                        		 
+		                        		$html.='<th style="text-align: center;  font-size: 15px; font-weight: normal;">No</th>';
+		                        	}
+		                        	 
+		                        	$html.='</tr>';
+		                        	 
+		                        	if($comentario!=''){
+		                        	
+		                        	$html.= '<tr>';
+		                        	$html.='<td  colspan="3" style="text-align: justify;  font-size: 15px;"><b>Porque:</b> '.$comentario.'</td>';
+		                        	$html.='</tr>';
+		                        	}
+		                        	$html.='</table>';
+		                        	
+		                        	
+		                        }
+		                        
+		                        
+		                         
+		                        }	
+		                       
+		                        
+	                        }
+	                        
+						}
+							
+					}
+	
+						
+					$this->report("Encuestas",array( "resultSet"=>$html));
+					die();
+						
+						
+						
+						
+				
+	
+	
+	
+			}else{
+	
+				$this->redirect("Usuarios","sesion_caducada");
+	
+			}
+				
+	
+		}else{
+	
+			$this->redirect("Usuarios","sesion_caducada");
+	
+		}
+	
+	}
+	
+	
+	
+	
 	
 	
 	

@@ -692,7 +692,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 						
 						$columnas_emer_detall ="numsol,
-										pago,
+										cast(pago as int),
 										mes,
 										ano,
 										fecpag,ROUND(capital,2) as capital,
@@ -3258,7 +3258,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 								if($_numsol_ordinario != ""){
 										
 									$columnas_ordi_detall ="numsol,
-										pago,
+										cast(pago as int),
 										mes,
 										ano,
 										fecpag,ROUND(capital,2) as capital,
@@ -3316,7 +3316,6 @@ class SaldosCuentaIndividualController extends ControladorBase{
 									$html.='</tr>';
 									
 									$html.='</table>';
-										
 										
 										
 										

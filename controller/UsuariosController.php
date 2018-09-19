@@ -997,7 +997,7 @@ class UsuariosController extends ControladorBase{
        
        
        					$columnas_emer_detall ="numsol,
-										pago,
+										cast(pago as int),
 										mes,
 										ano,
 										fecpag,ROUND(capital,2) as capital,
@@ -5922,7 +5922,7 @@ public function index(){
 						if($_numsol_emergente != ""){
 								
 							$columnas_emer_detall ="numsol,
-										pago,
+										CAST(pago as int),
 										mes,
 										ano,
 										fecpag,ROUND(capital,2) as capital,
