@@ -250,7 +250,7 @@
         <ul class="nav-menu">
           <li class="menu-active"><a href="#intro">Inicio</a></li>
           <li><a href="#about">El Fondo</a></li>
-          <li><a href="http://186.4.157.125:4000/webcapremci/">Servicios en Linea</a></li>
+          <li><a href="index.php?controller=Usuarios&action=Loguear">Servicios en Linea</a></li>
           <li><a href="#services">Prestaciones</a></li>
           <li><a href="#testimonials">Servicios Financieros</a></li>
 		  <li><a href="#service">Educación Financiera</a></li>
@@ -461,7 +461,7 @@
         <h3>Servicios en Linea</h3>
 		<p> Contamos con la mayor tecnología para tu mayor comodidad.</p>
         <p> Nos encontramos en una transformación actualmente para acceder a los apoyos y beneficios en Capremci encontraras que los sistemas se encuentran en plataformas diferentes, solicitamos ubiques en trámite que deseas realizar y elijas la opción adecuada.</p>
-        <a class="cta-btn" href="http://online.capremci.com.ec" >Ingresar</a>
+        <a class="cta-btn" href="index.php?controller=Usuarios&action=Loguear" >Ingresar</a>
 		
       </div>
     </section><!-- #call-to-action -->
