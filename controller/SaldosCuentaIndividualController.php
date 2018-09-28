@@ -4448,7 +4448,32 @@ class SaldosCuentaIndividualController extends ControladorBase{
 						
 				}
 				
+				if($fec=="jul_2018"){
 				
+					$directorio = $_SERVER ['DOCUMENT_ROOT'];
+				
+					$mi_pdf = $directorio.'/webcapremci/documentos/PRESENTACION WEB JUL-2018.pdf';
+				
+					if(file_exists($mi_pdf))
+					{
+				
+						$funcion = "consulta_documentos";
+						$parametros = " '$id_usuarios', 'Estados Financieros al 31 de Julio del 2018'";
+						$consulta_documentos->setFuncion($funcion);
+						$consulta_documentos->setParametros($parametros);
+						$resultado=$consulta_documentos->Insert();
+				
+				
+						header('Content-type: application/pdf');
+						header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+						readfile($mi_pdf);
+					}else
+					{
+						echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+					}
+				
+				
+				}
 				
 				
 				

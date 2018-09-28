@@ -24,11 +24,9 @@
   <link href="view/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="view/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
-  
-			<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-		    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   
   
   <!-- Main Stylesheet File -->
@@ -41,24 +39,17 @@
     License: https://bootstrapmade.com/license/
   ======================================================= -->
   
-  
+  <!--  
    <script type="text/javascript">
-     
         	   $(document).ready( function (){
-        		  
         		   $("#mostrarmodal").modal("show");
         		});
   
   </script>
-  
+  -->
 </head>
 
 <body>
-
-
-
-
-
 
     
       <?php 
@@ -78,12 +69,9 @@
         	 
         	$data.="]";
         
-        
         	$pre_1_r1="[";
         	$pre_1_r2="[";
         	$pre_1_r3="[";
-        	
-        	
         	
         	 
         	foreach($resultSet as $res) {
@@ -210,30 +198,12 @@
         	$pre_1_r2.="]";
         	$pre_1_r3.="]";
         	
-        
-        	 
-       
-        
-        
         	// echo ($data1);
         	 
-        }else{
-        	 
-        }
+        }else{}
         
         ?>
     
-    
-    
-
-
-
-
-
-
-
-
-
 
   <!--==========================
     Header
@@ -272,11 +242,11 @@
         <div class="carousel-inner" role="listbox">
 
           <div class="carousel-item active">
-            <div class="carousel-background"><img src="view/img/intro-carousel/1.jpg" alt=""></div>
+            <div class="carousel-background"><img src="view/img/intro-carousel/1.jpeg" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2>Bienvenido a CAPREMCI</h2>
-				<h3>Tú ahorro presente , tú bienestar del mañana</h3>
+				<h3>Asamblea Extraordinaria</h3>
             	<p>Afíliate ya.</p>
                 <a href="#about" class="btn-get-started scrollto">Ver Más</a>
               </div>
@@ -296,11 +266,11 @@
           </div>
 
           <div class="carousel-item">
-            <div class="carousel-background"><img src="view/img/intro-carousel/3.jpg" alt=""></div>
+            <div class="carousel-background"><img src="view/img/intro-carousel/3.jpeg" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
                  <h2>Bienvenido a CAPREMCI</h2>
-				 <h3>Tú ahorro presente , tú bienestar del mañana</h3>
+				 <h3>Servicio al Cliente</h3>
              	<p>Afiliate ya.</p>
                 <a href="#about" class="btn-get-started scrollto">Ver Más</a>
               </div>
@@ -308,11 +278,11 @@
           </div>
 
           <div class="carousel-item">
-            <div class="carousel-background"><img src="view/img/intro-carousel/4.jpg" alt=""></div>
+            <div class="carousel-background"><img src="view/img/intro-carousel/4.jpeg" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
                  <h2>Bienvenido a CAPREMCI</h2>
-				 <h3>Tú ahorro presente , tú bienestar del mañana</h3>
+				 <h3>Servicio al Cliente</h3>
               	<p>Afiliate ya.</p>
                 <a href="#about" class="btn-get-started scrollto">Ver Más</a>
               </div>
@@ -352,7 +322,7 @@
   
   
   
-  
+  <!-- 
   
      <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
           <div class="modal-dialog modal-md">
@@ -377,13 +347,7 @@
 	   </div>
   
   
-  
-  
-  
-  
-  
-  
-  
+   -->
   
   
   
@@ -394,7 +358,6 @@
     ============================-->
     <section id="about">
       <div class="container">
-
         <header class="section-header">
           <h3>Bienvenidos a CAPREMCI</h3>
           <p align="justify"></p>
@@ -677,12 +640,12 @@
         <div class="owl-carousel testimonials-carousel">
 
           <div class="testimonial-item">
-            <img src="img/blog1.jpg" class="testimonial-img" alt="">
+            <img src="view/img/blog1.jpg" class="testimonial-img" alt="">
             <h3>CRÉDITO ORDINARIO</h3>
             <h4>Información</h4>
             <p>
-              <img alt="">
-			 <p align="center">
+             <img alt="">
+			<p align="center">
 			Se concede el crédito hasta el 100% de la Cuenta Individual.</br>
 			• La cuota mensual no podrá exceder del 50% del sueldo líquido del solicitante.</br>
 			• Tasa de interés: 9% anual fija sobre saldos.</br>
@@ -691,15 +654,14 @@
 			• El Crédito cuenta con Seguro de Desgravamen para el deudor.</br></br>			 
 			 <a href="view/CreditoOrdinarioView.php">Leer Más</a>
             </p>
-			
-			  <img class="quote-sign-right" alt="">
+			 <img class="quote-sign-right" alt="">
             </p>
           </div>
 
           <div class="testimonial-item">
-            <img src="view/img/blog2.jpg" class="testimonial-img" alt="">
-            <h3>CRÉDITO HIPOTECARIO</h3>
-            <h4>Información</h4>
+             <img src="view/img/blog2.jpg" class="testimonial-img" alt="">
+             <h3>CRÉDITO HIPOTECARIO</h3>
+             <h4>Información</h4>
            <p>
               <img alt="">
 			 <p align="center">
@@ -755,23 +717,23 @@
         <div class="row">
 
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
-             <h4 class="title"><a href="">• Establece Metas Claras.</a></h4>
+             <h4 class="title"><a href="javascript:void(0);">• Establece Metas Claras.</a></h4>
             <p class="description" align="justify">Toma en cuenta el estado real de tus ingresos para que sepas lo que se encuentra al alcance de tus posibilidades.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
-            <h4 class="title"><a href="">• Construye un Fondo para Emergencias.</a></h4>
+            <h4 class="title"><a href="javascript:void(0);">• Construye un Fondo para Emergencias.</a></h4>
             <p class="description" align="justify">Con tus ahorros podras cubrir situaciones imprevistas que no esten dentro de tu presupuesto mensual o diario.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
-            <h4 class="title"><a href="">• Planifica tus Gastos.</a></h4>
+            <h4 class="title"><a href="javascript:void(0);">• Planifica tus Gastos.</a></h4>
             <p class="description" align="justify">Aprende a identificar lo que es realmente importante, de esta manera gastarás lo estrictamente necesario.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <h4 class="title"><a href="">• Invierte mejor tu Dinero.</a></h4>
+            <h4 class="title"><a href="javascript:void(0);">• Invierte mejor tu Dinero.</a></h4>
             <p class="description" align="justify">Establece inversiones que generen ganancias en un futuro cercano qeu sean de provecho para ti y tú familia.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <h4 class="title"><a href="">• Ahorra para una Cesantía Cómoda.</a></h4>
+            <h4 class="title"><a href="javascript:void(0);">• Ahorra para una Cesantía Cómoda.</a></h4>
             <p class="description" align="justify">Piensa en tu futuro, ahorra para que puedas disfrutar con tu familia el fruto de tu trabajo.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
@@ -831,7 +793,7 @@
             <div class="contact-phone">
               <i class="ion-ios-telephone-outline"></i>
               <h3>Teléfono</h3>
-              <p><a href="tel:+155895548855">Quito: 02-2236931 <br>Guayaquil: 04-2564900</a></p>
+              <p><a href="tel:+155895548855">Quito: 02-3828870 <br>Guayaquil: 04-2564900</a></p>
             </div>
           </div>
 
@@ -917,7 +879,7 @@
               Baquerizo Moreno <br>
               E-978 y Leonidas Plaza <br>
               Quito <br>
-              <strong>Teléfono:</strong> Quito: 02-2236931<BR>Guayaquil: 04-2564900<br>
+              <strong>Teléfono:</strong> Quito: 02-3828870<BR>Guayaquil: 04-2564900<br>
               <strong>Correo:</strong> info@capremci.com.ec<br>
             </p>
 
@@ -993,13 +955,7 @@
 	var barChartData = {
 		
 		labels : <?php echo $data;?>,
-
-				
 		datasets : [
-			
-		
-
-			
 			{
 				
 				fillColor : "#6b9dfa",
@@ -1007,35 +963,23 @@
 				highlightFill: "#1864f2",
 				highlightStroke: "#ffffff",
 				data : <?php echo $pre_1_r1;?>
-
-				
 			},
 
 			{
-				
 				fillColor : "#52BE80",
 				strokeColor : "#ffffff",
 				highlightFill: "#27AE60",
 				highlightStroke: "#ffffff",
 				data : <?php echo $pre_1_r2;?>
-
-				
 			},
 
 			{
-				
 				fillColor : "#F7DC6F",
 				strokeColor : "#ffffff",
 				highlightFill: "#F4D03F",
 				highlightStroke: "#ffffff",
 				data : <?php echo $pre_1_r3;?>
-
-				
 			}
-
-
-
-			
 		]
 		
 	}	

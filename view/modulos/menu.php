@@ -55,6 +55,7 @@ $controladores=$_SESSION['controladores'];
                       <li style="<?php echo getcontrolador("SaldosCuentaIndividual",$controladores) ?>"><a href="index.php?controller=SaldosCuentaIndividual&action=index">Consulta de Saldos Cuenta Individual y Créditos</a></li>
                       <!--<li style="<?php echo getcontrolador("Usuarios",$controladores) ?>"><a href="index.php?controller=Usuarios&action=resetear_clave">Solicita tu clave personal</a></li>-->
                       <li style="<?php echo getcontrolador("SimuladorCredito",$controladores) ?>"><a href="index.php?controller=SimuladorCredito&action=index">Simulador de Crédito</a></li>
+                       <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index">Solicitud Préstamo</a></li>
                       </ul>
                   </li>
                   
@@ -64,6 +65,7 @@ $controladores=$_SESSION['controladores'];
                        <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=dic_2017" target="_blank">Estados Financieros al 31 de Diciembre del 2017</a></li>
                        <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=ene_2018" target="_blank">Estados Financieros al 31 de Enero del 2018</a></li>
                        <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=fec_2018" target="_blank">Estados Financieros al 28 de Febrero del 2018</a></li>
+                       <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=jul_2018" target="_blank">Estados Financieros al 31 de Julio del 2018</a></li>
                  
                         <li><a>Auditoria Nuñez Serrano Asociados<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">

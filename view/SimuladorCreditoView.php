@@ -69,6 +69,8 @@
         <script>
 		$(document).ready(function(){
 
+
+			
 			$("#tipo_prestamo").click(function(){
 
 	            // obtenemos el combo de resultado combo 2
