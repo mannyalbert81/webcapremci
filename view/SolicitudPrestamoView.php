@@ -35,7 +35,14 @@
        		 <script src="view/js/jquery.blockUI.js"></script>
             <script src="view/js/jquery.inputmask.bundle.js"></script>
             
-            
+            <script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
+		
+			<script>
+			    //webshims.activeLang("en");
+			    webshims.setOptions('forms-ext', { datepicker: { dateFormat: 'yy/mm/dd' } });
+				webshims.polyfill('forms forms-ext');
+			</script>
+           
            
        		<script src="view/input-mask/jquery.inputmask.js"></script>
 			<script src="view/input-mask/jquery.inputmask.date.extensions.js"></script>
@@ -483,7 +490,7 @@
         
         	        
     <script type="text/javascript">
-      $(document).ready(function(){
+    $(document).ready(function(){
 
           
       $("#id_estado_civil_datos_personales").click(function() {
@@ -689,7 +696,7 @@
 		            
 				}    
 				
-		    	if (monto_datos_prestamo == 0.00)
+		    	/*if (monto_datos_prestamo == 0.00)
 		    	{
 			    	
 		    		$("#mensaje_monto_datos_prestamo").text("Introduzca un monto");
@@ -714,7 +721,7 @@
 		    		$("#mensaje_plazo_datos_prestamo").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}   
-						    	
+					*/	    	
 			
 		    	if (destino_dinero_datos_prestamo == 0)
 		    	{
@@ -877,8 +884,14 @@
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_fecha_nacimiento_datos_personales").fadeOut("slow"); //Muestra mensaje de error
-		            
+		    		if (fecha_nacimiento_datos_personales < '1944-01-01' ) {
+			    	
+		    			$("#mensaje_fecha_nacimiento_datos_personales").text("Año minimo 1944");
+			    		$("#mensaje_fecha_nacimiento_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+			            return false;
+		    		}else{
+		    			$("#mensaje_fecha_nacimiento_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+			    	}
 				}
 
 		    	if (id_estado_civil_datos_personales == 0 )
@@ -998,7 +1011,7 @@
 		    		$("#mensaje_barrio_sector_vivienda").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
-				
+				/*
 		    	if (ciudadela_conjunto_etapa_manzana_vivienda == "" )
 		    	{
 			    	
@@ -1011,7 +1024,7 @@
 		    		$("#mensaje_ciudadela_conjunto_etapa_manzana_vivienda").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
-				
+				*/
 		    	if (calle_vivienda == "" )
 		    	{
 			    	
@@ -1215,7 +1228,6 @@
 				}
 
 				
-				
                 if (apellidos_referencia_familiar == "" )
 		    	{
 			    	
@@ -1267,6 +1279,31 @@
 		    		$("#mensaje_numero_telefonico_referencia_familiar").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
+
+
+
+				if(apellidos_referencia_personal==apellidos_referencia_familiar){
+
+					$("#mensaje_apellidos_referencia_familiar").text("Datos existen en ref. personal");
+		    		$("#mensaje_apellidos_referencia_familiar").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+					
+				}else{
+					$("#mensaje_apellidos_referencia_familiar").fadeOut("slow"); //Muestra mensaje de error
+				}
+
+
+				if(nombres_referencia_personal==nombres_referencia_familiar){
+
+					$("#mensaje_nombres_referencia_familiar").text("Datos existen en ref. personal");
+		    		$("#mensaje_nombres_referencia_familiar").fadeIn("slow"); //Muestra mensaje de error
+		            return false;
+					
+				}else{
+					$("#mensaje_nombres_referencia_familiar").fadeOut("slow"); //Muestra mensaje de error
+				}
+				
+				
                 if (id_entidades == 0 )
 		    	{
 			    	
@@ -1885,14 +1922,14 @@
 
 
 			}else{
-				$("#numero_cedula_conyuge").fadeOut("slow"); //Muestra mensaje de error
-				$("#apellidos_conyuge").fadeOut("slow"); //Muestra mensaje de error
-				$("#nombres_conyuge").fadeOut("slow"); //Muestra mensaje de error
-				$("#id_sexo_conyuge").fadeOut("slow"); //Muestra mensaje de error
-				$("#fecha_nacimiento_conyuge").fadeOut("slow"); //Muestra mensaje de error
-				$("#convive_afiliado_conyuge").fadeOut("slow"); //Muestra mensaje de error
-				$("#numero_telefonico_conyuge").fadeOut("slow"); //Muestra mensaje de error
-				$("#actividad_economica_conyuge").fadeOut("slow"); //Muestra mensaje de error
+				$("#mensaje_numero_cedula_conyuge").fadeOut("slow"); //Muestra mensaje de error
+				$("#mensaje_apellidos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+				$("#mensaje_nombres_conyuge").fadeOut("slow"); //Muestra mensaje de error
+				$("#mensaje_id_sexo_conyuge").fadeOut("slow"); //Muestra mensaje de error
+				$("#mensaje_fecha_nacimiento_conyuge").fadeOut("slow"); //Muestra mensaje de error
+				$("#mensaje_convive_afiliado_conyuge").fadeOut("slow"); //Muestra mensaje de error
+				$("#mensaje_numero_telefonico_conyuge").fadeOut("slow"); //Muestra mensaje de error
+				$("#mensaje_actividad_economica_conyuge").fadeOut("slow"); //Muestra mensaje de error
 
 			}
 				
@@ -2303,7 +2340,7 @@
                     		    <div class="form-group">
                                                       <label for="monto_datos_prestamo" class="control-label">Monto en Dólares:</label>
                                                       <input type="text" class="form-control cantidades1" id="monto_datos_prestamo" name="monto_datos_prestamo" value="<?php echo $resEdit->monto_datos_prestamo; ?>" 
-                                                      data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false">
+                                                      data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" readonly>
                                                       <div id="mensaje_monto_datos_prestamo" class="errores"></div>
                                 </div>
                                 </div>
@@ -2312,7 +2349,7 @@
                     		    <div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
                                                       <label for="plazo_datos_prestamo" class="control-label">Plazo en meses:</label>
-                                                      <input type="number" class="form-control" id="plazo_datos_prestamo" name="plazo_datos_prestamo" value="<?php echo $resEdit->plazo_datos_prestamo; ?>" placeholder="# meses..">
+                                                      <input type="number" class="form-control" id="plazo_datos_prestamo" name="plazo_datos_prestamo" value="<?php echo $resEdit->plazo_datos_prestamo; ?>" placeholder="# meses.." readonly>
                                                       <div id="mensaje_plazo_datos_prestamo" class="errores"></div>
                                 </div>
                                 </div>
@@ -2462,7 +2499,7 @@
                     		    <div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
                                                       <label for="fecha_nacimiento_datos_personales" class="control-label">Fecha Nacimiento:</label>
-                                                      <input type="date" class="form-control" id="fecha_nacimiento_datos_personales" name="fecha_nacimiento_datos_personales" min="1800-01-01" max="<?php echo date('Y-m-d');?>" value="<?php echo $resEdit->fecha_nacimiento_datos_personales; ?>">
+                                                      <input type="date" class="form-control" id="fecha_nacimiento_datos_personales" name="fecha_nacimiento_datos_personales"  value="<?php echo $resEdit->fecha_nacimiento_datos_personales; ?>">
                                                       <div id="mensaje_fecha_nacimiento_datos_personales" class="errores"></div>
                                 </div>
                                 </div>
@@ -3021,8 +3058,8 @@
 			 	
               					<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
-                                                      <label for="numero_telefonico_datos_laborales" class="control-label">Número Telefónico:</label>
-                                                      <input type="number" class="form-control" id="numero_telefonico_datos_laborales" name="numero_telefonico_datos_laborales" value="<?php echo $resEdit->numero_telefonico_datos_laborales; ?>" placeholder="# telefónico..">
+                                                      <label for="numero_telefonico_datos_laborales" class="control-label">Número:</label>
+                                                      <input type="text" class="form-control" id="numero_telefonico_datos_laborales" name="numero_telefonico_datos_laborales" value="<?php echo $resEdit->numero_telefonico_datos_laborales; ?>" placeholder="# telefónico..">
                                                       <div id="mensaje_numero_telefonico_datos_laborales" class="errores"></div>
                                 </div>
             					</div>  
@@ -3387,7 +3424,7 @@
                     		    <div class="form-group">
                                                       <label for="monto_datos_prestamo" class="control-label">Monto en Dólares:</label>
                                                       <input type="text" class="form-control cantidades1" id="monto_datos_prestamo" name="monto_datos_prestamo" value='0' 
-                                                      data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false">
+                                                      data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" readonly>
                                                       <div id="mensaje_monto_datos_prestamo" class="errores"></div>
                                 </div>
                                 </div>
@@ -3396,7 +3433,7 @@
                     		    <div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
                                                       <label for="plazo_datos_prestamo" class="control-label">Plazo en meses:</label>
-                                                      <input type="number" class="form-control" id="plazo_datos_prestamo" name="plazo_datos_prestamo" value="" placeholder="# meses..">
+                                                      <input type="number" class="form-control" id="plazo_datos_prestamo" name="plazo_datos_prestamo" value="0" placeholder="# meses.." readonly>
                                                       <div id="mensaje_plazo_datos_prestamo" class="errores"></div>
                                 </div>
                                 </div>
@@ -3546,7 +3583,7 @@
                     		    <div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
                                                       <label for="fecha_nacimiento_datos_personales" class="control-label">Fecha Nacimiento:</label>
-                                                      <input type="date" class="form-control" id="fecha_nacimiento_datos_personales" name="fecha_nacimiento_datos_personales" min="1800-01-01" max="<?php echo date('Y-m-d');?>" value="" data-inputmask="'alias': 'yyyy/mm/dd'" data-mask>
+                                                      <input type="date" class="form-control" id="fecha_nacimiento_datos_personales" name="fecha_nacimiento_datos_personales"  value="">
                                                       <div id="mensaje_fecha_nacimiento_datos_personales" class="errores"></div>
                                 </div>
                                 </div>
@@ -4104,8 +4141,8 @@
 			 	
               					<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
-                                                      <label for="numero_telefonico_datos_laborales" class="control-label">Número Telefónico:</label>
-                                                      <input type="number" class="form-control" id="numero_telefonico_datos_laborales" name="numero_telefonico_datos_laborales" value="" placeholder="# telefónico..">
+                                                      <label for="numero_telefonico_datos_laborales" class="control-label">Número:</label>
+                                                      <input type="text" class="form-control" id="numero_telefonico_datos_laborales" name="numero_telefonico_datos_laborales" value="" placeholder="# telefónico..">
                                                       <div id="mensaje_numero_telefonico_datos_laborales" class="errores"></div>
                                 </div>
             					</div>  
@@ -4326,7 +4363,7 @@
 								<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="fecha_nacimiento_conyuge" class="control-label">Fecha Nacimiento:</label>
-                                                      <input type="date" class="form-control" id="fecha_nacimiento_conyuge" name="fecha_nacimiento_conyuge" min="1800-01-01" max="<?php echo date('Y-m-d');?>" value="" data-inputmask="'alias': 'yyyy/mm/dd'" data-mask>
+                                                      <input type="date" class="form-control" id="fecha_nacimiento_conyuge" name="fecha_nacimiento_conyuge" min="1800-01-01" max="<?php echo date('Y-m-d');?>" value="">
                                                       <div id="mensaje_fecha_nacimiento_conyuge" class="errores"></div>
                                 </div>
                                 </div>

@@ -1678,9 +1678,9 @@ class SolicitudPrestamoController extends ControladorBase{
 				$html.='</tr>';
 				
 				
-				$html.='</table>';
+				//$html.='</table>';
 				
-				$html.='<table style="page-break-after:always; width: 100%;"  border=1 cellspacing=0.0001 >';
+				//$html.='<table style="page-break-after:always; width: 100%;"  border=1 cellspacing=0.0001 >';
 				
 				$html.='<tr>';
 				$html.='<th colspan="12" style="text-align:center; font-size: 16px;"><b>INFORMACIÓN ECONÓMICA<b></th>';
