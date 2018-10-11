@@ -2,7 +2,7 @@
 <html lang="es">
       <head>
         <meta charset="utf-8"/>
-        <title>Afiliaciones Recomendadas - Capremci</title>
+        <title>Consulta Solicitud Prestamo - Capremci</title>
 
 	
 		
@@ -38,62 +38,7 @@
      
         	   $(document).ready( function (){
         		   pone_espera();
-        		   load_afiliaciones_recomendadas(1);
-
-
-        		 			  $("#buscar").click(function() 
-        					{
-        				    	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
-        				    	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
-
-        				    	var desde = $("#desde").val();
-        				    	var hasta = $("#hasta").val();
-        				    	
-        				    	
-        				    	
-
-
-        						if(desde > hasta){
-
-        							$("#mensaje_desde").text("Fecha desde no puede ser mayor a hasta");
-        				    		$("#mensaje_desde").fadeIn("slow"); //Muestra mensaje de error
-        				            return false;
-        				            
-            					}else 
-        				    	{
-        				    		$("#mensaje_desde").fadeOut("slow"); //Muestra mensaje de error
-        				    		load_afiliaciones_recomendadas(1);
-        						} 
-
-
-        						if(hasta < desde){
-
-        							$("#mensaje_hasta").text("Fecha hasta no puede ser menor a desde");
-        				    		$("#mensaje_hasta").fadeIn("slow"); //Muestra mensaje de error
-        				            return false;
-        				            
-            					}else 
-        				    	{
-        				    		$("#mensaje_hasta").fadeOut("slow"); //Muestra mensaje de error
-        				    		load_afiliaciones_recomendadas(1);
-        						} 
-        						
-        				    					    
-
-        					}); 
-
-
-        				        $( "#desde" ).focus(function() {
-        						  $("#mensaje_desde").fadeOut("slow");
-        					    });
-        						
-        				        $( "#hasta" ).focus(function() {
-          						  $("#mensaje_hasta").fadeOut("slow");
-          					    });
-        						
-
-
-        		   
+        		   load_solicitud_prestamos_registrados(1);
 	   			});
 
         	   function pone_espera(){
@@ -117,33 +62,27 @@
         	   }
 
         	   
-        	   function load_afiliaciones_recomendadas(pagina){
+        	   function load_solicitud_prestamos_registrados(pagina){
 
-
-        		   var search=$("#search").val();
-        		   var desde=$("#desde").val();
-        		   var hasta=$("#hasta").val();
-                   var con_datos={
-           					  action:'ajax',
-           					  page:pagina,
-           					  desde:desde,
-           					  hasta:hasta
-           					  };
+        		   var con_datos={
+        					  action:'ajax',
+        					  page:pagina
+        					  };
                  $("#load_registrados").fadeIn('slow');
            	     $.ajax({
            	               beforeSend: function(objeto){
            	                 $("#load_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
            	               },
-           	               url: 'index.php?controller=Afiliacion&action=search&search='+search,
+           	               url: 'index.php?controller=SolicitudPrestamo&action=search',
            	               type: 'POST',
            	               data: con_datos,
            	               success: function(x){
-           	                 $("#afiliaciones_recomendadas_registrados").html(x);
-           	               	 $("#tabla_afiliaciones_recomendadas").tablesorter(); 
+           	                 $("#solicitud_prestamos_registrados").html(x);
+           	               	 $("#tabla_solicitud_prestamos_registrados").tablesorter(); 
            	                 $("#load_registrados").html("");
            	               },
            	              error: function(jqXHR,estado,error){
-           	                $("#afiliaciones_recomendadas_registrados").html("Ocurrio un error al cargar la informacion de afiliaciones recomendadas..."+estado+"    "+error);
+           	                $("#solicitud_prestamos_registrados").html("Ocurrio un error al cargar la informacion de solicitud de prestamos generadas..."+estado+"    "+error);
            	              }
            	            });
 
@@ -151,9 +90,7 @@
            		   }
         </script>
         
-        
-       
-			        
+        	        
     </head>
     
     
@@ -165,10 +102,6 @@
         $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
         $fecha=$dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
         ?>
-    
-    
-       
-    
     
     
     <div class="container body">
@@ -195,26 +128,13 @@
 
         <!-- page content -->
 		<div class="right_col" role="main">        
-            <?php
-       $sel_menu = "";
        
-    
-       if($_SERVER['REQUEST_METHOD']=='POST' )
-       {
-       	 
-       	 
-       	$sel_menu=$_POST['criterio'];
-       	
-       	 
-       }
-      
-	 	?>
     <div class="container">
         <section class="content-header">
          <small><?php echo $fecha; ?></small>
          <ol class=" pull-right breadcrumb">
          <li><a href="<?php echo $helper->url("Usuarios","Bienvenida"); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-         <li class="active">Afiliaciones Recomendadas</li>
+         <li class="active">Solicitud de Prestamos Generadas</li>
          </ol>
          </section>
        
@@ -223,7 +143,7 @@
 		<div class="col-md-12 col-lg-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Consulta<small>Afiliaciones Recomendadas</small></h2>
+                    <h2>Crédito Ordinario<small>Solicitud de Prestamos Generadas</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -234,76 +154,19 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    
-                    
-					<div class="row" style="margin-left:1px;">
-									<div class="col-lg-2 col-xs-12 col-md-2">
-                        		    <div class="form-group">
-                                                          <label for="desde" class="control-label">Desde:</label>
-                                                          <input type="date" class="form-control" id="desde" name="desde" value="" >
-                                                          <div id="mensaje_desde" class="errores"></div>
-                                    </div>
-                        		    </div>
-                        		    
-                        		    <div class="col-lg-2 col-xs-12 col-md-2">
-                        		    <div class="form-group">
-                                                          <label for="hasta" class="control-label">Hasta:</label>
-                                                          <input type="date" class="form-control" id="hasta" name="hasta" value="">
-                                                          <div id="mensaje_hasta" class="errores"></div>
-                                               
-                                    </div>
-                                    
-                        		    </div>
-                        		    
-                        		    <div class="col-xs-12 col-md-2 col-lg-2" style="text-align: center; margin-top:22px">
-                    		        <div class="form-group">
-                        		    <button type="button" id="buscar" name="buscar" class="btn btn-info"><i class="glyphicon glyphicon-search"></i></button>
-                                	</div>
-                                    </div>
-                        		    
-					</div>
-				
-					
-					<div class="pull-right" style="margin-right:11px;">
-					<input type="text" value="" class="form-control" id="search" name="search" onkeyup="load_afiliaciones_recomendadas(1)" placeholder="search.."/>
-					</div>
-					
-					
+                    	
 					<div id="load_registrados" ></div>	
-					<div id="afiliaciones_recomendadas_registrados"></div>	
-				
-					
-                  
+					<div id="solicitud_prestamos_registrados"></div>	
+				  
                   </div>
                 </div>
-              </div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-      
-      </div>
-    </div>
-
-</div>
-    
+        </div>
+        
+        
+       </div>
+     </div>
+   </div>
+ </div>    
     
     
     
