@@ -40,13 +40,14 @@ $controladores=$_SESSION['controladores'];
                   <li  style="<?php echo getcontrolador("MenuAdministracion",$controladores) ?>"  ><a    ><i class="fa fa-users"></i> Administración <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li style="<?php echo getcontrolador("Usuarios",$controladores) ?>"><a href="index.php?controller=Usuarios&action=index">Usuarios</a></li>
-                      <li style="<?php echo getcontrolador("Usuarios",$controladores) ?>"><a href="index.php?controller=Firmas&action=index">Firmas Usuarios</a></li>
+                      <li style="<?php echo getcontrolador("Firmas",$controladores) ?>"><a href="index.php?controller=Firmas&action=index">Firmas Usuarios</a></li>
                       <li style="<?php echo getcontrolador("Controladores",$controladores) ?>"><a href="index.php?controller=Controladores&action=index">Controladores</a></li>
                       <li style="<?php echo getcontrolador("Roles",$controladores) ?>"><a href="index.php?controller=Roles&action=index">Roles de Usuario</a></li>
                       <li style="<?php echo getcontrolador("PermisosRoles",$controladores) ?>"><a href="index.php?controller=PermisosRoles&action=index">Permisos Roles</a></li>
                       <li style="<?php echo getcontrolador("Sesiones",$controladores) ?>"><a href="index.php?controller=Sesiones&action=index">Sesiones</a></li>
                       <li style="<?php echo getcontrolador("PublicidadMovil",$controladores) ?>"><a href="index.php?controller=PublicidadMovil&action=index">Publicidad Movil</a></li>
-                      
+                      <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index3">Solicitud Prestamo</a></li>
+                     
                       </ul>
                   </li>
                   

@@ -195,7 +195,7 @@ public function index(){
 			
 			$usuarios = new UsuariosModel();
 
-			$nombre_controladores = "Usuarios";
+			$nombre_controladores = "Firmas";
 			$id_rol= $_SESSION['id_rol'];
 			$resultPer = $usuarios->getPermisosEditar("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
 				

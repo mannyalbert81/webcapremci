@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-  
-  
-  	
+<!DOCTYPE HTML>
+<html lang="es">
+      <head>
+        <meta charset="utf-8"/>
+        <title>Consulta Solicitud Prestamo - Capremci</title>
+
+	
 		
 		<link rel="stylesheet" href="view/css/estilos.css">
 		<link rel="stylesheet" href="view/vendors/table-sorter/themes/blue/style.css">
@@ -32,14 +33,12 @@
         	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 			<script type="text/javascript" src="view/vendors/table-sorter/jquery.tablesorter.js"></script> 
         <script src="view/js/jquery.blockUI.js"></script>
-    
-    
-    
-     <script type="text/javascript">
+        
+        <script type="text/javascript">
      
         	   $(document).ready( function (){
         		   pone_espera();
-        		 
+        		   load_solicitud_prestamos_registrados(1);
 	   			});
 
         	   function pone_espera(){
@@ -63,31 +62,58 @@
         	   }
 
         	   
-        </script>
-    
-    
-  </head>
+        	   function load_solicitud_prestamos_registrados(pagina){
 
-  <body class="nav-md">
-  
-  
+        		   var con_datos={
+        					  action:'ajax',
+        					  page:pagina
+        					  };
+                 $("#load_registrados").fadeIn('slow');
+           	     $.ajax({
+           	               beforeSend: function(objeto){
+           	                 $("#load_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
+           	               },
+           	               url: 'index.php?controller=SolicitudPrestamo&action=searchadmin',
+           	               type: 'POST',
+           	               data: con_datos,
+           	               success: function(x){
+           	                 $("#solicitud_prestamos_registrados").html(x);
+           	               	 $("#tabla_solicitud_prestamos_registrados").tablesorter(); 
+           	                 $("#load_registrados").html("");
+           	               },
+           	              error: function(jqXHR,estado,error){
+           	                $("#solicitud_prestamos_registrados").html("Ocurrio un error al cargar la informacion de solicitud de prestamos generadas..."+estado+"    "+error);
+           	              }
+           	            });
+
+
+           		   }
+        </script>
+        
+        	        
+    </head>
+    
+    
+    <body class="nav-md">
+    
       <?php
         
         $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
         $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
         $fecha=$dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
         ?>
-  
+    
+    
     <div class="container body">
       <div class="main_container">
-        <div class="col-md-3 left_col menu_fixed">
+        <div class="col-md-3 left_col  menu_fixed">
           <div class="left_col scroll-view">
             <?php include("view/modulos/logo.php"); ?>
 
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
-			<?php include("view/modulos/menu_profile.php"); ?>
+            <?php include("view/modulos/menu_profile.php"); ?>
             <!-- /menu profile quick info -->
 
             <br />
@@ -96,25 +122,28 @@
           </div>
         </div>
 
-       
+        <!-- top navigation -->
 		<?php include("view/modulos/head.php"); ?>	
-       <div class="right_col" role="main">   
-         <div class="container">
-          <section class="content-header">
+        <!-- /top navigation -->
+
+        <!-- page content -->
+		<div class="right_col" role="main">        
+       
+    <div class="container">
+        <section class="content-header">
          <small><?php echo $fecha; ?></small>
          <ol class=" pull-right breadcrumb">
          <li><a href="<?php echo $helper->url("Usuarios","Bienvenida"); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-         <li class="active">Alertas</li>
+         <li class="active">Solicitud de Prestamos Generadas</li>
          </ol>
          </section>
-        
-        
-        
-        
-             <div class="col-md-12 col-lg-12 col-xs-12">
+       
+  
+		
+		<div class="col-md-12 col-lg-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Alertas<small>Encontradas</small></h2>
+                    <h2>Solicitud<small>de Prestamos Registradas</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -125,31 +154,21 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    
-                    
-                    
-                    <?php if(!empty($error)){ ?>
-                    	<div class="col-lg-8 col-md-8 col-xs-12">
-                    	<div class="alert alert-info" role="alert">
-                    	<?php echo $error;?>
-                    	</div>
-                    	</div>
-                    <?php }?>
-                    
-					
+                    	
+					<div id="load_registrados" ></div>	
+					<div id="solicitud_prestamos_registrados"></div>	
+				  
                   </div>
                 </div>
-              </div>
-		
-           
-           
-           
-           
-           
-    </div>
-    </div>
-    </div>
-    </div>
+        </div>
+        
+        
+       </div>
+     </div>
+   </div>
+ </div>    
+    
+    
     
     <!-- Bootstrap -->
     <script src="view/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -173,10 +192,7 @@
     <script src="view/build/js/custom.min.js"></script>
 	
 	<!-- codigo de las funciones -->
+
 	
-	
-	
-	
-      
   </body>
-</html>
+</html>   
