@@ -46,6 +46,9 @@ class SolicitudPrestamoController extends ControladorBase{
 			$resultTipoCredito= $tipo_credito->getAll("nombre_tipo_creditos");
 				
 			
+			$sucursales = new SucursalesModel();
+			$resultSucursales= $sucursales->getAll("nombre_sucursales");
+			
 			
 			
 			$nombre_controladores = "SolicitudPrestamo";
@@ -166,7 +169,8 @@ class SolicitudPrestamoController extends ControladorBase{
 							  solicitud_prestamo.id_usuarios_registra, 
 							  solicitud_prestamo.identificador_consecutivos,
 							  solicitud_prestamo.tipo_pago_cuenta_bancaria,
-							solicitud_prestamo.id_tipo_creditos";
+							solicitud_prestamo.id_tipo_creditos,
+							solicitud_prestamo.id_sucursales";
 					
 					$tablas="public.solicitud_prestamo";
 					$where="1=1  AND solicitud_prestamo.id_solicitud_prestamo='$_id_solicitud_prestamo'";
@@ -178,7 +182,7 @@ class SolicitudPrestamoController extends ControladorBase{
 							"resultSexo"=>$resultSexo, "resultEstado_civil"=>$resultEstado_civil, "resultTipo_sangre"=>$resultTipo_sangre, "resultEstado"=>$resultEstado, "resultEntidades"=>$resultEntidades,
 							"resultProvincias"=>$resultProvincias, "resultBancos"=>$resultBancos,
 							"resultParroquias"=>$resultParroquias, "resultCantones"=>$resultCantones,
-							"resultEdit"=>$resultEdit, "resultTipoCredito"=>$resultTipoCredito
+							"resultEdit"=>$resultEdit, "resultTipoCredito"=>$resultTipoCredito, "resultSucursales"=>$resultSucursales
 								
 					));
 					
@@ -213,7 +217,7 @@ class SolicitudPrestamoController extends ControladorBase{
 								"resultSexo"=>$resultSexo, "resultEstado_civil"=>$resultEstado_civil, "resultTipo_sangre"=>$resultTipo_sangre, "resultEstado"=>$resultEstado, "resultEntidades"=>$resultEntidades,
 								"resultProvincias"=>$resultProvincias, "resultBancos"=>$resultBancos,
 								"resultParroquias"=>$resultParroquias, "resultCantones"=>$resultCantones,
-								"resultEdit"=>$resultEdit, "resultTipoCredito"=>$resultTipoCredito
+								"resultEdit"=>$resultEdit, "resultTipoCredito"=>$resultTipoCredito, "resultSucursales"=>$resultSucursales
 									
 						));
 						
@@ -227,7 +231,7 @@ class SolicitudPrestamoController extends ControladorBase{
 						"resultSexo"=>$resultSexo, "resultEstado_civil"=>$resultEstado_civil, "resultTipo_sangre"=>$resultTipo_sangre, "resultEstado"=>$resultEstado, "resultEntidades"=>$resultEntidades,
 						"resultProvincias"=>$resultProvincias, "resultBancos"=>$resultBancos,
 						"resultParroquias"=>$resultParroquias, "resultCantones"=>$resultCantones,
-						"resultEdit"=>$resultEdit, "resultTipoCredito"=>$resultTipoCredito
+						"resultEdit"=>$resultEdit, "resultTipoCredito"=>$resultTipoCredito, "resultSucursales"=>$resultSucursales
 							
 				));
 					
@@ -396,6 +400,8 @@ class SolicitudPrestamoController extends ControladorBase{
 				
 				$_id_solicitud_prestamo                               = $_POST["id_solicitud_prestamo"];
 				$_tipo_pago_cuenta_bancaria                           = $_POST["tipo_pago_cuenta_bancaria"];
+				$_id_sucursales                                       = $_POST["id_sucursales"];
+				
 				
 				if($_id_solicitud_prestamo > 0){
 					
@@ -552,6 +558,114 @@ class SolicitudPrestamoController extends ControladorBase{
 				$resultConsecutivos=$consecutivos->getBy("nombre_consecutivos='SOLICITUD_PRESTAMOS'");
 				$_identificador_consecutivos=$resultConsecutivos[0]->identificador_consecutivos;
 				
+				$id_usuarios_1=0;
+				$id_usuarios_2=0;
+				$res1=0;
+				$res2=0;
+				$id_oficial_credito=0;
+				
+				if($_id_sucursales == 1){
+							
+					$resultQuito=$solicitud_prestamo->getCondiciones("id_usuarios", "usuarios", "id_rol=42 AND id_departamentos=18 AND ciudad_trabajo='Quito'", "id_usuarios");
+						
+					if(!empty($resultQuito)){
+						$i==0;
+						foreach ($resultQuito as $res){
+							$i++;
+							
+							if($i==1){
+								
+								$id_usuarios_1=$res->id_usuarios;
+							}elseif ($i==2){
+								
+								$id_usuarios_2=$res->id_usuarios;
+							}
+							
+						}
+					}
+					
+					
+					$resultoficial1=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_1'");
+					
+					if(!empty($resultoficial1)){
+						
+						$res1=count($resultoficial1);
+					}
+					
+					$resultoficial2=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_2'");
+					
+					if(!empty($resultoficial2)){
+						$res2=count($resultoficial2);
+					}
+						
+					
+					
+					if($res1==$res2){
+						
+						$id_oficial_credito=$id_usuarios_1;
+					}
+					elseif ($res1>$res2){
+						
+						$id_oficial_credito=$id_usuarios_2;
+					}
+					elseif ($res2>$res1){
+					
+						$id_oficial_credito=$id_usuarios_1;
+					}
+						
+					
+					
+				}else{
+					
+					$resultGuayaquil=$solicitud_prestamo->getCondiciones("id_usuarios", "usuarios", "id_rol=42 AND id_departamentos=18 AND ciudad_trabajo='Guayaquil'", "id_usuarios");
+						
+					if(!empty($resultGuayaquil)){
+						$i==0;
+						foreach ($resultGuayaquil as $res){
+							$i++;
+								
+							if($i==1){
+					
+								$id_usuarios_1=$res->id_usuarios;
+							}elseif ($i==2){
+					
+								$id_usuarios_2=$res->id_usuarios;
+							}
+								
+						}
+					}
+					
+					$resultoficial1=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_1'");
+						
+					if(!empty($resultoficial1)){
+						$res1=count($resultoficial1);
+					}
+						
+					$resultoficial2=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_2'");
+						
+					if(!empty($resultoficial2)){
+						$res2=count($resultoficial2);
+					}
+					
+					if($res1==$res2){
+					
+						$id_oficial_credito=$id_usuarios_1;
+					}
+					elseif ($res1>$res2){
+					
+						$id_oficial_credito=$id_usuarios_2;
+					}
+					elseif ($res2>$res1){
+							
+						$id_oficial_credito=$id_usuarios_1;
+					}
+					
+					
+					
+				}
+				
+				
+				
 				try {
 	
 					$funcion = "public.ins_solicitud_prestamo";
@@ -649,7 +763,9 @@ class SolicitudPrestamoController extends ControladorBase{
 								  '$_identificador_consecutivos',
 								  '$_id_tipo_creditos',
 								  '$_id_banco_cuenta_bancaria',
-					              '$_tipo_pago_cuenta_bancaria'";
+					              '$_tipo_pago_cuenta_bancaria',
+					              '$_id_sucursales',
+								  '$id_oficial_credito'";
 					$solicitud_prestamo->setFuncion($funcion);
 					$solicitud_prestamo->setParametros($parametros);
 					$resultado=$solicitud_prestamo->Insert();
@@ -813,15 +929,17 @@ class SolicitudPrestamoController extends ControladorBase{
 					  solicitud_prestamo.identificador_consecutivos,
 				      solicitud_prestamo.tipo_pago_cuenta_bancaria,
 				      tipo_creditos.nombre_tipo_creditos,
-				 solicitud_prestamo.id_usuarios_oficial_credito_aprueba";
+				      usuarios.nombre_usuarios,
+				      solicitud_prestamo.id_usuarios_oficial_credito_aprueba";
 	
 		$tablas   = "public.solicitud_prestamo, 
 					  public.entidades, 
 					  public.sexo, 
 					  public.estado_civil,
-				      public.tipo_creditos";
+				      public.tipo_creditos,
+				      public.usuarios";
 					
-		$where    = "tipo_creditos.id_tipo_creditos=solicitud_prestamo.id_tipo_creditos AND
+		$where    = "solicitud_prestamo.id_usuarios_oficial_credito_aprueba = usuarios.id_usuarios AND tipo_creditos.id_tipo_creditos=solicitud_prestamo.id_tipo_creditos AND
 				  solicitud_prestamo.id_estado_civil_datos_personales = estado_civil.id_estado_civil AND
 				  entidades.id_entidades = solicitud_prestamo.id_entidades AND
 				  sexo.id_sexo = solicitud_prestamo.id_sexo_datos_personales AND solicitud_prestamo.id_usuarios_registra='$id_usuarios'";
@@ -898,16 +1016,12 @@ class SolicitudPrestamoController extends ControladorBase{
 						
 						$estado_tramite='Aprobado';
 						
-						$result=$usuarios->getBy("id_usuarios=$res->id_usuarios_oficial_credito_aprueba");
-						$_nombre_usuarios=$result[0]->nombre_usuarios;
-						
 						
 					}elseif($aprobado_oficial_credito==1){
 						$estado_tramite='Pendiente';
 					}elseif($aprobado_oficial_credito==3){
 						$estado_tramite='Rechazado';
-						$result=$usuarios->getBy("id_usuarios=$res->id_usuarios_oficial_credito_aprueba");
-						$_nombre_usuarios=$result[0]->nombre_usuarios;
+						
 					}
 					
 					$html.='<tr>';
@@ -924,11 +1038,11 @@ class SolicitudPrestamoController extends ControladorBase{
 					$html.='<td style="font-size: 11px;">'.$estado_tramite.'</td>';
 					if($aprobado_oficial_credito==1){
 						$html.='<td style="font-size: 11px;"></td>';
-						$html.='<td style="font-size: 11px;"></td>';
+						$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'</td>';
 						$html.='<td style="font-size: 15px;"><span class="pull-right"><a href="index.php?controller=SolicitudPrestamo&action=index&id_solicitud_prestamo='.$res->id_solicitud_prestamo.'" class="btn btn-success" style="font-size:65%;"><i class="glyphicon glyphicon-edit"></i></a></span></td>';
 					}else{
 						$html.='<td style="font-size: 11px;">'.date("d/m/Y", strtotime($res->fecha_aprobacion)).'</td>';
-						$html.='<td style="font-size: 11px;">'.$_nombre_usuarios.'</td>';
+						$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'</td>';
 						$html.='<td style="font-size: 15px;"><a href="javascript:void(0);" class="btn btn-success" style="font-size:65%;" disabled><i class="glyphicon glyphicon-edit"></i></a></td>';
 					}
 					$html.='<td style="font-size: 15px;"><span class="pull-right"><a href="index.php?controller=SolicitudPrestamo&action=print&id_solicitud_prestamo='.$res->id_solicitud_prestamo.'" target="_blank" class="btn btn-warning" style="font-size:65%;"><i class="glyphicon glyphicon-print"></i></a></span></td>';
@@ -2222,7 +2336,7 @@ class SolicitudPrestamoController extends ControladorBase{
 						
 						
 						
-						$colval_afi = "fecha_aprobacion='$_fecha_aprobacion', id_estado_tramites=2, id_usuarios_oficial_credito_aprueba='$_id_usuarios_aprueba'";
+						$colval_afi = "fecha_aprobacion='$_fecha_aprobacion', id_estado_tramites=2";
 						$tabla_afi = "solicitud_prestamo";
 						$where_afi = "id_solicitud_prestamo = '$_id_solicitud_prestamo'";
 						$resultado1=$solicitud_prestamo->UpdateBy($colval_afi, $tabla_afi, $where_afi);
@@ -2249,7 +2363,7 @@ class SolicitudPrestamoController extends ControladorBase{
 					
 					
 					
-						$colval_afi = "fecha_aprobacion='$_fecha_aprobacion', id_estado_tramites=3, id_usuarios_oficial_credito_aprueba='$_id_usuarios_aprueba'";
+						$colval_afi = "fecha_aprobacion='$_fecha_aprobacion', id_estado_tramites=3";
 						$tabla_afi = "solicitud_prestamo";
 						$where_afi = "id_solicitud_prestamo = '$_id_solicitud_prestamo'";
 						$resultado1=$solicitud_prestamo->UpdateBy($colval_afi, $tabla_afi, $where_afi);
@@ -2328,18 +2442,20 @@ class SolicitudPrestamoController extends ControladorBase{
 					  solicitud_prestamo.identificador_consecutivos,
 				      solicitud_prestamo.tipo_pago_cuenta_bancaria,
 				      tipo_creditos.nombre_tipo_creditos,
+				      usuarios.nombre_usuarios,
 				      solicitud_prestamo.id_usuarios_oficial_credito_aprueba";
 	
 		$tablas   = "public.solicitud_prestamo,
 					  public.entidades,
 					  public.sexo,
 					  public.estado_civil,
-				      public.tipo_creditos";
+				      public.tipo_creditos,
+				public.usuarios";
 			
-		$where    = "tipo_creditos.id_tipo_creditos=solicitud_prestamo.id_tipo_creditos AND
+		$where    = "solicitud_prestamo.id_usuarios_oficial_credito_aprueba=usuarios.id_usuarios AND tipo_creditos.id_tipo_creditos=solicitud_prestamo.id_tipo_creditos AND
 		solicitud_prestamo.id_estado_civil_datos_personales = estado_civil.id_estado_civil AND
 		entidades.id_entidades = solicitud_prestamo.id_entidades AND
-		sexo.id_sexo = solicitud_prestamo.id_sexo_datos_personales";
+		sexo.id_sexo = solicitud_prestamo.id_sexo_datos_personales AND solicitud_prestamo.id_usuarios_oficial_credito_aprueba='$id_usuarios'";
 	
 		$id       = "solicitud_prestamo.id_solicitud_prestamo";
 	
@@ -2409,8 +2525,6 @@ class SolicitudPrestamoController extends ControladorBase{
 	
 						$estado_tramite='Aprobado';
 						
-						$result=$usuarios->getBy("id_usuarios=$res->id_usuarios_oficial_credito_aprueba");
-						$_nombre_usuarios=$result[0]->nombre_usuarios;
 						
 						
 						
@@ -2420,8 +2534,7 @@ class SolicitudPrestamoController extends ControladorBase{
 					elseif($aprobado_oficial_credito==3){
 						$estado_tramite='Rechazado';
 						
-						$result=$usuarios->getBy("id_usuarios=$res->id_usuarios_oficial_credito_aprueba");
-						$_nombre_usuarios=$result[0]->nombre_usuarios;
+						
 						
 					}
 						
@@ -2439,7 +2552,7 @@ class SolicitudPrestamoController extends ControladorBase{
 					$html.='<td style="font-size: 11px;">'.$estado_tramite.'</td>';
 					if($aprobado_oficial_credito==1){
 					$html.='<td style="font-size: 11px;"></td>';
-					$html.='<td style="font-size: 11px;"></td>';
+					$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'</td>';
 						
 					$html.='<td style="font-size: 15px;"><span class="pull-right"><a href="index.php?controller=SolicitudPrestamo&action=index4&id_solicitud_prestamo='.$res->id_solicitud_prestamo.'" class="btn btn-success" style="font-size:65%;"><i class="glyphicon glyphicon-edit"></i></a></span></td>';
 					$html.='<td style="font-size: 15px;"><span class="pull-right"><a href="index.php?controller=SolicitudPrestamo&action=index3&id_solicitud_prestamo_a='.$res->id_solicitud_prestamo.'" class="btn btn-info" style="font-size:65%;"><i class="glyphicon glyphicon-floppy-saved"></i></a></span></td>';
@@ -2447,7 +2560,7 @@ class SolicitudPrestamoController extends ControladorBase{
 						
 					}else{
 						$html.='<td style="font-size: 11px;">'.date("d/m/Y", strtotime($res->fecha_aprobacion)).'</td>';
-						$html.='<td style="font-size: 11px;">'.$_nombre_usuarios.'</td>';
+						$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'</td>';
 						$html.='<td style="font-size: 15px;"><span class="pull-right"><a href="javascript:void(0);" class="btn btn-success" style="font-size:65%;" disabled><i class="glyphicon glyphicon-edit"></i></a></span></td>';
 						$html.='<td style="font-size: 15px;"><span class="pull-right"><a href="javascript:void(0);" class="btn btn-primary" style="font-size:65%;" disabled><i class="glyphicon glyphicon-floppy-saved"></i></a></span></td>';
 						$html.='<td style="font-size: 15px;"><span class="pull-right"><a href="javascript:void(0);" class="btn btn-danger" style="font-size:65%;" disabled><i class="glyphicon glyphicon-trash"></i></a></span></td>';
@@ -2531,6 +2644,8 @@ class SolicitudPrestamoController extends ControladorBase{
 			$tipo_credito = new TipoCreditoModel();
 			$resultTipoCredito= $tipo_credito->getAll("nombre_tipo_creditos");
 	
+			$sucursales = new SucursalesModel();
+			$resultSucursales= $sucursales->getAll("nombre_sucursales");
 				
 				
 				
@@ -2652,7 +2767,8 @@ class SolicitudPrestamoController extends ControladorBase{
 							  solicitud_prestamo.id_usuarios_registra,
 							  solicitud_prestamo.identificador_consecutivos,
 							  solicitud_prestamo.tipo_pago_cuenta_bancaria,
-							solicitud_prestamo.id_tipo_creditos";
+							solicitud_prestamo.id_tipo_creditos,
+							solicitud_prestamo.id_sucursales";
 						
 					$tablas="public.solicitud_prestamo";
 					$where="1=1  AND solicitud_prestamo.id_solicitud_prestamo='$_id_solicitud_prestamo'";
@@ -2666,7 +2782,7 @@ class SolicitudPrestamoController extends ControladorBase{
 						"resultSexo"=>$resultSexo, "resultEstado_civil"=>$resultEstado_civil, "resultTipo_sangre"=>$resultTipo_sangre, "resultEstado"=>$resultEstado, "resultEntidades"=>$resultEntidades,
 						"resultProvincias"=>$resultProvincias, "resultBancos"=>$resultBancos,
 						"resultParroquias"=>$resultParroquias, "resultCantones"=>$resultCantones,
-						"resultEdit"=>$resultEdit, "resultTipoCredito"=>$resultTipoCredito
+						"resultEdit"=>$resultEdit, "resultTipoCredito"=>$resultTipoCredito, "resultSucursales"=>$resultSucursales
 	
 				));
 	

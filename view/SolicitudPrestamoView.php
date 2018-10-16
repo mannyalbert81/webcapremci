@@ -565,6 +565,7 @@
 		    	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
 		    	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
 
+		    	  var id_sucursales                                  = $("#id_sucursales").val();
 		    	  var tipo_participe_datos_prestamo       			 = $("#tipo_participe_datos_prestamo").val();
 		    	  var monto_datos_prestamo        					 = $("#monto_datos_prestamo").val();
 		    	  var plazo_datos_prestamo        					 = $("#plazo_datos_prestamo").val();
@@ -668,7 +669,24 @@
 				  var tiempo = tiempo || 1000;
 				  
 
+				  
 
+				  if (id_sucursales == 0)
+			    	{
+				    	
+			    		$("#mensaje_id_sucursales").text("Seleccione Sucursal");
+			    		$("#mensaje_id_sucursales").fadeIn("slow"); //Muestra mensaje de error
+			    		 
+			    		 $("html, body").animate({ scrollTop: $(mensaje_id_sucursales).offset().top }, tiempo);
+			    		 return false;
+			           
+				    }
+			    	else 
+			    	{
+			    		$("#mensaje_id_sucursales").fadeOut("slow"); //Muestra mensaje de error
+			            
+					}  
+				  
 				  if (id_tipo_creditos == 0)
 			    	{
 				    	
@@ -2123,8 +2141,12 @@
 
 
 		   
-			     
+		    
 
+		    $( "#id_sucursales" ).focus(function() {
+				  $("#mensaje_id_sucursales").fadeOut("slow");
+			    });
+		    
 			    $( "#id_tipo_creditos" ).focus(function() {
 				  $("#mensaje_id_tipo_creditos").fadeOut("slow");
 			    });
@@ -2460,7 +2482,7 @@
          <small><?php echo $fecha; ?></small>
          <ol class=" pull-right breadcrumb">
          <li><a href="<?php echo $helper->url("Usuarios","Bienvenida"); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-         <li class="active">Recomendar Afiliación</li>
+         <li class="active">Solicitud Préstamo</li>
          </ol>
          </section>
        
@@ -2494,6 +2516,21 @@
 	         <div class="panel-body">
 			 
 			  <div class="row">
+			  
+			  					<div class="col-lg-2 col-xs-12 col-md-2">
+                    		    <div class="form-group">
+                                                      <label for="id_sucursales" class="control-label">Sucursal a Tramitar:</label>
+                                                       <select name="id_sucursales" id="id_sucursales"  class="form-control" disabled>
+                                                          <option value="0" selected="selected">--Seleccione--</option>
+                        									<?php foreach($resultSucursales as $res) {?>
+                        										<option value="<?php echo $res->id_sucursales; ?>" <?php if ($res->id_sucursales == $resEdit->id_sucursales ){  echo  ' selected="selected" '  ;}  ?> ><?php echo $res->nombre_sucursales; ?> </option>
+                        							        
+                        							        <?php } ?>
+                        							   </select> 
+                                                      <div id="mensaje_id_sucursales" class="errores"></div>
+                                </div>
+                                </div>
+			  
 			  					<div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
                                                       <label for="id_tipo_creditos" class="control-label">Tipo Crédito:</label>
@@ -3577,6 +3614,20 @@
 	         <div class="panel-body">
 			 
 			  <div class="row">
+			  
+			  					<div class="col-lg-2 col-xs-12 col-md-2">
+                    		    <div class="form-group">
+                                                      <label for="id_sucursales" class="control-label">Sucursal a Tramitar:</label>
+                                                       <select name="id_sucursales" id="id_sucursales"  class="form-control">
+                                                          <option value="0" selected="selected">--Seleccione--</option>
+                        									<?php foreach($resultSucursales as $res) {?>
+                        										<option value="<?php echo $res->id_sucursales; ?>" ><?php echo $res->nombre_sucursales; ?> </option>
+                        							        
+                        							        <?php } ?>
+                        							   </select> 
+                                                      <div id="mensaje_id_sucursales" class="errores"></div>
+                                </div>
+                                </div>
 			  
 			  					<div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
