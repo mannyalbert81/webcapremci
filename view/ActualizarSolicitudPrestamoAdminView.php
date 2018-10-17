@@ -5,7 +5,7 @@
         <title>Solicitud Prestamo - Capremci</title>
 
 	 
- 
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<link rel="stylesheet" href="view/css/estilos.css">
 		<link rel="stylesheet" href="view/vendors/table-sorter/themes/blue/style.css">
 	
@@ -47,6 +47,13 @@
        		<script src="view/input-mask/jquery.inputmask.js"></script>
 			<script src="view/input-mask/jquery.inputmask.date.extensions.js"></script>
 			<script src="view/input-mask/jquery.inputmask.extensions.js"></script>
+        
+        
+                 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>  
+                 <script src="view/js/jquery.js"></script>
+		         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+			
+        
         
     
     <script type="text/javascript">
@@ -337,6 +344,42 @@
         
         
         
+         
+        <script>
+        
+
+	       	$(document).ready(function(){
+
+
+	       		
+						$( "#cedula_deudor_a_garantizar" ).autocomplete({
+		      				source: "<?php echo $helper->url("SolicitudPrestamo","AutocompleteCedula"); ?>",
+		      				minLength: 1
+		    			});
+		
+						$("#cedula_deudor_a_garantizar").focusout(function(){
+		    				$.ajax({
+		    					url:'<?php echo $helper->url("SolicitudPrestamo","AutocompleteDevuelveNombres"); ?>',
+		    					type:'POST',
+		    					dataType:'json',
+		    					data:{cedula_deudor_a_garantizar:$('#cedula_deudor_a_garantizar').val()}
+		    				}).done(function(respuesta){
+		
+		    					$('#nombre_deudor_a_garantizar').val(respuesta.apellidos_solicitante_datos_personales+' '+respuesta.nombres_solicitante_datos_personales);
+		    				
+		        			});
+		    				 
+		    				
+		    			});  
+
+						
+		    		});
+		
+	     
+		     </script>
+        
+        
+        
         
         <script>
 		  $(function () {
@@ -351,7 +394,67 @@
 		</script>
 		        
 		        
-		        
+		     
+		
+		<script type="text/javascript">
+      $(document).ready(function(){
+
+          
+      $("#tipo_participe_datos_prestamo").click(function() {
+			
+          var tipo_participe_datos_prestamo = $(this).val();
+			
+          if(tipo_participe_datos_prestamo == 'Garante' )
+          {
+       	   $("#div_tipo_participe_datos_prestamo").fadeIn("slow");
+          }
+       	
+          else
+          {
+        	  if(tipo_participe_datos_prestamo==0){
+
+					   $("#div_tipo_participe_datos_prestamo").fadeOut("slow");
+				}else{
+					   $("#cedula_deudor_a_garantizar").val("");
+		               $("#nombre_deudor_a_garantizar").val("");
+		               $("#div_tipo_participe_datos_prestamo").fadeOut("slow");
+				}
+           	   
+          }
+         
+	    });
+	    
+	    $("#tipo_participe_datos_prestamo").change(function() {
+			
+              
+              var tipo_participe_datos_prestamo = $(this).val();
+				
+              
+              if(tipo_participe_datos_prestamo == 'Garante')
+              {
+           	   $("#div_tipo_participe_datos_prestamo").fadeIn("slow");
+              }
+           	
+              else
+              {
+
+				    if(tipo_participe_datos_prestamo==0){
+
+						$("#div_tipo_participe_datos_prestamo").fadeOut("slow");
+					}else{
+						$("#cedula_deudor_a_garantizar").val("");
+			               $("#nombre_deudor_a_garantizar").val("");
+			               $("#div_tipo_participe_datos_prestamo").fadeOut("slow");
+					}
+
+              }
+              
+              
+		    });
+	}); 	
+	   
+      </script>
+           
 		        
 		        
 		        
@@ -666,7 +769,10 @@
 				  var tipo_pago_cuenta_bancaria                      = $("#tipo_pago_cuenta_bancaria").val();     
 
 				  var tiempo = tiempo || 1000;
-				  
+
+				  var cedula_deudor_a_garantizar                     = $("#cedula_deudor_a_garantizar").val(); 
+				  var nombre_deudor_a_garantizar                     = $("#nombre_deudor_a_garantizar").val(); 
+				
 
 
 				  if (id_tipo_creditos == 0)
@@ -684,19 +790,7 @@
 					}    
 		    	
 		    	
-		    	if (tipo_participe_datos_prestamo == 0)
-		    	{
-			    	
-		    		$("#mensaje_tipo_participe_datos_prestamo").text("Seleccione Tipo");
-		    		$("#mensaje_tipo_participe_datos_prestamo").fadeIn("slow"); //Muestra mensaje de error
-		    		 $("html, body").animate({ scrollTop: $(mensaje_tipo_participe_datos_prestamo).offset().top }, tiempo);
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_tipo_participe_datos_prestamo").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}    
+		      
 				
 		    	if (monto_datos_prestamo == 0.00)
 		    	{
@@ -740,6 +834,69 @@
 		    		$("#mensaje_destino_dinero_datos_prestamo").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
+
+
+
+		    	if (tipo_participe_datos_prestamo == 0)
+		    	{
+			    	
+		    		$("#mensaje_tipo_participe_datos_prestamo").text("Seleccione Tipo");
+		    		$("#mensaje_tipo_participe_datos_prestamo").fadeIn("slow"); //Muestra mensaje de error
+		    		 $("html, body").animate({ scrollTop: $(mensaje_tipo_participe_datos_prestamo).offset().top }, tiempo);
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_tipo_participe_datos_prestamo").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}  
+
+
+		    	if (tipo_participe_datos_prestamo=="Garante"){
+
+
+	            	   if (cedula_deudor_a_garantizar == "")
+	   			       {
+	   				    	
+	   			    		$("#mensaje_cedula_deudor_a_garantizar").text("Ingrese cédula del deudor");
+	   			    		$("#mensaje_cedula_deudor_a_garantizar").fadeIn("slow"); //Muestra mensaje de error
+	   			    		
+	   			    		$("html, body").animate({ scrollTop: $(mensaje_cedula_deudor_a_garantizar).offset().top }, tiempo);
+	   			            return false;
+	   				    }
+	   			    	else 
+	   			    	{
+	   			    		$("#mensaje_cedula_deudor_a_garantizar").fadeOut("slow"); //Muestra mensaje de error
+	   			            
+	   					} 
+
+
+	            	   if (nombre_deudor_a_garantizar == "")
+	   			       {
+	   				    	
+	   			    		$("#mensaje_nombre_deudor_a_garantizar").text("Ingrese nombre del deudor");
+	   			    		$("#mensaje_nombre_deudor_a_garantizar").fadeIn("slow"); //Muestra mensaje de error
+	   			    		
+	   			    		$("html, body").animate({ scrollTop: $(mensaje_nombre_deudor_a_garantizar).offset().top }, tiempo);
+	   			            return false;
+	   				    }
+	   			    	else 
+	   			    	{
+	   			    		$("#mensaje_nombre_deudor_a_garantizar").fadeOut("slow"); //Muestra mensaje de error
+	   			            
+	   					} 
+
+	            	  
+	               }else 
+			    	{
+			    		$("#mensaje_cedula_deudor_a_garantizar").fadeOut("slow"); //Muestra mensaje de error
+			    		$("#mensaje_nombre_deudor_a_garantizar").fadeOut("slow"); //Muestra mensaje de error
+			            
+					} 
+					
+
+
+				
 		    	
 		    	if (tipo_pago_cuenta_bancaria==0){
 		    		$("#mensaje_tipo_pago_cuenta_bancaria").text("Seleccione Tipo");
@@ -2055,7 +2212,12 @@
 		        $( "#destino_dinero_datos_prestamo" ).focus(function() {
 					  $("#mensaje_destino_dinero_datos_prestamo").fadeOut("slow");
 				});
-
+		        $( "#cedula_deudor_a_garantizar" ).focus(function() {
+					  $("#mensaje_cedula_deudor_a_garantizar").fadeOut("slow");
+				});
+		        $( "#nombre_deudor_a_garantizar" ).focus(function() {
+					  $("#mensaje_nombre_deudor_a_garantizar").fadeOut("slow");
+				});
 		       
 		        $( "#tipo_pago_cuenta_bancaria" ).focus(function() {
 					  $("#mensaje_tipo_pago_cuenta_bancaria").fadeOut("slow");
@@ -2423,18 +2585,7 @@
                                 </div>
 			  					
 			  					
-			  					<div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="tipo_participe_datos_prestamo" class="control-label">Tipo Participe:</label>
-                                                      <input type="hidden" class="form-control" id="id_solicitud_prestamo" name="id_solicitud_prestamo" value="<?php echo $resEdit->id_solicitud_prestamo; ?>">
-                                                      <select name="tipo_participe_datos_prestamo" id="tipo_participe_datos_prestamo"  class="form-control" >
-                                                      <option value="0" selected="selected">--Seleccione--</option>
-                        							  <option value="Deudor"  <?php if($resEdit->tipo_participe_datos_prestamo == 'Deudor'){echo ' selected="selected" ' ;}else{} ?>>Deudor</option>
-                        							  <option value="Garante" <?php if($resEdit->tipo_participe_datos_prestamo == 'Garante'){echo ' selected="selected" ' ;}else{} ?>>Garante</option>
-                        							  </select> 
-                                                      <div id="mensaje_tipo_participe_datos_prestamo" class="errores"></div>
-                                </div>
-                                </div>
+			  					
 			  
                     		    <div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
@@ -2469,11 +2620,63 @@
                                                       <div id="mensaje_destino_dinero_datos_prestamo" class="errores"></div>
                                 </div>
                                 </div>
+                                
+                                <div class="col-lg-2 col-xs-12 col-md-2">
+                    		    <div class="form-group">
+                                                      <label for="tipo_participe_datos_prestamo" class="control-label">Tipo Participe:</label>
+                                                      <input type="hidden" class="form-control" id="id_solicitud_prestamo" name="id_solicitud_prestamo" value="<?php echo $resEdit->id_solicitud_prestamo; ?>">
+                                                      <select name="tipo_participe_datos_prestamo" id="tipo_participe_datos_prestamo"  class="form-control" >
+                                                      <option value="0" selected="selected">--Seleccione--</option>
+                        							  <option value="Deudor"  <?php if($resEdit->tipo_participe_datos_prestamo == 'Deudor'){echo ' selected="selected" ' ;}else{} ?>>Deudor</option>
+                        							  <option value="Garante" <?php if($resEdit->tipo_participe_datos_prestamo == 'Garante'){echo ' selected="selected" ' ;}else{} ?>>Garante</option>
+                        							  </select> 
+                                                      <div id="mensaje_tipo_participe_datos_prestamo" class="errores"></div>
+                                </div>
+                                </div>
+                                
                </div>
 			 
   			</div>
   			</div>
   			
+           
+           
+           
+           
+           	<div id="div_tipo_participe_datos_prestamo" style="display: none;">
+             <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-user'></i> Datos Deudor a Garantizar</h4>
+	         </div>
+	         <div class="panel-body">
+			 <div class="row">
+			  
+         	                  
+			  				   
+			  				    <div class="col-lg-2 col-xs-12 col-md-2">
+                    		    <div class="form-group">
+                                                      <label for="cedula_deudor_a_garantizar" class="control-label">Cédula deudor:</label>
+                                                      <input type="number" class="form-control" id="cedula_deudor_a_garantizar" name="cedula_deudor_a_garantizar" value="<?php echo $resEdit->cedula_deudor_a_garantizar; ?>" placeholder="# cédula deudor..">
+                                                      <div id="mensaje_cedula_deudor_a_garantizar" class="errores"></div>
+                                </div>
+                                </div>
+			  				    
+                                <div class="col-lg-6 col-xs-12 col-md-6">
+                    		    <div class="form-group">
+                                                      <label for="nombre_deudor_a_garantizar" class="control-label">Apellidos y Nombres Deudor:</label>
+                                                      <input type="text" class="form-control" id="nombre_deudor_a_garantizar" name="nombre_deudor_a_garantizar" value="<?php echo $resEdit->nombre_deudor_a_garantizar; ?>" placeholder="nombre deudor.." readonly>
+                                                      <div id="mensaje_nombre_deudor_a_garantizar" class="errores"></div>
+                                </div>
+                                </div>
+                     		  
+            </div>
+			 
+  			</div>
+  			</div>
+            </div>
+           
+           
+           
            
            
              <div class="panel panel-info">

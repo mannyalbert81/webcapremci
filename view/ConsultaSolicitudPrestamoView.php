@@ -39,6 +39,7 @@
         	   $(document).ready( function (){
         		   pone_espera();
         		   load_solicitud_prestamos_registrados(1);
+        		   load_solicitud_garantias_registrados(1);
 	   			});
 
         	   function pone_espera(){
@@ -73,7 +74,7 @@
            	               beforeSend: function(objeto){
            	                 $("#load_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
            	               },
-           	               url: 'index.php?controller=SolicitudPrestamo&action=search',
+           	               url: 'index.php?controller=SolicitudPrestamo&action=search_deudor',
            	               type: 'POST',
            	               data: con_datos,
            	               success: function(x){
@@ -88,6 +89,37 @@
 
 
            		   }
+
+
+
+        	   function load_solicitud_garantias_registrados(pagina){
+
+        		   var con_datos={
+        					  action:'ajax',
+        					  page:pagina
+        					  };
+                 $("#load_garantias_registrados").fadeIn('slow');
+           	     $.ajax({
+           	               beforeSend: function(objeto){
+           	                 $("#load_garantias_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
+           	               },
+           	               url: 'index.php?controller=SolicitudPrestamo&action=search_garantes',
+           	               type: 'POST',
+           	               data: con_datos,
+           	               success: function(x){
+           	                 $("#solicitud_garantias_registrados").html(x);
+           	               	 $("#tabla_solicitud_prestamos_registrados").tablesorter(); 
+           	                 $("#load_garantias_registrados").html("");
+           	               },
+           	              error: function(jqXHR,estado,error){
+           	                $("#solicitud_garantias_registrados").html("Ocurrio un error al cargar la informacion de solicitud de garantías generadas..."+estado+"    "+error);
+           	              }
+           	            });
+
+
+           		   }
+
+       		   
         </script>
         
         	        
@@ -163,7 +195,35 @@
         </div>
         
         
+        <div class="col-md-12 col-lg-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Solicitud<small>de Garantías Generadas</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    	
+					<div id="load_garantias_registrados" ></div>	
+					<div id="solicitud_garantias_registrados"></div>	
+				  
+                  </div>
+                </div>
+        </div>
+        
+        
        </div>
+       
+       
+       
+       
+       
      </div>
    </div>
  </div>    
