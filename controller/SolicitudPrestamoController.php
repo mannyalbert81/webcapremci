@@ -2282,7 +2282,6 @@ class SolicitudPrestamoController extends ControladorBase{
 				$html.='</tr>';
 				
 				
-				
 				$html.='<tr>';
 				$html.='<th colspan="4" style="text-align:left; font-size: 13px;">Parroquia</th>';
 				$html.='<th colspan="4" style="text-align:left; font-size: 13px;">Número</th>';
@@ -2305,9 +2304,7 @@ class SolicitudPrestamoController extends ControladorBase{
 					
 				}else{
 					$html.='<td colspan="4" style="text-align:left; font-size: 13px;">N/A</td>';
-					
 				}
-				
 				$html.='</tr>';
 				
 				
@@ -2330,9 +2327,7 @@ class SolicitudPrestamoController extends ControladorBase{
 						
 				}else{
 					$html.='<td colspan="6" style="text-align:left; font-size: 13px;">N/A</td>';
-						
 				}
-				
 				
 				$html.='</tr>';
 				
@@ -2582,7 +2577,6 @@ class SolicitudPrestamoController extends ControladorBase{
 					$html.='</tr>';
 				}
 				
-				
 				$html.='<tr>';
 				$html.='<td colspan="6" rowspan="6" style="text-align:left; font-size: 13px;">'.$_apellidos_solicitante_datos_personales.' '.$_nombres_solicitante_datos_personales.'</td>';
 				$html.='<td colspan="6" rowspan="6" style="text-align:left; font-size: 13px;"></td>';
@@ -2592,20 +2586,15 @@ class SolicitudPrestamoController extends ControladorBase{
 				
 				}
 				
-				
 				$this->report("SolicitudPrestamo",array( "resultSet"=>$html));
 				die();
-					
 				
-			
 			}
-		
 		
 		}else{
 			
 			$this->redirect("Usuarios","sesion_caducada");
 		}
-		
 		
 	}
 	
@@ -3721,8 +3710,6 @@ class SolicitudPrestamoController extends ControladorBase{
 		}
 	
 	}
-	
-	
 	
 }
 ?>

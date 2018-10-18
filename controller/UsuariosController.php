@@ -3128,7 +3128,6 @@ public function index(){
 		$usuarios = new UsuariosModel();
 		$error = FALSE;
 	
-	
 		$mensaje = "";
 	
 		if (isset($_POST['cedula_usuarios']))
@@ -3140,7 +3139,6 @@ public function index(){
 	
 			if(!empty($resultUsu))
 			{
-	
 				foreach ($resultUsu as $res){
 	
 					$correo_usuario=$res->correo_usuarios;
@@ -3148,9 +3146,6 @@ public function index(){
 					$nombre_usuario   = $res->nombre_usuarios;
 					$_clave_usuario= $res->pass_sistemas_usuarios;
 				}
-	
-	
-				
 					
 			}
 	
@@ -3308,7 +3303,6 @@ public function index(){
 			}
 			else
 			{
-	
 				
 				if($id_estado==1 || $id_estado==2 ){
 				
@@ -3354,7 +3348,6 @@ public function index(){
 	
 				}
 			
-				
 				}else{
 					
 					
@@ -3417,6 +3410,10 @@ public function index(){
     			"allusers"=>$allusers
     	));
     }
+    
+    
+    
+    
     public function Bienvenida(){
     
     	session_start();
@@ -3452,6 +3449,8 @@ public function index(){
        	
        }
     }
+    
+    
     
     
     
