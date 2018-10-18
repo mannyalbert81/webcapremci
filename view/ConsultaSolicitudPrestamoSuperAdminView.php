@@ -77,7 +77,7 @@
            	               beforeSend: function(objeto){
            	                 $("#load_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
            	               },
-           	               url: 'index.php?controller=SolicitudPrestamo&action=searchadmin_deudor&search='+search,
+           	               url: 'index.php?controller=SolicitudPrestamo&action=searchadminsuper_deudor&search='+search,
            	               type: 'POST',
            	               data: con_datos,
            	               success: function(x){
@@ -106,7 +106,7 @@
            	               beforeSend: function(objeto){
            	                 $("#load_garantias_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
            	               },
-           	               url: 'index.php?controller=SolicitudPrestamo&action=searchadmin_garantes&search='+search,
+           	               url: 'index.php?controller=SolicitudPrestamo&action=searchadminsuper_garantes&search='+search,
            	               type: 'POST',
            	               data: con_datos,
            	               success: function(x){

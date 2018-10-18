@@ -3771,9 +3771,6 @@ public function index(){
 						
 					}
 					
-					
-					
-					
 					$this->redirect("Usuarios", "actualizo_perfil");
 					 
 					 
