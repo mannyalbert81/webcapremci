@@ -3839,7 +3839,7 @@ class SolicitudPrestamoController extends ControladorBase{
 			if(!empty($search)){
 					
 					
-				$where1=" AND (solicitud_prestamo.numero_cedula_datos_personales LIKE '".$search."%' OR solicitud_prestamo.apellidos_solicitante_datos_personales LIKE '".$search."%' OR solicitud_prestamo.nombres_solicitante_datos_personales LIKE '".$search."%' OR tipo_creditos.nombre_tipo_creditos LIKE '".$search."%')";
+				$where1=" AND (solicitud_prestamo.numero_cedula_datos_personales LIKE '".$search."%' OR solicitud_prestamo.apellidos_solicitante_datos_personales LIKE '".$search."%' OR solicitud_prestamo.nombres_solicitante_datos_personales LIKE '".$search."%' OR tipo_creditos.nombre_tipo_creditos LIKE '".$search."%'  OR usuarios.nombre_usuarios LIKE '".$search."%')";
 					
 				$where_to=$where.$where1;
 			}else{
@@ -3864,7 +3864,6 @@ class SolicitudPrestamoController extends ControladorBase{
 			$resultSet=$solicitud_prestamo->getCondicionesPagDesc($columnas, $tablas, $where_to, $id, $limit);
 			$count_query   = $cantidadResult;
 			$total_pages = ceil($cantidadResult/$per_page);
-	
 	
 			if($cantidadResult>0)
 			{
@@ -3903,7 +3902,6 @@ class SolicitudPrestamoController extends ControladorBase{
 	
 					$aprobado_oficial_credito=$res->id_estado_tramites;
 					if($aprobado_oficial_credito==2){
-	
 						$estado_tramite='Guardado';
 	
 					}elseif($aprobado_oficial_credito==1){
@@ -4028,7 +4026,7 @@ class SolicitudPrestamoController extends ControladorBase{
 		{
 			if(!empty($search)){
 					
-				$where1=" AND (solicitud_prestamo.numero_cedula_datos_personales LIKE '".$search."%' OR solicitud_prestamo.apellidos_solicitante_datos_personales LIKE '".$search."%' OR solicitud_prestamo.nombres_solicitante_datos_personales LIKE '".$search."%' OR tipo_creditos.nombre_tipo_creditos LIKE '".$search."%' OR solicitud_prestamo.cedula_deudor_a_garantizar LIKE '".$search."%')";
+				$where1=" AND (solicitud_prestamo.numero_cedula_datos_personales LIKE '".$search."%' OR solicitud_prestamo.apellidos_solicitante_datos_personales LIKE '".$search."%' OR solicitud_prestamo.nombres_solicitante_datos_personales LIKE '".$search."%' OR tipo_creditos.nombre_tipo_creditos LIKE '".$search."%' OR solicitud_prestamo.cedula_deudor_a_garantizar LIKE '".$search."%'  OR usuarios.nombre_usuarios LIKE '".$search."%')";
 					
 				$where_to=$where.$where1;
 			}else{

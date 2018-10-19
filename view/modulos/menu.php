@@ -46,10 +46,16 @@ $controladores=$_SESSION['controladores'];
                       <li style="<?php echo getcontrolador("PermisosRoles",$controladores) ?>"><a href="index.php?controller=PermisosRoles&action=index">Permisos Roles</a></li>
                       <li style="<?php echo getcontrolador("Sesiones",$controladores) ?>"><a href="index.php?controller=Sesiones&action=index">Sesiones</a></li>
                       <li style="<?php echo getcontrolador("PublicidadMovil",$controladores) ?>"><a href="index.php?controller=PublicidadMovil&action=index">Publicidad Movil</a></li>
-                      <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index3">Solicitud Prestamo</a></li>
-                     
                       </ul>
                   </li>
+                  
+                  
+                <li style="<?php echo getcontrolador("MenuGestionTramites",$controladores) ?>"  ><a><i class="fa fa-file-o"></i> Gestión de Trámites <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                     <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index3">Solicitud Prestamo</a></li>
+                     </ul>
+                 </li>
+                  
                   
                   <li  style="<?php echo getcontrolador("MenuServiciosLinea",$controladores) ?>"  ><a    ><i class="fa fa-bars"></i> Servicios en Linea <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -94,7 +100,7 @@ $controladores=$_SESSION['controladores'];
                     <ul class="nav child_menu">
                        <li style="<?php echo getcontrolador("Reportes",$controladores) ?>"><a href="index.php?controller=Reportes&action=index">Consultar</a></li>
                 	</ul>
-                 </li>
+                  </li>
                   
                   
                    <li ><a    ><i class="fa fa-file-o"></i> Información <span class="fa fa-chevron-down"></span></a>
