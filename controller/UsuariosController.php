@@ -3079,7 +3079,7 @@ public function index(){
 				
 				$resumen="
 				<table rules='all'>
-				<tr><td WIDTH='1000' HEIGHT='50'><center><img src='http://www.capremci.com.ec/www2/wp-content/uploads/2016/10/Logo-Capremci-h-600.jpg' WIDTH='300' HEIGHT='90'/></center></td></tr>
+				<tr><td WIDTH='1000' HEIGHT='50'><center><img src='http://186.4.157.125:80/webcapremci/view/images/bcaprem.png' WIDTH='300' HEIGHT='120'/></center></td></tr>
 				</tabla>
 				<p><table rules='all'></p>
 				<tr style='background: #FFFFFF;'><td  WIDTH='1000' align='center'><b> BIENVENIDO A CAPREMCI </b></td></tr></p>
@@ -3176,7 +3176,7 @@ public function index(){
 	
 					$resumen="
 					<table rules='all'>
-					<tr><td WIDTH='1000' HEIGHT='50'><center><img src='http://www.capremci.com.ec/www2/wp-content/uploads/2016/10/Logo-Capremci-h-600.jpg' WIDTH='300' HEIGHT='90'/></center></td></tr>
+					<tr><td WIDTH='1000' HEIGHT='50'><center><img src='http://186.4.157.125:80/webcapremci/view/images/bcaprem.png' WIDTH='300' HEIGHT='120'/></center></td></tr>
 					</tabla>
 					<p><table rules='all'></p>
 					<tr style='background: #FFFFFF;'><td  WIDTH='1000' align='center'><b> BIENVENIDO A CAPREMCI </b></td></tr></p>
@@ -3320,7 +3320,7 @@ public function index(){
 	
 				$resumen="
 				<table rules='all'>
-				<tr><td WIDTH='1000' HEIGHT='50'><center><img src='http://www.capremci.com.ec/www2/wp-content/uploads/2016/10/Logo-Capremci-h-600.jpg' WIDTH='300' HEIGHT='90'/></center></td></tr>
+				<tr><td WIDTH='1000' HEIGHT='50'><center><img src='http://186.4.157.125:80/webcapremci/view/images/bcaprem.png' WIDTH='300' HEIGHT='120'/></center></td></tr>
 				</tabla>
 				<p><table rules='all'></p>
 				<tr style='background: #FFFFFF;'><td  WIDTH='1000' align='center'><b> BIENVENIDO A CAPREMCI </b></td></tr></p>

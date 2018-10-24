@@ -944,6 +944,7 @@ class SolicitudPrestamoController extends ControladorBase{
 					$solicitud_prestamo->setParametros($parametros);
 					$resultado=$solicitud_prestamo->Insert();
 					
+					
 					$consecutivos->UpdateBy("identificador_consecutivos = identificador_consecutivos+1", "consecutivos", "nombre_consecutivos = 'SOLICITUD_PRESTAMOS'");
 					
 				    if($_id_estado_civil_datos_personales != 1 && $_id_estado_civil_datos_personales != 5){
@@ -976,6 +977,10 @@ class SolicitudPrestamoController extends ControladorBase{
 					}
 					
 			}	
+			
+			
+			    $solicitud_prestamo->EnviarMailSolCred($_correo_solicitante_datos_personales, $id_oficial_credito, $_nombres_solicitante_datos_personales, $_apellidos_solicitante_datos_personales);
+			
 						
 				} catch (Exception $e) {
 	
@@ -1135,6 +1140,7 @@ class SolicitudPrestamoController extends ControladorBase{
 				      solicitud_prestamo.tipo_pago_cuenta_bancaria,
 				      tipo_creditos.nombre_tipo_creditos,
 				      usuarios.nombre_usuarios,
+				      usuarios.correo_usuarios,
 				      solicitud_prestamo.id_usuarios_oficial_credito_aprueba";
 	
 		$tablas   = "public.solicitud_prestamo, 
@@ -1239,11 +1245,11 @@ class SolicitudPrestamoController extends ControladorBase{
 					$html.='<td style="font-size: 11px;">'.$estado_tramite.'</td>';
 					if($aprobado_oficial_credito==1){
 						$html.='<td style="font-size: 11px;"></td>';
-						$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'</td>';
+						$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'<br>'.$res->correo_usuarios.'</td>';
 						$html.='<td style="font-size: 15px;"><span class="pull-right"><a href="index.php?controller=SolicitudPrestamo&action=index&id_solicitud_prestamo='.$res->id_solicitud_prestamo.'" class="btn btn-success" style="font-size:65%;"><i class="glyphicon glyphicon-edit"></i></a></span></td>';
 					}else{
 						$html.='<td style="font-size: 11px;">'.date("d/m/Y", strtotime($res->fecha_aprobacion)).'</td>';
-						$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'</td>';
+						$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'<br>'.$res->correo_usuarios.'</td>';
 						$html.='<td style="font-size: 15px;"><span class="pull-right"><a href="javascript:void(0);" class="btn btn-success" style="font-size:65%;" disabled><i class="glyphicon glyphicon-edit"></i></a></span></td>';
 					}
 					$html.='<td style="font-size: 15px;"><span class="pull-right"><a href="index.php?controller=SolicitudPrestamo&action=print&id_solicitud_prestamo='.$res->id_solicitud_prestamo.'" target="_blank" class="btn btn-warning" style="font-size:65%;"><i class="glyphicon glyphicon-print"></i></a></span></td>';
@@ -1309,6 +1315,7 @@ class SolicitudPrestamoController extends ControladorBase{
 				      solicitud_prestamo.tipo_pago_cuenta_bancaria,
 				      tipo_creditos.nombre_tipo_creditos,
 				      usuarios.nombre_usuarios,
+				      usuarios.correo_usuarios,
 				      solicitud_prestamo.id_usuarios_oficial_credito_aprueba,
 				      solicitud_prestamo.cedula_deudor_a_garantizar,
 				      solicitud_prestamo.nombre_deudor_a_garantizar";
@@ -1416,11 +1423,11 @@ class SolicitudPrestamoController extends ControladorBase{
 					
 					if($aprobado_oficial_credito==1){
 						$html.='<td style="font-size: 11px;"></td>';
-						$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'</td>';
+						$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'<br>'.$res->correo_usuarios.'</td>';
 						$html.='<td style="font-size: 15px;"><span class="pull-right"><a href="index.php?controller=SolicitudPrestamo&action=index&id_solicitud_prestamo='.$res->id_solicitud_prestamo.'" class="btn btn-success" style="font-size:65%;"><i class="glyphicon glyphicon-edit"></i></a></span></td>';
 					}else{
 						$html.='<td style="font-size: 11px;">'.date("d/m/Y", strtotime($res->fecha_aprobacion)).'</td>';
-						$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'</td>';
+						$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'<br>'.$res->correo_usuarios.'</td>';
 						$html.='<td style="font-size: 15px;"><span class="pull-right"><a href="javascript:void(0);" class="btn btn-success" style="font-size:65%;" disabled><i class="glyphicon glyphicon-edit"></i></a></span></td>';
 					}
 					$html.='<td style="font-size: 15px;"><span class="pull-right"><a href="index.php?controller=SolicitudPrestamo&action=print&id_solicitud_prestamo='.$res->id_solicitud_prestamo.'" target="_blank" class="btn btn-warning" style="font-size:65%;"><i class="glyphicon glyphicon-print"></i></a></span></td>';
@@ -3050,6 +3057,7 @@ class SolicitudPrestamoController extends ControladorBase{
 				      solicitud_prestamo.tipo_pago_cuenta_bancaria,
 				      tipo_creditos.nombre_tipo_creditos,
 				      usuarios.nombre_usuarios,
+				      usuarios.correo_usuarios,
 				      solicitud_prestamo.id_usuarios_oficial_credito_aprueba";
 	
 		$tablas   = "public.solicitud_prestamo,
@@ -3246,6 +3254,7 @@ class SolicitudPrestamoController extends ControladorBase{
 				      solicitud_prestamo.tipo_pago_cuenta_bancaria,
 				      tipo_creditos.nombre_tipo_creditos,
 				      usuarios.nombre_usuarios,
+				      usuarios.correo_usuarios,
 				      solicitud_prestamo.id_usuarios_oficial_credito_aprueba,
 				      solicitud_prestamo.cedula_deudor_a_garantizar,
 				      solicitud_prestamo.nombre_deudor_a_garantizar";
@@ -4006,6 +4015,7 @@ class SolicitudPrestamoController extends ControladorBase{
 				      solicitud_prestamo.tipo_pago_cuenta_bancaria,
 				      tipo_creditos.nombre_tipo_creditos,
 				      usuarios.nombre_usuarios,
+				      usuarios.correo_usuarios,
 				      solicitud_prestamo.id_usuarios_oficial_credito_aprueba";
 	
 		$tablas   = "public.solicitud_prestamo,
@@ -4193,6 +4203,7 @@ class SolicitudPrestamoController extends ControladorBase{
 				      solicitud_prestamo.tipo_pago_cuenta_bancaria,
 				      tipo_creditos.nombre_tipo_creditos,
 				      usuarios.nombre_usuarios,
+				      usuarios.correo_usuarios,
 				      solicitud_prestamo.id_usuarios_oficial_credito_aprueba,
 				      solicitud_prestamo.cedula_deudor_a_garantizar,
 				      solicitud_prestamo.nombre_deudor_a_garantizar";

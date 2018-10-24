@@ -38,6 +38,7 @@
      
         	   $(document).ready( function (){
         		   pone_espera();
+        		   $("#mostrarmodal").modal("show");
         		   load_solicitud_prestamos_registrados(1);
         		   load_solicitud_garantias_registrados(1);
 	   			});
@@ -161,6 +162,50 @@
         <!-- page content -->
 		<div class="right_col" role="main">        
        
+       
+       
+      
+       
+       
+       
+       <!-- VENTANA MODAL INFORMACIÓN OFICIAL DE CRÉDITO -->
+       
+       
+             
+        <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+        <div class="modal-content">
+           <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h3 style="margin-left: 15px;">Estimado Participe.</h3>
+           </div>
+           <div class="modal-body">
+          
+          <p>Si ya registro una solicitud de crédito envie la siguiente información al correo electrónico de su oficial de crédito asignado para agilizar el proceso.</p>
+          <p><b>1.-</b> 3 últimos roles de pago firmados por su entidad pagadora.<br><b>2.-</b> Certificado de tiempo de servicio.<br><b>3.-</b> Copia de cédula y papeleta de votación (4 febrero 2018).<br><b>4.-</b> Copia planilla de servicio básico (Actualizada).<br><b>5.-</b> Copia de libreta de ahorros.</p>
+         
+              <center><img src="view/images/enviar_info_cred.gif" class="img-rounded" alt="Cinque Terre" style="text-align:center;  width: 50%;"/></center> 
+         
+          </div>
+           	
+          
+          
+           <div class="modal-footer">
+           
+            <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>
+           </div>
+	      </div>
+	     </div>
+	   </div>
+          
+       
+       
+       <!-- TERMINA MODAL INFORMACIÓN OFICIAL DE CRÉDITO -->
+       
+       
+       
+       
+       
     <div class="container">
         <section class="content-header">
          <small><?php echo $fecha; ?></small>
@@ -219,9 +264,6 @@
         
         
        </div>
-       
-       
-       
        
        
      </div>

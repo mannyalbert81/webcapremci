@@ -325,6 +325,72 @@ class EntidadBase{
     }
     
     
+    
+    
+    public function  EnviarMailSolCred($correo_participe, $id_usuario, $_nombres_solicitante_datos_personales, $_apellidos_solicitante_datos_personales){
+    	
+    	$usuarios = new UsuariosModel();
+    	$where = "id_usuarios = '$id_usuario'";
+    	$resultUsu = $usuarios->getBy($where);
+    	
+    	if(!empty($resultUsu))
+    	{
+    	
+    		foreach ($resultUsu as $res){
+    	
+    			$correo_usuario   =$res->correo_usuarios;
+    			$nombre_usuario   = $res->nombre_usuarios;
+    		}
+    	
+    		$cabeceras = "MIME-Version: 1.0 \r\n";
+    		$cabeceras .= "Content-type: text/html; charset=utf-8 \r\n";
+    		$cabeceras .= "From: $correo_usuario \r\n";
+    		$destino="$correo_participe";
+    		$asunto="Solicitud de Prestamo (Capremci)";
+    		$fecha=date("d/m/y");
+    		$hora=date("H:i:s");
+    		
+    		
+    		$resumen="
+    		<table rules='all'>
+    		<tr><td WIDTH='1000' HEIGHT='50'><center><img src='http://186.4.157.125:80/webcapremci/view/images/bcaprem.png' WIDTH='300' HEIGHT='120'/></center></td></tr>
+    		</tabla>
+    		<p><table rules='all'></p>
+    		<tr style='background: #FFFFFF;'><td  WIDTH='1000' align='center'><b>Estimado Participe $_apellidos_solicitante_datos_personales $_nombres_solicitante_datos_personales</b></td></tr></p>
+    		<tr style='background: #FFFFFF;'><td  WIDTH='1000' align='justify'>Envieme la siguiente información para agilizar el proceso de su solicitud de prestamo.</td></tr>
+    		</tabla>
+    		
+    		<p><table rules='all'></p>
+    		<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>1.-</b> 3 últimos roles de pago firmados por su entidad pagadora.</td></tr>
+    		<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>2.-</b> Certificado de tiempo de servicio.</td></tr>
+    		<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>3.-</b> Copia de cédula y papeleta de votación (4 febrero 2018).</td></tr>
+    		<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>4.-</b> Copia planilla de servicio básico (Actualizada).</td></tr>
+    		<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>5.-</b> Copia de libreta de ahorros.</td></tr>
+    		</tabla>
+    		
+    		
+    		<p><table rules='all'></p>
+    		<tr style='background: #FFFFFF'><td WIDTH='1000' align='center'><b> TU OFICIAL DE CRÉDITO ASIGNADO ES: </b></td></tr>
+    		<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>Nombre:</b> $nombre_usuario</td></tr>
+    		<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>Correo:</b> $correo_usuario </td></tr>
+    		</tabla>
+    		<p><table rules='all'></p>
+    		<tr style='background:#1C1C1C'><td WIDTH='1000' HEIGHT='50' align='center'><font color='white'>Capremci - <a href='http://www.capremci.com.ec'><FONT COLOR='#7acb5a'>www.capremci.com.ec</FONT></a> - Copyright © 2018-</font></td></tr>
+    		</table>
+    		";
+    		
+    		mail("$destino","Solicitud de Prestamo (Capremci)","$resumen","$cabeceras");
+    		
+    			
+    	}
+    	
+    	
+    }
+    
+    
+    
+    
+    
     public  function  SendMail($para, $titulo, $lista, $imagen, $asunto)
     {
     
