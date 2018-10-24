@@ -466,7 +466,7 @@
 			
           var tipo_pago_cuenta_bancaria = $(this).val();
 			
-          if(tipo_pago_cuenta_bancaria == 'Depósito' )
+          if(tipo_pago_cuenta_bancaria == 'Depósito' || tipo_pago_cuenta_bancaria == 'Retira Cheque' )
           {
        	   $("#div_tipo_pago_cuenta_bancaria").fadeIn("slow");
           }
@@ -477,10 +477,10 @@
 
 					$("#div_tipo_pago_cuenta_bancaria").fadeOut("slow");
 				}else{
-					   $("#id_banco_cuenta_bancaria").val("0");
-		               $("#tipo_cuenta_cuenta_bancaria").val("0");
-		               $("#numero_cuenta_cuenta_bancaria").val("");
-		           	   $("#div_tipo_pago_cuenta_bancaria").fadeOut("slow");
+					   //$("#id_banco_cuenta_bancaria").val("0");
+		               //$("#tipo_cuenta_cuenta_bancaria").val("0");
+		               //$("#numero_cuenta_cuenta_bancaria").val("");
+		           	   //$("#div_tipo_pago_cuenta_bancaria").fadeOut("slow");
 				}
     
        	   
@@ -496,7 +496,7 @@
               var tipo_pago_cuenta_bancaria = $(this).val();
 				
               
-              if(tipo_pago_cuenta_bancaria == 'Depósito')
+              if(tipo_pago_cuenta_bancaria == 'Depósito' || tipo_pago_cuenta_bancaria == 'Retira Cheque')
               {
            	   $("#div_tipo_pago_cuenta_bancaria").fadeIn("slow");
               }
@@ -508,10 +508,10 @@
 
 						$("#div_tipo_pago_cuenta_bancaria").fadeOut("slow");
 					}else{
-						   $("#id_banco_cuenta_bancaria").val("0");
-			               $("#tipo_cuenta_cuenta_bancaria").val("0");
-			               $("#numero_cuenta_cuenta_bancaria").val("");
-			           	   $("#div_tipo_pago_cuenta_bancaria").fadeOut("slow");
+						   //$("#id_banco_cuenta_bancaria").val("0");
+			               //$("#tipo_cuenta_cuenta_bancaria").val("0");
+			               //$("#numero_cuenta_cuenta_bancaria").val("");
+			           	   //$("#div_tipo_pago_cuenta_bancaria").fadeOut("slow");
 					}
 
                   
@@ -600,7 +600,7 @@
 			
           var id_estado_civil_datos_personales = $(this).val();
 			
-          if(id_estado_civil_datos_personales == 1 )
+          if(id_estado_civil_datos_personales == 1 || id_estado_civil_datos_personales == 5)
           {
         	  if(id_estado_civil_datos_personales == 0 )
               {
@@ -628,7 +628,7 @@
               var id_estado_civil_datos_personales = $(this).val();
 				
               
-              if(id_estado_civil_datos_personales == 1)
+              if(id_estado_civil_datos_personales == 1 || id_estado_civil_datos_personales == 5)
               {
             	  if(id_estado_civil_datos_personales == 0 )
                   {
@@ -772,7 +772,7 @@
 
 				  var cedula_deudor_a_garantizar                     = $("#cedula_deudor_a_garantizar").val(); 
 				  var nombre_deudor_a_garantizar                     = $("#nombre_deudor_a_garantizar").val(); 
-				
+				  var porcentaje_aportacion                          = $("#porcentaje_aportacion").val();
 
 
 				  if (id_tipo_creditos == 0)
@@ -911,7 +911,7 @@
 				}
 
 
-				 if(tipo_pago_cuenta_bancaria =='Depósito' ){
+				 if(tipo_pago_cuenta_bancaria =='Depósito' || tipo_pago_cuenta_bancaria =='Retira Cheque'){
 
 
 				    	
@@ -2053,7 +2053,7 @@
 				}
 				
 
-			if(id_estado_civil_datos_personales != 1) {
+			if(id_estado_civil_datos_personales != 1 && id_estado_civil_datos_personales != 5) {
 
 				
                 if (numero_cedula_conyuge == "" )
@@ -2178,6 +2178,9 @@
 				}
 
 
+				
+
+
 			}else{
 				$("#mensaje_numero_cedula_conyuge").fadeOut("slow"); //Muestra mensaje de error
 				$("#mensaje_apellidos_conyuge").fadeOut("slow"); //Muestra mensaje de error
@@ -2189,7 +2192,26 @@
 				$("#mensaje_actividad_economica_conyuge").fadeOut("slow"); //Muestra mensaje de error
 
 			}
-				
+
+
+
+
+
+			 if (porcentaje_aportacion == 0 )
+		    	{
+			    	
+		    		$("#mensaje_porcentaje_aportacion").text("Seleccione");
+		    		$("#mensaje_porcentaje_aportacion").fadeIn("slow"); //Muestra mensaje de error
+		    		 $("html, body").animate({ scrollTop: $(mensaje_porcentaje_aportacion).offset().top }, tiempo);
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_porcentaje_aportacion").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+			
 			}); 
 
 
@@ -2476,7 +2498,12 @@
 		        $( "#actividad_economica_conyuge" ).focus(function() {
 					  $("#mensaje_actividad_economica_conyuge").fadeOut("slow");
 				});
-		      
+
+		        $( "#porcentaje_aportacion" ).focus(function() {
+					  $("#mensaje_porcentaje_aportacion").fadeOut("slow");
+				});
+
+		        
 				 
 		}); 
 
@@ -3631,6 +3658,35 @@
 			 
   			</div>
   			</div>
+  			
+  			
+  			
+  			 
+            <div class="panel panel-info">
+	        <div class="panel-heading">
+	        <h4><i class='glyphicon glyphicon-home'></i> Datos Aporte Personal</h4>
+	        </div>
+	        <div class="panel-body">
+			 
+			<div class="row">
+               					<div class="col-lg-3 col-xs-12 col-md-3">
+                    		    <div class="form-group">
+                                                      <label for="porcentaje_aportacion" class="control-label">Porcentaje de Aportación:</label>
+                                                      <select name="porcentaje_aportacion" id="porcentaje_aportacion"  class="form-control" >
+                                                      <option value="0" selected="selected">--Seleccione--</option>
+                        							  <option value="7%" 				<?php if($resEdit->porcentaje_aportacion == '7%'){echo ' selected="selected" ' ;}else{} ?>>7%</option>
+                        							  <option value="9.1%" 				<?php if($resEdit->porcentaje_aportacion == '9.1%'){echo ' selected="selected" ' ;}else{} ?>>9.1%</option>
+                        							  </select>
+                                                      <div id="mensaje_porcentaje_aportacion" class="errores"></div>
+                                </div>
+            					</div>  
+            					
+           </div>
+           </div>
+           </div>
+  			
+  			
+  			
   			
 			  			<div class="col-lg-12 col-md-12 col-xs-12 " style="text-align: center; margin-top: 10px">
 				  		 <button type="submit" id="generar" name="generar" value=""   class="btn btn-success" style="margin-top: 10px;"><i class="glyphicon glyphicon-edit"></i> Actualizar Solicitud</button>         

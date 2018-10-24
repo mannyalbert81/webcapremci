@@ -461,16 +461,18 @@
 		
 		        
 		        
-		        
+		       
     <script type="text/javascript">
-      $(document).ready(function(){
+
+    
+     $(document).ready(function(){
 
           
       $("#tipo_pago_cuenta_bancaria").click(function() {
 			
           var tipo_pago_cuenta_bancaria = $(this).val();
 			
-          if(tipo_pago_cuenta_bancaria == 'Depósito' )
+          if(tipo_pago_cuenta_bancaria == 'Depósito' || tipo_pago_cuenta_bancaria == 'Retira Cheque' )
           {
        	   $("#div_tipo_pago_cuenta_bancaria").fadeIn("slow");
           }
@@ -481,15 +483,12 @@
 
 					$("#div_tipo_pago_cuenta_bancaria").fadeOut("slow");
 				}else{
-					   $("#id_banco_cuenta_bancaria").val("0");
-		               $("#tipo_cuenta_cuenta_bancaria").val("0");
-		               $("#numero_cuenta_cuenta_bancaria").val("");
-		           	   $("#div_tipo_pago_cuenta_bancaria").fadeOut("slow");
+					  // $("#id_banco_cuenta_bancaria").val("0");
+		              // $("#tipo_cuenta_cuenta_bancaria").val("0");
+		              // $("#numero_cuenta_cuenta_bancaria").val("");
+		           	  // $("#div_tipo_pago_cuenta_bancaria").fadeOut("slow");
 				}
-    
-       	   
-
-       	   
+           	   
           }
          
 	    });
@@ -500,7 +499,7 @@
               var tipo_pago_cuenta_bancaria = $(this).val();
 				
               
-              if(tipo_pago_cuenta_bancaria == 'Depósito')
+              if(tipo_pago_cuenta_bancaria == 'Depósito' || tipo_pago_cuenta_bancaria == 'Retira Cheque')
               {
            	   $("#div_tipo_pago_cuenta_bancaria").fadeIn("slow");
               }
@@ -512,10 +511,10 @@
 
 						$("#div_tipo_pago_cuenta_bancaria").fadeOut("slow");
 					}else{
-						   $("#id_banco_cuenta_bancaria").val("0");
-			               $("#tipo_cuenta_cuenta_bancaria").val("0");
-			               $("#numero_cuenta_cuenta_bancaria").val("");
-			           	   $("#div_tipo_pago_cuenta_bancaria").fadeOut("slow");
+						  // $("#id_banco_cuenta_bancaria").val("0");
+			              // $("#tipo_cuenta_cuenta_bancaria").val("0");
+			              // $("#numero_cuenta_cuenta_bancaria").val("");
+			           	  // $("#div_tipo_pago_cuenta_bancaria").fadeOut("slow");
 					}
 
                   
@@ -525,10 +524,10 @@
               
 		    });
 	}); 	
-	   
+      
       </script>
         
-        
+       
         
         
                
@@ -604,7 +603,7 @@
 			
           var id_estado_civil_datos_personales = $(this).val();
 			
-          if(id_estado_civil_datos_personales == 1 )
+          if(id_estado_civil_datos_personales == 1 || id_estado_civil_datos_personales == 5)
           {
         	  if(id_estado_civil_datos_personales == 0 )
               {
@@ -632,7 +631,7 @@
               var id_estado_civil_datos_personales = $(this).val();
 				
               
-              if(id_estado_civil_datos_personales == 1)
+              if(id_estado_civil_datos_personales == 1 || id_estado_civil_datos_personales == 5)
               {
             	  if(id_estado_civil_datos_personales == 0 )
                   {
@@ -938,7 +937,7 @@
 				}
 
 
-				 if(tipo_pago_cuenta_bancaria =='Depósito' ){
+				 if(tipo_pago_cuenta_bancaria =='Depósito' || tipo_pago_cuenta_bancaria =='Retira Cheque'){
 
 
 				    	
@@ -2148,7 +2147,7 @@
 				}
 				
 
-			if(id_estado_civil_datos_personales != 1) {
+			if(id_estado_civil_datos_personales != 1 && id_estado_civil_datos_personales != 5) {
 
 				
                 if (numero_cedula_conyuge == "" )

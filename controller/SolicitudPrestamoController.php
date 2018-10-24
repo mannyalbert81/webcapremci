@@ -516,7 +516,7 @@ class SolicitudPrestamoController extends ControladorBase{
 						$resultado2=$solicitud_prestamo->UpdateBy($columnas, $tablas, $where);
 							
 							
-						if($_id_estado_civil_datos_personales != 1){
+						if($_id_estado_civil_datos_personales != 1 && $_id_estado_civil_datos_personales != 5){
 								
 							$colval_afi = "numero_cedula_conyuge= '$_numero_cedula_conyuge',
 							apellidos_conyuge='$_apellidos_conyuge',
@@ -668,7 +668,7 @@ class SolicitudPrestamoController extends ControladorBase{
 						$resultado2=$solicitud_prestamo->UpdateBy($columnas, $tablas, $where);
 							
 							
-						if($_id_estado_civil_datos_personales != 1){
+						if($_id_estado_civil_datos_personales != 1 && $_id_estado_civil_datos_personales != 5){
 								
 							$colval_afi = "numero_cedula_conyuge= '$_numero_cedula_conyuge',
 							apellidos_conyuge='$_apellidos_conyuge',
@@ -946,7 +946,7 @@ class SolicitudPrestamoController extends ControladorBase{
 					
 					$consecutivos->UpdateBy("identificador_consecutivos = identificador_consecutivos+1", "consecutivos", "nombre_consecutivos = 'SOLICITUD_PRESTAMOS'");
 					
-				    if($_id_estado_civil_datos_personales != 1){
+				    if($_id_estado_civil_datos_personales != 1 && $_id_estado_civil_datos_personales != 5){
 					
 					$resultSolicitud="";
 					$resultSolicitud=$solicitud_prestamo->getBy("identificador_consecutivos='$_identificador_consecutivos' AND id_usuarios_registra='$_id_usuarios_registra' AND fecha_presentacion='$_fecha_presentacion' AND tipo_participe_datos_prestamo='$_tipo_participe_datos_prestamo'");
@@ -1476,8 +1476,8 @@ class SolicitudPrestamoController extends ControladorBase{
 		 
 		$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/webcapremci';
 		$dom=$directorio.'/view/dompdf/dompdf_config.inc.php';
-		$domLogo=$directorio.'/view/images/lcaprem.png';
-		$logo = '<img src="'.$domLogo.'" alt="Responsive image" width="200" height="50">';
+		$domLogo=$directorio.'/view/images/logo_contrato_adhesion.jpg';
+		$logo = '<img src="'.$domLogo.'" width="100%">';
 		 
 		
 		if(!empty($id_usuarios)){
@@ -1589,7 +1589,9 @@ class SolicitudPrestamoController extends ControladorBase{
 						  solicitud_prestamo.id_usuarios_registra, 
 						  solicitud_prestamo.identificador_consecutivos,
 						  solicitud_prestamo.tipo_pago_cuenta_bancaria,
-						  tipo_creditos.nombre_tipo_creditos";
+						  tipo_creditos.nombre_tipo_creditos,
+						  solicitud_prestamo.id_sucursales,
+						  solicitud_prestamo.porcentaje_aportacion";
 				$tablas=" public.solicitud_prestamo, 
 						  public.tipo_creditos,
 						  public.provincias, 
@@ -1763,9 +1765,21 @@ class SolicitudPrestamoController extends ControladorBase{
 					$_id_usuarios_registra       					=$resultSoli[0]->id_usuarios_registra;
 					$_identificador_consecutivos     				=$resultSoli[0]->identificador_consecutivos;
 					
-				
-				
-				
+					$creado                                          ="a los <b>".date('d',strtotime($resultSoli[0]->fecha_presentacion))."</b> días del mes de <b>".$meses[date('n',strtotime($resultSoli[0]->fecha_presentacion))-1]. "</b> del <b>".date('Y',strtotime($resultSoli[0]->fecha_presentacion))."</b>";
+					
+					$_id_sucursales                                 =$resultSoli[0]->id_sucursales;
+					
+					if($_id_sucursales>0){
+						$sucursales = new SucursalesModel();
+						$resultSucursales = $sucursales->getBy("id_sucursales='$_id_sucursales'");
+						$_nombre_sucursales       				    =$resultSucursales[0]->nombre_sucursales;
+					}else{
+						$_nombre_sucursales="";
+					}
+					
+					$_porcentaje_aportacion                     =$resultSoli[0]->porcentaje_aportacion;
+					
+						
 				
 				
 				
@@ -1867,14 +1881,28 @@ class SolicitudPrestamoController extends ControladorBase{
 						}
 						$html.='</tr>';
 				
+						$html.='<tr>';
+						$html.='<td colspan="12" style="text-align:left; font-size: 13px;"><b>Retira Cheque:</b> <u>No</u></td>';
+						$html.='</tr>';
+						
 				}else{
 					
-					
 					$html.='<tr>';
-						$html.='<td colspan="4" style="text-align:left; font-size: 13px;">N/A</td>';
-						$html.='<td colspan="4" style="text-align:left; font-size: 13px;">N/A</td>';
-						$html.='<td colspan="4" style="text-align:left; font-size: 13px;">N/A</td>';
+					if($_tipo_cuenta_cuenta_bancaria=='Ahorros'){
+							
+						$html.='<td colspan="4" style="text-align:center; font-size: 13px;">'.$_nombre_bancos_datos_prestamo.'</td>';
+						$html.='<td colspan="4" style="text-align:center; font-size: 13px;">'.$_numero_cuenta_cuenta_bancaria.'</td>';
+						$html.='<td colspan="4" style="text-align:center; font-size: 13px;">N/A</td>';
+							
+					}else{
+							
+						$html.='<td colspan="4" style="text-align:left; font-size: 13px;">'.$_nombre_bancos_datos_prestamo.'</td>';
+						$html.='<td colspan="4" style="text-align:center; font-size: 13px;">N/A</td>';
+						$html.='<td colspan="4" style="text-align:center; font-size: 13px;">'.$_numero_cuenta_cuenta_bancaria.'</td>';
+					
+					}
 					$html.='</tr>';
+					
 					
 					$html.='<tr>';
 					$html.='<td colspan="12" style="text-align:left; font-size: 13px;"><b>Retira Cheque:</b> <u>Si</u></td>';
@@ -2587,9 +2615,175 @@ class SolicitudPrestamoController extends ControladorBase{
 				
 				$html.='</table>';
 				
+				
+				
+				
+				$html.='<div style="page-break-after:always;"></div>';
+				
+				
+					
+				$html.='<p style="text-align:center; font-size: 16px;"><b>AUTORIZACIÓN DE DESCUENTO DE ROL DE PAGOS<b></p><br>';
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Yo, <b>'.$_apellidos_solicitante_datos_personales.' '.$_nombres_solicitante_datos_personales.'</b>, con cédula de ciudadanía No. <b>'.$_numero_cedula_datos_personales.'</b>, en mi calidad de Servidor
+				Público, Funcionario, Empleado, Trabajador u Otro, de Fuerzas Armadas en: Fuerza o Entidad Patronal: <b>'.$_nombre_entidades.'</b>.</p>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Declaro expresamente que estoy afiliado al Fondo Complementario Previsional Cerrado
+					de Cesantía de Servidores y Trabajadores Públicos de Fuerzas Armadas "CAPREMCI",
+					y como tal he venido recibiendo los beneficios que el Fondo otorga.</p>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Por lo tanto, AUTORIZO e INSTRUYO expresa, irrevocable e indefinidamente, a mi
+				empleador <b>'.$_nombre_entidades.'</b> que proceda con
+				el descuento de mi Remuneración u Otros Ingresos, los valores correspondientes a las
+				Aportaciones, Cuotas de Préstamos, Intereses de mora, Acreditaciones Indebidas,
+				Prestaciones, Servicios Recibidos, o por cualquier otra obligación que mantengo (a) con
+				el Fondo Complementario Previsional Cerrado de Cesantía de Servidores y Trabajadores
+				Públicos de Fuerzas Armadas "CAPREMCI", hasta su total cancelación, sea en calidad de
+				afiliado, deudor y o garante solidario.</p>';
+				
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Acepto expresa e irrevocablemente que cualquier variación al porcentaje de aportación
+					me será comunicada a través de los Delegados a la Asamblea General, o por cualquier
+					otro medio que el Fondo defina para el efecto.</p>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">En <b>'.$_nombre_sucursales.'</b>, '.$creado.'.</p>';
+				
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Declaro que la firma que estampo en este documento es la mía propia y que la utilizo
+					en todo acto público o privado.</p>';
+				
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:left; font-size: 15px;">Atentamente,</p><br><br>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:left; font-size: 15px;">...................................<br>Firma afiliado</p>';
+				
+				
+				$html.='<div style="page-break-after:always;"></div>';
+				
+				$html.='<p style="text-align:center; font-size: 16px;"><b>AUTORIZACIÓN DE DÉBITOS AUTOMÁTICOS<b></p><br>';
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Señores: Fondo Complementario Previsional Cerrado de Cesantía de Servidores y Trabajadores Públicos de Fuerzas Armadas "CAPREMCI"</p>';
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Yo, <b>'.$_apellidos_solicitante_datos_personales.' '.$_nombres_solicitante_datos_personales.'</b>, con cédula de ciudadanía No. <b>'.$_numero_cedula_datos_personales.'</b>. AUTORIZO E INSTRUYO expresa, irrevocable e indefinidamente a ustedes a ordenar, en mi
+						nombre y representación, el (los) débito (s) de mi (s) cuenta (s):</p>';
+				
+				if($_tipo_pago_cuenta_bancaria=='Depósito' || $_tipo_pago_cuenta_bancaria=='Retira Cheque'){
+					
+					if($_tipo_cuenta_cuenta_bancaria=='Ahorros'){
+							
+						$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:left; font-size: 15px;">Cuenta Ahorros No: <b>'.$_numero_cuenta_cuenta_bancaria.'</b></p>';
+							
+					}else{
+						$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:left; font-size: 15px;">Cuenta Corriente No: <b>'.$_numero_cuenta_cuenta_bancaria.'</b></p>';
+					}
+				
+				}else{
+					$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:left; font-size: 15px;">Cuenta Ahorros No: ___________________<br>Cuenta Corriente No: __________________</p>';
 				}
 				
-				$this->report("SolicitudPrestamo",array( "resultSet"=>$html));
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">que mantengo en el Banco <b>'.$_nombre_bancos_datos_prestamo.'</b>, en adelante simplemente denominado "el
+						Banco", por aportaciones, cuotas de préstamos, intereses de mora, acreditaciones indebidas,
+						prestaciones, servicios recibidos, o por cualquier otra obligación que mantengo (a) con el Fondo
+						Complementario Previsional Cerrado de Cesantía de Servidores y Trabajadores Públicos de
+						Fuerzas Armadas "CAPREMCI", hasta su total cancelación, sea en calidad de afiliado, deudor y
+						o garante solidario.</p>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Los valores correspondientes a las obligaciones que mantengo (a) con el Fondo serán debitados
+						hasta la total cancelación de las mismas, y acreditados a la cuenta que el Fondo Complementario
+						Previsional Cerrado de Cesantía de Servidores y Trabajadores Públicos de Fuerzas Armadas
+						"CAPREMCI" designe.</p>';
+
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Me comprometo a mantener los fondos suficientes en mi (s) cuenta (s) referida (s), a fin de cubrir
+						los valores cuyos débitos autorizo a través de este instrumento, y autorizo a debitar de mi cuenta
+						la comisión o costo que el Banco <b>'.$_nombre_bancos_datos_prestamo.'</b> estipule en sus tarifarios
+						vigentes por efecto de la prestación de servicio de intermediación de cobranza, así como también
+						el valor resultante por cualquier modificación que a futuro se estableciere a dicho costo y que se
+						incluya en el respectivo tarifario, valores que me obligo a pagar al Banco y autorizo debitar de mi
+						cuenta corriente o de ahorros antes referida, durante todo el tiempo que subsista la prestación
+						del mencionado servicio, y asumir cualquier tipo de impuesto que secausare.
+						Cualquier instrucción tendiente a revocar esta autorización de débito, me obligo a presentarla al
+						Fondo Complementario Previsional Cerrado de Cesantía de Servidores y Trabajadores Públicos
+						de Fuerzas Armadas "CAPREMCI" con al menos 30 días calendario de anticipación, y autorizo a
+						este para que lo trámite ante el Banco, siempre y cuando me encuentre al día en mis obligaciones
+						para con el Fondo.</p>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">De igual manera dejo constancia que este procedimiento no constituye embargo ni retención
+						arbitraria alguna, por obedecer a mi expreso consentimiento para el fiel cumplimiento de mis
+						obligaciones con el Fondo.</p>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Eximo al Banco de toda responsabilidad por los pagos que efectúe al Fondo Complementario
+						Previsional Cerrado de Cesantía de Servidores y Trabajadores Públicos de Fuerzas Armadas
+						"CAPREMCI" en virtud de la presente Autorización de Débito, por lo que renuncio a presentar,
+						por este concepto, cualquier acción legal, jurídica o extrajudicial en contra del Banco.</p>';
+				
+				
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">En <b>'.$_nombre_sucursales.'</b>, '.$creado.'.</p><br><br>';
+				
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:left; font-size: 15px;">...................................<br>Firma afiliado</p>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Por el Fondo Complementario Previsional Cerrado de Cesantía de Servidores y Trabajadores
+						Públicos de Fuerzas Armadas "CAPREMCI".</p>';
+				
+				
+				
+				$html.='<div style="page-break-after:always;"></div>';
+				$html.='<div style="margin-left: 25px; margin-right: 25px; text-align:center;">'.$logo.'</div>';
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:center; font-size: 16px;"><b>CONTRATO DE ADHESIÓN AL FONDO COMPLEMENTARIO PREVISIONAL CERRADO DE CESANTÍA DE SERVIDORES Y TRABAJAORES PUBLICOS DE FUERZAS ARMADAS - CAPREMCI.<b></p><br>';
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;"><b>PRIMERA.- COMPARECIENTES.-</b> Comparecen a la suscripción del presente CONTRATO DE ADHESIÓN por una parte, el señor(a) <b>'.$_apellidos_solicitante_datos_personales.' '.$_nombres_solicitante_datos_personales.'</b>, por sus propios y personales derechos, en adelante se le denominará como el PARTÍCIPE, y por otra parte, el Fondo Complementario Previsional Cerrado de Cesantía de Servidores y Trabajadores Públicos de Fuerzas Armadas - "CAPREMCI" representado legalmente por su Representante Legal, en adelante se le denominará como el FONDO.</p>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;"><b>SEGUNDA.- ANTECEDENTES.-</b><br><b>2.1.</b> El Fondo es una entidad de derecho privado, sin fines de lucro y de beneficio social, regulado por la Ley de Seguridad Social y controlado por la Superintendencia de Bancos, administrado bajo el régimen de contribución definida con un sistema de financiamiento de capitalización, en el cual cada uno de los partícipes tiene su cuenta individual.<br><b>2.2.</b> El PARTÍCIPE es una persona natural, dependiente civil de una de las Entidades Patronales relacionadas con las Fuerzas Armadas del Ecuador, capaz de afiliarse y ser parte del FONDO.</p>';
+				
+				$_var_procentajes="";
+				if($_porcentaje_aportacion=='7%'){
+					
+					$_var_procentajes="<u><b>$_porcentaje_aportacion</b></u> o 9.1%";
+				}else{
+					$_var_procentajes="7% o <u><b>$_porcentaje_aportacion</b></u>";
+				}
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;"><b>TERCERA.- ADHESIÓN.-</b> Con los antecedentes expuestos, el PARTÍCIPE se adhiere voluntaria y expresamente al FONDO y por lo tanto, dispone expresa, voluntaria e irrevocablemente que el aporte personal para la constitución de su Cuenta Individual sea el '.$_var_procentajes.' de su Remuneración Mensual Unificada (RMU). El PARTÍCIPE autoriza e instruye al FONDO que este valor sea debitado mensual y prioritariamente del su rol de pagos, o de la cuenta de ahorros del Banco <b>'.$_nombre_bancos_datos_prestamo.'</b> N° <b>'.$_numero_cuenta_cuenta_bancaria.'</b> valor que debe ser recaudado y transferido, inmediatamente a la cuenta corriente del Banco General Rumiñahui Nº 8000589904 del FONDO.</p>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Por su parte, el FONDO acepta la adhesión del PARTÍCIPE y se compromete en otorgar los beneficios y servicios que éste oferta, en las mismas condiciones que el resto de PARTÍCIPES del FONDO, siempre y cuando el PARTÍCIPE se encuentre al día en el cumplimiento de sus obligaciones económicas para con el FONDO.</p>';
+				
+				 
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;"><b>CUARTA.- DERECHOS Y OBLIGACIONES DEL PARTÍCIPE.-</b> Se establecen en los artículos 8 y 9 del Estatuto Vigente.</p>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;"><b>QUINTA.- CONFORMACIÓN DE LA CUENTA INDIVIDUAL.-</b> Las cuentas de capitalización individual están conformadas por el aporte personal del PARTÍCIPE más sus rendimientos; el voluntario adicional, de ser el caso y sus rendimientos; y el aporte patronal y sus rendimientos alcanzados por las inversiones privativas y no privativas del FONDO en su conjunto.</p>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;"><b>SEXTA.- RECONOCIMIENTO DE RENDIMIENTOS.-</b> Los rendimientos que correspondan a la cuenta de la capitalización de los PARTÍCIPES serán registrados después del cierre del periodo fiscal.</p>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;"><b>SÉPTIMA.- RECONOCIMIENTO DE LA CESANTÍA.-</b> La CESANTÍA que el FONDO ofrece, será entregada a favor del PARTÍCIPE, cuando se cumplan una de las siguientes condiciones:<br><b>7.1</b> Haber cesado en sus funciones laborales definitivamente en las Entidades dependientes y adscritas de las Fuerzas Armadas a las que pertenezcan;<br><b>7.2</b> Fallecimiento;</p>';
+				
+				$html.='<div style="page-break-after:always;"></div>';
+				$html.='<div style="margin-left: 25px; margin-right: 25px; text-align:center;">'.$logo.'</div>';
+				
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;"><b>OCTAVA.- PROCEDIMIENTO PARA LA LIQUIDACIÓN DE LA CESANTÍA.-</b> Será aquel determinado en el Estatuto vigente y en los respectivos reglamentos del FONDO.</p>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;"><b>NOVENA.- INFORMACIÓN DE CUENTA INDIVIDUAL.-</b> Toda la información financiera relativa al Fondo y a la situación de cada cuenta individual se encuentra a disposición del afiliado en la página web institucional y excepcionalmente por escrito.</p>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;"><b>DÉCIMA.- DE LA DESAFILIACIÓN VOLUNTARIA.-</b> Es un derecho del PARTÍCIPE y se sujetará a los requisitos y condiciones previstos en el Estatuto vigente y en los respectivos reglamentos del FONDO y a las normas expedidas por la Junta de Política y Regulación Monetaria y Financiera.</p>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;"><b>DÉCIMA PRIMERA.- DECLARACIÓN DE CONOCIMIENTO Y ACEPTACIÓN DEL ESTATUTO DEL FONDO.-</b> El PARTÍCIPE declara que conoce, y entiende las disposiciones establecidas en el Estatuto y Reglamentos del FONDO, sus derechos y obligaciones, y por lo tanto las ACEPTA expresa e incondicionalmente.</p>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;"><b>DÉCIMA SEGUNDA.- DE LA SOLUCIÓN DE CONTROVERSIAS.-</b></p>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Las controversias que se generen entre los partícipes y la administración del Fondo, relacionadas a derechos y obligaciones, se someterán a la resolución de la Asamblea General de Representantes.</p>';
+				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">En la ciudad de <b>'.$_nombre_sucursales.'</b>, '.$creado.', las partes suscriben el presente Contrato por duplicado.</p>';
+				
+				
+				$html.= "<table style='margin-left: 15px; margin-right: 15px; width: 100%; margin-top:50px;'>";
+				$html.= '<tr>';
+				$html.='<th colspan="6" style="text-align:center; font-size: 15px; font-weight: normal;">________________________<br>Firma Participe<br>C.C. '.$_numero_cedula_datos_personales.'</th>';
+				$html.='<th colspan="6" style="text-align:center; font-size: 15px; font-weight: normal;"><br>________________________<br>Ing. Stephany Zurita Cedeño<br>Representante Legal<br>"Capremci"</th>';
+				$html.= '<tr>';
+				$html.='</table>';
+				
+				
+				
+				}
+				
+				$this->report("SolicitudPrestamo",array("resultSet"=>$html));
 				die();
 				
 			}
@@ -3372,7 +3566,8 @@ class SolicitudPrestamoController extends ControladorBase{
 							solicitud_prestamo.id_tipo_creditos,
 							solicitud_prestamo.id_sucursales,
 					        solicitud_prestamo.cedula_deudor_a_garantizar,
-				            solicitud_prestamo.nombre_deudor_a_garantizar";
+				            solicitud_prestamo.nombre_deudor_a_garantizar,
+							solicitud_prestamo.porcentaje_aportacion";
 						
 					$tablas="public.solicitud_prestamo";
 					$where="1=1  AND solicitud_prestamo.id_solicitud_prestamo='$_id_solicitud_prestamo'";
@@ -3555,11 +3750,12 @@ class SolicitudPrestamoController extends ControladorBase{
 				$_tipo_pago_cuenta_bancaria         			                   = $_POST["tipo_pago_cuenta_bancaria"];
 				$_nombre_deudor_a_garantizar                                       = $_POST["nombre_deudor_a_garantizar"];
 				$_cedula_deudor_a_garantizar                                       = $_POST["cedula_deudor_a_garantizar"];
-				
+				$_porcentaje_aportacion                                            = $_POST["porcentaje_aportacion"];
 				
 				if($_id_solicitud_prestamo > 0){
 						
-					$columnas="id_tipo_creditos='$_id_tipo_creditos',
+					$columnas="porcentaje_aportacion='$_porcentaje_aportacion',
+					id_tipo_creditos='$_id_tipo_creditos',
 					tipo_pago_cuenta_bancaria='$_tipo_pago_cuenta_bancaria',
 					tipo_participe_datos_prestamo='$_tipo_participe_datos_prestamo',
 					monto_datos_prestamo='$_monto_datos_prestamo',
@@ -3656,7 +3852,7 @@ class SolicitudPrestamoController extends ControladorBase{
 					$resultado2=$solicitud_prestamo->UpdateBy($columnas, $tablas, $where);
 						
 						
-					if($_id_estado_civil_datos_personales != 1){
+					if($_id_estado_civil_datos_personales != 1 && $_id_estado_civil_datos_personales != 5){
 							
 						$colval_afi = "numero_cedula_conyuge= '$_numero_cedula_conyuge',
 						apellidos_conyuge='$_apellidos_conyuge',
