@@ -1229,6 +1229,9 @@ class SolicitudPrestamoController extends ControladorBase{
 					}elseif($aprobado_oficial_credito==3){
 						$estado_tramite='Rechazado';
 						
+					}elseif($aprobado_oficial_credito==4){
+						$estado_tramite='Revisado';
+						
 					}
 					
 					$html.='<tr>';
@@ -1243,7 +1246,7 @@ class SolicitudPrestamoController extends ControladorBase{
 					$html.='<td style="font-size: 11px;">'.$res->tipo_pago_cuenta_bancaria.'</td>';
 					$html.='<td style="font-size: 11px;">'.date("d/m/Y", strtotime($res->fecha_presentacion)).'</td>';
 					$html.='<td style="font-size: 11px;">'.$estado_tramite.'</td>';
-					if($aprobado_oficial_credito==1){
+					if($aprobado_oficial_credito==1 || $aprobado_oficial_credito==4){
 						$html.='<td style="font-size: 11px;"></td>';
 						$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'<br>'.$res->correo_usuarios.'</td>';
 						$html.='<td style="font-size: 15px;"><span class="pull-right"><a href="index.php?controller=SolicitudPrestamo&action=index&id_solicitud_prestamo='.$res->id_solicitud_prestamo.'" class="btn btn-success" style="font-size:65%;"><i class="glyphicon glyphicon-edit"></i></a></span></td>';
@@ -1406,6 +1409,9 @@ class SolicitudPrestamoController extends ControladorBase{
 						$estado_tramite='Pendiente';
 					}elseif($aprobado_oficial_credito==3){
 						$estado_tramite='Rechazado';
+					}elseif($aprobado_oficial_credito==4){
+						$estado_tramite='Revisado';
+						
 					}
 						
 					$html.='<tr>';
@@ -1421,7 +1427,7 @@ class SolicitudPrestamoController extends ControladorBase{
 					$html.='<td style="font-size: 11px;">'.$res->nombre_deudor_a_garantizar.'</td>';
 					$html.='<td style="font-size: 11px;">'.$estado_tramite.'</td>';
 					
-					if($aprobado_oficial_credito==1){
+					if($aprobado_oficial_credito==1 || $aprobado_oficial_credito==4){
 						$html.='<td style="font-size: 11px;"></td>';
 						$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'<br>'.$res->correo_usuarios.'</td>';
 						$html.='<td style="font-size: 15px;"><span class="pull-right"><a href="index.php?controller=SolicitudPrestamo&action=index&id_solicitud_prestamo='.$res->id_solicitud_prestamo.'" class="btn btn-success" style="font-size:65%;"><i class="glyphicon glyphicon-edit"></i></a></span></td>';
@@ -3058,16 +3064,18 @@ class SolicitudPrestamoController extends ControladorBase{
 				      tipo_creditos.nombre_tipo_creditos,
 				      usuarios.nombre_usuarios,
 				      usuarios.correo_usuarios,
-				      solicitud_prestamo.id_usuarios_oficial_credito_aprueba";
+				      solicitud_prestamo.id_usuarios_oficial_credito_aprueba,
+				      estado_tramites.nombre_estado_tramites_solicitud_prestamos";
 	
 		$tablas   = "public.solicitud_prestamo,
 					  public.entidades,
 					  public.sexo,
 					  public.estado_civil,
 				      public.tipo_creditos,
-				public.usuarios";
+				      public.usuarios,
+				      public.estado_tramites";
 			
-		$where    = "solicitud_prestamo.id_usuarios_oficial_credito_aprueba=usuarios.id_usuarios AND tipo_creditos.id_tipo_creditos=solicitud_prestamo.id_tipo_creditos AND
+		$where    = "solicitud_prestamo.id_estado_tramites= estado_tramites.id_estado_tramites  AND  solicitud_prestamo.id_usuarios_oficial_credito_aprueba=usuarios.id_usuarios AND tipo_creditos.id_tipo_creditos=solicitud_prestamo.id_tipo_creditos AND
 		solicitud_prestamo.id_estado_civil_datos_personales = estado_civil.id_estado_civil AND
 		entidades.id_entidades = solicitud_prestamo.id_entidades AND
 		sexo.id_sexo = solicitud_prestamo.id_sexo_datos_personales AND solicitud_prestamo.id_usuarios_oficial_credito_aprueba='$id_usuarios' AND solicitud_prestamo.tipo_participe_datos_prestamo='Deudor'";
@@ -3087,7 +3095,7 @@ class SolicitudPrestamoController extends ControladorBase{
 			if(!empty($search)){
 			
 			
-				$where1=" AND (solicitud_prestamo.numero_cedula_datos_personales LIKE '".$search."%' OR solicitud_prestamo.apellidos_solicitante_datos_personales LIKE '".$search."%' OR solicitud_prestamo.nombres_solicitante_datos_personales LIKE '".$search."%' OR tipo_creditos.nombre_tipo_creditos LIKE '".$search."%')";
+				$where1=" AND (solicitud_prestamo.numero_cedula_datos_personales LIKE '".$search."%' OR solicitud_prestamo.apellidos_solicitante_datos_personales LIKE '".$search."%' OR solicitud_prestamo.nombres_solicitante_datos_personales LIKE '".$search."%' OR tipo_creditos.nombre_tipo_creditos LIKE '".$search."%'  OR  estado_tramites.nombre_estado_tramites_solicitud_prestamos LIKE '".$search."%' )";
 			
 				$where_to=$where.$where1;
 			}else{
@@ -3103,7 +3111,7 @@ class SolicitudPrestamoController extends ControladorBase{
 	
 			$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
 	
-			$per_page = 50; //la cantidad de registros que desea mostrar
+			$per_page = 10; //la cantidad de registros que desea mostrar
 			$adjacents  = 9; //brecha entre páginas después de varios adyacentes
 			$offset = ($page - 1) * $per_page;
 	
@@ -3122,7 +3130,7 @@ class SolicitudPrestamoController extends ControladorBase{
 				$html.='<input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>' ;
 				$html.='</div>';
 				$html.='<div class="col-lg-12 col-md-12 col-xs-12">';
-				$html.='<section style="height:250px; overflow-y:scroll;">';
+				$html.='<section style="height:350px; overflow-y:scroll;">';
 				$html.= "<table id='tabla_solicitud_prestamos_registrados' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
 				$html.= "<thead>";
 				$html.= "<tr>";
@@ -3160,6 +3168,9 @@ class SolicitudPrestamoController extends ControladorBase{
 					elseif($aprobado_oficial_credito==3){
 						$estado_tramite='Rechazado';
 						
+					}elseif($aprobado_oficial_credito==4){
+						$estado_tramite='Revisado';
+						
 					}
 						
 					$html.='<tr>';
@@ -3174,7 +3185,7 @@ class SolicitudPrestamoController extends ControladorBase{
 					$html.='<td style="font-size: 11px;">'.$res->tipo_pago_cuenta_bancaria.'</td>';
 					$html.='<td style="font-size: 11px;">'.date("d/m/Y", strtotime($res->fecha_presentacion)).'</td>';
 					$html.='<td style="font-size: 11px;">'.$estado_tramite.'</td>';
-					if($aprobado_oficial_credito==1){
+					if($aprobado_oficial_credito==1 || $aprobado_oficial_credito==4){
 					$html.='<td style="font-size: 11px;"></td>';
 					$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'</td>';
 						
@@ -3257,16 +3268,18 @@ class SolicitudPrestamoController extends ControladorBase{
 				      usuarios.correo_usuarios,
 				      solicitud_prestamo.id_usuarios_oficial_credito_aprueba,
 				      solicitud_prestamo.cedula_deudor_a_garantizar,
-				      solicitud_prestamo.nombre_deudor_a_garantizar";
+				      solicitud_prestamo.nombre_deudor_a_garantizar,
+				      estado_tramites.nombre_estado_tramites_solicitud_prestamos";
 	
 		$tablas   = "public.solicitud_prestamo,
 					  public.entidades,
 					  public.sexo,
 					  public.estado_civil,
 				      public.tipo_creditos,
-				public.usuarios";
+				      public.usuarios,
+				      public.estado_tramites";
 			
-		$where    = "solicitud_prestamo.id_usuarios_oficial_credito_aprueba=usuarios.id_usuarios AND tipo_creditos.id_tipo_creditos=solicitud_prestamo.id_tipo_creditos AND
+		$where    = "solicitud_prestamo.id_estado_tramites= estado_tramites.id_estado_tramites AND solicitud_prestamo.id_usuarios_oficial_credito_aprueba=usuarios.id_usuarios AND tipo_creditos.id_tipo_creditos=solicitud_prestamo.id_tipo_creditos AND
 		solicitud_prestamo.id_estado_civil_datos_personales = estado_civil.id_estado_civil AND
 		entidades.id_entidades = solicitud_prestamo.id_entidades AND
 		sexo.id_sexo = solicitud_prestamo.id_sexo_datos_personales AND solicitud_prestamo.id_usuarios_oficial_credito_aprueba='$id_usuarios' AND solicitud_prestamo.tipo_participe_datos_prestamo='Garante'";
@@ -3284,7 +3297,7 @@ class SolicitudPrestamoController extends ControladorBase{
 		{
 			if(!empty($search)){
 					
-				$where1=" AND (solicitud_prestamo.numero_cedula_datos_personales LIKE '".$search."%' OR solicitud_prestamo.apellidos_solicitante_datos_personales LIKE '".$search."%' OR solicitud_prestamo.nombres_solicitante_datos_personales LIKE '".$search."%' OR tipo_creditos.nombre_tipo_creditos LIKE '".$search."%' OR solicitud_prestamo.cedula_deudor_a_garantizar LIKE '".$search."%')";
+				$where1=" AND (solicitud_prestamo.numero_cedula_datos_personales LIKE '".$search."%' OR solicitud_prestamo.apellidos_solicitante_datos_personales LIKE '".$search."%' OR solicitud_prestamo.nombres_solicitante_datos_personales LIKE '".$search."%' OR tipo_creditos.nombre_tipo_creditos LIKE '".$search."%' OR solicitud_prestamo.cedula_deudor_a_garantizar LIKE '".$search."%'  OR  estado_tramites.nombre_estado_tramites_solicitud_prestamos LIKE '".$search."%')";
 					
 				$where_to=$where.$where1;
 			}else{
@@ -3298,7 +3311,7 @@ class SolicitudPrestamoController extends ControladorBase{
 	
 			$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
 	
-			$per_page = 50; //la cantidad de registros que desea mostrar
+			$per_page = 10; //la cantidad de registros que desea mostrar
 			$adjacents  = 9; //brecha entre páginas después de varios adyacentes
 			$offset = ($page - 1) * $per_page;
 			$limit = " LIMIT   '$per_page' OFFSET '$offset'";
@@ -3313,7 +3326,7 @@ class SolicitudPrestamoController extends ControladorBase{
 				$html.='<input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>' ;
 				$html.='</div>';
 				$html.='<div class="col-lg-12 col-md-12 col-xs-12">';
-				$html.='<section style="height:250px; overflow-y:scroll;">';
+				$html.='<section style="height:350px; overflow-y:scroll;">';
 				$html.= "<table id='tabla_solicitud_prestamos_registrados' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
 				$html.= "<thead>";
 				$html.= "<tr>";
@@ -3348,6 +3361,9 @@ class SolicitudPrestamoController extends ControladorBase{
 					}
 					elseif($aprobado_oficial_credito==3){
 						$estado_tramite='Rechazado';
+					}elseif($aprobado_oficial_credito==4){
+						$estado_tramite='Revisado';
+						
 					}
 	
 					$html.='<tr>';
@@ -3362,7 +3378,7 @@ class SolicitudPrestamoController extends ControladorBase{
 					$html.='<td style="font-size: 11px;">'.$res->cedula_deudor_a_garantizar.'</td>';
 					$html.='<td style="font-size: 11px;">'.$res->nombre_deudor_a_garantizar.'</td>';
 					$html.='<td style="font-size: 11px;">'.$estado_tramite.'</td>';
-					if($aprobado_oficial_credito==1){
+					if($aprobado_oficial_credito==1 || $aprobado_oficial_credito==4){
 						$html.='<td style="font-size: 11px;"></td>';
 						$html.='<td style="font-size: 11px;">'.$res->nombre_usuarios.'</td>';
 	
@@ -3466,6 +3482,13 @@ class SolicitudPrestamoController extends ControladorBase{
 						
 					$_id_solicitud_prestamo= $_GET["id_solicitud_prestamo"];
 						
+						
+						$colval_afi = "id_estado_tramites=4";
+						$tabla_afi = "solicitud_prestamo";
+						$where_afi = "id_solicitud_prestamo = '$_id_solicitud_prestamo'";
+						$resultado1=$solicitud_prestamo->UpdateBy($colval_afi, $tabla_afi, $where_afi);
+					
+					
 					$columnas="solicitud_prestamo.id_solicitud_prestamo,
 							  solicitud_prestamo.tipo_participe_datos_prestamo,
 							  solicitud_prestamo.monto_datos_prestamo,
@@ -4016,16 +4039,18 @@ class SolicitudPrestamoController extends ControladorBase{
 				      tipo_creditos.nombre_tipo_creditos,
 				      usuarios.nombre_usuarios,
 				      usuarios.correo_usuarios,
-				      solicitud_prestamo.id_usuarios_oficial_credito_aprueba";
+				      solicitud_prestamo.id_usuarios_oficial_credito_aprueba,
+				      estado_tramites.nombre_estado_tramites_solicitud_prestamos";
 	
 		$tablas   = "public.solicitud_prestamo,
 					  public.entidades,
 					  public.sexo,
 					  public.estado_civil,
 				      public.tipo_creditos,
-				public.usuarios";
+				public.usuarios,
+				      public.estado_tramites";
 			
-		$where    = "solicitud_prestamo.id_usuarios_oficial_credito_aprueba=usuarios.id_usuarios AND tipo_creditos.id_tipo_creditos=solicitud_prestamo.id_tipo_creditos AND
+		$where    = "solicitud_prestamo.id_estado_tramites= estado_tramites.id_estado_tramites AND solicitud_prestamo.id_usuarios_oficial_credito_aprueba=usuarios.id_usuarios AND tipo_creditos.id_tipo_creditos=solicitud_prestamo.id_tipo_creditos AND
 		solicitud_prestamo.id_estado_civil_datos_personales = estado_civil.id_estado_civil AND
 		entidades.id_entidades = solicitud_prestamo.id_entidades AND
 		sexo.id_sexo = solicitud_prestamo.id_sexo_datos_personales AND solicitud_prestamo.tipo_participe_datos_prestamo='Deudor'";
@@ -4045,7 +4070,7 @@ class SolicitudPrestamoController extends ControladorBase{
 			if(!empty($search)){
 					
 					
-				$where1=" AND (solicitud_prestamo.numero_cedula_datos_personales LIKE '".$search."%' OR solicitud_prestamo.apellidos_solicitante_datos_personales LIKE '".$search."%' OR solicitud_prestamo.nombres_solicitante_datos_personales LIKE '".$search."%' OR tipo_creditos.nombre_tipo_creditos LIKE '".$search."%'  OR usuarios.nombre_usuarios LIKE '".$search."%')";
+				$where1=" AND (solicitud_prestamo.numero_cedula_datos_personales LIKE '".$search."%' OR solicitud_prestamo.apellidos_solicitante_datos_personales LIKE '".$search."%' OR solicitud_prestamo.nombres_solicitante_datos_personales LIKE '".$search."%' OR tipo_creditos.nombre_tipo_creditos LIKE '".$search."%'  OR usuarios.nombre_usuarios LIKE '".$search."%' OR  estado_tramites.nombre_estado_tramites_solicitud_prestamos LIKE '".$search."%')";
 					
 				$where_to=$where.$where1;
 			}else{
@@ -4061,7 +4086,7 @@ class SolicitudPrestamoController extends ControladorBase{
 	
 			$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
 	
-			$per_page = 50; //la cantidad de registros que desea mostrar
+			$per_page = 10; //la cantidad de registros que desea mostrar
 			$adjacents  = 9; //brecha entre páginas después de varios adyacentes
 			$offset = ($page - 1) * $per_page;
 	
@@ -4079,7 +4104,7 @@ class SolicitudPrestamoController extends ControladorBase{
 				$html.='<input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>' ;
 				$html.='</div>';
 				$html.='<div class="col-lg-12 col-md-12 col-xs-12">';
-				$html.='<section style="height:250px; overflow-y:scroll;">';
+				$html.='<section style="height:350px; overflow-y:scroll;">';
 				$html.= "<table id='tabla_solicitud_prestamos_registrados' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
 				$html.= "<thead>";
 				$html.= "<tr>";
@@ -4116,6 +4141,9 @@ class SolicitudPrestamoController extends ControladorBase{
 					elseif($aprobado_oficial_credito==3){
 						$estado_tramite='Rechazado';
 	
+					}elseif($aprobado_oficial_credito==4){
+						$estado_tramite='Revisado';
+						
 					}
 	
 					$html.='<tr>';
@@ -4206,16 +4234,18 @@ class SolicitudPrestamoController extends ControladorBase{
 				      usuarios.correo_usuarios,
 				      solicitud_prestamo.id_usuarios_oficial_credito_aprueba,
 				      solicitud_prestamo.cedula_deudor_a_garantizar,
-				      solicitud_prestamo.nombre_deudor_a_garantizar";
+				      solicitud_prestamo.nombre_deudor_a_garantizar,
+				      estado_tramites.nombre_estado_tramites_solicitud_prestamos";
 	
 		$tablas   = "public.solicitud_prestamo,
 					  public.entidades,
 					  public.sexo,
 					  public.estado_civil,
 				      public.tipo_creditos,
-				public.usuarios";
+				public.usuarios,
+				      public.estado_tramites";
 			
-		$where    = "solicitud_prestamo.id_usuarios_oficial_credito_aprueba=usuarios.id_usuarios AND tipo_creditos.id_tipo_creditos=solicitud_prestamo.id_tipo_creditos AND
+		$where    = "solicitud_prestamo.id_estado_tramites= estado_tramites.id_estado_tramites AND solicitud_prestamo.id_usuarios_oficial_credito_aprueba=usuarios.id_usuarios AND tipo_creditos.id_tipo_creditos=solicitud_prestamo.id_tipo_creditos AND
 		solicitud_prestamo.id_estado_civil_datos_personales = estado_civil.id_estado_civil AND
 		entidades.id_entidades = solicitud_prestamo.id_entidades AND
 		sexo.id_sexo = solicitud_prestamo.id_sexo_datos_personales  AND solicitud_prestamo.tipo_participe_datos_prestamo='Garante'";
@@ -4233,7 +4263,7 @@ class SolicitudPrestamoController extends ControladorBase{
 		{
 			if(!empty($search)){
 					
-				$where1=" AND (solicitud_prestamo.numero_cedula_datos_personales LIKE '".$search."%' OR solicitud_prestamo.apellidos_solicitante_datos_personales LIKE '".$search."%' OR solicitud_prestamo.nombres_solicitante_datos_personales LIKE '".$search."%' OR tipo_creditos.nombre_tipo_creditos LIKE '".$search."%' OR solicitud_prestamo.cedula_deudor_a_garantizar LIKE '".$search."%'  OR usuarios.nombre_usuarios LIKE '".$search."%')";
+				$where1=" AND (solicitud_prestamo.numero_cedula_datos_personales LIKE '".$search."%' OR solicitud_prestamo.apellidos_solicitante_datos_personales LIKE '".$search."%' OR solicitud_prestamo.nombres_solicitante_datos_personales LIKE '".$search."%' OR tipo_creditos.nombre_tipo_creditos LIKE '".$search."%' OR solicitud_prestamo.cedula_deudor_a_garantizar LIKE '".$search."%'  OR usuarios.nombre_usuarios LIKE '".$search."%' OR  estado_tramites.nombre_estado_tramites_solicitud_prestamos LIKE '".$search."%')";
 					
 				$where_to=$where.$where1;
 			}else{
@@ -4247,7 +4277,7 @@ class SolicitudPrestamoController extends ControladorBase{
 	
 			$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
 	
-			$per_page = 50; //la cantidad de registros que desea mostrar
+			$per_page = 10; //la cantidad de registros que desea mostrar
 			$adjacents  = 9; //brecha entre páginas después de varios adyacentes
 			$offset = ($page - 1) * $per_page;
 			$limit = " LIMIT   '$per_page' OFFSET '$offset'";
@@ -4262,7 +4292,7 @@ class SolicitudPrestamoController extends ControladorBase{
 				$html.='<input type="hidden" value="'.$cantidadResult.'" id="total_query" name="total_query"/>' ;
 				$html.='</div>';
 				$html.='<div class="col-lg-12 col-md-12 col-xs-12">';
-				$html.='<section style="height:250px; overflow-y:scroll;">';
+				$html.='<section style="height:350px; overflow-y:scroll;">';
 				$html.= "<table id='tabla_solicitud_prestamos_registrados' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
 				$html.= "<thead>";
 				$html.= "<tr>";
@@ -4297,6 +4327,9 @@ class SolicitudPrestamoController extends ControladorBase{
 					}
 					elseif($aprobado_oficial_credito==3){
 						$estado_tramite='Rechazado';
+					}elseif($aprobado_oficial_credito==4){
+						$estado_tramite='Revisado';
+						
 					}
 	
 					$html.='<tr>';
