@@ -2760,10 +2760,10 @@
                     		    <div class="form-group">
                                                       <label for="tipo_participe_datos_prestamo" class="control-label">Tipo Participe:</label>
                                                       <input type="hidden" class="form-control" id="id_solicitud_prestamo" name="id_solicitud_prestamo" value="<?php echo $resEdit->id_solicitud_prestamo; ?>">
-                                                      <select name="tipo_participe_datos_prestamo" id="tipo_participe_datos_prestamo"  class="form-control" >
-                                                      <option value="0" selected="selected">--Seleccione--</option>
-                        							  <option value="Deudor"  <?php if($resEdit->tipo_participe_datos_prestamo == 'Deudor'){echo ' selected="selected" ' ;}else{} ?>>Deudor</option>
-                        							  <option value="Garante" <?php if($resEdit->tipo_participe_datos_prestamo == 'Garante'){echo ' selected="selected" ' ;}else{} ?>>Garante</option>
+                                                      <select name="tipo_participe_datos_prestamo" id="tipo_participe_datos_prestamo"  class="form-control" disabled>
+                                                      <?php foreach($resultTipoParticipe as $val=>$desc) {?>
+					                                         <option value="<?php echo $val ?>" <?php if ($val == $resEdit->tipo_participe_datos_prestamo )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
+					                                  <?php } ?>
                         							  </select> 
                                                       <div id="mensaje_tipo_participe_datos_prestamo" class="errores"></div>
                                 </div>
@@ -3898,9 +3898,9 @@
                                                       <label for="tipo_participe_datos_prestamo" class="control-label">Tipo Participe:</label>
                                                       <input type="hidden" class="form-control" id="id_solicitud_prestamo" name="id_solicitud_prestamo" value="0">
                                                       <select name="tipo_participe_datos_prestamo" id="tipo_participe_datos_prestamo"  class="form-control" >
-                                                      <option value="0" selected="selected">--Seleccione--</option>
-                        							  <option value="Deudor">Deudor</option>
-                        							  <option value="Garante">Garante</option>
+                                                      <?php foreach($resultTipoParticipe as $val=>$desc) {?>
+					                                         <option value="<?php echo $val ?>" <?php //if ($resRol->id_rol == $resEdit->id_rol )  echo  ' selected="selected" '  ;  ?> ><?php echo $desc ?> </option>
+					                                  <?php } ?>
                         							  </select> 
                                                       <div id="mensaje_tipo_participe_datos_prestamo" class="errores"></div>
                                 </div>

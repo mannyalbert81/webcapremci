@@ -49,7 +49,7 @@ class SolicitudPrestamoController extends ControladorBase{
 			$sucursales = new SucursalesModel();
 			$resultSucursales= $sucursales->getAll("nombre_sucursales");
 			
-			
+			$resultTipoParticipe=array('0'=>'--Seleccione--','Deudor'=>'Deudor', 'Garante'=>'Garante');
 			
 			$nombre_controladores = "SolicitudPrestamo";
 			$id_rol= $_SESSION['id_rol'];
@@ -184,8 +184,8 @@ class SolicitudPrestamoController extends ControladorBase{
 							"resultSexo"=>$resultSexo, "resultEstado_civil"=>$resultEstado_civil, "resultTipo_sangre"=>$resultTipo_sangre, "resultEstado"=>$resultEstado, "resultEntidades"=>$resultEntidades,
 							"resultProvincias"=>$resultProvincias, "resultBancos"=>$resultBancos,
 							"resultParroquias"=>$resultParroquias, "resultCantones"=>$resultCantones,
-							"resultEdit"=>$resultEdit, "resultTipoCredito"=>$resultTipoCredito, "resultSucursales"=>$resultSucursales
-								
+							"resultEdit"=>$resultEdit, "resultTipoCredito"=>$resultTipoCredito, "resultSucursales"=>$resultSucursales,
+							"resultTipoParticipe"=>$resultTipoParticipe	
 					));
 					
 					die();
@@ -193,48 +193,94 @@ class SolicitudPrestamoController extends ControladorBase{
 				}
 				
 				
-				$_id_usuarios= $_SESSION["id_usuarios"];
-				
-				$result=$solicitud_prestamo->getBy("id_usuarios_registra='$_id_usuarios'");
 				
 				
-				if(!empty($result)){
-					$_id_estado_tramites=$result[0]->id_estado_tramites;
-				
+				if(isset($_GET["solicitud"])){
 					
-					if($_id_estado_tramites==1){
+					$_tipo_solicitud_prestamo= $_GET["solicitud"];
+					
+					
+					if($_tipo_solicitud_prestamo=='d'){
 						
-						
-						$error="Estimado participe usted ya cuenta con una solicitud de préstamo generada en estado pendiente.<br>Pongase en contacto con uno de nuestros oficiales de crédito para anular o aprobar la solicitud anterior.";
-						
-						$this->view("Error",array(
-								"error"=>$error
-						
-						));
-						die();
-						
-					}else{
+						$resultTipoParticipe=array('0'=>'--Seleccione--','Deudor'=>'Deudor');
 						
 						$this->view("SolicitudPrestamo",array(
 								"resultSexo"=>$resultSexo, "resultEstado_civil"=>$resultEstado_civil, "resultTipo_sangre"=>$resultTipo_sangre, "resultEstado"=>$resultEstado, "resultEntidades"=>$resultEntidades,
 								"resultProvincias"=>$resultProvincias, "resultBancos"=>$resultBancos,
 								"resultParroquias"=>$resultParroquias, "resultCantones"=>$resultCantones,
-								"resultEdit"=>$resultEdit, "resultTipoCredito"=>$resultTipoCredito, "resultSucursales"=>$resultSucursales
+								"resultEdit"=>$resultEdit, "resultTipoCredito"=>$resultTipoCredito, "resultSucursales"=>$resultSucursales,
+								"resultTipoParticipe"=>$resultTipoParticipe
+						));
+						
+						die();
+						
+					}else{
+						
+						
+						$resultTipoParticipe=array('0'=>'--Seleccione--','Garante'=>'Garante');
+						
+						$this->view("SolicitudPrestamo",array(
+								"resultSexo"=>$resultSexo, "resultEstado_civil"=>$resultEstado_civil, "resultTipo_sangre"=>$resultTipo_sangre, "resultEstado"=>$resultEstado, "resultEntidades"=>$resultEntidades,
+								"resultProvincias"=>$resultProvincias, "resultBancos"=>$resultBancos,
+								"resultParroquias"=>$resultParroquias, "resultCantones"=>$resultCantones,
+								"resultEdit"=>$resultEdit, "resultTipoCredito"=>$resultTipoCredito, "resultSucursales"=>$resultSucursales,
+								"resultTipoParticipe"=>$resultTipoParticipe
 									
 						));
 						
 						die();
+						
 					}
+					
 					
 					
 				}
 				
-				$this->view("SolicitudPrestamo",array(
-						"resultSexo"=>$resultSexo, "resultEstado_civil"=>$resultEstado_civil, "resultTipo_sangre"=>$resultTipo_sangre, "resultEstado"=>$resultEstado, "resultEntidades"=>$resultEntidades,
-						"resultProvincias"=>$resultProvincias, "resultBancos"=>$resultBancos,
-						"resultParroquias"=>$resultParroquias, "resultCantones"=>$resultCantones,
-						"resultEdit"=>$resultEdit, "resultTipoCredito"=>$resultTipoCredito, "resultSucursales"=>$resultSucursales
-							
+				
+				$_id_usuarios= $_SESSION["id_usuarios"];
+				$error_deudor="Permitir";
+				$error_garante="Permitir";
+			
+				
+				$result=$solicitud_prestamo->getCondiciones("max(id_estado_tramites) as id_estado_tramites, id_usuarios_registra", "solicitud_prestamo",
+						"(id_estado_tramites=1 OR id_estado_tramites=4) AND tipo_participe_datos_prestamo='Deudor' AND  id_usuarios_registra='$_id_usuarios' GROUP BY id_usuarios_registra", "id_usuarios_registra");
+				
+				if(!empty($result)){
+					$_id_estado_tramites=$result[0]->id_estado_tramites;
+				
+					
+					if($_id_estado_tramites==1 || $_id_estado_tramites==4){
+						
+						//$error="Estimado participe usted ya cuenta con una solicitud de préstamo generada en estado pendiente.<br>Pongase en contacto con uno de nuestros oficiales de crédito para anular o aprobar la solicitud anterior.";
+						$error_deudor="NoPermitir";
+					}else{
+						$error_deudor="Permitir";
+					}
+					
+				}
+				
+				
+				$result1=$solicitud_prestamo->getCondiciones("max(id_estado_tramites) as id_estado_tramites, id_usuarios_registra", "solicitud_prestamo",
+						"(id_estado_tramites=1 OR id_estado_tramites=4) AND tipo_participe_datos_prestamo='Garante' AND  id_usuarios_registra='$_id_usuarios' GROUP BY id_usuarios_registra", "id_usuarios_registra");
+				
+				if(!empty($result1)){
+					$_id_estado_tramites1=$result1[0]->id_estado_tramites;
+				
+						
+					if($_id_estado_tramites1==1 || $_id_estado_tramites1==4){
+				
+						$error_garante="NoPermitir";
+					}else{
+						$error_garante="Permitir";
+					}
+						
+				}
+				
+				
+				
+				
+				$this->view("SolicitudPrestamoSeleccion",array(
+						"error_deudor"=>$error_deudor, "error_garante"=>$error_garante
 				));
 					
 				
@@ -284,7 +330,7 @@ class SolicitudPrestamoController extends ControladorBase{
 			$_total_ingresos_mensuales   = 0;
 			$_total_egresos_mensuales    = 0;
 			
-			if (isset($_POST["tipo_participe_datos_prestamo"]))
+			if (isset($_POST["numero_cedula_datos_personales"]))
 			{
 	
 				$_id_tipo_creditos                                           = $_POST["id_tipo_creditos"];
@@ -413,12 +459,11 @@ class SolicitudPrestamoController extends ControladorBase{
 							
 							
 						$resultDeudor=$solicitud_prestamo->getCondiciones("max(id_solicitud_prestamo) as id, id_usuarios_oficial_credito_aprueba", "solicitud_prestamo",
-								"id_estado_tramites=1 and numero_cedula_datos_personales ='$_cedula_deudor_a_garantizar' AND tipo_participe_datos_prestamo='Deudor' GROUP BY id_usuarios_oficial_credito_aprueba", "id_usuarios_oficial_credito_aprueba");
+								"(id_estado_tramites=1 OR id_estado_tramites=4) and numero_cedula_datos_personales ='$_cedula_deudor_a_garantizar' AND tipo_participe_datos_prestamo='Deudor' GROUP BY id_usuarios_oficial_credito_aprueba", "id_usuarios_oficial_credito_aprueba");
 						$id_oficial_credito=$resultDeudor[0]->id_usuarios_oficial_credito_aprueba;
 					
 						$columnas="id_tipo_creditos='$_id_tipo_creditos',
 						tipo_pago_cuenta_bancaria='$_tipo_pago_cuenta_bancaria',
-						tipo_participe_datos_prestamo='$_tipo_participe_datos_prestamo',
 						monto_datos_prestamo='$_monto_datos_prestamo',
 						plazo_datos_prestamo='$_plazo_datos_prestamo',
 						destino_dinero_datos_prestamo='$_destino_dinero_datos_prestamo',
@@ -571,7 +616,6 @@ class SolicitudPrestamoController extends ControladorBase{
 
 						$columnas="id_tipo_creditos='$_id_tipo_creditos',
 						tipo_pago_cuenta_bancaria='$_tipo_pago_cuenta_bancaria',
-						tipo_participe_datos_prestamo='$_tipo_participe_datos_prestamo',
 						monto_datos_prestamo='$_monto_datos_prestamo',
 						plazo_datos_prestamo='$_plazo_datos_prestamo',
 						destino_dinero_datos_prestamo='$_destino_dinero_datos_prestamo',
@@ -733,11 +777,13 @@ class SolicitudPrestamoController extends ControladorBase{
 				if($_tipo_participe_datos_prestamo=='Garante'){
 					
 					
-					
 				$resultDeudor=$solicitud_prestamo->getCondiciones("max(id_solicitud_prestamo) as id, id_usuarios_oficial_credito_aprueba", "solicitud_prestamo", 
-			    "id_estado_tramites=1 and numero_cedula_datos_personales ='$_cedula_deudor_a_garantizar' AND tipo_participe_datos_prestamo='Deudor' GROUP BY id_usuarios_oficial_credito_aprueba", "id_usuarios_oficial_credito_aprueba");
+			    "(id_estado_tramites=1 OR id_estado_tramites=4) and numero_cedula_datos_personales ='$_cedula_deudor_a_garantizar' AND tipo_participe_datos_prestamo='Deudor' GROUP BY id_usuarios_oficial_credito_aprueba", "id_usuarios_oficial_credito_aprueba");
 				$id_oficial_credito=$resultDeudor[0]->id_usuarios_oficial_credito_aprueba;
-					
+				
+				
+				$resultGarante=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_oficial_credito'");
+				$_id_sucursales=$resultGarante[0]->id_sucursales;
 				
 				}else{
 					
@@ -746,7 +792,7 @@ class SolicitudPrestamoController extends ControladorBase{
 						$resultQuito=$solicitud_prestamo->getCondiciones("id_usuarios", "usuarios", "id_rol=42 AND id_departamentos=18 AND ciudad_trabajo='Quito'", "id_usuarios");
 					
 						if(!empty($resultQuito)){
-							$i==0;
+							$i=0;
 							foreach ($resultQuito as $res){
 								$i++;
 									
@@ -793,7 +839,7 @@ class SolicitudPrestamoController extends ControladorBase{
 						$resultGuayaquil=$solicitud_prestamo->getCondiciones("id_usuarios", "usuarios", "id_rol=42 AND id_departamentos=18 AND ciudad_trabajo='Guayaquil'", "id_usuarios");
 					
 						if(!empty($resultGuayaquil)){
-							$i==0;
+							$i=0;
 							foreach ($resultGuayaquil as $res){
 								$i++;
 					
@@ -945,7 +991,7 @@ class SolicitudPrestamoController extends ControladorBase{
 					$resultado=$solicitud_prestamo->Insert();
 					
 					if($resultado){
-					die("entro");
+					
 					$consecutivos->UpdateBy("identificador_consecutivos = identificador_consecutivos+1", "consecutivos", "nombre_consecutivos = 'SOLICITUD_PRESTAMOS'");
 					}
 					
@@ -2982,6 +3028,9 @@ class SolicitudPrestamoController extends ControladorBase{
 						$where_afi = "id_solicitud_prestamo = '$_id_solicitud_prestamo'";
 						$resultado1=$solicitud_prestamo->UpdateBy($colval_afi, $tabla_afi, $where_afi);
 						
+						
+						$this->redirect("SolicitudPrestamo", "index3");
+						
 					}
 					
 					
@@ -3001,6 +3050,8 @@ class SolicitudPrestamoController extends ControladorBase{
 						$where_afi = "id_solicitud_prestamo = '$_id_solicitud_prestamo'";
 						$resultado1=$solicitud_prestamo->UpdateBy($colval_afi, $tabla_afi, $where_afi);
 					
+						$this->redirect("SolicitudPrestamo", "index3");
+						
 					}
 				
 				$this->view("ConsultaSolicitudPrestamoAdmin",array(
@@ -3793,7 +3844,6 @@ class SolicitudPrestamoController extends ControladorBase{
 					$columnas="porcentaje_aportacion='$_porcentaje_aportacion',
 					id_tipo_creditos='$_id_tipo_creditos',
 					tipo_pago_cuenta_bancaria='$_tipo_pago_cuenta_bancaria',
-					tipo_participe_datos_prestamo='$_tipo_participe_datos_prestamo',
 					monto_datos_prestamo='$_monto_datos_prestamo',
 					plazo_datos_prestamo='$_plazo_datos_prestamo',
 					destino_dinero_datos_prestamo='$_destino_dinero_datos_prestamo',

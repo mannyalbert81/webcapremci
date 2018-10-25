@@ -2670,7 +2670,7 @@
                     		    <div class="form-group">
                                                       <label for="tipo_participe_datos_prestamo" class="control-label">Tipo Participe:</label>
                                                       <input type="hidden" class="form-control" id="id_solicitud_prestamo" name="id_solicitud_prestamo" value="<?php echo $resEdit->id_solicitud_prestamo; ?>">
-                                                      <select name="tipo_participe_datos_prestamo" id="tipo_participe_datos_prestamo"  class="form-control" >
+                                                      <select name="tipo_participe_datos_prestamo" id="tipo_participe_datos_prestamo"  class="form-control" disabled>
                                                       <option value="0" selected="selected">--Seleccione--</option>
                         							  <option value="Deudor"  <?php if($resEdit->tipo_participe_datos_prestamo == 'Deudor'){echo ' selected="selected" ' ;}else{} ?>>Deudor</option>
                         							  <option value="Garante" <?php if($resEdit->tipo_participe_datos_prestamo == 'Garante'){echo ' selected="selected" ' ;}else{} ?>>Garante</option>
