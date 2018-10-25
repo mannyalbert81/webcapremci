@@ -200,7 +200,6 @@
 	            	id_parroquias_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
 	            	
 	            	
-	            	
 	            }
 	            
 
@@ -378,21 +377,34 @@
 		     </script>
         
         
-        
-        <script>
-		  $(function () {
-		   
-		    
-		    $('#datemask2').inputmask('yyyy/mm/dd', { 'placeholder': 'yyyy/mm/dd' })
-		    //Money Euro
-		    $('[data-mask]').inputmask()
-		
-		    
-		  })
-		</script>
-		        
-		        
-		   
+      <script>
+		$(document).ready(function(){
+
+		    $fecha=$('#fecha_nacimiento_datos_personales');
+		    if ($fecha[0].type!="date"){
+		    	$fecha.attr('readonly','readonly');
+		    	$fecha.datepicker({
+		    		changeMonth: true,
+		    		changeYear: true,
+		    		dateFormat: "yy-mm-dd",
+		    		yearRange: "1944:2018"
+		    		});
+		    }
+
+		    $fecha=$('#fecha_nacimiento_conyuge');
+		    if ($fecha[0].type!="date"){
+		    $fecha.attr('readonly','readonly');
+		    $fecha.datepicker({
+	    		changeMonth: true,
+	    		changeYear: true,
+	    		dateFormat: "yy-mm-dd",
+	    		yearRange: "1900:2018"
+	    		});
+		    }
+
+		}); 
+
+	</script> 
 		
 		
 		<script type="text/javascript">

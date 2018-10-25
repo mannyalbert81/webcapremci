@@ -720,7 +720,7 @@ class SolicitudPrestamoController extends ControladorBase{
 					}
 					
 				}else{
-				
+				$_identificador_consecutivos=0;
 				$resultConsecutivos=$consecutivos->getBy("nombre_consecutivos='SOLICITUD_PRESTAMOS'");
 				$_identificador_consecutivos=$resultConsecutivos[0]->identificador_consecutivos;
 				
@@ -944,8 +944,12 @@ class SolicitudPrestamoController extends ControladorBase{
 					$solicitud_prestamo->setParametros($parametros);
 					$resultado=$solicitud_prestamo->Insert();
 					
-					
+					if($resultado){
+					die("entro");
 					$consecutivos->UpdateBy("identificador_consecutivos = identificador_consecutivos+1", "consecutivos", "nombre_consecutivos = 'SOLICITUD_PRESTAMOS'");
+					}
+					
+					
 					
 				    if($_id_estado_civil_datos_personales != 1 && $_id_estado_civil_datos_personales != 5){
 					
