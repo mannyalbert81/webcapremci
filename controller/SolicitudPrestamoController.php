@@ -2684,8 +2684,8 @@ class SolicitudPrestamoController extends ControladorBase{
 				$html.='<div style="page-break-after:always;"></div>';
 				
 				
-					
-				$html.='<p style="text-align:center; font-size: 16px;"><b>AUTORIZACIÓN DE DESCUENTO DE ROL DE PAGOS<b></p><br>';
+				$html.='<div style="margin-left: 25px; margin-right: 25px; text-align:center;">'.$logo.'</div>';
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:center; font-size: 16px;"><b>AUTORIZACIÓN DE DESCUENTO DE ROL DE PAGOS<b></p><br>';
 				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Yo, <b>'.$_apellidos_solicitante_datos_personales.' '.$_nombres_solicitante_datos_personales.'</b>, con cédula de ciudadanía No. <b>'.$_numero_cedula_datos_personales.'</b>, en mi calidad de Servidor
 				Público, Funcionario, Empleado, Trabajador u Otro, de Fuerzas Armadas en: Fuerza o Entidad Patronal: <b>'.$_nombre_entidades.'</b>.</p>';
 				
@@ -2720,9 +2720,9 @@ class SolicitudPrestamoController extends ControladorBase{
 				
 				
 				$html.='<div style="page-break-after:always;"></div>';
-				
-				$html.='<p style="text-align:center; font-size: 16px;"><b>AUTORIZACIÓN DE DÉBITOS AUTOMÁTICOS<b></p><br>';
-				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Señores: Fondo Complementario Previsional Cerrado de Cesantía de Servidores y Trabajadores Públicos de Fuerzas Armadas "CAPREMCI"</p>';
+				$html.='<div style="margin-left: 25px; margin-right: 25px; text-align:center;">'.$logo.'</div>';
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:center; font-size: 16px;"><b>AUTORIZACIÓN DE DÉBITOS AUTOMÁTICOS<b></p>';
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Señores: Fondo Complementario Previsional Cerrado de Cesantía de Servidores y Trabajadores Públicos de Fuerzas Armadas "CAPREMCI".</p>';
 				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Yo, <b>'.$_apellidos_solicitante_datos_personales.' '.$_nombres_solicitante_datos_personales.'</b>, con cédula de ciudadanía No. <b>'.$_numero_cedula_datos_personales.'</b>. AUTORIZO E INSTRUYO expresa, irrevocable e indefinidamente a ustedes a ordenar, en mi
 						nombre y representación, el (los) débito (s) de mi (s) cuenta (s):</p>';
 				
@@ -2777,16 +2777,12 @@ class SolicitudPrestamoController extends ControladorBase{
 						por este concepto, cualquier acción legal, jurídica o extrajudicial en contra del Banco.</p>';
 				
 				
-				
-				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">En <b>'.$_nombre_sucursales.'</b>, '.$creado.'.</p><br><br>';
-				
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">En <b>'.$_nombre_sucursales.'</b>, '.$creado.'.</p><br>';
 				
 				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:left; font-size: 15px;">...................................<br>Firma afiliado</p>';
 				
 				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Por el Fondo Complementario Previsional Cerrado de Cesantía de Servidores y Trabajadores
 						Públicos de Fuerzas Armadas "CAPREMCI".</p>';
-				
-				
 				
 				$html.='<div style="page-break-after:always;"></div>';
 				$html.='<div style="margin-left: 25px; margin-right: 25px; text-align:center;">'.$logo.'</div>';
