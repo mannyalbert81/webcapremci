@@ -790,6 +790,10 @@
 
 				  var cedula_deudor_a_garantizar                     = $("#cedula_deudor_a_garantizar").val(); 
 				  var nombre_deudor_a_garantizar                     = $("#nombre_deudor_a_garantizar").val(); 
+
+
+
+				  var contador=0;
 				  
 				  
 
@@ -1048,8 +1052,26 @@
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_apellidos_solicitante_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		    		contador=0;
+		    		numeroPalabras=0;
+		    		contador = apellidos_solicitante_datos_personales.split(" ");
+		    		numeroPalabras = contador.length;
+		    		
+					if(numeroPalabras==2){
+
+					$("#mensaje_apellidos_solicitante_datos_personales").fadeOut("slow"); //Muestra mensaje de error
 		            
+					}else{
+
+						$("#mensaje_apellidos_solicitante_datos_personales").text("Ingrese 2 Apellidos");
+			    		$("#mensaje_apellidos_solicitante_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+			           
+			            $("html, body").animate({ scrollTop: $(mensaje_apellidos_solicitante_datos_personales).offset().top }, tiempo);
+			            return false;
+					}
+		    		
+		    		
+ 
 				}
 				
 		    	if (nombres_solicitante_datos_personales == "" )
@@ -1063,8 +1085,27 @@
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_nombres_solicitante_datos_personales").fadeOut("slow"); //Muestra mensaje de error
-		            
+
+
+		    		contador=0;
+		    		numeroPalabras=0;
+		    		contador = nombres_solicitante_datos_personales.split(" ");
+		    		numeroPalabras = contador.length;
+		    		
+					if(numeroPalabras==2){
+
+						$("#mensaje_nombres_solicitante_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+			             
+					}else{
+
+						$("#mensaje_nombres_solicitante_datos_personales").text("Ingrese 2 Nombres");
+			    		$("#mensaje_nombres_solicitante_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+			            
+			            $("html, body").animate({ scrollTop: $(mensaje_nombres_solicitante_datos_personales).offset().top }, tiempo);
+			            return false;
+					}
+			    	
+		    		
 				}
 
 
@@ -1374,8 +1415,25 @@
 				    }
 			    	else 
 			    	{
-			    		$("#mensaje_nombre_propietario_vivienda").fadeOut("slow"); //Muestra mensaje de error
-			            
+
+			    		contador=0;
+			    		numeroPalabras=0;
+			    		contador = nombre_propietario_vivienda.split(" ");
+			    		numeroPalabras = contador.length;
+			    		
+						if(numeroPalabras==2 || numeroPalabras==4 || numeroPalabras==3){
+
+							$("#mensaje_nombre_propietario_vivienda").fadeOut("slow"); //Muestra mensaje de error
+				              
+						}else{
+
+							$("#mensaje_nombre_propietario_vivienda").text("Ingrese Nombres y Apellidos Propietario");
+				    		$("#mensaje_nombre_propietario_vivienda").fadeIn("slow"); //Muestra mensaje de error
+				            
+				            $("html, body").animate({ scrollTop: $(mensaje_nombre_propietario_vivienda).offset().top }, tiempo);
+				            return false;
+						}
+			    		
 					}
 
 
@@ -1465,13 +1523,34 @@
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_apellidos_referencia_personal").fadeOut("slow"); //Muestra mensaje de error
-		            
+
+
+		    		contador=0;
+		    		numeroPalabras=0;
+		    		contador = apellidos_referencia_personal.split(" ");
+		    		numeroPalabras = contador.length;
+		    		
+					if(numeroPalabras==2){
+
+						$("#mensaje_apellidos_referencia_personal").fadeOut("slow"); //Muestra mensaje de error
+				           
+			             
+					}else{
+
+						$("#mensaje_apellidos_referencia_personal").text("Ingrese 2 apellidos");
+			    		$("#mensaje_apellidos_referencia_personal").fadeIn("slow"); //Muestra mensaje de error
+			            
+			            $("html, body").animate({ scrollTop: $(mensaje_apellidos_referencia_personal).offset().top }, tiempo);
+			            return false;
+					}
+
+			    	
+		    		 
 				}
                 if (nombres_referencia_personal == "" )
 		    	{
 			    	
-		    		$("#mensaje_nombres_referencia_personal").text("Ingrese # nombres");
+		    		$("#mensaje_nombres_referencia_personal").text("Ingrese nombres");
 		    		$("#mensaje_nombres_referencia_personal").fadeIn("slow"); //Muestra mensaje de error
 		            
 		            $("html, body").animate({ scrollTop: $(mensaje_nombres_referencia_personal).offset().top }, tiempo);
@@ -1479,8 +1558,27 @@
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_nombres_referencia_personal").fadeOut("slow"); //Muestra mensaje de error
-		            
+
+
+		    		contador=0;
+		    		numeroPalabras=0;
+		    		contador = nombres_referencia_personal.split(" ");
+		    		numeroPalabras = contador.length;
+		    		
+					if(numeroPalabras==2){
+
+						$("#mensaje_nombres_referencia_personal").fadeOut("slow"); //Muestra mensaje de error
+				               
+			             
+					}else{
+						$("#mensaje_nombres_referencia_personal").text("Ingrese 2 nombres");
+			    		$("#mensaje_nombres_referencia_personal").fadeIn("slow"); //Muestra mensaje de error
+			            
+			            $("html, body").animate({ scrollTop: $(mensaje_nombres_referencia_personal).offset().top }, tiempo);
+			            return false;
+					}
+			    	
+		    		 
 				}
                 if (relacion_referencia_personal == 0 )
 		    	{
@@ -1524,8 +1622,26 @@
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_apellidos_referencia_familiar").fadeOut("slow"); //Muestra mensaje de error
-		            
+
+		    		contador=0;
+		    		numeroPalabras=0;
+		    		contador = apellidos_referencia_familiar.split(" ");
+		    		numeroPalabras = contador.length;
+		    		
+					if(numeroPalabras==2){
+
+						$("#mensaje_apellidos_referencia_familiar").fadeOut("slow"); //Muestra mensaje de error
+			                    
+			             
+					}else{
+						$("#mensaje_apellidos_referencia_familiar").text("Ingrese 2 apellidos");
+			    		$("#mensaje_apellidos_referencia_familiar").fadeIn("slow"); //Muestra mensaje de error
+			            
+			            $("html, body").animate({ scrollTop: $(mensaje_apellidos_referencia_familiar).offset().top }, tiempo);
+			            return false;
+					}
+			    	
+		    		
 				}
 				
                 if (nombres_referencia_familiar == "" )
@@ -1539,8 +1655,27 @@
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_nombres_referencia_familiar").fadeOut("slow"); //Muestra mensaje de error
-		            
+
+
+		    		contador=0;
+		    		numeroPalabras=0;
+		    		contador = nombres_referencia_familiar.split(" ");
+		    		numeroPalabras = contador.length;
+		    		
+					if(numeroPalabras==2){
+
+						$("#mensaje_nombres_referencia_familiar").fadeOut("slow"); //Muestra mensaje de error
+			                    
+			             
+					}else{
+						$("#mensaje_nombres_referencia_familiar").text("Ingrese 2 nombres");
+			    		$("#mensaje_nombres_referencia_familiar").fadeIn("slow"); //Muestra mensaje de error
+			            
+			            $("html, body").animate({ scrollTop: $(mensaje_nombres_referencia_familiar).offset().top }, tiempo);
+			            return false;
+					}
+					
+		    		
 				}
 				
                 if (parentesco_referencia_familiar == 0 )
@@ -2200,8 +2335,29 @@
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_apellidos_conyuge").fadeOut("slow"); //Muestra mensaje de error
-		            
+
+
+
+
+		    		contador=0;
+		    		numeroPalabras=0;
+		    		contador = apellidos_conyuge.split(" ");
+		    		numeroPalabras = contador.length;
+		    		
+					if(numeroPalabras==2){
+
+						$("#mensaje_apellidos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+			                     
+			             
+					}else{
+						$("#mensaje_apellidos_conyuge").text("Ingrese 2 apellidos");
+			    		$("#mensaje_apellidos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+			            
+			            $("html, body").animate({ scrollTop: $(mensaje_apellidos_conyuge).offset().top }, tiempo);
+			            return false;
+					}
+			    	
+		    		
 				}
                 if (nombres_conyuge == "" )
 		    	{
@@ -2214,8 +2370,28 @@
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_nombres_conyuge").fadeOut("slow"); //Muestra mensaje de error
-		            
+
+
+
+		    		contador=0;
+		    		numeroPalabras=0;
+		    		contador = nombres_conyuge.split(" ");
+		    		numeroPalabras = contador.length;
+		    		
+					if(numeroPalabras==2){
+
+						$("#mensaje_nombres_conyuge").fadeOut("slow"); //Muestra mensaje de error
+				                     
+			             
+					}else{
+						$("#mensaje_nombres_conyuge").text("Ingrese 2 nombres");
+			    		$("#mensaje_nombres_conyuge").fadeIn("slow"); //Muestra mensaje de error
+			            
+			            $("html, body").animate({ scrollTop: $(mensaje_nombres_conyuge).offset().top }, tiempo);
+			            return false;
+					}
+			    	
+		    		 
 				}
                 if (id_sexo_conyuge == 0 )
 		    	{
@@ -2895,7 +3071,7 @@
                     		    <div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="apellidos_solicitante_datos_personales" class="control-label">Apellidos Completos:</label>
-                                                      <input type="text" class="form-control" id="apellidos_solicitante_datos_personales" name="apellidos_solicitante_datos_personales" value="<?php echo $resEdit->apellidos_solicitante_datos_personales; ?>" placeholder="apellidos..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="apellidos_solicitante_datos_personales" name="apellidos_solicitante_datos_personales" value="<?php echo $resEdit->apellidos_solicitante_datos_personales; ?>" placeholder="apellidos..">
                                                       <div id="mensaje_apellidos_solicitante_datos_personales" class="errores"></div>
                                 </div>
                                 </div>
@@ -2903,7 +3079,7 @@
                                 <div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="nombres_solicitante_datos_personales" class="control-label">Nombres Completos:</label>
-                                                      <input type="text" class="form-control" id="nombres_solicitante_datos_personales" name="nombres_solicitante_datos_personales" value="<?php echo $resEdit->nombres_solicitante_datos_personales; ?>" placeholder="nombres..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="nombres_solicitante_datos_personales" name="nombres_solicitante_datos_personales" value="<?php echo $resEdit->nombres_solicitante_datos_personales; ?>" placeholder="nombres..">
                                                       <div id="mensaje_nombres_solicitante_datos_personales" class="errores"></div>
                                 </div>
                                 </div>
@@ -3217,7 +3393,7 @@
                                 <div class="col-lg-4 col-xs-12 col-md-4">
                     		    <div class="form-group">
                                                       <label for="nombre_propietario_vivienda" class="control-label">Nombre Propietario Vivienda:</label>
-                                                      <input type="text" class="form-control" id="nombre_propietario_vivienda" name="nombre_propietario_vivienda" value="<?php echo $resEdit->nombre_propietario_vivienda; ?>" placeholder="nombre propietario..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="nombre_propietario_vivienda" name="nombre_propietario_vivienda" value="<?php echo $resEdit->nombre_propietario_vivienda; ?>" placeholder="nombre propietario..">
                                                       <div id="mensaje_nombre_propietario_vivienda" class="errores"></div>
                                 </div>
                                 </div>
@@ -3315,7 +3491,7 @@
             					<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="apellidos_referencia_personal" class="control-label">Apellidos Completos:</label>
-                                                      <input type="text" class="form-control" id="apellidos_referencia_personal" name="apellidos_referencia_personal" value="<?php echo $resEdit->apellidos_referencia_personal; ?>" placeholder="apellidos..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="apellidos_referencia_personal" name="apellidos_referencia_personal" value="<?php echo $resEdit->apellidos_referencia_personal; ?>" placeholder="apellidos..">
                                                       <div id="mensaje_apellidos_referencia_personal" class="errores"></div>
                                 </div>
             					</div>  
@@ -3323,7 +3499,7 @@
             					<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="nombres_referencia_personal" class="control-label">Nombres Completos:</label>
-                                                      <input type="text" class="form-control" id="nombres_referencia_personal" name="nombres_referencia_personal" value="<?php echo $resEdit->nombres_referencia_personal; ?>" placeholder="nombres..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="nombres_referencia_personal" name="nombres_referencia_personal" value="<?php echo $resEdit->nombres_referencia_personal; ?>" placeholder="nombres..">
                                                       <div id="mensaje_nombres_referencia_personal" class="errores"></div>
                                 </div>
             					</div>  
@@ -3372,7 +3548,7 @@
              					<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="apellidos_referencia_familiar" class="control-label">Apellidos Completos:</label>
-                                                      <input type="text" class="form-control" id="apellidos_referencia_familiar" name="apellidos_referencia_familiar" value="<?php echo $resEdit->apellidos_referencia_familiar; ?>" placeholder="apellidos..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="apellidos_referencia_familiar" name="apellidos_referencia_familiar" value="<?php echo $resEdit->apellidos_referencia_familiar; ?>" placeholder="apellidos..">
                                                       <div id="mensaje_apellidos_referencia_familiar" class="errores"></div>
                                 </div>
             					</div>  
@@ -3380,7 +3556,7 @@
             					<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="nombres_referencia_familiar" class="control-label">Nombres Completos:</label>
-                                                      <input type="text" class="form-control" id="nombres_referencia_familiar" name="nombres_referencia_familiar" value="<?php echo $resEdit->nombres_referencia_familiar; ?>" placeholder="nombres..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="nombres_referencia_familiar" name="nombres_referencia_familiar" value="<?php echo $resEdit->nombres_referencia_familiar; ?>" placeholder="nombres..">
                                                       <div id="mensaje_nombres_referencia_familiar" class="errores"></div>
                                 </div>
             					</div>   
@@ -3520,7 +3696,7 @@
             					<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="cargo_actual_datos_laborales" class="control-label">Cargo Actual:</label>
-                                                      <input type="text" class="form-control" id="cargo_actual_datos_laborales" name="cargo_actual_datos_laborales" value="<?php echo $resEdit->cargo_actual_datos_laborales; ?>" placeholder="cargo actual..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="cargo_actual_datos_laborales" name="cargo_actual_datos_laborales" value="<?php echo $resEdit->cargo_actual_datos_laborales; ?>" placeholder="cargo actual..">
                                                       <div id="mensaje_cargo_actual_datos_laborales" class="errores"></div>
                                 </div>
             					</div>         			
@@ -3681,7 +3857,7 @@
             					<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="apellidos_conyuge" class="control-label">Apellidos Completos:</label>
-                                                      <input type="text" class="form-control" id="apellidos_conyuge" name="apellidos_conyuge" value="<?php echo $resEdit->apellidos_conyuge; ?>" placeholder="apellidos..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="apellidos_conyuge" name="apellidos_conyuge" value="<?php echo $resEdit->apellidos_conyuge; ?>" placeholder="apellidos..">
                                                       <div id="mensaje_apellidos_conyuge" class="errores"></div>
                                 </div>
             					</div>   
@@ -3689,7 +3865,7 @@
             					<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="nombres_conyuge" class="control-label">Nombres Completos:</label>
-                                                      <input type="text" class="form-control" id="nombres_conyuge" name="nombres_conyuge" value="<?php echo $resEdit->nombres_conyuge; ?>" placeholder="nombres..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="nombres_conyuge" name="nombres_conyuge" value="<?php echo $resEdit->nombres_conyuge; ?>" placeholder="nombres..">
                                                       <div id="mensaje_nombres_conyuge" class="errores"></div>
                                 </div>
             					</div>  
@@ -4034,7 +4210,7 @@
                     		    <div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="apellidos_solicitante_datos_personales" class="control-label">Apellidos Completos:</label>
-                                                      <input type="text" class="form-control" id="apellidos_solicitante_datos_personales" name="apellidos_solicitante_datos_personales" value="" placeholder="apellidos..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="apellidos_solicitante_datos_personales" name="apellidos_solicitante_datos_personales" value="" placeholder="apellidos..">
                                                       <div id="mensaje_apellidos_solicitante_datos_personales" class="errores"></div>
                                 </div>
                                 </div>
@@ -4042,7 +4218,7 @@
                                 <div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="nombres_solicitante_datos_personales" class="control-label">Nombres Completos:</label>
-                                                      <input type="text" class="form-control" id="nombres_solicitante_datos_personales" name="nombres_solicitante_datos_personales" value="" placeholder="nombres..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="nombres_solicitante_datos_personales" name="nombres_solicitante_datos_personales" value="" placeholder="nombres..">
                                                       <div id="mensaje_nombres_solicitante_datos_personales" class="errores"></div>
                                 </div>
                                 </div>
@@ -4354,7 +4530,7 @@
                                 <div class="col-lg-4 col-xs-12 col-md-4">
                     		    <div class="form-group">
                                                       <label for="nombre_propietario_vivienda" class="control-label">Nombre Propietario Vivienda:</label>
-                                                      <input type="text" class="form-control" id="nombre_propietario_vivienda" name="nombre_propietario_vivienda" value="" placeholder="nombre propietario..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="nombre_propietario_vivienda" name="nombre_propietario_vivienda" value="" placeholder="nombre propietario..">
                                                       <div id="mensaje_nombre_propietario_vivienda" class="errores"></div>
                                 </div>
                                 </div>
@@ -4453,7 +4629,7 @@
             					<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="apellidos_referencia_personal" class="control-label">Apellidos Completos:</label>
-                                                      <input type="text" class="form-control" id="apellidos_referencia_personal" name="apellidos_referencia_personal" value="" placeholder="apellidos..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="apellidos_referencia_personal" name="apellidos_referencia_personal" value="" placeholder="apellidos..">
                                                       <div id="mensaje_apellidos_referencia_personal" class="errores"></div>
                                 </div>
             					</div>  
@@ -4461,7 +4637,7 @@
             					<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="nombres_referencia_personal" class="control-label">Nombres Completos:</label>
-                                                      <input type="text" class="form-control" id="nombres_referencia_personal" name="nombres_referencia_personal" value="" placeholder="nombres..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="nombres_referencia_personal" name="nombres_referencia_personal" value="" placeholder="nombres..">
                                                       <div id="mensaje_nombres_referencia_personal" class="errores"></div>
                                 </div>
             					</div>  
@@ -4510,7 +4686,7 @@
              					<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="apellidos_referencia_familiar" class="control-label">Apellidos Completos:</label>
-                                                      <input type="text" class="form-control" id="apellidos_referencia_familiar" name="apellidos_referencia_familiar" value="" placeholder="apellidos..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="apellidos_referencia_familiar" name="apellidos_referencia_familiar" value="" placeholder="apellidos..">
                                                       <div id="mensaje_apellidos_referencia_familiar" class="errores"></div>
                                 </div>
             					</div>  
@@ -4518,7 +4694,7 @@
             					<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="nombres_referencia_familiar" class="control-label">Nombres Completos:</label>
-                                                      <input type="text" class="form-control" id="nombres_referencia_familiar" name="nombres_referencia_familiar" value="" placeholder="nombres..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="nombres_referencia_familiar" name="nombres_referencia_familiar" value="" placeholder="nombres..">
                                                       <div id="mensaje_nombres_referencia_familiar" class="errores"></div>
                                 </div>
             					</div>   
@@ -4658,7 +4834,7 @@
             					<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="cargo_actual_datos_laborales" class="control-label">Cargo Actual:</label>
-                                                      <input type="text" class="form-control" id="cargo_actual_datos_laborales" name="cargo_actual_datos_laborales" value="" placeholder="cargo actual..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="cargo_actual_datos_laborales" name="cargo_actual_datos_laborales" value="" placeholder="cargo actual..">
                                                       <div id="mensaje_cargo_actual_datos_laborales" class="errores"></div>
                                 </div>
             					</div>         			
@@ -4819,7 +4995,7 @@
             					<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="apellidos_conyuge" class="control-label">Apellidos Completos:</label>
-                                                      <input type="text" class="form-control" id="apellidos_conyuge" name="apellidos_conyuge" value="" placeholder="apellidos..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="apellidos_conyuge" name="apellidos_conyuge" value="" placeholder="apellidos..">
                                                       <div id="mensaje_apellidos_conyuge" class="errores"></div>
                                 </div>
             					</div>   
@@ -4827,7 +5003,7 @@
             					<div class="col-lg-3 col-xs-12 col-md-3">
                     		    <div class="form-group">
                                                       <label for="nombres_conyuge" class="control-label">Nombres Completos:</label>
-                                                      <input type="text" class="form-control" id="nombres_conyuge" name="nombres_conyuge" value="" placeholder="nombres..">
+                                                      <input style="text-transform: uppercase;" type="text" class="form-control" id="nombres_conyuge" name="nombres_conyuge" value="" placeholder="nombres..">
                                                       <div id="mensaje_nombres_conyuge" class="errores"></div>
                                 </div>
             					</div>  
