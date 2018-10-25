@@ -1689,6 +1689,20 @@ class SolicitudPrestamoController extends ControladorBase{
 					$_nombre_tipo_creditos                          =$resultSoli[0]->nombre_tipo_creditos;
 					$_tipo_pago_cuenta_bancaria                     =$resultSoli[0]->tipo_pago_cuenta_bancaria;
 					$_nombre_bancos_datos_prestamo       			=$resultSoli[0]->nombre_banco_cuenta_bancaria;
+					
+					$_abreviaciones_bancos="";
+					$bancos = new BancosModel();
+					$resultBank= $bancos->getBy("nombre_bancos='$_nombre_bancos_datos_prestamo'");
+					if(!empty($resultBank)){
+						$_abreviaciones_bancos       			=$resultBank[0]->abreviaciones_bancos;
+					}else{
+						$_abreviaciones_bancos="";
+					}
+					
+						
+					
+					
+					
 					$_tipo_cuenta_cuenta_bancaria       			=$resultSoli[0]->tipo_cuenta_cuenta_bancaria;
 					$_numero_cuenta_cuenta_bancaria       			=$resultSoli[0]->numero_cuenta_cuenta_bancaria;
 					$_numero_cedula_datos_personales       			=$resultSoli[0]->numero_cedula_datos_personales;
@@ -2741,7 +2755,7 @@ class SolicitudPrestamoController extends ControladorBase{
 				}
 				
 				
-				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">que mantengo en el Banco <b>'.$_nombre_bancos_datos_prestamo.'</b>, en adelante simplemente denominado "el
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">que mantengo en '.$_abreviaciones_bancos.' <b>'.$_nombre_bancos_datos_prestamo.'</b>, en adelante simplemente denominado "el
 						Banco", por aportaciones, cuotas de préstamos, intereses de mora, acreditaciones indebidas,
 						prestaciones, servicios recibidos, o por cualquier otra obligación que mantengo (a) con el Fondo
 						Complementario Previsional Cerrado de Cesantía de Servidores y Trabajadores Públicos de
@@ -2755,7 +2769,7 @@ class SolicitudPrestamoController extends ControladorBase{
 
 				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Me comprometo a mantener los fondos suficientes en mi (s) cuenta (s) referida (s), a fin de cubrir
 						los valores cuyos débitos autorizo a través de este instrumento, y autorizo a debitar de mi cuenta
-						la comisión o costo que el Banco <b>'.$_nombre_bancos_datos_prestamo.'</b> estipule en sus tarifarios
+						la comisión o costo que '.$_abreviaciones_bancos.' <b>'.$_nombre_bancos_datos_prestamo.'</b> estipule en sus tarifarios
 						vigentes por efecto de la prestación de servicio de intermediación de cobranza, así como también
 						el valor resultante por cualquier modificación que a futuro se estableciere a dicho costo y que se
 						incluya en el respectivo tarifario, valores que me obligo a pagar al Banco y autorizo debitar de mi
@@ -2799,7 +2813,7 @@ class SolicitudPrestamoController extends ControladorBase{
 					$_var_procentajes="7% o <u><b>$_porcentaje_aportacion</b></u>";
 				}
 				
-				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;"><b>TERCERA.- ADHESIÓN.-</b> Con los antecedentes expuestos, el PARTÍCIPE se adhiere voluntaria y expresamente al FONDO y por lo tanto, dispone expresa, voluntaria e irrevocablemente que el aporte personal para la constitución de su Cuenta Individual sea el '.$_var_procentajes.' de su Remuneración Mensual Unificada (RMU). El PARTÍCIPE autoriza e instruye al FONDO que este valor sea debitado mensual y prioritariamente del su rol de pagos, o de la cuenta de ahorros del Banco <b>'.$_nombre_bancos_datos_prestamo.'</b> N° <b>'.$_numero_cuenta_cuenta_bancaria.'</b> valor que debe ser recaudado y transferido, inmediatamente a la cuenta corriente del Banco General Rumiñahui Nº 8000589904 del FONDO.</p>';
+				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;"><b>TERCERA.- ADHESIÓN.-</b> Con los antecedentes expuestos, el PARTÍCIPE se adhiere voluntaria y expresamente al FONDO y por lo tanto, dispone expresa, voluntaria e irrevocablemente que el aporte personal para la constitución de su Cuenta Individual sea el '.$_var_procentajes.' de su Remuneración Mensual Unificada (RMU). El PARTÍCIPE autoriza e instruye al FONDO que este valor sea debitado mensual y prioritariamente de su rol de pagos, o de la cuenta de ahorros de '.$_abreviaciones_bancos.' <b>'.$_nombre_bancos_datos_prestamo.'</b> N° <b>'.$_numero_cuenta_cuenta_bancaria.'</b> valor que debe ser recaudado y transferido, inmediatamente a la cuenta corriente del Banco General Rumiñahui Nº 8000589904 del FONDO.</p>';
 				
 				$html.='<p style="margin-left: 25px; margin-right: 25px; text-align:justify; font-size: 15px;">Por su parte, el FONDO acepta la adhesión del PARTÍCIPE y se compromete en otorgar los beneficios y servicios que éste oferta, en las mismas condiciones que el resto de PARTÍCIPES del FONDO, siempre y cuando el PARTÍCIPE se encuentre al día en el cumplimiento de sus obligaciones económicas para con el FONDO.</p>';
 				
