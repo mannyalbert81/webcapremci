@@ -342,8 +342,8 @@ class SolicitudPrestamoController extends ControladorBase{
 				$_tipo_cuenta_cuenta_bancaria                                = $_POST["tipo_cuenta_cuenta_bancaria"];
 				$_numero_cuenta_cuenta_bancaria                              = $_POST["numero_cuenta_cuenta_bancaria"];
 				$_numero_cedula_datos_personales                             = $_POST["numero_cedula_datos_personales"];
-				$_apellidos_solicitante_datos_personales                     = $_POST["apellidos_solicitante_datos_personales"];
-				$_nombres_solicitante_datos_personales                       = $_POST["nombres_solicitante_datos_personales"];
+				$_apellidos_solicitante_datos_personales                     = strtoupper ($_POST["apellidos_solicitante_datos_personales"]);
+				$_nombres_solicitante_datos_personales                       = strtoupper ($_POST["nombres_solicitante_datos_personales"]);
 				$_correo_solicitante_datos_personales                        = $_POST["correo_solicitante_datos_personales"];
 				$_id_sexo_datos_personales                                   = $_POST["id_sexo_datos_personales"];
 				$_fecha_nacimiento_datos_personales                          = $_POST["fecha_nacimiento_datos_personales"];
@@ -363,7 +363,7 @@ class SolicitudPrestamoController extends ControladorBase{
 				$_tipo_vivienda                                              = $_POST["tipo_vivienda"];
 				$_vivienda_hipotecada_vivienda                               = $_POST["vivienda_hipotecada_vivienda"];
 				$_tiempo_residencia_vivienda                                 = $_POST["tiempo_residencia_vivienda"];
-				$_nombre_propietario_vivienda                                = $_POST["nombre_propietario_vivienda"];
+				$_nombre_propietario_vivienda                                = strtoupper ($_POST["nombre_propietario_vivienda"]);
 				$_celular_propietario_vivienda                               = $_POST["celular_propietario_vivienda"];
 				$_referencia_direccion_domicilio_vivienda                    = $_POST["referencia_direccion_domicilio_vivienda"];
 				$_numero_casa_solicitante                                    = $_POST["numero_casa_solicitante"];
@@ -371,12 +371,12 @@ class SolicitudPrestamoController extends ControladorBase{
 				$_numero_trabajo_solicitante                                 = $_POST["numero_trabajo_solicitante"];
 				$_extension_solicitante                                      = $_POST["extension_solicitante"];
 				$_mode_solicitante                                           = $_POST["mode_solicitante"];
-				$_apellidos_referencia_personal                              = $_POST["apellidos_referencia_personal"];
-				$_nombres_referencia_personal                                = $_POST["nombres_referencia_personal"];
+				$_apellidos_referencia_personal                              = strtoupper ($_POST["apellidos_referencia_personal"]);
+				$_nombres_referencia_personal                                = strtoupper ($_POST["nombres_referencia_personal"]);
 				$_relacion_referencia_personal                               = $_POST["relacion_referencia_personal"];
 				$_numero_telefonico_referencia_personal                      = $_POST["numero_telefonico_referencia_personal"];
-				$_apellidos_referencia_familiar                              = $_POST["apellidos_referencia_familiar"];
-				$_nombres_referencia_familiar                                = $_POST["nombres_referencia_familiar"];
+				$_apellidos_referencia_familiar                              = strtoupper ($_POST["apellidos_referencia_familiar"]);
+				$_nombres_referencia_familiar                                = strtoupper ($_POST["nombres_referencia_familiar"]);
 				$_parentesco_referencia_familiar                             = $_POST["parentesco_referencia_familiar"];
 				$_numero_telefonico_referencia_familiar                      = $_POST["numero_telefonico_referencia_familiar"];
 				$_id_entidades                                               = $_POST["id_entidades"];
@@ -386,7 +386,7 @@ class SolicitudPrestamoController extends ControladorBase{
 				$_numero_telefonico_datos_laborales                          = $_POST["numero_telefonico_datos_laborales"];
 				$_interseccion_datos_laborales                               = $_POST["interseccion_datos_laborales"];
 				$_calle_datos_laborales                                      = $_POST["calle_datos_laborales"];
-				$_cargo_actual_datos_laborales                               = $_POST["cargo_actual_datos_laborales"];
+				$_cargo_actual_datos_laborales                               = strtoupper ($_POST["cargo_actual_datos_laborales"]);
 				
 				$_sueldo_total_info_economica                                = $_POST["sueldo_total_info_economica"];
 				$_cuota_prestamo_ordinario_info_economica                    = $_POST["cuota_prestamo_ordinario_info_economica"];
@@ -428,8 +428,8 @@ class SolicitudPrestamoController extends ControladorBase{
 				$_total_egresos_mensuales   = $_cuota_prestamo_ordinario_info_economica+$_cuota_prestamo_emergente_info_economica+$_cuota_otros_prestamos_info_economica+$_cuota_prestamo_iess_info_economica+$_arriendos_egre_info_economica+$_alimentacion_info_economica+$_estudios_info_economica+$_pago_servicios_basicos_info_economica+$_pago_tarjetas_credito_info_economica+$_afiliacion_cooperativas_info_economica+$_ahorro_info_economica+$_impuesto_renta_info_economica+$_valor_egresos_1_info_economica;
 				
 				$_numero_cedula_conyuge                                      = $_POST["numero_cedula_conyuge"];
-				$_apellidos_conyuge                                          = $_POST["apellidos_conyuge"];
-				$_nombres_conyuge                                            = $_POST["nombres_conyuge"];
+				$_apellidos_conyuge                                          = strtoupper ($_POST["apellidos_conyuge"]);
+				$_nombres_conyuge                                            = strtoupper ($_POST["nombres_conyuge"]);
 				$_id_sexo_conyuge                                            = $_POST["id_sexo_conyuge"];
 				$_fecha_nacimiento_conyuge                                   = $_POST["fecha_nacimiento_conyuge"];
 				$_convive_afiliado_conyuge                                   = $_POST["convive_afiliado_conyuge"];
@@ -3741,8 +3741,8 @@ class SolicitudPrestamoController extends ControladorBase{
 				$_tipo_cuenta_cuenta_bancaria                                = $_POST["tipo_cuenta_cuenta_bancaria"];
 				$_numero_cuenta_cuenta_bancaria                              = $_POST["numero_cuenta_cuenta_bancaria"];
 				$_numero_cedula_datos_personales                             = $_POST["numero_cedula_datos_personales"];
-				$_apellidos_solicitante_datos_personales                     = $_POST["apellidos_solicitante_datos_personales"];
-				$_nombres_solicitante_datos_personales                       = $_POST["nombres_solicitante_datos_personales"];
+				$_apellidos_solicitante_datos_personales                     = strtoupper ($_POST["apellidos_solicitante_datos_personales"]);
+				$_nombres_solicitante_datos_personales                       = strtoupper ($_POST["nombres_solicitante_datos_personales"]);
 				$_correo_solicitante_datos_personales                        = $_POST["correo_solicitante_datos_personales"];
 				$_id_sexo_datos_personales                                   = $_POST["id_sexo_datos_personales"];
 				$_fecha_nacimiento_datos_personales                          = $_POST["fecha_nacimiento_datos_personales"];
@@ -3762,7 +3762,7 @@ class SolicitudPrestamoController extends ControladorBase{
 				$_tipo_vivienda                                              = $_POST["tipo_vivienda"];
 				$_vivienda_hipotecada_vivienda                               = $_POST["vivienda_hipotecada_vivienda"];
 				$_tiempo_residencia_vivienda                                 = $_POST["tiempo_residencia_vivienda"];
-				$_nombre_propietario_vivienda                                = $_POST["nombre_propietario_vivienda"];
+				$_nombre_propietario_vivienda                                = strtoupper ($_POST["nombre_propietario_vivienda"]);
 				$_celular_propietario_vivienda                               = $_POST["celular_propietario_vivienda"];
 				$_referencia_direccion_domicilio_vivienda                    = $_POST["referencia_direccion_domicilio_vivienda"];
 				$_numero_casa_solicitante                                    = $_POST["numero_casa_solicitante"];
@@ -3770,12 +3770,12 @@ class SolicitudPrestamoController extends ControladorBase{
 				$_numero_trabajo_solicitante                                 = $_POST["numero_trabajo_solicitante"];
 				$_extension_solicitante                                      = $_POST["extension_solicitante"];
 				$_mode_solicitante                                           = $_POST["mode_solicitante"];
-				$_apellidos_referencia_personal                              = $_POST["apellidos_referencia_personal"];
-				$_nombres_referencia_personal                                = $_POST["nombres_referencia_personal"];
+				$_apellidos_referencia_personal                              = strtoupper ($_POST["apellidos_referencia_personal"]);
+				$_nombres_referencia_personal                                = strtoupper ($_POST["nombres_referencia_personal"]);
 				$_relacion_referencia_personal                               = $_POST["relacion_referencia_personal"];
 				$_numero_telefonico_referencia_personal                      = $_POST["numero_telefonico_referencia_personal"];
-				$_apellidos_referencia_familiar                              = $_POST["apellidos_referencia_familiar"];
-				$_nombres_referencia_familiar                                = $_POST["nombres_referencia_familiar"];
+				$_apellidos_referencia_familiar                              = strtoupper ($_POST["apellidos_referencia_familiar"]);
+				$_nombres_referencia_familiar                                = strtoupper ($_POST["nombres_referencia_familiar"]);
 				$_parentesco_referencia_familiar                             = $_POST["parentesco_referencia_familiar"];
 				$_numero_telefonico_referencia_familiar                      = $_POST["numero_telefonico_referencia_familiar"];
 				$_id_entidades                                               = $_POST["id_entidades"];
@@ -3785,7 +3785,7 @@ class SolicitudPrestamoController extends ControladorBase{
 				$_numero_telefonico_datos_laborales                          = $_POST["numero_telefonico_datos_laborales"];
 				$_interseccion_datos_laborales                               = $_POST["interseccion_datos_laborales"];
 				$_calle_datos_laborales                                      = $_POST["calle_datos_laborales"];
-				$_cargo_actual_datos_laborales                               = $_POST["cargo_actual_datos_laborales"];
+				$_cargo_actual_datos_laborales                               = strtoupper ($_POST["cargo_actual_datos_laborales"]);
 	
 				$_sueldo_total_info_economica                                = $_POST["sueldo_total_info_economica"];
 				$_cuota_prestamo_ordinario_info_economica                    = $_POST["cuota_prestamo_ordinario_info_economica"];
@@ -3827,8 +3827,8 @@ class SolicitudPrestamoController extends ControladorBase{
 				$_total_egresos_mensuales   = $_cuota_prestamo_ordinario_info_economica+$_cuota_prestamo_emergente_info_economica+$_cuota_otros_prestamos_info_economica+$_cuota_prestamo_iess_info_economica+$_arriendos_egre_info_economica+$_alimentacion_info_economica+$_estudios_info_economica+$_pago_servicios_basicos_info_economica+$_pago_tarjetas_credito_info_economica+$_afiliacion_cooperativas_info_economica+$_ahorro_info_economica+$_impuesto_renta_info_economica+$_valor_egresos_1_info_economica;
 	
 				$_numero_cedula_conyuge                                      = $_POST["numero_cedula_conyuge"];
-				$_apellidos_conyuge                                          = $_POST["apellidos_conyuge"];
-				$_nombres_conyuge                                            = $_POST["nombres_conyuge"];
+				$_apellidos_conyuge                                          = strtoupper ($_POST["apellidos_conyuge"]);
+				$_nombres_conyuge                                            = strtoupper ($_POST["nombres_conyuge"]);
 				$_id_sexo_conyuge                                            = $_POST["id_sexo_conyuge"];
 				$_fecha_nacimiento_conyuge                                   = $_POST["fecha_nacimiento_conyuge"];
 				$_convive_afiliado_conyuge                                   = $_POST["convive_afiliado_conyuge"];
