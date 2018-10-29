@@ -615,7 +615,7 @@
 			
           var id_estado_civil_datos_personales = $(this).val();
 			
-          if(id_estado_civil_datos_personales == 1 || id_estado_civil_datos_personales == 5)
+          if(id_estado_civil_datos_personales == 1 || id_estado_civil_datos_personales == 5 || id_estado_civil_datos_personales == 3)
           {
         	  if(id_estado_civil_datos_personales == 0 )
               {
@@ -643,7 +643,7 @@
               var id_estado_civil_datos_personales = $(this).val();
 				
               
-              if(id_estado_civil_datos_personales == 1 || id_estado_civil_datos_personales == 5)
+              if(id_estado_civil_datos_personales == 1 || id_estado_civil_datos_personales == 5 || id_estado_civil_datos_personales == 3)
               {
             	  if(id_estado_civil_datos_personales == 0 )
                   {
@@ -2294,7 +2294,7 @@
 				}
 				
 
-			if(id_estado_civil_datos_personales != 1 && id_estado_civil_datos_personales != 5) {
+			if(id_estado_civil_datos_personales != 1 && id_estado_civil_datos_personales != 5 && id_estado_civil_datos_personales != 3) {
 
 				
                 if (numero_cedula_conyuge == "" )

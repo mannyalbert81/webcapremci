@@ -1,7 +1,5 @@
 
 <?php 
-
-
 $controladores=$_SESSION['controladores'];
  function getcontrolador($controlador,$controladores){
  	$display="display:none";
@@ -22,7 +20,6 @@ $controladores=$_SESSION['controladores'];
  	return $display;
  }
  
-
 ?>
 
 
@@ -123,5 +120,3 @@ $controladores=$_SESSION['controladores'];
               
               <a data-toggle="tooltip" data-placement="top" title="Salir" href="index.php?controller=Usuarios&action=Loguear">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
