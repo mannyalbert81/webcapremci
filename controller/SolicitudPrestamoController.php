@@ -561,7 +561,7 @@ class SolicitudPrestamoController extends ControladorBase{
 						$resultado2=$solicitud_prestamo->UpdateBy($columnas, $tablas, $where);
 							
 							
-						if($_id_estado_civil_datos_personales != 1 && $_id_estado_civil_datos_personales != 5 && id_estado_civil_datos_personales != 3){
+						if($_id_estado_civil_datos_personales != 1 && $_id_estado_civil_datos_personales != 5 && $_id_estado_civil_datos_personales != 3){
 								
 							$colval_afi = "numero_cedula_conyuge= '$_numero_cedula_conyuge',
 							apellidos_conyuge='$_apellidos_conyuge',
@@ -712,7 +712,7 @@ class SolicitudPrestamoController extends ControladorBase{
 						$resultado2=$solicitud_prestamo->UpdateBy($columnas, $tablas, $where);
 							
 							
-						if($_id_estado_civil_datos_personales != 1 && $_id_estado_civil_datos_personales != 5 && id_estado_civil_datos_personales != 3){
+						if($_id_estado_civil_datos_personales != 1 && $_id_estado_civil_datos_personales != 5 && $_id_estado_civil_datos_personales != 3){
 								
 							$colval_afi = "numero_cedula_conyuge= '$_numero_cedula_conyuge',
 							apellidos_conyuge='$_apellidos_conyuge',
@@ -997,7 +997,7 @@ class SolicitudPrestamoController extends ControladorBase{
 					
 					
 					
-				    if($_id_estado_civil_datos_personales != 1 && $_id_estado_civil_datos_personales != 5 && id_estado_civil_datos_personales != 3){
+				    if($_id_estado_civil_datos_personales != 1 && $_id_estado_civil_datos_personales != 5 && $_id_estado_civil_datos_personales != 3){
 					
 					$resultSolicitud="";
 					$resultSolicitud=$solicitud_prestamo->getBy("identificador_consecutivos='$_identificador_consecutivos' AND id_usuarios_registra='$_id_usuarios_registra' AND fecha_presentacion='$_fecha_presentacion' AND tipo_participe_datos_prestamo='$_tipo_participe_datos_prestamo'");
@@ -3948,7 +3948,7 @@ class SolicitudPrestamoController extends ControladorBase{
 					$resultado2=$solicitud_prestamo->UpdateBy($columnas, $tablas, $where);
 						
 						
-					if($_id_estado_civil_datos_personales != 1 && $_id_estado_civil_datos_personales != 5 && id_estado_civil_datos_personales != 3){
+					if($_id_estado_civil_datos_personales != 1 && $_id_estado_civil_datos_personales != 5 && $_id_estado_civil_datos_personales != 3){
 							
 						$colval_afi = "numero_cedula_conyuge= '$_numero_cedula_conyuge',
 						apellidos_conyuge='$_apellidos_conyuge',
