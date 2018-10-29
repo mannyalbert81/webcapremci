@@ -550,6 +550,7 @@
     </div>
 
 </div>
+</div>
         <!-- jQuery -->
      
     <!-- Bootstrap -->

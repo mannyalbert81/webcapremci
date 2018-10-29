@@ -1138,7 +1138,7 @@
                     			<div class="col-lg-9 col-xs-12 col-md-9">
                     		    <div class="form-group">
                                                       <label for="observacion" class="control-label">Observación:</label>
-                                                      <textarea type="text"  class="form-control" id="observacion" name="observacion" value=""  placeholder="observaciones.."></textarea>
+                                                      <textarea   class="form-control" id="observacion" name="observacion"   placeholder="observaciones.."></textarea>
                                                       <div id="mensaje_observacion" class="errores"></div>
                                 </div>
                     		    </div>
