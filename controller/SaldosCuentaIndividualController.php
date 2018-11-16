@@ -4800,11 +4800,11 @@ class SaldosCuentaIndividualController extends ControladorBase{
 		
 			$fec=$_GET["fec"];
 		
-	if($fec=="codigo_etica"){
+	if($fec=="orden_dia"){
 	
 		$directorio = $_SERVER ['DOCUMENT_ROOT'];
 	
-		$mi_pdf = $directorio.'/webcapremci/documentos/CODIGO DE ETICA.pdf';
+		$mi_pdf = $directorio.'/webcapremci/documentos/02. ORDENE DEL DIA ASAMBLEA 16-17-NOV-2018.pdf';
 	
 		if(file_exists($mi_pdf))
 		{
@@ -4822,11 +4822,141 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	
 	
-	if($fec=="codigo_buen_gobierno"){
+	if($fec=="acta_asamblea"){
 	
 		$directorio = $_SERVER ['DOCUMENT_ROOT'];
 	
-		$mi_pdf = $directorio.'/webcapremci/documentos/CODIGO DEL BUEN GOBIERNO CORPORATIVO.pdf';
+		$mi_pdf = $directorio.'/webcapremci/documentos/03. ACTA ASAMBLEA EXT. DEL 28-29 -SEP-2018.pdf';
+	
+		if(file_exists($mi_pdf))
+		{
+	
+			header('Content-type: application/pdf');
+			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+			readfile($mi_pdf);
+		}else
+		{
+			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+		}
+	
+	
+	}
+	
+	
+	
+	if($fec=="informe_sistemas_infraestructura"){
+	
+		$directorio = $_SERVER ['DOCUMENT_ROOT'];
+	
+		$mi_pdf = $directorio.'/webcapremci/documentos/04. INFORME SISTEMAS CAPREMCI NOV-2018/Informe de infraestuctura informatica CAPREMCI-FINAL.pdf';
+	
+		if(file_exists($mi_pdf))
+		{
+	
+			header('Content-type: application/pdf');
+			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+			readfile($mi_pdf);
+		}else
+		{
+			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+		}
+	
+	
+	}
+	
+	
+	
+	if($fec=="informe_sistemas_oficios_entegados"){
+	
+		$directorio = $_SERVER ['DOCUMENT_ROOT'];
+	
+		$mi_pdf = $directorio.'/webcapremci/documentos/04. INFORME SISTEMAS CAPREMCI NOV-2018/Oficio entrega informes y documentos respaldo.pdf';
+	
+		if(file_exists($mi_pdf))
+		{
+	
+			header('Content-type: application/pdf');
+			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+			readfile($mi_pdf);
+		}else
+		{
+			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+		}
+	
+	
+	}
+		
+	
+	if($fec=="presentacion_comision_informatica"){
+	
+		$directorio = $_SERVER ['DOCUMENT_ROOT'];
+	
+		$mi_pdf = $directorio.'/webcapremci/documentos/04. INFORME SISTEMAS CAPREMCI NOV-2018/PRESENTACION COMISION INFORMATICA FINAL.pdf';
+	
+		if(file_exists($mi_pdf))
+		{
+	
+			header('Content-type: application/pdf');
+			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+			readfile($mi_pdf);
+		}else
+		{
+			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+		}
+	
+	
+	}
+	
+	
+	
+	if($fec=="examen_especial"){
+	
+		$directorio = $_SERVER ['DOCUMENT_ROOT'];
+	
+		$mi_pdf = $directorio.'/webcapremci/documentos/05. EXAMEN ESPECIAL A LOS CONTRATOS MAT. Y REP. CONJUNTOS HABITACIONALES.pdf';
+	
+		if(file_exists($mi_pdf))
+		{
+	
+			header('Content-type: application/pdf');
+			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+			readfile($mi_pdf);
+		}else
+		{
+			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+		}
+	
+	
+	}
+	
+	
+	
+	if($fec=="informe_tecnico"){
+	
+		$directorio = $_SERVER ['DOCUMENT_ROOT'];
+	
+		$mi_pdf = $directorio.'/webcapremci/documentos/06. INFORME TECNICO PROGRAMAS HABITACIONALES.pdf';
+	
+		if(file_exists($mi_pdf))
+		{
+	
+			header('Content-type: application/pdf');
+			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+			readfile($mi_pdf);
+		}else
+		{
+			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+		}
+	
+	
+	}
+	
+	
+	if($fec=="presupuesto_2018"){
+	
+		$directorio = $_SERVER ['DOCUMENT_ROOT'];
+	
+		$mi_pdf = $directorio.'/webcapremci/documentos/07. PRESUPUESTO-2019 CAPREMCI.pdf';
 	
 		if(file_exists($mi_pdf))
 		{
@@ -4848,7 +4978,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 		$directorio = $_SERVER ['DOCUMENT_ROOT'];
 	
-		$mi_pdf = $directorio.'/webcapremci/documentos/PLAN ESTRATEGICO.pdf';
+		$mi_pdf = $directorio.'/webcapremci/documentos/08. PLAN ESTRATEGICO 2017-2020 CAPREMCI.pdf';
 	
 		if(file_exists($mi_pdf))
 		{
@@ -4865,12 +4995,11 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	}
 	
 	
-	
-	if($fec=="reglamento_estatuto"){
+	if($fec=="poa_2018"){
 	
 		$directorio = $_SERVER ['DOCUMENT_ROOT'];
 	
-		$mi_pdf = $directorio.'/webcapremci/documentos/REGLAMENTO AL ESTATUTO CAPREMCI.pdf';
+		$mi_pdf = $directorio.'/webcapremci/documentos/09. POA 2019 CAPREMCI.pdf';
 	
 		if(file_exists($mi_pdf))
 		{
@@ -4885,13 +5014,14 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	
 	}
-		
 	
-	if($fec=="reglamento_cobranzas"){
+	
+	
+	if($fec=="manual_politicas"){
 	
 		$directorio = $_SERVER ['DOCUMENT_ROOT'];
 	
-		$mi_pdf = $directorio.'/webcapremci/documentos/REGLAMENTO DE COBRANZAS Y RECUPERACIONES.pdf';
+		$mi_pdf = $directorio.'/webcapremci/documentos/10. MANUAL  DE POLITICAS Y PROCEDIMIENTOS DE CREDITO.pdf';
 	
 		if(file_exists($mi_pdf))
 		{
@@ -4909,11 +5039,12 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	
 	
-	if($fec=="reglamento_credito"){
+	
+	if($fec=="informe_escrituras"){
 	
 		$directorio = $_SERVER ['DOCUMENT_ROOT'];
 	
-		$mi_pdf = $directorio.'/webcapremci/documentos/REGLAMENTO DE CREDITO.pdf';
+		$mi_pdf = $directorio.'/webcapremci/documentos/11. INFORME ESCRITURAS CONJUNTOS HABITACIONALES.pdf';
 	
 		if(file_exists($mi_pdf))
 		{
@@ -4929,48 +5060,6 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	}
 	
-	
-	
-	if($fec=="reglamento_viaticos"){
-	
-		$directorio = $_SERVER ['DOCUMENT_ROOT'];
-	
-		$mi_pdf = $directorio.'/webcapremci/documentos/REGLAMENTO DE VIATICOS, SUBSISTENCIAS, MOVILIZACION Y DIETAS.pdf';
-	
-		if(file_exists($mi_pdf))
-		{
-	
-			header('Content-type: application/pdf');
-			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
-			readfile($mi_pdf);
-		}else
-		{
-			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
-		}
-	
-	
-	}
-	
-	
-	if($fec=="reglamento_contrataciones"){
-	
-		$directorio = $_SERVER ['DOCUMENT_ROOT'];
-	
-		$mi_pdf = $directorio.'/webcapremci/documentos/REGLAMENTOS DE CONTRATACIONES.pdf';
-	
-		if(file_exists($mi_pdf))
-		{
-	
-			header('Content-type: application/pdf');
-			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
-			readfile($mi_pdf);
-		}else
-		{
-			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
-		}
-	
-	
-	}
 	
 	
 	}
