@@ -242,11 +242,11 @@
         <div class="carousel-inner" role="listbox">
 
           <div class="carousel-item active">
-            <div class="carousel-background"><img src="view/img/intro-carousel/1.jpeg" alt=""></div>
+            <div class="carousel-background"><img src="view/img/intro-carousel/1.jpg" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2>Bienvenido a CAPREMCI</h2>
-				<h3>Asamblea Extraordinaria</h3>
+				<h3>Ya puedes calificar nuestra atención</h3>
             	<p>Afíliate ya.</p>
                 <a href="#about" class="btn-get-started scrollto">Ver Más</a>
               </div>

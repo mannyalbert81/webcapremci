@@ -80,9 +80,29 @@ $controladores=$_SESSION['controladores'];
                             <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=dic_2014_Informe_Auditoría_Rubro" target="_blank">Informe de Auditoría al Rubro de Inversiones Privativas 31-12-2014</a></li>
                             </ul>
                         </li>
-                 
                    </ul>
                   </li>
+                  
+                  
+                  
+                  <li><a><i class="fa fa-file-o"></i> Reglamentos <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                       <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&reg=cod_gob" target="_blank">Código del Buen Gobierno Corporativo</a></li>
+                       <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&reg=cod_etic" target="_blank">Código de Ética</a></li>
+                     
+                       <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&reg=reg_est" target="_blank">Reglamento al Estatuto</a></li>
+                       <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&reg=reg_contra" target="_blank">Reglamento de Contrataciones</a></li>
+                     
+                       <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&reg=reg_cre" target="_blank">Reglamento de Crédito</a></li>
+                       <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&reg=reg_recau" target="_blank">Reglamento de Recaudaciones</a></li>
+                     
+                     
+                     
+                     
+                     
+                     </ul>
+                  </li>
+                  
                   
                   
                   <li style="<?php echo getcontrolador("MenuMemos",$controladores) ?>"  ><a><i class="fa fa-file-o"></i> Gestión de Trámites <span class="fa fa-chevron-down"></span></a>

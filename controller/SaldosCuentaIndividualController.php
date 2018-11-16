@@ -4593,6 +4593,180 @@ class SaldosCuentaIndividualController extends ControladorBase{
 				
 				
 			}
+			
+			
+			if(isset($_GET["reg"])){
+				
+				$reg=$_GET["reg"];
+				
+				if($reg=="cod_gob"){
+				
+					$directorio = $_SERVER ['DOCUMENT_ROOT'];
+				
+					$mi_pdf = $directorio.'/webcapremci/reglamentos/CODIGO DE BUEN GOBIERNO CORPPORATIVO CAPREMCI.pdf';
+				
+					if(file_exists($mi_pdf))
+					{
+						$funcion = "consulta_documentos";
+						$parametros = " '$id_usuarios', 'Código del buen Gobierno Corporativo'";
+						$consulta_documentos->setFuncion($funcion);
+						$consulta_documentos->setParametros($parametros);
+						$resultado=$consulta_documentos->Insert();
+				
+						header('Content-type: application/pdf');
+						header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+						readfile($mi_pdf);
+					}else
+					{
+						echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+					}
+				
+				}
+				
+				
+				
+				if($reg=="cod_etic"){
+				
+					$directorio = $_SERVER ['DOCUMENT_ROOT'];
+				
+					$mi_pdf = $directorio.'/webcapremci/reglamentos/CODIGO DE ETICA CAPREMCI.pdf';
+				
+					if(file_exists($mi_pdf))
+					{
+						$funcion = "consulta_documentos";
+						$parametros = " '$id_usuarios', 'Código de Ética'";
+						$consulta_documentos->setFuncion($funcion);
+						$consulta_documentos->setParametros($parametros);
+						$resultado=$consulta_documentos->Insert();
+				
+						header('Content-type: application/pdf');
+						header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+						readfile($mi_pdf);
+					}else
+					{
+						echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+					}
+				
+				
+				}
+				
+				
+				
+				
+				
+				if($reg=="reg_est"){
+				
+					$directorio = $_SERVER ['DOCUMENT_ROOT'];
+				
+					$mi_pdf = $directorio.'/webcapremci/reglamentos/REGLAMENTO AL ESTATUTO.pdf';
+				
+					if(file_exists($mi_pdf))
+					{
+						$funcion = "consulta_documentos";
+						$parametros = " '$id_usuarios', 'Reglamento al Estatuto'";
+						$consulta_documentos->setFuncion($funcion);
+						$consulta_documentos->setParametros($parametros);
+						$resultado=$consulta_documentos->Insert();
+				
+						header('Content-type: application/pdf');
+						header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+						readfile($mi_pdf);
+					}else
+					{
+						echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+					}
+				
+				
+				}
+				
+				
+				
+				if($reg=="reg_contra"){
+				
+					$directorio = $_SERVER ['DOCUMENT_ROOT'];
+				
+					$mi_pdf = $directorio.'/webcapremci/reglamentos/REGLAMENTO DE CONTRATACIONES.pdf';
+				
+					if(file_exists($mi_pdf))
+					{
+						$funcion = "consulta_documentos";
+						$parametros = " '$id_usuarios', 'Reglamento de Contrataciones'";
+						$consulta_documentos->setFuncion($funcion);
+						$consulta_documentos->setParametros($parametros);
+						$resultado=$consulta_documentos->Insert();
+				
+						header('Content-type: application/pdf');
+						header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+						readfile($mi_pdf);
+					}else
+					{
+						echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+					}
+				
+				
+				}
+				
+				
+				
+				if($reg=="reg_cre"){
+				
+					$directorio = $_SERVER ['DOCUMENT_ROOT'];
+				
+					$mi_pdf = $directorio.'/webcapremci/reglamentos/REGLAMENTO DE CREDITO.pdf';
+				
+					if(file_exists($mi_pdf))
+					{
+						$funcion = "consulta_documentos";
+						$parametros = " '$id_usuarios', 'Reglamento de Créditos'";
+						$consulta_documentos->setFuncion($funcion);
+						$consulta_documentos->setParametros($parametros);
+						$resultado=$consulta_documentos->Insert();
+				
+						header('Content-type: application/pdf');
+						header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+						readfile($mi_pdf);
+					}else
+					{
+						echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+					}
+				
+				
+				}
+				
+				
+				
+				if($reg=="reg_recau"){
+				
+					$directorio = $_SERVER ['DOCUMENT_ROOT'];
+				
+					$mi_pdf = $directorio.'/webcapremci/reglamentos/REGLAMENTO DE RECAUDACIONES.pdf';
+				
+					if(file_exists($mi_pdf))
+					{
+						$funcion = "consulta_documentos";
+						$parametros = " '$id_usuarios', 'Reglamento de Recaudaciones'";
+						$consulta_documentos->setFuncion($funcion);
+						$consulta_documentos->setParametros($parametros);
+						$resultado=$consulta_documentos->Insert();
+				
+						header('Content-type: application/pdf');
+						header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+						readfile($mi_pdf);
+					}else
+					{
+						echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+					}
+				
+				
+				}
+				
+				
+				
+				
+			}
+			
+			
+			
 				
 		}else{
 				
