@@ -242,11 +242,19 @@ class SolicitudPrestamoController extends ControladorBase{
 				$error_garante="Permitir";
 			
 				
-				$result=$solicitud_prestamo->getCondiciones("max(id_estado_tramites) as id_estado_tramites, id_usuarios_registra", "solicitud_prestamo",
+				$result=$solicitud_prestamo->getCondiciones("max(id_solicitud_prestamo) as id_solicitud_prestamo, id_usuarios_registra", "solicitud_prestamo",
 						"(id_estado_tramites=1 OR id_estado_tramites=4) AND tipo_participe_datos_prestamo='Deudor' AND  id_usuarios_registra='$_id_usuarios' GROUP BY id_usuarios_registra", "id_usuarios_registra");
 				
 				if(!empty($result)){
-					$_id_estado_tramites=$result[0]->id_estado_tramites;
+					
+					$_id_solicitud_prestamo=$result[0]->id_solicitud_prestamo;
+					
+					$resulEsta=$solicitud_prestamo->getBy("id_solicitud_prestamo='$_id_solicitud_prestamo'");
+						
+					if(!empty($resulEsta)){
+						
+					
+					$_id_estado_tramites=$resulEsta[0]->id_estado_tramites;
 				
 					
 					if($_id_estado_tramites==1 || $_id_estado_tramites==4){
@@ -257,14 +265,26 @@ class SolicitudPrestamoController extends ControladorBase{
 						$error_deudor="Permitir";
 					}
 					
+					
+					}
+					
+					
 				}
 				
 				
-				$result1=$solicitud_prestamo->getCondiciones("max(id_estado_tramites) as id_estado_tramites, id_usuarios_registra", "solicitud_prestamo",
+				$result1=$solicitud_prestamo->getCondiciones("max(id_solicitud_prestamo) as id_solicitud_prestamo, id_usuarios_registra", "solicitud_prestamo",
 						"(id_estado_tramites=1 OR id_estado_tramites=4) AND tipo_participe_datos_prestamo='Garante' AND  id_usuarios_registra='$_id_usuarios' GROUP BY id_usuarios_registra", "id_usuarios_registra");
 				
 				if(!empty($result1)){
-					$_id_estado_tramites1=$result1[0]->id_estado_tramites;
+					
+					$_id_solicitud_prestamo1=$result1[0]->id_solicitud_prestamo;
+					
+					$resulEsta1=$solicitud_prestamo->getBy("id_solicitud_prestamo='$_id_solicitud_prestamo1'");
+					
+					if(!empty($resulEsta1)){
+							
+					
+					$_id_estado_tramites1=$resulEsta1[0]->id_estado_tramites;
 				
 						
 					if($_id_estado_tramites1==1 || $_id_estado_tramites1==4){
@@ -277,7 +297,7 @@ class SolicitudPrestamoController extends ControladorBase{
 				}
 				
 				
-				
+				}
 				
 				$this->view("SolicitudPrestamoSeleccion",array(
 						"error_deudor"=>$error_deudor, "error_garante"=>$error_garante

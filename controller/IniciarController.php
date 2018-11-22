@@ -1,3 +1,4 @@
+
 <?php
 
 class IniciarController extends ControladorBase{
@@ -10,6 +11,7 @@ class IniciarController extends ControladorBase{
 	public function index(){
 	
 		session_start();
+		
 		
 			$encuestas = new EncuestasModel();
 			$encuestas_cabeza= new EncuestasCabezaModel();

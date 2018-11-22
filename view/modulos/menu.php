@@ -71,6 +71,7 @@ $controladores=$_SESSION['controladores'];
                        <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=ene_2018" target="_blank">Estados Financieros al 31 de Enero del 2018</a></li>
                        <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=fec_2018" target="_blank">Estados Financieros al 28 de Febrero del 2018</a></li>
                        <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=jul_2018" target="_blank">Estados Financieros al 31 de Julio del 2018</a></li>
+                       <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=oct_2018" target="_blank">Estados Financieros al 31 de Octubre del 2018</a></li>
                  
                         <li><a>Auditoria Nuñez Serrano Asociados<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">

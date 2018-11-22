@@ -373,7 +373,7 @@
               </div>
               <h2 class="title"><a href="#">Misión</a></h2>
               <p align="justify">
-                Al 2017 Consolidamos nuestra operación como Fondo previsional llegando a más partícipes para satisfacer sus necesidades con procesos controlados, utilizando canales de comunicación apropiados al sistema; y manteniendo niveles óptimos de rentabilidad y en constante crecimiento como entidad a nivel nacional.</p>
+                Administrar los recursos del Fondo con eficiencia y eficacia para asegurar el futuro de los partícipes a través de una cesantía justa prestando servicios complementarios y las correctas inversiones; manteniendo así niveles óptimos de rentabilidad.</p>
             </div>
           </div>
 
@@ -385,7 +385,7 @@
               </div>
               <h2 class="title"><a href="#">Visión</a></h2>
               <p align="justify">
-				Somos un Fondo Previsional orientado a asegurar el futuro de sus partícipes, prestando servicios complementarios para satisfacer sus necesidades; con infraestructura tecnológica – operativa de vanguardia y talento humano competitivo.</p>
+				Consolidarse como Fondo Previsional Cerrado  llegando a más partícipes para  brindar beneficios complementarios a través de canales de comunicación de calidad, procesos internos pragmáticos y transparentes con la adecuada tecnología para el constante crecimiento como Fondo a nivel nacional.</p>
             </div>
           </div>
 
