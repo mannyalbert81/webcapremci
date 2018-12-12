@@ -144,6 +144,36 @@
 
   
   
+   <!--==========================
+      Featured Services Section
+    ============================-->
+    <section id="featured-services">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 box">
+            <i class="ion-ios-bookmarks-outline"></i>
+            <h4 class="title"><a href="javascript:void(0);">Capremci Movil</a></h4>
+            <p class="description" style="text-align: justify;">Acceda  a los servicios del FONDO a través de su teléfono celular, usted podrá descargar la aplicación de Capremci móvil en las tiendas:  Google Play o App Store.</p>
+          </div>
+
+          <div class="col-lg-4 box box-bg">
+            <i class="ion-ios-stopwatch-outline"></i>
+            <h4 class="title"><a href="">Simulador de Crédito</a></h4>
+            <p class="description" style="text-align: justify;"></p>
+          </div>
+
+          <div class="col-lg-4 box">
+            <i class="ion-ios-heart-outline"></i>
+            <h4 class="title"><a href="">Simulador de Cesantía</a></h4>
+            <p class="description" style="text-align: justify;"></p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  
+  
 
     <!--==========================
       About Us Section
@@ -535,7 +565,7 @@
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
             <img src="view/img/Educación-financiera.jpg" alt="">
-			</div>
+		  </div>
 
         </div>
 
