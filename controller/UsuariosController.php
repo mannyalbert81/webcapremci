@@ -4018,6 +4018,62 @@ public function index(){
 	}
 	
 	
+	public function cargar_calificaciones(){
+	
+
+
+		session_start();
+		$id_rol=$_SESSION["id_rol"];
+		$i=0;
+		$evaluacion_funcionarios= new EvaluacionFuncionariosModel();
+		
+		$columnas = "evaluacion_funcionarios.id_evaluacion_funcionarios, 
+					 usuarios.cedula_usuarios, 
+					 usuarios.nombre_usuarios, 
+					 evaluacion_funcionarios.calificacion_funcionario, 
+					 evaluacion_funcionarios.creado";
+		$tablas   = "public.evaluacion_funcionarios, public.usuarios";
+		$where    = "usuarios.id_usuarios = evaluacion_funcionarios.id_usuarios_funcionario";
+		$id       = "evaluacion_funcionarios.id_evaluacion_funcionarios";
+		$resultSet = $evaluacion_funcionarios->getCondiciones($columnas ,$tablas ,$where, $id);
+		
+		$i=count($resultSet);
+		
+		$html="";
+		if($i>0)
+		{
+		
+			$html .= "<div class='col-lg-3 col-xs-12'>";
+			$html .= "<div class='small-box bg-red'>";
+			$html .= "<div class='inner'>";
+			$html .= "<h3>$i</h3>";
+			$html .= "<p>Calificaciones Registradas.</p>";
+			$html .= "</div>";
+		
+		
+			$html .= "<div class='icon'>";
+			$html .= "<i class='ion ion-stats-bars'></i>";
+			$html .= "</div>";
+			if($id_rol==1 || $id_rol==43 || $id_rol==45){
+				$html .= "<a href='index.php?controller=Calificaciones&action=index' class='small-box-footer'>Operaciones con permisos <i class='fa fa-arrow-circle-right'></i></a>";
+			}else{
+				$html .= "<a href='#' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+			}
+		
+			$html .= "</div>";
+			$html .= "</div>";
+		
+		
+		}else{
+		
+			$html = "<b>Actualmente no hay calificaciones registradas...</b>";
+		}
+		
+		echo $html;
+		die();
+		
+		
+	}
 	
 	
 	

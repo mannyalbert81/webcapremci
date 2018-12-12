@@ -37,10 +37,25 @@
 
 <body>
 
+ 
+ <header id="header_1">
+    <div class="container-fluid">
+      <div id="logo" class="pull-left">
+        <a href="#intro"><img src="img/logo.png" width="180" height="40" alt="" title="" /></a>
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="../index.php?controller=Iniciar&action=index">Inicio</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
     <!--==========================
       Services Section
     ============================-->
-    <section id="services">
+    <section id="services" style="margin-top: 30px;">
       <div class="container">
 
         <header class="section-header wow fadeInUp">
@@ -52,21 +67,22 @@
           <div class="col-lg-12 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
             <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
             <h4 class="title"><a href="">Información</a></h4>
-            <p class="description" align="justify">Es el valor que se paga al afiliado que queda cesante y que está conformado por su cuenta individual. La cuenta Individual está integrado por: aporte y rendimiento personal; aporte y rendimiento patronal en el caso que existieren. Pare efectos del presente reglamento la cesantía opera con las siguientes condiciones:</br></br>
-                    Haber cesado en sus funciones laborales, definitivamente, en Entidades de Fuerzas Armadas.</br>
-					Fallecimiento.</br>
-					En caso de fallecimiento del afiliado sin haber dejado testamento legalmente valido, la cesantía corresponderá a sus derechohabientes en el orden establecido en el Código Civil respecto de la sucesión intestada.</br></br>
-					Para la obtención de la Cesantía el afiliado cesante o sus beneficiarios presentarán los siguientes documentos:</br></br>
-					a. Llenar el Formulario que para el efecto entregue la Administración del Fondo.</br>
-					b. Aviso de salida del IESS.</br>
-					c. Último confidencial.</br>
-					d. Certificado Original de tiempo de servicio por la oficina de personal de la Entidad Patronal en el que conste las fechas de ingreso y salida.</br>
-					e. Fotocopia clara de la cédula de ciudadanía y papeleta de votación actualizada.</br>
-					f. Pago de agua, luz o teléfono en el conste la dirección de su domicilio.</br>
-					g. Certificado conferido por una institución financiera o copia de la libreta de ahorros en la que se vaya acreditar los valores correspondientes a la cesantía.</br></br>
-					El pago de la cesantía se realizará los primeros 15 días laborables del mes siguiente a aquel en que el afiliado presentó la documentación completa que acredite su calidad de Cesante, a fin de efectuar la liquidación de los rendimientos que corresponden a su cuenta individual, siempre que se cumpla con los requisitos establecidos en la presente reglamento; y, se hayan cancelado las obligaciones pendientes para con sean por concepto de créditos concedidos u otras que se hubieren pactado.</br></br>
-					Para efectos de liquidar los rendimientos normales, previo al pago de la Cesantía, se considerará como fecha valor el mes en que el afiliado Cesante realizó su último aporte.
-					</p>
+           
+            <p class="description" align="justify">Es el valor que se paga al afiliado que queda cesante y que está conformado por su cuenta individual. La cuenta Individual está integrado por: aporte y rendimiento personal; aporte patronal  y rendimiento patronal en el caso que existieren, la cesantía opera con las siguientes condiciones:<br/>
+			- Haber cesado en sus funciones laborales, definitivamente, en Entidades de Fuerzas Armadas.<br/>
+			- Fallecimiento.<br/>
+			- En caso de fallecimiento del afiliado sin haber dejado testamento legalmente valido, la cesantía corresponderá a sus derechohabientes en el orden establecido en el Código Civil respecto de la sucesión intestada.<br/><br/>
+			<strong>Para la obtención de la Cesantía el afiliado cesante o sus beneficiarios presentarán los siguientes documentos:</strong><br/><br/>
+					<b>1.</b> Solicitud de prestaciones.<br/>
+					<b>2.</b> Aviso de salida del IESS (original).<br/>
+					<b>3.</b> Copia de cédula de identidad del partícipe.<br/>
+					<b>4.</b> Copia de certificado de votación del partícipe actualizado.<br/>
+					<b>5.</b> Copia de la cartola, impresión del estado de cuenta de banca electrónica del partícipe o certificado bancario.
+					
+			
+			</p>
+           
+           
 			</div>
        
          
@@ -110,13 +126,7 @@
               <strong>Correo:</strong> info@capremci.com.ec<br>
             </p>
 
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-            </div>
+           
 
           </div>
 
@@ -126,17 +136,9 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; <strong>Systech</strong>. Todos los derechos reservados
+       &copy; <strong>Capremci-2018</strong>. Todos los derechos reservados
       </div>
-      <div class="credits">
-        <!--
-          All the links in the footer should remain intact.
-          You can delete the links only if you purchased the pro version.
-          Licensing information: https://bootstrapmade.com/license/
-          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=BizPage
-        -->
-        Diseñado por<a href="https://bootstrapmade.com/">Systech</a>
-      </div>
+     
     </div>
   </footer><!-- #footer -->
     

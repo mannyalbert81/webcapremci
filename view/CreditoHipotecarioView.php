@@ -37,10 +37,26 @@
 
 <body>
 
+
+ <header id="header_1">
+    <div class="container-fluid">
+      <div id="logo" class="pull-left">
+        <a href="#intro"><img src="img/logo.png" width="180" height="40" alt="" title="" /></a>
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="../index.php?controller=Iniciar&action=index">Inicio</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
     <!--==========================
       Clients Section
     ============================-->
-    <section id="testimonials" class="section-bg wow fadeInUp">
+    <section id="testimonials" class="section-bg wow fadeInUp" style="margin-top: 30px;">
       <div class="container">
 
         <header class="section-header">
@@ -52,45 +68,49 @@
           <div class="testimonial-item">
             <img src="img/blog2.jpg" class="testimonial-img" alt="">
             <h3>Características</h3>
-             <p>
-              <img alt="">
-			 <p align="justify">Se concede el crédito hasta el 80% del Avalúo (valor de realización) y hasta por un monto máximo de US$ 80,000.00</br></br>
-						• La cuota mensual no podrá exceder del 40% del sueldo líquido de la sociedad conyugal.</br>
-						• Tasa de interés: 8.8% anual fija sobre saldos.</br>
-						• Plazo hasta 25 años, siempre que la edad más plazo no supere los 75 años.</br>
-						• El bien no podrá tener más de 15 años de antigüedad.</br>
-						• El afiliado debe tener un mínimo 6 aportaciones seguidas.</br>
-						• El Crédito cuenta con Seguro de Desgravamen.</br>
-						• Encontrarse al día en obligaciones adquiridas en el sistema financiero, (impresión del buró de crédito).</br>
-						• No registrar cuotas vencidas con el Fondo, (verificable mediante certificado otorgado por el mismo Fondo).</br>
-						• No registrar castigos, o demandas judiciales en el sistema financiero en los últimos 24 meses, previos a la fecha de la consulta.</br>
-						• No registrar imposibilidad para el manejo de cuentas corrientes.</br>
-						• El Fondo no financiará gastos legales.</br>
-						• El partícipe podría sumar a su crédito Hipotecario los saldos re-liquidados de los créditos 2×1, Ordinario y Emergente y quedarse con una sola deuda.
-						</p></br>
-						 <h3>Requisitos </h3></br>
+             
+			  <p align="justify">
+			• Se considera hasta el 80% del valor del avaluó (valor de realización).<br/>
+			• Se concede el crédito hasta un monto máximo  de USD$ 100,000.00.<br/>
+			• La cuota mensual no podrá exceder del 50% de la sociedad conyugal.<br/>
+			• La tasa de interés es 8.8% anual fija sobre saldos.<br/>
+			• Plazo máximo 25 años.<br/>
+			• El afiliado debe tener mínimo 6 aportaciones consecutivas.<br/>
+			• El crédito cuenta con seguro de desgravamen.<br/>
+			• Se puede realizar abonos al crédito sin penalidad alguna.<br/> 
+			• Se puede pre-cancelar el crédito sin penalidad alguna.<br/>
+			
+						</p><br/>
+						 <h3>Requisitos </h3><br/>
 						  <p align= "justify">
-						1. Solicitud de crédito especificando el tipo de crédito, debidamente llena con toda la información requerida en la misma y firmada por el participe y conyugue.</br>
-						2. Solicitud de avalúo, de la propiedad a hipotecar.</br>
-						3. Copias a color de la cédula y papeleta de votación del partícipe y cónyuge.</br>
-						4. Roles de Pago o confidenciales individuales de los tres últimos meses del partícipe y cónyuge.</br>
-						5. Certificado laboral, emitido por la unidad de Recursos Humanos de la institución patronal a la cual presta sus servicios; se debe especificar el tiempo de servicio e ingresos, pues deberá justificar estabilidad laboral al menos de dos años.</br>
-						6. Original o copia de planilla, factura electrónica, de uno de los servicios básicos (agua, luz, teléfono, internet o cable).</br>
-						7. Certificados comprobables de otros ingresos en caso de existir.</br>
-						8. Documentos de respaldo patrimonial en caso de existir.</br>
-						9. Copia del título de Propiedad y sus reformas, debidamente inscritas en el Registro de la Propiedad.</br>
-						10. Certificado de gravámenes original actualizado.</br>
-						11. Pago del impuesto predial del año actual del bien a comprar.</br>
-						12. Informe del avaluó actualizado, del bien a ser hipotecado que lo realizará un perito avaluador aprobado por la Superintendencia de Bancos y Seguros.</br>
-						13. Copias de cédula y papeleta de votación a color del vendedor o vendedores.</br></br>
-						El valor del avalúo lo cancela el afiliado, por lo que en caso de que la respuesta del crédito sea desfavorable, el valor cancelado por el avalúo NO ES REEMBOLSABLE.</br></br>
-						• En cualquier fecha Ud. puede pre cancelar el préstamo vigente.</br>
-						• Realizado por los Oficiales de Crédito del Fondo y aprobado por el Comité de Crédito.</br>
-						• Plazo de Concesión 30 a 60 días laborables, desde cuando los documentos estén completos en nuestras oficinas.</br>
+						<b>1.</b> Solicitud de crédito Hipotecario, debidamente llena con toda la información requerida en la misma y firmada por el partícipe, esta será realizada a través de servicios en línea, página web del FONDO.<br/>
+						<b>2.</b> Autorización de descuentos de rol de pagos debidamente llena y firmada por el partícipe.<br/>
+						<b>3.</b> Autorización de débito bancario automático debidamente llena y firmada por el partícipe.<br/>
+						<b>4.</b> Roles de pago de los tres últimos meses del partícipe y conyugue.<br/>
+						<b>5.</b> Certificado laboral siempre y cuando no conste la fecha de entrada en el rol de pagos o nombramiento, emitido por la institución patronal a la cual presta sus servicios o en su defecto historia laboral del IESS.<br/>
+						<b>6.</b> Copia de cédula de identidad del partícipe y conyugue.<br/>
+						<b>7.</b> Copia de certificado de votación del partícipe y conyugue actualizado.<br/>
+						<b>8.</b> Original o copia de planilla, factura electrónica, de uno de los servicios básicos (agua, luz, teléfono, internet o cable) periodo de hasta hace tres (3) meses.<br/>
+						<b>9.</b> Copia de la cartola o impresión del estado de cuenta bancaria del partícipe y conyugue, de existir ingresos adicionales como fondos de reserva, rancho, décimos y/o remesas que deberán estar sustentadas en dichos documentos.<br/>
+						<b>10.</b> Documentos de respaldo patrimonial en caso de existir.<br/>
+						<b>11.</b> Copia del título de Propiedad del bien inmueble, debidamente inscritas en el Registro de la Propiedad.<br/>
+						<b>12.</b> Certificado de gravámenes original actualizado.<br/>
+						<b>13.</b> Pago del impuesto predial actualizado del bien a adquirir.<br/>
+						<b>14.</b> Informe del avalúo actualizado, del bien a ser hipotecado que lo realizará un perito avaluador aprobado por la Superintendencia de Bancos.<br/>
+						<b>15.</b> Copias de cédula y papeleta de votación a color del vendedor o vendedores.<br/><br/>
+						
+						Adicionalmente si el bien es declarado en Propiedad Horizontal se necesitarán los siguientes documentos:<br/><br/>
+						<b>1.</b> Escritura de Propiedad Horizontal y sus reformas en caso de haberlas.<br/>
+						<b>2.</b> Copias de cédula y papeleta  de votación a color del vendedor o vendedores del inmueble, en caso de que el vendedor sea persona jurídica deberá presentar nombramiento y cédula  del  Representante legal y RUC.<br/>
+						<b>3.</b> Certificado de expensas actualizada.<br/>
+						<b>4.</b> Original o Copia Certificada del nombramiento del administrador actualizado.<br/>
+						<b>5.</b> Copias de cédula y papeleta de votación del administrador del Edificio.<br/>
+						<b>6.</b> Certificado de expensas actualizado a la fecha de solicitud del crédito.<br/>
+						
 						</p>
 			
 			  <img class="quote-sign-right" alt="">
-            </p>
+           
           </div>
 
         </div>
@@ -131,13 +151,7 @@
               <strong>Correo:</strong> info@capremci.com.ec<br>
             </p>
 
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-            </div>
+          
 
           </div>
 
@@ -147,17 +161,9 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; <strong>Systech</strong>. Todos los derechos reservados
+        &copy; <strong>Capremci-2018</strong>. Todos los derechos reservados
       </div>
-      <div class="credits">
-        <!--
-          All the links in the footer should remain intact.
-          You can delete the links only if you purchased the pro version.
-          Licensing information: https://bootstrapmade.com/license/
-          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=BizPage
-        -->
-        Diseñado por<a href="https://bootstrapmade.com/">Systech</a>
-      </div>
+     
     </div>
   </footer><!-- #footer -->
     

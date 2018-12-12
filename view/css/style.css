@@ -147,7 +147,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #intro .carousel-item::before {
   content: '';
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
   height: 100%;
   width: 100%;
@@ -178,7 +178,12 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 48px;
   font-weight: 700;
 }
-
+#intro h3 {
+  color: #fff;
+  font-size: 20px;
+  background: bold;
+  
+}
 @media (max-width: 768px) {
   #intro h2 {
     font-size: 28px;
@@ -840,6 +845,15 @@ body.mobile-nav-active #mobile-nav-toggle {
   color: #18d26e;
 }
 
+#facts .counters_1 span {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  display: block;
+  color: #18d26e;
+}
+
+
 #facts .counters p {
   padding: 0;
   margin: 0 0 20px 0;
@@ -1455,3 +1469,153 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-size: 13px;
   color: #ddd;
 }
+
+
+
+
+
+<!-- SECCION NOSOTROS-->
+
+#nosotros {
+  background: #f7f7f7;
+  padding: 80px 0 60px 0;
+  
+}
+
+#nosotros .nosotros-container .background {
+  min-height: 300px;
+  background: url(../img/about-img.jpg) center top no-repeat;
+  margin-bottom: 10px;
+}
+
+#nosotros .nosotros-container .content {
+  background: #fff;
+}
+
+#nosotros .nosotros-container .title {
+  color: #333;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+@media (max-width: 768px) {
+  #nosotros .nosotros-container .title {
+    padding-top: 15px;
+  }
+}
+
+#nosotros .nosotros-container p {
+  line-height: 26px;
+}
+
+#nosotros .nosotros-container p:last-child {
+  margin-bottom: 0;
+}
+
+#nosotros .nosotros-container .icon-box {
+  background: #fff;
+  background-size: cover;
+  padding: 0 0 30px 0;
+}
+
+#nosotros .nosotros-container .icon-box .icon {
+  float: left;
+  background: #fff;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 50%;
+  border: 2px solid #2dc997;
+}
+
+#nosotros .nosotros-container .icon-box .icon i {
+  color: #2dc997;
+  font-size: 24px;
+}
+
+#nosotros .nosotros-container .icon-box .title {
+  margin-left: 80px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+#nosotros .nosotros-container .icon-box .title a {
+  color: #111;
+}
+
+#nosotros .nosotros-container .icon-box .description {
+  margin-left: 80px;
+  line-height: 24px;
+  font-size: 14px;
+}
+
+
+
+
+/*--------------------------------------------------------------
+# Header NUEVAS PAGINAS MAYCOL
+--------------------------------------------------------------*/
+#header_1 {
+  padding: 30px 0;
+  height: 92px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  transition: all 0.5s;
+  z-index: 997;
+}
+
+#header_1{
+  background: rgba(0, 0, 0, 0.9);
+  padding: 20px 0;
+  height: 72px;
+  transition: all 0.5s;
+}
+
+#header_1 #logo {
+  float: left;
+}
+
+@media (min-width: 1024px) {
+  #header_1 #logo {
+    padding-left: 60px;
+  }
+}
+
+#header_1 #logo h1 {
+  font-size: 34px;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+#header_1 #logo h1 a, #header_1 #logo h1 a:hover {
+  color: #fff;
+  padding-left: 10px;
+  border-left: 4px solid #18d26e;
+}
+
+#header_1 #logo img {
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  #header_1 #logo h1 {
+    font-size: 28px;
+  }
+  #header_1 #logo img {
+    max-height: 40px;
+  }
+}
+

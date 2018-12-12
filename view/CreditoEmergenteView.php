@@ -37,10 +37,25 @@
 
 <body>
 
+
+ <header id="header_1">
+    <div class="container-fluid">
+      <div id="logo" class="pull-left">
+        <a href="#intro"><img src="img/logo.png" width="180" height="40" alt="" title="" /></a>
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="../index.php?controller=Iniciar&action=index">Inicio</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
     <!--==========================
       Clients Section
     ============================-->
-    <section id="testimonials" class="section-bg wow fadeInUp">
+    <section id="testimonials" class="section-bg wow fadeInUp" style="margin-top: 30px;">
       <div class="container">
 
         <header class="section-header">
@@ -52,38 +67,36 @@
           <div class="testimonial-item">
             <img src="img/blog3.jpg" class="testimonial-img" alt="">
             <h3>Características</h3>
-             <p>
-              <img alt="">
-			 <p align="justify">Montos desde $100.00 hasta $5,000.00</br></br>
-						• Plazo desde 3 meses hasta 48 meses.</br>
-						• Plazos convenientes: desde 3 hasta 48 meses para cancelar tu crédito.</br>
-						• El desembolso esta efectivizado hasta en 48 horas desde la firma del pagaré.</br>
-						• Realiza con total libertad pre-pagos totales o parciales, sin ninguna penalidad o costo.</br>
-						• Puedes pagar tus cuotas mensuales a través de débito automático o bancario, mediante el sistema de descuento por rol de pagos.</br>
-						• El préstamo cuenta con el seguro de desgravamen en caso de fallecimiento o invalidez del deudor, lo que cancela tu deuda y protege tu familia.</br>
-						• El interés corresponde al 12% anual sobre saldos.</br>
-						• El monto a otorgarse es máximo de $5000,00 sin que este valor supere el 100% de tu cuenta individual.</br>
-						• En este crédito la cuota máxima, no puede exceder del 50% del sueldo líquido.</br>
-						• El plazo máximo de este crédito es de 4 años.</br>
-						• Debes ser mayor de 18 y menor de 75 años de edad, (la sumatoria de la edad del participe más el número de años del crédito no puede superar los 75 años del participe).</br>
-						• El participe debe tener un mínimo de 6 aportaciones seguidas.</br>
-						• Puedes renovar tu crédito una vez que se encuentren canceladas por lo menos 6 cuotas del préstamo.</br>
-						• Debes sustentar un ingreso neto mínimo de $150 dólares.
-						</p></br>
-						 <h3>Requisitos </h3></br>
-						  <p align= "justify">
-						1. Rol de pagos de los tres últimos meses debidamente firmados y sellados.</br>
-						2. Certificado de tiempo de servicio de la fuerza o reparto donde labora.</br>
-						3. Copia de cédula y papeleta de votación legible titular y cónyuge de ser el caso.</br>
-						4. Planilla de servicios básicos actualizada: agua, luz o teléfono.</br>
-						5. Copia de la libreta de ahorros.</br>
-						6. Autorización de dedito automático.</br>
-						7. Autorización de descuento por rol de pagos.</br>
-						8. Solicitud de crédito debidamente llena y firmada por el participe.</br>
+            
+			  <p align="justify">
+			
+						• Se concede el crédito hasta un monto máximo  de USD$ 7,000.00 este valor debe ser respaldado por la cuenta individual.<br/>
+						• La cuota mensual no podrá exceder del 50% del sueldo líquido del solicitante.<br/>
+						• La tasa de interés es 12% anual fija sobre saldos.<br/>
+						• Plazo máximo 4 años.<br/>
+						• El afiliado debe tener mínimo 3 aportaciones consecutivas.<br/>
+						• El crédito cuenta con seguro de desgravamen al deudor.<br/>
+						• Para renovar su crédito, una vez que tenga pagadas 6 cuotas del préstamo.<br/> 
+						• Se puede realizar abonos al crédito sin penalidad alguna.<br/> 
+						• Se puede pre cancelar el crédito sin penalidad alguna.
+						
+						</p><br/>
+						 <h3>Requisitos </h3><br/>
+						 <p align= "justify">
+						<b>1.</b> Solicitud de crédito especificando el tipo de crédito, debidamente llena con toda la información requerida en la misma y firmada por el partícipe, esta será realizada a través de servicios en línea, página web del FONDO.<br/>
+						<b>2.</b> Autorización de descuentos de rol de pagos debidamente llena y firmada por el partícipe.<br/>
+						<b>3.</b> Autorización de débito bancario automático debidamente llena y firmada por el partícipe.<br/>
+						<b>4.</b> Roles de pago de los tres últimos meses del partícipe.<br/>
+						<b>5.</b> Certificado laboral siempre y cuando no conste la fecha de entrada en el rol de pagos o nombramiento, emitido por la institución patronal a la cual presta sus servicios o en su defecto historia laboral del IESS.<br/>
+						<b>6.</b> Copia de cédula de identidad del partícipe.<br/>
+						<b>7.</b> Copia de certificado de votación del partícipe actualizado.<br/>
+						<b>8.</b> Original o copia de planilla, factura electrónica, de uno de los servicios básicos (agua, luz, teléfono, internet o cable) período de hasta hace tres (3) meses.<br/>
+						<b>9.</b> Copia de la cartola, impresión del estado de cuenta de banca electrónica del partícipe o certificado bancario.<br/>
+						
 						</p>
 			
 			  <img class="quote-sign-right" alt="">
-            </p>
+            
           </div>
 
         </div>
@@ -124,13 +137,7 @@
               <strong>Correo:</strong> info@capremci.com.ec<br>
             </p>
 
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-            </div>
+          
 
           </div>
 
@@ -140,17 +147,9 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; <strong>Systech</strong>. Todos los derechos reservados
+       &copy; <strong>Capremci-2018</strong>. Todos los derechos reservados
       </div>
-      <div class="credits">
-        <!--
-          All the links in the footer should remain intact.
-          You can delete the links only if you purchased the pro version.
-          Licensing information: https://bootstrapmade.com/license/
-          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=BizPage
-        -->
-        Diseñado por<a href="https://bootstrapmade.com/">Systech</a>
-      </div>
+      
     </div>
   </footer><!-- #footer -->
     

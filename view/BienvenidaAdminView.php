@@ -80,6 +80,7 @@
             <div id='pone_consulta_documentos'></div>
 			 <div id='pone_afiliaciones_recomendadas'></div>
 			  <div id='pone_encuestas_realizadas'></div>
+			  <div id='pone_calificaciones'></div>
           </div>
           
           
@@ -155,6 +156,7 @@
 				    pone_afiliaciones_recomendadas();
 				    pone_encuestas_realizadas();
         		   cargar_banner();
+        		   cargar_calificaciones();
 	   			});
 
 
@@ -338,6 +340,27 @@
         		  }
 
 
+
+
+
+        	   function cargar_calificaciones(){
+        		   $(document).ready( function (){
+        		       $.ajax({
+        		                 beforeSend: function(objeto){
+        		                   $("#pone_calificaciones").html('')
+        		                 },
+        		                 url: 'index.php?controller=Usuarios&action=cargar_calificaciones',
+        		                 type: 'POST',
+        		                 data: null,
+        		                 success: function(x){
+        		                   $("#pone_calificaciones").html(x);
+        		                 },
+        		                error: function(jqXHR,estado,error){
+        		                  $("#pone_calificaciones").html("Ocurrio un error al cargar la informacion de calificaciones..."+estado+"    "+error);
+        		                }
+        		              });
+        		     })
+        		  }
 
         	 
         	   

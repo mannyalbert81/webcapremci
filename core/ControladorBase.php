@@ -3,6 +3,7 @@ class ControladorBase{
 
     public function __construct() {
         require_once 'EntidadBase.php';
+        require_once 'EntidadBaseSQL.php';
         require_once 'ModeloBase.php';
         
         //Incluir todos los modelos

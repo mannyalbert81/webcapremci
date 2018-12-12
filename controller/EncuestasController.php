@@ -745,7 +745,7 @@ class EncuestasController extends ControladorBase{
 			$html .= "<i class='ion ion-pie-graph'></i>";
 			$html .= "</div>";
 				
-			if($id_rol==1){
+			if($id_rol==1 || $id_rol==43 || $id_rol==45){
 				$html .= "<a href='index.php?controller=Encuestas&action=index2' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
 			}else{
 				$html .= "<a href='#' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";

@@ -37,10 +37,24 @@
 
 <body>
 
+ <header id="header_1">
+    <div class="container-fluid">
+      <div id="logo" class="pull-left">
+        <a href="#intro"><img src="img/logo.png" width="180" height="40" alt="" title="" /></a>
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="../index.php?controller=Iniciar&action=index">Inicio</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
     <!--==========================
       Services Section
     ============================-->
-    <section id="services">
+    <section id="services" style="margin-top: 30px;">
       <div class="container">
 
         <header class="section-header wow fadeInUp">
@@ -55,13 +69,13 @@
             <p class="description" align="justify">A partir de Agosto del 2013 de acuerdo al Art. 18 de la Norma 504, emitida por la Superintendencia de Bancos y Seguros los partícipes que opten por la desafiliación voluntaria podrán únicamente retirar el 50% de los aportes personales más sus rendimientos siempre y cuando este valor cubra la totalidad de los créditos que mantenga en el Fondo, caso contrario deberá realizar el deposito correspondiente para cubrir el saldo a favor del Fondo.</br></br>
                     El 50% restante de los aportes personales y aportes patronales más rendimientos quedará registrada en una cuenta por pagar generando rendimientos hasta que el ex – partícipe quede efectivamente cesante la entidad patronal para la cual labora.</br></br>
 					Los requisitos que deberán presentar son:</br></br>
-					a. Carta dirigida al Fondo manifestando su deseo voluntario de desafiliarse.</br>
-					b. Llenar el Formulario que para el efecto entregue la Administración del Fondo.</br>
-					c. Último confidencial.</br>
-					d. Certificado Original de tiempo de servicio por la oficina de personal de la Entidad Patronal en el que conste las fechas de ingreso y salida.</br>
-					e. Fotocopia clara de la cédula de ciudadanía y papeleta de votación actualizada.</br>
-					f. Pago de agua, luz o teléfono en el conste la dirección de su domicilio.</br>
-					g. Certificado conferido por una institución financiera o copia de la libreta de ahorros en la que se vaya acreditar los valores correspondientes a la cesantía.</br></br>
+					<b>a.</b> Carta dirigida al Fondo manifestando su deseo voluntario de desafiliarse.</br>
+					<b>b.</b> Llenar el Formulario que para el efecto entregue la Administración del Fondo.</br>
+					<b>c.</b> Último confidencial.</br>
+					<b>d.</b> Certificado Original de tiempo de servicio por la oficina de personal de la Entidad Patronal en el que conste las fechas de ingreso y salida.</br>
+					<b>e.</b> Fotocopia clara de la cédula de ciudadanía y papeleta de votación actualizada.</br>
+					<b>f.</b> Pago de agua, luz o teléfono en el conste la dirección de su domicilio.</br>
+					<b>g.</b> Certificado conferido por una institución financiera o copia de la libreta de ahorros en la que se vaya acreditar los valores correspondientes a la cesantía.</br></br>
 					La liquidación de la Desafiliación se realizará al mes siguiente de haber transcurridos los 90 días de no haber aportado al Fondo, una vez cumplido con este tiempo el Oficial de Prestaciones procederá con el cruce respectivo y envió del acta de conformidad correspondiente para las firmas respectivas y posterior transferencia.
 					</p>
 			</div>
@@ -107,13 +121,7 @@
               <strong>Correo:</strong> info@capremci.com.ec<br>
             </p>
 
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-            </div>
+           
 
           </div>
 
@@ -123,17 +131,9 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; <strong>Systech</strong>. Todos los derechos reservados
+        &copy; <strong>Capremci-2018</strong>. Todos los derechos reservados
       </div>
-      <div class="credits">
-        <!--
-          All the links in the footer should remain intact.
-          You can delete the links only if you purchased the pro version.
-          Licensing information: https://bootstrapmade.com/license/
-          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=BizPage
-        -->
-        Diseñado por<a href="https://bootstrapmade.com/">Systech</a>
-      </div>
+     
     </div>
   </footer><!-- #footer -->
     

@@ -18,7 +18,7 @@ class ConectarSQL{
         
         if($this->driver=="sql" || $this->driver==null){
         	
-        	$serverName = "SVRPROD, 1433"; //serverName\instanceName, portNumber (por defecto es 1433)
+        	$serverName = "192.168.1.208, 1433"; //serverName\instanceName, portNumber (por defecto es 1433)
         	$connectionInfo = array("Database"=>'one.capremci_PROD', "UID"=>'sa', "PWD"=>'$software$01');
         	$con = sqlsrv_connect($serverName, $connectionInfo);
         	
@@ -28,7 +28,7 @@ class ConectarSQL{
         		echo "No se puedo Conectar a la Base";
         		exit();
         	} else {
-        		DIE('FUNCIONO');
+        		
         	}
        
         }
@@ -37,30 +37,6 @@ class ConectarSQL{
 	
     }
     
-    public function startFluent(){
-        require_once "FluentPDO/FluentPDO.php";
-        
-        if($this->driver=="sql" || $this->driver==null){
-        	
-        	try
-        	{
-        		$pdo = new PDO('sqlsrv:database=one.capremci_PROD;host=192.168.1.208', 'sa', '$software$01');
-            	
-        		
-         
-            	$fpdo = new FluentPDO($pdo);
-            	
-            }
-            
-            
-            catch(Exception $err)
-            {
-            	echo "PDO No se puedo Conectar a la Base";
-            	exit();
-            }
-        }
-        
-        return $fpdo;
-    }
+   
 }
 ?>

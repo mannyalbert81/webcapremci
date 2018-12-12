@@ -37,10 +37,25 @@
 
 <body>
 
+ <header id="header_1">
+    <div class="container-fluid">
+      <div id="logo" class="pull-left">
+        <a href="#intro"><img src="img/logo.png" width="180" height="40" alt="" title="" /></a>
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="../index.php?controller=Iniciar&action=index">Inicio</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
     <!--==========================
       Clients Section
     ============================-->
-    <section id="testimonials" class="section-bg wow fadeInUp">
+    <section id="testimonials" class="section-bg wow fadeInUp" style="margin-top: 30px;">
       <div class="container">
 
         <header class="section-header">
@@ -52,32 +67,33 @@
           <div class="testimonial-item">
             <img src="img/blog1.jpg" class="testimonial-img" alt="">
             <h3>Características</h3>
-             <p>
-              <img alt="">
-			 <p align="justify">Se concede el crédito hasta el 100% de la Cuenta Individual </br></br>
-						• La cuota mensual no podrá exceder del 50% del sueldo líquido del solicitante.</br>
-						• Tasa de interés: 9% anual fija sobre saldos.</br>
-						• Plazo: 7 años.</br>
-						• El afiliado debe tener un mínimo 3 aportaciones seguidas.</br>
-						• El Crédito cuenta con Seguro de Desgravamen para el deudor.</br></br>
-						Puede renovar su crédito una vez que tenga pagadas por lo menos 6 cuotas de su préstamo.</br>
-						En cualquier fecha Ud. puede pre cancelar el préstamo vigente.</p></br>
-						 <h3>Requisitos </h3></br>
+             
+			<p align="justify">
+			            • Se concede el crédito hasta el 100% de la Cuenta Individual.<br/>
+			            • La cuota mensual no podrá exceder del 50% del sueldo líquido del solicitante.<br/>
+						• Tasa de interés: 9% anual fija sobre saldos.<br/>
+						• Plazo máximo 7 años.<br/>
+						• El afiliado debe tener un mínimo 3 aportaciones consecutivas.<br/>
+						• El Crédito cuenta con Seguro de Desgravamen para el deudor.<br/><br/>
+						• Para renovar su crédito, una vez que tenga pagadas 6 cuotas del préstamo.<br/>
+						• Se puede realizar abonos al crédito sin penalidad alguna.<br/>
+						• Se puede realizar pre cancelar el crédito sin penalidad alguna.<br/>
+						</p>
+						 <h3>Requisitos </h3><br/>
 						  <p align= "justify">
-						1. Solicitud de crédito especificando el tipo de crédito, debidamente llena con toda la información requerida en la misma y firmada por el participe.</br>
-						2. Pagaré en el cual se especifica además del tipo de crédito, el monto, plazo, tasa de interés y tabla de amortización, firmado por el participe.</br>
-						3. Rol de pagos o confidencial individual de los TRES últimos meses del participe.</br>
-						4. Certificado laboral siempre y cuando no conste la fecha de entrada en el rol de pagos o nombramiento, emitido por la institución patronal a la cual presta sus servicios; se debe especificar el tiempo de servicio, pues deberá justificar estabilidad laboral al menos de dos años.</br>
-						5. Copia de cédula de identidad del participe.</br>
-						6. Copias de certificados de votación del partícipe actualizado.</br>
-						7. Original o copia de planilla, factura electrónica, de uno de los servicios básicos (agua, luz o teléfono).</br>
-						8. Autorización de descuentos de rol de pagos debidamente llena y firmada por el participe.</br>
-						9. Autorización de débito automático debidamente llena y firmada por el participe.</br>
-						10. Copia de la cartola o impresión del estado de cuenta bancaria.</br>
+						<b>1.</b> Solicitud de crédito especificando el tipo de crédito, debidamente llena con toda la información requerida en la misma y firmada por el participe, esta será realizada a través de servicios en linea, página web del FONDO.<br/>
+						<b>2.</b> Autorización de descuentos de rol de pagos debidamente llena y firmada por el participe.<br/>
+						<b>3.</b> Autorización de débito bancario automático debidamente llena y firmada por el participe.<br/>
+						<b>4.</b> Roles de pago de los tres últimos meses del participe.<br/>
+						<b>5.</b> Certificado laboral siempre y cuando no conste la fecha de entrada en el rol de pagos o nombramiento, emitido por la institución patronal a la cual presta sus servicios o en su defecto historia laboral del IESS.<br/>
+						<b>6.</b> Copia de cédula de identidad del participe.<br/>
+						<b>7.</b> Copias de certificados de votación del partícipe actualizado.<br/>
+						<b>8.</b> Original o copia de planilla, factura electrónica, de uno de los servicios básicos (agua, luz, teléfono, internet o cable) periodo de hasta hace tres (3) meses.<br/>
+						<b>9.</b> Copia de la cartola, impresión del estado de cuenta banca electrónica del participe o certificado bancario.<br/>
 						</p>
 			
 			  <img class="quote-sign-right" alt="">
-            </p>
+          
           </div>
 
         </div>
@@ -118,13 +134,7 @@
               <strong>Correo:</strong> info@capremci.com.ec<br>
             </p>
 
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-            </div>
+           
 
           </div>
 
@@ -134,17 +144,9 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; <strong>Systech</strong>. Todos los derechos reservados
+        &copy; <strong>Capremci-2018</strong>. Todos los derechos reservados
       </div>
-      <div class="credits">
-        <!--
-          All the links in the footer should remain intact.
-          You can delete the links only if you purchased the pro version.
-          Licensing information: https://bootstrapmade.com/license/
-          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=BizPage
-        -->
-        Diseñado por<a href="https://bootstrapmade.com/">Systech</a>
-      </div>
+     
     </div>
   </footer><!-- #footer -->
     

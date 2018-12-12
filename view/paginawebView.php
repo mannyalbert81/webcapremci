@@ -1,222 +1,49 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>FCPC CAPREMCI</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
+	  <meta charset="utf-8">
+	  <title>FCPC CAPREMCI</title>
+	  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+	  <meta content="" name="keywords">
+	  <meta content="" name="description">
+	
+	  <!-- Favicons -->
+	  <link href="view/img/favicon.png" rel="icon">
+	  <link href="view/img/apple-touch-icon.png" rel="apple-touch-icon">
+	   
+	
+	
+	
+	  <!-- Google Fonts -->
+	  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+	
+	  <!-- Bootstrap CSS File -->
+	  <link href="view/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	
+	  <!-- Libraries CSS Files -->
+	  <link href="view/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	  <link href="view/lib/animate/animate.min.css" rel="stylesheet">
+	  <link href="view/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+	  <link href="view/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+	  <link href="view/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+	
+	  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	  <link href="view/css/style.css" rel="stylesheet">
+ 
+  </head>
+	
+  <body>
 
-  <!-- Favicons -->
-  <link href="view/img/favicon.png" rel="icon">
-  <link href="view/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
-
-  <!-- Bootstrap CSS File -->
-  <link href="view/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Libraries CSS Files -->
-  <link href="view/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="view/lib/animate/animate.min.css" rel="stylesheet">
-  <link href="view/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="view/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="view/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   
-  
-  <!-- Main Stylesheet File -->
-  <link href="view/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-    Theme Name: BizPage
-    Theme URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
-    Author: BootstrapMade.com
-    License: https://bootstrapmade.com/license/
-  ======================================================= -->
-  
-  <!--  
-   <script type="text/javascript">
-        	   $(document).ready( function (){
-        		   $("#mostrarmodal").modal("show");
-        		});
-  
-  </script>
-  -->
-</head>
-
-<body>
-
-    
-      <?php 
-        
-        $data ="";
-        $i=0;
-        if (!empty($resultSet)) {
-        	 
-        	$data="[";
-        	 
-        	foreach($resultSet as $res) {
-        
-        		$data.="'";
-        		$data.=$res->nombre_preguntas_encuestas_participes."',";
-        
-        	}
-        	 
-        	$data.="]";
-        
-        	$pre_1_r1="[";
-        	$pre_1_r2="[";
-        	$pre_1_r3="[";
-        	
-        	 
-        	foreach($resultSet as $res) {
-                $i++;
-        		
-                if($i==1){
-                	
-                	$pre_1_r1.="'";
-                	$pre_1_r1.=$res->bueno_pregunta_1."',";
-                	
-                	$pre_1_r2.="'";
-                	$pre_1_r2.=$res->intermedio_1."',";
-                	
-                	$pre_1_r3.="'";
-                	$pre_1_r3.=$res->malo_1."',";
-                	
-                
-                	
-                }
-                
-                elseif ($i==2){
-                	
-                	$pre_1_r1.="'";
-                	$pre_1_r1.=$res->si_2."',";
-                	 
-                	$pre_1_r2.="'";
-                	$pre_1_r2.=$res->algo_2."',";
-                	 
-                	$pre_1_r3.="'";
-                	$pre_1_r3.=$res->nada_2."',";
-                	
-                
-                	
-                	
-                }
-               
-                elseif ($i==3){
-                	
-                	$pre_1_r2.="'";
-                	$pre_1_r2.=$res->la_informacion_3."',";
-                	
-                	
-                	
-                	$pre_1_r3.="'";
-                	$pre_1_r3.=$res->los_colores_3."',";
-                	 
-                	$pre_1_r1.="'";
-                	$pre_1_r1.=$res->nada_3."',";
-                	
-                	
-                }
-                
-               
-                elseif ($i==4){
-                	 
-                	$pre_1_r1.="'";
-                	$pre_1_r1.=$res->r10_4."',";
-                	 
-                	$pre_1_r2.="'";
-                	$pre_1_r2.=$res->r9_4."',";
-                	 
-                	$pre_1_r3.="'";
-                	$pre_1_r3.=$res->r8_4."',";
-                	
-                }
-                
-               
-                elseif ($i==5){
-                	 
-                	$pre_1_r1.="'";
-                	$pre_1_r1.=$res->si_5."',";
-                	
-                	$pre_1_r2.="'";
-                	$pre_1_r2.=$res->intermedio_5."',";
-                	
-                	$pre_1_r3.="'";
-                	$pre_1_r3.=$res->no_5."',";
-                	
-                }
-                
-               
-                elseif ($i==6){
-                	 
-                	$pre_1_r1.="'";
-                	$pre_1_r1.=$res->si_6."',";
-                	 
-                	$pre_1_r2.="'";
-                	$pre_1_r2.=$res->no_6."',";
-                	 
-                	$pre_1_r3.="'";
-                	$pre_1_r3.='0'."',";
-                	
-                }
-                
-               
-                elseif ($i==7){
-                	 
-                	$pre_1_r1.="'";
-                	$pre_1_r1.=$res->si_7."',";
-                	 
-                	$pre_1_r2.="'";
-                	$pre_1_r2.=$res->no_7."',";
-                	 
-                	$pre_1_r3.="'";
-                	$pre_1_r3.='0'."',";
-                	
-                } elseif ($i==8){
-                	 
-                	$pre_1_r1.="'";
-                	$pre_1_r1.=$res->si_8."',";
-                	 
-                	$pre_1_r2.="'";
-                	$pre_1_r2.=$res->intermedio_8."',";
-                	 
-                	$pre_1_r3.="'";
-                	$pre_1_r3.=$res->no_8."',";
-                	
-                }
-        		
-        
-        	}
-        	 
-        	$pre_1_r1.="]";
-        	$pre_1_r2.="]";
-        	$pre_1_r3.="]";
-        	
-        	// echo ($data1);
-        	 
-        }else{}
-        
-        ?>
-    
-
-  <!--==========================
-    Header
-  ============================-->
   <header id="header">
     <div class="container-fluid">
-
       <div id="logo" class="pull-left">
-         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="#intro"><img src="view/img/logo.png" width="160" height="37" alt="" title="" /></a>
+        <a href="#intro"><img src="view/img/logo.png" width="180" height="40" alt="" title="" /></a>
       </div>
-
-      <nav id="nav-menu-container">
+	  <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li class="menu-active"><a href="#intro">Inicio</a></li>
           <li><a href="#about">El Fondo</a></li>
@@ -224,29 +51,28 @@
           <li><a href="#services">Prestaciones</a></li>
           <li><a href="#testimonials">Servicios Financieros</a></li>
 		  <li><a href="#service">Educación Financiera</a></li>
-            <li><a href="#contact">Contáctanos</a></li>
+            <li><a href="#contact">Contáctenos</a></li>
         </ul>
-      </nav><!-- #nav-menu-container -->
+      </nav>
     </div>
-  </header><!-- #header -->
+  </header>
 
   <!--==========================
     Intro Section
   ============================-->
+  
   <section id="intro">
     <div class="intro-container">
       <div id="introCarousel" class="carousel  slide carousel-fade" data-ride="carousel">
 
         <ol class="carousel-indicators"></ol>
-
         <div class="carousel-inner" role="listbox">
-
           <div class="carousel-item active">
-            <div class="carousel-background"><img src="view/img/intro-carousel/1.jpg" alt=""></div>
-            <div class="carousel-container">
+            <div class="carousel-background"><img src="view/img/intro-carousel/1.jpeg" alt=""></div>
+             <div class="carousel-container">
               <div class="carousel-content">
                 <h2>Bienvenido a CAPREMCI</h2>
-				<h3>Ya puedes calificar nuestra atención</h3>
+				<h3>Asamblea de Representantes</h3>
             	<p>Afíliate ya.</p>
                 <a href="#about" class="btn-get-started scrollto">Ver Más</a>
               </div>
@@ -258,7 +84,7 @@
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2>Bienvenido a CAPREMCI</h2>
-				<h3>Tú ahorro presente , tú bienestar del mañana</h3>
+				<h3>Ya puedes calificar nuestra atención</h3>
           		<p>Afiliate ya.</p>
                 <a href="#about" class="btn-get-started scrollto">Ver Más</a>
               </div>
@@ -300,7 +126,6 @@
               </div>
             </div>
           </div>
-
         </div>
 
         <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
@@ -319,39 +144,6 @@
 
   
   
-  
-  
-  
-  <!-- 
-  
-     <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-          <div class="modal-dialog modal-md">
-        <div class="modal-content">
-           <div class="modal-header">
-              <h4>Contáctanos a los números.</h4>
-           </div>
-           <div class="modal-body">
-            
-			
-			  <strong>Quito:</strong> 02-2236931 <i class="ion-ios-telephone-outline"></i><BR>
-			  <strong>Guayaquil:</strong> 04-2564900 <i class="ion-ios-telephone-outline"></i>
-			 
-			   
-			   
-          </div>
-           <div class="modal-footer">
-          <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>
-           </div>
-	      </div>
-	     </div>
-	   </div>
-  
-  
-   -->
-  
-  
-  
-  <main id="main">
 
     <!--==========================
       About Us Section
@@ -397,7 +189,7 @@
               </div>
               <h2 class="title"><a href="#">Administración</a></h2>
               <p align="justify">
-                Se comunica a todos ustedes, que el 22 de septiembre de 2017 mediante oficio No. BIESS-OF-GGEN-1520-2017, el Banco del Instituto Ecuatoriano de Seguridad Social BIESS, designa a la Señora Ingeniera STEPHANY ALEJANDRA ZURITA CEDEÑO, como Representante Legal del Fondo Complementario Previsional Cerrado de Cesantía de Servidores y Trabajadores Públicos de Fuerzas Armadas.</p>
+               El 22 de septiembre de 2017 mediante oficio No. BIESS-OF-GGEN-1520-2017, el Banco del Instituto Ecuatoriano de Seguridad Social BIESS, designa a la Señora Ingeniera STEPHANY ALEJANDRA ZURITA CEDEÑO, como Representante Legal del Fondo Complementario Previsional Cerrado de Cesantía de Servidores y Trabajadores Públicos de Fuerzas Armadas - Capremci.</p>
             </div>
           </div>
 		<div class="col-md-3 wow fadeInUp" data-wow-delay="0.2s">
@@ -416,177 +208,103 @@
       </div>
     </section><!-- #about -->
 	
-	 <!--==========================
-      Call To Action Section
-    ============================-->
-    <section id="call-to-action" class="wow fadeIn">
-      <div class="container text-center">
-        <h3>Servicios en Linea</h3>
-		<p> Contamos con la mayor tecnología para tu mayor comodidad.</p>
-        <p> Nos encontramos en una transformación actualmente para acceder a los apoyos y beneficios en Capremci encontraras que los sistemas se encuentran en plataformas diferentes, solicitamos ubiques en trámite que deseas realizar y elijas la opción adecuada.</p>
-        <a class="cta-btn" href="index.php?controller=Usuarios&action=Loguear" >Ingresar</a>
-		
+	
+	
+	
+	
+	
+	<section id="nosotros">
+	<br/><br/>
+      <div class="container">
+        <div class="row nosotros-container">
+
+          <div class="col-lg-6 content order-lg-1 order-2">
+            <h2 class="title">EQUIPO DE TRABAJO</h2>
+            <p>
+              Valores Y Principios:
+            </p>
+
+            <div class="icon-box wow fadeInUp">
+              <div class="icon"><i class="fa fa-address-card-o"></i></div>
+              <h4 class="title"><a href="javascript:void(0);">Integridad</a></h4>
+              <p class="description">Mantener todas nuestras relaciones y comunicaciones con honestidad, transparencia y respeto mutuo.</p>
+            </div>
+
+            <div class="icon-box wow fadeInUp" data-wow-delay="0.2s">
+              <div class="icon"><i class="fa fa-id-card-o"></i></div>
+              <h4 class="title"><a href="javascript:void(0);">Responsabilidad</a></h4>
+              <p class="description">Hacer las cosas bien desde el principio, en beneficio de nuestros partícipes.</p>
+            </div>
+
+            <div class="icon-box wow fadeInUp" data-wow-delay="0.4s">
+              <div class="icon"><i class="fa fa-handshake-o"></i></div>
+              <h4 class="title"><a href="javascript:void(0);">Compromiso</a></h4>
+              <p class="description">Acatar las disposiciones de nuestra organización identificándonos con nuestra cultura institucional y participando efectivamente en su desarrollo.</p>
+            </div>
+
+          </div>
+
+          <div class="col-lg-6 background order-lg-2 order-1 wow fadeInRight"></div>
+        </div>
+
       </div>
-    </section><!-- #call-to-action -->
+    </section>
+	
+	
+   
+    <section id="facts"  class="wow fadeIn">
+      <div class="container">
+        <header class="section-header" style="text-align: center;">
+          <h3>CAPREMCI</h3>
+          <span style="text-align: center;">Desde 1992 - 2018</span>
+        </header>
 
-	
-	
-	
-		<?php  if (!empty($resultSet)) { $int=0?>	 
-			   <br><br>
-			    <div class="panel panel-info" style="text-align: center;">
-			    <h4><strong>GRÁFICA ENCUESTAS GENERADAS</strong></h4>
-			    <!-- <h4><strong>GRÁFICA DE LAS <?php if($total>0){echo $total;}?> ENCUESTAS GENERADAS</strong></h4> -->
-			    <div class="col-lg-12 col-md-12 col-xs-12"   style="text-align: center;" data-wow-duration="1.4s">
-				
-					Bueno <span style="margin-left:35px; background: #6b9dfa; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;">=</span>
-			    		
-			    	Intermedio <span style="margin-left:12px; background: #52BE80; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;">=</span>
-			    		
-			    	Malo <span style="margin-left:45px; background: #F7DC6F; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;">=</span>
-			    	
-				
-			  <!--  
-        	    <section style="overflow-y:auto; text-align: center; margin-left: 100px;">
-        	    <table style='text-align: center; margin-top:10px; width: 90%;' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>
-			    <tr>
-			    <th style='text-align: center; font-size: 11px;'>Respuestas Preg. 1</th>
-			    <th style='text-align: center; font-size: 11px;'>Respuestas Preg. 2</th>
-			    <th style='text-align: center; font-size: 11px;'>Respuestas Preg. 3</th>
-			    <th style='text-align: center; font-size: 11px;'>Respuestas Preg. 4</th>
-			    <th style='text-align: center; font-size: 11px;'>Respuestas Preg. 5</th>
-			    <th style='text-align: center; font-size: 11px;'>Respuestas Preg. 6</th>
-			    <th style='text-align: center; font-size: 11px;'>Respuestas Preg. 7</th>
-			    <th style='text-align: center; font-size: 11px;'>Respuestas Preg. 8</th>
-			    </tr>
-			  
-			  
-			  
-			  
-			   
-			  <tr style="text-align: justify; font-size: 11px;">
-			    <?php foreach ($resultSet as $res){
-			    	$int++;
-			    	
-			    	if($int==1){
-			    		?>
-			    		<td>
-			    		Bueno =<span style="margin-left:35px; background: #6b9dfa; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->bueno_pregunta_1;?></span><br>
-			    		
-			    		Intermedio =<span style="margin-left:12px; background: #52BE80; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->intermedio_1;?></span><br>
-			    		
-			    		Malo =<span style="margin-left:45px; background: #F7DC6F; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->malo_1;?></span>
-			    		</td>
-			    		<?php
-			    	}
-			    	elseif($int==2){
-			    		?>
-			    		<td>
-			    		Si =<span style="margin-left:31px; background: #6b9dfa; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->si_2;?></span><br>
-			    		
-			    	    Algo =<span style="margin-left:17px; background: #52BE80; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->algo_2;?></span><br>
-			    		
-			    	    Nada =<span style="margin-left:12px; background: #F7DC6F; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->nada_2;?></span>
-			    		</td>
-		    		<?php
-			         }
-			         
-			      elseif($int==3){
-			       	?>
-			         <td>
-			          Los Colores =<span style="margin-left:31px; background: #6b9dfa; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->los_colores_3;?></span><br>
-			          La Información =<span style="margin-left:15px; background: #52BE80; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->la_informacion_3;?></span><br>
-			          Nada =<span style="margin-left:70px; background: #F7DC6F; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->nada_3;?></span><br>
-			          Las Imágenes =<span style="margin-left:20px; background: #F1CBC3; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->las_imagenes_3;?></span>
-			         </td>
-			        <?php
-			       }
-			       elseif($int==4){
-			       	?>
-			       			         <td>
-			       			          10 =<span style="margin-left:3px; background: #6b9dfa; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->r10_4;?></span>
-			       			          9 =<span style="margin-left:10px; background: #52BE80; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->r9_4;?></span>
-			       			          8 =<span style="margin-left:10px; background: #F7DC6F; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->r8_4;?></span><br>
-			       			          7 =<span style="margin-left:10px; background: #F1CBC3; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->r7_4;?></span>
-			       			          6 =<span style="margin-left:10px; background: #F1CBC3; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->r6_4;?></span>
-			       			          5 =<span style="margin-left:10px; background: #F1CBC3; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->r5_4;?></span><br>
-			       			          4 =<span style="margin-left:10px; background: #F1CBC3; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->r4_4;?></span>
-			       			          3 =<span style="margin-left:10px; background: #F1CBC3; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->r3_4;?></span>
-			       			          2 =<span style="margin-left:10px; background: #F1CBC3; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->r2_4;?></span><br>
-			       			          1 =<span style="margin-left:10px; background: #F1CBC3; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->r1_4;?></span>
-			       			         </td>
-			       			        <?php
-			      }		
-			      elseif($int==5){
-			      	?>
-			      			    		<td>
-			      			    		Si =<span style="margin-left:60px; background: #6b9dfa; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->si_5;?></span><br>
-			      			    		
-			      			    		Intermedio =<span style="margin-left:10px; background: #52BE80; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->intermedio_5;?></span><br>
-			      			    		
-			      			    		No =<span style="margin-left:55px; background: #F7DC6F; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->no_5;?></span>
-			      			    		</td>
-			      			    		<?php
-			      			    	}
-			      			    	elseif($int==6){
-			      			    		?>
-			      			    		<td>
-			      			    		Si =<span style="margin-left:16px; background: #6b9dfa; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->si_6;?></span><br>
-			      			    		
-			      			    	    No =<span style="margin-left:12px; background: #52BE80; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->no_6;?></span><br>
-			      			    		
-			      			    	  
-			      			    		</td>
-			      		    		<?php
-			      			         }
-			      			         
-			      			      elseif($int==7){
-			      			       	?>
-			      			         <td>
-			      			    		Si =<span style="margin-left:16px; background: #6b9dfa; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->si_7;?></span><br>
-			      			    		
-			      			    	    No =<span style="margin-left:12px; background: #52BE80; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->no_7;?></span><br>
-			      			    		
-			      			    	  
-			      			    		</td>
-			      			        <?php
-			      			       }
-			      			       elseif($int==8){
-			      			       	?>
-			      			       	    <td>
-			      			    		Si =<span style="margin-left:60px; background: #6b9dfa; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->si_8;?></span><br>
-			      			    		
-			      			    		Intermedio =<span style="margin-left:10px; background: #52BE80; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->intermedio_8;?></span><br>
-			      			    		
-			      			    		No =<span style="margin-left:55px; background: #F7DC6F; border-radius: 0.8em; -moz-border-radius: 0.8em; -webkit-border-radius: 0.8em; color: #ffffff; display: inline-block; font-weight: bold; line-height: 1.6em; text-align: center; width: 1.6em;"><?php echo $res->no_8;?></span>
-			      			    		</td>
-			      			       <?php
-			      			      }			
-			    	
-			    }?>
-			    </tr>
-			    </table>
-			    </section>
-			 -->
-			  
-			    </div>
-			   
-			    
-			   
-			   <section style="height:130px; overflow-y:scroll;">
-			    <div id="canvas-holder">
-				<canvas id="chart-area" width="250" height="92"></canvas>
-				</div>
-				</section>
-				</div>
-				
-				<?php }?>
-				
-	
+        <div class="row counters">
+  			<div class="col-lg-4 col-6 text-center">
+               <span data-toggle="counter-up"><?php echo $count_activos+$count_desafiliados;?></span>
+               <p>Participes</p>
+  			</div>
 
-    <!--==========================
-      Services Section
-    ============================-->
+            <div class="col-lg-4 col-6 text-center">
+              <span data-toggle="counter-up"><?php echo $count_activos;?></span>
+              <p>Activos</p>
+  			</div>
+
+            <div class="col-lg-4 col-6 text-center">
+              <span data-toggle="counter-up"><?php echo $count_liquidados;?></span>
+              <p>Liquidados</p>
+  			</div>
+  		</div>
+      
+        <header class="section-header" style="text-align: center;">
+          <h4><b>RESULTADOS POSITIVOS <?php echo date ("Y");  ?></b></h4>
+        </header>
+
+        <div class="row counters_1">
+  			<div class="col-lg-4 col-6 text-center">
+               <span data-toggle="counter-up"><?php echo $count_monto_liquidaciones;?></span>
+               <p>Millones entregados por cumplimiento de liquidaciones</p>
+  			</div>
+            <div class="col-lg-4 col-6 text-center">
+              <span data-toggle="counter-up"><?php echo $count_creditos_entregados;?></span>
+              <p>Créditos entregados a los partícipes</p>
+  			</div>
+
+            <div class="col-lg-4 col-6 text-center">
+              <span data-toggle="counter-up"><?php echo $count_monto_creditos_otorgados;?></span>
+              <p>Millones en monto de créditos otorgados</p>
+  			</div>
+  			
+  			<!--<div class="col-lg-3 col-6 text-center">
+              <span data-toggle="counter-up">0</span>
+              <p>Millones acreditados de utilidad en las cuentas individuales</p>
+  			</div> -->
+  		</div>
+       </div>
+    </section>
+    
+       
+      
     <section id="services">
       <div class="container">
 
@@ -599,33 +317,46 @@
           <div class="col-lg-6 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
             <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
             <h4 class="title"><a href="view/CesantiaView.php">Cesantía</a></h4>
-            <p class="description" align="justify">Es el valor que se paga al afiliado que queda cesante y que está conformado por su cuenta individual. La cuenta Individual está integrado por: aporte y rendimiento personal; aporte y rendimiento patronal en el caso que existieren. Pare efectos del presente reglamento la cesantía opera con las siguientes condiciones:</br></br>
-			Haber cesado en sus funciones laborales, definitivamente, en Entidades de Fuerzas Armadas.</br></br>
-			Fallecimiento.</br></br>
-			En caso de fallecimiento del afiliado sin haber dejado testamento legalmente valido, la cesantía corresponderá a sus derechohabientes en el orden establecido en el Código Civil respecto de la sucesión intestada.</br>
-			</br>
+            <p class="description" align="justify">Es el valor que se paga al afiliado que queda cesante y que está conformado por su cuenta individual. La cuenta Individual está integrado por: aporte y rendimiento personal; aporte patronal  y rendimiento patronal en el caso que existieren, la cesantía opera con las siguientes condiciones:<br/>
+			- Haber cesado en sus funciones laborales, definitivamente, en Entidades de Fuerzas Armadas.<br/>
+			- Fallecimiento.<br/>
+			- En caso de fallecimiento del afiliado sin haber dejado testamento legalmente valido, la cesantía corresponderá a sus derechohabientes en el orden establecido en el Código Civil respecto de la sucesión intestada.<br/><br/>
+			<strong>Para la obtención de la Cesantía el afiliado cesante o sus beneficiarios presentarán los siguientes documentos:</strong><br/><br/>
+					<b>1.</b> Solicitud de prestaciones.<br/>
+					<b>2.</b> Aviso de salida del IESS (original).<br/>
+					<b>3.</b> Copia de cédula de identidad del partícipe.<br/>
+					<b>4.</b> Copia de certificado de votación del partícipe actualizado.<br/>
+					<b>5.</b> Copia de la cartola, impresión del estado de cuenta de banca electrónica del partícipe o certificado bancario.<br/>
+					
+			
 			<a href="view/CesantiaView.php">Leer Más</a>
 			</p>
 			</div>
           <div class="col-lg-6 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
             <div class="icon"><i class="ion-ios-bookmarks-outline"></i></div>
             <h4 class="title"><a href="view/DesafiliacionesView.php">Desafiliaciones</a></h4>
-            <p class="description" align="justify">A partir de Agosto del 2013 de acuerdo al Art. 18 de la Norma 504, emitida por la Superintendencia de Bancos y Seguros los partícipes que opten por la desafiliación voluntaria podrán únicamente retirar el 50% de los aportes personales más sus rendimientos siempre y cuando este valor cubra la totalidad de los créditos que mantenga en el Fondo, caso contrario deberá realizar el deposito correspondiente para cubrir el saldo a favor del Fondo.</br></br>
-			El 50% restante de los aportes personales y aportes patronales más rendimientos quedará registrada en una cuenta por pagar generando rendimientos hasta que el ex – partícipe quede efectivamente cesante la entidad patronal para la cual labora.</br></br>
-
-			</br>
+            <p class="description" align="justify">A partir de Agosto del 2013 de acuerdo al Art. 18 de la Norma 504, emitida por la Superintendencia de Bancos y Seguros los partícipes que opten por la desafiliación voluntaria podrán únicamente retirar el 50% de los aportes personales más sus rendimientos siempre y cuando este valor cubra la totalidad de los créditos que mantenga en el Fondo, caso contrario deberá realizar el deposito correspondiente para cubrir el saldo a favor del Fondo.<br/><br/>
+			El 50% restante de los aportes personales y aportes patronales más rendimientos quedará registrada en una cuenta por pagar generando rendimientos hasta que el ex – partícipe quede efectivamente cesante la entidad patronal para la cual labora.<br/><br/>
+                   <strong>Los requisitos que deberán presentar son:</strong><br/><br/>
+					<b>a.</b> Carta dirigida al Fondo manifestando su deseo voluntario de desafiliarse.<br/>
+					<b>b.</b> Llenar el Formulario que para el efecto entregue la Administración del Fondo.<br/>
+					<b>c.</b> Último confidencial.<br/>
+					<b>d.</b> Certificado Original de tiempo de servicio por la oficina de personal de la Entidad Patronal en el que conste las fechas de ingreso y salida.<br/>
+					<b>e.</b> Fotocopia clara de la cédula de ciudadanía y papeleta de votación actualizada.<br/>
+					<b>f.</b> Pago de agua, luz o teléfono en el conste la dirección de su domicilio.<br/>
+					<b>g.</b> Certificado conferido por una institución financiera o copia de la libreta de ahorros en la que se vaya acreditar los valores correspondientes a la cesantía.<br/>
+					
+			
 			<a href="view/DesafiliacionesView.php">Leer Más</a>
 			</p>
-          
-		  </div>
+          </div>
          
 
         </div>
 
       </div>
-    </section><!-- #services -->
-
-   
+    </section>
+    
   
     <!--==========================
       Clients Section
@@ -638,45 +369,92 @@
         </header>
 
         <div class="owl-carousel testimonials-carousel">
-
-          <div class="testimonial-item">
-            <img src="view/img/blog1.jpg" class="testimonial-img" alt="">
-            <h3>CRÉDITO ORDINARIO</h3>
-            <h4>Información</h4>
-            <p>
-             <img alt="">
-			<p align="center">
-			Se concede el crédito hasta el 100% de la Cuenta Individual.</br>
-			• La cuota mensual no podrá exceder del 50% del sueldo líquido del solicitante.</br>
-			• Tasa de interés: 9% anual fija sobre saldos.</br>
-			• Plazo: 7 años.</br>
-			• El afiliado debe tener un mínimo 3 aportaciones seguidas.</br>
-			• El Crédito cuenta con Seguro de Desgravamen para el deudor.</br></br>			 
-			 <a href="view/CreditoOrdinarioView.php">Leer Más</a>
-            </p>
-			 <img class="quote-sign-right" alt="">
-            </p>
-          </div>
-
-          <div class="testimonial-item">
+ 
+ 		   <div class="testimonial-item">
              <img src="view/img/blog2.jpg" class="testimonial-img" alt="">
              <h3>CRÉDITO HIPOTECARIO</h3>
              <h4>Información</h4>
            <p>
               <img alt="">
 			 <p align="center">
-			 Se concede el crédito hasta el 80% del Avalúo (valor de realización) y hasta por un monto máximo de US$ 80,000.00.</br>
-			• La cuota mensual no podrá exceder del 40% del sueldo líquido de la sociedad conyugal.</br>	
-			• Tasa de interés: 8.8% anual fija sobre saldos.</br>	
-			• Plazo hasta 25 años, siempre que la edad más plazo no supere los 75 años.</br>	
-			• El bien no podrá tener más de 15 años de antigüedad.</br></br>
-			<a href="view/CreditoHipotecarioView.php">Leer Más</a>
-             </p>
-              <img alt="">
-            </p>
+			• Se considera hasta el 80% del valor del avaluó (valor de realización).<br/>
+			• Se concede el crédito hasta un monto máximo  de USD$ 100,000.00.<br/>
+			• La cuota mensual no podrá exceder del 50% de la sociedad conyugal.<br/>
+			• La tasa de interés es 8.8% anual fija sobre saldos.<br/>
+			• Plazo máximo 25 años.<br/>
+			• El afiliado debe tener mínimo 6 aportaciones consecutivas.<br/>
+			• El crédito cuenta con seguro de desgravamen.<br/>
+			• Se puede realizar abonos al crédito sin penalidad alguna.<br/> 
+			• Se puede pre-cancelar el crédito sin penalidad alguna.<br/>
+			
+						</p><br/>
+						
+						<h3>Requisitos </h3><br/>
+						
+						  <p align= "justify">
+						<b>1.</b> Solicitud de crédito Hipotecario, debidamente llena con toda la información requerida en la misma y firmada por el partícipe, esta será realizada a través de servicios en línea, página web del FONDO.<br/>
+						<b>2.</b> Autorización de descuentos de rol de pagos debidamente llena y firmada por el partícipe.<br/>
+						<b>3.</b> Autorización de débito bancario automático debidamente llena y firmada por el partícipe.<br/>
+						<b>4.</b> Roles de pago de los tres últimos meses del partícipe y conyugue.<br/>
+						<b>5.</b> Certificado laboral siempre y cuando no conste la fecha de entrada en el rol de pagos o nombramiento, emitido por la institución patronal a la cual presta sus servicios o en su defecto historia laboral del IESS.<br/>
+						<b>6.</b> Copia de cédula de identidad del partícipe y conyugue.<br/>
+						<b>7.</b> Copia de certificado de votación del partícipe y conyugue actualizado.<br/>
+						<b>8.</b> Original o copia de planilla, factura electrónica, de uno de los servicios básicos (agua, luz, teléfono, internet o cable) periodo de hasta hace tres (3) meses.<br/>
+						<b>9.</b> Copia de la cartola o impresión del estado de cuenta bancaria del partícipe y conyugue, de existir ingresos adicionales como fondos de reserva, rancho, décimos y/o remesas que deberán estar sustentadas en dichos documentos.<br/>
+						<b>10.</b> Documentos de respaldo patrimonial en caso de existir.<br/>
+						<b>11.</b> Copia del título de Propiedad del bien inmueble, debidamente inscritas en el Registro de la Propiedad.<br/>
+						<b>12.</b> Certificado de gravámenes original actualizado.<br/>
+						<b>13.</b> Pago del impuesto predial actualizado del bien a adquirir.<br/>
+						<b>14.</b> Informe del avalúo actualizado, del bien a ser hipotecado que lo realizará un perito avaluador aprobado por la Superintendencia de Bancos.<br/>
+						<b>15.</b> Copias de cédula y papeleta de votación a color del vendedor o vendedores.<br/>
+						
+						Adicionalmente si el bien es declarado en Propiedad Horizontal se necesitarán los siguientes documentos:<br/><br/>
+						
+						<b>1.</b> Escritura de Propiedad Horizontal y sus reformas en caso de haberlas.<br/>
+						<b>2.</b> Copias de cédula y papeleta  de votación a color del vendedor o vendedores del inmueble, en caso de que el vendedor sea persona jurídica deberá presentar nombramiento y cédula  del  Representante legal y RUC.<br/>
+						<b>3.</b> Certificado de expensas actualizada.<br/>
+						<b>4.</b> Original o Copia Certificada del nombramiento del administrador actualizado.<br/>
+						<b>5.</b> Copias de cédula y papeleta de votación del administrador del Edificio.<br/>
+						<b>6.</b> Certificado de expensas actualizado a la fecha de solicitud del crédito.<br/>
+						
+						  </p>
+						<a href="view/CreditoHipotecarioView.php">Leer Más</a>
           </div>
 
-        
+          <div class="testimonial-item">
+            <img src="view/img/blog1.jpg" class="testimonial-img" alt="">
+            <h3>CRÉDITO ORDINARIO</h3>
+            <h4>Información</h4>
+            <p>
+            <img alt="">
+			<p align="center">
+			            • Se concede el crédito hasta el 100% de la Cuenta Individual.<br/>
+			            • La cuota mensual no podrá exceder del 50% del sueldo líquido del solicitante.<br/>
+						• Tasa de interés: 9% anual fija sobre saldos.<br/>
+						• Plazo máximo 7 años.<br/>
+						• El afiliado debe tener un mínimo 3 aportaciones consecutivas.<br/>
+						• El Crédito cuenta con Seguro de Desgravamen para el deudor.<br/><br/>
+						• Para renovar su crédito, una vez que tenga pagadas 6 cuotas del préstamo.<br/>
+						• Se puede realizar abonos al crédito sin penalidad alguna.<br/>
+						• Se puede realizar pre cancelar el crédito sin penalidad alguna.<br/>
+						</p>
+						 <h3>Requisitos </h3><br/>
+						  <p align= "justify">
+						<b>1.</b> Solicitud de crédito especificando el tipo de crédito, debidamente llena con toda la información requerida en la misma y firmada por el participe, esta será realizada a través de servicios en linea, página web del FONDO.<br/>
+						<b>2.</b> Autorización de descuentos de rol de pagos debidamente llena y firmada por el participe.<br/>
+						<b>3.</b> Autorización de débito bancario automático debidamente llena y firmada por el participe.<br/>
+						<b>4.</b> Roles de pago de los tres últimos meses del participe.<br/>
+						<b>5.</b> Certificado laboral siempre y cuando no conste la fecha de entrada en el rol de pagos o nombramiento, emitido por la institución patronal a la cual presta sus servicios o en su defecto historia laboral del IESS.<br/>
+						<b>6.</b> Copia de cédula de identidad del participe.<br/>
+						<b>7.</b> Copias de certificados de votación del partícipe actualizado.<br/>
+						<b>8.</b> Original o copia de planilla, factura electrónica, de uno de los servicios básicos (agua, luz, teléfono, internet o cable) periodo de hasta hace tres (3) meses.<br/>
+						<b>9.</b> Copia de la cartola, impresión del estado de cuenta banca electrónica del participe o certificado bancario.<br/>
+						</p>
+						
+			 			<a href="view/CreditoOrdinarioView.php">Leer Más</a>
+           
+          </div>
+
          <div class="testimonial-item">
             <img src="view/img/blog3.jpg" class="testimonial-img" alt="">
             <h3>CRÉDITO EMERGENTE</h3>
@@ -684,27 +462,45 @@
            <p>
               <img alt="">
 			 <p align="center">
-			Montos desde $100.00 hasta $5,000.00.</br>
-			• Plazo desde 3 meses hasta 48 meses.</br>
-			• Plazos convenientes: desde 3 hasta 48 meses para cancelar tu crédito.</br>
-			• El desembolso esta efectivizado hasta en 48 horas desde la firma del pagaré.</br>
-			• Realiza con total libertad pre-pagos totales o parciales, sin ninguna penalidad o costo.</br></br>
+			
+						• Se concede el crédito hasta un monto máximo  de USD$ 7,000.00 este valor debe ser respaldado por la cuenta individual.<br/>
+						• La cuota mensual no podrá exceder del 50% del sueldo líquido del solicitante.<br/>
+						• La tasa de interés es 12% anual fija sobre saldos.<br/>
+						• Plazo máximo 4 años.<br/>
+						• El afiliado debe tener mínimo 3 aportaciones consecutivas.<br/>
+						• El crédito cuenta con seguro de desgravamen al deudor.<br/>
+						• Para renovar su crédito, una vez que tenga pagadas 6 cuotas del préstamo.<br/> 
+						• Se puede realizar abonos al crédito sin penalidad alguna.<br/> 
+						• Se puede pre cancelar el crédito sin penalidad alguna.
+						
+						</p><br/>
+						 <h3>Requisitos </h3><br/>
+						  <p align= "justify">
+						<b>1.</b> Solicitud de crédito especificando el tipo de crédito, debidamente llena con toda la información requerida en la misma y firmada por el partícipe, esta será realizada a través de servicios en línea, página web del FONDO.<br/>
+						<b>2.</b> Autorización de descuentos de rol de pagos debidamente llena y firmada por el partícipe.<br/>
+						<b>3.</b> Autorización de débito bancario automático debidamente llena y firmada por el partícipe.<br/>
+						<b>4.</b> Roles de pago de los tres últimos meses del partícipe.<br/>
+						<b>5.</b> Certificado laboral siempre y cuando no conste la fecha de entrada en el rol de pagos o nombramiento, emitido por la institución patronal a la cual presta sus servicios o en su defecto historia laboral del IESS.<br/>
+						<b>6.</b> Copia de cédula de identidad del partícipe.<br/>
+						<b>7.</b> Copia de certificado de votación del partícipe actualizado.<br/>
+						<b>8.</b> Original o copia de planilla, factura electrónica, de uno de los servicios básicos (agua, luz, teléfono, internet o cable) período de hasta hace tres (3) meses.<br/>
+						<b>9.</b> Copia de la cartola, impresión del estado de cuenta de banca electrónica del partícipe o certificado bancario.<br/>
+						
+						</p>
 			<a href="view/CreditoEmergenteView.php">Leer Más</a>
-             </p>
-              <img alt="">
-            </p>
+            
           </div>
          
-
-		  
         </div>
 
       </div>
-    </section><!-- #testimonials -->
-
-	  <!--==========================
-      Services Section
-    ============================-->
+    </section>
+    
+    
+    
+    
+    
+    
     <section id="service">
       <div class="container">
 
@@ -728,6 +524,7 @@
             <h4 class="title"><a href="javascript:void(0);">• Planifica tus Gastos.</a></h4>
             <p class="description" align="justify">Aprende a identificar lo que es realmente importante, de esta manera gastarás lo estrictamente necesario.</p>
           </div>
+          
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
             <h4 class="title"><a href="javascript:void(0);">• Invierte mejor tu Dinero.</a></h4>
             <p class="description" align="justify">Establece inversiones que generen ganancias en un futuro cercano qeu sean de provecho para ti y tú familia.</p>
@@ -745,13 +542,75 @@
       </div>
     </section><!-- #services -->
 
+
+  
+  
+   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+ <!--==========================
+      Clients Section
+    ============================-->
+    <!-- <section id="testimonials" class="section-bg wow fadeInUp">
+      <div class="container">
+        <header class="section-header">
+          <h3>Testimonios</h3>
+        </header>
+
+        <div class="owl-carousel testimonials-carousel">
+
+          <div class="testimonial-item">
+            <img src="view/img/blog1.jpg" class="testimonial-img" alt="">
+            <h3>Manuel Flores</h3>
+            <h4>Participe</h4>
+           
+            <p align="center">
+			    Muy Contento.<br/>
+			</p>
+	      </div>
+
+          <div class="testimonial-item">
+             <img src="view/img/blog2.jpg" class="testimonial-img" alt="">
+             <h3>Israel Lopez</h3>
+             <h4>Participe</h4>
+            <p align="center">
+				Muy Contento.<br/>
+			</p>
+		  </div>
+
+        
+           <div class="testimonial-item">
+            <img src="view/img/blog3.jpg" class="testimonial-img" alt="">
+            <h3>Jorge Silva</h3>
+            <h4>Participe</h4>
+            <p align="center">
+				Muy Contento.<br/>
+			</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+ -->
+
+
   
 	 <!--==========================
       Clients Section
     ============================-->
     <section id="clients" class="wow fadeInUp">
       <div class="container">
-
         <header class="section-header">
           <h3>Fondo CAPREMCI</h3>
         </header>
@@ -767,6 +626,105 @@
 
       </div>
     </section><!-- #clients -->
+
+
+
+<!--==========================
+      Portfolio Section
+    ============================-->
+    <section id="portfolio"  class="section-bg" >
+      <div class="container">
+
+        <header class="section-header">
+          <h3 class="section-title">CONVENIOS</h3>
+        </header>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">TODOS</li>
+              <li data-filter=".filter-proauto">PROAUTO</li>
+              <li data-filter=".filter-utpl">UTPL</li>
+              <li data-filter=".filter-uisek">UISEK</li>
+              <li data-filter=".filter-efec">EFECTO CELULAR</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-proauto wow fadeInUp">
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="view/img/convenios/proauto.jpg" class="img-fluid" alt="">
+                <a href="view/img/convenios/proauto.jpg" data-lightbox="portfolio" data-title="PROAUTO" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="Detalles"><i class="ion ion-android-open"></i></a>
+              </figure>
+
+              <div class="portfolio-info">
+                <h4><a href="javascript:void(0);">PROAUTO</a></h4>
+                <p>Concesionario de vehiculos</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-utpl wow fadeInUp" data-wow-delay="0.1s">
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="view/img/convenios/utpl.png"   class="img-fluid" alt="">
+                <a href="view/img/convenios/utpl.png" class="link-preview" data-lightbox="portfolio" data-title="UTPL" title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="Detalles"><i class="ion ion-android-open"></i></a>
+              </figure>
+
+              <div class="portfolio-info">
+                <h4><a href="javascript:void(0);">UTPL</a></h4>
+                <p>Universidad Particular de Loja</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-uisek wow fadeInUp" data-wow-delay="0.2s">
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="view/img/convenios/uisek.png" class="img-fluid" alt="">
+                <a href="view/img/convenios/uisek.png" class="link-preview" data-lightbox="portfolio" data-title="UISEK" title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="Detalles"><i class="ion ion-android-open"></i></a>
+              </figure>
+
+              <div class="portfolio-info">
+                <h4><a href="javascript:void(0);">UISEK</a></h4>
+                <p>Universidad Internacional</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-efec wow fadeInUp">
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="view/img/convenios/efekto_celular.png" class="img-fluid" alt="">
+                <a href="view/img/convenios/efekto_celular.png" class="link-preview" data-lightbox="portfolio" data-title="Effekto Celular" title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="Detalles"><i class="ion ion-android-open"></i></a>
+              </figure>
+
+              <div class="portfolio-info">
+                <h4><a href="javascript:void(0);">EFFEKTO CELULAR</a></h4>
+                <p>Comunicación Corporatiava</p>
+              </div>
+            </div>
+          </div>
+
+         
+        </div>
+
+      </div>
+    </section>
+
+
+
+
+
+
+
 
     <!--==========================
       Contact Section
@@ -801,54 +759,17 @@
             <div class="contact-email">
               <i class="ion-ios-email-outline"></i>
               <h3>Email</h3>
-			  <p><a href="info@capremci.com.ec">info@capremci.com.ec</a></p>
-		 </div>
+			  <p><a href="javascript:void(0);">info@capremci.com.ec</a></p>
+		 	</div>
           </div>
-		  <div class="row">        
-          <div class="col-lg-12">
-            <form id="contactForm" name="sentMessage" novalidate>
-				</br>
-				</br>
-			
-          </form>
-          </div>
-		  
-        </div>
-		
+		 
 	      </div>
 		  
-              <div class="row">
-                <div class="col-md-6">
-				
-                  <div class="form-group">
-                    <input class="form-control" id="name" type="text" placeholder="Tu Nombre *" required data-validation-required-message="Por favor ingrese su nombre.">
-                    <p class="help-block text-danger"></p>
-                  </div>
-                  <div class="form-group">
-                    <input class="form-control" id="email" type="email" placeholder="Tu Correo *" required data-validation-required-message="Por favor ingrese su correo.">
-                    <p class="help-block text-danger"></p>
-                  </div>
-                  <div class="form-group">
-                    <input class="form-control" id="phone" type="tel" placeholder="Tu Telefono *" required data-validation-required-message="Por favor ingrese su telefono.">
-                    <p class="help-block text-danger"></p>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <textarea class="form-control" id="message" placeholder="Tu mensaje *" required data-validation-required-message="Por favor ingrese su mensaje."></textarea>
-                    <p class="help-block text-danger"></p>
-                  </div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="col-lg-12 text-center">
-                  <div id="success"></div>
-                  <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">Enviar Mensaje</button>
-               </div>
-            </div>
+             
     </div>
-    </section><!-- #contact -->
+    </section>
 
-  </main>
+  
 
   <!--==========================
     Footer
@@ -883,14 +804,6 @@
               <strong>Correo:</strong> info@capremci.com.ec<br>
             </p>
 
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-            </div>
-
           </div>
 
         </div>
@@ -899,27 +812,19 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; <strong>Capremci</strong>. Todos los derechos reservados
+        &copy; <strong>Capremci-2018</strong>. Todos los derechos reservados
       </div>
-      <div class="credits">
-        <!--
-          All the links in the footer should remain intact.
-          You can delete the links only if you purchased the pro version.
-          Licensing information: https://bootstrapmade.com/license/
-          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=BizPage
-        -->
-        Diseñado por<a href="www.capremci.com.ec"> Capremci</a>
-      </div>
+     
     </div>
   </footer><!-- #footer -->
   
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-   <!-- Contact form JavaScript -->
-    <script src="view/js/jqBootstrapValidation.js"></script>
-    <script src="view/js/contact_me.js"></script>
+  <!-- Contact form JavaScript -->
+  <script src="view/js/jqBootstrapValidation.js"></script>
+  <script src="view/js/contact_me.js"></script>
 
-    <!-- Custom scripts for this template -->
-    <script src="view/js/agency.min.js"></script>
+  <!-- Custom scripts for this template -->
+  <script src="view/js/agency.min.js"></script>
   
   <!-- JavaScript Libraries -->
   <script src="view/lib/jquery/jquery.min.js"></script>
@@ -940,58 +845,6 @@
 
   <!-- Template Main Javascript File -->
   <script src="view/js/main.js"></script>
-
-
-
-
-
-	
-	<!-- codigo de las funciones -->
- <script src="view/js/Chart.js"></script>
-
- <script>
-		
-
-	var barChartData = {
-		
-		labels : <?php echo $data;?>,
-		datasets : [
-			{
-				
-				fillColor : "#6b9dfa",
-				strokeColor : "#ffffff",
-				highlightFill: "#1864f2",
-				highlightStroke: "#ffffff",
-				data : <?php echo $pre_1_r1;?>
-			},
-
-			{
-				fillColor : "#52BE80",
-				strokeColor : "#ffffff",
-				highlightFill: "#27AE60",
-				highlightStroke: "#ffffff",
-				data : <?php echo $pre_1_r2;?>
-			},
-
-			{
-				fillColor : "#F7DC6F",
-				strokeColor : "#ffffff",
-				highlightFill: "#F4D03F",
-				highlightStroke: "#ffffff",
-				data : <?php echo $pre_1_r3;?>
-			}
-		]
-		
-	}	
-		
-			var ctx3 = document.getElementById("chart-area").getContext("2d");
-	 		
-			window.myPie = new Chart(ctx3).Bar(barChartData, {responsive:true});
-		
-			</script>
-
-
-
 
 </body>
 </html>
