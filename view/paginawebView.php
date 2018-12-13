@@ -13,14 +13,11 @@
 	  <link href="view/img/apple-touch-icon.png" rel="apple-touch-icon">
 	   
 	
-	
-	
 	  <!-- Google Fonts -->
 	  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
 	
 	  <!-- Bootstrap CSS File -->
 	  <link href="view/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	
 	  <!-- Libraries CSS Files -->
 	  <link href="view/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	  <link href="view/lib/animate/animate.min.css" rel="stylesheet">
@@ -251,7 +248,7 @@
           <div class="col-lg-6 content order-lg-1 order-2">
             <h2 class="title">EQUIPO DE TRABAJO</h2>
             <p>
-              Valores Y Principios:
+              Valores y Principios:
             </p>
 
             <div class="icon-box wow fadeInUp">
@@ -517,7 +514,7 @@
 						<b>9.</b> Copia de la cartola, impresión del estado de cuenta de banca electrónica del partícipe o certificado bancario.<br/>
 						
 						</p>
-			<a href="view/CreditoEmergenteView.php">Leer Más</a>
+					<a href="view/CreditoEmergenteView.php">Leer Más</a>
             
           </div>
          
@@ -575,11 +572,6 @@
 
   
   
-   
-  
-  
-  
-  
   
   
   
@@ -592,7 +584,7 @@
  <!--==========================
       Clients Section
     ============================-->
-    <!-- <section id="testimonials" class="section-bg wow fadeInUp">
+     <section id="testimonials" class="section-bg wow fadeInUp">
       <div class="container">
         <header class="section-header">
           <h3>Testimonios</h3>
@@ -631,8 +623,7 @@
         </div>
       </div>
     </section>
-    
- -->
+
 
 
   
