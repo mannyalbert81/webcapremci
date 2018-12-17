@@ -35,6 +35,65 @@
         <script src="view/js/jquery.blockUI.js"></script>
         
        
+       
+       
+        <script type="text/javascript">
+     
+        	   $(document).ready( function (){
+        		 
+        		 			  $("#reporte").click(function() 
+        					  {
+        				    	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+        				    	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
+
+        				    	var desde = $("#desde").val();
+        				    	var hasta = $("#hasta").val();
+        				    	
+        				    	
+        						if(desde > hasta){
+
+        							$("#mensaje_desde").text("Fecha desde no puede ser mayor a hasta");
+        				    		$("#mensaje_desde").fadeIn("slow"); //Muestra mensaje de error
+        				            return false;
+        				            
+            					}else 
+        				    	{
+        				    		$("#mensaje_desde").fadeOut("slow"); //Muestra mensaje de error
+        				    		
+        						} 
+
+
+        						if(hasta < desde){
+
+        							$("#mensaje_hasta").text("Fecha hasta no puede ser menor a desde");
+        				    		$("#mensaje_hasta").fadeIn("slow"); //Muestra mensaje de error
+        				            return false;
+        				            
+            					}else 
+        				    	{
+        				    		$("#mensaje_hasta").fadeOut("slow"); //Muestra mensaje de error
+        				    		
+        						} 
+        						
+        				    					    
+
+        					}); 
+
+
+        				        $( "#desde" ).focus(function() {
+        						  $("#mensaje_desde").fadeOut("slow");
+        					    });
+        						
+        				        $( "#hasta" ).focus(function() {
+          						  $("#mensaje_hasta").fadeOut("slow");
+          					    });
+        		
+        		   
+	   			});
+
+	   	</script>
+       
+       
         
         
         <script type="text/javascript">
@@ -237,8 +296,10 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    
-                   <div class="row" style="margin-left:1px;">
+                  
+                  
+                  <form  action="<?php echo $helper->url("Calificaciones","generar_reporte"); ?>" method="post" enctype="multipart/form-data" target="_blank"  class="col-lg-12 col-md-12 col-xs-12">
+                  <div class="row" style="margin-left:1px;">
 									<div class="col-lg-2 col-xs-12 col-md-2">
                         		    <div class="form-group">
                                                           <label for="desde" class="control-label">Desde:</label>
@@ -254,17 +315,18 @@
                                                           <div id="mensaje_hasta" class="errores"></div>
                                                
                                     </div>
-                                    
-                        		    </div>
+                                    </div>
                         		    
                         		    <div class="col-xs-12 col-md-2 col-lg-2" style="text-align: center; margin-top:22px">
                     		        <div class="form-group">
                         		    <button type="button" id="buscar" name="buscar" class="btn btn-info"><i class="glyphicon glyphicon-search"></i></button>
+                                	<button type="submit" id="reporte" name="reporte" class="btn btn-success"><i class="glyphicon glyphicon-print"></i></button>
+                                	
                                 	</div>
                                     </div>
                         		    
-					</div>
-				
+				  </div>
+				  
 					
 					<div class="pull-right" style="margin-right:11px;">
 					<input type="text" value="" class="form-control" id="search" name="search" onkeyup="load_calificaciones(1)" placeholder="search.."/>
@@ -274,12 +336,10 @@
 					<div id="load_registrados" ></div>	
 					<div id="calificaciones_realizadas_registrados"></div>	
 				
-					
-                  
+					</form>
+                
                   </div>
-                  
-               
-                  
+                
                 </div>
                 
                 
