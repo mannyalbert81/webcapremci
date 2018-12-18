@@ -809,7 +809,7 @@ class SolicitudPrestamoController extends ControladorBase{
 					
 					if($_id_sucursales == 1){
 							
-						$resultQuito=$solicitud_prestamo->getCondiciones("id_usuarios", "usuarios", "id_rol=42 AND id_departamentos=18 AND ciudad_trabajo='Quito'", "id_usuarios");
+						$resultQuito=$solicitud_prestamo->getCondiciones("id_usuarios", "usuarios", "id_rol=42 AND id_departamentos=18 AND ciudad_trabajo='Quito' AND id_estado=1", "id_usuarios");
 					
 						if(!empty($resultQuito)){
 							$i=0;
@@ -854,9 +854,17 @@ class SolicitudPrestamoController extends ControladorBase{
 							$id_oficial_credito=$id_usuarios_1;
 						}
 						
+						
+						/////////// por lo que se fue la angie va todo a carlos narvaez //////////
+						
+						$id_oficial_credito=0;
+						$id_oficial_credito=$id_usuarios_1;
+						
+						
+						
 					}else{
 							
-						$resultGuayaquil=$solicitud_prestamo->getCondiciones("id_usuarios", "usuarios", "id_rol=42 AND id_departamentos=18 AND ciudad_trabajo='Guayaquil'", "id_usuarios");
+						$resultGuayaquil=$solicitud_prestamo->getCondiciones("id_usuarios", "usuarios", "id_rol=42 AND id_departamentos=18 AND ciudad_trabajo='Guayaquil' AND id_estado=1", "id_usuarios");
 					
 						if(!empty($resultGuayaquil)){
 							$i=0;
