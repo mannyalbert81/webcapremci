@@ -111,9 +111,13 @@ class CalificacionesController extends ControladorBase{
 				$html.='<tbody>';
 				 
 				$i=0;
-	
+				$Excelente=0;
+				$Bueno=0;
+				$Reguar=0;
+				$Malo=0;
 				foreach ($resultSet as $res)
 				{
+					
 					$i++;
 					$html.='<tr>';
 					$html.='<td style="font-size: 11px;">'.$i.'</td>';
@@ -135,6 +139,7 @@ class CalificacionesController extends ControladorBase{
 				$html.='</div>';
 	
 	 
+				
 			}else{
 				$html.='<div class="col-lg-6 col-md-6 col-xs-12">';
 				$html.='<div class="alert alert-warning alert-dismissable" style="margin-top:40px;">';
