@@ -69,7 +69,7 @@
              <div class="carousel-container">
               <div class="carousel-content">
                 <h2>Bienvenido a CAPREMCI</h2>
-				<h3>Te informamos que los trámites  de créditos se recibiran hasta el 21-12-2018.</h3>
+				<h3>Te informamos que los trámites  de créditos se recibirán hasta el 20-12-2018.</h3>
 				<h3>Por feriado de diciembre los servicios del cash management de los bancos atenderan hasta el 27-12-2018.</h3>
             	<p>Afíliate ya.</p>
                 <a href="#about" class="btn-get-started scrollto">Ver Más</a>
