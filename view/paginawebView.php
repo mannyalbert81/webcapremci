@@ -69,7 +69,8 @@
              <div class="carousel-container">
               <div class="carousel-content">
                 <h2>Bienvenido a CAPREMCI</h2>
-				<h3>Asamblea de Representantes</h3>
+				<h3>Te informamos que los trámites  de créditos se recibiran hasta el 21-12-2018.</h3>
+				<h3>Por feriado de diciembre los servicios del cash management de los bancos atenderan hasta el 27-12-2018.</h3>
             	<p>Afíliate ya.</p>
                 <a href="#about" class="btn-get-started scrollto">Ver Más</a>
               </div>
@@ -143,7 +144,7 @@
   
    <!--==========================
       Featured Services Section
-    ============================-->
+    ============================
     <section id="featured-services">
       <div class="container">
         <div class="row">
@@ -170,7 +171,7 @@
       </div>
     </section>
   
-  
+  -->
 
     <!--==========================
       About Us Section
@@ -278,7 +279,7 @@
     </section>
 	
 	
-   
+   <!-- 
     <section id="facts"  class="wow fadeIn">
       <div class="container">
         <header class="section-header" style="text-align: center;">
@@ -322,15 +323,18 @@
               <p>Millones en monto de créditos otorgados</p>
   			</div>
   			
-  			<!--<div class="col-lg-3 col-6 text-center">
+  			
+  			<div class="col-lg-3 col-6 text-center">
               <span data-toggle="counter-up">0</span>
               <p>Millones acreditados de utilidad en las cuentas individuales</p>
-  			</div> -->
+  			</div> 
+  			
+  			
   		</div>
        </div>
-    </section>
+    </section> --> 
     
-       
+      
       
     <section id="services">
       <div class="container">
@@ -583,7 +587,7 @@
 
  <!--==========================
       Clients Section
-    ============================-->
+    ============================
      <section id="testimonials" class="section-bg wow fadeInUp">
       <div class="container">
         <header class="section-header">
@@ -623,7 +627,7 @@
         </div>
       </div>
     </section>
-
+-->
 
 
   
@@ -694,7 +698,7 @@
               <figure>
                 <img src="view/img/convenios/utpl.png"   class="img-fluid" alt="">
                 <a href="view/img/convenios/utpl.png" class="link-preview" data-lightbox="portfolio" data-title="UTPL" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="Detalles"><i class="ion ion-android-open"></i></a>
+                <a href="javascript:void(0);" class="link-details" title="Detalles"><i class="ion ion-android-open"></i></a>
               </figure>
 
               <div class="portfolio-info">
@@ -709,7 +713,7 @@
               <figure>
                 <img src="view/img/convenios/uisek.png" class="img-fluid" alt="">
                 <a href="view/img/convenios/uisek.png" class="link-preview" data-lightbox="portfolio" data-title="UISEK" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="Detalles"><i class="ion ion-android-open"></i></a>
+                <a href="javascript:void(0);" class="link-details" title="Detalles"><i class="ion ion-android-open"></i></a>
               </figure>
 
               <div class="portfolio-info">
@@ -724,7 +728,7 @@
               <figure>
                 <img src="view/img/convenios/efekto_celular.png" class="img-fluid" alt="">
                 <a href="view/img/convenios/efekto_celular.png" class="link-preview" data-lightbox="portfolio" data-title="Effekto Celular" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="Detalles"><i class="ion ion-android-open"></i></a>
+                <a href="javascript:void(0);" class="link-details" title="Detalles"><i class="ion ion-android-open"></i></a>
               </figure>
 
               <div class="portfolio-info">

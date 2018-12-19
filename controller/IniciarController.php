@@ -64,7 +64,7 @@ class IniciarController extends ControladorBase{
 				$total=(int)$resultSet_cabeza[0]->total;
 	
 				
-				
+				/*
 				require_once 'core/EntidadBaseSQL.php';
 				$db = new EntidadBaseSQL();
 				
@@ -108,7 +108,13 @@ class IniciarController extends ControladorBase{
 	
 				));
 			
-	
+	*/
+				
+				
+				$this->view("paginaweb",array(
+						"resultSet"=>$resultSet, "total"=>$total
+				));
+				
 	die();
 		
 	
