@@ -91,7 +91,10 @@ class EncuestasController extends ControladorBase{
 			$count_query   = $cantidadResult;
 			$total_pages = ceil($cantidadResult/$per_page);
 	
-			 
+	
+			
+			
+			
 	
 	
 	

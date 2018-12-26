@@ -30,10 +30,78 @@
 	  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	  <link href="view/css/style.css" rel="stylesheet">
  
+ 
+ 
+	 <script type="text/javascript">
+     
+        	   $(document).ready( function (){
+        		   $("#mostrarmodal").modal("show");
+        	   });
+
+     </script>
+ 
+ 
   </head>
 	
   <body>
 
+  
+  <!-- solo por navidad -->
+  
+    <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+        <div class="modal-content">
+           <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h3></h3>
+           </div>
+           <div class="modal-body">
+          <div class="row">
+          <div class="col-lg-12 col-md-12 col-xs-12">
+          <div class="col-lg-12 col-md-12 col-xs-12">
+          
+          <h4>Estimados Participes.</h4>
+          
+          <p>Pedimos a Dios que bendiga sus hogares, les regale salud y vitalidad. 
+			 Estamos felices de contar con cada uno de ustedes porque somos un equipo unido
+			 que busca salir adelante con esfuerzo y calidad. ¡Feliz Navidad!.</p>
+           	
+          
+          </div>
+          <div class="col-lg-12 col-md-12 col-xs-12">
+              <img src="view/img/feliz_navidad.jpg" class="img-rounded" alt="Cinque Terre" /> 
+           
+          </div>
+          </div>
+          </div>
+           
+          </div>
+           <div class="modal-footer">
+           
+            <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>
+           </div>
+	      </div>
+	     </div>
+	   </div>
+          
+  
+  <!-- termina navidad -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   <header id="header">
     <div class="container-fluid">
@@ -140,6 +208,10 @@
     </div>
   </section><!-- #intro -->
 
+  
+  
+  
+  
   
   
    <!--==========================
