@@ -12,7 +12,6 @@
 	  <link href="view/img/favicon.png" rel="icon">
 	  <link href="view/img/apple-touch-icon.png" rel="apple-touch-icon">
 	   
-	
 	  <!-- Google Fonts -->
 	  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
 	
@@ -66,7 +65,6 @@
 			 Estamos felices de contar con cada uno de ustedes porque somos un equipo unido
 			 que busca salir adelante con esfuerzo y calidad. ¡Feliz Navidad!.</p>
            	
-          
           </div>
           <div class="col-lg-12 col-md-12 col-xs-12">
               <img src="view/img/feliz_navidad.jpg" class="img-rounded" alt="Cinque Terre" /> 
@@ -86,10 +84,6 @@
           
   
   <!-- termina navidad -->
-  
-  
-  
-  
   
   
   
