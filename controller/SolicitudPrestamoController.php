@@ -857,8 +857,8 @@ class SolicitudPrestamoController extends ControladorBase{
 						
 						/////////// por lo que se fue la angie va todo a carlos narvaez //////////
 						
-						$id_oficial_credito=0;
-						$id_oficial_credito=$id_usuarios_1;
+						//$id_oficial_credito=0;
+						//$id_oficial_credito=$id_usuarios_1;
 						
 						
 						

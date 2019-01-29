@@ -37,9 +37,6 @@ class EncuestasController extends ControladorBase{
 		$id       = "encuentas_participes_cabeza.id_encuentas_participes_cabeza";
 	
 		 
-		 
-		 
-		 
 		$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 		$search =  (isset($_REQUEST['search'])&& $_REQUEST['search'] !=NULL)?$_REQUEST['search']:'';
 		$desde=  (isset($_REQUEST['desde'])&& $_REQUEST['desde'] !=NULL)?$_REQUEST['desde']:'';

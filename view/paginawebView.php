@@ -45,58 +45,6 @@
   <body>
 
   
-  <!-- solo por navidad -->
-  
-    <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-        <div class="modal-dialog modal-md">
-        <div class="modal-content">
-           <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h3></h3>
-           </div>
-           <div class="modal-body">
-          <div class="row">
-          <div class="col-lg-12 col-md-12 col-xs-12">
-          <div class="col-lg-12 col-md-12 col-xs-12">
-          
-          <h4>Estimados Participes.</h4>
-          
-          <p>Pedimos a Dios que bendiga sus hogares, les regale salud y vitalidad. 
-			 Estamos felices de contar con cada uno de ustedes porque somos un equipo unido
-			 que busca salir adelante con esfuerzo y calidad. ¡Feliz Navidad!.</p>
-           	
-          </div>
-          <div class="col-lg-12 col-md-12 col-xs-12">
-              <img src="view/img/feliz_navidad.jpg" class="img-rounded" alt="Cinque Terre" /> 
-           
-          </div>
-          </div>
-          </div>
-           
-          </div>
-           <div class="modal-footer">
-           
-            <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>
-           </div>
-	      </div>
-	     </div>
-	   </div>
-          
-  
-  <!-- termina navidad -->
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <header id="header">
     <div class="container-fluid">
       <div id="logo" class="pull-left">
@@ -108,8 +56,9 @@
           <li><a href="#about">El Fondo</a></li>
           <li><a href="index.php?controller=Usuarios&action=Loguear">Servicios en Linea</a></li>
           <li><a href="#services">Prestaciones</a></li>
-          <li><a href="#testimonials">Servicios Financieros</a></li>
-		  <li><a href="#service">Educación Financiera</a></li>
+          <li><a href="#testimonials">Financieros</a></li>
+		  <li><a href="#service">Educación</a></li>
+		  <li><a href="#service">Institucional</a></li>
             <li><a href="#contact">Contáctenos</a></li>
         </ul>
       </nav>
@@ -749,11 +698,11 @@
               <figure>
                 <img src="view/img/convenios/proauto.jpg" class="img-fluid" alt="">
                 <a href="view/img/convenios/proauto.jpg" data-lightbox="portfolio" data-title="PROAUTO" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="Detalles"><i class="ion ion-android-open"></i></a>
+                <a href="view/ProautoView.php" class="link-details" title="Detalles"><i class="ion ion-android-open"></i></a>
               </figure>
 
               <div class="portfolio-info">
-                <h4><a href="javascript:void(0);">PROAUTO</a></h4>
+                <h4><a onclick=" location.href='https://proautochevrolet.com.ec'"  target="_blank">PROAUTO</a></h4>
                 <p>Concesionario de vehiculos</p>
               </div>
             </div>
@@ -764,11 +713,11 @@
               <figure>
                 <img src="view/img/convenios/utpl.png"   class="img-fluid" alt="">
                 <a href="view/img/convenios/utpl.png" class="link-preview" data-lightbox="portfolio" data-title="UTPL" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="javascript:void(0);" class="link-details" title="Detalles"><i class="ion ion-android-open"></i></a>
+                <a href="view/UtplView.php" class="link-details" title="Detalles"><i class="ion ion-android-open"></i></a>
               </figure>
 
               <div class="portfolio-info">
-                <h4><a href="javascript:void(0);">UTPL</a></h4>
+                <h4><a onclick=" location.href='https://www.utpl.edu.ec'" target="_blank">UTPL</a></h4>
                 <p>Universidad Particular de Loja</p>
               </div>
             </div>
@@ -779,11 +728,11 @@
               <figure>
                 <img src="view/img/convenios/uisek.png" class="img-fluid" alt="">
                 <a href="view/img/convenios/uisek.png" class="link-preview" data-lightbox="portfolio" data-title="UISEK" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="javascript:void(0);" class="link-details" title="Detalles"><i class="ion ion-android-open"></i></a>
+                <a href="view/UnisekView.php" class="link-details" title="Detalles"><i class="ion ion-android-open"></i></a>
               </figure>
 
               <div class="portfolio-info">
-                <h4><a href="javascript:void(0);">UISEK</a></h4>
+                <h4><a onclick=" location.href='https://www.uisek.edu.ec'" target="_blank">UISEK</a></h4>
                 <p>Universidad Internacional</p>
               </div>
             </div>
@@ -794,11 +743,11 @@
               <figure>
                 <img src="view/img/convenios/efekto_celular.png" class="img-fluid" alt="">
                 <a href="view/img/convenios/efekto_celular.png" class="link-preview" data-lightbox="portfolio" data-title="Effekto Celular" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="javascript:void(0);" class="link-details" title="Detalles"><i class="ion ion-android-open"></i></a>
+                <a href="view/EfectoCelularView.php" class="link-details" title="Detalles"><i class="ion ion-android-open"></i></a>
               </figure>
 
               <div class="portfolio-info">
-                <h4><a href="javascript:void(0);">EFFEKTO CELULAR</a></h4>
+                <h4><a onclick=" location.href='https://www.claro.com.ec'" target="_blank">EFFEKTO CELULAR</a></h4>
                 <p>Comunicación Corporatiava</p>
               </div>
             </div>

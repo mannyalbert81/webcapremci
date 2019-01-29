@@ -797,9 +797,6 @@ class MemosController extends ControladorBase{
     			}
     			
     			
-    			
-    			
-    			
     			if($id_memos_cab > 0){
     				
     				

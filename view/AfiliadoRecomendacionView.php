@@ -31,6 +31,7 @@
 			<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+			
 			<script type="text/javascript" src="view/vendors/table-sorter/jquery.tablesorter.js"></script> 
        		 <script src="view/js/jquery.blockUI.js"></script>
             <script src="view/js/jquery.inputmask.bundle.js"></script>
