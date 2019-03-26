@@ -9,6 +9,67 @@ class IniciarController extends ControladorBase{
 	}
 
 
+	
+	
+	/*
+	
+	public function indexMaycol(){
+	    
+	    session_start();
+	    
+	    $afiliados = new AfiliadoModel();
+	    $activos="";
+	    require_once 'core/EntidadBaseSQL.php';
+	    $db = new EntidadBaseSQL();
+	    
+	    $activos=$db->getCondiciones_SQL("p.IDENTITY_CARD, p.LAST_NAME, p.FIRST_NAME, e.EMPLOYER_ENTITY_ACRONYM, ps.DESCRIPTION","one.PARTNER p
+                                        inner join one.EMPLOYER_ENTITY e on p.EMPLOYER_ENTITY_ID=e.EMPLOYER_ENTITY_ID 
+                                        inner join one.PARTNER_STATE ps on p.STATE=ps.PARTNER_STATE_ID", "1=1");
+	   
+	    
+	    if(!empty($activos)){
+	        
+	       
+	        print_r($activos);
+	        die();
+	        
+	        
+	        foreach ($activos as $res){
+	            
+	            $cedula=$res->IDENTITY_CARD;
+	            $apellidos=$res->LAST_NAME;
+	            $nombres=$res->FIRST_NAME;
+	            $entidad=$res->EMPLOYER_ENTITY_ACRONYM;
+	            $estado=$res->DESCRIPTION;
+	            
+	            
+	            
+	            
+	            $funcion = "public.ins_afiliado";
+	            $parametros = "'$cedula',
+					'$apellidos',
+					'$nombres',
+					'$entidad',
+					'$estado'";
+	            $afiliados->setFuncion($funcion);
+	            $afiliados->setParametros($parametros);
+	            $resultado=$afiliados->Insert();
+	            
+	            
+	            
+	        }
+	        
+	        
+	    }
+	    
+	    
+	    
+	}
+	*/
+	
+	
+	
+	
 	public function index(){
 	
 		session_start();

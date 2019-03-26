@@ -44,6 +44,80 @@
 	
   <body>
 
+
+
+
+
+
+
+<!-- 
+
+  <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+          <div class="modal-dialog modal-md">
+        <div class="modal-content">
+           <div class="modal-header">
+              <h5><strong>Estimados Participes</strong></h5>
+           </div>
+           <div class="modal-body">
+            
+			<p style="text-align: justify;">
+			  La administración pensando en el bienestar de los partícipes del Fondo comunica que:<br><br>
+              <strong>-</strong> Para dar cumplimiento a la resolución tomada por la Asamblea General de Representantes de Participes y disposiciones emitidas por las entidades de control (Biess y Superintendencia de Bancos), se realizarán cambios en el sistema informático  del fondo para que la tabla de amortización se adapte al método francés.<br><br> 
+                Por tal motivo el Fondo no brindará atención a los partícipes en la semana del 11 al 15 de febrero.
+               </p> 			  
+                			  
+			 
+			   
+			   
+          </div>
+           <div class="modal-footer">
+          <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>
+           </div>
+	      </div>
+	     </div>
+	   </div>
+
+
+
+ -->
+
+
+
+
+	  <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+        <div class="modal-content">
+           <div class="modal-header">
+           
+           </div>
+           <div class="modal-body">
+          
+          
+              <img src="view/img/aniver_27_años_capre.jpg" class="img-rounded" alt="Cinque Terre" style="width: 100%; heigth:100%;"/> 
+           
+         
+          
+          <p style="text-aling:justify;">Deseamos manifestarle nuestro más sincero agradecimiento por la confianza depositada en CAPREMCI durante todo este tiempo. Feliz Aniversario 27.</p>
+          
+         
+          
+         		
+          
+          </div>
+           <div class="modal-footer">
+           
+            <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>
+           </div>
+	      </div>
+	     </div>
+	   </div>
+          
+
+
+
+
+
+
   
   <header id="header">
     <div class="container-fluid">
@@ -80,9 +154,8 @@
              <div class="carousel-container">
               <div class="carousel-content">
                 <h2>Bienvenido a CAPREMCI</h2>
-				<h3>Te informamos que los trámites  de créditos se recibirán hasta el 20-12-2018.</h3>
-				<h3>Por feriado de diciembre los servicios del cash management de los bancos atenderan hasta el 27-12-2018.</h3>
-            	<p>Afíliate ya.</p>
+				<h3>Asamblea Extraordinaria.</h3>
+				<p>Afíliate ya.</p>
                 <a href="#about" class="btn-get-started scrollto">Ver Más</a>
               </div>
             </div>

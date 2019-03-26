@@ -2600,7 +2600,7 @@ public function index(){
 			
 		$tablas   = "public.usuarios";
 			
-		$where    = "1=1";
+		$where    = "octet_length(fotografia_usuarios)=0";
 			
 		$id       = "usuarios.id_usuarios";
 			

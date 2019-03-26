@@ -24,9 +24,7 @@
 				
 			
 			<!-- Datatables -->
-		    <link href="view/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
 		    
-		   		
 
 			<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -104,7 +102,7 @@
 
 
         		 			  $("#buscar").click(function() 
-        					{
+        					  {
         				    	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
         				    	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
 
@@ -214,6 +212,18 @@
         </script>
         
       
+      
+      
+      
+        <script language="javascript">
+            $(document).ready(function() {
+            	$("#reporte_excel").click(function(event) {
+            	$("#datos_a_enviar").val( $("<div>").append( $("#tabla_calificaciones_realizadas").eq(0).clone()).html());
+            });
+            });
+        </script>
+      
+      
 			        
     </head>
     
@@ -257,20 +267,7 @@
 
         <!-- page content -->
 		<div class="right_col" role="main">        
-            <?php
-       $sel_menu = "";
        
-    
-       if($_SERVER['REQUEST_METHOD']=='POST' )
-       {
-       	 
-       	 
-       	$sel_menu=$_POST['criterio'];
-       	
-       	 
-       }
-      
-	 	?>
     <div class="container">
         <section class="content-header">
          <small><?php echo $fecha; ?></small>
@@ -298,7 +295,7 @@
                   <div class="x_content">
                   
                   
-                  <form  action="<?php echo $helper->url("Calificaciones","generar_reporte"); ?>" method="post" enctype="multipart/form-data" target="_blank"  class="col-lg-12 col-md-12 col-xs-12">
+           <form  action="<?php echo $helper->url("Calificaciones","generar_reporte"); ?>" method="post" enctype="multipart/form-data" target="_blank" class="col-lg-12 col-md-12 col-xs-12">
                   <div class="row" style="margin-left:1px;">
 									<div class="col-lg-2 col-xs-12 col-md-2">
                         		    <div class="form-group">
@@ -320,12 +317,14 @@
                         		    <div class="col-xs-12 col-md-2 col-lg-2" style="text-align: center; margin-top:22px">
                     		        <div class="form-group">
                         		    <button type="button" id="buscar" name="buscar" class="btn btn-info"><i class="glyphicon glyphicon-search"></i></button>
-                                	<button type="submit" id="reporte" name="reporte" class="btn btn-success"><i class="glyphicon glyphicon-print"></i></button>
+                                	<button type="submit"  id="reporte" name="reporte" class="btn btn-success" ><i class="glyphicon glyphicon-print"></i></button>
                                 	
+                                	<button type="submit" onclick="this.form.action='<?php echo $helper->url("Calificaciones","generar_excel"); ?>'"  id="reporte_excel" name="reporte_excel" class="btn btn-primary" ><i class="glyphicon glyphicon-print"></i></button>
+                                	<input type="hidden" id="datos_a_enviar" name="datos_a_enviar"/>
+                                	 
                                 	</div>
                                     </div>
-                        		    
-				  </div>
+                  </div>
 				  
 					
 					<div class="pull-right" style="margin-right:11px;">
@@ -335,16 +334,14 @@
 					
 					<div id="load_registrados" ></div>	
 					<div id="calificaciones_realizadas_registrados"></div>	
-				
-					</form>
+				  	</form>
                 
+                 
                   </div>
                 
                 </div>
                 
-                
-		       
-                
+                 
               </div>
 		
 		
@@ -366,20 +363,13 @@
     <script src="view/vendors/nprogress/nprogress.js"></script>
    
    
-    <!-- Datatables -->
-    <script src="view/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    
-    
-    <script src="view/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="view/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    
+   
     
     
     <!-- Custom Theme Scripts -->
     <script src="view/build/js/custom.min.js"></script>
 	
-
-
+ 
 	
   </body>
 </html>   

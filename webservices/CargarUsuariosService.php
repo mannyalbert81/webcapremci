@@ -110,6 +110,7 @@ if(isset($_GET['action'])){
 							$foto=base64_encode(pg_unescape_bytea($res->fotografia_usuarios));
 							$imgficha = 'data:image/png;base64,'.$foto;
 								
+							
 							$i++;
 							$html.='<tr>';
 							$html.='<td style="font-size: 11px;"><img src="'.$imgficha.'" width="70" height="50"></td>';

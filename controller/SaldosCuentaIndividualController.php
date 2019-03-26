@@ -4354,7 +4354,6 @@ class SaldosCuentaIndividualController extends ControladorBase{
 		if (isset(  $_SESSION['nombre_usuarios']) )
 		{
 			
-			
 			$id_usuarios=$_SESSION['id_usuarios'];
 			
 			if(isset($_GET["fec"])){
@@ -4514,8 +4513,6 @@ class SaldosCuentaIndividualController extends ControladorBase{
 				
 					if(file_exists($mi_pdf))
 					{
-						
-						
 						$funcion = "consulta_documentos";
 						$parametros = " '$id_usuarios', 'Informe de los auditores independientes 31-12-2014'";
 						$consulta_documentos->setFuncion($funcion);
