@@ -365,7 +365,14 @@
 		
 		    					$('#nombre_deudor_a_garantizar').val(respuesta.apellidos_solicitante_datos_personales+' '+respuesta.nombres_solicitante_datos_personales);
 		    				
-		        			});
+		        			}).fail(function(respuesta) {
+
+		        				$('#cedula_deudor_a_garantizar').val("");
+		    					$('#nombre_deudor_a_garantizar').val("");
+		    					
+		    					
+		        			    
+		        			  });
 		    				 
 		    				
 		    			});  
@@ -1057,7 +1064,7 @@
 		    		contador = apellidos_solicitante_datos_personales.split(" ");
 		    		numeroPalabras = contador.length;
 		    		
-					if(numeroPalabras==2){
+					if(numeroPalabras>0){
 
 					$("#mensaje_apellidos_solicitante_datos_personales").fadeOut("slow"); //Muestra mensaje de error
 		            
@@ -1092,7 +1099,7 @@
 		    		contador = nombres_solicitante_datos_personales.split(" ");
 		    		numeroPalabras = contador.length;
 		    		
-					if(numeroPalabras==2){
+					if(numeroPalabras>0){
 
 						$("#mensaje_nombres_solicitante_datos_personales").fadeOut("slow"); //Muestra mensaje de error
 			             
@@ -1530,7 +1537,7 @@
 		    		contador = apellidos_referencia_personal.split(" ");
 		    		numeroPalabras = contador.length;
 		    		
-					if(numeroPalabras==2){
+					if(numeroPalabras>0){
 
 						$("#mensaje_apellidos_referencia_personal").fadeOut("slow"); //Muestra mensaje de error
 				           
@@ -1565,7 +1572,7 @@
 		    		contador = nombres_referencia_personal.split(" ");
 		    		numeroPalabras = contador.length;
 		    		
-					if(numeroPalabras==2){
+					if(numeroPalabras>0){
 
 						$("#mensaje_nombres_referencia_personal").fadeOut("slow"); //Muestra mensaje de error
 				               
@@ -1628,7 +1635,7 @@
 		    		contador = apellidos_referencia_familiar.split(" ");
 		    		numeroPalabras = contador.length;
 		    		
-					if(numeroPalabras==2){
+					if(numeroPalabras>0){
 
 						$("#mensaje_apellidos_referencia_familiar").fadeOut("slow"); //Muestra mensaje de error
 			                    
@@ -1662,7 +1669,7 @@
 		    		contador = nombres_referencia_familiar.split(" ");
 		    		numeroPalabras = contador.length;
 		    		
-					if(numeroPalabras==2){
+					if(numeroPalabras>0){
 
 						$("#mensaje_nombres_referencia_familiar").fadeOut("slow"); //Muestra mensaje de error
 			                    
@@ -2344,7 +2351,7 @@
 		    		contador = apellidos_conyuge.split(" ");
 		    		numeroPalabras = contador.length;
 		    		
-					if(numeroPalabras==2){
+					if(numeroPalabras>0){
 
 						$("#mensaje_apellidos_conyuge").fadeOut("slow"); //Muestra mensaje de error
 			                     
@@ -2378,7 +2385,7 @@
 		    		contador = nombres_conyuge.split(" ");
 		    		numeroPalabras = contador.length;
 		    		
-					if(numeroPalabras==2){
+					if(numeroPalabras>0){
 
 						$("#mensaje_nombres_conyuge").fadeOut("slow"); //Muestra mensaje de error
 				                     
@@ -2468,6 +2475,7 @@
 		    	else 
 		    	{
 		    		$("#mensaje_actividad_economica_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		    		
 		            
 				}
 
@@ -2481,6 +2489,12 @@
 				$("#mensaje_convive_afiliado_conyuge").fadeOut("slow"); //Muestra mensaje de error
 				$("#mensaje_numero_telefonico_conyuge").fadeOut("slow"); //Muestra mensaje de error
 				$("#mensaje_actividad_economica_conyuge").fadeOut("slow"); //Muestra mensaje de error
+
+
+
+
+				
+				
 
 			}
 				
@@ -2786,6 +2800,26 @@
 	  </script>
 	
        
+       
+        <script type="text/javascript">
+
+            enviando = false; //Obligaremos a entrar el if en el primer submit
+            
+            function checkSubmit() {
+                if (!enviando) {
+            		enviando= true;
+            		return true;
+                } else {
+                    //Si llega hasta aca significa que pulsaron 2 veces el boton submit
+                   
+                  
+                    return false;
+                }
+            }
+        
+        </script>
+       
+       
 			        
     </head>
     
@@ -2852,7 +2886,7 @@
                   </div>
                   <div class="x_content">
            
-          <form  action="<?php echo $helper->url("SolicitudPrestamo","InsertaSolicitudPrestamo"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12 col-md-12 col-xs-12">
+          <form  action="<?php echo $helper->url("SolicitudPrestamo","InsertaSolicitudPrestamo"); ?>" method="post" onsubmit="return checkSubmit();" enctype="multipart/form-data"  class="col-lg-12 col-md-12 col-xs-12">
            
       
          <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>

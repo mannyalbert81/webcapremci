@@ -22,7 +22,6 @@ class ConectarSQL{
         	$connectionInfo = array("Database"=>'one.capremci_PROD', "UID"=>'sa', "PWD"=>'$software$01');
         	$con = sqlsrv_connect($serverName, $connectionInfo);
         	
-        
         	
         	if(!$con){
         		echo "No se puedo Conectar a la Base";

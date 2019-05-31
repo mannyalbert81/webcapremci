@@ -2,7 +2,7 @@
 <html lang="es">
       <head>
         <meta charset="utf-8"/>
-        <title>SaldosCuentaIndividual - Template 2018</title>
+        <title>SaldosCuentaIndividual - Capremci 2018</title>
  
  
  
@@ -316,6 +316,7 @@
         	   $(document).ready( function (){
         		   pone_espera();
         		   load_cta_individual(1);
+        		   load_superavit_activos(1);
 	   			});
 
 
@@ -361,10 +362,35 @@
            	                 $("#load_cta_individual_registrados").html("");
            	               },
            	              error: function(jqXHR,estado,error){
-           	                $("#cta_registrados").html("Ocurrio un error al cargar la informacion de Cuenta Individaul..."+estado+"    "+error);
+           	                $("#cta_registrados").html("Ocurrio un error al cargar la información de Cuenta Individaul..."+estado+"    "+error);
            	              }
            	            });
 
+
+           		   }
+
+
+
+        	   function load_superavit_activos(pagina){
+
+                   var con_datos={
+           					  action:'ajax',
+           					  page:pagina
+           					  };
+                 $.ajax({
+           	               beforeSend: function(objeto){
+           	               },
+           	               url: 'index.php?controller=SaldosCuentaIndividual&action=cargar_superavit_cta_ind',
+           	               type: 'POST',
+           	               data: con_datos,
+           	               success: function(x){
+           	                 $("#superavit_activos_registrados").html(x);
+           	               	 $("#tabla_cta_superavit_activos").tablesorter(); 
+           	               },
+           	              error: function(jqXHR,estado,error){
+           	                $("#superavit_activos_registrados").html("Ocurrio un error al cargar la información de Superavit Cuenta Individual..."+estado+"    "+error);
+           	              }
+           	            });
 
            		   }
         </script>
@@ -376,6 +402,7 @@
      
         	   $(document).ready( function (){
         		   load_cta_desembolsar(1);
+        		   load_superavit_desafiliados(1);
 	   			});
 
         	   function load_cta_desembolsar(pagina){
@@ -400,12 +427,39 @@
            	                 $("#load_cta_desembolsar_registrados").html("");
            	               },
            	              error: function(jqXHR,estado,error){
-           	                $("#cta_desembolsar_registrados").html("Ocurrio un error al cargar la informacion de Cuenta Individaul..."+estado+"    "+error);
+           	                $("#cta_desembolsar_registrados").html("Ocurrio un error al cargar la información de Cuenta Desembolsar..."+estado+"    "+error);
            	              }
            	            });
 
 
            		   }
+
+
+
+        	   function load_superavit_desafiliados(pagina){
+
+                   var con_datos={
+           					  action:'ajax',
+           					  page:pagina
+           					  };
+                 $.ajax({
+           	               beforeSend: function(objeto){
+           	               },
+           	               url: 'index.php?controller=SaldosCuentaIndividual&action=cargar_superavit_cta_desem',
+           	               type: 'POST',
+           	               data: con_datos,
+           	               success: function(x){
+           	                 $("#superavit_desafiliados_registrados").html(x);
+           	               	 $("#tabla_cta_superavit_desafiliados").tablesorter(); 
+           	               },
+           	              error: function(jqXHR,estado,error){
+           	                $("#superavit_desafiliados_registrados").html("Ocurrio un error al cargar la información de Superavit Cuenta Desembolsar..."+estado+"    "+error);
+           	              }
+           	            });
+
+           		   }
+
+       		   
         </script>
        
        
@@ -1157,7 +1211,7 @@
                    <li id="nav-cuenta_individual"><a href="#cuenta_individual" data-toggle="tab" >Consulta Cuenta Individual</a></li>
                    <li id="nav-cuenta_desembolsar"><a href="#cuenta_desembolsar" data-toggle="tab">Consulta de Cuentas por Desembolsar</a></li>
                    <li id="nav-mis_datos"><a href="#mis_datos" data-toggle="tab">Mis Datos</a></li>
-                   <li id="nav-proyecte_cesantia"><a href="#proyecte_cesantia" data-toggle="tab">Proyecte su Cesantia</a></li>
+            <!--   <li id="nav-proyecte_cesantia"><a href="#proyecte_cesantia" data-toggle="tab">Proyecte su Cesantia</a></li> -->
                 </ul>
          
   
@@ -1432,7 +1486,7 @@
            <div class="col-md-12 col-lg-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2><small>Cuenta Individual (Desde Enero 2011)</small></h2>
+                    <h2><small>Cuenta Individual</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -1450,7 +1504,8 @@
 					
 					
 					<div id="load_cta_individual_registrados" ></div>	
-					<div id="cta_registrados"></div>	
+					<div id="cta_registrados"></div>
+					<div id="superavit_activos_registrados"></div>	
                   
                   </div>
                 </div>
@@ -1498,7 +1553,7 @@
 					
 					<div id="load_cta_desembolsar_registrados" ></div>	
 					<div id="cta_desembolsar_registrados"></div>	
-                  
+                    <div id="superavit_desafiliados_registrados"></div>
                   
                   
                   </div>
@@ -1884,7 +1939,7 @@
           
           
           
-           
+           <!--
            <div class="tab-pane" id="proyecte_cesantia">
            <br>
            <form  action="<?php echo $helper->url("SaldosCuentaIndividual","index"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12 col-md-12 col-xs-12">
@@ -1972,7 +2027,7 @@
           
            </form>
            </div> 
-           
+             -->
            
            </div>
            

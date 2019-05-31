@@ -176,6 +176,132 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	
 	
+	
+	
+	
+	
+	public function cargar_superavit_cta_ind(){
+	
+	session_start();
+	$_superavit = new SuperavitModel();
+	$where_to="";
+	
+	
+	$cedula_usuarios = $_SESSION["cedula_usuarios"];
+	
+	if(!empty($cedula_usuarios)){
+	    
+	    $columnas_sup="superavit.id_superavit, 
+                      superavit.cedula, 
+                      superavit.anio, 
+                      superavit.monto_patronal, 
+                      superavit.monto_personal, 
+                      superavit.tipo, 
+                      superavit.creado";
+	    
+	    $tablas_sup="public.superavit";
+	    $where_sup="superavit.cedula='$cedula_usuarios' AND superavit.tipo='ACTIVOS'";
+	    $id_sup="superavit.anio";
+	    
+	    
+	    
+	    $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
+	   
+	    
+	    if($action == 'ajax')
+	    {
+	        
+	        $where_to=$where_sup;
+	        
+	        $html="";
+	        $resultSet=$_superavit->getCantidad("*", $tablas_sup, $where_to);
+	        $cantidadResult=(int)$resultSet[0]->total;
+	        
+	        $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
+	        
+	        $per_page = 5; //la cantidad de registros que desea mostrar
+	        $adjacents  = 9; //brecha entre páginas después de varios adyacentes
+	        $offset = ($page - 1) * $per_page;
+	        
+	        $limit = " LIMIT   '$per_page' OFFSET '$offset'";
+	        
+	        $resultSet=$_superavit->getCondicionesPagDesc($columnas_sup, $tablas_sup, $where_to, $id_sup, $limit);
+	        
+	        $count_query   = $cantidadResult;
+	        $total_pages = ceil($cantidadResult/$per_page);
+	        
+	        
+	        if($cantidadResult>0)
+	        {
+	            
+	            $html.='<div class="col-lg-12 col-md-12 col-xs-12">';
+	            $html.='<center><h5><strong>SUPERAVIT GANADO</strong></h5></center>';
+	            $html.='<section style="height:200px; overflow-y:scroll;">';
+	            $html.= "<table id='tabla_cta_superavit_activos' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
+	            $html.= "<thead>";
+	            $html.= "<tr>";
+	            $html.='<th style="text-align: left;  font-size: 12px;">Año</th>';
+	            $html.='<th style="text-align: left;  font-size: 12px;">Valor Personal</th>';
+	            $html.='<th style="text-align: left;  font-size: 12px;">Valor Patronal</th>';
+	            $html.='</tr>';
+	            $html.='</thead>';
+	            $html.='<tbody>';
+	            
+	            $i=0;
+	            
+	            foreach ($resultSet as $res)
+	            {
+	                $i++;
+	                $html.='<tr>';
+	                $html.='<td style="font-size: 11px;">'.$res->anio.'</td>';
+	                $html.='<td style="font-size: 11px;">'.number_format($res->monto_personal, 2, '.', ',').'</td>';
+	                $html.='<td style="font-size: 11px;">'.number_format($res->monto_patronal, 2, '.', ',').'</td>';
+	                
+	                $html.='</tr>';
+	            }
+	            
+	            
+	            $html.='</tbody>';
+	            $html.='</table>';
+	            $html.='</section></div>';
+	            $html.='<div class="table-pagination pull-right">';
+	            $html.=''. $this->paginate_superavit_activos("index.php", $page, $total_pages, $adjacents).'';
+	            $html.='</div>';
+	            
+	            
+	        }else{
+	            
+	        }
+	        
+	        
+	        echo $html;
+	        die();
+	        
+	    }
+	    
+	    
+	}
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public function cargar_cuenta_desembolsar(){
 	
 		session_start();
@@ -236,7 +362,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 				$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
 	
-				$per_page = 15; //la cantidad de registros que desea mostrar
+				$per_page = 5; //la cantidad de registros que desea mostrar
 				$adjacents  = 9; //brecha entre páginas después de varios adyacentes
 				$offset = ($page - 1) * $per_page;
 	
@@ -345,6 +471,110 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	
 	
+	public function cargar_superavit_cta_desem(){
+	    
+	    session_start();
+	    $_superavit = new SuperavitModel();
+	    $where_to="";
+	    
+	    
+	    $cedula_usuarios = $_SESSION["cedula_usuarios"];
+	    
+	    if(!empty($cedula_usuarios)){
+	        
+	        $columnas_sup="superavit.id_superavit,
+                      superavit.cedula,
+                      superavit.anio,
+                      superavit.monto_patronal,
+                      superavit.monto_personal,
+                      superavit.tipo,
+                      superavit.creado";
+	        
+	        $tablas_sup="public.superavit";
+	        $where_sup="superavit.cedula='$cedula_usuarios' AND superavit.tipo='DESAFILIADOS'";
+	        $id_sup="superavit.anio";
+	        
+	        
+	        
+	        $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
+	        
+	        
+	        if($action == 'ajax')
+	        {
+	            
+	            $where_to=$where_sup;
+	            
+	            $html="";
+	            $resultSet=$_superavit->getCantidad("*", $tablas_sup, $where_to);
+	            $cantidadResult=(int)$resultSet[0]->total;
+	            
+	            $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
+	            
+	            $per_page = 5; //la cantidad de registros que desea mostrar
+	            $adjacents  = 9; //brecha entre páginas después de varios adyacentes
+	            $offset = ($page - 1) * $per_page;
+	            
+	            $limit = " LIMIT   '$per_page' OFFSET '$offset'";
+	            
+	            $resultSet=$_superavit->getCondicionesPagDesc($columnas_sup, $tablas_sup, $where_to, $id_sup, $limit);
+	            
+	            $count_query   = $cantidadResult;
+	            $total_pages = ceil($cantidadResult/$per_page);
+	            
+	            
+	            if($cantidadResult>0)
+	            {
+	               
+	                $html.='<div class="col-lg-12 col-md-12 col-xs-12">';
+	                $html.='<center><h5>SUPERAVIT GANADO</h5></center>';
+	                $html.='<section style="height:200px; overflow-y:scroll;">';
+	                $html.= "<table id='tabla_cta_superavit_desafiliados' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
+	                $html.= "<thead>";
+	                $html.= "<tr>";
+	                $html.='<th style="text-align: left;  font-size: 12px;">Año</th>';
+	                $html.='<th style="text-align: left;  font-size: 12px;">Valor Personal</th>';
+	                $html.='<th style="text-align: left;  font-size: 12px;">Valor Patronal</th>';
+	                $html.='</tr>';
+	                $html.='</thead>';
+	                $html.='<tbody>';
+	                
+	                $i=0;
+	                
+	                foreach ($resultSet as $res)
+	                {
+	                    $i++;
+	                    $html.='<tr>';
+	                    $html.='<td style="font-size: 11px;">'.$res->anio.'</td>';
+	                    $html.='<td style="font-size: 11px;">'.number_format($res->monto_personal, 2, '.', ',').'</td>';
+	                    $html.='<td style="font-size: 11px;">'.number_format($res->monto_patronal, 2, '.', ',').'</td>';
+	                    
+	                    $html.='</tr>';
+	                }
+	                
+	                
+	                $html.='</tbody>';
+	                $html.='</table>';
+	                $html.='</section></div>';
+	                $html.='<div class="table-pagination pull-right">';
+	                $html.=''. $this->paginate_superavit_desafiliados("index.php", $page, $total_pages, $adjacents).'';
+	                $html.='</div>';
+	                
+	                
+	            }else{
+	                
+	            }
+	            
+	            echo $html;
+	            die();
+	            
+	        }
+	        
+	    }
+	    
+	}
+	
+	
+	
 	
 	
 	
@@ -441,8 +671,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 						
 						$count_query   = $cantidadResult;
 						$total_pages = ceil($cantidadResult/$per_page);
-						
-						
+											
 						
 						
 						if($cantidadResult>0)
@@ -2633,6 +2862,144 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	
 	
+	
+	public function paginate_superavit_activos($reload, $page, $tpages, $adjacents) {
+	    
+	    $prevlabel = "&lsaquo; Prev";
+	    $nextlabel = "Next &rsaquo;";
+	    $out = '<ul class="pagination pagination-large">';
+	    
+	    // previous label
+	    
+	    if($page==1) {
+	        $out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
+	    } else if($page==2) {
+	        $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_activos(1)'>$prevlabel</a></span></li>";
+	    }else {
+	        $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_activos(".($page-1).")'>$prevlabel</a></span></li>";
+	        
+	    }
+	    
+	    // first label
+	    if($page>($adjacents+1)) {
+	        $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_activos(1)'>1</a></li>";
+	    }
+	    // interval
+	    if($page>($adjacents+2)) {
+	        $out.= "<li><a>...</a></li>";
+	    }
+	    
+	    // pages
+	    
+	    $pmin = ($page>$adjacents) ? ($page-$adjacents) : 1;
+	    $pmax = ($page<($tpages-$adjacents)) ? ($page+$adjacents) : $tpages;
+	    for($i=$pmin; $i<=$pmax; $i++) {
+	        if($i==$page) {
+	            $out.= "<li class='active'><a>$i</a></li>";
+	        }else if($i==1) {
+	            $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_activos(1)'>$i</a></li>";
+	        }else {
+	            $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_activos(".$i.")'>$i</a></li>";
+	        }
+	    }
+	    
+	    // interval
+	    
+	    if($page<($tpages-$adjacents-1)) {
+	        $out.= "<li><a>...</a></li>";
+	    }
+	    
+	    // last
+	    
+	    if($page<($tpages-$adjacents)) {
+	        $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_activos($tpages)'>$tpages</a></li>";
+	    }
+	    
+	    // next
+	    
+	    if($page<$tpages) {
+	        $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_activos(".($page+1).")'>$nextlabel</a></span></li>";
+	    }else {
+	        $out.= "<li class='disabled'><span><a>$nextlabel</a></span></li>";
+	    }
+	    
+	    $out.= "</ul>";
+	    return $out;
+	}
+	
+	
+	
+	
+	
+	
+	public function paginate_superavit_desafiliados($reload, $page, $tpages, $adjacents) {
+	    
+	    $prevlabel = "&lsaquo; Prev";
+	    $nextlabel = "Next &rsaquo;";
+	    $out = '<ul class="pagination pagination-large">';
+	    
+	    // previous label
+	    
+	    if($page==1) {
+	        $out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
+	    } else if($page==2) {
+	        $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_desafiliados(1)'>$prevlabel</a></span></li>";
+	    }else {
+	        $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_desafiliados(".($page-1).")'>$prevlabel</a></span></li>";
+	        
+	    }
+	    
+	    // first label
+	    if($page>($adjacents+1)) {
+	        $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_desafiliados(1)'>1</a></li>";
+	    }
+	    // interval
+	    if($page>($adjacents+2)) {
+	        $out.= "<li><a>...</a></li>";
+	    }
+	    
+	    // pages
+	    
+	    $pmin = ($page>$adjacents) ? ($page-$adjacents) : 1;
+	    $pmax = ($page<($tpages-$adjacents)) ? ($page+$adjacents) : $tpages;
+	    for($i=$pmin; $i<=$pmax; $i++) {
+	        if($i==$page) {
+	            $out.= "<li class='active'><a>$i</a></li>";
+	        }else if($i==1) {
+	            $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_desafiliados(1)'>$i</a></li>";
+	        }else {
+	            $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_desafiliados(".$i.")'>$i</a></li>";
+	        }
+	    }
+	    
+	    // interval
+	    
+	    if($page<($tpages-$adjacents-1)) {
+	        $out.= "<li><a>...</a></li>";
+	    }
+	    
+	    // last
+	    
+	    if($page<($tpages-$adjacents)) {
+	        $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_desafiliados($tpages)'>$tpages</a></li>";
+	    }
+	    
+	    // next
+	    
+	    if($page<$tpages) {
+	        $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_desafiliados(".($page+1).")'>$nextlabel</a></span></li>";
+	    }else {
+	        $out.= "<li class='disabled'><span><a>$nextlabel</a></span></li>";
+	    }
+	    
+	    $out.= "</ul>";
+	    return $out;
+	}
+	
+	
+	
+	
+	
 	public function paginate_cuenta_desembolsar($reload, $page, $tpages, $adjacents) {
 	
 		$prevlabel = "&lsaquo; Prev";
@@ -4057,6 +4424,57 @@ class SaldosCuentaIndividualController extends ControladorBase{
 										
 								
 									
+									
+									
+									$_superavit = new SuperavitModel();
+									
+									$columnas_sup="superavit.id_superavit,
+                                                  superavit.cedula,
+                                                  superavit.anio,
+                                                  superavit.monto_patronal,
+                                                  superavit.monto_personal,
+                                                  superavit.tipo,
+                                                  superavit.creado";
+									
+									$tablas_sup="public.superavit";
+									$where_sup="superavit.cedula='$cedula_usuarios' AND superavit.tipo='ACTIVOS'";
+									$id_sup="superavit.anio";
+									
+									$result_sup=$_superavit->getCondicionesDesc($columnas_sup, $tablas_sup, $where_sup, $id_sup);
+									
+									if(!empty($result_sup)){
+									    
+									    $html.='</br>';
+									    $html.='<center style="margin-top:5px;"><h4><b>SUPERAVIT GANADO</b></h4></center>';
+									    $html.= "<table style='margin-top:5px; width: 100%;' border=1 cellspacing=0 cellpadding=2>";
+									    $html.= "<thead>";
+									    
+									    $html.= "<tr style='background-color: #D5D8DC;'>";
+									    $html.='<th style="text-align: left;  font-size: 12px;">Año</th>';
+									    $html.='<th style="text-align: left;  font-size: 12px;">Valor Personal</th>';
+									    $html.='<th style="text-align: left;  font-size: 12px;">Valor Patronal</th>';
+									   
+									    $html.='</tr>';
+									    $html.='</thead>';
+									    $html.='<tbody>';
+									    
+									    $i=0;
+									    foreach ($result_sup as $res)
+									    {
+									        $i++;
+									        $html.='<tr>';
+									        $html.='<td style="font-size: 11px;">'.$res->anio.'</td>';
+									        $html.='<td style="font-size: 11px;">'.number_format($res->monto_personal, 2, '.', ',').'</td>';
+									        $html.='<td style="font-size: 11px;">'.number_format($res->monto_patronal, 2, '.', ',').'</td>';
+									        $html.='</tr>';
+									    }
+									    
+									    $html.='</tbody>';
+									    $html.='</table>';
+									    
+									    
+									}
+									
 							}
 								
 							
@@ -4163,6 +4581,57 @@ class SaldosCuentaIndividualController extends ControladorBase{
 									$html.='</table>';
 										
 								
+									
+									
+							$_superavit = new SuperavitModel();
+									
+							$columnas_sup="superavit.id_superavit,
+                                          superavit.cedula,
+                                          superavit.anio,
+                                          superavit.monto_patronal,
+                                          superavit.monto_personal,
+                                          superavit.tipo,
+                                          superavit.creado";
+							
+							$tablas_sup="public.superavit";
+							$where_sup="superavit.cedula='$cedula_usuarios' AND superavit.tipo='DESAFILIADOS'";
+							$id_sup="superavit.anio";
+							
+							$result_sup=$_superavit->getCondicionesDesc($columnas_sup, $tablas_sup, $where_sup, $id_sup);
+							
+							if(!empty($result_sup)){
+							    
+							    $html.='</br>';
+							    $html.='<center style="margin-top:5px;"><h4><b>SUPERAVIT GANADO</b></h4></center>';
+							    $html.= "<table style='margin-top:5px; width: 100%;' border=1 cellspacing=0 cellpadding=2>";
+							    $html.= "<thead>";
+							    
+							    $html.= "<tr style='background-color: #D5D8DC;'>";
+							    $html.='<th style="text-align: left;  font-size: 12px;">Año</th>';
+							    $html.='<th style="text-align: left;  font-size: 12px;">Valor Personal</th>';
+							    $html.='<th style="text-align: left;  font-size: 12px;">Valor Patronal</th>';
+							    
+							    $html.='</tr>';
+							    $html.='</thead>';
+							    $html.='<tbody>';
+							    
+							    $i=0;
+							    foreach ($result_sup as $res)
+							    {
+							        $i++;
+							        $html.='<tr>';
+							        $html.='<td style="font-size: 11px;">'.$res->anio.'</td>';
+							        $html.='<td style="font-size: 11px;">'.number_format($res->monto_personal, 2, '.', ',').'</td>';
+							        $html.='<td style="font-size: 11px;">'.number_format($res->monto_patronal, 2, '.', ',').'</td>';
+							        $html.='</tr>';
+							    }
+							    
+							    $html.='</tbody>';
+							    $html.='</table>';
+							    
+							    
+							}
+									
 									
 							}
 								
@@ -4357,6 +4826,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 			$id_usuarios=$_SESSION['id_usuarios'];
 			
 			if(isset($_GET["fec"])){
+			    
 		
 				$fec=$_GET["fec"];
 		
@@ -4615,7 +5085,109 @@ class SaldosCuentaIndividualController extends ControladorBase{
 				
 				}
 				
+				if($fec=="estado_feb_2019"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/ESTADOS DE SITUACION FINANCIERA FEB-2019.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Estados Financieros al 28 de Febrero del 2019'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
 				
+				
+				if($fec=="estado_mar_2019"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/ESTADOS DE SITUACION FINANCIERA MAR-2019.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Estados Financieros al 31 de Marzo del 2019'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
+				
+				
+				if($fec=="estado_ene_2019"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/ESTADOS DE SITUACION FINANCIERA ENE-2019.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Estados Financieros al 31 de Enero del 2019'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
+						
+				
+				
+				if($fec=="estado_dic_2018"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/ESTADOS DE SITUACION FINANCIERA DIC-2018.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Estados Financieros al 31 de Diciembre del 2018'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
 				
 				
 			}
@@ -4789,6 +5361,70 @@ class SaldosCuentaIndividualController extends ControladorBase{
 				
 				
 				
+				
+				
+				
+				
+				if($fec=="estado_nov_2018"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/ESTADOS DE SITUACION FINANCIERA NOV-2018.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Reglamento de Recaudaciones'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
+				
+				
+				
+				if($fec=="estado_dic_2018"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/ESTADOS DE SITUACION FINANCIERA DIC-2018.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Reglamento de Recaudaciones'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			}
 			
 			
@@ -4826,11 +5462,11 @@ class SaldosCuentaIndividualController extends ControladorBase{
 		
 			$fec=$_GET["fec"];
 		
-	if($fec=="orden_dia"){
+	if($fec=="acta"){
 	
 		$directorio = $_SERVER ['DOCUMENT_ROOT'];
 	
-		$mi_pdf = $directorio.'/webcapremci/documentos/02. ORDENE DEL DIA ASAMBLEA 16-17-NOV-2018.pdf';
+		$mi_pdf = $directorio.'/webcapremci/documentos/INFORMACION ASAMBLEA MARZO 2019/ACTA No.004-2018 (16-17-NOV-2018).pdf';
 	
 		if(file_exists($mi_pdf))
 		{
@@ -4848,11 +5484,11 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	
 	
-	if($fec=="acta_asamblea"){
+	if($fec=="revision_conta"){
 	
 		$directorio = $_SERVER ['DOCUMENT_ROOT'];
 	
-		$mi_pdf = $directorio.'/webcapremci/documentos/03. ACTA ASAMBLEA EXT. DEL 28-29 -SEP-2018.pdf';
+		$mi_pdf = $directorio.'/webcapremci/documentos/INFORMACION ASAMBLEA MARZO 2019/COMISION CONT.pdf';
 	
 		if(file_exists($mi_pdf))
 		{
@@ -4870,11 +5506,11 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	
 	
-	if($fec=="informe_sistemas_infraestructura"){
+	if($fec=="convocatoria_asamblea"){
 	
 		$directorio = $_SERVER ['DOCUMENT_ROOT'];
 	
-		$mi_pdf = $directorio.'/webcapremci/documentos/04. INFORME SISTEMAS CAPREMCI NOV-2018/Informe de infraestuctura informatica CAPREMCI-FINAL.pdf';
+		$mi_pdf = $directorio.'/webcapremci/documentos/INFORMACION ASAMBLEA MARZO 2019/Convocatoria Asamblea 29 y 30 Marzo 2019.pdf';
 	
 		if(file_exists($mi_pdf))
 		{
@@ -4892,200 +5528,110 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	
 	
-	if($fec=="informe_sistemas_oficios_entegados"){
-	
-		$directorio = $_SERVER ['DOCUMENT_ROOT'];
-	
-		$mi_pdf = $directorio.'/webcapremci/documentos/04. INFORME SISTEMAS CAPREMCI NOV-2018/Oficio entrega informes y documentos respaldo.pdf';
-	
-		if(file_exists($mi_pdf))
-		{
-	
-			header('Content-type: application/pdf');
-			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
-			readfile($mi_pdf);
-		}else
-		{
-			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
-		}
-	
-	
+	if($fec=="financiera"){
+	    
+	    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+	    
+	    $mi_pdf = $directorio.'/webcapremci/documentos/INFORMACION ASAMBLEA MARZO 2019/ESTADO DE SITUACION FINANCIERA-2018.pdf';
+	    
+	    if(file_exists($mi_pdf))
+	    {
+	        
+	        header('Content-type: application/pdf');
+	        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+	        readfile($mi_pdf);
+	    }else
+	    {
+	        echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+	    }
+	    
+	    
 	}
 		
 	
-	if($fec=="presentacion_comision_informatica"){
-	
-		$directorio = $_SERVER ['DOCUMENT_ROOT'];
-	
-		$mi_pdf = $directorio.'/webcapremci/documentos/04. INFORME SISTEMAS CAPREMCI NOV-2018/PRESENTACION COMISION INFORMATICA FINAL.pdf';
-	
-		if(file_exists($mi_pdf))
-		{
-	
-			header('Content-type: application/pdf');
-			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
-			readfile($mi_pdf);
-		}else
-		{
-			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
-		}
-	
-	
+	if($fec=="integral"){
+	    
+	    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+	    
+	    $mi_pdf = $directorio.'/webcapremci/documentos/INFORMACION ASAMBLEA MARZO 2019/ESTADO DE RESULTADOS INTEGRAL-2018.pdf';
+	    
+	    if(file_exists($mi_pdf))
+	    {
+	        
+	        header('Content-type: application/pdf');
+	        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+	        readfile($mi_pdf);
+	    }else
+	    {
+	        echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+	    }
+	    
+	    
 	}
 	
 	
 	
-	if($fec=="examen_especial"){
-	
-		$directorio = $_SERVER ['DOCUMENT_ROOT'];
-	
-		$mi_pdf = $directorio.'/webcapremci/documentos/05. EXAMEN ESPECIAL A LOS CONTRATOS MAT. Y REP. CONJUNTOS HABITACIONALES.pdf';
-	
-		if(file_exists($mi_pdf))
-		{
-	
-			header('Content-type: application/pdf');
-			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
-			readfile($mi_pdf);
-		}else
-		{
-			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
-		}
-	
-	
+	if($fec=="comision_informatica"){
+	    
+	    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+	    
+	    $mi_pdf = $directorio.'/webcapremci/documentos/INFORMACION ASAMBLEA MARZO 2019/INFORME DE AVANCE PROYECTO ERP-1.pdf';
+	    
+	    if(file_exists($mi_pdf))
+	    {
+	        
+	        header('Content-type: application/pdf');
+	        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+	        readfile($mi_pdf);
+	    }else
+	    {
+	        echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+	    }
+	    
+	    
 	}
 	
 	
-	
-	if($fec=="informe_tecnico"){
-	
-		$directorio = $_SERVER ['DOCUMENT_ROOT'];
-	
-		$mi_pdf = $directorio.'/webcapremci/documentos/06. INFORME TECNICO PROGRAMAS HABITACIONALES.pdf';
-	
-		if(file_exists($mi_pdf))
-		{
-	
-			header('Content-type: application/pdf');
-			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
-			readfile($mi_pdf);
-		}else
-		{
-			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
-		}
-	
-	
+	if($fec=="informe_gestion"){
+	    
+	    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+	    
+	    $mi_pdf = $directorio.'/webcapremci/documentos/INFORMACION ASAMBLEA MARZO 2019/INFORME DE GESTION-2018 (V1).pdf';
+	    
+	    if(file_exists($mi_pdf))
+	    {
+	        
+	        header('Content-type: application/pdf');
+	        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+	        readfile($mi_pdf);
+	    }else
+	    {
+	        echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+	    }
+	    
+	    
 	}
 	
 	
-	if($fec=="presupuesto_2018"){
-	
-		$directorio = $_SERVER ['DOCUMENT_ROOT'];
-	
-		$mi_pdf = $directorio.'/webcapremci/documentos/07. PRESUPUESTO-2019 CAPREMCI.pdf';
-	
-		if(file_exists($mi_pdf))
-		{
-	
-			header('Content-type: application/pdf');
-			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
-			readfile($mi_pdf);
-		}else
-		{
-			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
-		}
-	
-	
+	if($fec=="terna_auditoria"){
+	    
+	    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+	    
+	    $mi_pdf = $directorio.'/webcapremci/documentos/INFORMACION ASAMBLEA MARZO 2019/TERNA AUDITORIA EXTERNA-2018.pdf';
+	    
+	    if(file_exists($mi_pdf))
+	    {
+	        
+	        header('Content-type: application/pdf');
+	        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+	        readfile($mi_pdf);
+	    }else
+	    {
+	        echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+	    }
+	    
+	    
 	}
-	
-	
-	
-	if($fec=="plan_estrategico"){
-	
-		$directorio = $_SERVER ['DOCUMENT_ROOT'];
-	
-		$mi_pdf = $directorio.'/webcapremci/documentos/08. PLAN ESTRATEGICO 2017-2020 CAPREMCI.pdf';
-	
-		if(file_exists($mi_pdf))
-		{
-	
-			header('Content-type: application/pdf');
-			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
-			readfile($mi_pdf);
-		}else
-		{
-			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
-		}
-	
-	
-	}
-	
-	
-	if($fec=="poa_2018"){
-	
-		$directorio = $_SERVER ['DOCUMENT_ROOT'];
-	
-		$mi_pdf = $directorio.'/webcapremci/documentos/09. POA 2019 CAPREMCI.pdf';
-	
-		if(file_exists($mi_pdf))
-		{
-	
-			header('Content-type: application/pdf');
-			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
-			readfile($mi_pdf);
-		}else
-		{
-			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
-		}
-	
-	
-	}
-	
-	
-	
-	if($fec=="manual_politicas"){
-	
-		$directorio = $_SERVER ['DOCUMENT_ROOT'];
-	
-		$mi_pdf = $directorio.'/webcapremci/documentos/10. MANUAL  DE POLITICAS Y PROCEDIMIENTOS DE CREDITO.pdf';
-	
-		if(file_exists($mi_pdf))
-		{
-	
-			header('Content-type: application/pdf');
-			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
-			readfile($mi_pdf);
-		}else
-		{
-			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
-		}
-	
-	
-	}
-	
-	
-	
-	
-	if($fec=="informe_escrituras"){
-	
-		$directorio = $_SERVER ['DOCUMENT_ROOT'];
-	
-		$mi_pdf = $directorio.'/webcapremci/documentos/11. INFORME ESCRITURAS CONJUNTOS HABITACIONALES.pdf';
-	
-		if(file_exists($mi_pdf))
-		{
-	
-			header('Content-type: application/pdf');
-			header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
-			readfile($mi_pdf);
-		}else
-		{
-			echo 'ESTIMADO USUARIO SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
-		}
-	
-	
-	}
-	
 	
 	
 	}

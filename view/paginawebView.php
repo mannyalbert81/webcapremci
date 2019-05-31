@@ -30,6 +30,7 @@
 	  <link href="view/css/style.css" rel="stylesheet">
  
  
+	<!--
  
 	 <script type="text/javascript">
      
@@ -38,7 +39,7 @@
         	   });
 
      </script>
- 
+ -->
  
   </head>
 	
@@ -87,9 +88,7 @@
 	  <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <div class="modal-dialog modal-md">
         <div class="modal-content">
-           <div class="modal-header">
-           
-           </div>
+          
            <div class="modal-body">
           
           
@@ -132,7 +131,7 @@
           <li><a href="#services">Prestaciones</a></li>
           <li><a href="#testimonials">Financieros</a></li>
 		  <li><a href="#service">Educación</a></li>
-		  <li><a href="#service">Institucional</a></li>
+		  
             <li><a href="#contact">Contáctenos</a></li>
         </ul>
       </nav>
@@ -150,13 +149,10 @@
         <ol class="carousel-indicators"></ol>
         <div class="carousel-inner" role="listbox">
           <div class="carousel-item active">
-            <div class="carousel-background"><img src="view/img/intro-carousel/1.jpeg" alt=""></div>
+            <div class="carousel-background"><img src="view/img/intro-carousel/11.jpg" alt=""></div>
              <div class="carousel-container">
               <div class="carousel-content">
-                <h2>Bienvenido a CAPREMCI</h2>
-				<h3>Asamblea Extraordinaria.</h3>
-				<p>Afíliate ya.</p>
-                <a href="#about" class="btn-get-started scrollto">Ver Más</a>
+                
               </div>
             </div>
           </div>
@@ -173,43 +169,7 @@
             </div>
           </div>
 
-          <div class="carousel-item">
-            <div class="carousel-background"><img src="view/img/intro-carousel/3.jpeg" alt=""></div>
-            <div class="carousel-container">
-              <div class="carousel-content">
-                 <h2>Bienvenido a CAPREMCI</h2>
-				 <h3>Servicio al Cliente</h3>
-             	<p>Afiliate ya.</p>
-                <a href="#about" class="btn-get-started scrollto">Ver Más</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="carousel-background"><img src="view/img/intro-carousel/4.jpeg" alt=""></div>
-            <div class="carousel-container">
-              <div class="carousel-content">
-                 <h2>Bienvenido a CAPREMCI</h2>
-				 <h3>Servicio al Cliente</h3>
-              	<p>Afiliate ya.</p>
-                <a href="#about" class="btn-get-started scrollto">Ver Más</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="carousel-background"><img src="view/img/intro-carousel/5.jpg" alt=""></div>
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2>Bienvenido a CAPREMCI</h2>
-				<h3>Tú ahorro presente , tú bienestar del mañana</h3>
-               	<p>Afiliate ya.</p>
-                <a href="#about" class="btn-get-started scrollto">Ver Más</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
+          
         <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
           <span class="sr-only">Anterior</span>
@@ -334,7 +294,7 @@
       <div class="container">
         <div class="row nosotros-container">
 
-          <div class="col-lg-6 content order-lg-1 order-2">
+          <div class="col-lg-6 content order-lg-1 order-1">
             <h2 class="title">EQUIPO DE TRABAJO</h2>
             <p>
               Valores y Principios:
@@ -360,19 +320,20 @@
 
           </div>
 
-          <div class="col-lg-6 background order-lg-2 order-1 wow fadeInRight"></div>
+           <div class="img-circle col-lg-6 fadeInRight order-2">
+          	<img src="view/img/about-img.jpg" alt="" class="img-cricle">
+          </div>
         </div>
 
       </div>
     </section>
 	
-	
-   <!-- 
+	 
     <section id="facts"  class="wow fadeIn">
       <div class="container">
         <header class="section-header" style="text-align: center;">
           <h3>CAPREMCI</h3>
-          <span style="text-align: center;">Desde 1992 - 2018</span>
+          <span style="text-align: center;"></span>
         </header>
 
         <div class="row counters">
@@ -411,16 +372,16 @@
               <p>Millones en monto de créditos otorgados</p>
   			</div>
   			
-  			
+  			<!--
   			<div class="col-lg-3 col-6 text-center">
               <span data-toggle="counter-up">0</span>
               <p>Millones acreditados de utilidad en las cuentas individuales</p>
   			</div> 
-  			
+  			-->
   			
   		</div>
        </div>
-    </section> --> 
+    </section> 
     
       
       
@@ -676,6 +637,8 @@
  <!--==========================
       Clients Section
     ============================
+	
+	-->
      <section id="testimonials" class="section-bg wow fadeInUp">
       <div class="container">
         <header class="section-header">
@@ -715,7 +678,7 @@
         </div>
       </div>
     </section>
--->
+
 
 
   

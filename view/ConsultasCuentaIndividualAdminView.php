@@ -308,10 +308,8 @@
         	   $(document).ready( function (){
         		   pone_espera();
         		   load_cta_individual(1);
+        		   load_superavit_activos(1);
 	   			});
-
-
-
 
         	 
         	  
@@ -363,6 +361,34 @@
 
 
            		   }
+
+
+
+        	   function load_superavit_activos(pagina){
+
+                   var con_datos={
+           					  action:'ajax',
+           					  page:pagina
+           					  };
+                 $.ajax({
+           	               beforeSend: function(objeto){
+           	               },
+           	               url: 'index.php?controller=Usuarios&action=cargar_superavit_cta_ind',
+           	               type: 'POST',
+           	               data: con_datos,
+           	               success: function(x){
+           	                 $("#superavit_activos_registrados").html(x);
+           	               	 $("#tabla_cta_superavit_activos").tablesorter(); 
+           	               },
+           	              error: function(jqXHR,estado,error){
+           	                $("#superavit_activos_registrados").html("Ocurrio un error al cargar la información de Superavit Cuenta Individual..."+estado+"    "+error);
+           	              }
+           	            });
+
+           		   }
+
+
+       		   
         </script>
 
 			
@@ -372,6 +398,7 @@
      
         	   $(document).ready( function (){
         		   load_cta_desembolsar(1);
+        		   load_superavit_desafiliados(1);
 	   			});
 
         	   function load_cta_desembolsar(pagina){
@@ -402,6 +429,34 @@
 
 
            		   }
+
+
+
+
+        	   function load_superavit_desafiliados(pagina){
+
+                   var con_datos={
+           					  action:'ajax',
+           					  page:pagina
+           					  };
+                 $.ajax({
+           	               beforeSend: function(objeto){
+           	               },
+           	               url: 'index.php?controller=Usuarios&action=cargar_superavit_cta_desem',
+           	               type: 'POST',
+           	               data: con_datos,
+           	               success: function(x){
+           	                 $("#superavit_desafiliados_registrados").html(x);
+           	               	 $("#tabla_cta_superavit_desafiliados").tablesorter(); 
+           	               },
+           	              error: function(jqXHR,estado,error){
+           	                $("#superavit_desafiliados_registrados").html("Ocurrio un error al cargar la información de Superavit Cuenta Desembolsar..."+estado+"    "+error);
+           	              }
+           	            });
+
+           		   }
+
+       		   
         </script>
        
        
@@ -727,12 +782,6 @@
 		            
 				}
 		    	
-
-		    	
-		    	
-		    	
-		    	
-				
 		    	if (correo == "")
 		    	{
 			    	
@@ -1427,7 +1476,7 @@
            <div class="col-md-12 col-lg-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2><small>Cuenta Individual (Desde Enero 2011)</small></h2>
+                    <h2><small>Cuenta Individual</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -1446,7 +1495,7 @@
 					
 					<div id="load_cta_individual_registrados" ></div>	
 					<div id="cta_registrados"></div>	
-                  
+                    <div id="superavit_activos_registrados"></div>	
                   </div>
                 </div>
               </div>
@@ -1493,7 +1542,7 @@
 					
 					<div id="load_cta_desembolsar_registrados" ></div>	
 					<div id="cta_desembolsar_registrados"></div>	
-                  
+                   <div id="superavit_desafiliados_registrados"></div>
                   
                   
                   </div>

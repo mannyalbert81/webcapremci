@@ -57,7 +57,7 @@
         	        		}
         	    });
             	
-		        setTimeout($.unblockUI, 3000); 
+		        setTimeout($.unblockUI, 1000); 
 		        
         	   }
 
@@ -114,6 +114,24 @@
 		    }); 
 			</script>
         
+        
+        
+        <script type="text/javascript">
+
+            enviando = false; //Obligaremos a entrar el if en el primer submit
+            
+            function checkSubmit(){
+                if (!enviando){
+            		enviando= true;
+            		return true;
+                } else {
+                    //Si llega hasta aca significa que pulsaron 2 veces el boton submit
+                  
+                    return false;
+                }
+            }
+        
+        </script>
         
         
         
@@ -289,7 +307,7 @@
 		    	else 
 		    	{
 		    		$("#mensaje_id_estado").fadeOut("slow"); //Muestra mensaje de error
-		            
+		    		
 				}
 		    					    
 
@@ -441,7 +459,7 @@
                   <div class="x_content">
 
 
-            <form  action="<?php echo $helper->url("Usuarios","InsertaUsuarios"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12 col-md-12 col-xs-12">
+            <form  action="<?php echo $helper->url("Usuarios","InsertaUsuarios"); ?>" method="post" onsubmit="return checkSubmit();" enctype="multipart/form-data"  class="col-lg-12 col-md-12 col-xs-12">
                                
                                
                                

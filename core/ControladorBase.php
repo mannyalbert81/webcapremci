@@ -1,7 +1,9 @@
 <?php
 class ControladorBase{
 
+    
     public function __construct() {
+        
         require_once 'EntidadBase.php';
         require_once 'EntidadBaseSQL.php';
         require_once 'ModeloBase.php';
@@ -15,6 +17,7 @@ class ControladorBase{
     //Plugins y funcionalidades
     
     public function view($vista,$datos){
+        
         foreach ($datos as $id_assoc => $valor) {
             ${$id_assoc}=$valor; 
         }
@@ -41,7 +44,6 @@ class ControladorBase{
     		${$id_assoc}=$valor;
     	}
     	
-    
     	require_once 'core/AyudaVistas.php';
     	$helper=new AyudaVistas();
     
@@ -61,5 +63,6 @@ class ControladorBase{
     	require_once 'view/reportes/'.$vista.'Rpt.php';
     }
 
+    
 }
 ?>

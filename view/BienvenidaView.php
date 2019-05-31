@@ -28,7 +28,7 @@
 		    <!-- Custom Theme Style -->
 		    <link href="view/build/css/custom.min.css" rel="stylesheet">
 				
-			
+			  <link rel="stylesheet" href="view/AdminLTE-2.4.2/plugins/iCheck/all.css">
 			<!-- Datatables -->
 		    <link href="view/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
 		 
@@ -104,7 +104,233 @@
           </div>
           
           
+          
+          
+          
+          
+          <!-- PARA ENCUESTAS EDUCACIÓN FINANCIERA -->
+          
+        
+          <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog" style="width: 80%;">
+        <div class="modal-content">
+           <div class="modal-header">
+         
+              <h3 style="margin-left: 15px;"><strong>Educación Financiera.</strong></h3>
+           </div>
+           <div class="modal-body">
+          
+          <div class="col-lg-12 col-md-12 col-xs-12">
+          
+          <div class="col-lg-7 col-md-7 col-xs-12">
+              
+           			<iframe id="reproducir_video" width="100%" height="550px"></iframe>
+           			
+          </div>
+          <div class="col-lg-5 col-md-5 col-xs-12">
+          
+          
+          <div id="encuesta1" style="display:none;">
+          
+          <h4><strong>Estimado Participe.</strong></h4>
+          <br>
+          <p>Porque su opinión es muy importante para nosotros, observe el video hasta el final y ayúdenos llenando una breve encuesta que aparecera en unos minutos al finalizar el video.</p>
+           	
+          <img src="view/images/Encuesta.png" class="img-rounded" alt="Cinque Terre" style="width: 100%; margin-top: 20px;"/> 
+          
+          </div>
+          
+          
+       <div id="encuesta" style="display:none;">
+       
+       	<form  action="<?php echo $helper->url("EducacionFinanciera","InsertaEducacionFinanciera"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12 col-md-12 col-xs-12">
+        
+          <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-user'></i> Encuesta Educación Financiera</h4>
+	         </div>
+	         <div class="panel-body">
+			 
+			         
+           
+			 
+			 <div class="row">
+			 	<label  class="control-label"><?php echo $pregunta_1;?></label>
+			    <input type="hidden" id="pregunta_1" name="pregunta_1" value="<?php echo $id_pregunta_1;?>">
+			     <div class="col-lg-12 col-md-12 col-xs-12" style="margin-top: 15px;">
+				  <div class="row">
+				  
+				           <div class="col-lg-2 col-md-2 col-xs-12">
+				            <div class="form-group">
+			                <span>
+			                  <input type="radio" id="respuesta_pregunta_1" name="respuesta_pregunta_1" value="TRUE" class="flat-red">
+			                  Si
+			                </span>
+			                </div>
+			                </div>
+			                
+			                <div class="col-lg-2 col-md-2 col-xs-12">
+			                <div class="form-group">
+			                <span>
+			                  <input type="radio" id="respuesta_pregunta_11" name="respuesta_pregunta_1" value="FALSE" class="flat-red">
+			                  No
+			                </span>
+			                </div>
+			                </div>
+			              
+		          </div>        
+	                
+	            </div>
+              </div>
+			 
+			 
+           
+           
+               <div class="row">
+			 	<label class="control-label"><?php echo $pregunta_2;?></label>
+			     <input type="hidden" id="pregunta_2" name="pregunta_2" value="<?php echo $id_pregunta_2;?>">
+			     <div class="col-lg-12 col-md-12 col-xs-12" style="margin-top: 25px;">
+				  <div class="row">
+				  
+				           <div class="col-lg-2 col-md-2 col-xs-12">
+				            <div class="form-group">
+			                <span>
+			                  <input type="radio" id="respuesta_pregunta_2" name="respuesta_pregunta_2" value="TRUE" class="flat-red">
+			                  Si
+			                </span>
+			                </div>
+			                </div>
+			                
+			                <div class="col-lg-2 col-md-2 col-xs-12">
+			                <div class="form-group">
+			                <span>
+			                  <input type="radio" id="respuesta_pregunta_22" name="respuesta_pregunta_2" value="FALSE" class="flat-red">
+			                  No
+			                </span>
+			                </div>
+			                </div>
+			                
+			               
+		          </div>        
+	                    
+	                    
+	             
+	            </div>
+              </div>
+           
+           
+            
+            
+            
+            
+               <div class="row">
+			 	<label value="<?php echo $id_pregunta_3;?>" class="control-label"><?php echo $pregunta_3;?></label>
+			    <input type="hidden" id="pregunta_3" name="pregunta_3" value="<?php echo $id_pregunta_3;?>">
+			     <div class="col-lg-12 col-md-12 col-xs-12" style="margin-top: 25px;">
+				  <div class="row">
+				  
+				           <div class="col-lg-2 col-md-2 col-xs-12">
+				            <div class="form-group">
+			                <span>
+			                  <input type="radio" id="respuesta_pregunta_3" name="respuesta_pregunta_3" value="TRUE" class="flat-red">
+			                  Si
+			                </span>
+			                </div>
+			                </div>
+			                
+			                <div class="col-lg-2 col-md-2 col-xs-12">
+			                <div class="form-group">
+			                <span>
+			                  <input type="radio" id="respuesta_pregunta_33" name="respuesta_pregunta_3" value="FALSE" class="flat-red">
+			                  No
+			                </span>
+			                </div>
+			                </div>
+			                
+		          </div>        
+	                    
+	              
+	            </div>
+              </div>
+        
+              
+           
+           
+           
+              <div class="row">
+			 	<label class="control-label"><?php echo $pregunta_4;?></label>
+			     <input type="hidden" id="pregunta_4" name="pregunta_4" value="<?php echo $id_pregunta_4;?>">
+			     <div class="col-lg-12 col-md-12 col-xs-12" style="margin-top: 15px;">
+				  <div class="row">
+				  
+				           <div class="col-lg-2 col-md-2 col-xs-12">
+				            <div class="form-group">
+			                <span>
+			                  <input type="radio" id="respuesta_pregunta_4" name="respuesta_pregunta_4" value="TRUE" class="flat-red">
+			                  Si
+			                </span>
+			                </div>
+			                </div>
+			                
+			                <div class="col-lg-2 col-md-2 col-xs-12">
+			                <div class="form-group">
+			                <span>
+			                  <input type="radio" id="respuesta_pregunta_44" name="respuesta_pregunta_4" value="FALSE" class="flat-red">
+			                  No
+			                </span>
+			                </div>
+			                </div>
+			                
+		          </div>        
+	                    
+	                
+	            </div>
+              </div>
+        
+           
+			  			<div class="col-lg-12 col-md-12 col-xs-12 " style="text-align: center; margin-top: 10px">
+				  		 <button type="submit" id="generar" name="generar" value=""   class="btn btn-success" style="margin-top: 10px;"><i class="glyphicon glyphicon-edit"></i> Registrar Encuesta</button>         
+					    </div>
+  			
+  		</div></div>	
+         
+      
+      
+       </form>
+          
+      </div> 
+          
+          
+          
+          </div>
+          </div>
+            
              
+             <p>....</p>
+         		
+          
+          </div>
+           
+	      </div>
+	     </div>
+	   </div>
+          
+          <!-- TERMINA ENCUESTAS EDUCACIÓN FINANCIERA -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+         <!-- PARA ENCUESTAS DE LOS SERVICIOS ONLINE  
         <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <div class="modal-dialog modal-md">
         <div class="modal-content">
@@ -129,11 +355,7 @@
           </div>
           
           </div>
-            <!--
-             <center>
-             
-               <img src="view/images/disponible_play_store.png" class="img-rounded" alt="Cinque Terre" style="width: 50%"/></center>   
-             -->
+            
              
               <a href="index.php?controller=Encuestas&action=index"  style="margin-left: 15px;" class="btn btn-warning" ><i class="glyphicon glyphicon-edit"> Comenzar</i></a>
     	  
@@ -148,7 +370,7 @@
 	     </div>
 	   </div>
           
-           
+            -->  
           
         </div>
         <!-- /page content -->
@@ -184,14 +406,116 @@
 	<script src="view/js/jquery.blockUI.js"></script>
 	
 	
+<script src="view/AdminLTE-2.4.2/plugins/iCheck/icheck.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+<script>
+  $(function () {
+
+ $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass   : 'iradio_flat-green'
+    })
+    
+    })
+</script>
 	
+	
+<script type="text/javascript">
+$(document).ready(function() {
+
+	setTimeout(function() {
+        $("#encuesta1").fadeIn(1500);
+    },200);
+	
+	setTimeout(function() {
+        $("#encuesta1").fadeOut(1500);
+    },280400);
+	
+    setTimeout(function() {
+        $("#encuesta").fadeIn(1500);
+    },280500);
+
+    
+});
+</script>
+	
+	
+	
+	
+       <script >
+		    // cada vez que se cambia el valor del combo
+		    $(document).ready(function(){
+		    
+		    $("#generar").click(function() 
+			{
+		    	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+		    	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
+
+		    	var respuesta_pregunta_1 = $("#respuesta_pregunta_1").val();
+		    	var respuesta_pregunta_2 = $("#respuesta_pregunta_2").val();
+		    	var respuesta_pregunta_3 = $("#respuesta_pregunta_3").val();
+		    	var respuesta_pregunta_4 = $("#respuesta_pregunta_4").val();
+		    	
+
+				
+    	        if($("#respuesta_pregunta_1").is(':checked') || $("#respuesta_pregunta_11").is(':checked')) {  
+	
+    	        } else {  
+
+    	        	swal("Alerta!", "Conteste Pregunta 1", "error")
+                    return false;
+    	        		
+    	        }  
+
+
+    	        
+    	        if($("#respuesta_pregunta_2").is(':checked') || $("#respuesta_pregunta_22").is(':checked')) {  
+	
+    	        } else {  
+
+    	        	swal("Alerta!", "Conteste Pregunta 2", "error")
+	        		 return false;
+	        	
+    	        } 
+
+    	        if($("#respuesta_pregunta_3").is(':checked') || $("#respuesta_pregunta_33").is(':checked')) {  
+	
+    	        } else {  
+
+    	        	swal("Alerta!", "Conteste Pregunta 3", "error")
+	        		 return false;
+    	        } 
+
+
+    	        if($("#respuesta_pregunta_4").is(':checked') || $("#respuesta_pregunta_44").is(':checked')) {  
+    
+    	        } else {  
+
+    	        	swal("Alerta!", "Conteste Pregunta 4", "error")
+	        		 return false;
+    	        } 
+
+		    	   
+		    	
+			}); 
+
+
+		       
+		       
+		}); 
+
+	</script>
+        
+       
 	
 	
 	 <script type="text/javascript">
      
         	   $(document).ready( function (){
         		   pone_espera();
-        		   $("#mostrarmodal").modal("show");
+        		   
+        		   load_encuesta();
         		   pone_cta_individual();
         		   pone_cta_desembolsar();
         		   pone_alerta_actualizacion();
@@ -206,10 +530,33 @@
 	   			});
 
 
-        	   
+        	   function load_encuesta(){
+      		     
+    	    	   $.ajax({
+    	                    url: 'index.php?controller=Usuarios&action=consulta_encuesta_educacion_financiera',
+    	                    type: 'POST',
+    	                    //data_type:json
+    	                    data: {action:'ajax'},
+    	                    success: function(D){
+
+    	                    	if (D.trim()=="NO"){
+									
+									$("#mostrarmodal").modal("show");
+									//$('#mostrarmodal').modal({backdrop: 'static', keyboard: false})
+	    	                    	video();
+	    	                    	
+								}
+    	                    	
+    	                    	
+    	                    }
+    	             });
+
+    	    	  
+  	             
+    	        }
         	        
-        	     
-        	    
+        	   
+        	   
 
         	   function pone_espera(){
 
@@ -439,9 +786,29 @@
         		     })
         		  }
 
+
+
+        	  
+
         	   
         </script>
         
+        <script type="text/javascript">
+	
+	
+
+
+		
+    	function video(){
+    
+    			    imgficha = 'view/images/educacion financiera modulo 1.mp4';
+    
+    		        $("#reproducir_video").attr({'src':imgficha});
+    	}
+	
+	//setInterval(video, 10);
+	
+	</script>
       
   </body>
 </html>

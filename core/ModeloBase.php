@@ -5,22 +5,27 @@ class ModeloBase extends EntidadBase{
     Private $con;
     
     public function __construct($table) {
+        
         $this->table=(string) $table;
         parent::__construct($table);
         
         $this->fluent=$this->getConetar()->startFluent();
         $this->con=$this->getConetar()->conexion();
+        
     }
     
     public function fluent(){
+        
         return $this->fluent;
     }
 
     public function con(){
+        
     	return $this->con;
     }
     
     public function ejecutarSql($query){
+        
         $query=pg_query($this->con, $query);
         if($query==true){
             if(pg_num_rows($query)>1)
@@ -94,6 +99,7 @@ class ModeloBase extends EntidadBase{
     
 
     public function ConsultaSql($query){
+        
     	$resultSet = array();
     	
     	$query=pg_query($this->con, $query);
@@ -124,7 +130,30 @@ class ModeloBase extends EntidadBase{
     }
     
 
-    
+    public function enviaquery($query){
+        $resultSet=array();
+        try{
+            
+            $result=pg_query($this->con(), $query);
+            
+            if( $result === false )
+                throw new Exception( "Error PostgreSQL ".pg_last_error() );
+                
+                
+                if(pg_num_rows($result)>0)
+                {
+                    while ($row = pg_fetch_object($result)) {
+                        $resultSet[]=$row;
+                    }
+                }
+                
+        }catch (Exception $Ex){
+            
+            $resultSet=null;
+        }
+        
+        return $resultSet;
+    }
     
     
     //Aqui podemos montarnos metodos para los modelos de consulta

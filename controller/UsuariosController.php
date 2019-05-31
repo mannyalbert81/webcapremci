@@ -6,6 +6,383 @@ class UsuariosController extends ControladorBase{
     }
     
     
+    
+    
+    
+    
+    
+    public function cargar_superavit_cta_ind(){
+        
+        session_start();
+        $_superavit = new SuperavitModel();
+        $where_to="";
+        
+        
+        $cedula_usuarios = $_SESSION["cedula_participe"];
+        
+        if(!empty($cedula_usuarios)){
+            
+            $columnas_sup="superavit.id_superavit,
+                      superavit.cedula,
+                      superavit.anio,
+                      superavit.monto_patronal,
+                      superavit.monto_personal,
+                      superavit.tipo,
+                      superavit.creado";
+            
+            $tablas_sup="public.superavit";
+            $where_sup="superavit.cedula='$cedula_usuarios' AND superavit.tipo='ACTIVOS'";
+            $id_sup="superavit.anio";
+            
+            
+            
+            $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
+            
+            
+            if($action == 'ajax')
+            {
+                
+                $where_to=$where_sup;
+                
+                $html="";
+                $resultSet=$_superavit->getCantidad("*", $tablas_sup, $where_to);
+                $cantidadResult=(int)$resultSet[0]->total;
+                
+                $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
+                
+                $per_page = 5; //la cantidad de registros que desea mostrar
+                $adjacents  = 9; //brecha entre páginas después de varios adyacentes
+                $offset = ($page - 1) * $per_page;
+                
+                $limit = " LIMIT   '$per_page' OFFSET '$offset'";
+                
+                $resultSet=$_superavit->getCondicionesPagDesc($columnas_sup, $tablas_sup, $where_to, $id_sup, $limit);
+                
+                $count_query   = $cantidadResult;
+                $total_pages = ceil($cantidadResult/$per_page);
+                
+                
+                if($cantidadResult>0)
+                {
+                    
+                    $html.='<div class="col-lg-12 col-md-12 col-xs-12">';
+                    $html.='<center><h5><strong>SUPERAVIT GANADO</strong></h5></center>';
+                    $html.='<section style="height:200px; overflow-y:scroll;">';
+                    $html.= "<table id='tabla_cta_superavit_activos' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
+                    $html.= "<thead>";
+                    $html.= "<tr>";
+                    $html.='<th style="text-align: left;  font-size: 12px;">Año</th>';
+                    $html.='<th style="text-align: left;  font-size: 12px;">Valor Personal</th>';
+                    $html.='<th style="text-align: left;  font-size: 12px;">Valor Patronal</th>';
+                    $html.='</tr>';
+                    $html.='</thead>';
+                    $html.='<tbody>';
+                    
+                    $i=0;
+                    
+                    foreach ($resultSet as $res)
+                    {
+                        $i++;
+                        $html.='<tr>';
+                        $html.='<td style="font-size: 11px;">'.$res->anio.'</td>';
+                        $html.='<td style="font-size: 11px;">'.number_format($res->monto_personal, 2, '.', ',').'</td>';
+                        $html.='<td style="font-size: 11px;">'.number_format($res->monto_patronal, 2, '.', ',').'</td>';
+                        
+                        $html.='</tr>';
+                    }
+                    
+                    
+                    $html.='</tbody>';
+                    $html.='</table>';
+                    $html.='</section></div>';
+                    $html.='<div class="table-pagination pull-right">';
+                    $html.=''. $this->paginate_superavit_activos("index.php", $page, $total_pages, $adjacents).'';
+                    $html.='</div>';
+                    
+                    
+                }else{
+                    
+                }
+                
+                
+                echo $html;
+                die();
+                
+            }
+            
+            
+        }
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public function cargar_superavit_cta_desem(){
+        
+        session_start();
+        $_superavit = new SuperavitModel();
+        $where_to="";
+        
+        
+        $cedula_usuarios = $_SESSION["cedula_participe"];
+        
+        if(!empty($cedula_usuarios)){
+            
+            $columnas_sup="superavit.id_superavit,
+                      superavit.cedula,
+                      superavit.anio,
+                      superavit.monto_patronal,
+                      superavit.monto_personal,
+                      superavit.tipo,
+                      superavit.creado";
+            
+            $tablas_sup="public.superavit";
+            $where_sup="superavit.cedula='$cedula_usuarios' AND superavit.tipo='DESAFILIADOS'";
+            $id_sup="superavit.anio";
+            
+            
+            
+            $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
+            
+            
+            if($action == 'ajax')
+            {
+                
+                $where_to=$where_sup;
+                
+                $html="";
+                $resultSet=$_superavit->getCantidad("*", $tablas_sup, $where_to);
+                $cantidadResult=(int)$resultSet[0]->total;
+                
+                $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
+                
+                $per_page = 5; //la cantidad de registros que desea mostrar
+                $adjacents  = 9; //brecha entre páginas después de varios adyacentes
+                $offset = ($page - 1) * $per_page;
+                
+                $limit = " LIMIT   '$per_page' OFFSET '$offset'";
+                
+                $resultSet=$_superavit->getCondicionesPagDesc($columnas_sup, $tablas_sup, $where_to, $id_sup, $limit);
+                
+                $count_query   = $cantidadResult;
+                $total_pages = ceil($cantidadResult/$per_page);
+                
+                
+                if($cantidadResult>0)
+                {
+                    
+                    $html.='<div class="col-lg-12 col-md-12 col-xs-12">';
+                    $html.='<center><h5>SUPERAVIT GANADO</h5></center>';
+                    $html.='<section style="height:200px; overflow-y:scroll;">';
+                    $html.= "<table id='tabla_cta_superavit_desafiliados' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
+                    $html.= "<thead>";
+                    $html.= "<tr>";
+                    $html.='<th style="text-align: left;  font-size: 12px;">Año</th>';
+                    $html.='<th style="text-align: left;  font-size: 12px;">Valor Personal</th>';
+                    $html.='<th style="text-align: left;  font-size: 12px;">Valor Patronal</th>';
+                    $html.='</tr>';
+                    $html.='</thead>';
+                    $html.='<tbody>';
+                    
+                    $i=0;
+                    
+                    foreach ($resultSet as $res)
+                    {
+                        $i++;
+                        $html.='<tr>';
+                        $html.='<td style="font-size: 11px;">'.$res->anio.'</td>';
+                        $html.='<td style="font-size: 11px;">'.number_format($res->monto_personal, 2, '.', ',').'</td>';
+                        $html.='<td style="font-size: 11px;">'.number_format($res->monto_patronal, 2, '.', ',').'</td>';
+                        
+                        $html.='</tr>';
+                    }
+                    
+                    
+                    $html.='</tbody>';
+                    $html.='</table>';
+                    $html.='</section></div>';
+                    $html.='<div class="table-pagination pull-right">';
+                    $html.=''. $this->paginate_superavit_desafiliados("index.php", $page, $total_pages, $adjacents).'';
+                    $html.='</div>';
+                    
+                    
+                }else{
+                    
+                }
+                
+                echo $html;
+                die();
+                
+            }
+            
+        }
+        
+    }
+    
+    
+    
+    
+    
+    public function paginate_superavit_activos($reload, $page, $tpages, $adjacents) {
+        
+        $prevlabel = "&lsaquo; Prev";
+        $nextlabel = "Next &rsaquo;";
+        $out = '<ul class="pagination pagination-large">';
+        
+        // previous label
+        
+        if($page==1) {
+            $out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
+        } else if($page==2) {
+            $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_activos(1)'>$prevlabel</a></span></li>";
+        }else {
+            $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_activos(".($page-1).")'>$prevlabel</a></span></li>";
+            
+        }
+        
+        // first label
+        if($page>($adjacents+1)) {
+            $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_activos(1)'>1</a></li>";
+        }
+        // interval
+        if($page>($adjacents+2)) {
+            $out.= "<li><a>...</a></li>";
+        }
+        
+        // pages
+        
+        $pmin = ($page>$adjacents) ? ($page-$adjacents) : 1;
+        $pmax = ($page<($tpages-$adjacents)) ? ($page+$adjacents) : $tpages;
+        for($i=$pmin; $i<=$pmax; $i++) {
+            if($i==$page) {
+                $out.= "<li class='active'><a>$i</a></li>";
+            }else if($i==1) {
+                $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_activos(1)'>$i</a></li>";
+            }else {
+                $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_activos(".$i.")'>$i</a></li>";
+            }
+        }
+        
+        // interval
+        
+        if($page<($tpages-$adjacents-1)) {
+            $out.= "<li><a>...</a></li>";
+        }
+        
+        // last
+        
+        if($page<($tpages-$adjacents)) {
+            $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_activos($tpages)'>$tpages</a></li>";
+        }
+        
+        // next
+        
+        if($page<$tpages) {
+            $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_activos(".($page+1).")'>$nextlabel</a></span></li>";
+        }else {
+            $out.= "<li class='disabled'><span><a>$nextlabel</a></span></li>";
+        }
+        
+        $out.= "</ul>";
+        return $out;
+    }
+    
+    
+    
+    
+    
+    
+    
+    public function paginate_superavit_desafiliados($reload, $page, $tpages, $adjacents) {
+        
+        $prevlabel = "&lsaquo; Prev";
+        $nextlabel = "Next &rsaquo;";
+        $out = '<ul class="pagination pagination-large">';
+        
+        // previous label
+        
+        if($page==1) {
+            $out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
+        } else if($page==2) {
+            $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_desafiliados(1)'>$prevlabel</a></span></li>";
+        }else {
+            $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_desafiliados(".($page-1).")'>$prevlabel</a></span></li>";
+            
+        }
+        
+        // first label
+        if($page>($adjacents+1)) {
+            $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_desafiliados(1)'>1</a></li>";
+        }
+        // interval
+        if($page>($adjacents+2)) {
+            $out.= "<li><a>...</a></li>";
+        }
+        
+        // pages
+        
+        $pmin = ($page>$adjacents) ? ($page-$adjacents) : 1;
+        $pmax = ($page<($tpages-$adjacents)) ? ($page+$adjacents) : $tpages;
+        for($i=$pmin; $i<=$pmax; $i++) {
+            if($i==$page) {
+                $out.= "<li class='active'><a>$i</a></li>";
+            }else if($i==1) {
+                $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_desafiliados(1)'>$i</a></li>";
+            }else {
+                $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_desafiliados(".$i.")'>$i</a></li>";
+            }
+        }
+        
+        // interval
+        
+        if($page<($tpages-$adjacents-1)) {
+            $out.= "<li><a>...</a></li>";
+        }
+        
+        // last
+        
+        if($page<($tpages-$adjacents)) {
+            $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_desafiliados($tpages)'>$tpages</a></li>";
+        }
+        
+        // next
+        
+        if($page<$tpages) {
+            $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_desafiliados(".($page+1).")'>$nextlabel</a></span></li>";
+        }else {
+            $out.= "<li class='disabled'><span><a>$nextlabel</a></span></li>";
+        }
+        
+        $out.= "</ul>";
+        return $out;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public function index10(){
     	 
     	session_start();
@@ -2583,6 +2960,65 @@ public function index(){
 	
 	
 	
+	public function recuperar_fotografia_usuarios(){
+	    
+	    
+	    
+	    $usuarios=new UsuariosModel();
+	    
+	    
+	   
+	    
+	    require_once 'core/DB_Functions.php';
+	    $db = new DB_Functions();
+	    
+	    
+	    $columnas = "usuarios.cedula_usuarios,
+	   			     usuarios.fotografia_usuarios";
+	    
+	    $tablas   = "public.usuarios";
+	    
+	    $where    = "1=1";
+	    
+	   
+	    
+	    $resultSet=$db->getCondiciones($columnas ,$tablas ,$where);
+	    
+	    
+	    
+	    if(!empty($resultSet)){
+	        
+	        
+	        foreach ($resultSet as $res) {
+	            
+	            $cedula = $res->cedula_usuarios;
+	            $fotografia_usuarios = $res->fotografia_usuarios;
+	            
+	            
+	            $colval = "fotografia_usuarios='$fotografia_usuarios'";
+	            $tabla = "usuarios";
+	            $where = "cedula_usuarios = '$cedula'";
+	            $resultado=$usuarios->UpdateBy($colval, $tabla, $where);
+	            
+	            
+	            
+	            
+	        }
+	        
+	        
+	    }
+	    
+	    //pg_unescape_bytea
+	    
+	    
+	    
+	}
+	
+	
+	
+	
+	
+	
 	
 	public function llenar_fotografia_usuarios(){
 	
@@ -3453,11 +3889,73 @@ public function index(){
     
     
     
+    public function  consulta_encuesta_educacion_financiera(){
+        
+        session_start();
+        $_id_usuarios = $_SESSION["id_usuarios"];
+        $eduacion_financiera_cabeza = new EducacionFinancieraCabezaModel();
+        
+        $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
+        
+        
+        if($action == 'ajax' && $_id_usuarios>0)
+        {
+            
+            $columnas_1="educacion_financiera_cabeza.id_educacion_financiera_cabeza,
+                                      educacion_financiera_cabeza.id_usuarios,
+                                      usuarios.cedula_usuarios,
+                                      usuarios.nombre_usuarios,
+                                      educacion_financiera_cabeza.creado";
+            $tablas_1="public.educacion_financiera_cabeza, public.usuarios";
+            $where_1="educacion_financiera_cabeza.id_usuarios = usuarios.id_usuarios  AND educacion_financiera_cabeza.id_usuarios='$_id_usuarios'";
+            $id_1= "educacion_financiera_cabeza.id_educacion_financiera_cabeza";
+            $resultMarc=$eduacion_financiera_cabeza->getCondiciones($columnas_1, $tablas_1, $where_1, $id_1);
+            
+            
+            if(!empty($resultMarc) && count($resultMarc)>0){
+                $respuesta='SI';
+                echo $respuesta;
+                die();
+               
+            }else{
+                
+                $respuesta='NO';
+                echo $respuesta;
+                die();
+            }
+           
+           
+        }
+        
+    }
+    
     
     
     public function Loguear(){
     	
     	$error=FALSE;
+    	
+    	$preguntas_educacion_financiera = new PreguntasEducacionFinancieraModel();
+    	
+    	$contador=0;
+    	$pregunta_1 = "";
+    	$pregunta_2 = "";
+    	$pregunta_3 = "";
+    	$pregunta_4 = "";
+    	$pregunta_5 = "";
+    	$pregunta_6 = "";
+    	$pregunta_7 = "";
+    	$pregunta_8 = "";
+    	
+    	$id_pregunta_1 = "";
+    	$id_pregunta_2 = "";
+    	$id_pregunta_3 = "";
+    	$id_pregunta_4 = "";
+    	$id_pregunta_5 = "";
+    	$id_pregunta_6 = "";
+    	$id_pregunta_7 = "";
+    	$id_pregunta_8 = "";
+    	
     	if (isset($_POST["usuario"]) && ($_POST["clave"] ) )
     	{
     	
@@ -3533,8 +4031,70 @@ public function index(){
     					
     				}else{
     					
+    				   
+    				    $columnas="id_preguntas_educacion_financiera, nombre_preguntas_educacion_financiera";
+    				    $tablas="preguntas_educacion_financiera";
+    				    $where="1=1";
+    				    $id="id_preguntas_educacion_financiera";
+    				    $resultPreguntas=$preguntas_educacion_financiera->getCondiciones($columnas, $tablas, $where, $id);
+    				    
+    				    
+    				    
+    				    if(!empty($resultPreguntas)){
+    				        
+    				        foreach ($resultPreguntas as $res){
+    				            
+    				            $contador++;
+    				            
+    				            if($contador==1){
+    				                $id_pregunta_1=$res->id_preguntas_educacion_financiera;
+    				                $pregunta_1=$res->nombre_preguntas_educacion_financiera;
+    				                
+    				            }else if($contador==2){
+    				                $id_pregunta_2=$res->id_preguntas_educacion_financiera;
+    				                $pregunta_2=$res->nombre_preguntas_educacion_financiera;
+    				                
+    				            }
+    				            else if($contador==3){
+    				                $id_pregunta_3=$res->id_preguntas_educacion_financiera;
+    				                $pregunta_3=$res->nombre_preguntas_educacion_financiera;
+    				                
+    				            }else if($contador==4){
+    				                $id_pregunta_4=$res->id_preguntas_educacion_financiera;
+    				                $pregunta_4=$res->nombre_preguntas_educacion_financiera;
+    				                
+    				            }else if($contador==5){
+    				                $id_pregunta_5=$res->id_preguntas_educacion_financiera;
+    				                $pregunta_5=$res->nombre_preguntas_educacion_financiera;
+    				                
+    				            }else if($contador==6){
+    				                $id_pregunta_6=$res->id_preguntas_educacion_financiera;
+    				                $pregunta_6=$res->nombre_preguntas_educacion_financiera;
+    				                
+    				            }else if($contador==7){
+    				                $id_pregunta_7=$res->id_preguntas_educacion_financiera;
+    				                $pregunta_7=$res->nombre_preguntas_educacion_financiera;
+    				                
+    				            }else if($contador==8){
+    				                $id_pregunta_8=$res->id_preguntas_educacion_financiera;
+    				                $pregunta_8=$res->nombre_preguntas_educacion_financiera;
+    				                
+    				            }
+    				            
+    				        }
+    				        
+    				    }
+    				    
+    				    
+    				    
     					$this->view("Bienvenida",array(
-    							"allusers"=>$_usuario
+    							"allusers"=>$_usuario,
+    					    "pregunta_1"=>$pregunta_1, "pregunta_2"=>$pregunta_2, "pregunta_3"=>$pregunta_3,
+    					    "pregunta_4"=>$pregunta_4, "pregunta_5"=>$pregunta_5, "pregunta_6"=>$pregunta_6,
+    					    "pregunta_7"=>$pregunta_7, "pregunta_8"=>$pregunta_8,
+    					    "id_pregunta_1"=>$id_pregunta_1, "id_pregunta_2"=>$id_pregunta_2, "id_pregunta_3"=>$id_pregunta_3,
+    					    "id_pregunta_4"=>$id_pregunta_4, "id_pregunta_5"=>$id_pregunta_5, "id_pregunta_6"=>$id_pregunta_6,
+    					    "id_pregunta_7"=>$id_pregunta_7, "id_pregunta_8"=>$id_pregunta_8
     					));
     						
     					die();
@@ -4078,135 +4638,98 @@ public function index(){
 	
 	
 	public function cargar_banner(){
-		
-		session_start();
-		$publicidad_movil = new PublicidadMovilModel();
-		$columnas = "id_publicidad_movil";
-		$tablas   = "publicidad_movil";
-		$where    = "1=1";
-		$id       = "id_publicidad_movil";
-		$resultSet = $publicidad_movil->getCondiciones($columnas ,$tablas ,$where, $id);
-		/*
-		$html="";
-		
-		$html .= "<div class='container'>";
-		
-		$html .= "<section id='miSlide' class='carousel slide'>";
-		$html .= "<ol class='carousel-indicators'>";
-		$html .= "<li data-target='#miSlide' data-slide-to='0' class='active'></li>";
-		$html .= "<li data-target='#miSlide' data-slide-to='1'></li>";
-		$html .= "<li data-target='#miSlide' data-slide-to='2'></li>";
-		$html .= "</ol>";
-		
-		$html .= "<div class='carousel-inner'>";
-		$html .= "<div class='item active'>";
-		$html .= "<img src='view/pro/img/img1.jpg' class='adaptar'>";
-		$html .= "</div>";
-		$html .= "<div class='item'>";
-		$html .= "<img src='view/pro/img/img2.jpg' class='adaptar'>";
-		$html .= "</div>";
-		$html .= "<div class='item'>";
-		$html .= "<img src='view/pro/img/img3.jpg' class='adaptar'>";
-		$html .= "</div>";
-		$html .= "</div>";
-		
-		$html .= "<a href='#miSlide' class='left carousel-control' data-slide='prev'><span class='glyphicon glyphicon-chevron-left'></span></a>";
-		$html .= "<a href='#miSlide' class='right carousel-control' data-slide='next'><span class='glyphicon glyphicon-chevron-right'></span></a>";
-		$html .= "</section>";
-		
-		 
-		$html .= "</div>";
-		
-		
-		echo $html;
-		die();
-		
-		
-		*/
-	
-		$i=count($resultSet);
-		
-		$html="";
-		if($i>0)
-		{
-		
-		
-			$html .= "<div  class='col-xs-12 col-md-12 col-lg-12'>";
-			$html .= "<div class='col-xs-12 col-md-4 col-lg-4'>";
-			$html .= "</div>";
-			$html .= "<div class='col-xs-12 col-md-3 col-lg-3'>";
-			$html .= "<div id='miSlide' class='carousel slide'>";
-			$html .= "<ol class='carousel-indicators'>";
-			$html .= "<li data-target='#miSlide' data-slide-to='0' class='active'></li>";
-			$html .= "<li data-target='#miSlide' data-slide-to='1' ></li>";
-			$html .= "</ol>";
-			
-			$html .= "<div class='carousel-inner'>";
-			
-			
-			if(!empty($resultSet)){
-				
-				$numero=0;
-				foreach ($resultSet as $res){
-					
-					$numero++;
-					
-					if($numero==1){
-						
-						
-						$html .= "<div class='item active'>";
-						$html .= '<img src="view/DevuelveImagenView.php?id_valor='.$res->id_publicidad_movil.'&id_nombre=id_publicidad_movil&tabla=publicidad_movil&campo=imagen_baner" style="width:100%; height:100%; ">';
-						$html .= "</div>";
-						
-					}else{
-						
-						
-						
-						$html .= "<div class='item'>";
-						$html .= '<img src="view/DevuelveImagenView.php?id_valor='.$res->id_publicidad_movil.'&id_nombre=id_publicidad_movil&tabla=publicidad_movil&campo=imagen_baner" style="width:100%; height:100%;">';
-						$html .= "</div>";
-						
-					}
-					
-					
-				}
-				
-				
-			}
-			
-			
-			
-			$html .= "<a class='left carousel-control' href='#miSlide' data-slide='prev'>";
-			$html .= "<span class='glyphicon glyphicon-chevron-left'></span>";
-			
-			$html .= "</a>";
-			$html .= "<a class='right carousel-control' href='#miSlide' data-slide='next'>";
-			$html .= "<span class='glyphicon glyphicon-chevron-right'></span>";
-		
-			$html .= "</a>";
-			$html .= "</div>";
-			$html .= "</div>";
-			$html .= "</div>";
-			$html .= "<div class='col-xs-12 col-md-4 col-lg-4'>";
-			$html .= "</div>";
-			$html .= "</div>";
-			
-			
-		
-		
-		}else{
-		
-			$html = "<b>Actualmente no hay publicidad registrada...</b>";
-		}
-		
-		echo $html;
-		die();
-		
-		
+	    
+	    session_start();
+	    $publicidad_movil = new PublicidadMovilModel();
+	    $columnas = "id_publicidad_movil";
+	    $tablas   = "publicidad_movil";
+	    $where    = "1=1";
+	    $id       = "id_publicidad_movil";
+	    $resultSet = $publicidad_movil->getCondiciones($columnas ,$tablas ,$where, $id);
+	    
+	    
+	    
+	    $i=count($resultSet);
+	    
+	    $html="";
+	    if($i>0)
+	    {
+	        
+	        
+	        $html .= "<div  class='col-xs-12 col-md-12 col-lg-12'>";
+	        $html .= "<div class='col-xs-12 col-md-3 col-lg-3'>";
+	        $html .= "</div>";
+	        $html .= "<div class='col-xs-12 col-md-6 col-lg-6'>";
+	        $html .= "<div id='myCarousel2' class='carousel slide' data-ride='carousel'>";
+	        $html .= "<ol class='carousel-indicators'>";
+	        $html .= "<li data-target='#myCarousel1' data-slide-to='0' class='active'></li>";
+	        $html .= "<li data-target='#myCarousel2' data-slide-to='0' ></li>";
+	        $html .= "</ol>";
+	        
+	        $html .= "<div class='carousel-inner' role='listbox'>";
+	        
+	        if(!empty($resultSet)){
+	            
+	            $numero=0;
+	            foreach ($resultSet as $res){
+	                
+	                $numero++;
+	                
+	                if($numero==1){
+	                    
+	                    
+	                    $html .= "<div class='item active'>";
+	                    $html .= '<img src="view/DevuelveImagenView.php?id_valor='.$res->id_publicidad_movil.'&id_nombre=id_publicidad_movil&tabla=publicidad_movil&campo=imagen_baner" style="width:100%; height:100%; ">';
+	                    $html .= "</div>";
+	                    
+	                }else{
+	                    
+	                    
+	                    
+	                    $html .= "<div class='item'>";
+	                    $html .= '<img src="view/DevuelveImagenView.php?id_valor='.$res->id_publicidad_movil.'&id_nombre=id_publicidad_movil&tabla=publicidad_movil&campo=imagen_baner" style="width:100%; height:100%;">';
+	                    $html .= "</div>";
+	                    
+	                }
+	                
+	                
+	            }
+	            
+	            
+	        }
+	        
+	        
+	        
+	        
+	        
+	        $html .= "<a class='left carousel-control' href='#myCarousel2' role='button' data-slide='prev'>";
+	        $html .= "<span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span>";
+	        $html .= "<span class='sr-only'>Previous</span>";
+	        $html .= "</a>";
+	        $html .= "<a class='right carousel-control' href='#myCarousel2' role='button' data-slide='next'>";
+	        $html .= "<span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>";
+	        $html .= "<span class='sr-only'>Next</span>";
+	        $html .= "</a>";
+	        $html .= "</div>";
+	        $html .= "</div>";
+	        $html .= "</div>";
+	        $html .= "<div class='col-xs-12 col-md-2 col-lg-2'>";
+	        $html .= "</div>";
+	        $html .= "</div>";
+	        
+	        
+	        
+	        
+	    }else{
+	        
+	        $html = "<b>Actualmente no hay publicidad registrada...</b>";
+	    }
+	    
+	    echo $html;
+	    die();
+	    
+	    
 	}
-	
-	
-	
 	
 	
 	
@@ -6628,6 +7151,62 @@ public function index(){
 						$html.='</table>';
 	
 	
+						
+						
+						
+						
+						
+						$_superavit = new SuperavitModel();
+						
+						$columnas_sup="superavit.id_superavit,
+                                                  superavit.cedula,
+                                                  superavit.anio,
+                                                  superavit.monto_patronal,
+                                                  superavit.monto_personal,
+                                                  superavit.tipo,
+                                                  superavit.creado";
+						
+						$tablas_sup="public.superavit";
+						$where_sup="superavit.cedula='$cedula_usuarios' AND superavit.tipo='ACTIVOS'";
+						$id_sup="superavit.anio";
+						
+						$result_sup=$_superavit->getCondicionesDesc($columnas_sup, $tablas_sup, $where_sup, $id_sup);
+						
+						if(!empty($result_sup)){
+						    
+						    $html.='</br>';
+						    $html.='<center style="margin-top:5px;"><h4><b>SUPERAVIT GANADO</b></h4></center>';
+						    $html.= "<table style='margin-top:5px; width: 100%;' border=1 cellspacing=0 cellpadding=2>";
+						    $html.= "<thead>";
+						    
+						    $html.= "<tr style='background-color: #D5D8DC;'>";
+						    $html.='<th style="text-align: left;  font-size: 12px;">Año</th>';
+						    $html.='<th style="text-align: left;  font-size: 12px;">Valor Personal</th>';
+						    $html.='<th style="text-align: left;  font-size: 12px;">Valor Patronal</th>';
+						    
+						    $html.='</tr>';
+						    $html.='</thead>';
+						    $html.='<tbody>';
+						    
+						    $i=0;
+						    foreach ($result_sup as $res)
+						    {
+						        $i++;
+						        $html.='<tr>';
+						        $html.='<td style="font-size: 11px;">'.$res->anio.'</td>';
+						        $html.='<td style="font-size: 11px;">'.number_format($res->monto_personal, 2, '.', ',').'</td>';
+						        $html.='<td style="font-size: 11px;">'.number_format($res->monto_patronal, 2, '.', ',').'</td>';
+						        $html.='</tr>';
+						    }
+						    
+						    $html.='</tbody>';
+						    $html.='</table>';
+						    
+						    
+						}
+						
+						
+						
 							
 					}
 	
@@ -6735,6 +7314,56 @@ public function index(){
 						$html.='</table>';
 	
 	
+						
+						$_superavit = new SuperavitModel();
+						
+						$columnas_sup="superavit.id_superavit,
+                                          superavit.cedula,
+                                          superavit.anio,
+                                          superavit.monto_patronal,
+                                          superavit.monto_personal,
+                                          superavit.tipo,
+                                          superavit.creado";
+						
+						$tablas_sup="public.superavit";
+						$where_sup="superavit.cedula='$cedula_usuarios' AND superavit.tipo='DESAFILIADOS'";
+						$id_sup="superavit.anio";
+						
+						$result_sup=$_superavit->getCondicionesDesc($columnas_sup, $tablas_sup, $where_sup, $id_sup);
+						
+						if(!empty($result_sup)){
+						    
+						    $html.='</br>';
+						    $html.='<center style="margin-top:5px;"><h4><b>SUPERAVIT GANADO</b></h4></center>';
+						    $html.= "<table style='margin-top:5px; width: 100%;' border=1 cellspacing=0 cellpadding=2>";
+						    $html.= "<thead>";
+						    
+						    $html.= "<tr style='background-color: #D5D8DC;'>";
+						    $html.='<th style="text-align: left;  font-size: 12px;">Año</th>';
+						    $html.='<th style="text-align: left;  font-size: 12px;">Valor Personal</th>';
+						    $html.='<th style="text-align: left;  font-size: 12px;">Valor Patronal</th>';
+						    
+						    $html.='</tr>';
+						    $html.='</thead>';
+						    $html.='<tbody>';
+						    
+						    $i=0;
+						    foreach ($result_sup as $res)
+						    {
+						        $i++;
+						        $html.='<tr>';
+						        $html.='<td style="font-size: 11px;">'.$res->anio.'</td>';
+						        $html.='<td style="font-size: 11px;">'.number_format($res->monto_personal, 2, '.', ',').'</td>';
+						        $html.='<td style="font-size: 11px;">'.number_format($res->monto_patronal, 2, '.', ',').'</td>';
+						        $html.='</tr>';
+						    }
+						    
+						    $html.='</tbody>';
+						    $html.='</table>';
+						    
+						    
+						}
+						
 							
 					}
 	

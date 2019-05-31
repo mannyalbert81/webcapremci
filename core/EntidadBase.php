@@ -210,6 +210,25 @@ class EntidadBase{
     	}
     }
     
+    public function editBy($colval ,$tabla , $where){
+        
+        $cantidadAfectada = null;
+        
+        $query=pg_query($this->con,"UPDATE $tabla SET  $colval   WHERE $where ");
+        
+        if(!$query){
+            
+            $cantidadAfectada = null;
+            
+        }else{
+            
+            $cantidadAfectada = pg_affected_rows($query);
+        }
+        
+        return $cantidadAfectada;
+        
+    }
+    
     
     
     public function getByPDF($columnas, $tabla , $where){

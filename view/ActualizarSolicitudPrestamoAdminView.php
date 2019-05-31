@@ -367,7 +367,14 @@
 		
 		    					$('#nombre_deudor_a_garantizar').val(respuesta.apellidos_solicitante_datos_personales+' '+respuesta.nombres_solicitante_datos_personales);
 		    				
-		        			});
+		        			}).fail(function(respuesta) {
+
+		        				$('#cedula_deudor_a_garantizar').val("");
+		    					$('#nombre_deudor_a_garantizar').val("");
+		    					
+		    					
+		        			    
+		        			  });
 		    				 
 		    				
 		    			});  

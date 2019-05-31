@@ -125,6 +125,12 @@
        		   
         </script>
         
+        
+        
+
+        
+        
+        
         	        
     </head>
     
@@ -238,6 +244,80 @@
     
     
     
+    
+    
+    <!-- PARA VENTANAS MODALES -->
+    
+      <div class="modal fade" id="mod_reasignar" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Reasignar Oficial de Crédito</h4>
+          </div>
+          <div class="modal-body">
+          <!-- empieza el formulario modal productos -->
+          	<form class="form-horizontal" method="post" id="frm_reasignar" name="frm_reasignar">
+          	
+          	  <div class="form-group">
+				<label for="mod_cedu" class="col-sm-3 control-label">Cedula:</label>
+				<div class="col-sm-8">
+				  <input type="hidden" class="form-control" id="mod_id_solicitud_prestamo" name="mod_id_solicitud_prestamo"  readonly>
+				  <input type="text" class="form-control" id="mod_cedu" name="mod_cedu"  readonly>
+				</div>
+			  </div>
+			  
+			  
+			  <div class="form-group">
+				<label for="mod_nombre" class="col-sm-3 control-label">Nombres:</label>
+				<div class="col-sm-8">
+				  <input type="text" class="form-control" id="mod_nombre" name="mod_nombre"  readonly>
+				</div>
+			  </div>
+			  
+			  
+			   <div class="form-group">
+				<label for="mod_credito" class="col-sm-3 control-label">Tipo Crédito:</label>
+				<div class="col-sm-8">
+				  <input type="text" class="form-control" id="mod_credito" name="mod_credito"  readonly>
+				</div>
+			  </div>
+			  
+			  
+			   <div class="form-group">
+				<label for="mod_usuario" class="col-sm-3 control-label">Oficial Crédito:</label>
+				<div class="col-sm-8">
+				  <input type="text" class="form-control" id="mod_usuario" name="mod_usuario"  readonly>
+				</div>
+			  </div>
+			
+			  			  
+          	<div class="form-group">
+				<label for="mod_id_nuevo_oficial" class="col-sm-3 control-label">Reasignar A:</label>
+				<div class="col-sm-8">
+				 <select class="form-control" id="mod_id_nuevo_oficial" name="mod_id_nuevo_oficial" required>
+					<option value="0">--Seleccione--</option>					
+				  </select>
+				</div>
+			  </div>
+			  
+			  <div id="msg_frm_reasignar" class=""></div>
+			  
+          	</form>
+          	<!-- termina el formulario modal lote -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			<button type="submit" form="frm_reasignar" class="btn btn-primary" id="guardar_datos">Reasignar Solicitud</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+</div>
+    
+    
     <!-- Bootstrap -->
     <script src="view/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     
@@ -253,7 +333,7 @@
     
     <script src="view/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="view/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     
     
     <!-- Custom Theme Scripts -->
@@ -261,6 +341,138 @@
 	
 	<!-- codigo de las funciones -->
 
-	
+	<script type="text/javascript">
+    	var id = 0;
+    	var cedu = "";
+    	var nombre = "";
+    	var credito ="";
+    	var usuario = "";
+    	
+    	$("#solicitud_prestamos_registrados").on("click","#btn_abrir",function(event){
+
+    		var $div_respuesta = $("#msg_frm_reasignar"); $div_respuesta.text("").removeClass();
+    	    
+    		id = $(this).data().id;
+    		cedu = $(this).data().cedu;
+    		nombre = $(this).data().nombre;
+    		credito = $(this).data().credito;
+    		usuario = $(this).data().usuario;
+    
+    		$("#mod_reasignar").on('show.bs.modal',function(e){
+    
+    			 var modal = $(this)
+    			 modal.find('#mod_id_solicitud_prestamo').val(id);
+    			 modal.find('#mod_cedu').val(cedu);
+    			 modal.find('#mod_nombre').val(nombre);
+    			 modal.find('#mod_credito').val(credito);
+    			 modal.find('#mod_usuario').val(usuario);
+    			 cargarUsuarios();
+    			
+    		}) 
+    		
+    	})
+
+    	
+    	
+    	 function cargarUsuarios(){
+       	 
+		let $mod_id_nuevo_oficial = $("#mod_id_nuevo_oficial");
+		
+		$.ajax({
+			beforeSend:function(){},
+			url:"index.php?controller=SolicitudPrestamo&action=cargar_oficiales_credito",
+			type:"POST",
+			dataType:"json",
+			data:null
+		}).done(function(datos){		
+			
+			$mod_id_nuevo_oficial.empty();
+			$mod_id_nuevo_oficial.append("<option value='0'>--Seleccione--</option>");
+			$.each(datos.data, function(index, value) {
+				$mod_id_nuevo_oficial.append("<option value= " +value.id_usuarios +" >" + value.nombre_usuarios  + "</option>");	
+	  		});
+			
+		}).fail(function(xhr,status,error){
+			var err = xhr.responseText
+			console.log(err)
+			
+		})
+	}
+
+
+
+
+    	$("#frm_reasignar").on("submit",function(event){
+
+
+
+    		let $mod_id_solicitud_prestamo = $('#mod_id_solicitud_prestamo').val();
+    		let $mod_cedu = $('#mod_cedu').val();
+    		let $mod_nombre = $('#mod_nombre').val();
+    		let $mod_credito = $('#mod_credito').val();
+    		let $mod_usuario = $('#mod_usuario').val();
+            let $mod_id_nuevo_oficial = $('#mod_id_nuevo_oficial').val();
+    		
+    		
+    		if($mod_id_solicitud_prestamo > 0) {  
+    			
+	        } else {  
+
+	        	swal("Alerta!", "Seleccione Solicitud", "error")
+                return false;
+	        		
+	        } 
+
+    		if($mod_id_nuevo_oficial > 0) {  
+    			
+	        } else {  
+
+	        	swal("Alerta!", "Seleccione Oficial Crédito", "error")
+                return false;
+	        		
+	        } 
+
+    		
+    		var parametros = {id_solicitud_prestamo:$mod_id_solicitud_prestamo,id_nuevo_oficial:$mod_id_nuevo_oficial}
+
+
+    		var $div_respuesta = $("#msg_frm_reasignar"); $div_respuesta.text("").removeClass();
+    			
+    			
+    		$.ajax({
+    			beforeSend:function(){},
+    			url:"index.php?controller=SolicitudPrestamo&action=ReasignarSolicitud",
+    			type:"POST",
+    			dataType:"json",
+    			data:parametros
+    		}).done(function(respuesta){
+    					
+    			if(respuesta.valor > 0){
+    				
+    				
+    				$("#msg_frm_reasignar").text("Reasignado Correctamente").addClass("alert alert-success");
+    				 load_solicitud_prestamos_registrados(1);
+          		     load_solicitud_garantias_registrados(1);
+    		    }
+    			
+    			
+    		}).fail(function(xhr,status,error){
+    			
+    			var err = xhr.responseText
+    			console.log(err);
+    			
+    			$div_respuesta.text("Error al reasignar solicitud de crédito").addClass("alert alert-warning");
+    			
+    		}).always(function(){
+    					
+    		})
+    		
+    		event.preventDefault();
+    	})
+    	
+    	
+    </script>
+  
+  
   </body>
 </html>   
