@@ -20,6 +20,10 @@ $controladores=$_SESSION['controladores'];
  	return $display;
  }
  
+ $usuarios=new UsuariosModel();
+ $cedula_usuarios=$usuarios->encriptar($_SESSION['cedula_usuarios']);
+ 
+ 
 ?>
 
 
@@ -57,8 +61,8 @@ $controladores=$_SESSION['controladores'];
                     <ul class="nav child_menu">
                       <li style="<?php echo getcontrolador("SaldosCuentaIndividual",$controladores) ?>"><a href="index.php?controller=SaldosCuentaIndividual&action=index">Consulta de Saldos Cuenta Individual y Créditos</a></li>
                       <!--<li style="<?php echo getcontrolador("Usuarios",$controladores) ?>"><a href="index.php?controller=Usuarios&action=resetear_clave">Solicita tu clave personal</a></li>-->
-                      <li style="<?php echo getcontrolador("SimuladorCredito",$controladores) ?>"><a href="index.php?controller=SimuladorCredito&action=index">Simulador de Crédito</a></li>
-                      <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index">Generar Solicitud Préstamo</a></li>
+                      <li style="<?php echo getcontrolador("SimuladorCredito",$controladores) ?>"><a href="http://localhost:4000/rp_c/index.php?controller=CargarParticipes&action=index&cedula=<?php echo $cedula_usuarios;?>"  target="_blank">Simulador de Crédito</a></li>
+                     <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index">Generar Solicitud Préstamo</a></li>
                       <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index2">Consultar Solicitud Préstamo</a></li>
                       <li style="<?php echo getcontrolador("ConsultaTramites",$controladores) ?>"><a href="index.php?controller=ConsultaTramites&action=index">Consulta Trámites</a></li>
                     
@@ -114,6 +118,9 @@ $controladores=$_SESSION['controladores'];
                     <ul class="nav child_menu">
                        <li style="<?php echo getcontrolador("Memos",$controladores) ?>"><a href="index.php?controller=Memos&action=index">Crear Memorandun</a></li>
                 	   <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index5">Solicitud Prestamo</a></li>
+                       <li style="<?php echo getcontrolador("SolicitudPrestaciones",$controladores) ?>"><a href="index.php?controller=SolicitudPrestaciones&action=index">Solicitud Prestaciones</a></li>
+                       <li style="<?php echo getcontrolador("SolicitudValorAportaciones",$controladores) ?>"><a href="index.php?controller=SolicitudValorAportaciones&action=index">Solicitud Valor Aportaciones</a></li>
+                       
                      </ul>
                  </li>
                   
