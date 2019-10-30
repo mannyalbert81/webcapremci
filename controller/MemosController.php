@@ -24,8 +24,11 @@ class MemosController extends ControladorBase{
     		
     		if(!empty($resultPer)){
     			
-    			
-    			
+    		    $resultDepartamento = $usuarios->getBy("id_usuarios = '$id_usuarios'");
+    		    $envia_memo=$resultDepartamento[0]->envia_memo;
+    		    
+    		    
+    		    
     			$numero_memos_cab="";
     			$asunto_memos_cab="";
     			$cuerpo_memos_cab="";
@@ -68,9 +71,11 @@ class MemosController extends ControladorBase{
     							$fecha_rev_sec_memos_cab=$resultset[0]->fecha_rev_sec_memos_cab;
     							$fec = date("d-m-Y H:i:s",strtotime($fecha_rev_sec_memos_cab));
     								
-    							$cuadro_firma="<div style='font-family: Arial; font-size:11pt; color:#000000; width: 30%; text-align: left; margin-top:20px;'>";
-    							$cuadro_firma.="<p>Atentamente,</p>";
-    							$cuadro_firma.="</div>";
+    							
+    							
+    							
+    							
+    							$cuadro_firma.="Atentamente,";
     							$cuadro_firma.="<table WIDTH='100%'>";
     							$cuadro_firma.="<tr>";
     							$cuadro_firma.="<td WIDTH='100%'><img src='view/DevuelveImagenView.php?id_valor=$id_usuarios_cab&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas' width='80%' height='60%'></td>";
@@ -81,7 +86,7 @@ class MemosController extends ControladorBase{
     								
     						
     							$dicContenido = array(
-    									'TITULOPAG'=>"Capremci 2018",
+    									'TITULOPAG'=>"Capremci 2019",
     									'NOMBREFICHA'=>"MEMORANDO",
     									'NUMEROMEMORANDO'=>$numero_memos_cab,
     									'CUERPO'=>$cuerpo_memos_cab,
@@ -122,15 +127,11 @@ class MemosController extends ControladorBase{
     							$cuadro_informacion=$resultset[0]->cuadro_informacion;
     							$id_usuarios_cab=$resultset[0]->id_usuarios;
     							
-    							$cuadro_firma="<div style='font-family: Arial; font-size:11pt; color:#000000; width: 30%; text-align: left; margin-top:20px;'>";
-    							$cuadro_firma.="<p>Atentamente,</p>";
-    							$cuadro_firma.="</div>";
+    							$cuadro_firma.="Atentamente,";
     							$cuadro_firma.="<table WIDTH='100%'>";
     							$cuadro_firma.="<tr>";
     							$cuadro_firma.="<td WIDTH='100%'><img src='view/DevuelveImagenView.php?id_valor=$id_usuarios_cab&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas' width='80%' height='60%'></td>";
-    							
     							$cuadro_firma.="<td WIDTH='100%'><img src='view/DevuelveImagenView.php?id_valor=15408&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas' width='80%' height='60%'><br><center><strong><h2>$fechaActual</h2></strong></center></td>";
-    							
     							$cuadro_firma.="<td WIDTH='100%'></td>";
     							$cuadro_firma.="</tr>";
     							$cuadro_firma.="</table>";
@@ -139,7 +140,7 @@ class MemosController extends ControladorBase{
     							
     							 
     							$dicContenido = array(
-    									'TITULOPAG'=>"Capremci 2018",
+    									'TITULOPAG'=>"Capremci 2019",
     									'NOMBREFICHA'=>"MEMORANDO",
     									'NUMEROMEMORANDO'=>$numero_memos_cab,
     									'CUERPO'=>$cuerpo_memos_cab,
@@ -185,15 +186,11 @@ class MemosController extends ControladorBase{
     							$cuadro_informacion=$resultset[0]->cuadro_informacion;
     							$id_usuarios_cab=$resultset[0]->id_usuarios;
     								
-    							$cuadro_firma="<div style='font-family: Arial; font-size:11pt; color:#000000; width: 30%; text-align: left; margin-top:20px;'>";
-    							$cuadro_firma.="<p>Atentamente,</p>";
-    							$cuadro_firma.="</div>";
+    							$cuadro_firma.="Atentamente,";
     							$cuadro_firma.="<table WIDTH='100%'>";
     							$cuadro_firma.="<tr>";
     							$cuadro_firma.="<td WIDTH='100%'><img src='view/DevuelveImagenView.php?id_valor=$id_usuarios_cab&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas' width='80%' height='60%'></td>";
-    								
     							$cuadro_firma.="<td WIDTH='100%'><img src='view/DevuelveImagenView.php?id_valor=$id_usuarios&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas' width='80%' height='60%'><br><center><strong><h2>$fechaActual</h2></strong></center></td>";
-    								
     							$cuadro_firma.="<td WIDTH='100%'></td>";
     							$cuadro_firma.="</tr>";
     							$cuadro_firma.="</table>";
@@ -202,7 +199,7 @@ class MemosController extends ControladorBase{
     								
     						
     							$dicContenido = array(
-    									'TITULOPAG'=>"Capremci 2018",
+    									'TITULOPAG'=>"Capremci 2019",
     									'NOMBREFICHA'=>"MEMORANDO",
     									'NUMEROMEMORANDO'=>$numero_memos_cab,
     									'CUERPO'=>$cuerpo_memos_cab,
@@ -247,9 +244,7 @@ class MemosController extends ControladorBase{
     							$fecha_rev_sec_memos_cab=$resultset[0]->fecha_rev_sec_memos_cab;
     							$fec = date("d-m-Y H:i:s",strtotime($fecha_rev_sec_memos_cab));
     						
-    							$cuadro_firma="<div style='font-family: Arial; font-size:11pt; color:#000000; width: 30%; text-align: left; margin-top:20px;'>";
-    							$cuadro_firma.="<p>Atentamente,</p>";
-    							$cuadro_firma.="</div>";
+    							$cuadro_firma.="Atentamente,";
     							$cuadro_firma.="<table WIDTH='100%'>";
     							$cuadro_firma.="<tr>";
     							$cuadro_firma.="<td WIDTH='100%'><img src='view/DevuelveImagenView.php?id_valor=$id_usuarios_cab&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas' width='80%' height='60%'></td>";
@@ -260,7 +255,7 @@ class MemosController extends ControladorBase{
     						
     						
     							$dicContenido = array(
-    									'TITULOPAG'=>"Capremci 2018",
+    									'TITULOPAG'=>"Capremci 2019",
     									'NOMBREFICHA'=>"MEMORANDO",
     									'NUMEROMEMORANDO'=>$numero_memos_cab,
     									'CUERPO'=>$cuerpo_memos_cab,
@@ -311,7 +306,7 @@ class MemosController extends ControladorBase{
     			
     			
 	    		$this->view("Memos",array(
-	    				"cantidadimbox"=>$cantidadimbox, "cantidadsent"=>$cantidadsent
+	    		    "cantidadimbox"=>$cantidadimbox, "cantidadsent"=>$cantidadsent, "envia_memo"=>$envia_memo
 	    		
 	    		));
     		
@@ -344,6 +339,11 @@ class MemosController extends ControladorBase{
     		$id_usuarios = $_SESSION["id_usuarios"];
     		$memos_pdf = new MemosPdfModel();
     		$html="";
+    		
+    		$resultDepartamento = $usuarios->getBy("id_usuarios = '$id_usuarios'");
+    		$envia_memo=$resultDepartamento[0]->envia_memo;
+    		
+    		
     		
     		
     		if (isset($_GET["identi"]) && isset($_GET["tip"])){
@@ -381,7 +381,7 @@ class MemosController extends ControladorBase{
     			
     			
     			$columnas = "memos_cab.id_memos_cab,
-    			      memos_cab.fecha_memos_cab,
+    			      to_char(memos_cab.fecha_memos_cab, 'YYYY/MM/DD') as fecha_memos_cab,
 					  memos_cab.numero_memos_cab,
 					  memos_cab.asunto_memos_cab,
     			      memos_cab.rev_sec_memos_cab,
@@ -539,6 +539,16 @@ class MemosController extends ControladorBase{
     			if(!empty($_grupo_correos_cc)){
     			$html.="$_grupo_correos_cc";
     			}
+    			
+    			
+    			
+    			$dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+    			$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+    			$fecha_memos_cab=$dias[date('w',strtotime($fecha_memos_cab))]." ".date('d',strtotime($fecha_memos_cab))." de ".$meses[date('n',strtotime($fecha_memos_cab))-1]. " del ".date('Y',strtotime($fecha_memos_cab)) ;
+    			
+    			
+    			
+    			
     			$html.="<pre><strong>ASUNTO:</strong>   $asunto</pre>";
     			$html.="<pre><strong>FECHA:</strong>    $fecha_memos_cab</pre>";
     			$html.="<div class='box-body pad'>";
@@ -701,7 +711,7 @@ class MemosController extends ControladorBase{
     		
     			 
     			$this->view("MemosRevisados",array(
-    					"html"=>$html, "cantidadimbox"=>$cantidadimbox, "cantidadsent"=>$cantidadsent
+    			    "html"=>$html, "cantidadimbox"=>$cantidadimbox, "cantidadsent"=>$cantidadsent, "envia_memo"=>$envia_memo
     
     			));
     
@@ -748,6 +758,10 @@ class MemosController extends ControladorBase{
     			$editor1 = $_POST["editor1"];
     			
     			
+    			$numero_memorando =$_POST["numero_memos_cab"];
+    			$fechaActual = $_POST["fecha_memos_cab"];
+    			
+    			
     			$id_usuarios=$_SESSION["id_usuarios"];
     			
     			
@@ -759,6 +773,7 @@ class MemosController extends ControladorBase{
     			
     			
     			$departamentos = new DepartamentosModel();
+    			/*
     			$resultConsecutivo= $departamentos->getBy("id_departamentos='$_id_departamentos'");
     			$numero_consecutivo_departamentos=$resultConsecutivo[0]->numero_consecutivo_departamentos;
     			$identificador_memorando=$resultConsecutivo[0]->identificador_departamentos;
@@ -768,7 +783,7 @@ class MemosController extends ControladorBase{
     			$fechaActual = date('d-m-Y H:i:s');
     			
     			$numero_memorando="No. ".$anio_memorando."-".$numero_consecutivo_departamentos."-".$identificador_memorando;
-    			
+    			*/
     				
     			
     			try {
@@ -1088,11 +1103,14 @@ class MemosController extends ControladorBase{
     			$departamentos->UpdateBy("numero_consecutivo_departamentos=numero_consecutivo_departamentos+1", "departamentos", "id_departamentos='$_id_departamentos'");
     			 
     			
-    			$fechaactual = $fechaActual;
+    			//$fechaactual = $fechaActual;
     			$dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
     			$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-    			$fechaactual=$dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+    			$fechaactual=$dias[date('w',strtotime($fechaActual))]." ".date('d',strtotime($fechaActual))." de ".$meses[date('n',strtotime($fechaActual))-1]. " del ".date('Y',strtotime($fechaActual)) ;
     			 
+    			
+    			//$creado    ="a los <b>".date('d',strtotime($_fecha_aprobacion))."</b> días del mes de <b>".$meses[date('n',strtotime($_fecha_aprobacion))-1]. "</b> del <b>".date('Y',strtotime($_fecha_aprobacion))."</b>";
+    			
     			
     			$cuadro_infor="";
     			$cuadro_infor.="<pre><strong>DE:       $_nombre_usuarios</strong></pre><pre><strong>          $_cargo_usuarios</strong></pre><br>";
@@ -1103,13 +1121,20 @@ class MemosController extends ControladorBase{
     			//style='text-transform: uppercase;'
     			
     		    //traer la firma  
-    		 	$cuadro_firma="<div style='font-family: Arial; font-size:11pt; color:#000000; width: 30%; text-align: left; margin-top:20px;'>";
-    			$cuadro_firma.="<p>Atentamente,</p>";
+    		
     			if($id_rol==44){
     				$id_usuarios=15409;
     			}
-    			$cuadro_firma.= "<img src='view/DevuelveImagenView.php?id_valor=$id_usuarios&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas'>";
-    			$cuadro_firma.="</div>";
+    		
+    			
+    			$cuadro_firma.="Atentamente,";
+    		    $cuadro_firma.="<table WIDTH='100%'>";
+    		    $cuadro_firma.="<tr>";
+    			$cuadro_firma.="<td WIDTH='100%'><img src='view/DevuelveImagenView.php?id_valor=$id_usuarios&id_nombre=id_usuarios&tabla=firmas&campo=archivo_firmas' width='80%' height='60%'></td>";
+    			$cuadro_firma.="<td WIDTH='100%'></td>";
+    			$cuadro_firma.="<td WIDTH='100%'></td>";
+    			$cuadro_firma.="</tr>";
+    			$cuadro_firma.="</table>";
     			
     			
     				$memos_cabeza->UpdateBy("cuadro_informacion='$cuadro_infor'", "memos_cab", "id_memos_cab='$id_memos_cab'");
@@ -1118,7 +1143,7 @@ class MemosController extends ControladorBase{
     			 
     			
     			$dicContenido = array(
-    					'TITULOPAG'=>"Capremci 2018",
+    					'TITULOPAG'=>"Capremci 2019",
     					'NOMBREFICHA'=>"MEMORANDO",
     					'NUMEROMEMORANDO'=>$numero_memorando,
     					'CUERPO'=>$editor1,
@@ -1171,8 +1196,15 @@ class MemosController extends ControladorBase{
     
     		if(!empty($resultPer)){
     			
+    		    $id_usuarios=$_SESSION["id_usuarios"];
+    		
+    		    $resultDepartamento = $usuarios->getBy("id_usuarios = '$id_usuarios'");
+    		    $envia_memo=$resultDepartamento[0]->envia_memo;
+    		    
+    		    
+    		    
     			$this->view("MemosComponer",array(
-    					"resultSet"=>""
+    					"envia_memo"=>$envia_memo
     			
     			));
     			
@@ -1212,6 +1244,13 @@ class MemosController extends ControladorBase{
     			$resultPer = $usuarios->getPermisosEditar("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
     	
     			if(!empty($resultPer)){
+    			    
+    			    
+    			  
+    			    
+    			    $resultDepartamento = $usuarios->getBy("id_usuarios = '$id_usuarios'");
+    			    $envia_memo=$resultDepartamento[0]->envia_memo;
+    			    
     				 
     				
     				if($id_rol==45){
@@ -1241,7 +1280,7 @@ class MemosController extends ControladorBase{
     				
     				
     				$this->view("MemosEnviados",array(
-    						"cantidadimbox"=>$cantidadimbox, "cantidadsent"=>$cantidadsent
+    				    "cantidadimbox"=>$cantidadimbox, "cantidadsent"=>$cantidadsent, "envia_memo"=>$envia_memo
     
     				));
     				 
@@ -1281,6 +1320,11 @@ class MemosController extends ControladorBase{
     			 
     			if(!empty($resultPer)){
     					
+    			    
+    			    
+    			    $resultDepartamento = $usuarios->getBy("id_usuarios = '$id_usuarios'");
+    			    $envia_memo=$resultDepartamento[0]->envia_memo;
+    			    
     				
     				if($id_rol==45){
     				
@@ -1309,7 +1353,7 @@ class MemosController extends ControladorBase{
     				
     				
     				$this->view("MemosBorrador",array(
-    							"cantidadimbox"=>$cantidadimbox, "cantidadsent"=>$cantidadsent
+    				    "cantidadimbox"=>$cantidadimbox, "cantidadsent"=>$cantidadsent, "envia_memo"=>$envia_memo
     	
     				));
     					
@@ -1347,6 +1391,12 @@ class MemosController extends ControladorBase{
     	
     			if(!empty($resultPer)){
     				
+    			    
+    			    
+    			    $resultDepartamento = $usuarios->getBy("id_usuarios = '$id_usuarios'");
+    			    $envia_memo=$resultDepartamento[0]->envia_memo;
+    			    
+    			    
     				if($id_rol==45){
     				
     					$columnas="*";
@@ -1374,7 +1424,7 @@ class MemosController extends ControladorBase{
     				
     				
     				$this->view("MemosBasura",array(
-    							"cantidadimbox"=>$cantidadimbox, "cantidadsent"=>$cantidadsent
+    				    "cantidadimbox"=>$cantidadimbox, "cantidadsent"=>$cantidadsent, "envia_memo"=>$envia_memo
    
     				));
     					
@@ -1413,6 +1463,10 @@ class MemosController extends ControladorBase{
     			 
     			if(!empty($resultPer)){
     					
+    			    $resultDepartamento = $usuarios->getBy("id_usuarios = '$id_usuarios'");
+    			    $envia_memo=$resultDepartamento[0]->envia_memo;
+    			    
+    			    
     				if($id_rol==45){
     				
     					$columnas="*";
@@ -1440,7 +1494,7 @@ class MemosController extends ControladorBase{
     				
     				
     				$this->view("MemosEliminados",array(
-    							"cantidadimbox"=>$cantidadimbox, "cantidadsent"=>$cantidadsent
+    				    "cantidadimbox"=>$cantidadimbox, "cantidadsent"=>$cantidadsent, "envia_memo"=>$envia_memo
     				));
     					
     			}else{
@@ -1469,7 +1523,7 @@ class MemosController extends ControladorBase{
     	//Tipo de Documento
     	$resultPol = $usuarios->getCondiciones("nombre_usuarios, id_usuarios",
     			"usuarios",
-    			"  UPPER(nombre_usuarios) LIKE '%$nombre_usuario%'  AND id_usuarios in  (7047, 9319, 15412, 15248, 15245, 15409, 15247)",
+    			"  UPPER(nombre_usuarios) LIKE '%$nombre_usuario%'  AND id_usuarios in  (7047, 9319, 15248, 15245, 15409, 15247, 16450, 16481, 16482, 15426, 16483, 15425, 13701, 15416, 4656, 16485, 16486)",
     			"nombre_usuarios");
     
     
@@ -1595,6 +1649,7 @@ class MemosController extends ControladorBase{
     					$html.= "<tr class='bg-primary'>";
     					$html.='<th style="text-align: left;  font-size: 14px;"></th>';
     					$html.='<th style="text-align: left;  font-size: 14px;"><b>Subject</b></th>';
+    					$html.='<th style="text-align: left;  font-size: 14px;"><b>Number</b></th>';
     					$html.='<th style="text-align: left;  font-size: 14px;"><b>From</b></th>';
     					$html.='<th style="text-align: left;  font-size: 14px;"><b>Date</b></th>';
     					$html.='<th style="text-align: left;  font-size: 14px;"><b>State</b></th>';
@@ -1614,8 +1669,11 @@ class MemosController extends ControladorBase{
     						$resultCabeza= $memos_cabeza->getBy("id_memos_cab='$id_memos_cab'");
     						$id=$resultCabeza[0]->id_usuarios;
     						$asunto_memos_cab=$resultCabeza[0]->asunto_memos_cab;
-    						$fecha_memos_cab=$resultCabeza[0]->fecha_memos_cab;
+    						$fecha_memos_cab=date("d/m/Y", strtotime($resultCabeza[0]->fecha_memos_cab));
     						$id_estado_tramites=$resultCabeza[0]->id_estado_tramites;
+    						$numero_memo=$resultCabeza[0]->numero_memos_cab;
+    						
+    						
     			
     						if($id_estado_tramites==4 || $id_estado_tramites==2 || $id_estado_tramites==3){
     						
@@ -1635,6 +1693,10 @@ class MemosController extends ControladorBase{
     								$html.='<tr>';
     								$html.='<td style="font-size: 11px;"><input type="checkbox"></td>';
     								$html.='<td class="mailbox-subject" style="font-size: 11px;"><a href="index.php?controller=Memos&action=index_readmail&identi='.$id_memos_cab.'&tip=imbox_p">'.$asunto_memos_cab.'</a></td>';
+    								$html.='<td class="mailbox-subject" style="font-size: 11px;"><a href="index.php?controller=Memos&action=index_readmail&identi='.$id_memos_cab.'&tip=imbox_p">'.$asunto_memos_cab.'</a></td>';
+    								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$numero_memo.'</td>';
+    								
+    								
     								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$nombre.'</td>';
     								$html.='<td class="mailbox-date" style="font-size: 11px;">'.$fecha_memos_cab.'</td>';
     								$html.='<td class="mailbox-date" style="font-size: 11px;">'.$nombre_estado_tramites.'</td>';
@@ -1646,6 +1708,7 @@ class MemosController extends ControladorBase{
     								$html.='<tr>';
     								$html.='<td style="font-size: 11px;"><input type="checkbox"></td>';
     								$html.='<td class="mailbox-subject" style="font-size: 12px;"><a href="index.php?controller=Memos&action=index_readmail&identi='.$id_memos_cab.'&tip=imbox_p"><b>'.$asunto_memos_cab.'</b></a></td>';
+    								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$numero_memo.'</td>';
     								$html.='<td class="mailbox-name" style="font-size: 12px;"><b>'.$nombre.'</b></td>';
     								$html.='<td class="mailbox-date" style="font-size: 12px;"><b>'.$fecha_memos_cab.'</b></td>';
     								$html.='<td class="mailbox-date" style="font-size: 12px;"><b>'.$nombre_estado_tramites.'</b></td>';
@@ -1662,6 +1725,7 @@ class MemosController extends ControladorBase{
     								$html.='<tr>';
     								$html.='<td style="font-size: 11px;"><input type="checkbox"></td>';
     								$html.='<td class="mailbox-subject" style="font-size: 11px;"><a href="index.php?controller=Memos&action=index_readmail&identi='.$id_memos_cab.'&tip=imbox_c">'.$asunto_memos_cab.'</a></td>';
+    								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$numero_memo.'</td>';
     								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$nombre.'</td>';
     								$html.='<td class="mailbox-date" style="font-size: 11px;">'.$fecha_memos_cab.'</td>';
     								$html.='<td class="mailbox-date" style="font-size: 11px;">'.$nombre_estado_tramites.'</td>';
@@ -1673,6 +1737,7 @@ class MemosController extends ControladorBase{
     								$html.='<tr>';
     								$html.='<td style="font-size: 11px;"><input type="checkbox"></td>';
     								$html.='<td class="mailbox-subject" style="font-size: 12px;"><a href="index.php?controller=Memos&action=index_readmail&identi='.$id_memos_cab.'&tip=imbox_c"><b>'.$asunto_memos_cab.'</b></a></td>';
+    								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$numero_memo.'</td>';
     								$html.='<td class="mailbox-name" style="font-size: 12px;"><b>'.$nombre.'</b></td>';
     								$html.='<td class="mailbox-date" style="font-size: 12px;"><b>'.$fecha_memos_cab.'</b></td>';
     								$html.='<td class="mailbox-date" style="font-size: 12px;"><b>'.$nombre_estado_tramites.'</b></td>';
@@ -1695,6 +1760,7 @@ class MemosController extends ControladorBase{
     								$html.='<tr>';
     								$html.='<td style="font-size: 11px;"><input type="checkbox"></td>';
     								$html.='<td class="mailbox-subject" style="font-size: 11px;"><a href="index.php?controller=Memos&action=index_readmail&identi='.$id_memos_cab.'&tip=imbox_as">'.$asunto_memos_cab.'</a></td>';
+    								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$numero_memo.'</td>';
     								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$nombre.'</td>';
     								$html.='<td class="mailbox-date" style="font-size: 11px;">'.$fecha_memos_cab.'</td>';
     								$html.='<td class="mailbox-date" style="font-size: 11px;">'.$nombre_estado_tramites.'</td>';
@@ -1706,6 +1772,7 @@ class MemosController extends ControladorBase{
     								$html.='<tr>';
     								$html.='<td style="font-size: 11px;"><input type="checkbox"></td>';
     								$html.='<td class="mailbox-subject" style="font-size: 12px;"><a href="index.php?controller=Memos&action=index_readmail&identi='.$id_memos_cab.'&tip=imbox_as"><b>'.$asunto_memos_cab.'</b></a></td>';
+    								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$numero_memo.'</td>';
     								$html.='<td class="mailbox-name" style="font-size: 12px;"><b>'.$nombre.'</b></td>';
     								$html.='<td class="mailbox-date" style="font-size: 12px;"><b>'.$fecha_memos_cab.'</b></td>';
     								$html.='<td class="mailbox-date" style="font-size: 12px;"><b>'.$nombre_estado_tramites.'</b></td>';
@@ -1824,6 +1891,7 @@ class MemosController extends ControladorBase{
     					$html.= "<tr class='bg-primary'>";
     					$html.='<th style="text-align: left;  font-size: 14px;"></th>';
     					$html.='<th style="text-align: left;  font-size: 14px;"><b>Subject</b></th>';
+    					$html.='<th style="text-align: left;  font-size: 14px;"><b>Number</b></th>';
     					$html.='<th style="text-align: left;  font-size: 14px;"><b>From</b></th>';
     					$html.='<th style="text-align: left;  font-size: 14px;"><b>Date</b></th>';
     					$html.='<th style="text-align: left;  font-size: 14px;"><b>State</b></th>';
@@ -1843,8 +1911,9 @@ class MemosController extends ControladorBase{
     						$resultCabeza= $memos_cabeza->getBy("id_memos_cab='$id_memos_cab'");
     						$id=$resultCabeza[0]->id_usuarios;
     						$asunto_memos_cab=$resultCabeza[0]->asunto_memos_cab;
-    						$fecha_memos_cab=$resultCabeza[0]->fecha_memos_cab;
+    						$fecha_memos_cab=date("d/m/Y", strtotime($resultCabeza[0]->fecha_memos_cab));
     						$id_estado_tramites=$resultCabeza[0]->id_estado_tramites;
+    						$numero_memo=$resultCabeza[0]->numero_memos_cab;
     			
     						$resultUsuarios= $usuarios->getBy("id_usuarios='$id'");
     						$nombre=$resultUsuarios[0]->nombre_usuarios;
@@ -1858,6 +1927,7 @@ class MemosController extends ControladorBase{
     								$html.='<tr>';
     								$html.='<td style="font-size: 11px;"><input type="checkbox"></td>';
     								$html.='<td class="mailbox-subject" style="font-size: 11px;"><a href="index.php?controller=Memos&action=index_readmail&identi='.$id_memos_cab.'&tip=imbox_p">'.$asunto_memos_cab.'</a></td>';
+    								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$numero_memo.'</td>';
     								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$nombre.'</td>';
     								$html.='<td class="mailbox-date" style="font-size: 11px;">'.$fecha_memos_cab.'</td>';
     								$html.='<td class="mailbox-date" style="font-size: 11px;">'.$nombre_estado_tramites.'</td>';
@@ -1869,6 +1939,7 @@ class MemosController extends ControladorBase{
     								$html.='<tr>';
     								$html.='<td style="font-size: 11px;"><input type="checkbox"></td>';
     								$html.='<td class="mailbox-subject" style="font-size: 12px;"><a href="index.php?controller=Memos&action=index_readmail&identi='.$id_memos_cab.'&tip=imbox_p"><b>'.$asunto_memos_cab.'</b></a></td>';
+    								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$numero_memo.'</td>';
     								$html.='<td class="mailbox-name" style="font-size: 12px;"><b>'.$nombre.'</b></td>';
     								$html.='<td class="mailbox-date" style="font-size: 12px;"><b>'.$fecha_memos_cab.'</b></td>';
     								$html.='<td class="mailbox-date" style="font-size: 12px;"><b>'.$nombre_estado_tramites.'</b></td>';
@@ -1887,6 +1958,7 @@ class MemosController extends ControladorBase{
     								$html.='<tr>';
     								$html.='<td style="font-size: 11px;"><input type="checkbox"></td>';
     								$html.='<td class="mailbox-subject" style="font-size: 11px;"><a href="index.php?controller=Memos&action=index_readmail&identi='.$id_memos_cab.'&tip=imbox_c">'.$asunto_memos_cab.'</a></td>';
+    								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$numero_memo.'</td>';
     								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$nombre.'</td>';
     								$html.='<td class="mailbox-date" style="font-size: 11px;">'.$fecha_memos_cab.'</td>';
     								$html.='<td class="mailbox-date" style="font-size: 11px;">'.$nombre_estado_tramites.'</td>';
@@ -1898,6 +1970,7 @@ class MemosController extends ControladorBase{
     								$html.='<tr>';
     								$html.='<td style="font-size: 11px;"><input type="checkbox"></td>';
     								$html.='<td class="mailbox-subject" style="font-size: 12px;"><a href="index.php?controller=Memos&action=index_readmail&identi='.$id_memos_cab.'&tip=imbox_c"><b>'.$asunto_memos_cab.'</b></a></td>';
+    								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$numero_memo.'</td>';
     								$html.='<td class="mailbox-name" style="font-size: 12px;"><b>'.$nombre.'</b></td>';
     								$html.='<td class="mailbox-date" style="font-size: 12px;"><b>'.$fecha_memos_cab.'</b></td>';
     								$html.='<td class="mailbox-date" style="font-size: 12px;"><b>'.$nombre_estado_tramites.'</b></td>';
@@ -1920,6 +1993,7 @@ class MemosController extends ControladorBase{
     								$html.='<tr>';
     								$html.='<td style="font-size: 11px;"><input type="checkbox"></td>';
     								$html.='<td class="mailbox-subject" style="font-size: 11px;"><a href="index.php?controller=Memos&action=index_readmail&identi='.$id_memos_cab.'&tip=imbox_as">'.$asunto_memos_cab.'</a></td>';
+    								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$numero_memo.'</td>';
     								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$nombre.'</td>';
     								$html.='<td class="mailbox-date" style="font-size: 11px;">'.$fecha_memos_cab.'</td>';
     								$html.='<td class="mailbox-date" style="font-size: 11px;">'.$nombre_estado_tramites.'</td>';
@@ -1931,6 +2005,7 @@ class MemosController extends ControladorBase{
     								$html.='<tr>';
     								$html.='<td style="font-size: 11px;"><input type="checkbox"></td>';
     								$html.='<td class="mailbox-subject" style="font-size: 12px;"><a href="index.php?controller=Memos&action=index_readmail&identi='.$id_memos_cab.'&tip=imbox_as"><b>'.$asunto_memos_cab.'</b></a></td>';
+    								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$numero_memo.'</td>';
     								$html.='<td class="mailbox-name" style="font-size: 12px;"><b>'.$nombre.'</b></td>';
     								$html.='<td class="mailbox-date" style="font-size: 12px;"><b>'.$fecha_memos_cab.'</b></td>';
     								$html.='<td class="mailbox-date" style="font-size: 12px;"><b>'.$nombre_estado_tramites.'</b></td>';
@@ -2000,7 +2075,7 @@ class MemosController extends ControladorBase{
     	
     	$where_to="";
     	$columnas = " memos_cab.id_memos_cab,
-    			      memos_cab.fecha_memos_cab, 
+    			      to_char(memos_cab.fecha_memos_cab, 'DD/MM/YYYY') as fecha_memos_cab, 
 					  memos_cab.numero_memos_cab, 
 					  memos_cab.asunto_memos_cab,
     			      memos_cab.rev_sec_memos_cab,
@@ -2072,6 +2147,7 @@ class MemosController extends ControladorBase{
     			$html.= "<tr class='bg-primary'>";
     			$html.='<th style="text-align: left;  font-size: 14px;"></th>';
     			$html.='<th style="text-align: left;  font-size: 14px;"><b>Subject</b></th>';
+    			$html.='<th style="text-align: left;  font-size: 14px;"><b>Number</b></th>';
     			$html.='<th style="text-align: left;  font-size: 14px;"><b>To</b></th>';
     			$html.='<th style="text-align: left;  font-size: 14px;"><b>Date</b></th>';
     			$html.='<th style="text-align: left;  font-size: 14px;"><b>State</b></th>';
@@ -2087,6 +2163,8 @@ class MemosController extends ControladorBase{
     				$id_memos_cab=$res->id_memos_cab;
     				$nombre_estado_tramites=$res->nombre_estado_tramites;
     				$rev_sec_memos_cab=$res->rev_sec_memos_cab;
+    				$numero_memo=$res->numero_memos_cab;
+    				
     				$resultDetalle= $memos_detalle->getBy("id_memos_cab='$id_memos_cab' AND tipo_memos_det=1");
     				$id=$resultDetalle[0]->id_usuarios;
     				
@@ -2097,6 +2175,8 @@ class MemosController extends ControladorBase{
     					$html.='<tr>';
     					$html.='<td style="font-size: 11px;"><input type="checkbox"></td>';
     					$html.='<td class="mailbox-subject" style="font-size: 11px;"><a href="index.php?controller=Memos&action=index_readmail&identi='.$id_memos_cab.'">'.$res->asunto_memos_cab.'</a></td>';
+    					$html.='<td class="mailbox-name" style="font-size: 11px;">'.$numero_memo.'</td>';
+    					
     					$html.='<td class="mailbox-name" style="font-size: 11px;">'.$nombre.'</td>';
     					$html.='<td class="mailbox-date" style="font-size: 11px;">'.$res->fecha_memos_cab.'</td>';
     					$html.='<td class="mailbox-date" style="font-size: 11px;">'.$nombre_estado_tramites.'</td>';
@@ -2267,6 +2347,164 @@ class MemosController extends ControladorBase{
     
     	$out.= "</ul>";
     	return $out;
+    }
+    
+    
+    
+    
+    public function  consulta_numero_memorando(){
+        
+        session_start();
+        $id_usuarios = $_SESSION["id_usuarios"];
+        $usuarios = new UsuariosModel();
+        
+        
+        $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
+        
+        if($action == 'ajax' && $id_usuarios>0)
+        {
+         
+            $resultDepartamento = $usuarios->getBy("id_usuarios = '$id_usuarios'");
+            $_id_departamentos=$resultDepartamento[0]->id_departamentos;
+            
+            
+            $departamentos = new DepartamentosModel();
+            $resultConsecutivo= $departamentos->getBy("id_departamentos='$_id_departamentos'");
+            $numero_consecutivo_departamentos=$resultConsecutivo[0]->numero_consecutivo_departamentos;
+            $identificador_memorando=$resultConsecutivo[0]->identificador_departamentos;
+            $anio_memorando=$resultConsecutivo[0]->anio;
+            
+            
+            $numero_memorando="No. ".$anio_memorando."-".$numero_consecutivo_departamentos."-".$identificador_memorando;
+            
+            echo $numero_memorando;
+            
+           
+            
+        }
+        
+    }
+    
+    
+    
+    public function  consulta_numero_memorando_1(){
+        
+        session_start();
+        $id_usuarios = $_SESSION["id_usuarios"];
+        $usuarios = new UsuariosModel();
+        
+        
+        $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
+        
+        if($action == 'ajax' && $id_usuarios>0)
+        {
+            
+            $resultDepartamento = $usuarios->getBy("id_usuarios = '$id_usuarios'");
+            $_id_departamentos=$resultDepartamento[0]->id_departamentos;
+            
+            
+            $departamentos = new DepartamentosModel();
+            $resultConsecutivo= $departamentos->getBy("id_departamentos='$_id_departamentos'");
+            $numero_consecutivo_departamentos=$resultConsecutivo[0]->numero_consecutivo_departamentos;
+            $identificador_memorando=$resultConsecutivo[0]->identificador_departamentos;
+            $anio_memorando=$resultConsecutivo[0]->anio;
+            
+            
+            //$numero_memorando="No. ".$anio_memorando."-".$numero_consecutivo_departamentos."-".$identificador_memorando;
+            
+            echo $numero_consecutivo_departamentos;
+            
+            
+            
+        }
+        
+    }
+    
+    
+    
+    
+    
+    public function Actualizar_Numero_Memorando(){
+        
+        session_start();
+        $id_usuarios = $_SESSION["id_usuarios"];
+        $usuarios = new UsuariosModel();
+        $memos_cabeza = new MemosCabezaModel();
+       
+         if(!isset($_SESSION['id_usuarios'])){
+            echo 'Session Caducada';
+            exit();
+         }
+       
+        $_numero_consecutivo_solicitado =(isset($_POST['mod_mem_usu'])) ? $_POST['mod_mem_usu'] : 0;
+        
+        if($_numero_consecutivo_solicitado > 0){
+            
+            
+            $resultDepartamento = $usuarios->getBy("id_usuarios = '$id_usuarios'");
+            $_id_departamentos=$resultDepartamento[0]->id_departamentos;
+            
+            $departamentos = new DepartamentosModel();
+            $resultConsecutivo= $departamentos->getBy("id_departamentos='$_id_departamentos'");
+            $numero_consecutivo_departamentos=$resultConsecutivo[0]->numero_consecutivo_departamentos;
+            $identificador_memorando=$resultConsecutivo[0]->identificador_departamentos;
+            $anio_memorando=$resultConsecutivo[0]->anio;
+            
+            
+            $numero_memorando="No. ".$anio_memorando."-".$_numero_consecutivo_solicitado."-".$identificador_memorando;
+            
+            
+            $resulset=$memos_cabeza->getBy("id_usuarios='$id_usuarios' AND id_departamentos='$_id_departamentos' AND numero_memos_cab='$numero_memorando'");
+            
+            if(empty($resulset)){
+                
+                    $resultado= $departamentos->editBy("numero_consecutivo_departamentos=$_numero_consecutivo_solicitado", "departamentos", "id_departamentos='$_id_departamentos'");
+                    
+                    if((int)$resultado > 0){
+                        echo json_encode(array('valor' => $resultado));
+                        return;
+                    }
+                    
+            }else{
+                
+                
+                $id_estado_tramites=$resulset[0]->id_estado_tramites;
+                
+                
+                if($id_estado_tramites==3){
+                    
+                    $numero_memorando1=$numero_memorando.'-'.'RECHAZADO';
+                  
+                    $resultado1= $memos_cabeza->editBy("numero_memos_cab='$numero_memorando1'", "memos_cab", "id_usuarios='$id_usuarios' AND id_departamentos='$_id_departamentos' AND numero_memos_cab='$numero_memorando'");
+                    
+                    
+                    $resultado= $departamentos->editBy("numero_consecutivo_departamentos=$_numero_consecutivo_solicitado", "departamentos", "id_departamentos='$_id_departamentos'");
+                    
+                    if((int)$resultado > 0){
+                        echo json_encode(array('valor' => $resultado));
+                        return;
+                    }
+                    
+                    
+                }else{
+                    
+                    $resultado=0;
+                    echo json_encode(array('valor' => $resultado));
+                    return;
+                    
+                }
+                
+                
+                   
+                
+            }
+            
+        }
+        
+        $pgError = pg_last_error();
+        
+        echo "no se actualizo. ".$pgError;
+        
     }
     
     

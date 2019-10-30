@@ -491,7 +491,7 @@
 			
           var tipo_pago_cuenta_bancaria = $(this).val();
 			
-          if(tipo_pago_cuenta_bancaria == 'Depósito' || tipo_pago_cuenta_bancaria == 'Retira Cheque' )
+          if(tipo_pago_cuenta_bancaria == 'Depósito' || tipo_pago_cuenta_bancaria == 'Retira Cheque')
           {
        	   $("#div_tipo_pago_cuenta_bancaria").fadeIn("slow");
           }
@@ -502,10 +502,10 @@
 
 					$("#div_tipo_pago_cuenta_bancaria").fadeOut("slow");
 				}else{
-					   //$("#id_banco_cuenta_bancaria").val("0");
-		               //$("#tipo_cuenta_cuenta_bancaria").val("0");
-		               //$("#numero_cuenta_cuenta_bancaria").val("");
-		           	   //$("#div_tipo_pago_cuenta_bancaria").fadeOut("slow");
+					  // $("#id_banco_cuenta_bancaria").val("0");
+		              // $("#tipo_cuenta_cuenta_bancaria").val("0");
+		              // $("#numero_cuenta_cuenta_bancaria").val("");
+		           	  // $("#div_tipo_pago_cuenta_bancaria").fadeOut("slow");
 				}
     
        	   
@@ -532,6 +532,7 @@
 				    if(tipo_pago_cuenta_bancaria==0){
 
 						$("#div_tipo_pago_cuenta_bancaria").fadeOut("slow");
+						
 					}else{
 						   //$("#id_banco_cuenta_bancaria").val("0");
 			               //$("#tipo_cuenta_cuenta_bancaria").val("0");
@@ -936,7 +937,7 @@
 				}
 
 
-				 if(tipo_pago_cuenta_bancaria =='Depósito' || tipo_pago_cuenta_bancaria =='Retira Cheque'){
+				 if(tipo_pago_cuenta_bancaria =='Depósito' || tipo_pago_cuenta_bancaria == 'Retira Cheque'){
 
 
 				    	
@@ -1034,7 +1035,7 @@
 		    		contador = apellidos_solicitante_datos_personales.split(" ");
 		    		numeroPalabras = contador.length;
 		    		
-					if(numeroPalabras==2){
+					if(numeroPalabras>0){
 
 					$("#mensaje_apellidos_solicitante_datos_personales").fadeOut("slow"); //Muestra mensaje de error
 		            
@@ -1066,7 +1067,7 @@
 		    		contador = nombres_solicitante_datos_personales.split(" ");
 		    		numeroPalabras = contador.length;
 		    		
-					if(numeroPalabras==2){
+					if(numeroPalabras>0){
 
 						$("#mensaje_nombres_solicitante_datos_personales").fadeOut("slow"); //Muestra mensaje de error
 			             
@@ -1372,7 +1373,7 @@
 			    		contador = nombre_propietario_vivienda.split(" ");
 			    		numeroPalabras = contador.length;
 			    		
-						if(numeroPalabras==2 || numeroPalabras==4 || numeroPalabras==3){
+						if(numeroPalabras>0){
 
 							$("#mensaje_nombre_propietario_vivienda").fadeOut("slow"); //Muestra mensaje de error
 				              
@@ -1435,7 +1436,32 @@
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_numero_celular_solicitante").fadeOut("slow"); //Muestra mensaje de error
+
+
+
+		    		if(isNaN(numero_celular_solicitante)){
+
+        				$("#mensaje_numero_celular_solicitante").text("Ingrese Solo Números");
+        	    		$("#mensaje_numero_celular_solicitante").fadeIn("slow"); //Muestra mensaje de error
+        	    		  $("html, body").animate({ scrollTop: $(mensaje_numero_celular_solicitante).offset().top }, tiempo);
+        	            return false;
+
+					}
+		    		
+		    		if(numero_celular_solicitante.length==10){
+
+						$("#mensaje_numero_celular_solicitante").fadeOut("slow"); //Muestra mensaje de error
+					}else{
+						
+						$("#mensaje_numero_celular_solicitante").text("Ingrese 10 dígitos");
+			    		$("#mensaje_numero_celular_solicitante").fadeIn("slow"); //Muestra mensaje de error
+			    		 $("html, body").animate({ scrollTop: $(mensaje_numero_celular_solicitante).offset().top }, tiempo);
+			            return false;
+					}
+			    	
+		    		
+			    	
+		    		
 		            
 				}
 				
@@ -1474,7 +1500,7 @@
 		    		contador = apellidos_referencia_personal.split(" ");
 		    		numeroPalabras = contador.length;
 		    		
-					if(numeroPalabras==2){
+					if(numeroPalabras>0){
 
 						$("#mensaje_apellidos_referencia_personal").fadeOut("slow"); //Muestra mensaje de error
 				           
@@ -1503,7 +1529,7 @@
 		    		contador = nombres_referencia_personal.split(" ");
 		    		numeroPalabras = contador.length;
 		    		
-					if(numeroPalabras==2){
+					if(numeroPalabras>0){
 
 						$("#mensaje_nombres_referencia_personal").fadeOut("slow"); //Muestra mensaje de error
 				               
@@ -1562,7 +1588,7 @@
 		    		contador = apellidos_referencia_familiar.split(" ");
 		    		numeroPalabras = contador.length;
 		    		
-					if(numeroPalabras==2){
+					if(numeroPalabras>0){
 
 						$("#mensaje_apellidos_referencia_familiar").fadeOut("slow"); //Muestra mensaje de error
 			                    
@@ -1593,7 +1619,7 @@
 		    		contador = nombres_referencia_familiar.split(" ");
 		    		numeroPalabras = contador.length;
 		    		
-					if(numeroPalabras==2){
+					if(numeroPalabras>0){
 
 						$("#mensaje_nombres_referencia_familiar").fadeOut("slow"); //Muestra mensaje de error
 			                    
@@ -2239,7 +2265,7 @@
 		    		contador = apellidos_conyuge.split(" ");
 		    		numeroPalabras = contador.length;
 		    		
-					if(numeroPalabras==2){
+					if(numeroPalabras>0){
 
 						$("#mensaje_apellidos_conyuge").fadeOut("slow"); //Muestra mensaje de error
 			                     
@@ -2269,7 +2295,7 @@
 		    		contador = nombres_conyuge.split(" ");
 		    		numeroPalabras = contador.length;
 		    		
-					if(numeroPalabras==2){
+					if(numeroPalabras>0){
 
 						$("#mensaje_nombres_conyuge").fadeOut("slow"); //Muestra mensaje de error
 				                     
@@ -3335,7 +3361,7 @@
             					<div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
                                                       <label for="numero_celular_solicitante" class="control-label">Número Celular:</label>
-                                                      <input type="number" class="form-control" id="numero_celular_solicitante" name="numero_celular_solicitante" value="<?php echo $resEdit->numero_celular_solicitante; ?>" placeholder="# celular..">
+                                                      <input type="number" class="form-control" id="numero_celular_solicitante" name="numero_celular_solicitante" value="<?php echo $resEdit->numero_celular_solicitante; ?>" placeholder="# celular.." readonly>
                                                       <div id="mensaje_numero_celular_solicitante" class="errores"></div>
                                 </div>
             					</div>  
@@ -3411,6 +3437,8 @@
                         							  <option value="Comadre" 				<?php if($resEdit->relacion_referencia_personal == 'Comadre'){echo ' selected="selected" ' ;}else{} ?>>Comadre</option>
                         							  <option value="Compañero Laboral (a)" <?php if($resEdit->relacion_referencia_personal == 'Compañero Laboral (a)'){echo ' selected="selected" ' ;}else{} ?>>Compañero Laboral (a)</option>
                         							  <option value="Jéfe (a)" 				<?php if($resEdit->relacion_referencia_personal == 'Jéfe (a)'){echo ' selected="selected" ' ;}else{} ?>>Jéfe (a)</option>
+                        							  <option value="Otro" 				    <?php if($resEdit->relacion_referencia_personal == 'Otro'){echo ' selected="selected" ' ;}else{} ?>>Otro</option>
+                        							 
                         							  </select>
                                                       <div id="mensaje_relacion_referencia_personal" class="errores"></div>
                                 </div>
@@ -3469,6 +3497,10 @@
                         							  <option value="Sobrino (a)" <?php if($resEdit->parentesco_referencia_familiar == 'Sobrino (a)'){echo ' selected="selected" ' ;}else{} ?>>Sobrino (a)</option>
                         							  <option value="Abuelo (a)"  <?php if($resEdit->parentesco_referencia_familiar == 'Abuelo (a)'){echo ' selected="selected" ' ;}else{} ?>>Abuelo (a)</option>
                         							  <option value="Hijo (a)" 	  <?php if($resEdit->parentesco_referencia_familiar == 'Hijo (a)'){echo ' selected="selected" ' ;}else{} ?>>Hijo (a)</option>
+                        							  <option value="Madre"       <?php if($resEdit->parentesco_referencia_familiar == 'Madre'){echo ' selected="selected" ' ;}else{} ?>>Madre</option>
+                        							  <option value="Padre"       <?php if($resEdit->parentesco_referencia_familiar == 'Padre'){echo ' selected="selected" ' ;}else{} ?>>Padre</option>
+                        							  <option value="Otro"        <?php if($resEdit->parentesco_referencia_familiar == 'Otro'){echo ' selected="selected" ' ;}else{} ?>>Otro</option>
+                        							 
                         							  </select>
                                                       <div id="mensaje_parentesco_referencia_familiar" class="errores"></div>
                                 </div>

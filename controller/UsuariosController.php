@@ -477,7 +477,7 @@ class UsuariosController extends ControladorBase{
     		$html.='<th style="text-align: left;  font-size: 12px;">Rol</th>';
     		$html.='<th style="text-align: left;  font-size: 12px;">Estado</th>';
     		
-    		if($id_rol==1){
+    		if($id_rol==1 || $id_rol==43){
 	    		
     			$html.='<th style="text-align: left;  font-size: 12px;"></th>';
 	    		$html.='<th style="text-align: left;  font-size: 12px;"></th>';
@@ -509,7 +509,7 @@ class UsuariosController extends ControladorBase{
     			$html.='<td style="font-size: 11px;">'.$res->nombre_rol.'</td>';
     			$html.='<td style="font-size: 11px;">'.$res->nombre_estado.'</td>';
     			
-    			if($id_rol==1){
+    			if($id_rol==1 || $id_rol==43){
     			
     				$html.='<td style="font-size: 18px;"><span class="pull-right"><a href="index.php?controller=Usuarios&action=index&id_usuarios='.$res->id_usuarios.'" class="btn btn-success" style="font-size:65%;"><i class="glyphicon glyphicon-edit"></i></a></span></td>';
     				$html.='<td style="font-size: 18px;"><span class="pull-right"><a href="index.php?controller=Usuarios&action=borrarId&id_usuarios='.$res->id_usuarios.'" class="btn btn-danger" style="font-size:65%;"><i class="glyphicon glyphicon-trash"></i></a></span></td>';
@@ -2810,6 +2810,7 @@ class UsuariosController extends ControladorBase{
     
     	session_start();
     	$id_rol=$_SESSION["id_rol"];
+    	
     	$i=0;
     	$usuarios = new UsuariosModel();
     	$columnas = "usuarios.cedula_usuarios";
@@ -2845,7 +2846,7 @@ class UsuariosController extends ControladorBase{
     	
     
     		
-    		if($id_rol==1){
+    		if($id_rol==1 || $id_rol==43){
     		
     		$html .= "<a href='index.php?controller=Usuarios&action=index' class='small-box-footer'>Operaciones con usuarios <i class='fa fa-arrow-circle-right'></i></a>";
     				
@@ -3415,6 +3416,23 @@ public function index(){
 		  	 	
 		  }
 		  
+		  
+		  
+		  //ACTUALIZAR DATOS EN SQL
+		  require_once 'core/EntidadBaseSQL.php';
+		  $db = new EntidadBaseSQL();
+		  
+		  $colval_partner = "PHONE='$_telefono_usuarios',
+                                           PARNERT_MOVIL_PHONE='$_celular_usuarios',
+                                           EMAIL='$_correo_usuarios'";
+		  $tabla_partner = "one.PARTNER";
+		  $where_partner = "IDENTITY_CARD = '$_cedula_usuarios'";
+		  $resultPartner=$db->UpdateBy_SQL($colval_partner, $tabla_partner, $where_partner);
+		  
+		  
+		  
+		  
+		  
 		   
 		    $this->redirect("Usuarios", "index");
 		}
@@ -3931,6 +3949,120 @@ public function index(){
     
     
     
+    
+    
+    
+    public function  propaganda_actualizacion_datos(){
+        
+        session_start();
+        $_id_usuarios = $_SESSION["id_usuarios"];
+        $usuarios = new UsuariosModel();
+        
+        $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
+        
+        
+        if($action == 'ajax' && $_id_usuarios>0)
+        {
+            
+            $columnas_1="usuarios.verifi";
+            $tablas_1="public.usuarios";
+            $where_1="usuarios.id_usuarios='$_id_usuarios' and usuarios.verifi='TRUE'";
+            $id_1= "usuarios.id_usuarios";
+            $resultUsu=$usuarios->getCondiciones($columnas_1, $tablas_1, $where_1, $id_1);
+            
+            
+            if(!empty($resultUsu) && count($resultUsu)>0){
+                $respuesta='SI';
+                echo $respuesta;
+                die();
+                
+            }else{
+                
+                $respuesta='NO';
+                echo $respuesta;
+                die();
+            }
+            
+            
+        }
+        
+    }
+    
+    
+    public function  ActualizaPropagandaActualizacion(){
+        
+        session_start();
+        
+        if (isset($_SESSION['id_usuarios']) )
+        {
+            
+            $usuarios = new UsuariosModel();
+            
+            if ( isset($_POST["cedula_usuarios"]) )
+            {
+                
+                
+                $_cedula_usuarios= $_POST["cedula_usuarios"];
+                $_fecha_nacimiento_usuarios= $_POST["fecha_nacimiento_usuarios"];
+                $_correo_usuarios= $_POST["correo_usuarios"];
+                $_celular_usuarios= $_POST["celular_usuarios"];
+                $_telefono_usuarios= $_POST["telefono_usuarios"];
+                
+                
+                
+                //ACTUALIZAR DATOS EN USUARIOS
+                
+                $usuarios_act = new UsuariosModel();
+                
+                $colval_usu = "telefono_usuarios='$_telefono_usuarios',
+                                       celular_usuarios='$_celular_usuarios',
+                                       correo_usuarios='$_correo_usuarios',
+                                       verifi='TRUE'";
+                $tabla_usu = "usuarios";
+                $where_usu = "cedula_usuarios = '$_cedula_usuarios'";
+                $resultUsu=$usuarios_act->UpdateBy($colval_usu, $tabla_usu, $where_usu);
+                
+                
+                
+                
+                
+                
+                //ACTUALIZAR DATOS EN SQL
+                require_once 'core/EntidadBaseSQL.php';
+                $db = new EntidadBaseSQL();
+                
+                $colval_partner = "PHONE='$_telefono_usuarios',
+                                           PARNERT_MOVIL_PHONE='$_celular_usuarios',
+                                           EMAIL='$_correo_usuarios',
+                                           BIRTH_DATE='$_fecha_nacimiento_usuarios'";
+                $tabla_partner = "one.PARTNER";
+                $where_partner = "IDENTITY_CARD = '$_cedula_usuarios'";
+                $resultPartner=$db->UpdateBy_SQL($colval_partner, $tabla_partner, $where_partner);
+                
+                
+                
+                
+                $this->redirect("Usuarios", "Bienvenida");
+                
+            }else{
+                
+                $this->redirect("Usuarios", "Bienvenida");
+                
+            }
+            
+            
+        }else{
+                
+            $this->redirect("Usuarios","sesion_caducada");
+                
+          
+                
+            }
+    
+    }
+    
+    
+    
     public function Loguear(){
     	
     	$error=FALSE;
@@ -3990,7 +4122,7 @@ public function index(){
 	    			
     			}	
     			
-    			if($id_estado==1 || $id_estado==2 ){
+    			if($id_estado==1 || $id_estado==2 || $id_estado==3){
     				
     				
     				//obtengo ip
@@ -4022,7 +4154,7 @@ public function index(){
     				
     				if($_id_rol==1 || $_id_rol==42 || $_id_rol==43 || $_id_rol==44 || $_id_rol==45){
     					
-
+    				   
     					$this->view("BienvenidaAdmin",array(
     							"allusers"=>$_usuario
     					));
@@ -4330,6 +4462,26 @@ public function index(){
 						}	
 						
 					}
+					
+					
+					
+					
+					//ACTUALIZAR DATOS EN SQL
+					require_once 'core/EntidadBaseSQL.php';
+					$db = new EntidadBaseSQL();
+					
+					$colval_partner = "PHONE='$_telefono_usuarios',
+                                           PARNERT_MOVIL_PHONE='$_celular_usuarios',
+                                           EMAIL='$_correo_usuarios'";
+					$tabla_partner = "one.PARTNER";
+					$where_partner = "IDENTITY_CARD = '$_cedula_usuarios'";
+					$resultPartner=$db->UpdateBy_SQL($colval_partner, $tabla_partner, $where_partner);
+					
+					
+					
+					
+					
+					
 					
 					$this->redirect("Usuarios", "actualizo_perfil");
 					 

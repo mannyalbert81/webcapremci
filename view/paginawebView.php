@@ -30,7 +30,7 @@
 	  <link href="view/css/style.css" rel="stylesheet">
  
  
-	<!--
+	
  
 	 <script type="text/javascript">
      
@@ -39,7 +39,7 @@
         	   });
 
      </script>
- -->
+ 
  
   </head>
 	
@@ -51,7 +51,6 @@
 
 
 
-<!-- 
 
   <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
           <div class="modal-dialog modal-md">
@@ -62,10 +61,8 @@
            <div class="modal-body">
             
 			<p style="text-align: justify;">
-			  La administración pensando en el bienestar de los partícipes del Fondo comunica que:<br><br>
-              <strong>-</strong> Para dar cumplimiento a la resolución tomada por la Asamblea General de Representantes de Participes y disposiciones emitidas por las entidades de control (Biess y Superintendencia de Bancos), se realizarán cambios en el sistema informático  del fondo para que la tabla de amortización se adapte al método francés.<br><br> 
-                Por tal motivo el Fondo no brindará atención a los partícipes en la semana del 11 al 15 de febrero.
-               </p> 			  
+			Dando cumplimiento al Reglamento Interno del Fondo los colaboradores de Capremci <strong>no</strong> podemos recibir regalos ni obsequios por parte de los partícipes señalando que ningún trámite tiene costo alguno.
+			</p> 			  
                 			  
 			 
 			   
@@ -80,11 +77,10 @@
 
 
 
- -->
 
 
 
-
+<!-- 
 	  <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <div class="modal-dialog modal-md">
         <div class="modal-content">
@@ -111,7 +107,7 @@
 	     </div>
 	   </div>
           
-
+ -->
 
 
 
@@ -819,7 +815,7 @@
             <div class="contact-address">
               <i class="ion-ios-location-outline"></i>
               <h3>Dirección</h3>
-              <address>Quito: Baquerizo Moreno E-978 y Leonidas Plaza <br>Guayaquil: Edificio Torres de la Merced, calle Córdova 810 y V. Manuel Rendón, piso 4 oficina 12</address>
+              <address>Quito: Baquerizo Moreno E-978 y Leonidas Plaza <br>Guayaquil: Edificio Torres de la Merced, calle Córdova 810 y V. Manuel Rendón, piso 11 oficina 2</address>
             </div>
           </div>
 

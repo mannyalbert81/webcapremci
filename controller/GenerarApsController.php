@@ -6,6 +6,10 @@ class GenerarApsController extends ControladorBase{
 		parent::__construct();
 	}
 
+	
+	
+	
+	
 
 
 	public function index(){

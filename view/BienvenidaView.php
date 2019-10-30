@@ -323,6 +323,135 @@
           
           
           
+          <!-- INICIA ACTIUALIZACION DE PROPOGANDA -->
+      
+	   
+	    
+          <div class="modal fade" id="mostrarmodal_propaganda" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog" style="width: 60%;">
+        <div class="modal-content">
+           <div class="modal-header">
+         
+              <h3 style="margin-left: 15px;"><strong>Actualiza tu Información.</strong></h3>
+           </div>
+           <div class="modal-body">
+          
+          <div class="col-lg-12 col-md-12 col-xs-12">
+          
+          
+          
+        <div class="col-lg-7 col-md-7 col-xs-12">
+       	<form  action="<?php echo $helper->url("Usuarios","ActualizaPropagandaActualizacion"); ?>" method="post" enctype="multipart/form-data"  class="col-lg-12 col-md-12 col-xs-12">
+        
+         <div class="row">             			
+            			<div class="col-lg-8 col-xs-12 col-md-8">
+                    		    <div class="form-group">
+                                                      <label for="cedula_usuarios" class="control-label">Cedula:</label>
+                                                      <input type="text" class="form-control" id="cedula_usuarios" name="cedula_usuarios" value="<?php echo $_SESSION["cedula_usuarios"]; ?>"  placeholder="cedula .." readonly>
+                                                      <div id="mensaje_cedula_usuarios" class="errores"></div>
+                                </div>
+                        </div>
+        </div>
+        
+        
+         <div class="row">             			
+            			<div class="col-lg-8 col-xs-12 col-md-8">
+                    		    <div class="form-group">
+                                                      <label for="nombre_usuarios" class="control-label">Nombres:</label>
+                                                      <input type="text" class="form-control" id="nombre_usuarios" name="nombre_usuarios" value="<?php echo $_SESSION["nombre_usuarios"]; ?>"  placeholder="nombre ..">
+                                                      <div id="mensaje_nombre_usuarios" class="errores"></div>
+                                </div>
+                        </div>
+        </div>
+        
+        
+        <div class="row">             			
+            			<div class="col-lg-8 col-xs-12 col-md-8">
+                    		    <div class="form-group">
+                                                      <label for="fecha_nacimiento_usuarios" class="control-label">Fecha Nacimiento:</label>
+                                                      <input type="date" class="form-control" id="fecha_nacimiento_usuarios" name="fecha_nacimiento_usuarios" value=""  placeholder="fecha ..">
+                                                      <div id="mensaje_fecha_nacimiento_usuarios" class="errores"></div>
+                                </div>
+                        </div>
+        </div>
+        
+        
+       <div class="row">
+                        		    <div class="col-lg-8 col-xs-12 col-md-8">
+                        		    <div class="form-group">
+                                                          <label for="correo_usuarios" class="control-label">Correo:</label>
+                                                          <input type="email" class="form-control" id="correo_usuarios" name="correo_usuarios" value="" placeholder="correo..">
+                                                          <div id="mensaje_correo_usuarios" class="errores"></div>
+                                    </div>
+                        		    </div>
+      </div>
+        
+        
+        <div class="row">
+                        <div class="col-lg-8 col-xs-12 col-md-8">
+                		    <div class="form-group">
+                                                  <label for="celular_usuarios" class="control-label">Celular:</label>
+                                                  <input type="text" class="form-control" id="celular_usuarios" name="celular_usuarios" value=""  placeholder="celular..">
+                                                  <div id="mensaje_celular_usuarios" class="errores"></div>
+                            </div>
+                	    </div>
+                            		    
+         </div>   
+        
+        
+        <div class="row">
+                        <div class="col-lg-8 col-xs-12 col-md-8">
+                		    <div class="form-group">
+                                                  <label for="telefono_usuarios" class="control-label">Teléfono:</label>
+                                                  <input type="text" class="form-control" id="telefono_usuarios" name="telefono_usuarios" value=""  placeholder="teléfono..">
+                                                  <div id="mensaje_telefono_usuarios" class="errores"></div>
+                            </div>
+                	    </div>
+                            		    
+         </div>                   		    
+       
+        
+      
+      
+      
+			         
+			  			<div class="col-lg-12 col-md-12 col-xs-12 " style="text-align: left; margin-top: 10px">
+				  		 <button type="submit" id="actualizar" name="actualizar" value=""   class="btn btn-success" style="margin-top: 10px;"><i class="glyphicon glyphicon-edit"></i> Actualizar Información</button>         
+					    </div>
+  			
+  			
+       </form>
+      </div> 
+          
+          
+         <div class="col-lg-5 col-md-5 col-xs-12">
+          
+          <h4><strong>Estimado Participe.</strong></h4>
+          <br>
+          <p>Ayúdenos actualizando su información personal.</p>
+           	
+          <img src="view/images/Encuesta.png" class="img-rounded" alt="Cinque Terre" style="width: 100%; margin-top: 20px;"/> 
+         
+          </div>
+          
+         
+        
+          </div>
+            
+             
+             <p>....</p>
+         		
+          
+          </div>
+           
+	      </div>
+	     </div>
+	   </div>
+	  
+          
+          <!-- TERMINA ACTUALIZACION DE PROPAGANDA  -->
+          
+          
           
           
           
@@ -371,6 +500,33 @@
 	   </div>
           
             -->  
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
           
         </div>
         <!-- /page content -->
@@ -508,6 +664,160 @@ $(document).ready(function() {
 	</script>
         
        
+       
+       
+       
+       
+       
+       
+	
+       <script >
+
+       function addZero(i) {
+           if (i < 10) {
+               i = '0' + i;
+           }
+           return i;
+       }
+       
+		    // cada vez que se cambia el valor del combo
+		    $(document).ready(function(){
+		    
+		    $("#actualizar").click(function() 
+			{
+		    	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+		    	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
+
+		    	var cedula_usuarios = $("#cedula_usuarios").val();
+		    	var celular_usuarios = $("#celular_usuarios").val();
+		    	var telefono_usuarios = $("#telefono_usuarios").val();
+		    	var correo_usuarios  = $("#correo_usuarios").val();
+		    	var fecha_nacimiento_usuarios  = $("#fecha_nacimiento_usuarios").val();
+		    	
+		    	var hoy = new Date();
+		        var dd = hoy.getDate();
+		        var mm = hoy.getMonth()+1;
+		        var yyyy = hoy.getFullYear();
+		        
+		        dd = addZero(dd);
+		        mm = addZero(mm);
+
+
+
+		        var fecha_actual = yyyy+'-'+mm+'-'+dd;
+
+
+		      
+				
+    	        if(cedula_usuarios=="") {  
+    	        	swal("Alerta!", "Ingrese Cédula", "error")
+                    return false;
+    	        } 
+
+    	       
+    	        if(fecha_nacimiento_usuarios=="") {  
+    	        	swal("Alerta!", "Ingrese Fecha Nacimiento", "error")
+                    return false;
+
+        	    }else {
+
+
+        	    	
+        	    	if(fecha_nacimiento_usuarios >= fecha_actual ){
+
+        	        	swal("Alerta!", "Fecha Nacimiento Incorrecta", "error")
+                        return false;
+        	    	}
+
+
+        	    	if(fecha_nacimiento_usuarios < '1920-01-01' ){
+
+        	        	swal("Alerta!", "Fecha Nacimiento Incorrecta.", "error")
+                        return false;
+        	    	}
+            	    
+        	    } 
+
+        	    
+    	        if(correo_usuarios=="") {  
+    	        	swal("Alerta!", "Ingrese Correo", "error")
+                    return false;
+    	        } else if (regex.test($('#correo_usuarios').val().trim()))
+		    	{
+		    		 
+				}
+		    	else 
+		    	{
+		    		swal("Alerta!", "Ingrese Correo Válido", "error")
+		            return false;	
+			    }
+
+
+
+
+    	        
+    	        if(celular_usuarios=="") {  
+    	        	swal("Alerta!", "Ingrese Número Celular", "error")
+                    return false;
+
+        	    }else {
+
+
+        	    	 if(isNaN(celular_usuarios)){
+
+         	        	swal("Alerta!", "Ingrese Números.", "error")
+                         return false;
+                 	    }
+
+        	    	
+            	    if(celular_usuarios.length==10){
+
+    	        	
+            	    }else{
+            	    	swal("Alerta!", "Ingrese Número Valido 10 Dgts.", "error")
+                        return false;
+                	}
+        	    } 
+
+
+
+    	        if(telefono_usuarios=="") {  
+    	        	swal("Alerta!", "Ingrese Número Telefónico", "error")
+                    return false;
+
+        	    }else {
+
+
+        	    	 if(isNaN(telefono_usuarios)){
+
+         	        	swal("Alerta!", "Ingrese Números.", "error")
+                         return false;
+                 	    }
+
+        	    	
+            	    if(telefono_usuarios.length==9){
+
+    	        	
+            	    }else{
+
+            	    	swal("Alerta!", "Ingrese Número Telefónico Valido 9 Dgts.", "error")
+                        return false;
+                	}
+        	    } 
+
+    	        
+
+		    	
+			}); 
+
+
+		       
+		       
+		}); 
+
+	</script>
+       
+       
 	
 	
 	 <script type="text/javascript">
@@ -515,7 +825,8 @@ $(document).ready(function() {
         	   $(document).ready( function (){
         		   pone_espera();
         		   
-        		   load_encuesta();
+        		   //load_encuesta();
+        		   load_propaganda_actualizacion();
         		   pone_cta_individual();
         		   pone_cta_desembolsar();
         		   pone_alerta_actualizacion();
@@ -530,6 +841,32 @@ $(document).ready(function() {
 	   			});
 
 
+
+        	   function load_propaganda_actualizacion(){
+        		     
+    	    	   $.ajax({
+    	                    url: 'index.php?controller=Usuarios&action=propaganda_actualizacion_datos',
+    	                    type: 'POST',
+    	                    //data_type:json
+    	                    data: {action:'ajax'},
+    	                    success: function(D){
+
+    	                    	if (D.trim()=="NO"){
+									
+									$("#mostrarmodal_propaganda").modal("show");
+									
+								}
+    	                    	
+    	                    	
+    	                    }
+    	             });
+
+    	    	  
+  	             
+    	        }
+
+
+        	   
         	   function load_encuesta(){
       		     
     	    	   $.ajax({

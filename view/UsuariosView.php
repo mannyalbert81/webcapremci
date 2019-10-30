@@ -256,7 +256,26 @@
 			    }
 		    	else 
 		    	{
-		    		$("#mensaje_celular_usuarios").fadeOut("slow"); //Muestra mensaje de error
+
+
+		    		if(isNaN(celular_usuarios)){
+
+        				$("#mensaje_celular_usuarios").text("Ingrese Solo Números");
+        	    		$("#mensaje_celular_usuarios").fadeIn("slow"); //Muestra mensaje de error
+        	            return false;
+
+					}
+		    		
+		    		if(celular_usuarios.length==10){
+
+						$("#mensaje_celular_usuarios").fadeOut("slow"); //Muestra mensaje de error
+					}else{
+						
+						$("#mensaje_celular_usuarios").text("Ingrese 10 dígitos");
+			    		$("#mensaje_celular_usuarios").fadeIn("slow"); //Muestra mensaje de error
+			            return false;
+					}
+  	
 		            
 				}
 

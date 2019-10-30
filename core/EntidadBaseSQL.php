@@ -44,6 +44,21 @@ class EntidadBaseSQL{
     }
     
     
+    
+    public function UpdateBy_SQL($colval ,$tabla , $where){
+        try
+        {
+            $query=sqlsrv_query($this->con, "UPDATE $tabla SET  $colval   WHERE $where ");
+            
+        }
+        catch (Exception  $Ex)
+        {
+            echo 'Excepción capturada: ',  $Ex->getMessage(), "\n";
+            
+        }
+    }
+    
+    
     public function getCantidad($columna,$tabla,$where){
     
     	//parametro $columna puede ser todo (*) o una columna especifica

@@ -70,6 +70,169 @@ class IniciarController extends ControladorBase{
 	
 	
 	
+	public function comsumir_mensaje_plus(){
+	    
+	session_start();
+	
+	$codigo_verificacion = new CodigoVerificacionModel();
+	$_id_usuarios = $_SESSION['id_usuarios'];
+	
+	
+	$celular="0980981799";
+	$nombres="Maycol_Flores";
+	
+	
+	$mensaje_retorna="";
+	$cadena_recortada="";
+	$nombres_final="";
+	
+	// quito el primero 0
+	$celular_final=ltrim($celular, "0");
+	
+	// relleno espacios en blanco por _
+	$nombres_final= str_replace(' ','_',$nombres);
+	
+	// genero codigo de verificacion
+	
+	$cadena = "1234567890";
+	$longitudCadena=strlen($cadena);
+	$codigo = "";
+	$longitudPass=5;
+	for($i=1 ; $i<=$longitudPass ; $i++){
+	    $pos=rand(0,$longitudCadena-1);
+	    $codigo .= substr($cadena,$pos,1);
+	}
+	
+	
+	
+	$variables="";
+	$variables.="<pedido>";
+	
+	$variables.="<metodo>SMSEnvio</metodo>";
+	$variables.="<id_cbm>767</id_cbm>";
+	$variables.="<token>yPoJWsNjcThx2o0I</token>";
+	$variables.="<id_transaccion>2002</id_transaccion>";
+	$variables.="<telefono>$celular_final</telefono>";
+	
+	// poner el id_mensaje parametrizado en el sistema
+	
+	$variables.="<id_mensaje>22442</id_mensaje>";
+	
+	// poner 1 si va con variables
+	// poner 0 si va sin variables y sin la etiquetas datos
+	$variables.="<dt_variable>1</dt_variable>";
+	$variables.="<datos>";
+	
+	
+	/// el numero de valores va dependiendo del mensaje si usa 1 o 2 variables.
+	$variables.="<valor>$nombres_final</valor>";
+	$variables.="<valor>$codigo</valor>";
+	$variables.="</datos>";
+	$variables.="</pedido>";
+	    
+	    
+	$SMSPlusUrl = "https://smsplus.net.ec/smsplus/ws/mensajeria.php?xml={$variables}";
+	$ResponseData = file_get_contents($SMSPlusUrl);
+	
+	
+	die($ResponseData);
+	
+	
+	$cadena_recortada=substr($ResponseData,0,3);
+	
+	
+        	if($cadena_recortada=='100'){
+        	    
+        	    $funcion = "ins_codigo_verificacion";
+        	    $parametros = " '$_id_usuarios','$codigo'";
+        	    $codigo_verificacion->setFuncion($funcion);
+        	    $codigo_verificacion->setParametros($parametros);
+        	    $resultado=$codigo_verificacion->llamafuncionPG();
+        	    
+        	    $mensaje_retorna="Enviado Correctamente";
+        	    
+        	}else if ($cadena_recortada=='101'){
+        	    
+        	    
+        	    $funcion = "ins_codigo_verificacion";
+        	    $parametros = " '$_id_usuarios','$codigo'";
+        	    $codigo_verificacion->setFuncion($funcion);
+        	    $codigo_verificacion->setParametros($parametros);
+        	    $resultado=$codigo_verificacion->llamafuncionPG();
+        	    
+        	    $mensaje_retorna="Despacho en Cola";
+        	    
+        	}else if ($cadena_recortada=='200'){
+        	    
+        	    $mensaje_retorna="Estructura no Válida";
+        	    
+        	}else if ($cadena_recortada=='201'){
+        	    
+        	    $mensaje_retorna="Método no Existe";
+        	    
+        	}else if ($cadena_recortada=='202'){
+        	    
+        	    $mensaje_retorna="Parámetros Incompletos";
+        	    
+        	}else if ($cadena_recortada=='302'){
+        	    
+        	    $mensaje_retorna="Cliente no Existe";
+        	    
+        	}else if ($cadena_recortada=='303'){
+        	    
+        	    $mensaje_retorna="Mensaje muy Grande";
+        	    
+        	}else if ($cadena_recortada=='307'){
+        	    
+        	    $mensaje_retorna="Cliente no tiene Servicio Online";
+        	    
+        	}else if ($cadena_recortada=='309'){
+        	    
+        	    $mensaje_retorna="Token Inválido";
+        	    
+        	}else if ($cadena_recortada=='310'){
+        	    
+        	    $mensaje_retorna="Shortcode no disponible para el Cliente";
+        	    
+        	}else if ($cadena_recortada=='311'){
+        	    
+        	    $mensaje_retorna="Acceso Remoto no Permitido";
+        	    
+        	}else if ($cadena_recortada=='312'){
+        	    
+        	    $mensaje_retorna="Teléfono Destino en Lista Negra";
+        	    
+        	}else if ($cadena_recortada=='313'){
+        	    
+        	    $mensaje_retorna="Mensaje no Asignado";
+        	    
+        	}else if ($cadena_recortada=='314'){
+        	    
+        	    $mensaje_retorna="Data Variable no coincide con parámetro enviados";
+        	    
+        	}else if ($cadena_recortada=='315'){
+        	    
+        	    $mensaje_retorna="Teléfono Incorrecto";
+        	    
+        	}else if ($cadena_recortada=='400'){
+        	    
+        	    $mensaje_retorna="No se pudo procesar";
+        	    
+        	}else{
+        	    
+        	    $mensaje_retorna="Error Desconocido";
+        	}
+        	
+	
+	
+	return $mensaje_retorna;
+	
+	
+	}
+	
+	
+	
+	
 	public function index(){
 	
 		session_start();
@@ -79,9 +242,6 @@ class IniciarController extends ControladorBase{
 			$encuestas_cabeza= new EncuestasCabezaModel();
 	
 			
-			
-				
-	
 				$columnas="pre.nombre_preguntas_encuestas_participes,
 						  CASE  WHEN pre.id_preguntas_encuestas_participes=1 THEN  (select count(*) from public.encuentas_participes_detalle enc where enc.id_preguntas_encuestas_participes=pre.id_preguntas_encuestas_participes and enc.id_preguntas_encuestas_participes=1 and enc.respuestas_encuestas_participes='Bueno') END BUENO_PREGUNTA_1,
 						  CASE  WHEN pre.id_preguntas_encuestas_participes=1 THEN  (select count(*) from public.encuentas_participes_detalle enc where enc.id_preguntas_encuestas_participes=pre.id_preguntas_encuestas_participes and enc.id_preguntas_encuestas_participes=1 and enc.respuestas_encuestas_participes='Intermedio') END INTERMEDIO_1,

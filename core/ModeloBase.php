@@ -95,7 +95,7 @@ class ModeloBase extends EntidadBase{
     }
     
     
-    
+   
     
 
     public function ConsultaSql($query){
@@ -130,7 +130,14 @@ class ModeloBase extends EntidadBase{
     }
     
 
-    public function enviaquery($query){
+  
+    
+    
+    //Aqui podemos montarnos metodos para los modelos de consulta
+    
+    
+    
+    public function llamarconsulta($query){
         $resultSet=array();
         try{
             
@@ -155,11 +162,59 @@ class ModeloBase extends EntidadBase{
         return $resultSet;
     }
     
+    public function llamarconsultaPG($query){
+        $resultSet=array();
+        try{
+            
+            $result=pg_query($this->con(), $query);
+            
+            if( $result === false )
+                throw new Exception( "Error PostgreSQL ".pg_last_error() );
+                
+                if(pg_num_rows($result)>0)
+                {
+                    $resultSet =  pg_fetch_array($result, 0, PGSQL_NUM);
+                }
+                
+        }catch (Exception $Ex){
+            
+            $resultSet=null;
+        }
+        
+        return $resultSet;
+    }
     
-    //Aqui podemos montarnos metodos para los modelos de consulta
+    public function getconsultaPG($funcion,$parametros){
+        return "SELECT ". $funcion." ( ".$parametros." )";
+    }
     
     
     
+    
+    public function enviaquery($query){
+        $resultSet=array();
+        try{
+            
+            $result=pg_query($this->con(), $query);
+            
+            if( $result === false )
+                throw new Exception( "Error PostgreSQL ".pg_last_error() );
+                
+                
+                if(pg_num_rows($result)>0)
+                {
+                    while ($row = pg_fetch_object($result)) {
+                        $resultSet[]=$row;
+                    }
+                }
+                
+        }catch (Exception $Ex){
+            
+            $resultSet=null;
+        }
+        
+        return $resultSet;
+    }
     
 }
 ?>

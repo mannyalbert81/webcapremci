@@ -294,7 +294,41 @@
     </script>  
     
     
-    
+     <script>
+
+     $(document).ready( function (){
+		  
+    	 load_consulta_numero_memorando();
+    	 load_consulta_numero_memorando_1();
+			});
+     
+     function load_consulta_numero_memorando(){
+		     
+	    	   $.ajax({
+	                    url: 'index.php?controller=Memos&action=consulta_numero_memorando',
+	                    type: 'POST',
+	                    data: {action:'ajax'},
+	                    success: function(x){
+	                      $("#numero_memos_cab").val(x);
+	                      
+	                    }
+	             });
+	        }
+		    
+     function load_consulta_numero_memorando_1(){
+	     
+  	   $.ajax({
+                  url: 'index.php?controller=Memos&action=consulta_numero_memorando_1',
+                  type: 'POST',
+                  data: {action:'ajax'},
+                  success: function(x){
+                    $("#mod_mem_act").val(x);
+                    
+                  }
+           });
+      }
+		
+   </script>
    
     
 			        
@@ -351,11 +385,33 @@
                  <div class="x_content">
         
         
-            <form action="<?php echo $helper->url("Memos","InsertaMemo"); ?>" method="post" enctype="multipart/form-data">      
+            <form action="<?php echo $helper->url("Memos","InsertaMemo"); ?>" method="post" onsubmit="return checkSubmit();" enctype="multipart/form-data">      
         
+       
         
             <div class="row">
-        			<div class="col-lg-4 col-xs-12 col-md-4">
+            
+                   <div class="col-lg-3 col-xs-12 col-md-3">
+                          <div class="form-group">
+                          <label for="numero_memos_cab" class="control-label">No. Memorando:</label>
+                          <input type="text" class="form-control" id="numero_memos_cab" name="numero_memos_cab" value=""  placeholder="# memorando.." readonly>
+                    	  <div id="mensaje_numero_memos_cab" class="errores"></div>
+                    	  </div>
+                    </div>
+                    
+                    <div class="col-lg-1 col-xs-12 col-md-1" style="margin-top: 23px;">
+           		   			<button type="button" id="btn_agre" name="btn_agre" data-toggle="modal" data-target="#mod_reasignar" class="btn btn-warning" title="Actualizar Consecutivo"><i class="glyphicon glyphicon-edit"></i></button>
+			        </div>
+                    
+                    <div class="col-lg-2 col-xs-12 col-md-2">
+                                  <div class="form-group">
+                                  <label for="fecha_memos_cab" class="control-label">Fecha Memorando:</label>
+                                  <input type="date" class="form-control" id="fecha_memos_cab" name="fecha_memos_cab" value="<?php echo date("Y-m-d");?>"  placeholder="Fecha..">
+                            	  <div id="mensaje_fecha_memos_cab" class="errores"></div>
+                            	  </div>
+                    </div>
+            
+        			<div class="col-lg-3 col-xs-12 col-md-3">
                           <div class="form-group">
                           <label for="txt_directorio" class="control-label">Directorios:</label>
                           <input type="text" class="form-control" id="txt_directorio" name="txt_directorio" value=""  placeholder="Ingrese Destinatario">
@@ -363,13 +419,15 @@
 			         	  </div>
            		   </div>
            		   
-           		   <div class="col-lg-4 col-xs-12 col-md-4" style="margin-top: 23px;">
+           		   <div class="col-lg-2 col-xs-12 col-md-2" style="margin-top: 23px;">
            		   		  <span class="input-group-btn">
 			         		<button type="button" id="btn_to" name="btn_to" class="btn btn-primary">To</button>
 	                 		<button type="button" id="btn_cc" name="btn_cc" class="btn btn-info">Cc</button>
 			         		<button type="button" id="btn_borr" name="btn_borr" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
 			        	   </span>
            		   </div>
+           		   
+           		  
           </div>
           
         
@@ -397,9 +455,6 @@
                     </div>
         </div>
             
-        
-     
-        
         
         <div class="row">
          	<div class="col-lg-12 col-xs-12 col-md-12">
@@ -482,6 +537,138 @@
 
 
 
+
+
+
+
+
+    <!-- PARA VENTANAS MODALES -->
+    
+      <div class="modal fade" id="mod_reasignar" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Actualizar No. Memorando</h4>
+          </div>
+          <div class="modal-body">
+          <!-- empieza el formulario modal productos -->
+          	<form class="form-horizontal" method="post" id="frm_reasignar" name="frm_reasignar">
+          	
+          	  <div class="form-group">
+				<label for="mod_mem_act" class="col-sm-3 control-label">No. Actual:</label>
+				<div class="col-sm-8">
+				  <input type="text" class="form-control" id="mod_mem_act" name="mod_mem_act"  readonly>
+				</div>
+			  </div>
+			  
+			  
+			  <div class="form-group">
+				<label for="mod_mem_usu" class="col-sm-3 control-label">No. A Usar:</label>
+				<div class="col-sm-8">
+				  <input type="text" class="form-control" id="mod_mem_usu" name="mod_mem_usu">
+				</div>
+			  </div>
+			  
+			  
+			  
+			  <div id="msg_frm_reasignar" class=""></div>
+			  
+          	</form>
+          	<!-- termina el formulario modal lote -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			<button type="submit" form="frm_reasignar" class="btn btn-primary" id="guardar_datos">Actualizar</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+</div>
+    
+
+
+
+    <script>
+
+
+    	$("#frm_reasignar").on("submit",function(event){
+
+
+
+    	
+    		let $mod_mem_act = $('#mod_mem_act').val();
+    		let $mod_mem_usu = $('#mod_mem_usu').val();
+    		
+    		
+    		if($mod_mem_usu > 0) {  
+    			
+	        } else {  
+
+	        	swal("Alerta!", "Ingrese Número a Actualizar", "error")
+                return false;
+	        		
+	        } 
+
+    		var parametros = {mod_mem_usu:$mod_mem_usu}
+
+
+    		var $div_respuesta = $("#msg_frm_reasignar"); $div_respuesta.text("").removeClass();
+    			
+    			
+    		$.ajax({
+    			beforeSend:function(){},
+    			url:"index.php?controller=Memos&action=Actualizar_Numero_Memorando",
+    			type:"POST",
+    			dataType:"json",
+    			data:parametros
+    		}).done(function(respuesta){
+
+
+				if(respuesta.valor == 0){
+    				
+    				$("#msg_frm_reasignar").text("No. Memorando Existe Generado").addClass("alert alert-danger");
+    				load_consulta_numero_memorando();
+    				load_consulta_numero_memorando_1();
+    				
+    		    }
+					
+    			if(respuesta.valor > 0){
+    				
+    				$("#msg_frm_reasignar").text("Actualizado Correctamente").addClass("alert alert-success");
+    				load_consulta_numero_memorando();
+    				load_consulta_numero_memorando_1();
+    				$('#mod_mem_usu').val('');
+    		    }
+
+
+    		    
+    			
+    			
+    		}).fail(function(xhr,status,error){
+    			
+    			var err = xhr.responseText
+    			console.log(err);
+    			
+    			$div_respuesta.text("Error al actualizar número de memorando").addClass("alert alert-warning");
+    			
+    		}).always(function(){
+    					
+    		})
+    		
+    		event.preventDefault();
+    	})
+    	
+    	
+    </script>
+  
+
+
+
+
+
 	<script type="text/javascript">
 
 	$(document).ready(function(){
@@ -494,6 +681,8 @@
 		   var usuarios_to= $("#usuarios_to").val();
 		   var usuarios_cc= $("#usuarios_cc").val();
 		   var asunto= $("#asunto").val();
+		   var numero_memos_cab= $("#numero_memos_cab").val();
+		   var fecha_memos_cab= $("#fecha_memos_cab").val();
 		 
 		   
 		   var archivo_1= $("#archivo_1").val();
@@ -505,6 +694,34 @@
 		   var contar_to = $("#usuarios_to option").length;
 
 
+
+		   if (numero_memos_cab == "" )
+	    	{
+		    	
+	    		$("#mensaje_numero_memos_cab").text("Ingrese No. Memorando");
+	    		$("#mensaje_numero_memos_cab").fadeIn("slow"); //Muestra mensaje de error
+	            return false;
+		    }
+	    	else 
+	    	{
+	    		$("#mensaje_numero_memos_cab").fadeOut("slow"); //Muestra mensaje de error
+	            
+			}
+
+
+		   if (fecha_memos_cab == "" )
+	    	{
+		    	
+	    		$("#mensaje_fecha_memos_cab").text("Seleccione Fecha Memorando");
+	    		$("#mensaje_fecha_memos_cab").fadeIn("slow"); //Muestra mensaje de error
+	            return false;
+		    }
+	    	else 
+	    	{
+	    		$("#mensaje_fecha_memos_cab").fadeOut("slow"); //Muestra mensaje de error
+	            
+			}
+		   
 				
 		    if (contar_to==0 || contar_to =="")
 	    	{
@@ -644,7 +861,14 @@
 		  $("#mensaje_asunto").fadeOut("slow");
 	    });
 
+    	$( "#numero_memos_cab" ).focus(function() {
+  		  $("#mensaje_numero_memos_cab").fadeOut("slow");
+  	    });
     	
+    	$( "#fecha_memos_cab" ).focus(function() {
+    	  $("#mensaje_fecha_memos_cab").fadeOut("slow");
+    	});
+      	
     	$( "#archivo_1" ).focus(function() {
   		  $("#mensaje_archivo_1").fadeOut("slow");
   	    });
@@ -666,13 +890,34 @@
 	</script>
 
 
+
+
+       <script type="text/javascript">
+
+            enviando = false; //Obligaremos a entrar el if en el primer submit
+            
+            function checkSubmit() {
+                if (!enviando) {
+            		enviando= true;
+            		return true;
+                } else {
+                    //Si llega hasta aca significa que pulsaron 2 veces el boton submit
+                   
+                  
+                    return false;
+                }
+            }
+        
+        </script>
+
+
     <script src="view/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="view/build/js/custom.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     
     <script src="view/AdminLTE-2.4.2/bower_components/ckeditor/ckeditor.js"></script>
 	<script src="view/AdminLTE-2.4.2/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-	
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 	<script>
 	  $(function () {
 	    // Replace the <textarea id="editor1"> with a CKEditor

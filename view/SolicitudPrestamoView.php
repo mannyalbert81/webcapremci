@@ -145,8 +145,6 @@
 			});
 		});
 	
-       
-
 	</script>
 		 
 		 
@@ -158,7 +156,6 @@
 		$(document).ready(function(){
 
 			$("#id_cantones_vivienda").change(function(){
-
 				
 	            // obtenemos el combo de resultado combo 2
 	           var $id_parroquias_vivienda = $("#id_parroquias_vivienda");
@@ -166,8 +163,6 @@
 
 	            // lo vaciamos
 	           var id_cantones_vivienda = $(this).val();
-
-	          
 	          
 	            if(id_cantones_vivienda != 0)
 	            {
@@ -211,13 +206,6 @@
 	</script>
 		    
 			
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -491,7 +479,7 @@
 			
           var tipo_pago_cuenta_bancaria = $(this).val();
 			
-          if(tipo_pago_cuenta_bancaria == 'Depósito' || tipo_pago_cuenta_bancaria == 'Retira Cheque' )
+          if(tipo_pago_cuenta_bancaria == 'Depósito' || tipo_pago_cuenta_bancaria == 'Retira Cheque')
           {
        	   $("#div_tipo_pago_cuenta_bancaria").fadeIn("slow");
           }
@@ -679,6 +667,208 @@
         
         
         
+        
+        
+        
+        
+        
+	
+       <script >
+		    // cada vez que se cambia el valor del combo
+		    $(document).ready(function(){
+		    	
+         		//btn_verificar
+		    $("#btn_enviar").click(function() 
+			{
+
+		    	$('#id_codigo_verificacion').val("0");
+		    	$('#numero_codigo_verificacion').val("");
+		    	
+		    	var numero_celular_solicitante = $("#numero_celular_solicitante").val();
+		    	var numero_codigo_verificacion = $("#numero_codigo_verificacion").val();
+		    	
+
+
+		    	if (numero_celular_solicitante == "" )
+		    	{
+		    		swal("Alerta!", "Ingrese Celular", "error")
+                    return false;
+		    		
+			    }
+		    	else 
+		    	{
+
+
+		    		if(isNaN(numero_celular_solicitante)){
+
+		    			swal("Alerta!", "Ingrese Solo Números", "error")
+	                    return false;
+
+					}
+		    		
+		    		if(numero_celular_solicitante.length==10){
+
+						
+					}else{
+						
+						swal("Alerta!", "Ingrese 10 Dgts.", "error")
+	                    return false;
+
+					}
+  	
+		            
+				}
+
+
+
+
+
+		    	var parametros = {numero_celular_solicitante:numero_celular_solicitante}
+	    		$.ajax({
+	    			beforeSend:function(){},
+	    			url:"index.php?controller=SolicitudPrestamo&action=EnviarSMS",
+	    			type:"POST",
+	    			dataType:"json",
+	    			data:parametros
+	    		}).done(function(respuesta){
+	    					
+	    			if(respuesta.valor == 1 ){
+	    				$('#id_codigo_verificacion').val("0");
+	    				swal("Alerta!", "Enviado Correctamente", "success")
+	               	
+	    		    }else{
+	    		    	$('#id_codigo_verificacion').val("0");
+	    		    	swal("Alerta!", respuesta.mensaje, "error")
+		    		}
+	    			
+	    			
+	    		}).fail(function(xhr,status,error){
+	    			
+	    			var err = xhr.responseText
+	    			console.log(err);
+	    			$('#id_codigo_verificacion').val("0");
+	    			swal("Alerta!", "Mensaje no Enviado", "error")
+                   
+	    			
+	    		}).always(function(){
+	    					
+	    		})
+	    		
+	    		event.preventDefault();
+				
+    	      
+			}); 
+
+
+		       
+		       
+		}); 
+
+	</script>
+        
+       
+        
+        
+        
+         
+        
+	
+       <script >
+		    // cada vez que se cambia el valor del combo
+		    $(document).ready(function(){
+		    	
+         		//btn_verificar
+		    $("#btn_verificar").click(function() 
+			{
+		    	
+		    	var numero_celular_solicitante = $("#numero_celular_solicitante").val();
+		    	var numero_codigo_verificacion = $("#numero_codigo_verificacion").val();
+		    	var id_codigo_verificacion = $("#id_codigo_verificacion").val();
+
+
+				if (id_codigo_verificacion > 0 ){
+					swal("Alerta!", "Código Validado Correctamente", "success")
+                    return false;
+
+				}else{
+
+					
+				}
+
+		    	
+		    	if (numero_codigo_verificacion == "" )
+		    	{
+		    		swal("Alerta!", "Ingrese Código Verificación", "error")
+                    return false;
+		    		
+			    }
+		    	else 
+		    	{
+
+
+		    		if(isNaN(numero_codigo_verificacion)){
+
+		    			swal("Alerta!", "Ingrese Solo Números", "error")
+	                    return false;
+
+					}
+		    		
+		    		if(numero_codigo_verificacion.length==5){
+
+						
+					}else{
+						
+						swal("Alerta!", "Ingrese 5 Dgts.", "error")
+	                    return false;
+					}
+  		            
+				}
+
+
+		    	var parametros = {numero_codigo_verificacion:numero_codigo_verificacion}
+	    		$.ajax({
+	    			beforeSend:function(){},
+	    			url:"index.php?controller=SolicitudPrestamo&action=Validar_Codigo_Verificacion",
+	    			type:"POST",
+	    			dataType:"json",
+	    			data:parametros
+	    		}).done(function(respuesta){
+	    					
+	    			if(respuesta.valor > 0 ){
+
+	    				$('#id_codigo_verificacion').val(respuesta.id_codigo_verificacion);
+	    				swal("Alerta!", "Código Validado Correctamente", "success")
+	               	    
+	    		    }
+	    			
+	    			
+	    		}).fail(function(xhr,status,error){
+	    			
+	    			var err = xhr.responseText
+	    			console.log(err);
+	    			$('#id_codigo_verificacion').val("0");
+	    			swal("Alerta!", "Código no Validado", "error")
+                   
+	    			
+	    		}).always(function(){
+	    					
+	    		})
+	    		
+	    		event.preventDefault();
+				
+    	      
+			}); 
+
+
+		       
+		       
+		}); 
+
+	</script>
+        
+       
+        
+        
        
       
        <script >
@@ -725,6 +915,9 @@
 		    	  var referencia_direccion_domicilio_vivienda        = $("#referencia_direccion_domicilio_vivienda").val();
 		    	  var numero_casa_solicitante        				 = $("#numero_casa_solicitante").val();
 		    	  var numero_celular_solicitante        			 = $("#numero_celular_solicitante").val();
+		    	  var id_codigo_verificacion        			     = $("#id_codigo_verificacion").val();
+		    	  var numero_codigo_verificacion                     = $("#numero_codigo_verificacion").val();
+		    	  
 		    	  var numero_trabajo_solicitante        			 = $("#numero_trabajo_solicitante").val();
 		    	  var extension_solicitante        					 = $("#extension_solicitante").val();
 		    	  var mode_solicitante        						 = $("#mode_solicitante").val();
@@ -960,7 +1153,7 @@
 				}
 
 
-				 if(tipo_pago_cuenta_bancaria =='Depósito' || tipo_pago_cuenta_bancaria =='Retira Cheque'){
+				 if(tipo_pago_cuenta_bancaria =='Depósito' || tipo_pago_cuenta_bancaria == 'Retira Cheque'){
 
 
 				    	
@@ -1428,7 +1621,7 @@
 			    		contador = nombre_propietario_vivienda.split(" ");
 			    		numeroPalabras = contador.length;
 			    		
-						if(numeroPalabras==2 || numeroPalabras==4 || numeroPalabras==3){
+						if(numeroPalabras>0){
 
 							$("#mensaje_nombre_propietario_vivienda").fadeOut("slow"); //Muestra mensaje de error
 				              
@@ -1467,6 +1660,80 @@
 			    }
 
 				
+		    	if (numero_celular_solicitante == "" )
+		    	{
+			    	
+		    		$("#mensaje_numero_celular_solicitante").text("Ingrese # celular");
+		    		$("#mensaje_numero_celular_solicitante").fadeIn("slow"); //Muestra mensaje de error
+		            
+		            $("html, body").animate({ scrollTop: $(mensaje_numero_celular_solicitante).offset().top }, tiempo);
+		            return false;
+			    }
+		    	else 
+		    	{
+
+
+		    		if(isNaN(numero_celular_solicitante)){
+
+        				$("#mensaje_numero_celular_solicitante").text("Ingrese Solo Números");
+        	    		$("#mensaje_numero_celular_solicitante").fadeIn("slow"); //Muestra mensaje de error
+        	    		  $("html, body").animate({ scrollTop: $(mensaje_numero_celular_solicitante).offset().top }, tiempo);
+        	            return false;
+
+					}
+		    		
+		    		if(numero_celular_solicitante.length==10){
+
+						$("#mensaje_numero_celular_solicitante").fadeOut("slow"); //Muestra mensaje de error
+					}else{
+						
+						$("#mensaje_numero_celular_solicitante").text("Ingrese 10 dígitos");
+			    		$("#mensaje_numero_celular_solicitante").fadeIn("slow"); //Muestra mensaje de error
+			    		 $("html, body").animate({ scrollTop: $(mensaje_numero_celular_solicitante).offset().top }, tiempo);
+			            return false;
+					}
+			    	
+		    		
+		            
+				}
+
+
+		    	if (numero_codigo_verificacion == "" )
+		    	{
+			    	
+		    		$("#mensaje_numero_codigo_verificacion").text("Ingrese Código Verficación");
+		    		$("#mensaje_numero_codigo_verificacion").fadeIn("slow"); //Muestra mensaje de error
+		            
+		            $("html, body").animate({ scrollTop: $(mensaje_numero_codigo_verificacion).offset().top }, tiempo);
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_numero_codigo_verificacion").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+		    	
+		    	if (id_codigo_verificacion == 0 )
+		    	{
+			    	
+		    		$("#mensaje_numero_codigo_verificacion").text("Verifique su Código");
+		    		$("#mensaje_numero_codigo_verificacion").fadeIn("slow"); //Muestra mensaje de error
+		            
+		            $("html, body").animate({ scrollTop: $(mensaje_numero_codigo_verificacion).offset().top }, tiempo);
+		            return false;
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_numero_codigo_verificacion").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+
+
+
+
+				
+
 				
 		    	
 				
@@ -1484,20 +1751,7 @@
 		    		$("#mensaje_numero_casa_solicitante").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
-		    	if (numero_celular_solicitante == "" )
-		    	{
-			    	
-		    		$("#mensaje_numero_celular_solicitante").text("Ingrese # celular");
-		    		$("#mensaje_numero_celular_solicitante").fadeIn("slow"); //Muestra mensaje de error
-		            
-		            $("html, body").animate({ scrollTop: $(mensaje_numero_celular_solicitante).offset().top }, tiempo);
-		            return false;
-			    }
-		    	else 
-		    	{
-		    		$("#mensaje_numero_celular_solicitante").fadeOut("slow"); //Muestra mensaje de error
-		            
-				}
+		    	
 				
 		    	if (numero_trabajo_solicitante == "" )
 		    	{
@@ -2633,6 +2887,12 @@
 		        $( "#numero_celular_solicitante" ).focus(function() {
 					  $("#mensaje_numero_celular_solicitante").fadeOut("slow");
 				});
+
+		        $( "#numero_codigo_verificacion" ).focus(function() {
+					  $("#mensaje_numero_codigo_verificacion").fadeOut("slow");
+				});
+		        
+				
 		        $( "#numero_trabajo_solicitante" ).focus(function() {
 					  $("#mensaje_numero_trabajo_solicitante").fadeOut("slow");
 				});
@@ -3097,7 +3357,7 @@
 			   					<div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
                                                       <label for="numero_cedula_datos_personales" class="control-label">Número Cédula:</label>
-                                                     <input type="number" class="form-control" id="numero_cedula_datos_personales" name="numero_cedula_datos_personales" value="<?php echo $resEdit->numero_cedula_datos_personales; ?>" placeholder="cédula..">
+                                                     <input type="number" class="form-control" id="numero_cedula_datos_personales" name="numero_cedula_datos_personales" value="<?php echo $resEdit->numero_cedula_datos_personales; ?>" placeholder="cédula.." readonly>
                                                       <div id="mensaje_numero_cedula_datos_personales" class="errores"></div>
                                 </div>
                                 </div>
@@ -3459,29 +3719,58 @@
 	         </div>
 	         <div class="panel-body">
 			 
+			 
+			  <div class="row">
+			 					<div class="col-lg-2 col-xs-12 col-md-2">
+                    		    <div class="form-group">
+                                                      <label for="numero_celular_solicitante" class="control-label">Número Celular:</label>
+                                                      <input type="number" class="form-control" id="numero_celular_solicitante" name="numero_celular_solicitante" value="<?php echo $resEdit->numero_celular_solicitante; ?>" placeholder="0999999999.." readonly>
+                                                      <div id="mensaje_numero_celular_solicitante" class="errores"></div>
+                                </div>
+            					</div>  
+            					
+            					
+            					<div class="col-lg-2 col-xs-12 col-md-2">
+                    		    <div class="form-group">
+                                                      <label for="numero_codigo_verificacion" class="control-label">Código Verificación:</label>
+                                                      <input type="number" class="form-control" id="numero_codigo_verificacion" name="numero_codigo_verificacion" value="<?php echo $resEdit->numero_codigo_verificacion; ?>" placeholder="sms.." readonly>
+                                                      <input type="hidden" class="form-control" id="id_codigo_verificacion" name="id_codigo_verificacion" value="<?php echo $resEdit->id_codigo_verificacion; ?>" readonly>
+                                                      <div id="mensaje_numero_codigo_verificacion" class="errores"></div>
+                                </div>
+            					</div>
+            					
+            					
+            					
+            					<div class="col-lg-4 col-xs-12 col-md-4" style="margin-top: 23px;">
+                   		   		   <span class="input-group-btn">
+        			         		<button type="button" id="btn_enviar1" name="btn_enviar1" class="btn btn-primary">Enviar Código</button>
+        	                 		<button type="button" id="btn_verificar1" name="btn_verificar1" class="btn btn-info">Verificar Código</button>
+        			         		</span>
+                   		  		 </div>
+            					
+			 </div>
+			 
+			 
+			 
+			 
+			 
 			 <div class="row">
                     		   
             					<div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
                                                       <label for="numero_casa_solicitante" class="control-label">Número Casa:</label>
-                                                      <input type="number" class="form-control" id="numero_casa_solicitante" name="numero_casa_solicitante" value="<?php echo $resEdit->numero_casa_solicitante; ?>" placeholder="# casa..">
+                                                      <input type="number" class="form-control" id="numero_casa_solicitante" name="numero_casa_solicitante" value="<?php echo $resEdit->numero_casa_solicitante; ?>" placeholder="022222222..">
                                                       <div id="mensaje_numero_casa_solicitante" class="errores"></div>
                                 </div>
             					</div>   
             
-            					<div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="numero_celular_solicitante" class="control-label">Número Celular:</label>
-                                                      <input type="number" class="form-control" id="numero_celular_solicitante" name="numero_celular_solicitante" value="<?php echo $resEdit->numero_celular_solicitante; ?>" placeholder="# celular..">
-                                                      <div id="mensaje_numero_celular_solicitante" class="errores"></div>
-                                </div>
-            					</div>  
+            				 
             
             
             					<div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
                                                       <label for="numero_trabajo_solicitante" class="control-label">Número Trabajo:</label>
-                                                      <input type="number" class="form-control" id="numero_trabajo_solicitante" name="numero_trabajo_solicitante" value="<?php echo $resEdit->numero_trabajo_solicitante; ?>" placeholder="# trabajo..">
+                                                      <input type="number" class="form-control" id="numero_trabajo_solicitante" name="numero_trabajo_solicitante" value="<?php echo $resEdit->numero_trabajo_solicitante; ?>" placeholder="0222222222..">
                                                       <div id="mensaje_numero_trabajo_solicitante" class="errores"></div>
                                 </div>
             					</div>  
@@ -3548,6 +3837,8 @@
                         							  <option value="Comadre" 				<?php if($resEdit->relacion_referencia_personal == 'Comadre'){echo ' selected="selected" ' ;}else{} ?>>Comadre</option>
                         							  <option value="Compañero Laboral (a)" <?php if($resEdit->relacion_referencia_personal == 'Compañero Laboral (a)'){echo ' selected="selected" ' ;}else{} ?>>Compañero Laboral (a)</option>
                         							  <option value="Jéfe (a)" 				<?php if($resEdit->relacion_referencia_personal == 'Jéfe (a)'){echo ' selected="selected" ' ;}else{} ?>>Jéfe (a)</option>
+                        							  <option value="Otro" 				    <?php if($resEdit->relacion_referencia_personal == 'Otro'){echo ' selected="selected" ' ;}else{} ?>>Otro</option>
+                        							 
                         							  </select>
                                                       <div id="mensaje_relacion_referencia_personal" class="errores"></div>
                                 </div>
@@ -3606,6 +3897,9 @@
                         							  <option value="Sobrino (a)" <?php if($resEdit->parentesco_referencia_familiar == 'Sobrino (a)'){echo ' selected="selected" ' ;}else{} ?>>Sobrino (a)</option>
                         							  <option value="Abuelo (a)"  <?php if($resEdit->parentesco_referencia_familiar == 'Abuelo (a)'){echo ' selected="selected" ' ;}else{} ?>>Abuelo (a)</option>
                         							  <option value="Hijo (a)" 	  <?php if($resEdit->parentesco_referencia_familiar == 'Hijo (a)'){echo ' selected="selected" ' ;}else{} ?>>Hijo (a)</option>
+                        							  <option value="Madre"       <?php if($resEdit->parentesco_referencia_familiar == 'Madre'){echo ' selected="selected" ' ;}else{} ?>>Madre</option>
+                        							  <option value="Padre"       <?php if($resEdit->parentesco_referencia_familiar == 'Padre'){echo ' selected="selected" ' ;}else{} ?>>Padre</option>
+                        							  <option value="Otro"        <?php if($resEdit->parentesco_referencia_familiar == 'Otro'){echo ' selected="selected" ' ;}else{} ?>>Otro</option>
                         							  </select>
                                                       <div id="mensaje_parentesco_referencia_familiar" class="errores"></div>
                                 </div>
@@ -4236,7 +4530,7 @@
 			   					<div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
                                                       <label for="numero_cedula_datos_personales" class="control-label">Número Cédula:</label>
-                                                     <input type="number" class="form-control" id="numero_cedula_datos_personales" name="numero_cedula_datos_personales" value="" placeholder="cédula..">
+                                                     <input type="number" class="form-control" id="numero_cedula_datos_personales" name="numero_cedula_datos_personales" value="<?php if(!empty($resultUsu)){foreach ($resultUsu as $res){ echo $res->cedula_usuarios; }}else{}?>" placeholder="cédula.." readonly>
                                                       <div id="mensaje_numero_cedula_datos_personales" class="errores"></div>
                                 </div>
                                 </div>
@@ -4597,29 +4891,56 @@
 	         </div>
 	         <div class="panel-body">
 			 
+			  <div class="row">
+			 					<div class="col-lg-2 col-xs-12 col-md-2">
+                    		    <div class="form-group">
+                                                      <label for="numero_celular_solicitante" class="control-label">Número Celular:</label>
+                                                      <input type="number" class="form-control" id="numero_celular_solicitante" name="numero_celular_solicitante" value="" placeholder="0999999999..">
+                                                      <div id="mensaje_numero_celular_solicitante" class="errores"></div>
+                                </div>
+            					</div>  
+            					
+            					<div class="col-lg-2 col-xs-12 col-md-2">
+                    		    <div class="form-group">
+                                                      <label for="numero_codigo_verificacion" class="control-label">Código Verificación:</label>
+                                                      <input type="number" class="form-control" id="numero_codigo_verificacion" name="numero_codigo_verificacion" value="12345" placeholder="sms.." readonly>
+                                                      <input type="hidden" class="form-control" id="id_codigo_verificacion" name="id_codigo_verificacion" value="1" readonly>
+                                                     
+                                                      <div id="mensaje_numero_codigo_verificacion" class="errores"></div>
+                                </div>
+            					</div>
+            					
+            					
+            					
+            					<div class="col-lg-4 col-xs-12 col-md-4" style="margin-top: 23px;">
+                   		   		   <span class="input-group-btn">
+        			         		<button type="button" id="btn_enviar_prueba" name="btn_enviar_prueba" class="btn btn-primary">Enviar Código</button>
+        	                 		<button type="button" id="btn_verificar_prueba" name="btn_verificar_prueba" class="btn btn-info">Verificar Código</button>
+        			         		</span>
+                   		  		 </div>
+            					
+			 </div>
+			 
+			 
+			 
+			 
+			 
+			 
 			 <div class="row">
                     		   
             					<div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
                                                       <label for="numero_casa_solicitante" class="control-label">Número Casa:</label>
-                                                      <input type="number" class="form-control" id="numero_casa_solicitante" name="numero_casa_solicitante" value="" placeholder="# casa..">
+                                                      <input type="number" class="form-control" id="numero_casa_solicitante" name="numero_casa_solicitante" value="" placeholder="022222222..">
                                                       <div id="mensaje_numero_casa_solicitante" class="errores"></div>
                                 </div>
             					</div>   
             
-            					<div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="numero_celular_solicitante" class="control-label">Número Celular:</label>
-                                                      <input type="number" class="form-control" id="numero_celular_solicitante" name="numero_celular_solicitante" value="" placeholder="# celular..">
-                                                      <div id="mensaje_numero_celular_solicitante" class="errores"></div>
-                                </div>
-            					</div>  
-            
-            
+            					
             					<div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
                                                       <label for="numero_trabajo_solicitante" class="control-label">Número Trabajo:</label>
-                                                      <input type="number" class="form-control" id="numero_trabajo_solicitante" name="numero_trabajo_solicitante" value="" placeholder="# trabajo..">
+                                                      <input type="number" class="form-control" id="numero_trabajo_solicitante" name="numero_trabajo_solicitante" value="" placeholder="022222222..">
                                                       <div id="mensaje_numero_trabajo_solicitante" class="errores"></div>
                                 </div>
             					</div>  
@@ -4645,6 +4966,10 @@
              
             </div>
 			
+			 
+			 
+			
+			 
 			 
   			</div>
   			</div>
@@ -4686,6 +5011,7 @@
                         							  <option value="Comadre">Comadre</option>
                         							  <option value="Compañero Laboral (a)">Compañero Laboral (a)</option>
                         							  <option value="Jéfe (a)">Jéfe (a)</option>
+                        							   <option value="Otro">Otro</option>
                         							  </select>
                                                       <div id="mensaje_relacion_referencia_personal" class="errores"></div>
                                 </div>
@@ -4744,6 +5070,9 @@
                         							  <option value="Sobrino (a)">Sobrino (a)</option>
                         							  <option value="Abuelo (a)">Abuelo (a)</option>
                         							  <option value="Hijo (a)">Hijo (a)</option>
+                        							  <option value="Madre">Madre</option>
+                        							  <option value="Padre">Padre</option>
+                        							  <option value="Otro">Otro</option>
                         							  </select>
                                                       <div id="mensaje_parentesco_referencia_familiar" class="errores"></div>
                                 </div>
@@ -5165,7 +5494,7 @@
     <script src="view/build/js/custom.min.js"></script>
 	<script src="view/js/jquery.inputmask.bundle.js"></script>
 	<!-- codigo de las funciones -->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 	
   </body>
 </html>   

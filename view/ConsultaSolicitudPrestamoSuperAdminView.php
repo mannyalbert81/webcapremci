@@ -111,7 +111,7 @@
            	               data: con_datos,
            	               success: function(x){
            	                 $("#solicitud_garantias_registrados").html(x);
-           	               	 $("#tabla_solicitud_prestamos_registrados").tablesorter(); 
+           	               	 $("#tabla_solicitud_garantias_registrados").tablesorter(); 
            	                 $("#load_garantias_registrados").html("");
            	               },
            	              error: function(jqXHR,estado,error){

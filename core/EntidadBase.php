@@ -34,6 +34,30 @@ class EntidadBase{
         return $this->db;
     }
     
+    
+    
+    public function beginTran(){
+        
+        $pg_query = pg_query($this->con,"BEGIN");
+        
+        return $pg_query;
+        
+    }
+    
+    
+    public function endTran($trans="ROLLBACK"){
+        
+        @$pg_query = pg_query($this->con,$trans);
+        
+        pg_close();
+        
+        return $pg_query;
+        
+    }
+    
+    
+    
+    
     public function getNuevo($secuencia){
     
     	$query=pg_query($this->con, "SELECT NEXTVAL('$secuencia')");
@@ -230,6 +254,21 @@ class EntidadBase{
     }
     
     
+    public function ActualizarBy($colval ,$tabla , $where){
+        try{
+            
+            $query=pg_query($this->con, "UPDATE $tabla SET  $colval   WHERE $where ");
+            
+            if(!$query)
+                throw new Exception("valor nulor");
+                
+                return pg_affected_rows($query);
+                
+        }catch (Exception  $Ex){
+            return -1;
+            
+        }
+    }
     
     public function getByPDF($columnas, $tabla , $where){
     
@@ -380,10 +419,10 @@ class EntidadBase{
     		
     		<p><table rules='all'></p>
     		<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>1.-</b> 3 últimos roles de pago firmados por su entidad pagadora.</td></tr>
-    		<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>2.-</b> Certificado de tiempo de servicio.</td></tr>
-    		<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>3.-</b> Copia de cédula y papeleta de votación (4 febrero 2018).</td></tr>
+    		<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>2.-</b> Certificado de tiempo de servicio actualizado.</td></tr>
+    		<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>3.-</b> Copia de cédula y papeleta de votación (24 marzo 2019).</td></tr>
     		<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>4.-</b> Copia planilla de servicio básico (Actualizada).</td></tr>
-    		<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>5.-</b> Copia de libreta de ahorros.</td></tr>
+    		<tr style='background: #FFFFFF;'><td WIDTH='1000' > <b>5.-</b> Copia de libreta de ahorros o movimiento bancario.</td></tr>
     		</tabla>
     		
     		

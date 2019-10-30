@@ -100,7 +100,14 @@
         <form action="<?php echo $helper->url("Memos","index"); ?>" method="post">      
 	         <div class="col-xs-12 col-md-12 col-lg-12" style="margin-left: 10px;">
 	              <button type="submit" id="refrescar" name="refrescar" onclick="this.form.action='<?php echo $helper->url("Memos","index"); ?>'" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-refresh"> Refrescar</i></button>
+	             
+	              <?php if(!empty($envia_memo)){  if($envia_memo=='t'){  ?>
 	              <button type="submit" id="componer" name="componer" onclick="this.form.action='<?php echo $helper->url("Memos","addindex"); ?>'" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-pencil"> Componer</i></button>
+	             <?php  }else{?>
+	              <button type="submit" id="componer" name="componer" onclick="this.form.action='<?php echo $helper->url("Memos","addindex"); ?>'" disabled class="btn btn-success btn-sm"><i class="glyphicon glyphicon-pencil"> Componer</i></button>
+	         
+	              <?php  }}?>
+	        
 	         </div>
         </form>
            

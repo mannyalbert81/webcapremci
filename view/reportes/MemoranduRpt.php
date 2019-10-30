@@ -36,6 +36,11 @@ $mpdf->Output($directorio.$filename,'F');
 
 	
 $data_5 = file_get_contents($directorio.$filename);
+
+
+
+
+
 $archivo_5 = pg_escape_bytea($data_5);
 
 if(!empty($proceso)){
