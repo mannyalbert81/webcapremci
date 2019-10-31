@@ -65,6 +65,7 @@ $controladores=$_SESSION['controladores'];
                      <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index">Generar Solicitud Préstamo</a></li>
                       <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index2">Consultar Solicitud Préstamo</a></li>
                       <li style="<?php echo getcontrolador("ConsultaTramites",$controladores) ?>"><a href="index.php?controller=ConsultaTramites&action=index">Consulta Trámites</a></li>
+                      <li style="<?php echo getcontrolador("SolicitudAportes",$controladores) ?>"><a href="index.php?controller=SolicitudValorAportaciones&action=index">Solicitud Valor Aportaciones</a></li>
                     
                      </ul>
                   </li>
