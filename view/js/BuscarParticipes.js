@@ -154,7 +154,7 @@ function ValidarSolicitudes(){
 	var _cedula = $("#cedula_participe");
 	var obj_mensaje = $("#msg_solicitud");
 		
-    var _url = "http://localhost:4000/rp_c/index.php?controller=Recaudacion&action=crss_ValidarSolicitudes"
+    var _url = "http://localhost:4000/rp_c/index.php?controller=SolicitudAportes&action=crss_ValidarSolicitudes"
     var parametros={
 	        metodo:"BUSCAR",
 	        cedula:_cedula.val(),
@@ -247,7 +247,7 @@ function RegistraSolicitud(){
 		return false;
 	}
 	
-    var _url = "http://localhost:4000/rp_c/index.php?controller=Recaudacion&action=crss_ingresar_solicitud"
+    var _url = "http://localhost:4000/rp_c/index.php?controller=SolicitudAportes&action=crss_ingresar_solicitud"
     var parametros={
 	        metodo:"GUARDAR",
 	        cedula:_cedula.val(),
@@ -327,7 +327,7 @@ function ShowSolicitudes(event){
 event.preventDefault();	
  
  var _cedula = $("#cedula_participe");
- var _url = "http://localhost:4000/rp_c/index.php?controller=Recaudacion&action=crss_MostrarSolicitudes"
+ var _url = "http://localhost:4000/rp_c/index.php?controller=SolicitudAportes&action=crss_MostrarSolicitudes"
  var parametros={
         metodo:"LISTAR",
         cedula:_cedula.val(),
