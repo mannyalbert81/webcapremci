@@ -4,6 +4,10 @@ $(document).ready( function (){
 	aporte_actual_participe();
 	cargaTipoAportaciones();
 	ValidarSolicitudes();
+	
+	/*ocultar los paneles secundarios */
+	$("#pnl_estado_aportes").css({"display":"none"});
+	$("#pnl_formulario_aportes").css({"display":"none"});
 		
 });
 
@@ -147,9 +151,10 @@ function CambiaTipoAporte(elemento){
 function ValidarSolicitudes(){
 		
 	var mibtn = $("#btnContinuarSolicitud");
-	var _cedula = $("#cedula_participe");		
+	var _cedula = $("#cedula_participe");
+	var obj_mensaje = $("#msg_solicitud");
 		
-    var _url = "http://localhost:4000/rp_c/index.php?controller=Recaudacion&action=crss_ValidarSolicitudes&jsoncallback=?"
+    var _url = "http://localhost:4000/rp_c/index.php?controller=Recaudacion&action=crss_ValidarSolicitudes"
     var parametros={
 	        metodo:"BUSCAR",
 	        cedula:_cedula.val(),
@@ -159,19 +164,43 @@ function ValidarSolicitudes(){
 		url:_url,
         type: 'GET',
         data: parametros,
-	    dataType: 'json'
+	    dataType: "json"
 	}).done(function(x){
-		console.log("INGRESO EXITO NUEVO");
-		mibtn.attr("disabled",true);
-		console.log(x);
+		
+		if( x.respuesta != undefined && x.respuesta != ""){
+			
+			if( x.respuesta == "error" ){
+				
+				mibtn.attr("disabled",true);
+				obj_mensaje.append("<strong>Estimado participe usted ya cuenta con una solicitud de aportes personales.</strong>");
+			}
+			if( x.respuesta == 1){				
+				mibtn.attr("disabled",false);
+				obj_mensaje.append("");
+			}
+			
+		}
+		
+		
 		
 	}).fail(function(xhr, status, error){
-		console.log("INGRESO ERROR NUEVo");
-		var status = xhr.status;
-		console.log(status);
-		console.log( xhr.responseText);
+		
+		console.log("error en servidor");
+		
+		
 	});
 	
+}
+
+function GoFormularioAportes(event){
+	event.preventDefault();
+	
+	/* mostrar los paneles secundarios */
+	$("#pnl_estado_aportes").css({"display":""});
+	$("#pnl_formulario_aportes").css({"display":""});
+	
+	/* mostrar los paneles secundarios */
+	$("#pnl_main").css({"display":"none"});
 }
 
 function RegistraSolicitud(){
@@ -218,7 +247,7 @@ function RegistraSolicitud(){
 		return false;
 	}
 	
-    var _url = "http://localhost:4000/rp_c/index.php?controller=Recaudacion&action=crss_ingresar_solicitud&jsoncallback=?"
+    var _url = "http://localhost:4000/rp_c/index.php?controller=Recaudacion&action=crss_ingresar_solicitud"
     var parametros={
 	        metodo:"GUARDAR",
 	        cedula:_cedula.val(),
@@ -237,16 +266,46 @@ function RegistraSolicitud(){
 	    complete:function(){ mibtn.attr("disabled",false);}
 	}).done(function(x){
 		
+		if( x.respuesta != undefined && x.respuesta != ""){
+			
+			if( x.respuesta == 1 ){
+				
+				swal({
+			  		  title: "Solicitud Aportes",
+			  		  text: " Solicitud generada",
+			  		  icon: "success",
+			  		  button: "Aceptar",
+			  		}).then(
+			  				(aceptar) => {
+					  		  if (aceptar) {
+					  		    location.reload();
+					  		  }
+				  		  }
+	  				);
+				
+			}
+			
+			if( x.respuesta == 2){
+				
+				swal({
+			  		  title: "Solicitud Aportes",
+			  		  text: " Existe una solicitud anterior por revisar",
+			  		  icon: "info",
+			  		  button: "Aceptar",
+			  		}).then(
+			  				(aceptar) => {
+						  		  if (aceptar) {
+						  		    location.reload();
+						  		  }
+					  		  }
+		  				);
+			}
+			
+		}
 		
-		
-		swal({
-  		  title: "SolicitudPrestaciones",
-  		  text: datos.mensaje,
-  		  icon: "success",
-  		  button: "Aceptar",
-  		});
 		
 	}).fail(function(xhr, status, error){
+		console.log("EXIT");
 		console.log(xhr.responseText)
 		var status = xhr.status;
     	if( xhr.status == 404 ){
@@ -261,6 +320,69 @@ function RegistraSolicitud(){
 	});
     
    
+}
+
+function ShowSolicitudes(event){
+	
+event.preventDefault();	
+ 
+ var _cedula = $("#cedula_participe");
+ var _url = "http://localhost:4000/rp_c/index.php?controller=Recaudacion&action=crss_MostrarSolicitudes"
+ var parametros={
+        metodo:"LISTAR",
+        cedula:_cedula.val(),
+        }
+	
+ var buscador = $("#txtBuscador").val();
+ $.ajax({
+    	beforeSend:function(){},
+		url:_url,
+        type: 'GET',
+        data: parametros,
+	    dataType: 'json',
+	    complete:function(){ }
+	}).done(function(x){
+				
+		if(x.respuesta != undefined && x.respuesta != ""){
+			
+			if(x.respuesta == 1){
+				
+				//swal.close();
+				let modalLista = $("#mod_lista_solicitudes");			
+				let htmlFilas = x.dataFilas;
+				let tblDatos = $("#tbl_solicitudes_aportes");
+				//tblErrores.find("#catidad_sin_aportes").text(cantidadRegistros);
+				tblDatos.find("tbody").empty();
+				tblDatos.find("tbody").append(htmlFilas);
+				modalLista.find('.modal-title').text("Lista Solicitudes");
+				modalLista.modal("show");
+				
+				setTimeout(function(){ 
+					if ( ! $.fn.DataTable.isDataTable( "#tbl_solicitudes_aportes" ) ) {
+						$('#tbl_solicitudes_aportes').DataTable({
+						"scrollX": true,
+						"scrollY": 200,
+						"ordering":false,
+						"searching":false,
+						"info":false
+						})
+					}
+				},500);
+				
+				
+			}
+			
+		}
+		
+		
+	}).fail(function(xhr,status,error){
+		
+		var err = xhr.responseText
+		console.log(err);
+		
+	})
+	
+	
 }
 
 

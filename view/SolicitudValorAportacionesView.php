@@ -118,7 +118,7 @@
          <small><?php echo $fecha; ?></small>
          <ol class=" pull-right breadcrumb">
          <li><a href="<?php echo $helper->url("Usuarios","Bienvenida"); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-         <li class="active">Solicitud Préstamo</li>
+         <li class="active">Solicitud Valor Aportes</li>
          </ol>
          </section>
          
@@ -135,7 +135,7 @@
                   </div>
                   <div class="x_content">
            
-          			<form  action="<?php echo $helper->url("SolicitudValorPrestaciones","index"); ?>" method="post"  class="">
+          			<form  action="<?php echo $helper->url("SolicitudValorAportaciones","index"); ?>" method="post"  class="">
            
                      <div class="col-lg-6 col-md-6 col-xs-12">
                      	<div class="panel panel-info">
@@ -147,11 +147,11 @@
     			  					<h4 class="center" id="msgGenerar"> </h4>
     			  					<div class="text-center">
                                       <img src="view/images/deudor.jpg" class="rounded" alt="..." style="text-align:center;  width: 50%;">
-                                    </div>
-    			  					<!-- <p style="text-align: center;"><strong>Estimado participe usted ya cuenta con una solicitud de préstamo generada.</strong></p> -->  
+                                    </div>    			  					
     			           
                                      <div class="col-lg-12 col-md-12 col-xs-12 " style="text-align: center; margin-top: 30px">
-                                     	<button class="btn btn-success" id="btnContinuarSolicitud"> <i class="fa fa-share" aria-hidden="true"></i> Continuar </button>
+                                     	<p class="text-warning" style="text-align: center;" id="msg_solicitud" ></p> 
+                                     	<button class="btn btn-success" id="btnContinuarSolicitud" onclick="GoFormularioAportes(event)" > <i class="fa fa-share" aria-hidden="true"></i> Continuar </button>
             				  		 </div>	  		 
     				  		 	
                        
@@ -173,7 +173,8 @@
                                     </div>    			  						
     			  					<!-- <p style="text-align: center;"><strong>Estimado participe usted ya cuenta con una solicitud de garantía generada.</strong></p> -->
     			  					<div class="col-lg-12 col-md-12 col-xs-12 " style="text-align: center; margin-top: 30px">
-    			  						<button class="btn btn-info" id="btnVerSolicitud"> <i class="fa fa-columns" aria-hidden="true"></i> Ver Solicitudes </button>            				  			
+    			  						<p style="text-align: center;" id="msg_solicitud" ></p>
+    			  						<button id="btnMostrarSolicitudes" class="btn btn-info" id="btnVerSolicitud" onclick="ShowSolicitudes(event)" > <i class="fa fa-columns" aria-hidden="true"></i> Ver Solicitudes </button>            				  			
             				  		</div>	
              	  				</div>
              	  
@@ -185,7 +186,7 @@
 		    </div>        
          </section>
          
-         <section class="">
+         <section class="" id="pnl_estado_aportes">
          
          	 <div class="x_panel">
                  <div class="x_title">
@@ -209,7 +210,7 @@
         
          </section>
          
-         <section class="">
+         <section class="" id="pnl_formulario_aportes">
          
          	 <div class="x_panel">
                   <div class="x_title">
@@ -245,7 +246,7 @@
                     	<div class="col-xs-6 col-md-3 col-lg-3 ">
                     		<div class="form-group">
                         		<label for="valor_solicitud_aportaciones" class="control-label">Valor Contribución:</label>
-                            	<input type="text" class="form-control" id="valor_solicitud_aportaciones" name="valor_solicitud_aportaciones" placeholder="valor">
+                            	<input type="text" class="form-control" id="valor_solicitud_aportaciones" name="valor_solicitud_aportaciones" placeholder="valor" readonly>
                                 <div id="mensaje_nombres_solicitud_prestaciones" class="errores"></div>
                          	</div>
                      	</div>
@@ -254,7 +255,7 @@
                      	
                      	    <div class="form-group">                		    					  
                               <label for="valor_porcentaje_solicitud_aportaciones" class="control-label">Tipo Aportaciones:</label>
-                              <select  class="form-control" id="valor_porcentaje_solicitud_aportaciones" name="valor_porcentaje_solicitud_aportaciones" > 
+                              <select  class="form-control" id="valor_porcentaje_solicitud_aportaciones" name="valor_porcentaje_solicitud_aportaciones" disabled> 
                                 <option value="0">--Seleccione--</option>
                               	<option value="9.1"> 9.1% </option>
                               	<option value="7"> 7%</option>                             
@@ -271,7 +272,7 @@
           			 <div class="col-xs-6 col-md-6 col-lg-6 ">
                 		<div class="form-group">
                     		<label for="razon_solicitud_prestaciones" class="control-label">Observación (Ingrese una Razon):</label>
-                        	<input type="text" class="form-control" id="razon_solicitud_prestaciones" name="razon_solicitud_prestaciones" placeholder="razon">
+                        	<input type="text" class="form-control" id="razon_solicitud_prestaciones" name="razon_solicitud_prestaciones" placeholder="razon" readonly>
                             <div id="mensaje_nombres_solicitud_prestaciones" class="errores"></div>
                      	</div>
                  	</div>
@@ -283,7 +284,7 @@
     			     <div class="col-lg-12 col-md-12 col-xs-12 " style="text-align: center; margin-top: 10px">
 				  	    <div class="form-group">
     	                  <button  id="btnGuardarSolicitud" name="btnGuardarSolicitud" value=""   class="btn btn-success" onclick="RegistraSolicitud()" ><i class="glyphicon glyphicon-edit"></i> Registrar Solicitud</button>         
-					   
+					   	  <button  id="btnCancelar" name="btnCancelar" value=""   class="btn btn-warning" onclick="location.reload()" ><i class="fa fa-reply" aria-hidden></i> Omitir Solicitud </button>	
 	                    </div>
 	                    
         		    </div> 	    
@@ -301,13 +302,60 @@
 	</div>
 	</div>
 	    
+    <!-- AQUI VA ESPACIO  MODALES -->
+    
+    <!-- BEGIN MODAL LISTA SOLICITUDES  -->
+  <div class="modal fade" id="mod_lista_solicitudes" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog   modal-lg " role="document" >
+        <div class="modal-content">
+          <div class="modal-header bg-info color-palette">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" align="center"></h4>
+          </div>
+          <div class="modal-body" >
+          	<div class="box-body no-padding">
+          		<table id="tbl_solicitudes_aportes" class="tablesorter table table-striped table-bordered dt-responsive nowrap" cellspacing="0"  width="100%">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Cedula</th>
+                      <th>Nombre</th>
+                      <th>Apellidos</th>
+                      <th>Tipo Solicitud</th>
+                      <th>Valor</th>
+                      <th>Observacion</th>
+                      <th>Fecha Solicitud</th>
+                      <th>Estado</th>
+                    </tr>
+                  </thead>                  
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>  
+          	</div>
+          	
+          	<div class="clearfix">...</div>
+          
+          </div>
+          
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+</div>
+<!-- END MODAL ERRORES CARGA -->
     
     
     
-    
-     <!-- Bootstrap -->
+     <!-- Bootstrap -->    
     <script src="view/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    
+    <script src="view/vendors/datatables.net/js/jquery.dataTables.js"></script>
    
     <!-- Custom Theme Scripts -->
     <script src="view/build/js/custom.min.js"></script>
@@ -316,6 +364,6 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script> -->
     <script src="view/js/notificaciones/notify.js"></script>
     <script src="view/js/swalAlert.js"></script>	
-	<script src="view/js/BuscarParticipes.js?1.30"></script>
+	<script src="view/js/BuscarParticipes.js?1.32"></script>
   </body>
 </html>   
