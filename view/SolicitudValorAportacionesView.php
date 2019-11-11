@@ -118,141 +118,252 @@
          <small><?php echo $fecha; ?></small>
          <ol class=" pull-right breadcrumb">
          <li><a href="<?php echo $helper->url("Usuarios","Bienvenida"); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-         <li class="active">Solicitud Préstamo</li>
+         <li class="active">Solicitud Valor Aportes</li>
          </ol>
          </section>
-       
-  
-		
-		<div class="col-md-12 col-lg-12 col-xs-12">
-                <div class="x_panel">
+         
+          <section id="pnl_main" class="">
+         
+         	 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Solicitud<small>Aportación</small></h2>
+                    <h2> Generar Solicitud <small>Aportaciones</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
                       </li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
            
-      			<div class="row">
-      			
-      			   
-                <div class="col-xs-6 col-md-3 col-lg-3 ">
-            		<div class="form-group">
-                		<label for="cedula_participes" class="control-label">Cedula:</label>
-                    	<input type="text" readonly="readonly" class="form-control" id="cedula_participes" name="cedula_participes" placeholder="C.I." value="<?php echo $cedula[0]?>">
-                        <input type="hidden" name="id_solicitud_prestaciones" id="id_solicitud_prestaciones" value="0" />
-                        <div id="mensaje_cedula_participes" class="errores"></div>
-                 	</div>
-             	</div>
-             	
-      			
-      			<div class="col-xs-12 col-md-3 col-md-3 ">
-            		    <div class="form-group">
-            		    					  
-                          <label for="id_tipo_aportaciones" class="control-label">Tipo Aportaciones:</label>
-                          <select  class="form-control" id="id_tipo_aportaciones" name="id_tipo_aportaciones">
-                          
-                          </select>                         
-                          <div id="mensaje_id_tipo_aportaciones" class="errores"></div>
-                        </div>
-            	</div>
-            	
-            	
-            	<div class="col-xs-6 col-md-3 col-lg-3 ">
-            		<div class="form-group">
-                		<label for="nombres_solicitud_prestaciones" class="control-label">Valor Contribución:</label>
-                    	<input type="text" class="form-control" id="nombres_solicitud_prestaciones" name="nombres_solicitud_prestaciones" placeholder="valor">
-                        <div id="mensaje_nombres_solicitud_prestaciones" class="errores"></div>
-                 	</div>
-             	</div>
-             	
-             	
-             	<div class="col-xs-6 col-md-3 col-lg-3 ">
-            		<div class="form-group">
-                		<label for="nombres_solicitud_prestaciones" class="control-label">Porcentaje Contribución:</label>
-                    	<input type="text" class="form-control" id="nombres_solicitud_prestaciones" name="nombres_solicitud_prestaciones" placeholder="porcentaje">
-                        <div id="mensaje_nombres_solicitud_prestaciones" class="errores"></div>
-                 	</div>
-             	</div>
-      			 </div>
+          			<form  action="<?php echo $helper->url("SolicitudValorAportaciones","index"); ?>" method="post"  class="">
+           
+                     <div class="col-lg-6 col-md-6 col-xs-12">
+                     	<div class="panel panel-info">
+        	         		<div class="panel-heading">
+        	         			<h4><i class="fa fa-briefcase" aria-hidden="true"></i> Solicitud </h4>
+        	         		</div>
+        	         		<div class="panel-body">			 
+    			  				<div class="row">
+    			  					<h4 class="center" id="msgGenerar"> </h4>
+    			  					<div class="text-center">
+                                      <img src="view/images/deudor.jpg" class="rounded" alt="..." style="text-align:center;  width: 50%;">
+                                    </div>    			  					
+    			           
+                                     <div class="col-lg-12 col-md-12 col-xs-12 " style="text-align: center; margin-top: 30px">
+                                     	<p class="text-warning" style="text-align: center;" id="msg_solicitud" ></p> 
+                                     	<button class="btn btn-success" id="btnContinuarSolicitud" onclick="GoFormularioAportes(event)" > <i class="fa fa-share" aria-hidden="true"></i> Continuar </button>
+            				  		 </div>	  		 
+    				  		 	
+                       
+             	  				</div>         	  
+             	  			</div>
+  			  			</div>
+  			  		</div>
+           
+                     <div class="col-lg-6 col-md-6 col-xs-12">
+          			 	<div class="panel panel-info">
+        	         		<div class="panel-heading">
+        	         			<h4><i class="fa fa-list-alt" aria-hidden="true"></i> Lista Solicitudes</h4>
+        	         		</div>
+            	         	<div class="panel-body">
+            			  		<div class="row">
+            			  			<h4 class="center" id="msgConsulta"> </h4>
+            			  			<div class="text-center">
+                                      <img src="view/images/deudor.jpg" class="rounded" alt="..." style="text-align:center;  width: 50%;">
+                                    </div>    			  						
+    			  					<!-- <p style="text-align: center;"><strong>Estimado participe usted ya cuenta con una solicitud de garantía generada.</strong></p> -->
+    			  					<div class="col-lg-12 col-md-12 col-xs-12 " style="text-align: center; margin-top: 30px">
+    			  						<p style="text-align: center;" id="msg_solicitud" ></p>
+    			  						<button id="btnMostrarSolicitudes" class="btn btn-info" id="btnVerSolicitud" onclick="ShowSolicitudes(event)" > <i class="fa fa-columns" aria-hidden="true"></i> Ver Solicitudes </button>            				  			
+            				  		</div>	
+             	  				</div>
+             	  
+             	  			</div>
+  			  			</div>
+  			  		</div>
+   				   </form>
+		      </div>
+		    </div>        
+         </section>
+         
+         <section class="" id="pnl_estado_aportes">
+         
+         	 <div class="x_panel">
+                 <div class="x_title">
+                    <h2 class="text-info">Estado actual Aportaciones</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                 </div>
+                 <div class="x_content">          
+    		    
+        		    <div class="row">
+          			 	<input type="hidden" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php echo $_SESSION["cedula_usuarios"]?>" /> 
+        				<div id="aporte_actual_participes"></div>
+          			 
+          		 	</div>
       			 
-      		
+	      		 </div>
+	      	</div>
+        
+         </section>
+         
+         <section class="" id="pnl_formulario_aportes">
+         
+         	 <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Solicitud<small>Aportación</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+           
+      				<div class="row">
+                        <div class="col-xs-6 col-md-3 col-lg-3 ">
+                    		<div class="form-group">
+                        		<label for="cedula_participes" class="control-label">Cedula:</label>
+                            	<input type="text" readonly="readonly" class="form-control" id="cedula_participes" name="cedula_participes" placeholder="C.I." value="<?php echo $cedula[0]?>">
+                                <input type="hidden" name="id_solicitud_prestaciones" id="id_solicitud_prestaciones" value="0" />
+                                <div id="mensaje_cedula_participes" class="errores"></div>
+                         	</div>
+                     	</div>
+                     	
+              			<div class="col-xs-12 col-md-3 col-md-3 ">
+                		    <div class="form-group">
+                		    					  
+                              <label for="id_tipo_aportaciones" class="control-label">Tipo Aportaciones:</label>
+                              <select  class="form-control" id="id_tipo_aportaciones" name="id_tipo_aportaciones" onchange="CambiaTipoAporte(this)">                              
+                              </select>                         
+                              <div id="mensaje_id_tipo_aportaciones" class="errores"></div>
+                            </div>
+                    	</div>
+                    	
+                    	<div class="col-xs-6 col-md-3 col-lg-3 ">
+                    		<div class="form-group">
+                        		<label for="valor_solicitud_aportaciones" class="control-label">Valor Contribución:</label>
+                            	<input type="text" class="form-control" id="valor_solicitud_aportaciones" name="valor_solicitud_aportaciones" placeholder="valor" readonly>
+                                <div id="mensaje_nombres_solicitud_prestaciones" class="errores"></div>
+                         	</div>
+                     	</div>
+             	
+                     	<div class="col-xs-6 col-md-3 col-lg-3 ">
+                     	
+                     	    <div class="form-group">                		    					  
+                              <label for="valor_porcentaje_solicitud_aportaciones" class="control-label">Tipo Aportaciones:</label>
+                              <select  class="form-control" id="valor_porcentaje_solicitud_aportaciones" name="valor_porcentaje_solicitud_aportaciones" disabled> 
+                                <option value="0">--Seleccione--</option>
+                              	<option value="9.1"> 9.1% </option>
+                              	<option value="7"> 7%</option>                             
+                              </select>                         
+                              <div id="mensaje_id_tipo_aportaciones" class="errores"></div>
+                            </div>
+                     	
+                    		
+                     	</div>
+      			 	</div>
       			 
       			 <div class="row">
       			 
-      			 <div class="col-xs-6 col-md-6 col-lg-6 ">
-            		<div class="form-group">
-                		<label for="nombres_solicitud_prestaciones" class="control-label">Observación:</label>
-                    	<input type="text" class="form-control" id="nombres_solicitud_prestaciones" name="nombres_solicitud_prestaciones" placeholder="porcentaje">
-                        <div id="mensaje_nombres_solicitud_prestaciones" class="errores"></div>
+          			 <div class="col-xs-6 col-md-6 col-lg-6 ">
+                		<div class="form-group">
+                    		<label for="razon_solicitud_prestaciones" class="control-label">Observación (Ingrese una Razon):</label>
+                        	<input type="text" class="form-control" id="razon_solicitud_prestaciones" name="razon_solicitud_prestaciones" placeholder="razon" readonly>
+                            <div id="mensaje_nombres_solicitud_prestaciones" class="errores"></div>
+                     	</div>
                  	</div>
-             	</div>
-      			
-      			 <div class="col-xs-12 col-md-3 col-md-3 ">
-            		    <div class="form-group">
-            		    					  
-                          <label for="id_tipo_aportaciones" class="control-label">Estado:</label>
-                          <select  class="form-control" id="id_tipo_aportaciones" name="id_tipo_aportaciones">
-                          </select>                         
-                          <div id="mensaje_id_tipo_aportaciones" class="errores"></div>
-                        </div>
-            	</div>
-            	
-            	
-      			 
+          			
+          			  			 
       			 </div>
       			 
       			 <div class="row">
     			     <div class="col-lg-12 col-md-12 col-xs-12 " style="text-align: center; margin-top: 10px">
 				  	    <div class="form-group">
-    	                  <button type="submit" id="Guardar" name="Guardar" value=""   class="btn btn-success" style="margin-top: 10px;"><i class="glyphicon glyphicon-edit"></i> Registrar Solicitud</button>         
-					   
+    	                  <button  id="btnGuardarSolicitud" name="btnGuardarSolicitud" value=""   class="btn btn-success" onclick="RegistraSolicitud()" ><i class="glyphicon glyphicon-edit"></i> Registrar Solicitud</button>         
+					   	  <button  id="btnCancelar" name="btnCancelar" value=""   class="btn btn-warning" onclick="location.reload()" ><i class="fa fa-reply" aria-hidden></i> Omitir Solicitud </button>	
 	                    </div>
 	                    
-        		    </div> 
-        		    
-        		           		    
+        		    </div> 	    
     		    </div>
-      			 
-      			 <div class="row">
-      			 
-      			<input type="hidden" class="form-control" id="cedula_participe" name="cedula_participe" value="<?php echo $_SESSION["cedula_usuarios"]?>" /> 
-				<div id="aporte_actual_participes"></div>
-      			 
-      			 </div>
-      			 
-			      </div>
-			    </div>
-
-	</div>
+    		   
+	      		</div>
+	      	</div>
+        
+         </section>
+         
+         
+ 
 	</div>
 	</div>
 	</div>
 	</div>
 	    
+    <!-- AQUI VA ESPACIO  MODALES -->
+    
+    <!-- BEGIN MODAL LISTA SOLICITUDES  -->
+  <div class="modal fade" id="mod_lista_solicitudes" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog   modal-lg " role="document" >
+        <div class="modal-content">
+          <div class="modal-header bg-info color-palette">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" align="center"></h4>
+          </div>
+          <div class="modal-body" >
+          	<div class="box-body no-padding">
+          		<table id="tbl_solicitudes_aportes" class="tablesorter table table-striped table-bordered dt-responsive nowrap" cellspacing="0"  width="100%">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Cedula</th>
+                      <th>Nombre</th>
+                      <th>Apellidos</th>
+                      <th>Tipo Solicitud</th>
+                      <th>Valor</th>
+                      <th>Observacion</th>
+                      <th>Fecha Solicitud</th>
+                      <th>Estado</th>
+                    </tr>
+                  </thead>                  
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>  
+          	</div>
+          	
+          	<div class="clearfix">...</div>
+          
+          </div>
+          
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+</div>
+<!-- END MODAL ERRORES CARGA -->
     
     
     
-    
-     <!-- Bootstrap -->
+     <!-- Bootstrap -->    
     <script src="view/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    
+    <script src="view/vendors/datatables.net/js/jquery.dataTables.js"></script>
    
     <!-- Custom Theme Scripts -->
     <script src="view/build/js/custom.min.js"></script>
 
 	<!-- codigo de las funciones -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-
-
-
-	
-	<script src="view/js/BuscarParticipes.js?1.23"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script> -->
+    <script src="view/js/notificaciones/notify.js"></script>
+    <script src="view/js/swalAlert.js"></script>	
+	<script src="view/js/BuscarParticipes.js?1.32"></script>
   </body>
 </html>   

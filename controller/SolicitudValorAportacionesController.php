@@ -17,7 +17,7 @@ class SolicitudValorAportacionesController extends ControladorBase{
         if (isset($_SESSION['nombre_usuarios']))
         {
             $SolicitudPrestaciones = new SolicitudPrestacionesModel();
-            $nombre_controladores = "SolicitudPrestaciones";
+            $nombre_controladores = "SolicitudAportes";
             $id_rol= $_SESSION['id_rol'];
             $resultPer = $SolicitudPrestaciones->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
             
