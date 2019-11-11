@@ -2,7 +2,7 @@
 <html lang="es">
       <head>
         <meta charset="utf-8"/>
-        <title>Solicitud Prestamo - Capremci</title>
+        <title>Solicitud Crédito Hipotecario - Capremci</title>
 
 	 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -103,7 +103,7 @@
          <small><?php echo $fecha; ?></small>
          <ol class=" pull-right breadcrumb">
          <li><a href="<?php echo $helper->url("Usuarios","Bienvenida"); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-         <li class="active">Solicitud Préstamo</li>
+         <li class="active">Solicitud Hipotecario</li>
          </ol>
          </section>
        
@@ -111,7 +111,7 @@
 		  <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>SOLICITUD<small>Prestaciones</small></h2>
+                    <h2>SOLICITUD<small>Hipotecario</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -656,8 +656,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
 
-<script src="view/js/SolicitudPrestaciones.js?1.20"></script> 
+<script src="view/js/SolicitudHipotecario.js?1.0"></script> 
 
 	
   </body>
-</html>     
+</html>   
