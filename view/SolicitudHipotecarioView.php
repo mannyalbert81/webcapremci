@@ -44,17 +44,16 @@
 			</script>
            
            
-       		<script src="view/input-mask/jquery.inputmask.js"></script>
-			<script src="view/input-mask/jquery.inputmask.date.extensions.js"></script>
-			<script src="view/input-mask/jquery.inputmask.extensions.js"></script>
+      
 			
 			
 			
-			     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>  
-                 <script src="view/js/jquery.js"></script>
-		         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-			
+	
         
+		         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	
+
+ 
 
        
        
@@ -123,10 +122,56 @@
                   </div>
                   <div class="x_content">
             
-            <form id="frm_solicitudes" action="<?php echo $helper->url("SolicitudPrestaciones","Index"); ?>" method="post" class="col-lg-12 col-md-12 col-xs-12">      
+           
+   		 <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-user'></i> Datos del Crédito</h4>
+	         </div>
+	         <div class="panel-body">
+	         
+	         
    		 
-            
-             <div class="panel panel-info">
+   		 <div class="row">
+          		
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="valor_dolares_datos_credito" class="control-label">Valor en Dólares:</label>
+                    	<input type="text" class="form-control" id="valor_dolares_datos_credito" name="valor_dolares_datos_credito" value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" name="valor_dolares_datos_credito" placeholder="valor" >
+                                                    
+                        <div id="mensaje_valor_dolares_datos_credito" class="errores"></div>
+                 	</div>
+             	</div>
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="plazo_meses_datos_credito" class="control-label">Plazo en Meses:</label>
+                    	<input type="text" class="form-control" id="plazo_meses_datos_credito" name="plazo_meses_datos_credito" placeholder="plazo" >
+                        <div id="mensaje_plazo_meses_datos_credito" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="destino_dinero_datos_credito" class="control-label">Destino del Dinero:</label>
+                    	<select name="destino_dinero_datos_credito" id="destino_dinero_datos_credito"  class="form-control">
+                                      <option value="" selected="selected">--Seleccione--</option>
+                                      <option value="Compra de Terreno">Compra de Terreno</option>
+        							  <option value="Compra de Vivienda">Compra de Vivienda</option>
+        							  <option value="Construcción">Construcción</option>
+        							  <option value="Remodelación">Remodelación</option>
+        							  
+                        </select> 
+                        <div id="mensaje_destino_dinero_datos_credito" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+          	</div>
+	      	
+  			</div>
+  			</div>
+  			
+  			 <div class="panel panel-info">
 	         <div class="panel-heading">
 	         <h4><i class='glyphicon glyphicon-user'></i> Datos Personales</h4>
 	         </div>
@@ -135,26 +180,27 @@
 	         
    		 
    		 <div class="row">
-          		<div class="col-xs-6 col-md-3 col-lg-3 ">
+          		
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="cedula_participes" class="control-label">Cedula:</label>
-                    	<input type="text" readonly="readonly" class="form-control" id="cedula_participes" name="cedula_participes" placeholder="C.I." value="<?php echo $cedula[0]?>">
-                        <input type="hidden" name="id_solicitud_prestaciones" id="id_solicitud_prestaciones" value="0" />
-                        <div id="mensaje_cedula_participes" class="errores"></div>
+                		<label for="cedula_datos_personales" class="control-label">Cedula:</label>
+                    	<input type="text" readonly="readonly" class="form-control" id="cedula_datos_personales" name="cedula_participes" placeholder="C.I." value="<?php echo $cedula[0]?>">
+                        <input type="hidden" name="id_solicitud_hipotecario" id="id_solicitud_hipotecario" value="0" />
+                        <div id="mensaje_cedula_datos_personales" class="errores"></div>
                  	</div>
              	</div>
              	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="nombres_solicitud_prestaciones" class="control-label">Nombres:</label>
-                    	<input type="text" class="form-control" id="nombres_solicitud_prestaciones" name="nombres_solicitud_prestaciones" placeholder="Nombres" value="<?php echo $nombres[0]?>">
-                        <div id="mensaje_nombres_solicitud_prestaciones" class="errores"></div>
+                		<label for="nombres_datos_personales" class="control-label">Nombres:</label>
+                    	<input type="text" class="form-control" id="nombres_datos_personales" name="nombres_datos_personales" placeholder="Nombres" value="<?php echo $nombres[0]?>">
+                        <div id="mensaje_nombres_datos_personales" class="errores"></div>
                  	</div>
              	</div>
              	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="apellidos_solicitud_prestaciones" class="control-label">Apellidos:</label>
-                    	<input type="text" class="form-control" id="apellidos_solicitud_prestaciones" name="apellidos_solicitud_prestaciones" placeholder="Apellidos" >
-                        <div id="mensaje_apellidos_solicitud_prestaciones" class="errores"></div>
+                		<label for="apellidos_datos_personales" class="control-label">Apellidos:</label>
+                    	<input type="text" class="form-control" id="apellidos_datos_personales" name="apellidos_datos_personales" placeholder="Apellidos" >
+                        <div id="mensaje_apellidos_datos_personales" class="errores"></div>
                  	</div>
              	</div>
              	<div class="col-xs-12 col-md-3 col-md-3 ">
@@ -168,17 +214,10 @@
                         </div>
                 </div>
           	</div>
-			 
-			 
-			 <div class="row">
-          		<div class="col-xs-6 col-md-3 col-lg-3 ">
-            		<div class="form-group">
-                		<label for="fecha_nacimiento_solicitud_prestaciones" class="control-label">Fecha de Nacimiento:</label>
-                    	<input type="date" data-inputmask="'mask': '9999999999'" class="form-control" id="fecha_nacimiento_solicitud_prestaciones" name="fecha_nacimiento_solicitud_prestaciones" >
-                        <div id="mensaje_fecha_nacimiento_solicitud_prestaciones" class="errores"></div>
-                 	</div>
-             	</div>
-             	<div class="col-xs-12 col-md-3 col-md-3 ">
+          	
+          	<div class="row">
+          	
+          	<div class="col-xs-12 col-md-3 col-md-3 ">
             		    <div class="form-group">
             		    					  
                           <label for="id_estado_civil" class="control-label">Estado Civil:</label>
@@ -187,19 +226,78 @@
                           </select>                         
                           <div id="mensaje_id_estado_civil" class="errores"></div>
                         </div>
-            		  </div>
+                </div>
+                
+             <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="fecha_nacimiento_datos_personales" class="control-label">Fecha de Nacimiento:</label>
+                    	<input type="date" class="form-control" id="fecha_nacimiento_datos_personales" name="fecha_nacimiento_datos_personales" placeholder="fecha" >
+                        <div id="mensaje_fecha_nacimiento_datos_personales" class="errores"></div>
+                 	</div>
+             	</div>
+          	
+          	
+          	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="separacion_bienes_datos_personales" class="control-label">Separación de Bienes:</label>
+                    	<select name="separacion_bienes_datos_personales" id="separacion_bienes_datos_personales"  class="form-control">
+                                      <option value="" selected="selected">--Seleccione--</option>
+                                      <option value="Si">Si</option>
+        							  <option value="No">No</option>
+        			    </select> 
+                        <div id="mensaje_separacion_bienes_datos_personales" class="errores"></div>
+                 	</div>
+             	</div>
              	
              	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="correo_solicitud_prestaciones" class="control-label">E-mail:</label>
-                    	<input type="text" class="form-control" id="correo_solicitud_prestaciones" name="correo_solicitud_prestaciones" placeholder="E-mail" value="<?php echo $correo[0]?>">
-                        <div id="mensaje_correo_solicitud_prestaciones" class="errores"></div>
+                		<label for="cargas_familiares_datos_personales" class="control-label">Cargas Familiares:</label>
+                    	<select name="cargas_familiares_datos_personales" id="cargas_familiares_datos_personales"  class="form-control">
+                                      <option value="" selected="selected">--Seleccione--</option>
+                                      <option value="Si">Si</option>
+        							  <option value="No">No</option>
+        			    </select> 
+                        <div id="mensaje_cargas_familiares_datos_personales" class="errores"></div>
+                 	</div>
+             	</div>
+          	</div>
+          	
+          	
+          	<div class="row">
+          	
+          	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="numero_hijos_datos_personales" class="control-label">Numero de hijos:</label>
+                    	<select name="numero_hijos_datos_personales" id="numero_hijos_datos_personales"  class="form-control">
+                                      <option value="" selected="selected">--Seleccione--</option>
+                                      <option value="0">0</option>
+        							  <option value="1">1</option>
+        							  <option value="2">2</option>
+        							  <option value="3">3</option>
+        							  <option value="4">4</option>
+        							  <option value="5">5</option>
+        							  <option value="6">6</option>
+        							  <option value="7">7</option>
+        							  <option value="8">8</option>
+        							  <option value="9">9</option>
+        							  <option value="10">10</option>
+        			    </select> 
+                        <div id="mensaje_numero_hijos_datos_personales" class="errores"></div>
+                 	</div>
+             	</div>
+          	
+          	
+          	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="email_datos_personales" class="control-label">E-mail:</label>
+                    	<input type="text" class="form-control" id="email_datos_personales" name="email_datos_personales" placeholder="E-mail">
+                        <div id="mensaje_email_datos_personales" class="errores"></div>
                  	</div>
              	</div>
              	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="nivel_educativo_solicitud_prestaciones" class="control-label">Nivel Educativo:</label>
-                    	<select name="nivel_educativo_solicitud_prestaciones" id="nivel_educativo_solicitud_prestaciones"  class="form-control">
+                		<label for="nivel_educativo_datos_personales" class="control-label">Nivel Educativo:</label>
+                    	<select name="nivel_educativo_datos_personales" id="nivel_educativo_datos_personales"  class="form-control">
                                       <option value="" selected="selected">--Seleccione--</option>
                                       <option value="Primario">Primario</option>
         							  <option value="Secundario">Secundario</option>
@@ -207,110 +305,116 @@
         							  <option value="Universitario">Universitario</option>
         							  <option value="Postgrado">Postgrado</option>
                         </select> 
-                        <div id="mensaje_nivel_educativo_solicitud_prestaciones" class="errores"></div>
+                        <div id="mensaje_nivel_educativo_datos_personales" class="errores"></div>
                  	</div>
              	</div>
             
+          	
           	</div>
           	
           	
-          	
-  			</div>
+
+          	</div>
+      
   			</div>
   			
   			
-  			 <div class="panel panel-info">
+  			
+  			<div class="panel panel-info">
 	         <div class="panel-heading">
-	         <h4><i class='glyphicon glyphicon-home'></i> Datos Exactos Domicilio</h4>
+	         <h4><i class='glyphicon glyphicon-phone-alt'></i> Direccion Exaxta del Domicilio</h4>
 	         </div>
 	         <div class="panel-body">
-			 <div class="row">
+			 	
+          	
+          	
+          	<div class="row">
              	<div class="col-xs-12 col-md-3 col-md-3 ">
             		    <div class="form-group">
             		    					  
-                          <label for="id_provincias" class="control-label">Provincias:</label>
-                          <select  class="form-control" id="id_provincias" name="id_provincias">
+                          <label for="id_provincia" class="control-label">Provincia:</label>
+                          <select  class="form-control" id="id_provincia" name="id_provincia">
                           	<option value="0">--Seleccione--</option>
                           </select>                         
-                          <div id="mensaje_id_provincias" class="errores"></div>
+                          <div id="mensaje_id_provincia" class="errores"></div>
                         </div>
             		  </div>
              	
              	<div class="col-xs-12 col-md-3 col-md-3 ">
             		    <div class="form-group">
             		    					  
-                          <label for="id_cantones" class="control-label">Cantones:</label>
-                          <select  class="form-control" id="id_cantones" name="id_cantones">
+                          <label for="id_canton" class="control-label">Cantón:</label>
+                          <select  class="form-control" id="id_canton" name="id_canton">
                           	<option value="0">--Seleccione--</option>
                           </select>                         
-                          <div id="mensaje_id_cantones" class="errores"></div>
+                          <div id="mensaje_id_canton" class="errores"></div>
                         </div>
             		  </div>
              	
              	<div class="col-xs-12 col-md-3 col-md-3 ">
             		    <div class="form-group">
             		    					  
-                          <label for="id_parroquias" class="control-label">Parroquias:</label>
-                          <select  class="form-control" id="id_parroquias" name="id_parroquias">
+                          <label for="id_parroquia" class="control-label">Parroquia:</label>
+                          <select  class="form-control" id="id_parroquia" name="id_parroquia">
                           	<option value="0">--Seleccione--</option>
                           </select>                         
-                          <div id="mensaje_id_parroquias" class="errores"></div>
+                          <div id="mensaje_id_parroquia" class="errores"></div>
                         </div>
             		  </div>
              	
              	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="barrio_solicitud_prestaciones" class="control-label">Barrio y/o Sector:</label>
-                    	<input type="text" class="form-control" id="barrio_solicitud_prestaciones" name="barrio_solicitud_prestaciones" placeholder="Barrio">
-                        <div id="mensaje_barrio_solicitud_prestaciones" class="errores"></div>
+                		<label for="barrio_datos_personales" class="control-label">Barrio y/o Sector:</label>
+                    	<input type="text" class="form-control" id="barrio_datos_personales" name="barrio_datos_personales" placeholder="Barrio">
+                        <div id="mensaje_barrio_datos_personales" class="errores"></div>
                  	</div>
              	</div>
           	</div>
-          	
           	
           	<div class="row">
           	
           	<div class="col-xs-6 col-md-6 col-lg-6 ">
             		<div class="form-group">
-                		<label for="ciudadela_solicitud_prestaciones" class="control-label">Ciudadela y/o conjunto/Etapa/Manzana:</label>
-                    	<input type="text" class="form-control" id="ciudadela_solicitud_prestaciones" name="ciudadela_solicitud_prestaciones" placeholder="Ciudadela">
-                        <div id="mensaje_ciudadela_solicitud_prestaciones" class="errores"></div>
+                		<label for="ciudadela_datos_personales" class="control-label">Ciudadela y/o conjunto/Etapa/Manzana:</label>
+                    	<input type="text" class="form-control" id="ciudadela_datos_personales" name="ciudadela_datos_personales" placeholder="Ciudadela">
+                        <div id="mensaje_ciudadela_datos_personales" class="errores"></div>
                  	</div>
              	</div>
              	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="calle_solicitud_prestaciones" class="control-label">Calle:</label>
-                    	<input type="text" class="form-control" id="calle_solicitud_prestaciones" name="calle_solicitud_prestaciones" placeholder="Calle">
-                        <div id="mensaje_calle_solicitud_prestaciones" class="errores"></div>
+                		<label for="calle_datos_personales" class="control-label">Calle:</label>
+                    	<input type="text" class="form-control" id="calle_datos_personales" name="calle_datos_personales" placeholder="Calle">
+                        <div id="mensaje_calle_datos_personales" class="errores"></div>
                  	</div>
              	</div>
              	
              	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="numero_calle_solicitud_prestaciones" class="control-label">Número de Calle:</label>
-                    	<input type="text" class="form-control" id="numero_calle_solicitud_prestaciones" name="numero_calle_solicitud_prestaciones" placeholder="Número de calle">
-                        <div id="mensaje_numero_calle_solicitud_prestaciones" class="errores"></div>
+                		<label for="numero_calle_datos_personales" class="control-label">Número de Calle:</label>
+                    	<input type="text" class="form-control" id="numero_calle_datos_personales" name="numero_calle_datos_personales" placeholder="Número">
+                        <div id="mensaje_numero_calle_datos_personales" class="errores"></div>
                  	</div>
              	</div>
           	
           	</div>
           	
+          
           	<div class="row">
           	
           	
           	<div class="col-xs-6 col-md-6 col-lg-6 ">
             		<div class="form-group">
-                		<label for="interseccion_solicitud_prestaciones" class="control-label">Intersección:</label>
-                    	<input type="text" class="form-control" id="interseccion_solicitud_prestaciones" name="interseccion_solicitud_prestaciones" placeholder="Intersección">
-                        <div id="mensaje_interseccion_solicitud_prestaciones" class="errores"></div>
+                		<label for="interseccion_datos_personales" class="control-label">Intersección:</label>
+                    	<input type="text" class="form-control" id="interseccion_datos_personales" name="interseccion_datos_personales" placeholder="Intersección">
+                        <div id="mensaje_interseccion_datos_personales" class="errores"></div>
                  	</div>
              	</div>
              	
           	
           	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="tipo_vivienda_solicitud_prestaciones" class="control-label">Tipo Vivienda:</label>
-                    	<select name="tipo_vivienda_solicitud_prestaciones" id="tipo_vivienda_solicitud_prestaciones"  class="form-control">
+                		<label for="tipo_vivienda_datos_personales" class="control-label">Tipo Vivienda:</label>
+                    	<select name="tipo_vivienda_datos_personales" id="tipo_vivienda_datos_personales"  class="form-control">
                                       <option value="" selected="selected">--Seleccione--</option>
                                       <option value="Propia">Propia</option>
         							  <option value="Arrendada">Arrendada</option>
@@ -318,81 +422,114 @@
         							  <option value="Vive con Familiares">Vive con Familiares</option>
         							  <option value="Otra">Otra</option>
                         </select> 
-                        <div id="mensaje_tipo_vivienda_solicitud_prestaciones" class="errores"></div>
+                        <div id="mensaje_tipo_vivienda_datos_personales" class="errores"></div>
                  	</div>
              	</div>
              	
              	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="vivienda_hipotecada_solicitud_prestaciones" class="control-label">Vivienda HIPOTECADA:</label>
-                    	<select name="vivienda_hipotecada_solicitud_prestaciones" id="vivienda_hipotecada_solicitud_prestaciones"  class="form-control">
+                		<label for="vivienda_hipotecada_datos_personales" class="control-label">Vivienda HIPOTECADA:</label>
+                    	<select name="vivienda_hipotecada_datos_personales" id="vivienda_hipotecada_datos_personales"  class="form-control">
                                       <option value="" selected="selected">--Seleccione--</option>
                                       <option value="SI">SI</option>
         							  <option value="NO">NO</option>
         							 
                         </select> 
-                        <div id="mensaje_vivienda_hipotecada_solicitud_prestaciones" class="errores"></div>
+                        <div id="mensaje_vivienda_hipotecada_datos_personales" class="errores"></div>
                  	</div>
              	</div>
           	
           	</div>
-			 
-		   
-			
-			<div class="row">
-			
+          
+          	<div class="row">
+          	
+          	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="tiempo_residencia_datos_personales" class="control-label">Tiempo de Residencia en años:</label>
+                    	<select name="tiempo_residencia_datos_personales" id="tiempo_residencia_datos_personales"  class="form-control">
+                                      <option value="" selected="selected">--Seleccione--</option>
+                                      <option value="1 año">1 año</option>
+        							  <option value="2 años">2 años</option>
+        							  <option value="3 años">3 años</option>
+        							  <option value="4 años">4 años</option>
+        							  <option value="5 años">5 años</option>
+        							  <option value="6 años">6 años</option>
+        							  <option value="7 años">7 años</option>
+        							  <option value="8 años">8 años</option>
+        							  <option value="9 años">9 años</option>
+        							  <option value="10 años">10 años</option>
+        							  <option value="11 años">11 años</option>
+        							  <option value="12 años">12 años</option>
+        							  <option value="13 años">13 años</option>
+        							  <option value="14 años">14 años</option>
+        							  <option value="15 años">15 años</option>
+        							  <option value="16 años">16 años</option>
+        							  <option value="17 años">17 años</option>
+        							  <option value="18 años">18 años</option>
+        							  <option value="19 años">19 años</option>
+        							  <option value="20 años">20 años</option>
+        							  <option value="21 años">21 años</option>
+        							  <option value="22 años">22 años</option>
+        							  <option value="23 años">23 años</option>
+        							  <option value="24 años">24 años</option>
+        							  <option value="25 años">25 años</option>
+        							  <option value="26 años">26 años</option>
+        							  <option value="27 años">27 años</option>
+        							  <option value="28 años">28 años</option>
+        							  <option value="29 años">29 años</option>
+        							  <option value="30 años">30 años</option>
+        							  <option value="mas de 30 años">mas de 30 años</option>
+        							  
+        							 
+                        </select> 
+                        <div id="mensaje_tiempo_residencia_datos_personales" class="errores"></div>
+                 	</div>
+             	</div>
+           
 			<div class="col-xs-6 col-md-6 col-lg-6 ">
             		<div class="form-group">
-                		<label for="referencia_dir_solicitud_prestaciones" class="control-label">Referencia Domiciliaria:</label>
-                    	<input type="text" class="form-control" id="referencia_dir_solicitud_prestaciones" name="referencia_dir_solicitud_prestaciones" placeholder="Referencia">
-                        <div id="mensaje_referencia_dir_solicitud_prestaciones" class="errores"></div>
+                		<label for="referencia_domiciliaria_datos_perdonales" class="control-label">Referencia Domiciliaria:</label>
+                    	<input type="text" class="form-control" id="referencia_domiciliaria_datos_perdonales" name="referencia_domiciliaria_datos_perdonales" placeholder="Referencia">
+                        <div id="mensaje_referencia_domiciliaria_datos_perdonales" class="errores"></div>
                  	</div>
            </div>
 			
-			</div> 
-			 
+			</div>
+          	
+    		  </div>
   			</div>
-  			</div>
-            
-            <div class="panel panel-info">
+  			
+  			
+  			
+  			<div class="panel panel-info">
 	         <div class="panel-heading">
-	         <h4><i class='glyphicon glyphicon-phone-alt'></i> Números Telefónicos</h4>
+	         <h4><i class='glyphicon glyphicon-phone-alt'></i>En Caso de No tener Vivienda Propia</h4>
 	         </div>
 	         <div class="panel-body">
 			 <div class="row">
           		<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="telefono_solicitud_prestaciones" class="control-label">Teléfono:</label>
-                    	<input type="text" class="form-control" onkeypress="return soloNumeros(event);" id="telefono_solicitud_prestaciones" name="telefono_solicitud_prestaciones" placeholder="Teléfono">
-                        <div id="mensaje_telefono_solicitud_prestaciones" class="errores"></div>
+                		<label for="nombre_arrendatario_datos_personales" class="control-label">Nombres Arrendatario:</label>
+                    	<input type="text" class="form-control"  id="nombre_arrendatario_datos_personales" name="nombre_arrendatario_datos_personales" placeholder="nombres">
+                        <div id="mensaje_nombre_arrendatario_datos_personales" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="apellido_arrendatario_datos_personales" class="control-label">Apellidos Arrendatario:</label>
+                    	<input type="text"  class="form-control" id="apellido_arrendatario_datos_personales" name="apellido_arrendatario_datos_personales" placeholder="apellidos">
+                        <div id="mensaje_celular_solicitud_prestaciones" class="errores"></div>
                  	</div>
              	</div>
              	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="celular_solicitud_prestaciones" class="control-label">Celular:</label>
-                    	<input type="text" onkeypress="return soloNumeros(event);" class="form-control" id="celular_solicitud_prestaciones" name="celular_solicitud_prestaciones" placeholder="Celular">
-                        <div id="mensaje_celular_solicitud_prestaciones" class="errores"></div>
+                		<label for="celular_arrendatario_datos_personales" class="control-label">Celular Arrendatario:</label>
+                    	<input type="text"  class="form-control" id="celular_arrendatario_datos_personales" onKeyPress="return checkIt(event)" name="celular_arrendatario_datos_personales" placeholder="Celular">
+                        <div id="mensaje_celular_arrendatario_datos_personales" class="errores"></div>
                  	</div>
              	</div>
              	
-             	<div class="col-lg-2 col-xs-12 col-md-2">
-                 <div class="form-group">
-                                                      <label for="numero_codigo_verificacion" class="control-label">Código Verificación:</label>
-                                                      <input type="number" class="form-control" id="numero_codigo_verificacion" name="numero_codigo_verificacion" value="" placeholder="sms..">
-                                                      <input type="hidden" class="form-control" id="id_codigo_verificacion" name="id_codigo_verificacion" value="0" readonly>
-                                                     
-                                                      <div id="mensaje_numero_codigo_verificacion" class="errores"></div>
-                </div>
-				</div>
-				
-            					
-            					
-				<div class="col-lg-4 col-xs-12 col-md-4" style="margin-top: 23px;">
-   		   		   <span class="input-group-btn">
-	         		<button type="button" id="btn_enviar" name="btn_enviar" class="btn btn-primary">Enviar Código</button>
-             		<button type="button" id="btn_verificar" name="btn_verificar" class="btn btn-info">Verificar Código</button>
-	         		</span>
-   		  		 </div>
             					
              	
              	
@@ -401,9 +538,96 @@
     		  </div>
   			</div>
   			
+  			
+  			
+  			
+  			
   			<div class="panel panel-info">
 	         <div class="panel-heading">
-	         <h4><i class='glyphicon glyphicon-align-justify'></i> Referencias Familiares</h4>
+	         <h4><i class='glyphicon glyphicon-phone-alt'></i> Números Telefónicos</h4>
+	         </div>
+	         <div class="panel-body">
+			 <div class="row">
+          		<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="telefono_datos_personales" class="control-label">Teléfono:</label>
+                    	<input type="text" class="form-control"  id="telefono_datos_personales" onKeyPress="return checkIt(event)" name="telefono_datos_personales" placeholder="Teléfono">
+                        <div id="mensaje_telefono_datos_personales" class="errores"></div>
+                 	</div>
+             	</div>
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="celular_datos_personales" class="control-label">Celular:</label>
+                    	<input type="text"  class="form-control" id="celular_datos_personales" onKeyPress="return checkIt(event)" name="celular_datos_personales" placeholder="Celular">
+                        <div id="mensaje_celular_datos_personales" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="telf_trabajo_datos_personales" class="control-label">Teléfono del Trabajo:</label>
+                    	<input type="text"  class="form-control" id="telf_trabajo_datos_personales" onKeyPress="return checkIt(event)" name="telf_trabajo_datos_personales" placeholder="Teléfono">
+                        <div id="mensaje_telf_trabajo_datos_personales" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="ext_telef_datos_personales" class="control-label">Ext:</label>
+                    	<input type="text"  class="form-control" id="ext_telef_datos_personales" onKeyPress="return checkIt(event)" name="ext_telef_datos_personales" placeholder="ext..">
+                        <div id="ext_telef_datos_personales" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+				
+             	
+              	</div>
+              	
+              	
+              	
+              	<div class="row">
+              	
+              	
+              		<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="node_telef_datos_personales" class="control-label">Node:</label>
+                    	<input type="text"  class="form-control" id="node_telef_datos_personales" onKeyPress="return checkIt(event)" name="node_telef_datos_personales" placeholder="node">
+                        <div id="mensaje_node_telef_datos_personales" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+              	
+              	
+              	<div class="col-lg-2 col-xs-12 col-md-2">
+                 <div class="form-group">
+                                                      <label for="numero_codigo_verificacion" class="control-label">Código Verificación:</label>
+                                                      <input type="number" class="form-control" id="numero_codigo_verificacion" name="numero_codigo_verificacion" value="" placeholder="sms..">
+                                                      <input type="hidden" class="form-control" id="id_codigo_verificacion" name="id_codigo_verificacion" value="0" readonly>
+                                                     
+                                                      <div id="mensaje_numero_codigo_verificacion" class="errores"></div>
+                </div>
+				</div>
+              	
+              	<div class="col-lg-4 col-xs-12 col-md-4" style="margin-top: 23px;">
+   		   		   <span class="input-group-btn">
+	         		<button type="button" id="btn_enviar" name="btn_enviar" class="btn btn-primary">Enviar Código</button>
+             		<button type="button" id="btn_verificar" name="btn_verificar" class="btn btn-info">Verificar Código</button>
+	         		</span>
+   		  		 </div>
+              	</div>
+              	
+              	
+              	
+              	
+    		  </div>
+  			</div>
+  			
+  			
+  			
+  			<div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-align-justify'></i> Referencia Familiar que no Viva con Usted</h4>
 	         </div>
 	         <div class="panel-body">
 			 <div class="row">
@@ -411,22 +635,22 @@
 			 
 			 <div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="nombres_referencia_familiar" class="control-label">Nombres:</label>
-                    	<input type="text" class="form-control" id="nombres_referencia_familiar" name="nombres_referencia_familiar" placeholder="Nombres">
-                        <div id="mensaje_nombres_referencia_familiar" class="errores"></div>
+                		<label for="nombres_referencia_familiar_datos_personales" class="control-label">Nombres:</label>
+                    	<input type="text" class="form-control" id="nombres_referencia_familiar_datos_personales" name="nombres_referencia_familiar_datos_personales" placeholder="Nombres">
+                        <div id="mensaje_nombres_referencia_familiar_datos_personales" class="errores"></div>
                  	</div>
              	</div>
              	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="apellidos_referencia_familiar" class="control-label">Apellidos:</label>
-                    	<input type="text" class="form-control" id="apellidos_referencia_familiar" name="apellidos_referencia_familiar" placeholder="Apellidos">
-                        <div id="mensaje_apellidos_referencia_familiar" class="errores"></div>
+                		<label for="apellidos_referencia_familiar_datos_personales" class="control-label">Apellidos:</label>
+                    	<input type="text" class="form-control" id="apellidos_referencia_familiar_datos_personales" name="apellidos_referencia_familiar_datos_personales" placeholder="Apellidos">
+                        <div id="mensaje_apellidos_referencia_familiar_datos_personales" class="errores"></div>
                  	</div>
              	</div>
              	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="parentesco_referencia_familiar" class="control-label">Parentesco:</label>
-                    	<select name="parentesco_referencia_familiar" id="parentesco_referencia_familiar"  class="form-control" >
+                		<label for="parentesco_referencia_familiar_datos_personales" class="control-label">Parentesco:</label>
+                    	<select name="parentesco_referencia_familiar_datos_personales" id="parentesco_referencia_familiar_datos_personales"  class="form-control" >
                                       <option value="" selected="selected">--Seleccione--</option>
                                       <option value="Primo">Primo</option>
         							  <option value="Tío">Tío</option>
@@ -438,14 +662,14 @@
         							  <option value="Padre">Padre</option>
         							  <option value="Otro">Otro</option>
         		           </select> 
-                        <div id="mensaje_parentesco_referencia_familiar" class="errores"></div>
+                        <div id="mensaje_parentesco_referencia_familiar_datos_personales" class="errores"></div>
                  	</div>
              	</div>
           		<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="primer_telefono_referencia_familiar" class="control-label">Teléfono:</label>
-                    	<input type="text" onkeypress="return soloNumeros(event);" class="form-control" id="primer_telefono_referencia_familiar" name="primer_telefono_referencia_familiar" placeholder="Teléfono">
-                        <div id="mensaje_primer_telefono_referencia_familiar" class="errores"></div>
+                		<label for="primer_telefono_ref_familiar_datos_personales" class="control-label">Teléfono:</label>
+                    	<input type="text"  class="form-control"  onKeyPress="return checkIt(event)" id="primer_telefono_ref_familiar_datos_personales" name="primer_telefono_ref_familiar_datos_personales" placeholder="Teléfono">
+                        <div id="mensaje_primer_telefono_ref_familiar_datos_personales" class="errores"></div>
                  	</div>
              	</div>
              	
@@ -454,17 +678,17 @@
               <div class="row">
               	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="segundo_telefono_referencia_familiar" class="control-label">Celular:</label>
-                    	<input type="text" onkeypress="return soloNumeros(event);" class="form-control" id="segundo_telefono_referencia_familiar" name="segundo_telefono_referencia_familiar" placeholder="Celular">
-                        <div id="mensaje_segundo_telefono_referencia_familiar" class="errores"></div>
+                		<label for="segundo_telefono_ref_familiar_datos_personales" class="control-label">Celular:</label>
+                    	<input type="text"  class="form-control" onKeyPress="return checkIt(event)" id="segundo_telefono_ref_familiar_datos_personales" name="segundo_telefono_ref_familiar_datos_personales" placeholder="Celular">
+                        <div id="mensaje_segundo_telefono_ref_familiar_datos_personales" class="errores"></div>
                  	</div>
              	</div>
     		  </div>
     		  </div>
   			</div>
-            
-            
-            <div class="panel panel-info">
+  			
+  		
+  		 <div class="panel panel-info">
 	         <div class="panel-heading">
 	         <h4><i class='glyphicon glyphicon-align-justify'></i> Referencias Personales</h4>
 	         </div>
@@ -474,22 +698,22 @@
 			 
 			 <div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="nombres_referencia_personal" class="control-label">Nombres:</label>
-                    	<input type="text" class="form-control" id="nombres_referencia_personal" name="nombres_referencia_personal" placeholder="Nombres">
-                        <div id="mensaje_nombres_referencia_personals" class="errores"></div>
+                		<label for="nombres_referencia_personal_datos_personales" class="control-label">Nombres:</label>
+                    	<input type="text" class="form-control" id="nombres_referencia_personal_datos_personales" name="nombres_referencia_personal_datos_personales" placeholder="Nombres">
+                        <div id="mensaje_nombres_referencia_personal_datos_personales" class="errores"></div>
                  	</div>
              	</div>
              	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="apellidos_referencia_personal" class="control-label">Apellidos:</label>
-                    	<input type="text" class="form-control" id="apellidos_referencia_personal" name="apellidos_referencia_personal" placeholder="Apellidos">
-                        <div id="mensaje_apellidos_referencia_personal" class="errores"></div>
+                		<label for="apellidos_referencia_personal_datos_personales" class="control-label">Apellidos:</label>
+                    	<input type="text" class="form-control" id="apellidos_referencia_personal_datos_personales" name="apellidos_referencia_personal_datos_personales" placeholder="Apellidos">
+                        <div id="mensaje_apellidos_referencia_personal_datos_personales" class="errores"></div>
                  	</div>
              	</div>
              	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="parentesco_referencia_personal" class="control-label">Relación:</label>
-                    	<select name="parentesco_referencia_personal" id="parentesco_referencia_personal"  class="form-control" >
+                		<label for="relacion_referencia_personal_datos_personales" class="control-label">Relación:</label>
+                    	<select name="relacion_referencia_personal_datos_personales" id="relacion_referencia_personal_datos_personales"  class="form-control" >
                                       <option value="" selected="selected">--Seleccione--</option>
                                       <option value="Amigo">Amigo</option>
         							  <option value="Compadre">Compadre</option>
@@ -498,14 +722,14 @@
         							  <option value="Jefe(a)">Jefe(a)</option>
         							  <option value="Otro">Otro</option>
         			    </select> 
-                        <div id="mensaje_parentesco_referencia_personal" class="errores"></div>
+                        <div id="mensaje_relacion_referencia_personal_datos_personales" class="errores"></div>
                  	</div>
              	</div>
           		<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="primer_telefono_referencia_personal" class="control-label">Teléfono:</label>
-                    	<input type="text" onkeypress="return soloNumeros(event);" class="form-control" id="primer_telefono_referencia_personal" name="primer_telefono_referencia_personal" placeholder="Teléfono">
-                        <div id="mensaje_primer_telefono_referencia_personal" class="errores"></div>
+                		<label for="primer_telefono_ref_personal_datos_personales" class="control-label">Teléfono:</label>
+                    	<input type="text"  class="form-control" onKeyPress="return checkIt(event)" id="primer_telefono_ref_personal_datos_personales" name="primer_telefono_ref_personal_datos_personales" placeholder="Teléfono">
+                        <div id="mensaje_primer_telefono_ref_personal_datos_personales" class="errores"></div>
                  	</div>
              	</div>
              	
@@ -514,105 +738,1904 @@
               	 <div class="row">
               	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="segundo_telefono_referencia_personal" class="control-label">Celular:</label>
-                    	<input type="text" onkeypress="return soloNumeros(event);" class="form-control" id="segundo_telefono_referencia_personal" name="segundo_telefono_referencia_personal" placeholder="Celular">
-                        <div id="mensaje_segundo_telefono_referencia_personal" class="errores"></div>
+                		<label for="segundo_telefono_ref_personal_datos_personales" class="control-label">Celular:</label>
+                    	<input type="text"  class="form-control" onKeyPress="return checkIt(event)" id="segundo_telefono_ref_personal_datos_personales" name="segundo_telefono_ref_personal_datos_personales" placeholder="Celular">
+                        <div id="mensaje_segundo_telefono_ref_personal_datos_personales" class="errores"></div>
                  	</div>
              	</div>
     		  </div>
   			</div>
   			</div>
   			
+  			
   			<div class="panel panel-info">
 	         <div class="panel-heading">
-	         <h4><i class='glyphicon glyphicon-folder-close'></i> Datos Laborables</h4>
+	         <h4><i class='glyphicon glyphicon-home'></i> Datos Laborales</h4>
 	         </div>
 	         <div class="panel-body">
 			 
 			 
 			 <div class="row">
-			 
-			 
-			  
-			  	<div class="col-xs-6 col-md-3 col-lg-3 ">
-            		<div class="form-group">
-                		<label for="ultimo_cargo_solicitud_prestaciones" class="control-label">Ultimo Cargo:</label>
-                    	<input type="text" class="form-control" id="ultimo_cargo_solicitud_prestaciones" name="ultimo_cargo_solicitud_prestaciones" placeholder="Cargo">
-                        <div id="mensaje_ultimo_cargo_solicitud_prestaciones" class="errores"></div>
-                 	</div>
-             	</div>
-			  
-			 <div class="col-xs-6 col-md-3 col-lg-3 ">
-            		<div class="form-group">
-                		<label for="fecha_salida_solicitud_prestaciones" class="control-label">Fecha de Salida:</label>
-                    	<input type="date"    class="form-control" id="fecha_salida_solicitud_prestaciones" name="fecha_salida_solicitud_prestaciones" placeholder="Salida">
-                        <div id="mensaje_fecha_salida_solicitud_prestaciones" class="errores"></div>
-                 	</div>
-             	</div>
-			                    
-         	  </div>
-			 
-  			</div>
-  			</div>
-  			
-  			
-  			
-  			<div class="panel panel-info">
-	         <div class="panel-heading">
-	         <h4><i class='glyphicon glyphicon-usd'></i> Datos Cuenta Bancaria</h4>
-	         </div>
-	         <div class="panel-body">
-			 
-			 
-			 <div class="row">
-			 
-			 <div class="col-xs-12 col-md-3 col-md-3 ">
+                    <div class="col-xs-12 col-md-3 col-md-3 ">
             		    <div class="form-group">
             		    					  
-                          <label for="id_bancos" class="control-label">Banco:</label>
-                          <select  class="form-control" id="id_bancos" name="id_bancos">
+                          <label for="id_entidades" class="control-label">Institucion o Empresa:</label>
+                          <select  class="form-control" id="id_entidades" name="id_entidades">
                           	<option value="0">--Seleccione--</option>
                           </select>                         
-                          <div id="mensaje_id_bancos" class="errores"></div>
+                          <div id="mensaje_id_entidades" class="errores"></div>
                         </div>
             		  </div>
-			  
-			  	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		  
+            	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="numero_cuenta_ahorros_bancaria" class="control-label">Cuenta de Ahorros:</label>
-                    	<input type="text" onkeypress="return soloNumeros(event);" class="form-control" id="numero_cuenta_ahorros_bancaria" name="numero_cuenta_ahorros_bancaria" placeholder="Ahorros">
-                        <div id="mensaje_numero_cuenta_ahorros_bancaria" class="errores"></div>
+                		<label for="reparto_unidad_datos_laborales" class="control-label">Reparto o Unidad:</label>
+                    	<input type="text" class="form-control" id="reparto_unidad_datos_laborales" name="reparto_unidad_datos_laborales" placeholder="unidad">
+                        <div id="mensaje_reparto_unidad_datos_laborales" class="errores"></div>
                  	</div>
              	</div>
-			  
-			 <div class="col-xs-6 col-md-3 col-lg-3 ">
+             	
+             	
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
-                		<label for="numero_cuenta_corriente_bancaria" class="control-label">Cuenta Corriente:</label>
-                    	<input type="text" onkeypress="return soloNumeros(event);" class="form-control" id="numero_cuenta_corriente_bancaria" name="numero_cuenta_corriente_bancaria" placeholder="Corriente">
-                        <div id="mensaje_numero_cuenta_corriente_bancaria" class="errores"></div>
+                		<label for="seccion_datos_laborales" class="control-label">Sección:</label>
+                    	<input type="text" class="form-control" id="seccion_datos_laborales" name="seccion_datos_laborales" placeholder="sección">
+                        <div id="mensaje_seccion_datos_laborales" class="errores"></div>
                  	</div>
              	</div>
-			                    
-         	  </div>
+             	
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="nombres_jefe_datos_laborales" class="control-label">Nombre del Jefe Inmediato:</label>
+                    	<input type="text" class="form-control" id="nombres_jefe_datos_laborales" name="nombres_jefe_datos_laborales" placeholder="Nombres" >
+                        <div id="mensaje_nombres_jefe_datos_laborales" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	</div>
+             	
+             	
+             	<div class="row">
+             	
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="apellidos_jefe_datos_laborales" class="control-label">Apellido del Jefe Inmediato:</label>
+                    	<input type="text" class="form-control" id="apellidos_jefe_datos_laborales" name="apellidos_jefe_datos_laborales" placeholder="Apellidos" >
+                        <div id="mensaje_apellidos_jefe_datos_laborales" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="telefono_jefe_datos_laborales" class="control-label">Teléfono del Jefe Inmediato:</label>
+                    	<input type="text" class="form-control" onKeyPress="return checkIt(event)" id="telefono_jefe_datos_laborales" name="telefono_jefe_datos_laborales" placeholder="Teléfono" >
+                        <div id="mensaje_telefono_jefe_datos_laborales" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	 <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="cargo_actual_datos_laborales" class="control-label">Cargo Actual:</label>
+                    	<input type="text" class="form-control" id="cargo_actual_datos_laborales" name="cargo_actual_datos_laborales" placeholder="cargo" >
+                        <div id="mensaje_cargo_actual_datos_laborales" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+            <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="anios_servicio_datos_laborales" class="control-label">Años de Servicio:</label>
+                    	<input type="text" class="form-control" id="anios_servicio_datos_laborales" name="anios_servicio_datos_laborales" placeholder="años" >
+                        <div id="mensaje_anios_servicio_datos_laborales" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	</div>
+             	
+             	
+             	<div class="row">
+            		  
+                <div class="col-xs-12 col-md-3 col-md-3 ">
+            		    <div class="form-group">
+            		    					  
+                          <label for="id_provincia_datos_laborales" class="control-label">Provincia:</label>
+                          <select  class="form-control" id="id_provincia_datos_laborales" name="id_provincia_datos_laborales">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_provincia_datos_laborales" class="errores"></div>
+                        </div>
+            		  </div>
+             	
+             	<div class="col-xs-12 col-md-3 col-md-3 ">
+            		    <div class="form-group">
+            		    					  
+                          <label for="id_canton_datos_laborales" class="control-label">Cantón:</label>
+                          <select  class="form-control" id="id_canton_datos_laborales" name="id_canton_datos_laborales">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_canton_datos_laborales" class="errores"></div>
+                        </div>
+            		  </div>
+             	
+             	<div class="col-xs-12 col-md-3 col-md-3 ">
+            		    <div class="form-group">
+            		    					  
+                          <label for="id_parroquia_datos_laborales" class="control-label">Parroquia:</label>
+                          <select  class="form-control" id="id_parroquia_datos_laborales" name="id_parroquia_datos_laborales">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_parroquia_datos_laborales" class="errores"></div>
+                        </div>
+            		  </div>
+            		  
+               <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="calle_datos_laborales" class="control-label">Calle:</label>
+                    	<input type="text" class="form-control" id="calle_datos_laborales" name="calle_datos_laborales" placeholder="calle" >
+                        <div id="mensaje_calle_datos_laborales" class="errores"></div>
+                 	</div>
+             	</div>
+                        		
+            </div>
+			 
+		  	<div class="row">
+		  	
+		  	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="numero_calle_datos_laborales" class="control-label">Número:</label>
+                    	<input type="text" class="form-control" id="numero_calle_datos_laborales" name="numero_calle_datos_laborales" placeholder="número" >
+                        <div id="mensaje_numero_calle_datos_laborales" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+            <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="interseccion_datos_laborales" class="control-label">Intersección:</label>
+                    	<input type="text" class="form-control" id="interseccion_datos_laborales" name="interseccion_datos_laborales" placeholder="interseccion" >
+                        <div id="mensaje_interseccion_datos_laborales" class="errores"></div>
+                 	</div>
+             	</div>
+		  	 	
+            <div class="col-xs-6 col-md-6 col-lg-6 ">
+            		<div class="form-group">
+                		<label for="referencia_direccion_trabajo_datos_laborales" class="control-label">Referencia de la dirección de trabajo:</label>
+                    	<input type="text" class="form-control" id="referencia_direccion_trabajo_datos_laborales" name="referencia_direccion_trabajo_datos_laborales" placeholder="Apellidos" >
+                        <div id="mensaje_referencia_direccion_trabajo_datos_laborales" class="errores"></div>
+                 	</div>
+             	</div>
+		  	
+		  	
+		  	</div>	    
+			 
+			 
+			 <div class="row">
+			 
+			
+			
+			 
+			 </div>
+			 
+			 
 			 
   			</div>
   			</div>
-					                		        
-                    <div class="row">
-    			     <div class="col-lg-12 col-md-12 col-xs-12 " style="text-align: center; margin-top: 10px">
-				  	    <div class="form-group">
-    	                  <button type="submit" id="Guardar" name="Guardar" value=""   class="btn btn-success" style="margin-top: 10px;"><i class="glyphicon glyphicon-edit"></i> Registrar Solicitud</button>         
-					   
-	                    </div>
-	                    
-        		    </div> 
-        		    
-        		           		    
-    		    </div>
- 
+  			
+  		<div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-home'></i> Datos Del Conyuge</h4>
+	         </div>
+	         <div class="panel-body">
+			 
+			 
+			  <div class="row">
+          		
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="cedula_datos_conyuge" class="control-label">Cedula:</label>
+                    	<input type="text"  class="form-control" onKeyPress="return checkIt(event)" id="cedula_datos_conyuge" name="cedula_datos_conyuge" placeholder="C.I." >
+                        <div id="mensaje_cedula_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="nombres_datos_conyuge" class="control-label">Nombres:</label>
+                    	<input type="text" class="form-control" id="nombres_datos_conyuge" name="nombres_datos_conyuge" placeholder="Nombres">
+                        <div id="mensaje_nombres_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="apellidos_datos_conyuge" class="control-label">Apellidos:</label>
+                    	<input type="text" class="form-control" id="apellidos_datos_conyuge" name="apellidos_datos_conyuge" placeholder="Apellidos" >
+                        <div id="mensaje_apellidos_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+             	<div class="col-xs-12 col-md-3 col-md-3 ">
+            		    <div class="form-group">
+            		    					  
+                          <label for="id_sexo_datos_conyuge" class="control-label">Género:</label>
+                          <select  class="form-control" id="id_sexo_datos_conyuge" name="id_sexo_datos_conyuge">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_sexo_datos_conyuge" class="errores"></div>
+                        </div>
+                </div>
+          	</div>   
+			 
+			 
+			 <div class="row">
+			 
+			<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="fecha_nacimiento_datos_conyuge" class="control-label">Fecha de Nacimiento:</label>
+                    	<input type="date" class="form-control" id="fecha_nacimiento_datos_conyuge" name="fecha_nacimiento_datos_conyuge" placeholder="Apellidos" >
+                        <div id="mensaje_fecha_nacimiento_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+			
+			<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="vive_residencia_datos_conyuge" class="control-label">Vive en la Residencia:</label>
+                    	<select name="vive_residencia_datos_conyuge" id="vive_residencia_datos_conyuge"  class="form-control">
+                                      <option value="" selected="selected">--Seleccione--</option>
+                                      <option value="1">Si</option>
+        							  <option value="2">No</option>
+        			    </select> 
+                        <div id="mensaje_vive_residencia_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+             	
+            <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="telefono_datos_conyuge" class="control-label">Teléfono:</label>
+                    	<input type="text" class="form-control" onKeyPress="return checkIt(event)" id="telefono_datos_conyuge" name="telefono_datos_conyuge" placeholder="telefono" >
+                        <div id="mensaje_telefono_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+            <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="celular_datos_conyuge" class="control-label">Celular:</label>
+                    	<input type="text" class="form-control" onKeyPress="return checkIt(event)" id="celular_datos_conyuge" name="celular_datos_conyuge" placeholder="celular" >
+                        <div id="mensaje_celular_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+			 
+			 
+			 </div>
+			 
+			 
+			 
+  			</div>
+  			</div>
+  			
+  			
+  			<div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-home'></i> Si no vive el conyuge: Dirección Exacta</h4>
+	         </div>
+	         <div class="panel-body">
+			 
+				<div class="row">
+             	<div class="col-xs-12 col-md-3 col-md-3 ">
+            		    <div class="form-group">
+            		    					  
+                          <label for="id_provincia_datos_conyuge" class="control-label">Provincia:</label>
+                          <select  class="form-control" id="id_provincia_datos_conyuge" name="id_provincia_datos_conyuge">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_provincia_datos_conyuge" class="errores"></div>
+                        </div>
+            		  </div>
+             	
+             	<div class="col-xs-12 col-md-3 col-md-3 ">
+            		    <div class="form-group">
+            		    					  
+                          <label for="id_canton_datos_conyuge" class="control-label">Cantón:</label>
+                          <select  class="form-control" id="id_canton_datos_conyuge" name="id_canton_datos_conyuge">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_canton_datos_conyuge" class="errores"></div>
+                        </div>
+            		  </div>
+             	
+             	<div class="col-xs-12 col-md-3 col-md-3 ">
+            		    <div class="form-group">
+            		    					  
+                          <label for="id_parroquia_datos_conyuge" class="control-label">Parroquia:</label>
+                          <select  class="form-control" id="id_parroquia_datos_conyuge" name="id_parroquia_datos_conyuge">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_parroquia_datos_conyuge" class="errores"></div>
+                        </div>
+            		  </div>
+             	
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="barrio_datos_conyuge" class="control-label">Barrio y/o Sector:</label>
+                    	<input type="text" class="form-control" id="barrio_datos_conyuge" name="barrio_datos_conyuge" placeholder="Barrio">
+                        <div id="mensaje_barrio_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+          	</div>
+          	
+          	<div class="row">
+          	
+          	<div class="col-xs-6 col-md-6 col-lg-6 ">
+            		<div class="form-group">
+                		<label for="ciudadela_datos_conyuge" class="control-label">Ciudadela y/o conjunto/Etapa/Manzana:</label>
+                    	<input type="text" class="form-control" id="ciudadela_datos_conyuge" name="ciudadela_datos_conyuge" placeholder="Ciudadela">
+                        <div id="mensaje_ciudadela_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="calle_datos_conyuge" class="control-label">Calle:</label>
+                    	<input type="text" class="form-control" id="calle_datos_conyuge" name="calle_datos_conyuge" placeholder="Calle">
+                        <div id="mensaje_calle_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="numero_calle_datos_conyuge" class="control-label">Número de Calle:</label>
+                    	<input type="text" class="form-control" id="numero_calle_datos_conyuge" name="numero_calle_datos_conyuge" placeholder="número" >
+                        <div id="mensaje_numero_calle_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+          	
+          	</div>
+			
+			<div class="row">
+			
+			<div class="col-xs-6 col-md-6 col-lg-6 ">
+            		<div class="form-group">
+                		<label for="interseccion_datos_conyuge" class="control-label">Intersección:</label>
+                    	<input type="text" class="form-control" id="interseccion_datos_conyuge" name="interseccion_datos_conyuge" placeholder="Intersección">
+                        <div id="mensaje_interseccion_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+			
+			</div>
+			 
+			 
+			 
+  			</div>
+  			</div>
+  			
+  			
+  			
+  			
+  		     <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-home'></i> Actividad Económica del Conyuge</h4>
+	         </div>
+	         <div class="panel-body">
+			 
+				<div class="row">
+          	
+          	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="actividad_economica_datos_conyuge" class="control-label">Tipo de Empleado:</label>
+                    	<select name="actividad_economica_datos_conyuge" id="actividad_economica_datos_conyuge"  class="form-control">
+                                      <option value="" selected="selected">--Seleccione--</option>
+                                      <option value="Empleado Publico">Empleado Publico</option>
+                                      <option value="Empleado Privado">Empleado Privado</option>
+        							  <option value="Libre Ejercicio Profesional">Libre Ejercicio Profesional</option>
+        							  <option value="Independiente">Independiente</option>
+        							  <option value="Jubilado">Jubilado</option>
+        			    </select> 
+                        <div id="mensaje_actividad_economica_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+          	
+          	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="empresa_datos_conyuge" class="control-label">Empresa:</label>
+                    	<input type="text" class="form-control" id="empresa_datos_conyuge" name="empresa_datos_conyuge" placeholder="Empresa">
+                        <div id="mensaje_empresa_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="naturaleza_negocio_datos_conyuge" class="control-label">Naturaleza del Negocio:</label>
+                    	<input type="text" class="form-control" id="naturaleza_negocio_datos_conyuge" name="naturaleza_negocio_datos_conyuge" placeholder="Negocio">
+                        <div id="mensaje_naturaleza_negocio_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="cargo_datos_conyuge" class="control-label">Cargo:</label>
+                    	<input type="text" class="form-control" id="cargo_datos_conyuge" name="cargo_datos_conyuge" placeholder="Cargo">
+                        <div id="mensaje_cargo_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+          	
+          	</div>
+          	
+          	
+			
+			<div class="row">
+			
+			<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="anios_laborados_datos_conyuge" class="control-label">Tiempo Laborado en Años:</label>
+                    	<input type="text" class="form-control" id="anios_laborados_datos_conyuge" name="anios_laborados_datos_conyuge" placeholder="Años">
+                        <div id="mensaje_anios_laborados_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+             <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="tipo_contrato_datos_conyuge" class="control-label">Tipo de Contrato:</label>
+                    	<select name="tipo_contrato_datos_conyuge" id="tipo_contrato_datos_conyuge"  class="form-control">
+                                      <option value="" selected="selected">--Seleccione--</option>
+                                      <option value="Nombramiento">Nombramiento</option>
+                                      <option value="Termino Fijo">Termino Fijo</option>
+        							  <option value="Termino Indefinido">Termino Indefinido</option>
+        							  <option value="Prestacion de Servicios">Prestacion de Servicios</option>
+        							  
+        			    </select> 
+                        <div id="mensaje_tipo_contrato_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+			
+			<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="nombres_jefe_datos_conyuge" class="control-label">Nombres del Jefe:</label>
+                    	<input type="text" class="form-control" id="nombres_jefe_datos_conyuge" name="nombres_jefe_datos_conyuge" placeholder="Nombres" >
+                        <div id="mensaje_nombres_jefe_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+			
+			<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="apellidos_jefe_datos_conyuge" class="control-label">Apellidos del Jefe:</label>
+                    	<input type="text" class="form-control" onKeyPress="return checkIt(event)" id="apellidos_jefe_datos_conyuge" name="apellidos_jefe_datos_conyuge" placeholder="Apellidos" >
+                        <div id="mensaje_apellidos_jefe_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+			
+			
+			</div>
+			 
+			 <div class="row">
+			 
+			 <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="telefono_jefe_datos_conyuge" class="control-label">Teléfono del Jefe:</label>
+                    	<input type="text" class="form-control" onKeyPress="return checkIt(event)" id="telefono_jefe_datos_conyuge" name="telefono_jefe_datos_conyuge" placeholder="Teléfono" >
+                        <div id="mensaje_telefono_jefe_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+			 
+			 
+			
+             	<div class="col-xs-12 col-md-3 col-md-3 ">
+            		    <div class="form-group">
+            		    					  
+                          <label for="id_provincia_trabajo_datos_conyuge" class="control-label">Provincia:</label>
+                          <select  class="form-control" id="id_provincia_trabajo_datos_conyuge" name="id_provincia_trabajo_datos_conyuge">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_provincia_trabajo_datos_conyuge" class="errores"></div>
+                        </div>
+            		  </div>
+             	
+             	<div class="col-xs-12 col-md-3 col-md-3 ">
+            		    <div class="form-group">
+            		    					  
+                          <label for="id_canton_trabajo_datos_conyuge" class="control-label">Cantón:</label>
+                          <select  class="form-control" id="id_canton_trabajo_datos_conyuge" name="id_canton_trabajo_datos_conyuge">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_canton_trabajo_datos_conyuge" class="errores"></div>
+                        </div>
+            		  </div>
+             	
+             	<div class="col-xs-12 col-md-3 col-md-3 ">
+            		    <div class="form-group">
+            		    					  
+                          <label for="id_parroquia_trabajo_datos_conyuge" class="control-label">Parroquia:</label>
+                          <select  class="form-control" id="id_parroquia_trabajo_datos_conyuge" name="id_parroquia_trabajo_datos_conyuge">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_parroquia_trabajo_datos_conyuge" class="errores"></div>
+                        </div>
+            		  </div>
+             	
+             	
+			 
+			 
+			 </div>
+			 
+			 
+			  <div class="row">
+			  
+			 
+          	
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="calle_trabajo_datos_conyuge" class="control-label">Calle:</label>
+                    	<input type="text" class="form-control" id="calle_trabajo_datos_conyuge" name="calle_trabajo_datos_conyuge" placeholder="Calle">
+                        <div id="mensaje_calle_trabajo_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="nuemero_calle_trabajo_datos_conyuge" class="control-label">Número de Calle:</label>
+                    	<input type="text" class="form-control" id="nuemero_calle_trabajo_datos_conyuge" name="nuemero_calle_trabajo_datos_conyuge" placeholder="Número">
+                        <div id="mensaje_nuemero_calle_trabajo_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	<div class="col-xs-6 col-md-6 col-lg-6 ">
+            		<div class="form-group">
+                		<label for="interseccion_trabajo_datos_conyuge" class="control-label">Intersección:</label>
+                    	<input type="text" class="form-control" id="interseccion_trabajo_datos_conyuge" name="interseccion_trabajo_datos_conyuge" placeholder="Intersección">
+                        <div id="mensaje_interseccion_trabajo_datos_conyuge" class="errores"></div>
+                 	</div>
+             	</div>	
+			 
+			  
+			  </div>
+			 
+			
+			 
+			 <div class="row">
+			 
+			  <div class="col-xs-6 col-md-6 col-lg-6 ">
+            		<div class="form-group">
+                		<label for="referencia_trabajo_datos_conyuge" class="control-label">Referencia de la direccion del trabajo:</label>
+                    	<input type="text" class="form-control" id="referencia_trabajo_datos_conyuge" name="referencia_trabajo_datos_conyuge" placeholder="Referencia">
+                        <div id="mensaje_referencia_trabajo_datos_conyuge" class="errores"></div>
+                 	</div>
+             </div>
+			 
+			 
+			 </div>
+			 
+  			</div>
+  			</div>
+  			
+  			
+  		<div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-home'></i>Datos de la actividad para independientes o Detalle del proyecto</h4>
+	         </div>
+	         <div class="panel-body">
+	         <div class="row">
+	         
+	          <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="actividad_principal_datos_independientes" class="control-label">Actividad Principal:</label>
+                    	<input type="text" class="form-control" id="actividad_principal_datos_independientes" name="actividad_principal_datos_independientes" placeholder="Actividad">
+                        <div id="mensaje_actividad_principal_datos_independientes" class="errores"></div>
+                 	</div>
+             	</div>
+             	 <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="ruc_datos_independientes" class="control-label">R.U.C. :</label>
+                    	<input type="text" class="form-control" onKeyPress="return checkIt(event)" id="ruc_datos_independientes" name="ruc_datos_independientes" placeholder="R.U.C.">
+                        <div id="mensaje_ruc_datos_independientes" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	 <div class="col-xs-6 col-md-6 col-lg-6 ">
+            		<div class="form-group">
+                		<label for="detalle_actividades_datos_independientes" class="control-label">Descripción Completa:</label>
+                    	<input type="text" class="form-control" id="detalle_actividades_datos_independientes" name="detalle_actividades_datos_independientes" placeholder="Descripción">
+                        <div id="mensaje_detalle_actividades_datos_independientes" class="errores"></div>
+                 	</div>
+             	</div>
+	         
+	         
+	         
+	         </div>
+	         
+	         
+	         <div class="row">
+	         
+	         <div class="panel-heading">
+	         <h4>Detalle las actividades e Ingresos y Egresos</h4>
+	         </div>
+	         
+	         </div>
+	         
+	         <div class="row">
+	         
+	         <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="local_datos_independientes" class="control-label">Local:</label>
+                    	<select name="local_datos_independientes" id="local_datos_independientes"  class="form-control">
+                                      <option value="" selected="selected">--Seleccione--</option>
+                                      <option value="Propio">Propio</option>
+                                      <option value="Arrendado">Arrendado</option>
+        							  <option value="Otro">Otro</option>
+        							 
+        							  
+        			    </select> 
+                        <div id="mensaje_local_datos_independientes" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="nombres_propietario_datos_independientes" class="control-label">Nombres del Propietario:</label>
+                    	<input type="text" class="form-control" id="nombres_propietario_datos_independientes" name="nombres_propietario_datos_independientes" placeholder="Descripción">
+                        <div id="mensaje_nombres_propietario_datos_independientes" class="errores"></div>
+                 	</div>
+             	</div>
+             	 <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="apellidos_propietario_datos_independientes" class="control-label">Apellidos del Propietario :</label>
+                    	<input type="text" class="form-control" id="apellidos_propietario_datos_independientes" name="apellidos_propietario_datos_independientes" placeholder="Apellidos">
+                        <div id="mensaje_apellidos_propietario_datos_independientes" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="telefono_propietario_datos_independientes" class="control-label">Teléfono del Propietario :</label>
+                    	<input type="text" class="form-control" onKeyPress="return checkIt(event)" id="telefono_propietario_datos_independientes" name="telefono_propietario_datos_independientes" placeholder="Teléfono">
+                        <div id="mensaje_telefono_propietario_datos_independientes" class="errores"></div>
+                 	</div>
+             	</div>
+             	</div>
+             	
+             	  <div class="row">
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="tiempo_funcionamiento_datos_independientes" class="control-label">Tiempo de Funcionamiento :</label>
+                    	<input type="text" class="form-control" id="tiempo_funcionamiento_datos_independientes" name="tiempo_funcionamiento_datos_independientes" placeholder="Tiempo">
+                        <div id="mensaje_tiempo_funcionamiento_datos_independientes" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="numero_patronal_datos_independientes" class="control-label">Número Patronal:</label>
+                    	<input type="text" class="form-control" id="numero_patronal_datos_independientes" name="numero_patronal_datos_independientes" placeholder="Número">
+                        <div id="mensaje_numero_patronal_datos_independientes" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	<div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="numero_empleados_datos_independientes" class="control-label">Número de Empleados:</label>
+                    	<input type="text" class="form-control" id="numero_empleados_datos_independientes" name="numero_empleados_datos_independientes" placeholder="Número">
+                        <div id="mensaje_numero_empleados_datos_independientes" class="errores"></div>
+                 	</div>
+             	</div>
+	         
+	         </div>
+	         
+	         	
+  			</div>
+  			</div>
+  			
+  			
+  						
+  		<div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-home'></i>Datos Económicos y Financieros</h4>
+	         </div>
+	         <div class="panel-body">
+	         
+	         
+	         <div class="panel-heading">
+	        <h4>Referencias bancarias</h4>
+	         </div>
+	       <div class="row">
+	       
+	       <div class="col-xs-12 col-md-4 col-md-4 ">
+            		    <div class="form-group">
+            		    					  
+                          <label for="id_bancos_referencia_bancaria" class="control-label">Institución:</label>
+                          <select  class="form-control" id="id_bancos_referencia_bancaria" name="id_bancos_referencia_bancaria">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_bancos_referencia_bancaria" class="errores"></div>
+                        </div>
+           </div>
+            		  
+            		  
+              <div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+                		<label for="tipo_cuenta_referencia_bancaria" class="control-label">Tipo de cuenta o producto (tarjeta):</label>
+                    	<select name="tipo_cuenta_referencia_bancaria" id="tipo_cuenta_referencia_bancaria"  class="form-control">
+                                      <option value="" selected="selected">--Seleccione--</option>
+                                      <option value="Ahorros">Ahorros</option>
+                                      <option value="Corriente">Corriente</option>
+        							   
+        			    </select> 
+                        <div id="mensaje_tipo_cuenta_referencia_bancaria" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	<div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+                		<label for="numero_cuenta_referencia_bancaria" class="control-label">Número de cuenta/Tarjeta:</label>
+                    	<input type="text" class="form-control" id="numero_cuenta_referencia_bancaria" onKeyPress="return checkIt(event)" name="numero_cuenta_referencia_bancaria" placeholder="Número">
+                        <div id="mensaje_numero_cuenta_referencia_bancaria" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	       </div>
+	       
+	       
+	       
+	       <div class="row">
+	       
+	       <div class="col-xs-12 col-md-4 col-md-4 ">
+            		    <div class="form-group">
+            		      <select  class="form-control" id="id_bancos_uno_datos_economicos" name="id_bancos_uno_datos_economicos">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_bancos_uno_datos_economicos" class="errores"></div>
+                        </div>
+           </div>
+            		  
+            		  
+              <div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+                    	<select name="tipo_cuenta_uno_datos_economicos" id="tipo_cuenta_uno_datos_economicos"  class="form-control">
+                                      <option value="" selected="selected">--Seleccione--</option>
+                                      <option value="Ahorros">Ahorros</option>
+                                      <option value="Corriente">Corriente</option>
+        							   
+        			    </select> 
+                        <div id="mensaje_tipo_cuenta_uno_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	<div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="numero_cuenta_uno_datos_economicos"  onKeyPress="return checkIt(event)" name="numero_cuenta_uno_datos_economicos" placeholder="Número">
+                        <div id="mensaje_numero_cuenta_uno_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	       </div>
+	       
+	       
+	       
+	     
+	       <div class="row">
+	       
+	       <div class="col-xs-12 col-md-4 col-md-4 ">
+            		    <div class="form-group">
+            		      <select  class="form-control" id="id_bancos_dos_datos_economicos" name="id_bancos_dos_datos_economicos">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_bancos_dos_datos_economicos" class="errores"></div>
+                        </div>
+           </div>
+            		  
+            		  
+              <div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+                    	<select name="tipo_cuenta_dos_datos_economicos" id="tipo_cuenta_dos_datos_economicos"  class="form-control">
+                                      <option value="" selected="selected">--Seleccione--</option>
+                                      <option value="Ahorros">Ahorros</option>
+                                      <option value="Corriente">Corriente</option>
+        							   
+        			    </select> 
+                        <div id="mensaje_tipo_cuenta_dos_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	<div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="numero_cuenta_dos_datos_economicos"  onKeyPress="return checkIt(event)" name="numero_cuenta_dos_datos_economicos" placeholder="Número">
+                        <div id="mensaje_numero_cuenta_dos_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	       </div>
+	      <div class="row">
+	       
+	       <div class="col-xs-12 col-md-4 col-md-4 ">
+            		    <div class="form-group">
+            		      <select  class="form-control" id="id_bancos_tres_datos_economicos" name="id_bancos_tres_datos_economicos">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_bancos_tres_datos_economicos" class="errores"></div>
+                        </div>
+           </div>
+            		  
+            		  
+              <div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+                    	<select name="tipo_cuenta_tres_datos_economicos" id="tipo_cuenta_tres_datos_economicos"  class="form-control">
+                                      <option value="" selected="selected">--Seleccione--</option>
+                                      <option value="Ahorros">Ahorros</option>
+                                      <option value="Corriente">Corriente</option>
+        							   
+        			    </select> 
+                        <div id="mensaje_tipo_cuenta_tres_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	<div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="numero_cuenta_tres_datos_economicos"  onKeyPress="return checkIt(event)" name="numero_cuenta_tres_datos_economicos" placeholder="Número">
+                        <div id="mensaje_numero_cuenta_tres_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	       </div>
+	       <div class="row">
+	       
+	       <div class="col-xs-12 col-md-4 col-md-4 ">
+            		    <div class="form-group">
+            		      <select  class="form-control" id="id_bancos_cuatro_datos_economicos" name="id_bancos_cuatro_datos_economicos">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_bancos_cuatro_datos_economicos" class="errores"></div>
+                        </div>
+           </div>
+            		  
+            		  
+              <div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+                    	<select name="tipo_cuenta_cuatro_datos_economicos" id="tipo_cuenta_cuatro_datos_economicos"  class="form-control">
+                                      <option value="" selected="selected">--Seleccione--</option>
+                                      <option value="Ahorros">Ahorros</option>
+                                      <option value="Corriente">Corriente</option>
+        							   
+        			    </select> 
+                        <div id="mensaje_tipo_cuenta_cuatro_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	<div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="numero_cuenta_cuatro_datos_economicos" onKeyPress="return checkIt(event)" name="numero_cuenta_cuatro_datos_economicos" placeholder="Número">
+                        <div id="mensaje_numero_cuenta_cuatro_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	       </div>
+	       
+	       <div class="row">
+	         
+	         <div class="panel-heading">
+	         <h4>&nbsp; &nbsp;Referencias comerciales y / o proveedores</h4>
+	         </div>
+	         
+	         
+	         <div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+                		<label for="empresa_uno_datos_economicos" class="control-label">Empresa / Proveedor:</label>
+                    	<input type="text" class="form-control" id="empresa_uno_datos_economicos" name="empresa_uno_datos_economicos" placeholder="Empresa">
+                        <div id="mensaje_empresa_uno_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	<div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+                		<label for="direccion_uno_datos_economicos" class="control-label">Dirección:</label>
+                    	<input type="text" class="form-control" id="direccion_uno_datos_economicos" name="direccion_uno_datos_economicos" placeholder="Dirección">
+                        <div id="mensaje_direccion_uno_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	<div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+                		<label for="numero_telefono_uno_datos_economicos" class="control-label">Teléfono:</label>
+                    	<input type="text" class="form-control" id="numero_telefono_uno_datos_economicos" onKeyPress="return checkIt(event)" name="numero_telefono_uno_datos_economicos" placeholder="Teléfono">
+                        <div id="mensaje_numero_telefono_uno_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+	         
+	         
+	         
+	         </div>
+	       
+	       
+	       
+	       <div class="row">
+	       
+	       
+	       <div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+               
+                    	<input type="text" class="form-control" id="empresa_dos_datos_economicos" name="empresa_dos_datos_economicos" placeholder="Empresa">
+                        <div id="mensaje_empresa_dos_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+	         
+	         <div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+        
+                    	<input type="text" class="form-control" id="direccion_dos_datos_economicos" name="direccion_dos_datos_economicos" placeholder="Dirección">
+                        <div id="mensaje_direccion_dos_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+	         
+	         <div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+                
+                    	<input type="text" class="form-control" id="numero_telefono_dos_datos_economicos" onKeyPress="return checkIt(event)" name="numero_telefono_dos_datos_economicos" placeholder="Teléfono">
+                        <div id="mensaje_numero_telefono_dos_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+	         
+	       
+	       
+	       </div>
+	       
+	       
+	       
+	            <div class="row">
+	       
+	       
+	       <div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+               
+                    	<input type="text" class="form-control" id="empresa_tres_datos_economicos" name="empresa_tres_datos_economicos" placeholder="Empresa">
+                        <div id="mensaje_empresa_tres_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+	         
+	         <div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+        
+                    	<input type="text" class="form-control" id="direccion_tres_datos_economicos" name="direccion_tres_datos_economicos" placeholder="Dirección">
+                        <div id="mensaje_direccion_tres_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+	         
+	         <div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+                
+                    	<input type="text" class="form-control" id="numero_telefono_tres_datos_economicos" onKeyPress="return checkIt(event)" name="numero_telefono_tres_datos_economicos" placeholder="Teléfono">
+                        <div id="mensaje_numero_telefono_tres_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+	         
+	       
+	       
+	       </div>
+	       
+	       
+	            <div class="row">
+	       
+	       
+	       <div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+               
+                    	<input type="text" class="form-control" id="empresa_cuatro_datos_economicos" name="empresa_cuatro_datos_economicos" placeholder="Empresa">
+                        <div id="mensaje_empresa_cuatro_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+	         
+	         <div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+        
+                    	<input type="text" class="form-control" id="direccion_cuatro_datos_economicos" name="direccion_cuatro_datos_economicos" placeholder="Dirección">
+                        <div id="mensaje_direccion_cuatro_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+	         
+	         <div class="col-xs-6 col-md-4 col-lg-4 ">
+            		<div class="form-group">
+                
+                    	<input type="text" class="form-control" id="numero_telefono_cuatro_datos_economicos" onKeyPress="return checkIt(event)" name="numero_telefono_cuatro_datos_economicos" placeholder="Teléfono">
+                        <div id="mensaje_numero_telefono_cuatro_datos_economicos" class="errores"></div>
+                 	</div>
+             	</div>
+	         
+	       
+	       
+	        </div>
+	       </div>
+     	  </div>
+  			
+  			
+ 			<div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-home'></i> Estado de Situación Patrimonial</h4>
+	         </div>
+	         <div class="panel-body">
+			 
+			 <div class="row">
+                    		   
+             
+            <table class="col-lg-12 col-md-12 col-xs-12 tablesorter table table-striped table-bordered dt-responsive nowrap">
+            
+            <tr>
+            <th><b>ACTIVOS</b></th>
+            <th><b>VALOR EN DÓLARES</b></th>
+            <th><b>PASIVOS</b></th>
+            <th><b>VALOR EN DÓLARES</b></th>
+            </tr>
+            
+            
+             <tr>
+            <td style="text-align: center;"><b>Activos Corrientes</b></td>
+            <td style="text-align: center;"><b>&nbsp;</b></td>
+            <td style="text-align: center;"><b>Pasivos Corrientes</b></td>
+            <td style="text-align: center;"><b>&nbsp;</b></td>
+            </tr>
+            
+            <tr>
+            <td>Efectivo</td>
+            <td><input type="text" class="form-control cantidades1" id="efectivo_activos_corrientes" name="efectivo_activos_corrientes"  value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_efectivo_activos_corrientes" class="errores"></div></td>
+            <td>Préstamo CAPREMCI (menor a 1 año)</td>
+            <td><input type="text" class="form-control cantidades1" id="prestamo_menor_anio_pasivo_corriente" name="prestamo_menor_anio_pasivo_corriente" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_prestamo_menor_anio_pasivo_corriente" class="errores"></div></td>
+            </tr>
+            
+            <tr>
+            <td>Bancos / Cooperativas</td>
+            <td><input type="text" class="form-control cantidades1" id="bancos_activos_corrientes" name="bancos_activos_corrientes"  value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_bancos_activos_corrientes" class="errores"></div></td>
+            <td>Préstamo emergente CAPREMCI</td>
+            <td><input type="text" class="form-control cantidades1" id="prestamo_emergente_pasivo_corriente" name="prestamo_emergente_pasivo_corriente" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_prestamo_emergente_pasivo_corriente" class="errores"></div></td>
+            </tr>
+            
+            <tr>
+            <td>Cuentas por cobrar</td>
+            <td><input type="text" class="form-control cantidades1" id="cuentas_cobrar_activos_corrientes" name="cuentas_cobrar_activos_corrientes" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_cuentas_cobrar_activos_corrientes" class="errores"></div></td>
+            <td>Cuentas por pagar</td>
+            <td><input type="text" class="form-control cantidades1" id="cuentas_pagar_pasivo_corriente" name="cuentas_pagar_pasivo_corriente" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_cuentas_pagar_pasivo_corriente" class="errores"></div></td>
+            </tr>
+            
+            <tr>
+            <td>Inversiones</td>
+            <td><input type="text" class="form-control cantidades1" id="inversiones_activos_corrientes" name="inversiones_activos_corrientes" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_inversiones_activos_corrientes" class="errores"></div></td>
+            <td>Proveedores</td>
+            <td><input type="text" class="form-control cantidades1" id="proveedores_pasivo_corriente" name="proveedores_pasivo_corriente"  value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_proveedores_pasivo_corriente" class="errores"></div></td>
+            </tr>
+            
+            <tr>
+            <td>Inventarios / Mercaderías </td>
+            <td><input type="text" class="form-control cantidades1" id="inventarios_activos_corrientes" name="inventarios_activos_corrientes" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_inventarios_activos_corrientes" class="errores"></div></td>
+            <td>Otras obligaciones menores a 1 año</td>
+            <td><input type="text" class="form-control cantidades1" id="obligaciones_menores_anio_pasivo_corriente" name="obligaciones_menores_anio_pasivo_corriente" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_obligaciones_menores_anio_pasivo_corriente" class="errores"></div></td>
+            </tr>
+            
+            <tr>
+            <td>Muebles y enseres </td>
+            <td><input type="text" class="form-control cantidades1" id="muebles_activos_corrientes" name="muebles_activos_corrientes" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_muebles_activos_corrientes" class="errores"></div></td>
+            <td>Con Banco</td>
+            <td><input type="text" class="form-control cantidades1" id="con_banco_pasivo_corriente" name="con_banco_pasivo_corriente" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_con_banco_pasivo_corriente" class="errores"></div></td>
+            </tr>
+            
+            
+            <tr>
+            <td>Otros Activos Corrientes</td>
+            <td><input type="text" class="form-control cantidades1" id="otros_activos_corrientes" name="otros_activos_corrientes"  value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_otros_activos_corrientes" class="errores"></div></td>
+            <td>Con Cooperativas</td>
+            <td><input type="text" class="form-control cantidades1" id="con_cooperativas_pasivo_corriente" name="con_cooperativas_pasivo_corriente"value='0.00'   data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_con_cooperativas_pasivo_corriente" class="errores"></div></td>
+            </tr>
+            
+            
+            <tr>
+            <td style="text-align: center;"><b>Activos Fijos</b></td>
+            <td>&nbsp;</td>
+            <td style="text-align: center;"><b>Pasivos a Largo Plazo</b></td>
+            <td>&nbsp;</td>
+            </tr>
+            
+            <tr>
+            <td>Terreno</td>
+            <td><input type="text" class="form-control cantidades1" id="terreno_activos_fijos" name="terreno_activos_fijos" value='0.00'   data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_terreno_activos_fijos" class="errores"></div></td>
+            <td>Préstamo CAPREMCI (mayor a 1 año)</td>
+            <td><input type="text" class="form-control cantidades1" id="prestamo_mayor_anio_pasivos_largo_plazo" name="prestamo_mayor_anio_pasivos_largo_plazo"  value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_prestamo_mayor_anio_pasivos_largo_plazo" class="errores"></div></td>
+            </tr>
+            
+            <tr>
+            <td>Vivienda</td>
+            <td><input type="text" class="form-control cantidades1" id="vivienda_activos_fijos" name="vivienda_activos_fijos" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_vivienda_activos_fijos" class="errores"></div></td>
+            <td>Otras obligaciones mayores a 1 año</td>
+            <td><input type="text" class="form-control cantidades1" id="obligaciones_mayores_anio_pasivos_largo_plazo" name="obligaciones_mayores_anio_pasivos_largo_plazo" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_obligaciones_mayores_anio_pasivos_largo_plazo" class="errores"></div></td>
+            </tr>
+           
+            <tr>
+            <td>Vehículo</td>
+            <td><input type="text" class="form-control cantidades1" id="vehiculo_activos_fijos" name="vehiculo_activos_fijos" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_vehiculo_activos_fijos" class="errores"></div></td>
+            <td>Con Banco</td>
+            <td><input type="text" class="form-control cantidades1" id="con_banco_pasivos_largo_plazo" name="con_banco_pasivos_largo_plazo"  value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_con_banco_pasivos_largo_plazo" class="errores"></div></td>
+            </tr>
+            
+            
+            <tr>
+            <td>Maquinaria</td>
+            <td><input type="text" class="form-control cantidades1" id="maquinaria_activos_fijos" name="maquinaria_activos_fijos" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_maquinaria_activos_fijos" class="errores"></div></td>
+            <td>Con Cooperativas</td>
+            <td><input type="text" class="form-control cantidades1" id="con_cooperativas_pasivos_largo_plazo" name="con_cooperativas_pasivos_largo_plazo" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_con_cooperativas_pasivos_largo_plazo" class="errores"></div></td>
+            </tr>
+             
+             
+            <tr>
+            <td>Otros Activos Fijos (detalle) </td>
+            <td><input type="text" class="form-control cantidades1" id="otros_activos_fijos" name="otros_activos_fijos" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_otros_activos_fijos" class="errores"></div></td>
+            <td>Otros pasivos a largo plazo (detalle)</td>
+            <td><input type="text" class="form-control cantidades1" id="otros_pasivos_largo_plazo" name="otros_pasivos_largo_plazo" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_otros_pasivos_largo_plazo" class="errores"></div></td>
+            </tr>
+            
+            <tr>
+            <td colspan="2" style="text-align: center;"><b>Activos Intangibles</b></td>
+            <td>Patrimonio</td>
+            <td><input type="text" class="form-control cantidades1" id="patrimonio" name="patrimonio" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_patrimonio" class="errores"></div></td>
+            </tr>
+            
+            
+            <tr>
+            <td>Valor de su Prestación en CAPREMCI </td>
+            <td><input type="text" class="form-control cantidades1" id="valor_prestacion_activos_intangibles" value='0.00' name="valor_prestacion_activos_intangibles"   data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_valor_prestacion_activos_intangibles" class="errores"></div></td>
+            <td>Garantías en CAPREMCI</td>
+            <td><input type="text" class="form-control cantidades1" id="garantias_capremci" name="garantias_capremci" value='0.00'   data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_garantias_capremci" class="errores"></div></td>
+            </tr>
+            
+            
+            </table>
+             
+            </div>
+			 
+  			</div>
+  			</div>  			
+  			
+  			
+  							
+  		<div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-home'></i>Detalle Activos</h4>
+	         </div>
+	         <div class="panel-body">
+	       <div class="row">
+	       
+	       <div class="col-xs-12 col-md-3 col-md-3 ">
+            		    <div class="form-group">
+            		    					  
+                          <label for="id_bancos_uno_detalle_activos" class="control-label">Bancos / Cooperativas / Inversiones</label>
+                          <select  class="form-control" id="id_bancos_uno_detalle_activos" name="id_bancos_uno_detalle_activos">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_bancos_uno_detalle_activos" class="errores"></div>
+                        </div>
+           </div>
+            		  
+            <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="tipo_producto_uno_detalle_activos" class="control-label">Tipo / Producto</label>
+                    	<input type="text" class="form-control" id="tipo_producto_uno_detalle_activos" name="tipo_producto_uno_detalle_activos"  placeholder="tipo">
+                        <div id="mensaje_tipo_producto_uno_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+              <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="valor_uno_detalle_activos" class="control-label">Valor / Saldo</label>
+                    	<input type="text" class="form-control" id="valor_uno_detalle_activos" name="valor_uno_detalle_activos" value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" placeholder="valor">
+                        <div id="mensaje_valor_uno_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	        <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="plazo_uno_detalle_activos" class="control-label">Plazo</label>
+                    	<input type="text" class="form-control" id="plazo_uno_detalle_activos" name="plazo_uno_detalle_activos"  placeholder="plazo">
+                        <div id="mensaje_plazo_uno_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	       
+	       </div>
+	      
+	     
+	     <div class="row">
+	       
+	       <div class="col-xs-12 col-md-3 col-md-3 ">
+            		    <div class="form-group">
+            		    <select  class="form-control" id="id_bancos_dos_detalle_activos" name="id_bancos_dos_detalle_activos">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_bancos_dos_detalle_activos" class="errores"></div>
+                        </div>
+           </div>
+            		  
+            <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="tipo_producto_dos_detalle_activos" name="tipo_producto_dos_detalle_activos" placeholder="tipo">
+                        <div id="mensaje_tipo_producto_dos_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+              <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		
+                    	<input type="text" class="form-control" id="valor_dos_detalle_activos" name="valor_dos_detalle_activos"value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" placeholder="valor">
+                        <div id="mensaje_valor_dos_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	        <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="plazo_dos_detalle_activos" name="plazo_dos_detalle_activos" placeholder="plazo">
+                        <div id="mensaje_plazo_dos_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       </div>
+	       
+	       <div class="row">
+	       
+	       <div class="col-xs-12 col-md-3 col-md-3 ">
+            		    <div class="form-group">
+            		    <select  class="form-control" id="id_bancos_tres_detalle_activos" name="id_bancos_tres_detalle_activos">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_bancos_tres_detalle_activos" class="errores"></div>
+                        </div>
+           </div>
+            		  
+            <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="tipo_producto_tres_detalle_activos" name="tipo_producto_tres_detalle_activos" placeholder="tipo">
+                        <div id="mensaje_tipo_producto_tres_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+              <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		
+                    	<input type="text" class="form-control" id="valor_tres_detalle_activos" name="valor_tres_detalle_activos" value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" placeholder="valor">
+                        <div id="mensaje_valor_tres_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	        <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="plazo_tres_detalle_activos" name="plazo_tres_detalle_activos" placeholder="plazo">
+                        <div id="mensaje_plazo_tres_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       </div>
+	       
+	       
+	       <div class="row">
+	       
+	       <div class="col-xs-12 col-md-3 col-md-3 ">
+            		    <div class="form-group">
+            		    <select  class="form-control" id="id_bancos_cuatro_detalle_activos" name="id_bancos_cuatro_detalle_activos">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_bancos_cuatro_detalle_activos" class="errores"></div>
+                        </div>
+           </div>
+            		  
+            <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="tipo_producto_cuatro_detalle_activos" name="tipo_producto_cuatro_detalle_activos" placeholder="tipo">
+                        <div id="mensaje_tipo_producto_cuatro_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+              <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		
+                    	<input align="right" type="text" class="form-control" id="valor_cuatro_detalle_activos"  name="valor_cuatro_detalle_activos"  value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" placeholder="valor">
+                        <div id="mensaje_valor_cuatro_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	        <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="plazo_cuatro_detalle_activos" name="plazo_cuatro_detalle_activos" placeholder="plazo">
+                        <div id="mensaje_plazo_cuatro_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       </div>
+	     
+	      <div class="row">
+	       
+	       <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="muebles_uno_detalle_activos" class="control-label">Muebles / Inmuebles / Enseres</label>
+                    	<input type="text" class="form-control" id="muebles_uno_detalle_activos" name="muebles_uno_detalle_activos" placeholder="muebles">
+                        <div id="mensaje_muebles_uno_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+            		  
+            <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="direccion_uno_detalle_activos" class="control-label">Dirección</label>
+                    	<input type="text" class="form-control" id="direccion_uno_detalle_activos" name="direccion_uno_detalle_activos" placeholder="direccion">
+                        <div id="mensaje_direccion_uno_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+              <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="valor_muebles_uno_detalle_activos" class="control-label">Valor</label>
+                    	<input style="text-align:right;"  value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" type="text" class="form-control" id="valor_muebles_uno_detalle_activos" name="valor_muebles_uno_detalle_activos" placeholder="valor">
+                        <div id="mensaje_valor_muebles_uno_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	        <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="esta_hipotecado_uno_detalle_activos" class="control-label">¿Está Hipotecado?</label>
+                    	<input type="text" class="form-control" id="esta_hipotecado_uno_detalle_activos" name="esta_hipotecado_uno_detalle_activos" placeholder="hipotecado">
+                        <div id="mensaje_esta_hipotecado_uno_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	       
+	       </div>
+	       
+	       <div class="row">
+	       
+	       <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="muebles_dos_detalle_activos" name="muebles_dos_detalle_activos" placeholder="muebles">
+                        <div id="mensaje_muebles_dos_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+            		  
+            <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="direccion_dos_detalle_activos" name="direccion_dos_detalle_activos" placeholder="direccion">
+                        <div id="mensaje_direccion_dos_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+              <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="valor_muebles_dos_detalle_activos" value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" name="valor_muebles_dos_detalle_activos" placeholder="valor">
+                        <div id="mensaje_valor_muebles_dos_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	        <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="esta_hipotecado_dos_detalle_activos" name="esta_hipotecado_dos_detalle_activos" placeholder="hipotecado">
+                        <div id="mensaje_esta_hipotecado_dos_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       </div>
+	       <div class="row">
+	       
+	       <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="muebles_tres_detalle_activos" name="muebles_tres_detalle_activos" placeholder="muebles">
+                        <div id="mensaje_muebles_tres_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+            		  
+            <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="direccion_tres_detalle_activos" name="direccion_tres_detalle_activos" placeholder="direccion">
+                        <div id="mensaje_direccion_tres_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+              <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="valor_muebles_tres_detalle_activos"  value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" name="valor_muebles_tres_detalle_activos" placeholder="valor">
+                        <div id="mensaje_valor_muebles_tres_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	        <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="esta_hipotecado_tres_detalle_activos" name="esta_hipotecado_tres_detalle_activos" placeholder="hipotecado">
+                        <div id="mensaje_esta_hipotecado_tres_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       </div>
+	       <div class="row">
+	       
+	       <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="muebles_cuatro_detalle_activos" name="muebles_cuatro_detalle_activos" placeholder="muebles">
+                        <div id="mensaje_muebles_cuatro_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+            		  
+            <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="direccion_cuatro_detalle_activos" name="direccion_cuatro_detalle_activos" placeholder="direccion">
+                        <div id="mensaje_direccion_cuatro_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+              <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="valor_muebles_cuatro_detalle_activos" name="valor_muebles_cuatro_detalle_activos" value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" placeholder="valor">
+                        <div id="mensaje_valor_muebles_cuatro_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	        <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="esta_hipotecada_cuatro_detalle_activos" name="esta_hipotecada_cuatro_detalle_activos" placeholder="hipotecado">
+                        <div id="mensaje_esta_hipotecada_cuatro_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       </div>
+	       
+	       
+	       <div class="row">
+	       
+	       <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="vehiculo_uno_detalle_activos" class="control-label">Vehículos / Marca / Placa / Año</label>
+                    	<input type="text" class="form-control" id="vehiculo_uno_detalle_activos" name="vehiculo_uno_detalle_activos" placeholder="Vehívulo">
+                        <div id="mensaje_vehiculo_uno_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+            		  
+            <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="valor_vehiculo_uno_detalle_activos" class="control-label">Valor</label>
+                    	<input type="text" class="form-control" id="valor_vehiculo_uno_detalle_activos" name="valor_vehiculo_uno_detalle_activos" value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" placeholder="Valor">
+                        <div id="mensaje_valor_vehiculo_uno_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+              <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="uso_uno_detalle_activos" class="control-label">Uso</label>
+                    	<input type="text" class="form-control" id="uso_uno_detalle_activos" name="uso_uno_detalle_activos" placeholder="Uso">
+                        <div id="mensaje_uso_uno_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	        <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="asegurado_uno_detalle_activos" class="control-label">¿Está Asegurado?</label>
+                    	<input type="text" class="form-control" id="asegurado_uno_detalle_activos" name="asegurado_uno_detalle_activos" placeholder="Asegurado">
+                        <div id="mensaje_asegurado_uno_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	       
+	       </div>
+	       
+	       <div class="row">
+	       
+	       <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="vehiculo_dos_detalle_activos" name="vehiculo_dos_detalle_activos" placeholder="Vehívulo">
+                        <div id="mensaje_vehiculo_dos_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+            		  
+            <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="valor_vehiculo_dos_detalle_activos" name="valor_vehiculo_dos_detalle_activos" value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" placeholder="Valor">
+                        <div id="mensaje_valor_vehiculo_dos_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+              <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="uso_dos_detalle_activos" name="uso_dos_detalle_activos" placeholder="Uso">
+                        <div id="mensaje_uso_dos_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	        <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="asegurado_dos_detalle_activos" name="asegurado_dos_detalle_activos" placeholder="Asegurado">
+                        <div id="mensaje_asegurado_dos_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       </div>
+	       <div class="row">
+	       
+	       <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="vehiculo_tres_detalle_activos" name="vehiculo_tres_detalle_activos" placeholder="Vehívulo">
+                        <div id="mensaje_vehiculo_tres_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+            		  
+            <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="valor_vehiculo_tres_detalle_activos" name="valor_vehiculo_tres_detalle_activos" value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" placeholder="Valor">
+                        <div id="mensaje_valor_vehiculo_tres_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+              <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="uso_tres_detalle_activos" name="uso_tres_detalle_activos" placeholder="Uso">
+                        <div id="mensaje_uso_tres_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	        <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="asegurado_tres_detalle_activos" name="asegurado_tres_detalle_activos" placeholder="Asegurado">
+                        <div id="mensaje_asegurado_tres_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       </div>
+	       <div class="row">
+	       
+	       <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="vehiculo_cuatro_detalle_activos" name="vehiculo_cuatro_detalle_activos" placeholder="Vehívulo">
+                        <div id="mensaje_vehiculo_cuatro_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+            		  
+            <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="valor_vehiculo_cuatro_detalle_activos" name="valor_vehiculo_cuatro_detalle_activos" value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" placeholder="Valor" >
+                        <div id="mensaje_valor_vehiculo_cuatro_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+              <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="uso_cuatro_detalle_activos" name="uso_cuatro_detalle_activos" placeholder="Uso">
+                        <div id="mensaje_uso_cuatro_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       
+	       
+	        <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="asegurado_cuatro_detalle_activos" name="asegurado_cuatro_detalle_activos" placeholder="Asegurado">
+                        <div id="mensaje_asegurado_cuatro_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       </div>
+	       
+	       <div class="row">
+	       
+	       <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="otros_uno_detalle_activos" class="control-label">Otros Activos</label>
+                    	<input type="text" class="form-control" id="otros_uno_detalle_activos" name="otros_uno_detalle_activos" placeholder="Otros">
+                        <div id="mensaje_otros_uno_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+            		  
+            <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="valor_otros_uno_detalle_activos" class="control-label">Valor</label>
+                    	<input type="text" class="form-control" id="valor_otros_uno_detalle_activos" name="valor_otros_uno_detalle_activos" value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" placeholder="Valor">
+                        <div id="mensaje_valor_otros_uno_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+              <div class="col-xs-6 col-md-6 col-lg-6 ">
+            		<div class="form-group">
+                		<label for="observacion_otro_uno_detalle_activos" class="control-label">Observación</label>
+                    	<input type="text" class="form-control" id="observacion_otro_uno_detalle_activos" name="observacion_otro_uno_detalle_activos" placeholder="Observación">
+                        <div id="mensaje_observacion_otro_uno_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       </div>
+	       <div class="row">
+	       
+	       <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="otros_dos_detalle_activos" name="otros_dos_detalle_activos" placeholder="Otros">
+                        <div id="mensaje_otros_dos_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+            		  
+            <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="valor_otros_dos_detalle_activos" name="valor_otros_dos_detalle_activos"  value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" placeholder="Valor">
+                        <div id="mensaje_valor_otros_dos_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+             	
+             	
+              <div class="col-xs-6 col-md-6 col-lg-6 ">
+            		<div class="form-group">
+                		<input type="text" class="form-control" id="observacion_dos_detalle_activos" name="observacion_dos_detalle_activos" placeholder="Observación">
+                        <div id="mensaje_observacion_dos_detalle_activos" class="errores"></div>
+                 	</div>
+             	</div>
+	       </div>
+	       
+	       
+	       
+	     
+	      </div>
+     	  </div>
+     	  
+     	  
+     	  <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-home'></i>Detalle Pasivos</h4>
+	         </div>
+	         <div class="panel-body">
+	     
+	      <div class="row">
+                    		   
+             
+            <table class="col-lg-12 col-md-12 col-xs-12 tablesorter table table-striped table-bordered dt-responsive nowrap">
+            
+            <tr>
+            <th><b>Institución</b></th>
+            <th><b>Valor</b></th>
+            <th><b>Destino</b></th>
+            <th><b>Garantía</b></th>
+            <th><b>Plazo</b></th>
+            <th><b>Saldo</b></th>
+            </tr>
+            
+            
+            <tr>
+            <td><input type="text" class="form-control cantidades1" id="institucion_uno_detalle_pasivos" name="institucion_uno_detalle_pasivos" placeholder="Institución"><div id="mensaje_institucion_uno_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" value='0.00'   data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" id="valor_uno_detalle_pasivos" name="valor_uno_detalle_pasivos"  placeholder="Valor" data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_valor_uno_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="destino_uno_detalle_pasivos" name="destino_uno_detalle_pasivos" placeholder="Destino"><div id="mensaje_destino_uno_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="garantia_uno_detalle_pasivos" name="garantia_uno_detalle_pasivos" placeholder="Garantía"><div id="mensaje_garantia_uno_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="plazo_uno_detalle_pasivos" name="plazo_uno_detalle_pasivos" placeholder="Plazo"><div id="mensaje_plazo_uno_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="saldo_uno_detalle_pasivos" name="saldo_uno_detalle_pasivos" placeholder="Saldo"><div id="mensaje_saldo_uno_detalle_pasivos" class="errores"></div></td>
+            </tr>
+            
+            <tr>
+            <td><input type="text" class="form-control cantidades1" id="institucion_dos_detalle_pasivos" name="institucion_dos_detalle_pasivos" placeholder="Institución"><div id="mensaje_institucion_dos_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" value='0.00'   data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" id="valor_dos_detalle_pasivos" name="valor_dos_detalle_pasivos" placeholder="Valor"  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_valor_dos_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="destino_dos_detalle_pasivos" name="destino_dos_detalle_pasivos" placeholder="Destino"><div id="mensaje_destino_dos_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="garantia_dos_detalle_pasivos" name="garantia_dos_detalle_pasivos" placeholder="Garantía"><div id="mensaje_garantia_dos_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="plazo_dos_detalle_pasivos" name="plazo_dos_detalle_pasivos" placeholder="Plazo"><div id="mensaje_plazo_dos_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="saldo_dos_detalle_pasivos" name="saldo_dos_detalle_pasivos" placeholder="Saldo"><div id="mensaje_saldo_dos_detalle_pasivos" class="errores"></div></td>
+            </tr>
+            
+            <tr>
+            <td><input type="text" class="form-control cantidades1" id="institucion_tres_detalle_pasivos" name="institucion_tres_detalle_pasivos" placeholder="Institución"><div id="institucion_tres_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" value='0.00'   data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" id="valor_tres_detalle_pasivos" name="valor_tres_detalle_pasivos"  placeholder="Valor" data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_valor_tres_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="destino_tres_detalle_pasivos" name="destino_tres_detalle_pasivos" placeholder="Destino"><div id="mensaje_destino_tres_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="garantia_tres_detalle_pasivos" name="garantia_tres_detalle_pasivos" placeholder="Garantía"><div id="mensaje_garantia_tres_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="plazo_tres_detalle_pasivos" name="plazo_tres_detalle_pasivos" placeholder="Plazo"><div id="mensaje_plazo_tres_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="saldo_tres_detalle_pasivos" name="saldo_tres_detalle_pasivos"placeholder="Saldo"><div id="mensaje_saldo_tres_detalle_pasivos" class="errores"></div></td>
+            </tr>
+            
+            <tr>
+            <td><input type="text" class="form-control cantidades1" id="institucion_cuatro_detalle_pasivos" name="institucion_cuatro_detalle_pasivos" placeholder="Institución"><div id="mensaje_institucion_cuatro_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" value='0.00'   data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" id="valor_cuatro_detalle_pasivos" name="valor_cuatro_detalle_pasivos" placeholder="Valor"  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_valor_cuatro_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="destino_cuatro_detalle_pasivos" name="destino_cuatro_detalle_pasivos" placeholder="Destino"><div id="mensaje_destino_cuatro_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="garantia_cuatro_detalle_pasivos" name="garantia_cuatro_detalle_pasivos" placeholder="Garantía"><div id="mensaje_garantia_cuatro_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="plazo_cuatro_detalle_pasivos" name="plazo_cuatro_detalle_pasivos" placeholder="Plazo"><div id="mensaje_plazo_cuatro_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="saldo_cuatro_detalle_pasivos" name="saldo_cuatro_detalle_pasivos" placeholder="Saldo"><div id="mensaje_saldo_cuatro_detalle_pasivos" class="errores"></div></td>
+            </tr>
+            
+            <tr>
+            <td><input type="text" class="form-control cantidades1" id="institucion_cinco_detalle_pasivos" name="institucion_cinco_detalle_pasivos" placeholder="Institución"><div id="mensaje_institucion_cinco_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" value='0.00'   data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false" id="valor_cinco_detalle_pasivos" name="valor_cinco_detalle_pasivos" placeholder="Valor"  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_valor_cinco_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="destino_cinco_detalle_pasivos" name="destino_cinco_detalle_pasivos" placeholder="Destino"><div id="mensaje_destino_cinco_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="garantia_cinco_detalle_pasivos" name="garantia_cinco_detalle_pasivos" placeholder="Garantía"><div id="mensaje_garantia_cinco_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="plazo_cinco_detalle_pasivos" name="plazo_cinco_detalle_pasivos"placeholder="Plazo"><div id="mensaje_plazo_cinco_detalle_pasivos" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="saldo_cinco_detalle_pasivos" name="saldo_cinco_detalle_pasivos" placeholder="Saldo"><div id="mensaje_saldo_cinco_detalle_pasivos" class="errores"></div></td>
+            </tr>
+            
+            </table>
+             
+            </div>
+	    
+	   
+	       
+	       
+	     
+	      </div>
+     	  </div>
+     	  
+     	  
+     	 <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-home'></i>Ingresos y Gastos Mensuales</h4>
+	         </div>
+	         <div class="panel-body">
+	     
+	      <div class="row">
+                    		   
+             
+            <table class="col-lg-12 col-md-12 col-xs-12 tablesorter table table-striped table-bordered dt-responsive nowrap">
+            
+            <tr>
+            <th><b>Ingresos</b></th>
+            <th><b>Valor en Dolares</b></th>
+            <th><b>Gastos</b></th>
+            <th><b>Valor en dólares</b></th>
+            </tr>
+            
+            
+            <tr>
+            <td>Sueldo del afiliado</td>
+            <td><input type="text" class="form-control cantidades1" value='0.00' id="sueldo_afiliado_ingresos_mensuales" name="sueldo_afiliado_ingresos_mensuales"   data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_sueldo_afiliado_ingresos_mensuales" class="errores"></div></td>
+            <td>Alimentación</td>
+            <td><input type="text" class="form-control cantidades1" value='0.00' id="alimentacion_gastos_mensuales" name="alimentacion_gastos_mensuales"   data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_alimentacion_gastos_mensuales" class="errores"></div></td>
+            </tr>
+            
+            <tr>
+            <td>Sueldo del cónyuge </td>
+            <td><input type="text" class="form-control cantidades1" id="sueldo_conyuge_ingresos_mensuales" name="sueldo_conyuge_ingresos_mensuales"  value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_sueldo_conyuge_ingresos_mensuales" class="errores"></div></td>
+            <td>Arriendos</td>
+            <td><input type="text" class="form-control cantidades1" id="arriendos_gastos_mensuales" name="arriendos_gastos_mensuales" value='0.00'   data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_arriendos_gastos_mensuales" class="errores"></div></td>
+            </tr>
+            
+            
+            <tr>
+            <td>Comisiones</td>
+            <td><input type="text" class="form-control cantidades1" id="comisiones_ingresos_mensuales" name="comisiones_ingresos_mensuales"  value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_comisiones_ingresos_mensuales" class="errores"></div></td>
+            <td>Educación</td>
+            <td><input type="text" class="form-control cantidades1" id="educacion_gastos_mensuales" name="educacion_gastos_mensuales"  value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_educacion_gastos_mensuales" class="errores"></div></td>
+            </tr>
+            
+            <tr>
+            <td>Arriendos</td>
+            <td><input type="text" class="form-control cantidades1" id="arriendos_ingresos_mensuales" name="arriendos_ingresos_mensuales" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_arriendos_ingresos_mensuales" class="errores"></div></td>
+            <td>Vestuario</td>
+            <td><input type="text" class="form-control cantidades1" id="vestuario_gastos_mensuales" name="vestuario_gastos_mensuales"  value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_vestuario_gastos_mensuales" class="errores"></div></td>
+            </tr>
+            
+            <tr>
+            <td>Dividendos</td>
+            <td><input type="text" class="form-control cantidades1" id="dividendos_ingresos_mensuales" name="dividendos_ingresos_mensuales"  value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_dividendos_ingresos_mensuales" class="errores"></div></td>
+            <td>Servicios públicos</td>
+            <td><input type="text" class="form-control cantidades1" id="servicios_publicos_gastos_mensuales" name="servicios_publicos_gastos_mensuales" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_servicios_publicos_gastos_mensuales" class="errores"></div></td>
+            </tr>
+            
+            <tr>
+            <td>Ingresos del Negocio</td>
+            <td><input type="text" class="form-control cantidades1" id="ingresos_negocio_ingresos_mensuales" name="ingresos_negocio_ingresos_mensuales" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_ingresos_negocio_ingresos_mensuales" class="errores"></div></td>
+            <td>Movilización / transporte</td>
+            <td><input type="text" class="form-control cantidades1" id="movilizacion_gastos_mensuales" name="movilizacion_gastos_mensuales" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_movilizacion_gastos_mensuales" class="errores"></div></td>
+            </tr>
+            
+            <tr>
+            <td>Pensiones</td>
+            <td><input type="text" class="form-control cantidades1" id="pensiones_ingresos_mensuales" name="pensiones_ingresos_mensuales" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_pensiones_ingresos_mensuales" class="errores"></div></td>
+            <td>Ahorros cooperativas</td>
+            <td><input type="text" class="form-control cantidades1" id="ahorros_cooperativas_gastos_mensuales" name="ahorros_cooperativas_gastos_mensuales" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_ahorros_cooperativas_gastos_mensuales" class="errores"></div></td>
+            </tr>
+            
+            <tr>
+            <td>Otros Ingresos (detalle)</td>
+            <td>&nbsp;</td>
+            <td>Cuotas tarjetas de crédito</td>
+            <td><input type="text" class="form-control cantidades1" id="cuotas_tarjetas_gastos_mensuales" name="cuotas_tarjetas_gastos_mensuales" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_cuotas_tarjetas_gastos_mensuales" class="errores"></div></td>
+            </tr>
+            
+            <tr>
+            <td><input type="text" class="form-control cantidades1" id="otros_detalle_uno_ingresos_mensuales" name="otros_detalle_uno_ingresos_mensuales" placeholder="otros ingresos.."><div id="mensaje_otros_detalle_uno_ingresos_mensuales" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="otros_uno_ingresos_mensuales" name="otros_uno_ingresos_mensuales"  value='0.00' data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_otros_uno_ingresos_mensuales" class="errores"></div></td>
+            <td>Cuotas de préstamos</td>
+            <td><input type="text" class="form-control cantidades1" id="cuotas_prestamo_gastos_mensuales" name="cuotas_prestamo_gastos_mensuales" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_cuotas_prestamo_gastos_mensuales" class="errores"></div></td>
+            </tr>
+            
+            
+            <tr>
+            <td><input type="text" placeholder="otros ingresos.." class="form-control cantidades1" id="otros_detalle_dos_ingresos_mensuales" name="otros_detalle_dos_ingresos_mensuales"><div id="mensaje_otros_detalle_dos_ingresos_mensuales" class="errores"></div></td>
+            <td><input type="text" class="form-control cantidades1" id="otros_dos_ingresos_mensuales" name="otros_dos_ingresos_mensuales" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_otros_dos_ingresos_mensuales" class="errores"></div></td>
+            <td>Otros gastos (detalle)</td>
+            <td>&nbsp;</td>
+            </tr>
+            
+         
+         	<tr>
+           <td><input type="text" placeholder="otros ingresos.." class="form-control cantidades1" id="otros_detalle_tres_ingresos_mensuales" name="otros_detalle_tres_ingresos_mensuales"><div id="mensaje_otros_detalle_tres_ingresos_mensuales" class="errores"></div></td>
+           <td><input type="text" class="form-control cantidades1" id="otros_tres_ingresos_mensuales" name="otros_tres_ingresos_mensuales" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_otros_tres_ingresos_mensuales" class="errores"></div></td>
+           <td><input type="text"  placeholder="otros gastos.." class="form-control cantidades1" id="otros_detalle_uno_gastos_mensuales" name="otros_detalle_uno_gastos_mensuales"><div id="mensaje_otros_detalle_uno_gastos_mensuales" class="errores"></div></td>
+           <td><input type="text" class="form-control cantidades1" id="otros_gastos_uno_gastos_mensuales" name="otros_gastos_uno_gastos_mensuales" value='0.00'  data-inputmask="'alias': 'numeric', 'autoGroup': true, 'digits': 2, 'digitsOptional': false"><div id="mensaje_otros_gastos_uno_gastos_mensuales" class="errores"></div></td>
+            </tr>
+            
+            </table>
+             
+            </div>
+	    
+	   
+	       
+	       
+	     
+	      </div>
+     	  </div> 
+     	  
+     	  
+     	   <div class="panel panel-info">
+	         <div class="panel-heading">
+	         <h4><i class='glyphicon glyphicon-home'></i>Croquis</h4>
+	         </div>
+	         <div class="panel-body">
+	     
+	      <div class="row">
+                    		   
+             <table class="col-lg-12 col-md-12 col-xs-12 tablesorter table table-striped table-bordered dt-responsive nowrap">
+             
+             <tr>
+             <td>Domicilio</td>
+             <td>Negocio</td>
+             </tr>
+             <tr>
+                  <td>
+                  <input type="file" class="form-control" id="imagen_croquis_domicilio" name="imagen_croquis_domicilio" value="">
+                  <div id="mensaje_imagen_croquis_domicilio" class="errores"></div>
+                  </td>
+    		
+                  <td>
+                  <input type="file" class="form-control" id="imagen_croquis_otro_negocio" name="imagen_croquis_otro_negocio" value="">
+                  <div id="mensaje_imagen_croquis_otro_negocio" class="errores"></div>
+                  </td>
+    		 </tr>  
+    		 </table>  
+             
+            </div>
+	    
+	   
+	       
+	       
+	     
+	      </div>
+     	  </div> 
+     	  
+     	  
+  			<div class="row">
+		    	<div class="col-xs-12 col-md-12 col-lg-12" style="text-align: center; ">
+		    		<div class="form-group">
+              			<button type="button" id="btn_Guardar" name="btn_Guardar" class="btn btn-success"><i class="fa " aria-hidden="true"></i>Registrar Solicitud</button>
+            		</div>
+		    	</div>
+		    </div>
+  			
+  			
+  			</div>
+  			
+  			
+  			</div>
+  			
+  		
+  			
+  			
+  			
+  			</div>
+					
                       
                   
-                  </form>
+                
                   
                 </div>
               </div>
@@ -623,9 +2646,8 @@
 		
 		
 	</div>
-	</div>
-	</div>
-	</div>
+	
+	
 	    
     
     
@@ -656,7 +2678,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
 
-<script src="view/js/SolicitudHipotecario.js?1.0"></script> 
+<script src="view/js/SolicitudHipotecario.js?1.9"></script> 
 
 	
   </body>
