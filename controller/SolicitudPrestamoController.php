@@ -879,40 +879,37 @@ class SolicitudPrestamoController extends ControladorBase{
 						}
 							
 							
-						$resultoficial1=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_1' AND tipo_participe_datos_prestamo='Deudor'");
+						$resultoficial1=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_1' AND tipo_participe_datos_prestamo='Deudor' and to_char(creado, 'YYYY')='$_fecha_año' and to_char(creado, 'MM')=LPAD('$_fecha_mes',2,'0')");
 							
 						if(!empty($resultoficial1)){
 					
 							$res1=count($resultoficial1);
 						}
 							
-						$resultoficial2=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_2' AND tipo_participe_datos_prestamo='Deudor'");
+						$resultoficial2=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_2' AND tipo_participe_datos_prestamo='Deudor' and to_char(creado, 'YYYY')='$_fecha_año' and to_char(creado, 'MM')=LPAD('$_fecha_mes',2,'0')");
 							
 						if(!empty($resultoficial2)){
 							$res2=count($resultoficial2);
 						}
 						
 						
-						$resultoficial3=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_3' AND tipo_participe_datos_prestamo='Deudor'");
+						$resultoficial3=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_3' AND tipo_participe_datos_prestamo='Deudor' and to_char(creado, 'YYYY')='$_fecha_año' and to_char(creado, 'MM')=LPAD('$_fecha_mes',2,'0')");
 							
 						if(!empty($resultoficial3)){
 							$res3=count($resultoficial3);
 						}
 						
 						if($res1==$res2){
-					
-							$id_oficial_credito=$id_usuarios_1;
+						    
+						    $id_oficial_credito=$id_usuarios_1;
 						}
 						elseif ($res1>$res2){
-					
-							$id_oficial_credito=$id_usuarios_2;
+						    
+						    $id_oficial_credito=$id_usuarios_2;
 						}
 						elseif ($res2>$res1){
-								
-							$id_oficial_credito=$id_usuarios_1;
-						}else{
-						    $id_oficial_credito=$id_usuarios_3;
 						    
+						    $id_oficial_credito=$id_usuarios_1;
 						}
 						
 						
@@ -943,13 +940,13 @@ class SolicitudPrestamoController extends ControladorBase{
 							}
 						}
 							
-						$resultoficial1=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_1' AND tipo_participe_datos_prestamo='Deudor'");
+						$resultoficial1=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_1' AND tipo_participe_datos_prestamo='Deudor' and to_char(creado, 'YYYY')='$_fecha_año' and to_char(creado, 'MM')=LPAD('$_fecha_mes',2,'0')");
 					
 						if(!empty($resultoficial1)){
 							$res1=count($resultoficial1);
 						}
 					
-						$resultoficial2=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_2' AND tipo_participe_datos_prestamo='Deudor'");
+						$resultoficial2=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_2' AND tipo_participe_datos_prestamo='Deudor' and to_char(creado, 'YYYY')='$_fecha_año' and to_char(creado, 'MM')=LPAD('$_fecha_mes',2,'0')");
 					
 						if(!empty($resultoficial2)){
 							$res2=count($resultoficial2);
@@ -968,6 +965,11 @@ class SolicitudPrestamoController extends ControladorBase{
 							$id_oficial_credito=$id_usuarios_1;
 						}
 							
+						
+						
+						$id_oficial_credito=15417;
+						
+						
 					}
 					
 				}
