@@ -78,6 +78,23 @@ class SolicitudHipotecarioController extends ControladorBase{
         }
     }
     
+    public function cargaInstitucionesDatosLaborables(){
+        
+        $entidad= new EntidadesModel();
+        
+        $columnas="id_entidades, nombre_entidades";
+        $tabla = "entidades";
+        $where = "1=1";
+        $id="nombre_entidades";
+        $resulset = $entidad->getCondiciones($columnas,$tabla,$where,$id);
+        
+        if(!empty($resulset) && count($resulset)>0){
+            
+            echo json_encode(array('data'=>$resulset));
+            
+        }
+    }
+    
     public function cargaEstadoCivilDatosPersonales(){
         
         $estadocivil= new Estado_civilModel();
@@ -462,7 +479,24 @@ class SolicitudHipotecarioController extends ControladorBase{
         }
     }
     
+
     
+    public function cargaSucursalesDatosGenerales(){
+        
+        $Sucursales= new SucursalesModel();
+        
+        $columnas="id_sucursales, nombre_sucursales";
+        $tabla = "sucursales";
+        $where = "1=1";
+        $id="id_sucursales";
+        $resulset = $Sucursales->getCondiciones($columnas,$tabla,$where,$id);
+        
+        if(!empty($resulset) && count($resulset)>0){
+            
+            echo json_encode(array('data'=>$resulset));
+            
+        }
+    }
     
     
     
@@ -767,6 +801,8 @@ class SolicitudHipotecarioController extends ControladorBase{
             $_id_codigo_verificacion =(isset($_REQUEST['id_codigo_verificacion'])&& $_REQUEST['id_codigo_verificacion'] !=NULL)?$_REQUEST['id_codigo_verificacion']:0;
             $_id_usuarios_registra =(isset($_REQUEST['id_usuarios_registra'])&& $_REQUEST['id_usuarios_registra'] !=NULL)?$_REQUEST['id_usuarios_registra']:0;
             $_id_usuarios_oficial_credito_aprueba =(isset($_REQUEST['id_usuarios_oficial_credito_aprueba'])&& $_REQUEST['id_usuarios_oficial_credito_aprueba'] !=NULL)?$_REQUEST['id_usuarios_oficial_credito_aprueba']:0;
+            $_id_sucursales =(isset($_REQUEST['id_sucursales'])&& $_REQUEST['id_sucursales'] !=NULL)?$_REQUEST['id_sucursales']:0;
+            
             $_total_activos_corrientes=$_efectivo_activos_corrientes+$_bancos_activos_corrientes+$_cuentas_cobrar_activos_corrientes+$_inversiones_activos_corrientes+$_inventarios_activos_corrientes+$_muebles_activos_corrientes+$_otros_activos_corrientes;
             $_total_activos_fijos=$_terreno_activos_fijos+$_vivienda_activos_fijos+$_vehiculo_activos_fijos+$_maquinaria_activos_fijos+$_otros_activos_fijos;
             $_total_activos=$_total_activos_corrientes+$_total_activos_fijos;
@@ -785,9 +821,206 @@ class SolicitudHipotecarioController extends ControladorBase{
             $funcionadicionaluno="ins_solicitud_hipotecario_adicional_uno";
             $funcionadicionaldos="ins_solicitud_hipotecario_adicional_uno";
             
-     
             
+            
+            
+            
+            
+            
+            $_imagen_croquis_domicilio = '';
+            $_imagen_croquis_otro_negocio = '';
+            
+            if ($_FILES['imagen_croquis_domicilio']['tmp_name']!="")
+            {
+                $directorio = $_SERVER['DOCUMENT_ROOT'].'/webcapremci/fotografias_croquis/';
+                
+                $nombre = $_FILES['imagen_croquis_domicilio']['name'];
+                //$tipo = $_FILES['imagen_activos_fijos']['type'];
+                //$tamano = $_FILES['imagen_activos_fijos']['size'];
+                
+                move_uploaded_file($_FILES['imagen_croquis_domicilio']['tmp_name'],$directorio.$nombre);
+                $data = file_get_contents($directorio.$nombre);
+                $_imagen_croquis_domicilio = pg_escape_bytea($data);
+                
+            }else{
+                
+                $directorio = dirname(__FILE__).'\..\view\images\nodisponible.jpg';
+                
+                if( is_file( $directorio )){
+                    $data = file_get_contents($directorio);
+                    $_imagen_croquis_domicilio = pg_escape_bytea($data);
+                }
+            }
+            
+            if ($_FILES['imagen_croquis_otro_negocio']['tmp_name']!="")
+            {
+                $directorio = $_SERVER['DOCUMENT_ROOT'].'/webcapremci/fotografias_croquis/';
+                
+                $nombre = $_FILES['imagen_croquis_otro_negocio']['name'];
+                //$tipo = $_FILES['imagen_activos_fijos']['type'];
+                //$tamano = $_FILES['imagen_activos_fijos']['size'];
+                
+                move_uploaded_file($_FILES['imagen_croquis_otro_negocio']['tmp_name'],$directorio.$nombre);
+                $data = file_get_contents($directorio.$nombre);
+                $_imagen_croquis_otro_negocio = pg_escape_bytea($data);
+                
+            }else{
+                
+                $directorio = dirname(__FILE__).'\..\view\images\nodisponible.jpg';
+                
+                if( is_file( $directorio )){
+                    $data = file_get_contents($directorio);
+                    $_imagen_croquis_otro_negocio = pg_escape_bytea($data);
+                }
+            }
+            
+            
+            
+            
+            
+                
             if($_id_solicitud_hipotecario == 0){
+                
+                
+                $_identificador_consecutivos=0;
+                $resultConsecutivos=$consecutivos->getBy("nombre_consecutivos='SOLICITUD_PRESTAMOS'");
+                $_identificador_consecutivos=$resultConsecutivos[0]->identificador_consecutivos;
+                
+                
+                
+                
+                $id_usuarios_1=0;
+                $id_usuarios_2=0;
+                $id_usuarios_3=0;
+                $res1=0;
+                $res2=0;
+                $res3=0;
+                $id_oficial_credito=0;
+                
+          
+                    $_identificador_consecutivos_deudor="";
+                    
+                    
+                    if($_id_sucursales == 1){
+                        
+                        $resultQuito=$solicitud_hipotecario->getCondiciones("id_usuarios", "usuarios", "id_rol=42 AND id_departamentos=18 AND ciudad_trabajo='Quito' AND id_estado=1", "id_usuarios");
+                        
+                        if(!empty($resultQuito)){
+                            $i=0;
+                            foreach ($resultQuito as $res){
+                                $i++;
+                                
+                                if($i==1){
+                                    
+                                    $id_usuarios_1=$res->id_usuarios;
+                                }elseif ($i==2){
+                                    
+                                    $id_usuarios_2=$res->id_usuarios;
+                                }else{
+                                    $id_usuarios_3=$res->id_usuarios;
+                                }
+                            }
+                        }
+                        
+                        
+                        $resultoficial1=$solicitud_hipotecario->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_1' AND tipo_participe_datos_prestamo='Deudor'");
+                        
+                        if(!empty($resultoficial1)){
+                            
+                            $res1=count($resultoficial1);
+                        }
+                        
+                        $resultoficial2=$solicitud_hipotecario->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_2' AND tipo_participe_datos_prestamo='Deudor'");
+                        
+                        if(!empty($resultoficial2)){
+                            $res2=count($resultoficial2);
+                        }
+                        
+                        
+                        $resultoficial3=$solicitud_hipotecario->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_3' AND tipo_participe_datos_prestamo='Deudor'");
+                        
+                        if(!empty($resultoficial3)){
+                            $res3=count($resultoficial3);
+                        }
+                        
+                        if($res1==$res2){
+                            
+                            $id_oficial_credito=$id_usuarios_1;
+                        }
+                        elseif ($res1>$res2){
+                            
+                            $id_oficial_credito=$id_usuarios_2;
+                        }
+                        elseif ($res2>$res1){
+                            
+                            $id_oficial_credito=$id_usuarios_1;
+                        }else{
+                            $id_oficial_credito=$id_usuarios_3;
+                            
+                        }
+                        
+                        
+                        /////////// por lo que se fue la angie va todo a carlos narvaez //////////
+                        
+                        //$id_oficial_credito=0;
+                        //$id_oficial_credito=15425;
+                        
+                        
+                        
+                    }else{
+                        
+                        $resultGuayaquil=$solicitud_hipotecario->getCondiciones("id_usuarios", "usuarios", "id_rol=42 AND id_departamentos=18 AND ciudad_trabajo='Guayaquil' AND id_estado=1", "id_usuarios");
+                        
+                        if(!empty($resultGuayaquil)){
+                            $i=0;
+                            foreach ($resultGuayaquil as $res){
+                                $i++;
+                                
+                                if($i==1){
+                                    
+                                    $id_usuarios_1=$res->id_usuarios;
+                                }elseif ($i==2){
+                                    
+                                    $id_usuarios_2=$res->id_usuarios;
+                                }
+                                
+                            }
+                        }
+                        
+                        $resultoficial1=$solicitud_hipotecario->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_1' AND tipo_participe_datos_prestamo='Deudor'");
+                        
+                        if(!empty($resultoficial1)){
+                            $res1=count($resultoficial1);
+                        }
+                        
+                        $resultoficial2=$solicitud_hipotecario->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_2' AND tipo_participe_datos_prestamo='Deudor'");
+                        
+                        if(!empty($resultoficial2)){
+                            $res2=count($resultoficial2);
+                        }
+                        
+                        if($res1==$res2){
+                            
+                            $id_oficial_credito=$id_usuarios_1;
+                        }
+                        elseif ($res1>$res2){
+                            
+                            $id_oficial_credito=$id_usuarios_2;
+                        }
+                        elseif ($res2>$res1){
+                            
+                            $id_oficial_credito=$id_usuarios_1;
+                        }
+                        
+                    }
+                    
+                
+                
+                
+                
+                
+                
+                
                 
                 
                 
@@ -1118,434 +1351,10 @@ class SolicitudHipotecarioController extends ControladorBase{
                     $respuesta = $resultado[0];
                     $mensaje = "Solicitud Ingresada Correctamente";
                 }
-                
-                
             }
-            
-            
-            
-            
-            }
-        
-            
-            
-            
-           ///
-            echo json_encode(array('valor' => 1, 'mensaje'=>$_valor_dolares_datos_credito));
-                    die();
-             
-               
-                
-               
-                
-                
-                if($_id_solicitud_hipotecario > 0){
-                    
-                    
-                    // AQUI PARA ACTUALIZA SOLICITUD
-                    
-                    
-                }else{
-                    
-                    
-                    // AQUI PARA GUARDAR NUEVA SOLICITUD
-                    
-                    $_identificador_consecutivos=0;
-                    $resultConsecutivos=$consecutivos->getBy("nombre_consecutivos='SOLICITUD_PRESTAMOS'");
-                    $_identificador_consecutivos=$resultConsecutivos[0]->identificador_consecutivos;
-                    
-                    $id_usuarios_1=0;
-                    $id_usuarios_2=0;
-                    $id_usuarios_3=0;
-                    $res1=0;
-                    $res2=0;
-                    $res3=0;
-                    $id_oficial_credito=0;
-                    
-                    if($_tipo_participe_datos_prestamo=='Garante'){
-                        
-                        
-                        $resultDeudor=$solicitud_prestamo->getCondiciones("max(id_solicitud_prestamo) as id, id_usuarios_oficial_credito_aprueba", "solicitud_prestamo",
-                            "(id_estado_tramites=1 OR id_estado_tramites=4) and numero_cedula_datos_personales ='$_cedula_deudor_a_garantizar' AND tipo_participe_datos_prestamo='Deudor' GROUP BY id_usuarios_oficial_credito_aprueba", "id_usuarios_oficial_credito_aprueba");
-                        $id_oficial_credito=$resultDeudor[0]->id_usuarios_oficial_credito_aprueba;
-                        $id_solicitud_prestamo_a_garantizar=$resultDeudor[0]->id;
-                        
-                        
-                        $resultGarante=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_oficial_credito'");
-                        $_id_sucursales=$resultGarante[0]->id_sucursales;
-                        
-                        $resultGarante_Conse=$solicitud_prestamo->getBy("id_solicitud_prestamo='$id_solicitud_prestamo_a_garantizar'");
-                        $_identificador_consecutivos_deudor=$resultGarante_Conse[0]->identificador_consecutivos;
-                        
-                        
-                        
-                    }else{
-                        
-                        $_identificador_consecutivos_deudor="";
-                        
-                        
-                        if($_id_sucursales == 1){
-                            
-                            $resultQuito=$solicitud_prestamo->getCondiciones("id_usuarios", "usuarios", "id_rol=42 AND id_departamentos=18 AND ciudad_trabajo='Quito' AND id_estado=1", "id_usuarios");
-                            
-                            if(!empty($resultQuito)){
-                                $i=0;
-                                foreach ($resultQuito as $res){
-                                    $i++;
-                                    
-                                    if($i==1){
-                                        
-                                        $id_usuarios_1=$res->id_usuarios;
-                                    }elseif ($i==2){
-                                        
-                                        $id_usuarios_2=$res->id_usuarios;
-                                    }else{
-                                        $id_usuarios_3=$res->id_usuarios;
-                                    }
-                                }
-                            }
-                            
-                            
-                            $resultoficial1=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_1' AND tipo_participe_datos_prestamo='Deudor'");
-                            
-                            if(!empty($resultoficial1)){
-                                
-                                $res1=count($resultoficial1);
-                            }
-                            
-                            $resultoficial2=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_2' AND tipo_participe_datos_prestamo='Deudor'");
-                            
-                            if(!empty($resultoficial2)){
-                                $res2=count($resultoficial2);
-                            }
-                            
-                            
-                            $resultoficial3=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_3' AND tipo_participe_datos_prestamo='Deudor'");
-                            
-                            if(!empty($resultoficial3)){
-                                $res3=count($resultoficial3);
-                            }
-                            
-                            if($res1==$res2){
-                                
-                                $id_oficial_credito=$id_usuarios_1;
-                            }
-                            elseif ($res1>$res2){
-                                
-                                $id_oficial_credito=$id_usuarios_2;
-                            }
-                            elseif ($res2>$res1){
-                                
-                                $id_oficial_credito=$id_usuarios_1;
-                            }else{
-                                $id_oficial_credito=$id_usuarios_3;
-                                
-                            }
-                            
-                            
-                            /////////// por lo que se fue la angie va todo a carlos narvaez //////////
-                            
-                            //$id_oficial_credito=0;
-                            //$id_oficial_credito=15425;
-                            
-                            
-                            
-                        }else{
-                            
-                            $resultGuayaquil=$solicitud_prestamo->getCondiciones("id_usuarios", "usuarios", "id_rol=42 AND id_departamentos=18 AND ciudad_trabajo='Guayaquil' AND id_estado=1", "id_usuarios");
-                            
-                            if(!empty($resultGuayaquil)){
-                                $i=0;
-                                foreach ($resultGuayaquil as $res){
-                                    $i++;
-                                    
-                                    if($i==1){
-                                        
-                                        $id_usuarios_1=$res->id_usuarios;
-                                    }elseif ($i==2){
-                                        
-                                        $id_usuarios_2=$res->id_usuarios;
-                                    }
-                                    
-                                }
-                            }
-                            
-                            $resultoficial1=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_1' AND tipo_participe_datos_prestamo='Deudor'");
-                            
-                            if(!empty($resultoficial1)){
-                                $res1=count($resultoficial1);
-                            }
-                            
-                            $resultoficial2=$solicitud_prestamo->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_2' AND tipo_participe_datos_prestamo='Deudor'");
-                            
-                            if(!empty($resultoficial2)){
-                                $res2=count($resultoficial2);
-                            }
-                            
-                            if($res1==$res2){
-                                
-                                $id_oficial_credito=$id_usuarios_1;
-                            }
-                            elseif ($res1>$res2){
-                                
-                                $id_oficial_credito=$id_usuarios_2;
-                            }
-                            elseif ($res2>$res1){
-                                
-                                $id_oficial_credito=$id_usuarios_1;
-                            }
-                            
-                        }
-                        
-                    }
-                    
-                    
-                    try {
-                        
-                        $solicitud_prestamo->beginTran();
-                        
-                        
-                        $funcion = "public.ins_solicitud_prestamo";
-                        $parametros = "'$_tipo_participe_datos_prestamo',
-								  '$_monto_datos_prestamo',
-								  '$_plazo_datos_prestamo',
-								  '$_destino_dinero_datos_prestamo',
-								  '$_tipo_cuenta_cuenta_bancaria',
-								  '$_numero_cuenta_cuenta_bancaria',
-								  '$_numero_cedula_datos_personales',
-								  '$_apellidos_solicitante_datos_personales',
-								  '$_nombres_solicitante_datos_personales',
-								  '$_correo_solicitante_datos_personales',
-								  '$_id_sexo_datos_personales',
-								  '$_fecha_nacimiento_datos_personales',
-								  '$_id_estado_civil_datos_personales',
-								  '$_separacion_bienes_datos_personales',
-								  '$_cargas_familiares_datos_personales',
-								  '$_numero_hijos_datos_personales',
-								  '$_nivel_educativo_datos_personales',
-								  '$_id_provincias_vivienda',
-								  '$_id_cantones_vivienda',
-								  '$_id_parroquias_vivienda',
-								  '$_barrio_sector_vivienda',
-								  '$_ciudadela_conjunto_etapa_manzana_vivienda',
-								  '$_calle_vivienda',
-								  '$_numero_calle_vivienda',
-								  '$_intersecion_vivienda',
-								  '$_tipo_vivienda',
-								  '$_vivienda_hipotecada_vivienda',
-								  '$_tiempo_residencia_vivienda',
-								  '$_nombre_propietario_vivienda',
-								  '$_celular_propietario_vivienda',
-								  '$_referencia_direccion_domicilio_vivienda',
-								  '$_numero_casa_solicitante',
-								  '$_numero_celular_solicitante',
-								  '$_numero_trabajo_solicitante',
-								  '$_extension_solicitante',
-								  '$_apellidos_referencia_personal',
-								  '$_nombres_referencia_personal',
-								  '$_relacion_referencia_personal',
-								  '$_numero_telefonico_referencia_personal',
-								  '$_apellidos_referencia_familiar',
-								  '$_nombres_referencia_familiar',
-								  '$_parentesco_referencia_familiar',
-								  '$_numero_telefonico_referencia_familiar',
-								  '$_id_entidades',
-								  '$_id_provincias_asignacion',
-								  '$_id_cantones_asignacion',
-								  '$_id_parroquias_asignacion',
-								  '$_numero_telefonico_datos_laborales',
-								  '$_interseccion_datos_laborales',
-								  '$_calle_datos_laborales',
-								  '$_cargo_actual_datos_laborales',
-								  '$_sueldo_total_info_economica',
-								  '$_cuota_prestamo_ordinario_info_economica',
-								  '$_arriendos_info_economica',
-								  '$_cuota_prestamo_emergente_info_economica',
-								  '$_honorarios_profesionales_info_economica',
-								  '$_cuota_otros_prestamos_info_economica',
-								  '$_comisiones_info_economica',
-								  '$_cuota_prestamo_iess_info_economica',
-								  '$_horas_suplementarias_info_economica',
-								  '$_arriendos_egre_info_economica',
-								  '$_alimentacion_info_economica',
-								  '$_otros_ingresos_1_info_economica',
-								  '$_valor_ingresos_1_info_economica',
-								  '$_estudios_info_economica',
-								  '$_otros_ingresos_2_info_economica',
-								  '$_valor_ingresos_2_info_economica',
-								  '$_pago_servicios_basicos_info_economica',
-								  '$_otros_ingresos_3_info_economica',
-								  '$_valor_ingresos_3_info_economica',
-								  '$_pago_tarjetas_credito_info_economica',
-								  '$_otros_ingresos_4_info_economica',
-								  '$_valor_ingresos_4_info_economica',
-								  '$_afiliacion_cooperativas_info_economica',
-								  '$_otros_ingresos_5_info_economica',
-								  '$_valor_ingresos_5_info_economica',
-								  '$_ahorro_info_economica',
-								  '$_otros_ingresos_6_info_economica',
-								  '$_valor_ingresos_6_info_economica',
-								  '$_impuesto_renta_info_economica',
-								  '$_otros_ingresos_7_info_economica',
-								  '$_valor_ingresos_7_info_economica',
-								  '$_otros_ingresos_8_info_economica',
-								  '$_valor_ingresos_8_info_economica',
-								  '$_otros_egresos_1_info_economica',
-								  '$_valor_egresos_1_info_economica',
-								  '$_total_ingresos_mensuales',
-								  '$_total_egresos_mensuales',
-								  '$_fecha_presentacion',
-								  '$_id_usuarios_registra',
-								  '$_identificador_consecutivos',
-								  '$_id_tipo_creditos',
-								  '$_id_banco_cuenta_bancaria',
-					              '$_tipo_pago_cuenta_bancaria',
-					              '$_id_sucursales',
-								  '$id_oficial_credito',
-					              '$_cedula_deudor_a_garantizar',
-					              '$_nombre_deudor_a_garantizar',
-                                  '$_identificador_consecutivos_deudor',
-                                  '$_id_codigo_verificacion'";
-                        $solicitud_prestamo->setFuncion($funcion);
-                        $solicitud_prestamo->setParametros($parametros);
-                        $resultado=$solicitud_prestamo->llamafuncionPG();
-                        
-                        $error = "";
-                        $error = pg_last_error();
-                        if (!empty($error) || (int)$resultado[0] <= 0){
-                            throw new Exception('error ingresando solicitud');
-                        }
-                        
-                        
-                        
-                        $consecutivos->UpdateBy("identificador_consecutivos = identificador_consecutivos+1", "consecutivos", "nombre_consecutivos = 'SOLICITUD_PRESTAMOS'");
-                        
-                        
-                        
-                        
-                        
-                        if($_id_estado_civil_datos_personales != 1 && $_id_estado_civil_datos_personales != 5 && $_id_estado_civil_datos_personales != 3){
-                            
-                            $resultSolicitud="";
-                            $resultSolicitud=$solicitud_prestamo->getBy("identificador_consecutivos='$_identificador_consecutivos' AND id_usuarios_registra='$_id_usuarios_registra' AND fecha_presentacion='$_fecha_presentacion' AND tipo_participe_datos_prestamo='$_tipo_participe_datos_prestamo'");
-                            
-                            
-                            $_id_solicitud_prestamo=0;
-                            if(!empty($resultSolicitud)){
-                                
-                                $_id_solicitud_prestamo=$resultSolicitud[0]->id_solicitud_prestamo;
-                                
-                                if($_id_solicitud_prestamo>0){
-                                    
-                                    if($_id_sexo_conyuge >0 && $_fecha_nacimiento_conyuge!=""){
-                                        $colval_afi = "numero_cedula_conyuge= '$_numero_cedula_conyuge',
-							apellidos_conyuge='$_apellidos_conyuge',
-							nombres_conyuge='$_nombres_conyuge',
-							id_sexo_conyuge='$_id_sexo_conyuge',
-							fecha_nacimiento_conyuge='$_fecha_nacimiento_conyuge',
-							convive_afiliado_conyuge='$_convive_afiliado_conyuge',
-							numero_telefonico_conyuge='$_numero_telefonico_conyuge',
-							actividad_economica_conyuge='$_actividad_economica_conyuge'";
-                                        $tabla_afi = "solicitud_prestamo";
-                                        $where_afi = "id_solicitud_prestamo = '$_id_solicitud_prestamo' AND identificador_consecutivos='$_identificador_consecutivos'";
-                                        $resultado1=$solicitud_prestamo->ActualizarBy($colval_afi, $tabla_afi, $where_afi);
-                                        
-                                        
-                                        
-                                        $error = "";
-                                        $error = pg_last_error();
-                                        
-                                        
-                                        if (!empty($error) || (int)$resultado1 <= 0){
-                                            throw new Exception('error actualizando conyuge solicitud');
-                                        }
-                                        
-                                    }
-                                }
-                                
-                            }
-                            
-                        }
-                        
-                        
-                        $solicitud_prestamo->EnviarMailSolCred($_correo_solicitante_datos_personales, $id_oficial_credito, $_nombres_solicitante_datos_personales, $_apellidos_solicitante_datos_personales);
-                        
-                        
-                        $solicitud_prestamo->endTran('COMMIT');
-                        
-                    } catch (Exception $e) {
-                        
-                        $solicitud_prestamo->endTran();
-                        echo $e->getMessage();
-                        die();
-                        
-                    }
-                }
-                
-                
-                
-                
-                
-                //ACTUALIZAR DATOS EN USUARIOS
-                
-                $usuarios_act = new UsuariosModel();
-                
-                $colval_usu = "telefono_usuarios='$_numero_casa_solicitante',
-                                       celular_usuarios='$_numero_celular_solicitante',
-                                       correo_usuarios='$_correo_solicitante_datos_personales'";
-                $tabla_usu = "usuarios";
-                $where_usu = "cedula_usuarios = '$_numero_cedula_datos_personales'";
-                $resultUsu=$usuarios_act->UpdateBy($colval_usu, $tabla_usu, $where_usu);
-                
-                
-                
-                
-                
-                
-                //ACTUALIZAR DATOS EN SQL
-                require_once 'core/EntidadBaseSQL.php';
-                $db = new EntidadBaseSQL();
-                
-                $colval_partner = "PHONE='$_numero_casa_solicitante',
-                                           PARNERT_MOVIL_PHONE='$_numero_celular_solicitante',
-                                           EMAIL='$_correo_solicitante_datos_personales',
-                                           BIRTH_DATE='$_fecha_nacimiento_datos_personales'";
-                $tabla_partner = "one.PARTNER";
-                $where_partner = "IDENTITY_CARD = '$_numero_cedula_datos_personales'";
-                $resultPartner=$db->UpdateBy_SQL($colval_partner, $tabla_partner, $where_partner);
-                
-                
-                
-                
-                
-                
-                
-                $this->redirect("SolicitudPrestamo", "index2");
-                
-                
-           
-            
-            
-        }
-        else
-        {
-            
-            $error = TRUE;
-            $mensaje = "Te sesión a caducado, vuelve a iniciar sesión.";
-            $this->view("Login",array(
-                "resultSet"=>"$mensaje", "error"=>$error
-            ));
-            
-            die();
-            
-        }
-        
-        
-        
-        
+         }
+       }
     }
-    
-    
     
 }
 ?>

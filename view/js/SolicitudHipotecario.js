@@ -20,6 +20,8 @@ $(document).ready(function(){
 	cargaBancosDosdetalleActivos();
 	cargaBancosTresdetalleActivos();
 	cargaBancosCuatrodetalleActivos();
+	cargaInstitucionesDatosLaborables();
+	cargaSucursalesDatosGenerales();
 
 
 	
@@ -531,6 +533,68 @@ function cargaGeneroDatosConyuge(){
 		console.log(err)
 		$ddlGenero.empty();
 		$ddlGenero.append("<option value='0' >--Seleccione--</option>");
+		
+	})
+	
+}
+
+
+
+function cargaSucursalesDatosGenerales(){
+	
+	let $ddlSucursal = $("#id_sucursales");
+
+	
+	$.ajax({
+		beforeSend:function(){},
+		url:"index.php?controller=SolicitudHipotecario&action=cargaSucursalesDatosGenerales",
+		type:"POST",
+		dataType:"json",
+		data:null
+	}).done(function(datos){		
+		
+		$ddlSucursal.empty();
+		$ddlSucursal.append("<option value='0' >--Seleccione--</option>");
+		
+		$.each(datos.data, function(index, value) {
+			$ddlSucursal.append("<option value= " +value.id_sucursales +" >" + value.nombre_sucursales  + "</option>");	
+  		});
+		
+	}).fail(function(xhr,status,error){
+		var err = xhr.responseText
+		console.log(err)
+		$ddlSucursal.empty();
+		$ddlSucursal.append("<option value='0' >--Seleccione--</option>");
+		
+	})
+	
+}
+
+function cargaInstitucionesDatosLaborables(){
+	
+	let $ddlInstituciones = $("#id_entidades");
+
+	
+	$.ajax({
+		beforeSend:function(){},
+		url:"index.php?controller=SolicitudHipotecario&action=cargaInstitucionesDatosLaborables",
+		type:"POST",
+		dataType:"json",
+		data:null
+	}).done(function(datos){		
+		
+		$ddlInstituciones.empty();
+		$ddlInstituciones.append("<option value='0' >--Seleccione--</option>");
+		
+		$.each(datos.data, function(index, value) {
+			$ddlInstituciones.append("<option value= " +value.id_entidades +" >" + value.nombre_entidades  + "</option>");	
+  		});
+		
+	}).fail(function(xhr,status,error){
+		var err = xhr.responseText
+		console.log(err)
+		$ddlInstituciones.empty();
+		$ddlInstituciones.append("<option value='0' >--Seleccione--</option>");
 		
 	})
 	
@@ -1332,6 +1396,7 @@ function checkIt(evt) {
 		    	var otros_gastos_uno_gastos_mensuales = $("#otros_gastos_uno_gastos_mensuales").val();
 		    	var imagen_croquis_domicilio = $("#imagen_croquis_domicilio").val();
 		    	var imagen_croquis_otro_negocio = $("#imagen_croquis_otro_negocio").val();
+		    	var id_sucursales = $("#id_sucursales").val();
 		    	
 		    	
 		    	
@@ -1605,7 +1670,8 @@ function checkIt(evt) {
 		    			otros_detalle_uno_gastos_mensuales:otros_detalle_uno_gastos_mensuales,
 		    			otros_gastos_uno_gastos_mensuales:otros_gastos_uno_gastos_mensuales,
 		    			imagen_croquis_domicilio:imagen_croquis_domicilio,
-		    			imagen_croquis_otro_negocio:imagen_croquis_otro_negocio
+		    			imagen_croquis_otro_negocio:imagen_croquis_otro_negocio,
+		    			id_sucursales:id_sucursales
 		    			
 		    			
 		    	

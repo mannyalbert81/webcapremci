@@ -132,7 +132,17 @@
 	         
    		 
    		 <div class="row">
-          		
+   		 		<div class="col-xs-12 col-md-3 col-md-3 ">
+            		    <div class="form-group">
+            		    					  
+                          <label for="id_sucursales" class="control-label">Sucursales:</label>
+                          <select  class="form-control" id="id_sucursales" name="id_sucursales">
+                          	<option value="0">--Seleccione--</option>
+                          </select>                         
+                          <div id="mensaje_id_sucursales" class="errores"></div>
+                        </div>
+                </div>
+                 	
              	<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
                 		<label for="valor_dolares_datos_credito" class="control-label">Valor en Dólares:</label>
@@ -2678,7 +2688,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
 
-<script src="view/js/SolicitudHipotecario.js?1.9"></script> 
+<script src="view/js/SolicitudHipotecario.js?2.1"></script> 
 
 	
   </body>
