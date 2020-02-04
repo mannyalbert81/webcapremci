@@ -47,21 +47,49 @@
 
 
 
+  <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+           <div class="modal-header">
+             <p style="text-align: center;"><b>CONVOCATORIA A ELECCIONES PARA REPRESENTANTES DE LA ASAMBLEA GENERAL DEL FONDO COMPLEMENTARIO PREVISIONAL CERRADO DE CESANTÍA DE SERVIDORES Y TRABAJADORES PÚBLICOS DE FUERZAS ARMADAS – CAPREMCI</b>
+			</p> 
+           </div>
+           <div class="modal-body">
+            
+				
+			
+			<p style="text-align: justify;">
+			De conformidad con lo establecido en el Reglamento de Elecciones y toda vez que se ha dado cumplimiento a lo dispuesto en el marco jurídico aplicable LA  JUNTA  GENERAL ELECTORAL, legalmente nombrada el 8 de enero de 2020, en plenitud de sus facultades CONVOCA a las elecciones libres y voluntarias a los señores y señoras partícipes activos plenamente facultados para el proceso de elecciones a fin de ELEGIR a diecinueve (19) Representantes Principales y diecinueve (19) Representantes Suplentes que integrarán la Asamblea General de Representantes del FONDO COMPLEMENTARIO PREVISIONAL CERRADO DE CESANTÍA DE SERVIDORES Y TRABAJADORES PÚBLICOS DE FUERZAS ARMADAS – CAPREMCI, a desarrollarse el viernes 13 de marzo de 2020 desde las 08H00 hasta las 18H00 en las diferentes Juntas Receptoras del Voto previamente establecidas.
+			</p> 			  
+                
+               
+                			  
+			   <a href="documentos/CONVOCATORIA/Convocatoria Elecciones 13 marzo 2020.pdf" target="_blank" style="margin-left: 0px;" class="btn btn-primary" ><i class="glyphicon glyphicon-edit"> Conoce la Juntas Receptoras del Voto</i></a>
+    	     <a href="documentos/CONVOCATORIA/Requisitos para partícipes con derecho al voto y para ser candidatos.pdf" target="_blank" style="margin-left: 0px;" class="btn btn-info"><i class="glyphicon glyphicon-print">Conoce los Requisitos para el Derecho al Voto</i></a>
+    	     
+			   
+          </div>
+           <div class="modal-footer">
+          <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>
+           </div>
+	      </div>
+	     </div>
+	   </div>
 
 
 
-
+<!-- 
 
   <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
           <div class="modal-dialog modal-md">
         <div class="modal-content">
            <div class="modal-header">
-              <h5><strong>Estimados Participes</strong></h5>
+              <h5><strong>ESTIMADOS PARTÍCIPES</strong></h5>
            </div>
            <div class="modal-body">
             
 			<p style="text-align: justify;">
-			Dando cumplimiento al Reglamento Interno del Fondo los colaboradores de Capremci <strong>no</strong> podemos recibir regalos ni obsequios por parte de los partícipes señalando que ningún trámite tiene costo alguno.
+			EN VIRTUD DE QUE HOY ESTA CIRCULANDO EL RUMOR DE QUE CAPREMCI HA OTORGADO UN BONO NAVIDEÑO ACREDITÁNDOLES EN LA CUENTAS DE CADA PARTÍCIPE Y QUE RETIREN DEL GRAN AKI UNA CANASTA DE VÍVERES PRESENTANDO LA CÉDULA, MANIFIESTO QUE NO ES VERDAD Y NO SE HA CONCEDIDO BONO NAVIDEÑO ALGUNO POR PROHIBICIÓN DIRECTA DE LOS ÓRGANOS DE CONTROL DE CAPREMCI. 
 			</p> 			  
                 			  
 			 
@@ -75,8 +103,8 @@
 	     </div>
 	   </div>
 
-
-
+          
+ -->
 
 
 
@@ -149,18 +177,6 @@
              <div class="carousel-container">
               <div class="carousel-content">
                 
-              </div>
-            </div>
-          </div>
-
-          <div class="carousel-item">
-            <div class="carousel-background"><img src="view/img/intro-carousel/2.jpg" alt=""></div>
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2>Bienvenido a CAPREMCI</h2>
-				<h3>Ya puedes calificar nuestra atención</h3>
-          		<p>Afiliate ya.</p>
-                <a href="#about" class="btn-get-started scrollto">Ver Más</a>
               </div>
             </div>
           </div>
@@ -620,6 +636,32 @@
 
 
   
+	<section id="service">
+      <div class="container">
+
+        <header class="section-header wow fadeInUp">
+          <br><br>
+		  <h3>Aplicativo BIESS </h3>
+          <p>Estimado Partícipe: El BIESS ha implementado una herramienta digital que permitirá reflejar información de saldos de cuenta individual y sus movimientos en la página web de BIESS</p>
+        </header>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+             <h4 class="title"><a href="javascript:void(0);">• Ingreso al Aplicativo.</a></h4>
+            <p class="description" align="justify">La información que encontrará en la web del BIESS será actiaizada cada mes, recuenrde que para acceder a sus movimientos de cuenta individual y créditos en tiempo real puede hacerlo desde nuestros servicios en linea. Para ingresar al aplicativo web en la página del BIESS <a href="https://fcpcweb.biess.fin.ec/fondos_complementarios_externo/login.xhtml">Haga Click Aquí</a>.</p>
+			<br>
+			 <li><i class="ion-ios-arrow-right"></i> <a href="documentos/06BIESS-CVS-Construccion-ManualUsuario-Participes.pdf" target="_blank">Manual del Usuario Partícipe</a></li>
+          </div>
+          
+          <div class="col-lg-8 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+            <img src="view/img/aappbiess.jpg" alt="">
+		  </div>
+
+        </div>
+
+      </div>
+    </section><!-- #services -->
   
   
   
@@ -851,22 +893,34 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-4 col-md-6 footer-info">
+          <div class="col-lg-3 col-md-6 footer-info">
             <h3>Capremci</h3>
             <p align="justify">El objetivo social es establecer y conceder a sus afiliados, los beneficios de Cesantía y Crédito con los aportes recibidos de sus partícipes conjuntamente con los rendimientos generados en los términos que establece su Estatuto, los reglamentos, normas y políticas que se emitieren.</p>
           </div>
 
-          <div class="col-lg-4 col-md-6 footer-links">
+          <div class="col-lg-3 col-md-6 footer-links">
             <h4>Formularios</h4>
             <ul>
-              <li><i class="ion-ios-arrow-right"></i> <a href="documentos/ordinario papeles.pdf">Solicitud de Crédito Ordinario</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="documentos/PAPELES EMERGENTE.pdf">Solicitud de Crédito Emergente</a></li>
-			     <li><i class="ion-ios-arrow-right"></i> <a href="documentos/SOLICITUD DE CRÉDITO HIPOTECARIO.pdf">Solicitud de Crédito Hipotecario</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="documentos/SOLICITUD DE PRESTACIONES.pdf">Solicitud de Prestaciones</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="documentos/ordinario papeles.pdf" target="_blank">Solicitud de Crédito Ordinario</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="documentos/PAPELES EMERGENTE.pdf" target="_blank">Solicitud de Crédito Emergente</a></li>
+			     <li><i class="ion-ios-arrow-right"></i> <a href="documentos/SOLICITUD DE CRÉDITO HIPOTECARIO.pdf" target="_blank">Solicitud de Crédito Hipotecario</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="documentos/SOLICITUD DE PRESTACIONES.pdf" target="_blank">Solicitud de Prestaciones</a></li>
             </ul>
           </div>
+		   <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Reglamentos</h4>
+            <ul>
+              <li><i class="ion-ios-arrow-right"></i> <a href="documentos/REGLAMENTO AL ESTATUTO.pdf" target="_blank">Reglamento al Estatuto</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="documentos/REGLAMENTO DE CONTRATACIONES.pdf" target="_blank">Reglamento de Contrataciones</a></li>
+		      <li><i class="ion-ios-arrow-right"></i> <a href="documentos/REGLAMENTO DE CREDITO (2).pdf" target="_blank">Reglamento de Crèdito</a></li>
+			  <li><i class="ion-ios-arrow-right"></i> <a href="documentos/CODIGO DE ETICA CAPREMCI.pdf" target="_blank">Còdigo de Ètica</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="documentos/CODIGO DE BUEN GOBIERNO CORPPORATIVO CAPREMCI.pdf" target="_blank">Còdigo del Buen Vivir Corporativo</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="documentos/INDICADORES DE BUEN GOBIERNO CORPORATIVO.pdf" target="_blank">Indicadores de Buen Gobierno Corporativo</a></li>
+                  
+		 </ul>
+          </div>
 
-          <div class="col-lg-4 col-md-6 footer-contact">
+          <div class="col-lg-3 col-md-6 footer-contact">
             <h4>Contáctanos</h4>
             <p>
               Baquerizo Moreno <br>
@@ -884,7 +938,7 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; <strong>Capremci-2018</strong>. Todos los derechos reservados
+        &copy; <strong>Capremci-<?php echo date ("Y");?></strong>. Todos los derechos reservados
       </div>
      
     </div>
@@ -914,7 +968,6 @@
   <script src="view/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
   <!-- Contact Form JavaScript File -->
   <script src="view/contactform/contactform.js"></script>
-
   <!-- Template Main Javascript File -->
   <script src="view/js/main.js"></script>
 

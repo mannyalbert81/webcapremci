@@ -6,9 +6,9 @@ class UsuariosController extends ControladorBase{
     }
     
     
-    
-    
-    
+
+
+
     
     
     public function cargar_superavit_cta_ind(){
@@ -369,24 +369,15 @@ class UsuariosController extends ControladorBase{
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
     
     
     
     public function index10(){
     	 
     	session_start();
-    	$id_rol=$_SESSION["id_rol"];
+		$id_rol=$_SESSION["id_rol"];
     	$usuarios = new UsuariosModel();
     	$where_to="";
     	$columnas = " usuarios.id_usuarios,
@@ -413,6 +404,9 @@ class UsuariosController extends ControladorBase{
     		
     	$id       = "usuarios.id_usuarios";
     		
+    	
+    	
+    	
     	
     	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
     	$search =  (isset($_REQUEST['search'])&& $_REQUEST['search'] !=NULL)?$_REQUEST['search']:'';
@@ -476,7 +470,6 @@ class UsuariosController extends ControladorBase{
     		$html.='<th style="text-align: left;  font-size: 12px;">Correo</th>';
     		$html.='<th style="text-align: left;  font-size: 12px;">Rol</th>';
     		$html.='<th style="text-align: left;  font-size: 12px;">Estado</th>';
-    		
     		if($id_rol==1 || $id_rol==43){
 	    		
     			$html.='<th style="text-align: left;  font-size: 12px;"></th>';
@@ -485,10 +478,9 @@ class UsuariosController extends ControladorBase{
 	    		
     		}else{
     			
-    			
+    		
     			$html.='<th style="text-align: left;  font-size: 12px;"></th>';
     		}
-    		
     		$html.='</tr>';
     		$html.='</thead>';
     		$html.='<tbody>';
@@ -508,21 +500,19 @@ class UsuariosController extends ControladorBase{
     			$html.='<td style="font-size: 11px;">'.$res->correo_usuarios.'</td>';
     			$html.='<td style="font-size: 11px;">'.$res->nombre_rol.'</td>';
     			$html.='<td style="font-size: 11px;">'.$res->nombre_estado.'</td>';
-    			
-    			if($id_rol==1 || $id_rol==43){
-    			
+    			if($id_rol==1 || $id_rol==43 ){
+    				
     				$html.='<td style="font-size: 18px;"><span class="pull-right"><a href="index.php?controller=Usuarios&action=index&id_usuarios='.$res->id_usuarios.'" class="btn btn-success" style="font-size:65%;"><i class="glyphicon glyphicon-edit"></i></a></span></td>';
     				$html.='<td style="font-size: 18px;"><span class="pull-right"><a href="index.php?controller=Usuarios&action=borrarId&id_usuarios='.$res->id_usuarios.'" class="btn btn-danger" style="font-size:65%;"><i class="glyphicon glyphicon-trash"></i></a></span></td>';
     				$html.='<td style="font-size: 18px;"><span class="pull-right"><a href="index.php?controller=Usuarios&action=search&cedula='.$res->cedula_usuarios.'" target="_blank" class="btn btn-warning" style="font-size:65%;"><i class="glyphicon glyphicon-eye-open"></i></a></span></td>';
-    			
-    			
+    				
+    				
     			}else{
-    			
+    				
     				$html.='<td style="font-size: 18px;"><span class="pull-right"><a href="index.php?controller=Usuarios&action=search&cedula='.$res->cedula_usuarios.'" target="_blank" class="btn btn-warning" style="font-size:65%;"><i class="glyphicon glyphicon-eye-open"></i></a></span></td>';
-    			
+    				
     			}
-    			
-    				$html.='</tr>';
+    			$html.='</tr>';
     		}
     		
     		
@@ -534,6 +524,8 @@ class UsuariosController extends ControladorBase{
     		$html.='</div>';
     		
     		
+    	
+    
     		 
     	}else{
     		$html.='<div class="col-lg-6 col-md-6 col-xs-12">';
@@ -545,19 +537,29 @@ class UsuariosController extends ControladorBase{
     	}
     	
     	
+    	
+    	 
     	echo $html;
     	die();
     	 
     	} 
     	 
     	 
+    	 
+    	 
+    	 
     }
     
     
+	
+	
+	
+	
+	
+	
+	
     
-    
-    
-       public function search(){
+       public function search (){
        	
        	session_start();
        	$usuarios = new UsuariosModel();
@@ -646,6 +648,8 @@ class UsuariosController extends ControladorBase{
 		       			$where_participe="afiliado_extras.cedula='$cedula_participe'";
 		       			$id_participe="afiliado_extras.cedula";
 		       			$resultParticipe=$participe->getCondiciones($columnas_participe, $tablas_participe, $where_participe, $id_participe);
+		       				
+		       			
 		       			
 		       		}
 		       		
@@ -696,6 +700,8 @@ class UsuariosController extends ControladorBase{
        
        	$cedula_usuarios = $_SESSION["cedula_participe"];
        
+       	
+       	
        	
        	if(!empty($cedula_usuarios)){
        
@@ -2803,14 +2809,18 @@ class UsuariosController extends ControladorBase{
        }
        
        
-       
-       
-       
+	
+	
+	
+	
+
+ 
+    
+    
     public function cargar_global_usuarios(){
     
     	session_start();
-    	$id_rol=$_SESSION["id_rol"];
-    	
+    	 $id_rol=$_SESSION["id_rol"];
     	$i=0;
     	$usuarios = new UsuariosModel();
     	$columnas = "usuarios.cedula_usuarios";
@@ -2842,11 +2852,7 @@ class UsuariosController extends ControladorBase{
     		$html .= "<div class='icon'>";
     		$html .= "<i class='ion ion-person-add'></i>";
     		$html .= "</div>";
-    		
-    	
-    
-    		
-    		if($id_rol==1 || $id_rol==43){
+    			if($id_rol==1 || $id_rol==43){
     		
     		$html .= "<a href='index.php?controller=Usuarios&action=index' class='small-box-footer'>Operaciones con usuarios <i class='fa fa-arrow-circle-right'></i></a>";
     				
@@ -2854,12 +2860,10 @@ class UsuariosController extends ControladorBase{
     			$html .= "<a href='#' class='small-box-footer'>Operaciones con usuarios <i class='fa fa-arrow-circle-right'></i></a>";
     		
     		}
+			$html .= "</div>";
+    		$html .= "</div>";
     
-
-    		$html .= "</div>";
-    		$html .= "</div>";
-    		
-    		
+    
     	}else{
     		 
     		$html = "<b>Actualmente no hay usuarios registrados...</b>";
@@ -2961,65 +2965,6 @@ public function index(){
 	
 	
 	
-	public function recuperar_fotografia_usuarios(){
-	    
-	    
-	    
-	    $usuarios=new UsuariosModel();
-	    
-	    
-	   
-	    
-	    require_once 'core/DB_Functions.php';
-	    $db = new DB_Functions();
-	    
-	    
-	    $columnas = "usuarios.cedula_usuarios,
-	   			     usuarios.fotografia_usuarios";
-	    
-	    $tablas   = "public.usuarios";
-	    
-	    $where    = "1=1";
-	    
-	   
-	    
-	    $resultSet=$db->getCondiciones($columnas ,$tablas ,$where);
-	    
-	    
-	    
-	    if(!empty($resultSet)){
-	        
-	        
-	        foreach ($resultSet as $res) {
-	            
-	            $cedula = $res->cedula_usuarios;
-	            $fotografia_usuarios = $res->fotografia_usuarios;
-	            
-	            
-	            $colval = "fotografia_usuarios='$fotografia_usuarios'";
-	            $tabla = "usuarios";
-	            $where = "cedula_usuarios = '$cedula'";
-	            $resultado=$usuarios->UpdateBy($colval, $tabla, $where);
-	            
-	            
-	            
-	            
-	        }
-	        
-	        
-	    }
-	    
-	    //pg_unescape_bytea
-	    
-	    
-	    
-	}
-	
-	
-	
-	
-	
-	
 	
 	public function llenar_fotografia_usuarios(){
 	
@@ -3089,15 +3034,16 @@ public function index(){
 	}
 	
 	
-
-	public function rellenar_claves_usuarios_nuevos(){
+	 
 	
+	public function rellenar_claves_usuarios_nuevos(){
+		
 		session_start();
 		$resultado = null;
 		$usuarios=new UsuariosModel();
-	
-	
-	
+		
+		
+		
 		$columnas = "usuarios.cedula_usuarios";
 			
 		$tablas   = "public.usuarios";
@@ -3107,14 +3053,14 @@ public function index(){
 		$id       = "usuarios.id_usuarios";
 			
 		$resultSet=$usuarios->getCondiciones($columnas ,$tablas ,$where, $id);
-	
+		
 		if(!empty($resultSet))
-		{
-			foreach ($resultSet as $res){
+			{
+				foreach ($resultSet as $res){
 					
-				$cedula_usuarios=$res->cedula_usuarios;
+					$cedula_usuarios=$res->cedula_usuarios;
 					
-				$cadena = "1234567890";
+					$cadena = "1234567890";
 				$longitudCadena=strlen($cadena);
 				$pass = "";
 				$longitudPass=4;
@@ -3125,19 +3071,19 @@ public function index(){
 				$_clave_usuario= $pass;
 				$_encryp_pass = $usuarios->encriptar($_clave_usuario);
 				$usuarios->UpdateBy("clave_usuarios = '$_encryp_pass', pass_sistemas_usuarios='$_clave_usuario'", "usuarios", "cedula_usuarios = '$cedula_usuarios'  ");
-	
+				
 					
+					
+				}
+				
+				
 					
 			}
-	
-	
-				
-		}
-	
-	
-	
+		
+		
+		
 		$this->redirect("Roles", "index");
-	
+		
 	}
 	
 	
@@ -3156,7 +3102,7 @@ public function index(){
 			
 		$tablas   = "public.usuarios";
 			
-		$where    = "1=1 AND usuarios.cedula_usuarios='1750402859'";
+		$where    = "1=1 AND id_usuarios=13701";
 			
 		$id       = "usuarios.id_usuarios";
 			
@@ -3322,7 +3268,9 @@ public function index(){
 		  
 		  
 		  
-		 
+		  
+		  
+		  
 		  $afiliado = new AfiliadoModel();
 		  $resultAfiliado="";
 		  $resultAfiliado=$afiliado->getBy("cedula='$_cedula_usuarios'");
@@ -3418,22 +3366,23 @@ public function index(){
 		  
 		  
 		  
-		  //ACTUALIZAR DATOS EN SQL
-		  require_once 'core/EntidadBaseSQL.php';
-		  $db = new EntidadBaseSQL();
-		  
-		  $colval_partner = "PHONE='$_telefono_usuarios',
+					//ACTUALIZAR DATOS EN SQL
+					require_once 'core/EntidadBaseSQL.php';
+					$db = new EntidadBaseSQL();
+					
+					$colval_partner = "PHONE='$_telefono_usuarios',
                                            PARNERT_MOVIL_PHONE='$_celular_usuarios',
                                            EMAIL='$_correo_usuarios'";
-		  $tabla_partner = "one.PARTNER";
-		  $where_partner = "IDENTITY_CARD = '$_cedula_usuarios'";
-		  $resultPartner=$db->UpdateBy_SQL($colval_partner, $tabla_partner, $where_partner);
+					$tabla_partner = "one.PARTNER";
+					$where_partner = "IDENTITY_CARD = '$_cedula_usuarios'";
+					$resultPartner=$db->UpdateBy_SQL($colval_partner, $tabla_partner, $where_partner);
+					
+					
 		  
 		  
 		  
 		  
 		  
-		   
 		    $this->redirect("Usuarios", "index");
 		}
 		
@@ -3582,6 +3531,7 @@ public function index(){
 		$usuarios = new UsuariosModel();
 		$error = FALSE;
 	
+	
 		$mensaje = "";
 	
 		if (isset($_POST['cedula_usuarios']))
@@ -3593,6 +3543,7 @@ public function index(){
 	
 			if(!empty($resultUsu))
 			{
+	
 				foreach ($resultUsu as $res){
 	
 					$correo_usuario=$res->correo_usuarios;
@@ -3600,6 +3551,9 @@ public function index(){
 					$nombre_usuario   = $res->nombre_usuarios;
 					$_clave_usuario= $res->pass_sistemas_usuarios;
 				}
+	
+	
+				
 					
 			}
 	
@@ -3757,6 +3711,7 @@ public function index(){
 			}
 			else
 			{
+	
 				
 				if($id_estado==1 || $id_estado==2 ){
 				
@@ -3802,6 +3757,7 @@ public function index(){
 	
 				}
 			
+				
 				}else{
 					
 					
@@ -3816,8 +3772,13 @@ public function index(){
 						
 					die();
 					
+					
+					
 				}
-				
+			
+			
+			
+			
 			}
 			 
 			$this->view("Login",array(
@@ -3864,10 +3825,6 @@ public function index(){
     			"allusers"=>$allusers
     	));
     }
-    
-    
-    
-    
     public function Bienvenida(){
     
     	session_start();
@@ -3898,13 +3855,18 @@ public function index(){
     		
     		 
     	}else{
-       	
-       	$this->redirect("Usuarios","sesion_caducada");
-       	
-       }
+    	
+    	$error = TRUE;
+	   	$mensaje = "Te sesión a caducado, vuelve a iniciar sesión.";
+	   		
+	   	$this->view("Login",array(
+	   			"resultSet"=>"$mensaje", "error"=>$error
+	   	));
+	   		
+	   		
+	   	die();
+    	}
     }
-    
-    
     
     
     public function  consulta_encuesta_educacion_financiera(){
@@ -3931,13 +3893,15 @@ public function index(){
             
             
             if(!empty($resultMarc) && count($resultMarc)>0){
+                
                 $respuesta='SI';
-                echo $respuesta;
+				echo $respuesta;
                 die();
                
             }else{
                 
-                $respuesta='NO';
+                //$respuesta='NO';
+				$respuesta='SI';
                 echo $respuesta;
                 die();
             }
@@ -3946,9 +3910,10 @@ public function index(){
         }
         
     }
-    
-    
-    
+	
+	
+	
+	
     
     
     
@@ -4061,9 +4026,14 @@ public function index(){
     
     }
     
-    
+	
+	
+	
+	
+	
     
     public function Loguear(){
+    	
     	
     	$error=FALSE;
     	
@@ -4122,7 +4092,7 @@ public function index(){
 	    			
     			}	
     			
-    			if($id_estado==1 || $id_estado==2 || $id_estado==3){
+    			if($id_estado==1 || $id_estado==2 || $id_estado==3 ){
     				
     				
     				//obtengo ip
@@ -4154,7 +4124,7 @@ public function index(){
     				
     				if($_id_rol==1 || $_id_rol==42 || $_id_rol==43 || $_id_rol==44 || $_id_rol==45){
     					
-    				   
+
     					$this->view("BienvenidaAdmin",array(
     							"allusers"=>$_usuario
     					));
@@ -4281,6 +4251,8 @@ public function index(){
     		
     	}
     	
+    
+    	
     }
 
     
@@ -4345,7 +4317,7 @@ public function index(){
 	}
 	
 	
-	public function Actualiza()
+	public function Actualiza ()
 	{
 		session_start();
 		
@@ -4445,7 +4417,6 @@ public function index(){
 					
 					$participes = new ParticipeModel();
 					
-					
 					if($_correo_usuarios!=""){
 						try {
 							$colval1 = "nombre= '$_nombre_usuarios',
@@ -4464,8 +4435,6 @@ public function index(){
 					}
 					
 					
-					
-					
 					//ACTUALIZAR DATOS EN SQL
 					require_once 'core/EntidadBaseSQL.php';
 					$db = new EntidadBaseSQL();
@@ -4476,9 +4445,6 @@ public function index(){
 					$tabla_partner = "one.PARTNER";
 					$where_partner = "IDENTITY_CARD = '$_cedula_usuarios'";
 					$resultPartner=$db->UpdateBy_SQL($colval_partner, $tabla_partner, $where_partner);
-					
-					
-					
 					
 					
 					
@@ -4498,7 +4464,7 @@ public function index(){
 				
 
 		}
-	else{
+		else{
        	
        	$this->redirect("Usuarios","sesion_caducada");
        	
@@ -4532,9 +4498,8 @@ public function index(){
 		$html="";
 		if($i>0)
 		{
-		
+	
 			$html .= "<div class='col-lg-3 col-xs-12'>";
-			
 			$html .= "<div class='small-box bg-yellow'>";
 			$html .= "<div class='inner'>";
 			$html .= "<h3>$i</h3>";
@@ -4554,10 +4519,8 @@ public function index(){
 				
 			}
 			$html .= "</div>";
-			
-			
 			$html .= "</div>";
-			
+	
 	
 		}else{
 	
@@ -4621,7 +4584,164 @@ public function index(){
 	
 	}
 	
+	
+	public function cargar_banner(){
+		
+		session_start();
+		$publicidad_movil = new PublicidadMovilModel();
+		$columnas = "id_publicidad_movil";
+		$tablas   = "publicidad_movil";
+		$where    = "1=1";
+		$id       = "id_publicidad_movil";
+		$resultSet = $publicidad_movil->getCondiciones($columnas ,$tablas ,$where, $id);
+		
+		
+	
+		$i=count($resultSet);
+		
+		$html="";
+		if($i>0)
+		{
+		
+		
+			$html .= "<div  class='col-xs-12 col-md-12 col-lg-12'>";
+			$html .= "<div class='col-xs-12 col-md-3 col-lg-3'>";
+			$html .= "</div>";
+			$html .= "<div class='col-xs-12 col-md-6 col-lg-6'>";
+			$html .= "<div id='myCarousel2' class='carousel slide' data-ride='carousel'>";
+			$html .= "<ol class='carousel-indicators'>";
+			$html .= "<li data-target='#myCarousel1' data-slide-to='0' class='active'></li>";
+			$html .= "<li data-target='#myCarousel2' data-slide-to='0' ></li>";
+			$html .= "</ol>";
+			
+			$html .= "<div class='carousel-inner' role='listbox'>";
+			
+			if(!empty($resultSet)){
+				
+				$numero=0;
+				foreach ($resultSet as $res){
+					
+					$numero++;
+					
+					if($numero==1){
+						
+						
+						$html .= "<div class='item active'>";
+						$html .= '<img src="view/DevuelveImagenView.php?id_valor='.$res->id_publicidad_movil.'&id_nombre=id_publicidad_movil&tabla=publicidad_movil&campo=imagen_baner" style="width:100%; height:100%; ">';
+						$html .= "</div>";
+						
+					}else{
+						
+						
+						
+						$html .= "<div class='item'>";
+						$html .= '<img src="view/DevuelveImagenView.php?id_valor='.$res->id_publicidad_movil.'&id_nombre=id_publicidad_movil&tabla=publicidad_movil&campo=imagen_baner" style="width:100%; height:100%;">';
+						$html .= "</div>";
+						
+					}
+					
+					
+				}
+				
+				
+			}
+			
+			
+		
+			
+			
+			$html .= "<a class='left carousel-control' href='#myCarousel2' role='button' data-slide='prev'>";
+			$html .= "<span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span>";
+			$html .= "<span class='sr-only'>Previous</span>";
+			$html .= "</a>";
+			$html .= "<a class='right carousel-control' href='#myCarousel2' role='button' data-slide='next'>";
+			$html .= "<span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>";
+			$html .= "<span class='sr-only'>Next</span>";
+			$html .= "</a>";
+			$html .= "</div>";
+			$html .= "</div>";
+			$html .= "</div>";
+			$html .= "<div class='col-xs-12 col-md-2 col-lg-2'>";
+			$html .= "</div>";
+			$html .= "</div>";
+			
+			
+		
+		
+		}else{
+		
+			$html = "<b>Actualmente no hay publicidad registrada...</b>";
+		}
+		
+		echo $html;
+		die();
+		
+		
+	}
+	
+	
+	
+	
+	public function cargar_calificaciones(){
+	
 
+
+		session_start();
+		$id_rol=$_SESSION["id_rol"];
+		$i=0;
+		$evaluacion_funcionarios= new EvaluacionFuncionariosModel();
+		
+		$columnas = "evaluacion_funcionarios.id_evaluacion_funcionarios, 
+					 usuarios.cedula_usuarios, 
+					 usuarios.nombre_usuarios, 
+					 evaluacion_funcionarios.calificacion_funcionario, 
+					 evaluacion_funcionarios.creado";
+		$tablas   = "public.evaluacion_funcionarios, public.usuarios";
+		$where    = "usuarios.id_usuarios = evaluacion_funcionarios.id_usuarios_funcionario";
+		$id       = "evaluacion_funcionarios.id_evaluacion_funcionarios";
+		$resultSet = $evaluacion_funcionarios->getCondiciones($columnas ,$tablas ,$where, $id);
+		
+		$i=count($resultSet);
+		
+		$html="";
+		if($i>0)
+		{
+		
+			$html .= "<div class='col-lg-3 col-xs-12'>";
+			$html .= "<div class='small-box bg-red'>";
+			$html .= "<div class='inner'>";
+			$html .= "<h3>$i</h3>";
+			$html .= "<p>Calificaciones Registradas.</p>";
+			$html .= "</div>";
+		
+		
+			$html .= "<div class='icon'>";
+			$html .= "<i class='ion ion-stats-bars'></i>";
+			$html .= "</div>";
+			if($id_rol==1 || $id_rol==43 || $id_rol==45){
+				$html .= "<a href='index.php?controller=Calificaciones&action=index' class='small-box-footer'>Operaciones con permisos <i class='fa fa-arrow-circle-right'></i></a>";
+			}else{
+				$html .= "<a href='#' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+			}
+		
+			$html .= "</div>";
+			$html .= "</div>";
+		
+		
+		}else{
+		
+			$html = "<b>Actualmente no hay calificaciones registradas...</b>";
+		}
+		
+		echo $html;
+		die();
+		
+		
+		
+	
+	
+	}
+	
 	
 	
 	public function cargar_sesiones(){
@@ -4648,14 +4768,18 @@ public function index(){
 			$html .= "<h3>$i</h3>";
 			$html .= "<p>Sesiones Registradas.</p>";
 			$html .= "</div>";
-	        $html .= "<div class='icon'>";
+	
+	
+			$html .= "<div class='icon'>";
 			$html .= "<i class='ion ion-stats-bars'></i>";
 			$html .= "</div>";
-			
 			if($id_rol==1){
 			$html .= "<a href='index.php?controller=Sesiones&action=index' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
 			}else{
 				$html .= "<a href='#' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
+			
+					
+				
 			}
 			$html .= "</div>";
 			$html .= "</div>";
@@ -4671,6 +4795,7 @@ public function index(){
 	
 	
 	}
+	
 	
 	
 	
@@ -4730,158 +4855,10 @@ public function index(){
 	}
 	
 	
-	public function cargar_calificaciones(){
-	
-
-
-		session_start();
-		$id_rol=$_SESSION["id_rol"];
-		$i=0;
-		$evaluacion_funcionarios= new EvaluacionFuncionariosModel();
-		
-		$columnas = "evaluacion_funcionarios.id_evaluacion_funcionarios, 
-					 usuarios.cedula_usuarios, 
-					 usuarios.nombre_usuarios, 
-					 evaluacion_funcionarios.calificacion_funcionario, 
-					 evaluacion_funcionarios.creado";
-		$tablas   = "public.evaluacion_funcionarios, public.usuarios";
-		$where    = "usuarios.id_usuarios = evaluacion_funcionarios.id_usuarios_funcionario";
-		$id       = "evaluacion_funcionarios.id_evaluacion_funcionarios";
-		$resultSet = $evaluacion_funcionarios->getCondiciones($columnas ,$tablas ,$where, $id);
-		
-		$i=count($resultSet);
-		
-		$html="";
-		if($i>0)
-		{
-		
-			$html .= "<div class='col-lg-3 col-xs-12'>";
-			$html .= "<div class='small-box bg-red'>";
-			$html .= "<div class='inner'>";
-			$html .= "<h3>$i</h3>";
-			$html .= "<p>Calificaciones Registradas.</p>";
-			$html .= "</div>";
-		
-		
-			$html .= "<div class='icon'>";
-			$html .= "<i class='ion ion-stats-bars'></i>";
-			$html .= "</div>";
-			if($id_rol==1 || $id_rol==43 || $id_rol==45){
-				$html .= "<a href='index.php?controller=Calificaciones&action=index' class='small-box-footer'>Operaciones con permisos <i class='fa fa-arrow-circle-right'></i></a>";
-			}else{
-				$html .= "<a href='#' class='small-box-footer'>Leer Mas<i class='fa fa-arrow-circle-right'></i></a>";
-			}
-		
-			$html .= "</div>";
-			$html .= "</div>";
-		
-		
-		}else{
-		
-			$html = "<b>Actualmente no hay calificaciones registradas...</b>";
-		}
-		
-		echo $html;
-		die();
-		
-		
-	}
 	
 	
 	
-	public function cargar_banner(){
-	    
-	    session_start();
-	    $publicidad_movil = new PublicidadMovilModel();
-	    $columnas = "id_publicidad_movil";
-	    $tablas   = "publicidad_movil";
-	    $where    = "1=1";
-	    $id       = "id_publicidad_movil";
-	    $resultSet = $publicidad_movil->getCondiciones($columnas ,$tablas ,$where, $id);
-	    
-	    
-	    
-	    $i=count($resultSet);
-	    
-	    $html="";
-	    if($i>0)
-	    {
-	        
-	        
-	        $html .= "<div  class='col-xs-12 col-md-12 col-lg-12'>";
-	        $html .= "<div class='col-xs-12 col-md-3 col-lg-3'>";
-	        $html .= "</div>";
-	        $html .= "<div class='col-xs-12 col-md-6 col-lg-6'>";
-	        $html .= "<div id='myCarousel2' class='carousel slide' data-ride='carousel'>";
-	        $html .= "<ol class='carousel-indicators'>";
-	        $html .= "<li data-target='#myCarousel1' data-slide-to='0' class='active'></li>";
-	        $html .= "<li data-target='#myCarousel2' data-slide-to='0' ></li>";
-	        $html .= "</ol>";
-	        
-	        $html .= "<div class='carousel-inner' role='listbox'>";
-	        
-	        if(!empty($resultSet)){
-	            
-	            $numero=0;
-	            foreach ($resultSet as $res){
-	                
-	                $numero++;
-	                
-	                if($numero==1){
-	                    
-	                    
-	                    $html .= "<div class='item active'>";
-	                    $html .= '<img src="view/DevuelveImagenView.php?id_valor='.$res->id_publicidad_movil.'&id_nombre=id_publicidad_movil&tabla=publicidad_movil&campo=imagen_baner" style="width:100%; height:100%; ">';
-	                    $html .= "</div>";
-	                    
-	                }else{
-	                    
-	                    
-	                    
-	                    $html .= "<div class='item'>";
-	                    $html .= '<img src="view/DevuelveImagenView.php?id_valor='.$res->id_publicidad_movil.'&id_nombre=id_publicidad_movil&tabla=publicidad_movil&campo=imagen_baner" style="width:100%; height:100%;">';
-	                    $html .= "</div>";
-	                    
-	                }
-	                
-	                
-	            }
-	            
-	            
-	        }
-	        
-	        
-	        
-	        
-	        
-	        $html .= "<a class='left carousel-control' href='#myCarousel2' role='button' data-slide='prev'>";
-	        $html .= "<span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span>";
-	        $html .= "<span class='sr-only'>Previous</span>";
-	        $html .= "</a>";
-	        $html .= "<a class='right carousel-control' href='#myCarousel2' role='button' data-slide='next'>";
-	        $html .= "<span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>";
-	        $html .= "<span class='sr-only'>Next</span>";
-	        $html .= "</a>";
-	        $html .= "</div>";
-	        $html .= "</div>";
-	        $html .= "</div>";
-	        $html .= "<div class='col-xs-12 col-md-2 col-lg-2'>";
-	        $html .= "</div>";
-	        $html .= "</div>";
-	        
-	        
-	        
-	        
-	    }else{
-	        
-	        $html = "<b>Actualmente no hay publicidad registrada...</b>";
-	    }
-	    
-	    echo $html;
-	    die();
-	    
-	    
-	}
+	
 	
 	
 	
@@ -5486,7 +5463,6 @@ public function index(){
 	}
 	
 	
-	
 	///////////////////////////////////////////////// informacion de participes ///////
 	
 	
@@ -5569,8 +5545,6 @@ public function index(){
 		}
 	
 	}
-	
-	
 	
 	
 	
@@ -6413,14 +6387,7 @@ public function index(){
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	
@@ -6460,7 +6427,7 @@ public function index(){
 		$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 		$fechaactual=$dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
 		 
-		$directorio = $_SERVER ['DOCUMENT_ROOT'] . '/webcapremci';
+		$directorio = $_SERVER ['DOCUMENT_ROOT']. '/webcapremci';
 		$dom=$directorio.'/view/dompdf/dompdf_config.inc.php';
 		$domLogo=$directorio.'/view/images/lcaprem.png';
 		$logo = '<img src="'.$domLogo.'" alt="Responsive image" width="200" height="50">';
@@ -6649,7 +6616,7 @@ public function index(){
 						if($_numsol_emergente != ""){
 								
 							$columnas_emer_detall ="numsol,
-										CAST(pago as int),
+										cast(pago as int),
 										mes,
 										ano,
 										fecpag,ROUND(capital,2) as capital,
@@ -7305,59 +7272,62 @@ public function index(){
 	
 						
 						
-						
-						
-						
-						$_superavit = new SuperavitModel();
-						
-						$columnas_sup="superavit.id_superavit,
+													$_superavit = new SuperavitModel();
+									
+									$columnas_sup="superavit.id_superavit,
                                                   superavit.cedula,
                                                   superavit.anio,
                                                   superavit.monto_patronal,
                                                   superavit.monto_personal,
                                                   superavit.tipo,
                                                   superavit.creado";
-						
-						$tablas_sup="public.superavit";
-						$where_sup="superavit.cedula='$cedula_usuarios' AND superavit.tipo='ACTIVOS'";
-						$id_sup="superavit.anio";
-						
-						$result_sup=$_superavit->getCondicionesDesc($columnas_sup, $tablas_sup, $where_sup, $id_sup);
-						
-						if(!empty($result_sup)){
-						    
-						    $html.='</br>';
-						    $html.='<center style="margin-top:5px;"><h4><b>SUPERAVIT GANADO</b></h4></center>';
-						    $html.= "<table style='margin-top:5px; width: 100%;' border=1 cellspacing=0 cellpadding=2>";
-						    $html.= "<thead>";
-						    
-						    $html.= "<tr style='background-color: #D5D8DC;'>";
-						    $html.='<th style="text-align: left;  font-size: 12px;">Año</th>';
-						    $html.='<th style="text-align: left;  font-size: 12px;">Valor Personal</th>';
-						    $html.='<th style="text-align: left;  font-size: 12px;">Valor Patronal</th>';
-						    
-						    $html.='</tr>';
-						    $html.='</thead>';
-						    $html.='<tbody>';
-						    
-						    $i=0;
-						    foreach ($result_sup as $res)
-						    {
-						        $i++;
-						        $html.='<tr>';
-						        $html.='<td style="font-size: 11px;">'.$res->anio.'</td>';
-						        $html.='<td style="font-size: 11px;">'.number_format($res->monto_personal, 2, '.', ',').'</td>';
-						        $html.='<td style="font-size: 11px;">'.number_format($res->monto_patronal, 2, '.', ',').'</td>';
-						        $html.='</tr>';
-						    }
-						    
-						    $html.='</tbody>';
-						    $html.='</table>';
-						    
-						    
-						}
-						
-						
+									
+									$tablas_sup="public.superavit";
+									$where_sup="superavit.cedula='$cedula_usuarios' AND superavit.tipo='ACTIVOS'";
+									$id_sup="superavit.anio";
+									
+									$result_sup=$_superavit->getCondicionesDesc($columnas_sup, $tablas_sup, $where_sup, $id_sup);
+									
+									if(!empty($result_sup)){
+									    
+									    $html.='</br>';
+									    $html.='<center style="margin-top:5px;"><h4><b>SUPERAVIT GANADO</b></h4></center>';
+									    $html.= "<table style='margin-top:5px; width: 100%;' border=1 cellspacing=0 cellpadding=2>";
+									    $html.= "<thead>";
+									    
+									    $html.= "<tr style='background-color: #D5D8DC;'>";
+									    $html.='<th style="text-align: left;  font-size: 12px;">Año</th>';
+									    $html.='<th style="text-align: left;  font-size: 12px;">Valor Personal</th>';
+									    $html.='<th style="text-align: left;  font-size: 12px;">Valor Patronal</th>';
+									   
+									    $html.='</tr>';
+									    $html.='</thead>';
+									    $html.='<tbody>';
+									    
+									    $i=0;
+									    foreach ($result_sup as $res)
+									    {
+									        $i++;
+									        $html.='<tr>';
+									        $html.='<td style="font-size: 11px;">'.$res->anio.'</td>';
+									        $html.='<td style="font-size: 11px;">'.number_format($res->monto_personal, 2, '.', ',').'</td>';
+									        $html.='<td style="font-size: 11px;">'.number_format($res->monto_patronal, 2, '.', ',').'</td>';
+									        $html.='</tr>';
+									    }
+									    
+									    $html.='</tbody>';
+									    $html.='</table>';
+									    
+									    
+									}
+
+
+
+
+
+
+
+
 						
 							
 					}
@@ -7467,54 +7437,63 @@ public function index(){
 	
 	
 						
-						$_superavit = new SuperavitModel();
 						
-						$columnas_sup="superavit.id_superavit,
+						
+
+
+
+
+$_superavit = new SuperavitModel();
+									
+							$columnas_sup="superavit.id_superavit,
                                           superavit.cedula,
                                           superavit.anio,
                                           superavit.monto_patronal,
                                           superavit.monto_personal,
                                           superavit.tipo,
                                           superavit.creado";
+							
+							$tablas_sup="public.superavit";
+							$where_sup="superavit.cedula='$cedula_usuarios' AND superavit.tipo='DESAFILIADOS'";
+							$id_sup="superavit.anio";
+							
+							$result_sup=$_superavit->getCondicionesDesc($columnas_sup, $tablas_sup, $where_sup, $id_sup);
+							
+							if(!empty($result_sup)){
+							    
+							    $html.='</br>';
+							    $html.='<center style="margin-top:5px;"><h4><b>SUPERAVIT GANADO</b></h4></center>';
+							    $html.= "<table style='margin-top:5px; width: 100%;' border=1 cellspacing=0 cellpadding=2>";
+							    $html.= "<thead>";
+							    
+							    $html.= "<tr style='background-color: #D5D8DC;'>";
+							    $html.='<th style="text-align: left;  font-size: 12px;">Año</th>';
+							    $html.='<th style="text-align: left;  font-size: 12px;">Valor Personal</th>';
+							    $html.='<th style="text-align: left;  font-size: 12px;">Valor Patronal</th>';
+							    
+							    $html.='</tr>';
+							    $html.='</thead>';
+							    $html.='<tbody>';
+							    
+							    $i=0;
+							    foreach ($result_sup as $res)
+							    {
+							        $i++;
+							        $html.='<tr>';
+							        $html.='<td style="font-size: 11px;">'.$res->anio.'</td>';
+							        $html.='<td style="font-size: 11px;">'.number_format($res->monto_personal, 2, '.', ',').'</td>';
+							        $html.='<td style="font-size: 11px;">'.number_format($res->monto_patronal, 2, '.', ',').'</td>';
+							        $html.='</tr>';
+							    }
+							    
+							    $html.='</tbody>';
+							    $html.='</table>';
+							    
+							    
+							}
+								
 						
-						$tablas_sup="public.superavit";
-						$where_sup="superavit.cedula='$cedula_usuarios' AND superavit.tipo='DESAFILIADOS'";
-						$id_sup="superavit.anio";
 						
-						$result_sup=$_superavit->getCondicionesDesc($columnas_sup, $tablas_sup, $where_sup, $id_sup);
-						
-						if(!empty($result_sup)){
-						    
-						    $html.='</br>';
-						    $html.='<center style="margin-top:5px;"><h4><b>SUPERAVIT GANADO</b></h4></center>';
-						    $html.= "<table style='margin-top:5px; width: 100%;' border=1 cellspacing=0 cellpadding=2>";
-						    $html.= "<thead>";
-						    
-						    $html.= "<tr style='background-color: #D5D8DC;'>";
-						    $html.='<th style="text-align: left;  font-size: 12px;">Año</th>';
-						    $html.='<th style="text-align: left;  font-size: 12px;">Valor Personal</th>';
-						    $html.='<th style="text-align: left;  font-size: 12px;">Valor Patronal</th>';
-						    
-						    $html.='</tr>';
-						    $html.='</thead>';
-						    $html.='<tbody>';
-						    
-						    $i=0;
-						    foreach ($result_sup as $res)
-						    {
-						        $i++;
-						        $html.='<tr>';
-						        $html.='<td style="font-size: 11px;">'.$res->anio.'</td>';
-						        $html.='<td style="font-size: 11px;">'.number_format($res->monto_personal, 2, '.', ',').'</td>';
-						        $html.='<td style="font-size: 11px;">'.number_format($res->monto_patronal, 2, '.', ',').'</td>';
-						        $html.='</tr>';
-						    }
-						    
-						    $html.='</tbody>';
-						    $html.='</table>';
-						    
-						    
-						}
 						
 							
 					}
@@ -7699,8 +7678,10 @@ public function index(){
 	
 	
 	
-	
 	///////////////////////////////////////////////////// DESCARGA DE DOCUMENTOS/////////////////////////////
+	
+	
+	
 	
 	
 	
@@ -7711,22 +7692,11 @@ public function index(){
 		session_start();				
 		$this->view("Documentos",array(
 					"resultSet"=>""
+	
 		));
 	
-	}
-	
-	
-	
-	public function home(){
-	
-		session_start();
-		$this->view("Home",array(
-				"resultSet"=>""
-		));
 	
 	}
-	
-	
 	
 	
 }

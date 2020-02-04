@@ -6,7 +6,6 @@
 <div class="profile clearfix">
           
               <div class="profile_pic">
-              
               <img src="view/DevuelveImagenView.php?id_valor=<?php echo $_SESSION['id_usuarios']; ?>&id_nombre=id_usuarios&tabla=usuarios&campo=fotografia_usuarios"  alt="view." class="img-circle profile_img">
               </div>
               <div class="profile_info">

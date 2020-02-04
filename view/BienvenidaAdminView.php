@@ -156,7 +156,7 @@
 				    pone_afiliaciones_recomendadas();
 				    pone_encuestas_realizadas();
         		   cargar_banner();
-        		   cargar_calificaciones();
+				   cargar_calificaciones();
 	   			});
 
 
@@ -176,7 +176,7 @@
         	        		}
         	    });
             	
-		        setTimeout($.unblockUI, 1000); 
+		        setTimeout($.unblockUI, 500); 
 		        
         	   }
         	   
@@ -341,8 +341,6 @@
 
 
 
-
-
         	   function cargar_calificaciones(){
         		   $(document).ready( function (){
         		       $.ajax({
@@ -361,7 +359,6 @@
         		              });
         		     })
         		  }
-
         	 
         	   
         </script>

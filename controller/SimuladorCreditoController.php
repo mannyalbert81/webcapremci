@@ -98,7 +98,7 @@ class SimuladorCreditoController extends ControladorBase{
 			}
 				
 		}
-	else{
+		else{
        	
        	$this->redirect("Usuarios","sesion_caducada");
        	

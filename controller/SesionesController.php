@@ -133,7 +133,10 @@ class SesionesController extends ControladorBase{
 				$html.=''. $this->paginate_sesiones("index.php", $page, $total_pages, $adjacents).'';
 				$html.='</div>';
 	
-	 
+	
+				 
+	
+				 
 			}else{
 				$html.='<div class="col-lg-6 col-md-6 col-xs-12">';
 				$html.='<div class="alert alert-warning alert-dismissable" style="margin-top:40px;">';

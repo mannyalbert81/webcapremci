@@ -2,7 +2,7 @@
 <html lang="es">
       <head>
         <meta charset="utf-8"/>
-        <title>ResetUsuarios - Template 2018</title>
+        <title>ResetUsuarios - Capremci 2018</title>
 
 	
 		

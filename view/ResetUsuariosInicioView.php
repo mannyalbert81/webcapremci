@@ -3,7 +3,7 @@
   <head>
     
 
-    <title>Template 2018</title>
+    <title>Capremci 2018</title>
 
 
 	  		<link rel="stylesheet" href="view/css/estilos.css">

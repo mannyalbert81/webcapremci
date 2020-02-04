@@ -112,7 +112,7 @@
         	        		}
         	    });
             	
-		        setTimeout($.unblockUI, 1500); 
+		        setTimeout($.unblockUI, 500); 
 		        
         	   }
 

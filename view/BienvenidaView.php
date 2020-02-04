@@ -722,7 +722,7 @@ $(document).ready(function() {
         	    }else {
 
 
-        	    	
+        	    	/*
         	    	if(fecha_nacimiento_usuarios >= fecha_actual ){
 
         	        	swal("Alerta!", "Fecha Nacimiento Incorrecta", "error")
@@ -735,7 +735,7 @@ $(document).ready(function() {
         	        	swal("Alerta!", "Fecha Nacimiento Incorrecta.", "error")
                         return false;
         	    	}
-            	    
+            	    */
         	    } 
 
         	    

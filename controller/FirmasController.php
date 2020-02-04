@@ -32,7 +32,7 @@ class FirmasController extends ControladorBase{
 								  public.estado";
     		
     	$where    = " rol.id_rol = usuarios.id_rol AND
-								  estado.id_estado = usuarios.id_estado AND usuarios.id_usuarios IN (7047, 9319, 15248, 15245, 15409, 15247, 16450, 15408, 16481, 16482, 15426, 16483, 15425, 13701, 15416, 4656, 16485, 16486)";
+								  estado.id_estado = usuarios.id_estado AND usuarios.id_usuarios IN (7047, 9319, 15248, 15245, 15409, 15247, 16450, 15408, 16481, 16482, 15426, 16483, 15425, 13701, 15416, 4656, 16485, 16486, 16504)";
     		
     	$id       = "usuarios.id_usuarios";
     		

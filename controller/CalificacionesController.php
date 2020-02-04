@@ -176,11 +176,9 @@ class CalificacionesController extends ControladorBase{
 	
 			if (!empty($resultPer))
 			{
-				  
-			    
-			    
-			   	
-			$this->view("ConsultaCalificaciones",array(
+				
+					
+				$this->view("ConsultaCalificaciones",array(
 						""=>""));
 	
 			}
@@ -210,6 +208,10 @@ class CalificacionesController extends ControladorBase{
 		}
 	
 	}
+	
+	
+	
+	
 	
 	
 	
@@ -280,32 +282,13 @@ class CalificacionesController extends ControladorBase{
 	
 	
 	
-	public function generar_excel(){
-	    
-	   /* header("Content-type: application/vnd.ms-excel; name='excel'");
-	    header("Content-Disposition: filename=ReporteCalificaciones.xls");
-	    header("Pragma: no-cache");
-	    header("Expires: 0");
-	    */
-	       
-	    header("Content-Type:   text/html; charset=utf-8");
-	    header("Content-Type:   application/vnd.ms-excel; charset=utf-8");
-	    header("Content-type:   application/x-msexcel; charset=utf-8");
-	    header("Content-Disposition: attachment; filename=ReporteCalificaciones.xls");
-	    header("Expires: 0");
-	    header("Pragma: no-cache");
-	    
-	    
-	    if (isset($_POST['datos_a_enviar']) && $_POST['datos_a_enviar'] != '') echo $_POST['datos_a_enviar'];
-	    die();
-	    
-	}
-	
 	
 	
 	public function generar_reporte(){
 		
-	    session_start();
+
+		session_start();
+		$ordinario_detalle = new Ordinario_DetalleModel();
 		
 		$html="";
 		$cedula_usuarios = $_SESSION["cedula_usuarios"];
@@ -320,15 +303,15 @@ class CalificacionesController extends ControladorBase{
 		$logo = '<img src="'.$domLogo.'" alt="Responsive image" width="200" height="50">';
 		 
 		
+		
 		if(!empty($cedula_usuarios)){
 				
-		    
 			if(isset($_POST["desde"]) && isset($_POST["hasta"])){
-		
+				
 				
 				$desde = $_POST["desde"];
 				$hasta = $_POST["hasta"];
-				$search = $_POST["search"];
+				$search = $_POST["search"];				
 				
 				
 				$evaluacion = new EvaluacionFuncionariosModel();
@@ -351,39 +334,31 @@ class CalificacionesController extends ControladorBase{
 				$where    = "u.id_usuarios = e.id_usuarios_funcionario";
 				$id       = "e.id_evaluacion_funcionarios";
 				
-				
-				
-				
-				
-				
+			
+			
 				if(!empty($search)){
-				    
-				    
-				    if($desde!="" && $hasta!=""){
-				        
-				        $where2=" AND DATE(e.creado)  BETWEEN '$desde' AND '$hasta'";
-				        
-				        
-				    }
-				    
-				    $where1=" AND (e.calificacion_funcionario LIKE '%".$search."%' OR u.cedula_usuarios LIKE '%".$search."%' OR u.nombre_usuarios LIKE '%".$search."%' )";
-				    
-				    $where_to=$where.$where1.$where2;
+				
+				
+					if($desde!="" && $hasta!=""){
+							
+						$where2=" AND DATE(e.creado)  BETWEEN '$desde' AND '$hasta'";
+							
+							
+					}
+				
+					$where1=" AND (e.calificacion_funcionario LIKE '%".$search."%' OR u.cedula_usuarios LIKE '%".$search."%' OR u.nombre_usuarios LIKE '%".$search."%' )";
+				
+					$where_to=$where.$where1.$where2;
 				}else{
-				    if($desde!="" && $hasta!=""){
-				        
-				        $where2=" AND DATE(e.creado)  BETWEEN '$desde' AND '$hasta'";
-				        
-				    }
-				    
-				    $where_to=$where.$where2;
-				    
+					if($desde!="" && $hasta!=""){
+				
+						$where2=" AND DATE(e.creado)  BETWEEN '$desde' AND '$hasta'";
+				
+					}
+				
+					$where_to=$where.$where2;
+				
 				}
-				
-				
-					
-				
-				
 			
 				$resultSet=$evaluacion->getCondicionesDesc($columnas, $tablas, $where_to, $id);
 				
@@ -417,7 +392,6 @@ class CalificacionesController extends ControladorBase{
 					$Bueno=0;
 					$Reguar=0;
 					$Malo=0;
-					
 					foreach ($resultSet as $res)
 					{
 						
@@ -436,6 +410,7 @@ class CalificacionesController extends ControladorBase{
 							$Malo++;
 						}
 						
+						
 						$i++;
 						$html.='<tr>';
 						$html.='<td style="font-size: 11px;">'.$i.'</td>';
@@ -452,6 +427,9 @@ class CalificacionesController extends ControladorBase{
 					$html.='</tbody>';
 					$html.='</table>';
 				
+					
+					
+					
 					
 					$html.= '<div style="text-align:center;">';
 					$html.= "<table style='width: 100%; margin-top:40px;' border=1 cellspacing=0>";
@@ -472,6 +450,7 @@ class CalificacionesController extends ControladorBase{
 					$html.='</div>';
 					
 				}
+				
 				
 				
 				

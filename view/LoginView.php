@@ -3,7 +3,7 @@
   <head>
     
 
-    <title>Capremci</title>
+    <title>Capremci 2018</title>
 
 
 	  
@@ -41,7 +41,7 @@
         <div class="animate form login_form">
           <section class="login_content">
             <img src="view/images/logo.png" width="320" height="190">
-            <form id="form-login" action="<?php echo $helper->url("Usuarios","Loguear"); ?>" method="post" >
+            <form id="form-login" action="<?php echo $helper->url("Usuarios","Loguear"); ?>" method="post" ">
              
              
              
@@ -54,7 +54,8 @@
               </div>
               <div>
               	<button type="submit"  class="btn btn-success" ><i class="fa fa-unlock fa-spin" aria-hidden="true"></i> Login</button>
-                <button type="button" onclick=" location.href='http://www.capremci.com.ec' " class="btn btn-primary" value="Cancelar" name="Cancelar"><i class="fa fa-times" aria-hidden="true"></i> Cancelar</button> 
+                  <button type="button" onclick=" location.href='http://www.capremci.com.ec' " class="btn btn-primary" value="Cancelar" name="Cancelar"><i class="fa fa-times" aria-hidden="true"></i> Cancelar</button> 
+             
               </div>
 
               <div class="clearfix"></div>
@@ -66,10 +67,6 @@
                 </div>
               </div>
               
-              
-              
-              
-             
                        
                     	
                               <?php if (isset($resultSet)) {?>
@@ -100,15 +97,11 @@
               
             </form>
           </section>
-          
-     
-          
         </div>
 
               </div>
     </div>
     
-    
-   
+  
   </body>
 </html>
