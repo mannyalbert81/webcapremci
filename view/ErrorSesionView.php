@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <meta charset="utf-8"/>
-        <title>Menu - aDocument 2015</title>
+        <title>Capremci 2018</title>
    
        <style>
             input{
@@ -24,7 +24,7 @@
       <div class="row" style="background-color: #FAFAFA;">
       
                 <form  method="post" class="col-lg-5">
-            <h3 style="color:#ec971f;">Debes Iniciar Sesion</h3>
+            <h3 style="color:#ec971f;">Debes Iniciar Sesión</h3>
             <hr/>
             
             	

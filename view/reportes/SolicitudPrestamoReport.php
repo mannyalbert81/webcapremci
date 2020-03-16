@@ -2,8 +2,8 @@
 	
  <?php
  
-$directorio = $_SERVER ['DOCUMENT_ROOT'];
-$dom=$directorio.'/webcapremci/view/dompdf/dompdf_config.inc.php';
+$directorio = $_SERVER ['DOCUMENT_ROOT']. '/webcapremci';;
+$dom=$directorio.'/view/dompdf/dompdf_config.inc.php';
 
 require_once( $dom);
 

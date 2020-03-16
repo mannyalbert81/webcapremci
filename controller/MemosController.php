@@ -1523,7 +1523,7 @@ class MemosController extends ControladorBase{
     	//Tipo de Documento
     	$resultPol = $usuarios->getCondiciones("nombre_usuarios, id_usuarios",
     			"usuarios",
-    			"  UPPER(nombre_usuarios) LIKE '%$nombre_usuario%'  AND id_usuarios in  (7047, 9319, 15248, 15245, 15409, 15247, 16450, 16481, 16482, 15426, 16483, 15425, 13701, 15416, 4656, 16485, 16486)",
+    			"  UPPER(nombre_usuarios) LIKE '%$nombre_usuario%'  AND id_usuarios in  (7047, 9319, 15248, 15245, 15409, 15247, 16450, 16481, 16482, 15426, 16483, 15425, 13701, 15416, 4656, 16485, 16486, 16504)",
     			"nombre_usuarios");
     
     
@@ -1693,7 +1693,7 @@ class MemosController extends ControladorBase{
     								$html.='<tr>';
     								$html.='<td style="font-size: 11px;"><input type="checkbox"></td>';
     								$html.='<td class="mailbox-subject" style="font-size: 11px;"><a href="index.php?controller=Memos&action=index_readmail&identi='.$id_memos_cab.'&tip=imbox_p">'.$asunto_memos_cab.'</a></td>';
-    								$html.='<td class="mailbox-subject" style="font-size: 11px;"><a href="index.php?controller=Memos&action=index_readmail&identi='.$id_memos_cab.'&tip=imbox_p">'.$asunto_memos_cab.'</a></td>';
+    								//$html.='<td class="mailbox-subject" style="font-size: 11px;"><a href="index.php?controller=Memos&action=index_readmail&identi='.$id_memos_cab.'&tip=imbox_p">'.$asunto_memos_cab.'</a></td>';
     								$html.='<td class="mailbox-name" style="font-size: 11px;">'.$numero_memo.'</td>';
     								
     								

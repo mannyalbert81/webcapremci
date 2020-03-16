@@ -4,7 +4,6 @@ class EncuestasController extends ControladorBase{
 
 	public function __construct() {
 		parent::__construct();
-		
 	}
 
 
@@ -36,6 +35,9 @@ class EncuestasController extends ControladorBase{
 	
 		$id       = "encuentas_participes_cabeza.id_encuentas_participes_cabeza";
 	
+		 
+		 
+		 
 		 
 		$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 		$search =  (isset($_REQUEST['search'])&& $_REQUEST['search'] !=NULL)?$_REQUEST['search']:'';
@@ -88,10 +90,7 @@ class EncuestasController extends ControladorBase{
 			$count_query   = $cantidadResult;
 			$total_pages = ceil($cantidadResult/$per_page);
 	
-	
-			
-			
-			
+			 
 	
 	
 	
@@ -310,7 +309,7 @@ class EncuestasController extends ControladorBase{
 	
 	
 	public function index2(){
-		
+	
 		session_start();
 		if (isset(  $_SESSION['nombre_usuarios']) )
 		{
@@ -367,24 +366,6 @@ class EncuestasController extends ControladorBase{
 				$total=0;
 				$resultSet_cabeza=$encuestas_cabeza->getCantidad("*", "encuentas_participes_cabeza", "1=1");
 				$total=(int)$resultSet_cabeza[0]->total;
-				
-				
-				/*
-				require_once 'core/EntidadBaseSQL.php';
-				$db = new EntidadBaseSQL();
-				
-				
-				$columnas_sql="*";
-				$tablas_aql="one.PARTNER";
-				$where_sql="1=1";
-				$id_sql="PARTNER_ID";
-				
-				$resultSet_sql=$db->getCondiciones($columnas_sql, $tablas_aql, $where_sql, $id_sql);
-				
-				print_r($resultSet_sql);
-				die();
-				
-				*/
 				
 					
 				$this->view("ConsultaEncuestas",array(

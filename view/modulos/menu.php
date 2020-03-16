@@ -20,11 +20,17 @@ $controladores=$_SESSION['controladores'];
  	return $display;
  }
  
- $usuarios=new UsuariosModel();
+  $usuarios=new UsuariosModel();
  $cedula_usuarios=$usuarios->encriptar($_SESSION['cedula_usuarios']);
  
  
 ?>
+
+
+
+
+
+
 
 
 <!-- sidebar menu -->
@@ -41,19 +47,15 @@ $controladores=$_SESSION['controladores'];
                       <li style="<?php echo getcontrolador("PermisosRoles",$controladores) ?>"><a href="index.php?controller=PermisosRoles&action=index">Permisos Roles</a></li>
                       <li style="<?php echo getcontrolador("Sesiones",$controladores) ?>"><a href="index.php?controller=Sesiones&action=index">Sesiones</a></li>
                       <li style="<?php echo getcontrolador("PublicidadMovil",$controladores) ?>"><a href="index.php?controller=PublicidadMovil&action=index">Publicidad Movil</a></li>
-                   
-                      <li style="<?php echo getcontrolador("EducacionFinanciera",$controladores) ?>"><a href="index.php?controller=EducacionFinanciera&action=index">Educación Financiera</a></li>
-                   
-                    </ul>
+                      </ul>
                   </li>
                   
                   
-                 <li style="<?php echo getcontrolador("MenuGestionTramites",$controladores) ?>"  ><a><i class="fa fa-file-o"></i> Gestión de Trámites <span class="fa fa-chevron-down"></span></a>
+                <li style="<?php echo getcontrolador("MenuGestionTramites",$controladores) ?>"  ><a><i class="fa fa-file-o"></i> Gestión de Trámites <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                     <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index3">Solicitud Prestamo</a></li>
-                     <li style="<?php echo getcontrolador("Memos",$controladores) ?>"><a href="index.php?controller=Memos&action=index">Crear Memorandun</a></li>
-                	 
-                    </ul>
+                    <li style="<?php echo getcontrolador("Memos",$controladores) ?>"><a href="index.php?controller=Memos&action=index">Crear Memorandun</a></li>
+                	<li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index3">Solicitud Prestamo</a></li>
+                     </ul>
                  </li>
                   
                   
@@ -61,39 +63,53 @@ $controladores=$_SESSION['controladores'];
                     <ul class="nav child_menu">
                       <li style="<?php echo getcontrolador("SaldosCuentaIndividual",$controladores) ?>"><a href="index.php?controller=SaldosCuentaIndividual&action=index">Consulta de Saldos Cuenta Individual y Créditos</a></li>
                       <!--<li style="<?php echo getcontrolador("Usuarios",$controladores) ?>"><a href="index.php?controller=Usuarios&action=resetear_clave">Solicita tu clave personal</a></li>-->
-                      <li style="<?php echo getcontrolador("SimuladorCredito",$controladores) ?>"><a href="http://localhost:4000/rp_c/index.php?controller=CargarParticipes&action=index&cedula=<?php echo $cedula_usuarios;?>"  target="_blank">Simulador de Crédito</a></li>
-                     <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index">Generar Solicitud Préstamo</a></li>
-                      <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index2">Consultar Solicitud Préstamo</a></li>
-                      <li style="<?php echo getcontrolador("ConsultaTramites",$controladores) ?>"><a href="index.php?controller=ConsultaTramites&action=index">Consulta Trámites</a></li>
-                      <li style="<?php echo getcontrolador("SolicitudAportes",$controladores) ?>"><a href="index.php?controller=SolicitudValorAportaciones&action=index">Solicitud Valor Aportaciones</a></li>
-                    
-                     </ul>
+                     <li style="<?php echo getcontrolador("SimuladorCredito",$controladores) ?>"><a href="http://186.4.157.125/rp_c/index.php?controller=CargarParticipes&action=index&cedula=<?php echo $cedula_usuarios;?>"  target="_blank">Simulador de Crédito</a></li>
+                     
+					 <!--<li style="<?php echo getcontrolador("SimuladorCredito",$controladores) ?>"><a href="http://186.4.157.125/rp_c/index.php?controller=CargarParticipes&action=index&cedula=<?php echo $_SESSION['cedula_usuarios'];?>"  target="_blank">Simulador de Crèdito</a></li>-->
+                      <!--<li style="<?php echo getcontrolador("SimuladorCredito",$controladores) ?>"><a href="index.php?controller=SimuladorCredito&action=index">Simulador de Crédito</a></li>-->
+                       <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index">Generar Solicitud Préstamo</a></li>
+                       <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index2">Consultar Solicitud Préstamo</a></li>
+						<li style="<?php echo getcontrolador("ConsultaTramites",$controladores) ?>"><a href="index.php?controller=ConsultaTramites&action=index">Consulta Trámites</a></li>
+                      </ul>
                   </li>
                   
                   
-                 <li><a><i class="fa fa-file-o"></i> Documentos <span class="fa fa-chevron-down"></span></a>
-                   <ul class="nav child_menu">
-                       <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=dic_2017" target="_blank">Estados Financieros al 31 de Diciembre del 2017</a></li>
+                    <li ><a    ><i class="fa fa-file-o"></i> Documentos <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                       
+						<!--
+						<li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=dic_2017" target="_blank">Estados Financieros al 31 de Diciembre del 2017</a></li>
                        <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=ene_2018" target="_blank">Estados Financieros al 31 de Enero del 2018</a></li>
                        <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=fec_2018" target="_blank">Estados Financieros al 28 de Febrero del 2018</a></li>
                        <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=jul_2018" target="_blank">Estados Financieros al 31 de Julio del 2018</a></li>
-                       <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=oct_2018" target="_blank">Estados Financieros al 31 de Octubre del 2018</a></li>
+                       -->
+						
+						<li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=oct_2018" target="_blank">Estados Financieros al 31 de Octubre del 2018</a></li>
                  
                        <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=estado_nov_2018" target="_blank">Estados Financieros al 30 de Noviembre del 2018</a></li>
                        <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=estado_dic_2018" target="_blank">Estados Financieros al 31 de Diciembre del 2018</a></li>
                        <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=estado_ene_2019" target="_blank">Estados Financieros al 31 de Enero del 2019</a></li>
                        <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=estado_feb_2019" target="_blank">Estados Financieros al 28 de Febrero del 2019</a></li>
                        <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=estado_mar_2019" target="_blank">Estados Financieros al 31 de Marzo del 2019</a></li>
-                    
-                 
-                       <li><a>Auditoria Nuñez Serrano Asociados<span class="fa fa-chevron-down"></span></a>
+					   <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=estado_abr_2019" target="_blank">Estados Financieros al 30 de Abril del 2019</a></li>
+					   <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=estado_may_2019" target="_blank">Estados Financieros al 31 de Mayo del 2019</a></li>
+					   <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=estado_jun_2019" target="_blank">Estados Financieros al 30 de Junio del 2019</a></li>
+					   <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=estado_jul_2019" target="_blank">Estados Financieros al 31 de Julio del 2019</a></li>
+					   <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=estado_ago_2019" target="_blank">Estados Financieros al 31 de Agosto del 2019</a></li>
+					   <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=estado_sep_2019" target="_blank">Estados Financieros al 30 de Septiembre del 2019</a></li>
+					   <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=estado_oct_2019" target="_blank">Estados Financieros al 31 de Octubre del 2019</a></li>
+					   <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=estado_nov_2019" target="_blank">Estados Financieros al 30 de Noviembre del 2019</a></li>
+					 
+					 
+					 
+                        <li><a>Auditoria Nuñez Serrano Asociados<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=dic_2014_Informe_Adtitores_Independientes" target="_blank">Informe de los auditores independientes 31-12-2014</a></li>
                             <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=dic_2014_Informe_Confidencial" target="_blank">Informe Confidencial Sobre la Evaluación del Control Interno 31-12-2014</a></li>
                             <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=dic_2014_Informe_Procedimientos" target="_blank">Informe de Procedimientos Previamente Convenidos 31-12-2014</a></li>
                             <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=dic_2014_Informe_Auditoría_Rubro" target="_blank">Informe de Auditoría al Rubro de Inversiones Privativas 31-12-2014</a></li>
-                          </ul>
-                       </li>
+                            </ul>
+                        </li>
                    </ul>
                   </li>
                   
@@ -110,6 +126,10 @@ $controladores=$_SESSION['controladores'];
                        <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&reg=reg_cre" target="_blank">Reglamento de Crédito</a></li>
                        <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&reg=reg_recau" target="_blank">Reglamento de Recaudaciones</a></li>
                      
+                     
+                     
+                     
+                     
                      </ul>
                   </li>
                   
@@ -119,10 +139,6 @@ $controladores=$_SESSION['controladores'];
                     <ul class="nav child_menu">
                        <li style="<?php echo getcontrolador("Memos",$controladores) ?>"><a href="index.php?controller=Memos&action=index">Crear Memorandun</a></li>
                 	   <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index5">Solicitud Prestamo</a></li>
-                       <li style="<?php echo getcontrolador("SolicitudPrestaciones",$controladores) ?>"><a href="index.php?controller=SolicitudPrestaciones&action=index">Solicitud Prestaciones</a></li>
-                       <li style="<?php echo getcontrolador("SolicitudValorAportaciones",$controladores) ?>"><a href="index.php?controller=SolicitudValorAportaciones&action=index">Solicitud Valor Aportaciones</a></li>
-                        <li style="<?php echo getcontrolador("SolicitudHipotecario",$controladores) ?>"><a href="index.php?controller=SolicitudHipotecario&action=index">Solicitud Hipotecario</a></li>
-                       
                      </ul>
                  </li>
                   
@@ -134,11 +150,12 @@ $controladores=$_SESSION['controladores'];
                   </li>
                   
                   
-                   <li><a    ><i class="fa fa-file-o"></i> Información <span class="fa fa-chevron-down"></span></a>
+                   <li ><a    ><i class="fa fa-file-o"></i> Información <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                        <li><a href="index.php?controller=Informacion&action=index">Conoce nuestros servicios y convenios.</a></li>
                    </ul>
                   </li>
+                  
                   
                 </ul>
               </div>

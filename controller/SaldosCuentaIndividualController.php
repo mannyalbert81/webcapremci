@@ -176,132 +176,6 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	
 	
-	
-	
-	
-	
-	public function cargar_superavit_cta_ind(){
-	
-	session_start();
-	$_superavit = new SuperavitModel();
-	$where_to="";
-	
-	
-	$cedula_usuarios = $_SESSION["cedula_usuarios"];
-	
-	if(!empty($cedula_usuarios)){
-	    
-	    $columnas_sup="superavit.id_superavit, 
-                      superavit.cedula, 
-                      superavit.anio, 
-                      superavit.monto_patronal, 
-                      superavit.monto_personal, 
-                      superavit.tipo, 
-                      superavit.creado";
-	    
-	    $tablas_sup="public.superavit";
-	    $where_sup="superavit.cedula='$cedula_usuarios' AND superavit.tipo='ACTIVOS'";
-	    $id_sup="superavit.anio";
-	    
-	    
-	    
-	    $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
-	   
-	    
-	    if($action == 'ajax')
-	    {
-	        
-	        $where_to=$where_sup;
-	        
-	        $html="";
-	        $resultSet=$_superavit->getCantidad("*", $tablas_sup, $where_to);
-	        $cantidadResult=(int)$resultSet[0]->total;
-	        
-	        $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
-	        
-	        $per_page = 5; //la cantidad de registros que desea mostrar
-	        $adjacents  = 9; //brecha entre páginas después de varios adyacentes
-	        $offset = ($page - 1) * $per_page;
-	        
-	        $limit = " LIMIT   '$per_page' OFFSET '$offset'";
-	        
-	        $resultSet=$_superavit->getCondicionesPagDesc($columnas_sup, $tablas_sup, $where_to, $id_sup, $limit);
-	        
-	        $count_query   = $cantidadResult;
-	        $total_pages = ceil($cantidadResult/$per_page);
-	        
-	        
-	        if($cantidadResult>0)
-	        {
-	            
-	            $html.='<div class="col-lg-12 col-md-12 col-xs-12">';
-	            $html.='<center><h5><strong>SUPERAVIT GANADO</strong></h5></center>';
-	            $html.='<section style="height:200px; overflow-y:scroll;">';
-	            $html.= "<table id='tabla_cta_superavit_activos' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
-	            $html.= "<thead>";
-	            $html.= "<tr>";
-	            $html.='<th style="text-align: left;  font-size: 12px;">Año</th>';
-	            $html.='<th style="text-align: left;  font-size: 12px;">Valor Personal</th>';
-	            $html.='<th style="text-align: left;  font-size: 12px;">Valor Patronal</th>';
-	            $html.='</tr>';
-	            $html.='</thead>';
-	            $html.='<tbody>';
-	            
-	            $i=0;
-	            
-	            foreach ($resultSet as $res)
-	            {
-	                $i++;
-	                $html.='<tr>';
-	                $html.='<td style="font-size: 11px;">'.$res->anio.'</td>';
-	                $html.='<td style="font-size: 11px;">'.number_format($res->monto_personal, 2, '.', ',').'</td>';
-	                $html.='<td style="font-size: 11px;">'.number_format($res->monto_patronal, 2, '.', ',').'</td>';
-	                
-	                $html.='</tr>';
-	            }
-	            
-	            
-	            $html.='</tbody>';
-	            $html.='</table>';
-	            $html.='</section></div>';
-	            $html.='<div class="table-pagination pull-right">';
-	            $html.=''. $this->paginate_superavit_activos("index.php", $page, $total_pages, $adjacents).'';
-	            $html.='</div>';
-	            
-	            
-	        }else{
-	            
-	        }
-	        
-	        
-	        echo $html;
-	        die();
-	        
-	    }
-	    
-	    
-	}
-	
-	
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public function cargar_cuenta_desembolsar(){
 	
 		session_start();
@@ -362,7 +236,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 				$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
 	
-				$per_page = 5; //la cantidad de registros que desea mostrar
+				$per_page = 15; //la cantidad de registros que desea mostrar
 				$adjacents  = 9; //brecha entre páginas después de varios adyacentes
 				$offset = ($page - 1) * $per_page;
 	
@@ -471,110 +345,6 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	
 	
-	public function cargar_superavit_cta_desem(){
-	    
-	    session_start();
-	    $_superavit = new SuperavitModel();
-	    $where_to="";
-	    
-	    
-	    $cedula_usuarios = $_SESSION["cedula_usuarios"];
-	    
-	    if(!empty($cedula_usuarios)){
-	        
-	        $columnas_sup="superavit.id_superavit,
-                      superavit.cedula,
-                      superavit.anio,
-                      superavit.monto_patronal,
-                      superavit.monto_personal,
-                      superavit.tipo,
-                      superavit.creado";
-	        
-	        $tablas_sup="public.superavit";
-	        $where_sup="superavit.cedula='$cedula_usuarios' AND superavit.tipo='DESAFILIADOS'";
-	        $id_sup="superavit.anio";
-	        
-	        
-	        
-	        $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
-	        
-	        
-	        if($action == 'ajax')
-	        {
-	            
-	            $where_to=$where_sup;
-	            
-	            $html="";
-	            $resultSet=$_superavit->getCantidad("*", $tablas_sup, $where_to);
-	            $cantidadResult=(int)$resultSet[0]->total;
-	            
-	            $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
-	            
-	            $per_page = 5; //la cantidad de registros que desea mostrar
-	            $adjacents  = 9; //brecha entre páginas después de varios adyacentes
-	            $offset = ($page - 1) * $per_page;
-	            
-	            $limit = " LIMIT   '$per_page' OFFSET '$offset'";
-	            
-	            $resultSet=$_superavit->getCondicionesPagDesc($columnas_sup, $tablas_sup, $where_to, $id_sup, $limit);
-	            
-	            $count_query   = $cantidadResult;
-	            $total_pages = ceil($cantidadResult/$per_page);
-	            
-	            
-	            if($cantidadResult>0)
-	            {
-	               
-	                $html.='<div class="col-lg-12 col-md-12 col-xs-12">';
-	                $html.='<center><h5>SUPERAVIT GANADO</h5></center>';
-	                $html.='<section style="height:200px; overflow-y:scroll;">';
-	                $html.= "<table id='tabla_cta_superavit_desafiliados' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
-	                $html.= "<thead>";
-	                $html.= "<tr>";
-	                $html.='<th style="text-align: left;  font-size: 12px;">Año</th>';
-	                $html.='<th style="text-align: left;  font-size: 12px;">Valor Personal</th>';
-	                $html.='<th style="text-align: left;  font-size: 12px;">Valor Patronal</th>';
-	                $html.='</tr>';
-	                $html.='</thead>';
-	                $html.='<tbody>';
-	                
-	                $i=0;
-	                
-	                foreach ($resultSet as $res)
-	                {
-	                    $i++;
-	                    $html.='<tr>';
-	                    $html.='<td style="font-size: 11px;">'.$res->anio.'</td>';
-	                    $html.='<td style="font-size: 11px;">'.number_format($res->monto_personal, 2, '.', ',').'</td>';
-	                    $html.='<td style="font-size: 11px;">'.number_format($res->monto_patronal, 2, '.', ',').'</td>';
-	                    
-	                    $html.='</tr>';
-	                }
-	                
-	                
-	                $html.='</tbody>';
-	                $html.='</table>';
-	                $html.='</section></div>';
-	                $html.='<div class="table-pagination pull-right">';
-	                $html.=''. $this->paginate_superavit_desafiliados("index.php", $page, $total_pages, $adjacents).'';
-	                $html.='</div>';
-	                
-	                
-	            }else{
-	                
-	            }
-	            
-	            echo $html;
-	            die();
-	            
-	        }
-	        
-	    }
-	    
-	}
-	
-	
-	
 	
 	
 	
@@ -671,7 +441,8 @@ class SaldosCuentaIndividualController extends ControladorBase{
 						
 						$count_query   = $cantidadResult;
 						$total_pages = ceil($cantidadResult/$per_page);
-											
+						
+						
 						
 						
 						if($cantidadResult>0)
@@ -2358,6 +2129,384 @@ class SaldosCuentaIndividualController extends ControladorBase{
 	
 	
 	
+
+
+
+
+
+
+	
+	public function cargar_superavit_cta_ind(){
+	
+	session_start();
+	$_superavit = new SuperavitModel();
+	$where_to="";
+	
+	
+	$cedula_usuarios = $_SESSION["cedula_usuarios"];
+	
+	if(!empty($cedula_usuarios)){
+	    
+	    $columnas_sup="superavit.id_superavit, 
+                      superavit.cedula, 
+                      superavit.anio, 
+                      superavit.monto_patronal, 
+                      superavit.monto_personal, 
+                      superavit.tipo, 
+                      superavit.creado";
+	    
+	    $tablas_sup="public.superavit";
+	    $where_sup="superavit.cedula='$cedula_usuarios' AND superavit.tipo='ACTIVOS'";
+	    $id_sup="superavit.anio";
+	    
+	    
+	    
+	    $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
+	   
+	    
+	    if($action == 'ajax')
+	    {
+	        
+	        $where_to=$where_sup;
+	        
+	        $html="";
+	        $resultSet=$_superavit->getCantidad("*", $tablas_sup, $where_to);
+	        $cantidadResult=(int)$resultSet[0]->total;
+	        
+	        $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
+	        
+	        $per_page = 5; //la cantidad de registros que desea mostrar
+	        $adjacents  = 9; //brecha entre páginas después de varios adyacentes
+	        $offset = ($page - 1) * $per_page;
+	        
+	        $limit = " LIMIT   '$per_page' OFFSET '$offset'";
+	        
+	        $resultSet=$_superavit->getCondicionesPagDesc($columnas_sup, $tablas_sup, $where_to, $id_sup, $limit);
+	        
+	        $count_query   = $cantidadResult;
+	        $total_pages = ceil($cantidadResult/$per_page);
+	        
+	        
+	        if($cantidadResult>0)
+	        {
+	            
+	            $html.='<div class="col-lg-12 col-md-12 col-xs-12">';
+	            $html.='<center><h5><strong>SUPERAVIT GANADO</strong></h5></center>';
+	            $html.='<section style="height:200px; overflow-y:scroll;">';
+	            $html.= "<table id='tabla_cta_superavit_activos' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
+	            $html.= "<thead>";
+	            $html.= "<tr>";
+	            $html.='<th style="text-align: left;  font-size: 12px;">Año</th>';
+	            $html.='<th style="text-align: left;  font-size: 12px;">Valor Personal</th>';
+	            $html.='<th style="text-align: left;  font-size: 12px;">Valor Patronal</th>';
+	            $html.='</tr>';
+	            $html.='</thead>';
+	            $html.='<tbody>';
+	            
+	            $i=0;
+	            
+	            foreach ($resultSet as $res)
+	            {
+	                $i++;
+	                $html.='<tr>';
+	                $html.='<td style="font-size: 11px;">'.$res->anio.'</td>';
+	                $html.='<td style="font-size: 11px;">'.number_format($res->monto_personal, 2, '.', ',').'</td>';
+	                $html.='<td style="font-size: 11px;">'.number_format($res->monto_patronal, 2, '.', ',').'</td>';
+	                
+	                $html.='</tr>';
+	            }
+	            
+	            
+	            $html.='</tbody>';
+	            $html.='</table>';
+	            $html.='</section></div>';
+	            $html.='<div class="table-pagination pull-right">';
+	            $html.=''. $this->paginate_superavit_activos("index.php", $page, $total_pages, $adjacents).'';
+	            $html.='</div>';
+	            
+	            
+	        }else{
+	            
+	        }
+	        
+	        
+	        echo $html;
+	        die();
+	        
+	    }
+	    
+	    
+	}
+	
+	
+	}
+	
+	
+	
+	///////////////////////////////////////////////
+
+
+
+
+
+	
+	public function cargar_superavit_cta_desem(){
+	    
+	    session_start();
+	    $_superavit = new SuperavitModel();
+	    $where_to="";
+	    
+	    
+	    $cedula_usuarios = $_SESSION["cedula_usuarios"];
+	    
+	    if(!empty($cedula_usuarios)){
+	        
+	        $columnas_sup="superavit.id_superavit,
+                      superavit.cedula,
+                      superavit.anio,
+                      superavit.monto_patronal,
+                      superavit.monto_personal,
+                      superavit.tipo,
+                      superavit.creado";
+	        
+	        $tablas_sup="public.superavit";
+	        $where_sup="superavit.cedula='$cedula_usuarios' AND superavit.tipo='DESAFILIADOS'";
+	        $id_sup="superavit.anio";
+	        
+	        
+	        
+	        $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
+	        
+	        
+	        if($action == 'ajax')
+	        {
+	            
+	            $where_to=$where_sup;
+	            
+	            $html="";
+	            $resultSet=$_superavit->getCantidad("*", $tablas_sup, $where_to);
+	            $cantidadResult=(int)$resultSet[0]->total;
+	            
+	            $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
+	            
+	            $per_page = 5; //la cantidad de registros que desea mostrar
+	            $adjacents  = 9; //brecha entre páginas después de varios adyacentes
+	            $offset = ($page - 1) * $per_page;
+	            
+	            $limit = " LIMIT   '$per_page' OFFSET '$offset'";
+	            
+	            $resultSet=$_superavit->getCondicionesPagDesc($columnas_sup, $tablas_sup, $where_to, $id_sup, $limit);
+	            
+	            $count_query   = $cantidadResult;
+	            $total_pages = ceil($cantidadResult/$per_page);
+	            
+	            
+	            if($cantidadResult>0)
+	            {
+	               
+	                $html.='<div class="col-lg-12 col-md-12 col-xs-12">';
+	                $html.='<center><h5>SUPERAVIT GANADO</h5></center>';
+	                $html.='<section style="height:200px; overflow-y:scroll;">';
+	                $html.= "<table id='tabla_cta_superavit_desafiliados' class='tablesorter table table-striped table-bordered dt-responsive nowrap'>";
+	                $html.= "<thead>";
+	                $html.= "<tr>";
+	                $html.='<th style="text-align: left;  font-size: 12px;">Año</th>';
+	                $html.='<th style="text-align: left;  font-size: 12px;">Valor Personal</th>';
+	                $html.='<th style="text-align: left;  font-size: 12px;">Valor Patronal</th>';
+	                $html.='</tr>';
+	                $html.='</thead>';
+	                $html.='<tbody>';
+	                
+	                $i=0;
+	                
+	                foreach ($resultSet as $res)
+	                {
+	                    $i++;
+	                    $html.='<tr>';
+	                    $html.='<td style="font-size: 11px;">'.$res->anio.'</td>';
+	                    $html.='<td style="font-size: 11px;">'.number_format($res->monto_personal, 2, '.', ',').'</td>';
+	                    $html.='<td style="font-size: 11px;">'.number_format($res->monto_patronal, 2, '.', ',').'</td>';
+	                    
+	                    $html.='</tr>';
+	                }
+	                
+	                
+	                $html.='</tbody>';
+	                $html.='</table>';
+	                $html.='</section></div>';
+	                $html.='<div class="table-pagination pull-right">';
+	                $html.=''. $this->paginate_superavit_desafiliados("index.php", $page, $total_pages, $adjacents).'';
+	                $html.='</div>';
+	                
+	                
+	            }else{
+	                
+	            }
+	            
+	            echo $html;
+	            die();
+	            
+	        }
+	        
+	    }
+	    
+	}
+
+
+
+//////////////////////////////////////////
+
+
+
+
+
+	
+	public function paginate_superavit_activos($reload, $page, $tpages, $adjacents) {
+	    
+	    $prevlabel = "&lsaquo; Prev";
+	    $nextlabel = "Next &rsaquo;";
+	    $out = '<ul class="pagination pagination-large">';
+	    
+	    // previous label
+	    
+	    if($page==1) {
+	        $out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
+	    } else if($page==2) {
+	        $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_activos(1)'>$prevlabel</a></span></li>";
+	    }else {
+	        $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_activos(".($page-1).")'>$prevlabel</a></span></li>";
+	        
+	    }
+	    
+	    // first label
+	    if($page>($adjacents+1)) {
+	        $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_activos(1)'>1</a></li>";
+	    }
+	    // interval
+	    if($page>($adjacents+2)) {
+	        $out.= "<li><a>...</a></li>";
+	    }
+	    
+	    // pages
+	    
+	    $pmin = ($page>$adjacents) ? ($page-$adjacents) : 1;
+	    $pmax = ($page<($tpages-$adjacents)) ? ($page+$adjacents) : $tpages;
+	    for($i=$pmin; $i<=$pmax; $i++) {
+	        if($i==$page) {
+	            $out.= "<li class='active'><a>$i</a></li>";
+	        }else if($i==1) {
+	            $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_activos(1)'>$i</a></li>";
+	        }else {
+	            $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_activos(".$i.")'>$i</a></li>";
+	        }
+	    }
+	    
+	    // interval
+	    
+	    if($page<($tpages-$adjacents-1)) {
+	        $out.= "<li><a>...</a></li>";
+	    }
+	    
+	    // last
+	    
+	    if($page<($tpages-$adjacents)) {
+	        $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_activos($tpages)'>$tpages</a></li>";
+	    }
+	    
+	    // next
+	    
+	    if($page<$tpages) {
+	        $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_activos(".($page+1).")'>$nextlabel</a></span></li>";
+	    }else {
+	        $out.= "<li class='disabled'><span><a>$nextlabel</a></span></li>";
+	    }
+	    
+	    $out.= "</ul>";
+	    return $out;
+	}
+
+
+
+
+///////////////////////////////////////////
+
+
+
+
+
+	
+	public function paginate_superavit_desafiliados($reload, $page, $tpages, $adjacents) {
+	    
+	    $prevlabel = "&lsaquo; Prev";
+	    $nextlabel = "Next &rsaquo;";
+	    $out = '<ul class="pagination pagination-large">';
+	    
+	    // previous label
+	    
+	    if($page==1) {
+	        $out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
+	    } else if($page==2) {
+	        $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_desafiliados(1)'>$prevlabel</a></span></li>";
+	    }else {
+	        $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_desafiliados(".($page-1).")'>$prevlabel</a></span></li>";
+	        
+	    }
+	    
+	    // first label
+	    if($page>($adjacents+1)) {
+	        $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_desafiliados(1)'>1</a></li>";
+	    }
+	    // interval
+	    if($page>($adjacents+2)) {
+	        $out.= "<li><a>...</a></li>";
+	    }
+	    
+	    // pages
+	    
+	    $pmin = ($page>$adjacents) ? ($page-$adjacents) : 1;
+	    $pmax = ($page<($tpages-$adjacents)) ? ($page+$adjacents) : $tpages;
+	    for($i=$pmin; $i<=$pmax; $i++) {
+	        if($i==$page) {
+	            $out.= "<li class='active'><a>$i</a></li>";
+	        }else if($i==1) {
+	            $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_desafiliados(1)'>$i</a></li>";
+	        }else {
+	            $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_desafiliados(".$i.")'>$i</a></li>";
+	        }
+	    }
+	    
+	    // interval
+	    
+	    if($page<($tpages-$adjacents-1)) {
+	        $out.= "<li><a>...</a></li>";
+	    }
+	    
+	    // last
+	    
+	    if($page<($tpages-$adjacents)) {
+	        $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_desafiliados($tpages)'>$tpages</a></li>";
+	    }
+	    
+	    // next
+	    
+	    if($page<$tpages) {
+	        $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_desafiliados(".($page+1).")'>$nextlabel</a></span></li>";
+	    }else {
+	        $out.= "<li class='disabled'><span><a>$nextlabel</a></span></li>";
+	    }
+	    
+	    $out.= "</ul>";
+	    return $out;
+	}
+	
+	
+
+
+
+
+
+
+
 	
 	
 
@@ -2859,144 +3008,6 @@ class SaldosCuentaIndividualController extends ControladorBase{
 		$out.= "</ul>";
 		return $out;
 	}
-	
-	
-	
-	
-	public function paginate_superavit_activos($reload, $page, $tpages, $adjacents) {
-	    
-	    $prevlabel = "&lsaquo; Prev";
-	    $nextlabel = "Next &rsaquo;";
-	    $out = '<ul class="pagination pagination-large">';
-	    
-	    // previous label
-	    
-	    if($page==1) {
-	        $out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
-	    } else if($page==2) {
-	        $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_activos(1)'>$prevlabel</a></span></li>";
-	    }else {
-	        $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_activos(".($page-1).")'>$prevlabel</a></span></li>";
-	        
-	    }
-	    
-	    // first label
-	    if($page>($adjacents+1)) {
-	        $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_activos(1)'>1</a></li>";
-	    }
-	    // interval
-	    if($page>($adjacents+2)) {
-	        $out.= "<li><a>...</a></li>";
-	    }
-	    
-	    // pages
-	    
-	    $pmin = ($page>$adjacents) ? ($page-$adjacents) : 1;
-	    $pmax = ($page<($tpages-$adjacents)) ? ($page+$adjacents) : $tpages;
-	    for($i=$pmin; $i<=$pmax; $i++) {
-	        if($i==$page) {
-	            $out.= "<li class='active'><a>$i</a></li>";
-	        }else if($i==1) {
-	            $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_activos(1)'>$i</a></li>";
-	        }else {
-	            $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_activos(".$i.")'>$i</a></li>";
-	        }
-	    }
-	    
-	    // interval
-	    
-	    if($page<($tpages-$adjacents-1)) {
-	        $out.= "<li><a>...</a></li>";
-	    }
-	    
-	    // last
-	    
-	    if($page<($tpages-$adjacents)) {
-	        $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_activos($tpages)'>$tpages</a></li>";
-	    }
-	    
-	    // next
-	    
-	    if($page<$tpages) {
-	        $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_activos(".($page+1).")'>$nextlabel</a></span></li>";
-	    }else {
-	        $out.= "<li class='disabled'><span><a>$nextlabel</a></span></li>";
-	    }
-	    
-	    $out.= "</ul>";
-	    return $out;
-	}
-	
-	
-	
-	
-	
-	
-	public function paginate_superavit_desafiliados($reload, $page, $tpages, $adjacents) {
-	    
-	    $prevlabel = "&lsaquo; Prev";
-	    $nextlabel = "Next &rsaquo;";
-	    $out = '<ul class="pagination pagination-large">';
-	    
-	    // previous label
-	    
-	    if($page==1) {
-	        $out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
-	    } else if($page==2) {
-	        $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_desafiliados(1)'>$prevlabel</a></span></li>";
-	    }else {
-	        $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_desafiliados(".($page-1).")'>$prevlabel</a></span></li>";
-	        
-	    }
-	    
-	    // first label
-	    if($page>($adjacents+1)) {
-	        $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_desafiliados(1)'>1</a></li>";
-	    }
-	    // interval
-	    if($page>($adjacents+2)) {
-	        $out.= "<li><a>...</a></li>";
-	    }
-	    
-	    // pages
-	    
-	    $pmin = ($page>$adjacents) ? ($page-$adjacents) : 1;
-	    $pmax = ($page<($tpages-$adjacents)) ? ($page+$adjacents) : $tpages;
-	    for($i=$pmin; $i<=$pmax; $i++) {
-	        if($i==$page) {
-	            $out.= "<li class='active'><a>$i</a></li>";
-	        }else if($i==1) {
-	            $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_desafiliados(1)'>$i</a></li>";
-	        }else {
-	            $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_desafiliados(".$i.")'>$i</a></li>";
-	        }
-	    }
-	    
-	    // interval
-	    
-	    if($page<($tpages-$adjacents-1)) {
-	        $out.= "<li><a>...</a></li>";
-	    }
-	    
-	    // last
-	    
-	    if($page<($tpages-$adjacents)) {
-	        $out.= "<li><a href='javascript:void(0);' onclick='load_superavit_desafiliados($tpages)'>$tpages</a></li>";
-	    }
-	    
-	    // next
-	    
-	    if($page<$tpages) {
-	        $out.= "<li><span><a href='javascript:void(0);' onclick='load_superavit_desafiliados(".($page+1).")'>$nextlabel</a></span></li>";
-	    }else {
-	        $out.= "<li class='disabled'><span><a>$nextlabel</a></span></li>";
-	    }
-	    
-	    $out.= "</ul>";
-	    return $out;
-	}
-	
-	
 	
 	
 	
@@ -4423,10 +4434,8 @@ class SaldosCuentaIndividualController extends ControladorBase{
 									$html.='</table>';
 										
 								
-									
-									
-									
-									$_superavit = new SuperavitModel();
+								
+												$_superavit = new SuperavitModel();
 									
 									$columnas_sup="superavit.id_superavit,
                                                   superavit.cedula,
@@ -4474,6 +4483,14 @@ class SaldosCuentaIndividualController extends ControladorBase{
 									    
 									    
 									}
+
+
+
+
+								
+								
+								
+								
 									
 							}
 								
@@ -4582,8 +4599,10 @@ class SaldosCuentaIndividualController extends ControladorBase{
 										
 								
 									
-									
-							$_superavit = new SuperavitModel();
+
+
+
+$_superavit = new SuperavitModel();
 									
 							$columnas_sup="superavit.id_superavit,
                                           superavit.cedula,
@@ -4632,7 +4651,11 @@ class SaldosCuentaIndividualController extends ControladorBase{
 							    
 							}
 									
-									
+								
+								
+								
+								
+								
 							}
 								
 							
@@ -5085,6 +5108,8 @@ class SaldosCuentaIndividualController extends ControladorBase{
 				
 				}
 				
+				
+				
 				if($fec=="estado_feb_2019"){
 				    
 				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
@@ -5111,6 +5136,7 @@ class SaldosCuentaIndividualController extends ControladorBase{
 				}
 				
 				
+				
 				if($fec=="estado_mar_2019"){
 				    
 				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
@@ -5135,6 +5161,209 @@ class SaldosCuentaIndividualController extends ControladorBase{
 				    
 				    
 				}
+				
+					if($fec=="estado_abr_2019"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/ESTADO DE SITUACION FINANCIERA ABR-2019.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Estados Financieros al 31 de Marzo del 2019'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
+			
+				if($fec=="estado_may_2019"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/ESTADO DE SITUACION FINANCIERA MAY-2019.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Estados Financieros al 31 de Marzo del 2019'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
+				
+					if($fec=="estado_jun_2019"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/ESTADO DE SITUACION FINANCIERA JUN-2019.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Estados Financieros al 31 de Marzo del 2019'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
+				
+					if($fec=="estado_jul_2019"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/ESTADO DE SITUACION FINANCIERA JUL-2019.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Estados Financieros al 31 de Marzo del 2019'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
+				
+					if($fec=="estado_ago_2019"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/ESTADO DE SITUACION FINANCIERA AGO-2019.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Estados Financieros al 31 de Marzo del 2019'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
+					if($fec=="estado_sep_2019"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/ESTADO DE SITUACION FINANCIERA SEP-2019.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Estados Financieros al 31 de Marzo del 2019'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
+					if($fec=="estado_oct_2019"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/ESTADO DE SITUACION FINANCIERA OCT-2019.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Estados Financieros al 31 de Octubre del 2019'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
+				
+				
+				
+				if($fec=="estado_nov_2019"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/ESTADOS DE SITUACION FINANCIERA NOV-2019.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Estados Financieros al 30 de Noviembre del 2019'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
+				
+				
+				
 				
 				
 				if($fec=="estado_ene_2019"){

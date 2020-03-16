@@ -17,11 +17,11 @@ class ControladoresController extends ControladorBase{
 
 		session_start();
 		
-		if (isset($_SESSION['nombre_usuarios']))
+		if (isset(  $_SESSION['nombre_usuarios']) )
 		{
 			$controladores = new ControladoresModel();
 			//NOTIFICACIONES
-			//$controladores->MostrarNotificaciones($_SESSION['id_usuarios']);
+			$controladores->MostrarNotificaciones($_SESSION['id_usuarios']);
 			
 			$nombre_controladores = "Controladores";
 			$id_rol= $_SESSION['id_rol'];
@@ -31,7 +31,7 @@ class ControladoresController extends ControladorBase{
 			{
 				
 				
-				if (isset ($_GET["id_controladores"]))
+				if (isset ($_GET["id_controladores"])   )
 				{
 					
 					$nombre_controladores = "Controladores";
@@ -80,7 +80,7 @@ class ControladoresController extends ControladorBase{
 			}
 				
 		}
-	else{
+		else{
        	
        	$this->redirect("Usuarios","sesion_caducada");
        	

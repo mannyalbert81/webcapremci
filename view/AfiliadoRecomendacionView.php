@@ -2,7 +2,7 @@
 <html lang="es">
       <head>
         <meta charset="utf-8"/>
-        <title>Recomendación - Capremci</title>
+        <title>Recomendación - Capremci 2018</title>
 
 	 
  
@@ -31,7 +31,6 @@
 			<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-			
 			<script type="text/javascript" src="view/vendors/table-sorter/jquery.tablesorter.js"></script> 
        		 <script src="view/js/jquery.blockUI.js"></script>
             <script src="view/js/jquery.inputmask.bundle.js"></script>
@@ -1139,7 +1138,7 @@
                     			<div class="col-lg-9 col-xs-12 col-md-9">
                     		    <div class="form-group">
                                                       <label for="observacion" class="control-label">Observación:</label>
-                                                      <textarea   class="form-control" id="observacion" name="observacion"   placeholder="observaciones.."></textarea>
+                                                      <textarea type="text"  class="form-control" id="observacion" name="observacion" value=""  placeholder="observaciones.."></textarea>
                                                       <div id="mensaje_observacion" class="errores"></div>
                                 </div>
                     		    </div>

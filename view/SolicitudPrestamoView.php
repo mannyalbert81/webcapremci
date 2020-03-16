@@ -4903,8 +4903,8 @@
             					<div class="col-lg-2 col-xs-12 col-md-2">
                     		    <div class="form-group">
                                                       <label for="numero_codigo_verificacion" class="control-label">Código Verificación:</label>
-                                                      <input type="number" class="form-control" id="numero_codigo_verificacion" name="numero_codigo_verificacion" value="12345" placeholder="sms.." readonly>
-                                                      <input type="hidden" class="form-control" id="id_codigo_verificacion" name="id_codigo_verificacion" value="1" readonly>
+                                                      <input type="number" class="form-control" id="numero_codigo_verificacion" name="numero_codigo_verificacion" value="" placeholder="sms..">
+                                                      <input type="hidden" class="form-control" id="id_codigo_verificacion" name="id_codigo_verificacion" value="0" readonly>
                                                      
                                                       <div id="mensaje_numero_codigo_verificacion" class="errores"></div>
                                 </div>
@@ -4914,8 +4914,8 @@
             					
             					<div class="col-lg-4 col-xs-12 col-md-4" style="margin-top: 23px;">
                    		   		   <span class="input-group-btn">
-        			         		<button type="button" id="btn_enviar_prueba" name="btn_enviar_prueba" class="btn btn-primary">Enviar Código</button>
-        	                 		<button type="button" id="btn_verificar_prueba" name="btn_verificar_prueba" class="btn btn-info">Verificar Código</button>
+        			         		<button type="button" id="btn_enviar" name="btn_enviar" class="btn btn-primary">Enviar Código</button>
+        	                 		<button type="button" id="btn_verificar" name="btn_verificar" class="btn btn-info">Verificar Código</button>
         			         		</span>
                    		  		 </div>
             					
