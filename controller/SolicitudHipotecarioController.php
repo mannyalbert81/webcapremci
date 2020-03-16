@@ -523,15 +523,9 @@ class SolicitudHipotecarioController extends ControladorBase{
             $_total_ingresos_mensuales =0;
             $_total_gastos_mensuales  = 0;
             
-            $nombre_controladores = "SolicitudHipotecario";
-            $id_rol= $_SESSION['id_rol'];
-            $resultPer = $solicitud_hipotecario->getPermisosEditar("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
-            
-            if (!empty($resultPer)){
+           
             
             
-            
-         
             $_id_solicitud_hipotecario =(isset($_POST['id_solicitud_hipotecario'])) ? $_POST['id_solicitud_hipotecario'] : 0;
             $_valor_dolares_datos_credito =(isset($_REQUEST['valor_dolares_datos_credito'])&& $_REQUEST['valor_dolares_datos_credito'] !=NULL)?$_REQUEST['valor_dolares_datos_credito']:0;
             $_plazo_meses_datos_credito =(isset($_REQUEST['plazo_meses_datos_credito'])&& $_REQUEST['plazo_meses_datos_credito'] !=NULL)?$_REQUEST['plazo_meses_datos_credito']:'';
@@ -688,14 +682,14 @@ class SolicitudHipotecarioController extends ControladorBase{
             $_otros_pasivos_largo_plazo =(isset($_REQUEST['otros_pasivos_largo_plazo'])&& $_REQUEST['otros_pasivos_largo_plazo'] !=NULL)?$_REQUEST['otros_pasivos_largo_plazo']:0;
             $_patrimonio =(isset($_REQUEST['patrimonio'])&& $_REQUEST['patrimonio'] !=NULL)?$_REQUEST['patrimonio']:0;
             $_garantias_capremci =(isset($_REQUEST['_garantias_capremci'])&& $_REQUEST['_garantias_capremci'] !=NULL)?$_REQUEST['_garantias_capremci']:0;
-            $_id_bancos_uno_detalle_activos =(isset($_REQUEST['id_bancos_uno_detalle_activos '])&& $_REQUEST['id_bancos_uno_detalle_activos '] !=NULL)?$_REQUEST['id_bancos_uno_detalle_activos ']:0;
+            $_id_bancos_uno_detalle_activos =(isset($_REQUEST['id_bancos_uno_detalle_activos'])&& $_REQUEST['id_bancos_uno_detalle_activos'] !=NULL)?$_REQUEST['id_bancos_uno_detalle_activos']:0;
             $_tipo_producto_uno_detalle_activos =(isset($_REQUEST['tipo_producto_uno_detalle_activos'])&& $_REQUEST['tipo_producto_uno_detalle_activos'] !=NULL)?$_REQUEST['tipo_producto_uno_detalle_activos']:'';
             $_valor_uno_detalle_activos =(isset($_REQUEST['valor_uno_detalle_activos'])&& $_REQUEST['valor_uno_detalle_activos'] !=NULL)?$_REQUEST['valor_uno_detalle_activos']:0;
             $_plazo_uno_detalle_activos =(isset($_REQUEST['plazo_uno_detalle_activos'])&& $_REQUEST['plazo_uno_detalle_activos'] !=NULL)?$_REQUEST['plazo_uno_detalle_activos']:'';
             $_id_bancos_dos_detalle_activos =(isset($_REQUEST['id_bancos_dos_detalle_activos'])&& $_REQUEST['id_bancos_dos_detalle_activos'] !=NULL)?$_REQUEST['id_bancos_dos_detalle_activos']:0;
             $_tipo_producto_dos_detalle_activos =(isset($_REQUEST['tipo_producto_dos_detalle_activos'])&& $_REQUEST['tipo_producto_dos_detalle_activos'] !=NULL)?$_REQUEST['tipo_producto_dos_detalle_activos']:'';
             $_valor_dos_detalle_activos =(isset($_REQUEST['valor_dos_detalle_activos'])&& $_REQUEST['valor_dos_detalle_activos'] !=NULL)?$_REQUEST['valor_dos_detalle_activos']:0;
-            $_plazo_dos_detalle_activos =(isset($_REQUEST['plazo_dos_detalle_activos'])&& $_REQUEST['plazo_dos_detalle_activos'] !=NULL)?$_REQUEST['plazo_dos_detalle_activos ']:'';
+            $_plazo_dos_detalle_activos =(isset($_REQUEST['plazo_dos_detalle_activos'])&& $_REQUEST['plazo_dos_detalle_activos'] !=NULL)?$_REQUEST['plazo_dos_detalle_activos']:'';
             $_id_bancos_tres_detalle_activos =(isset($_REQUEST['id_bancos_tres_detalle_activos'])&& $_REQUEST['id_bancos_tres_detalle_activos'] !=NULL)?$_REQUEST['id_bancos_tres_detalle_activos']:0;
             $_tipo_producto_tres_detalle_activos =(isset($_REQUEST['tipo_producto_tres_detalle_activos'])&& $_REQUEST['tipo_producto_tres_detalle_activos'] !=NULL)?$_REQUEST['tipo_producto_tres_detalle_activos']:'';
             $_valor_tres_detalle_activos =(isset($_REQUEST['valor_tres_detalle_activos'])&& $_REQUEST['valor_tres_detalle_activos'] !=NULL)?$_REQUEST['valor_tres_detalle_activos']:0;
@@ -796,12 +790,17 @@ class SolicitudHipotecarioController extends ControladorBase{
             $_cuotas_prestamo_gastos_mensuales =(isset($_REQUEST['cuotas_prestamo_gastos_mensuales'])&& $_REQUEST['cuotas_prestamo_gastos_mensuales'] !=NULL)?$_REQUEST['cuotas_prestamo_gastos_mensuales']:0;
             $_otros_detalle_uno_gastos_mensuales =(isset($_REQUEST['otros_detalle_uno_gastos_mensuales'])&& $_REQUEST['otros_detalle_uno_gastos_mensuales'] !=NULL)?$_REQUEST['otros_detalle_uno_gastos_mensuales']:'';
             $_otros_gastos_uno_gastos_mensuales =(isset($_REQUEST['otros_gastos_uno_gastos_mensuales'])&& $_REQUEST['otros_gastos_uno_gastos_mensuales'] !=NULL)?$_REQUEST['otros_gastos_uno_gastos_mensuales']:0;
-            $_imagen_croquis_domicilio =(isset($_REQUEST['imagen_croquis_domicilio'])&& $_REQUEST['imagen_croquis_domicilio'] !=NULL)?$_REQUEST['imagen_croquis_domicilio']:'';
-            $_imagen_croquis_otro_negocio =(isset($_REQUEST['imagen_croquis_otro_negocio'])&& $_REQUEST['imagen_croquis_otro_negocio'] !=NULL)?$_REQUEST['imagen_croquis_otro_negocio']:'';
+            
+            
+            
+            
+            
             $_id_codigo_verificacion =(isset($_REQUEST['id_codigo_verificacion'])&& $_REQUEST['id_codigo_verificacion'] !=NULL)?$_REQUEST['id_codigo_verificacion']:0;
-            $_id_usuarios_registra =(isset($_REQUEST['id_usuarios_registra'])&& $_REQUEST['id_usuarios_registra'] !=NULL)?$_REQUEST['id_usuarios_registra']:0;
-            $_id_usuarios_oficial_credito_aprueba =(isset($_REQUEST['id_usuarios_oficial_credito_aprueba'])&& $_REQUEST['id_usuarios_oficial_credito_aprueba'] !=NULL)?$_REQUEST['id_usuarios_oficial_credito_aprueba']:0;
             $_id_sucursales =(isset($_REQUEST['id_sucursales'])&& $_REQUEST['id_sucursales'] !=NULL)?$_REQUEST['id_sucursales']:0;
+            
+            
+            
+            
             
             $_total_activos_corrientes=$_efectivo_activos_corrientes+$_bancos_activos_corrientes+$_cuentas_cobrar_activos_corrientes+$_inversiones_activos_corrientes+$_inventarios_activos_corrientes+$_muebles_activos_corrientes+$_otros_activos_corrientes;
             $_total_activos_fijos=$_terreno_activos_fijos+$_vivienda_activos_fijos+$_vehiculo_activos_fijos+$_maquinaria_activos_fijos+$_otros_activos_fijos;
@@ -809,81 +808,53 @@ class SolicitudHipotecarioController extends ControladorBase{
             $_total_pasivos_corrientes=$_prestamo_menor_anio_pasivo_corriente+$_prestamo_emergente_pasivo_corriente+$_cuentas_pagar_pasivo_corriente+$_proveedores_pasivo_corriente+$_obligaciones_menores_anio_pasivo_corriente+$_con_banco_pasivo_corriente+$_con_cooperativas_pasivo_corriente;
             $_total_pasivos_largo_plazo=$_prestamo_mayor_anio_pasivos_largo_plazo+$_obligaciones_mayores_anio_pasivos_largo_plazo+$_con_banco_pasivos_largo_plazo+$_con_cooperativas_pasivos_largo_plazo+$_otros_pasivos_largo_plazo;
             $_total_pasivos=$_total_pasivos_corrientes+$_total_pasivos_largo_plazo;
+            
+            
+            
             $_total_ingresos_mensuales=$_sueldo_afiliado_ingresos_mensuales+$_sueldo_conyuge_ingresos_mensuales+$_comisiones_ingresos_mensuales+$_arriendos_ingresos_mensuales+$_dividendos_ingresos_mensuales+$_ingresos_negocio_ingresos_mensuales+$_pensiones_ingresos_mensuales+$_otros_uno_ingresos_mensuales+$_otros_dos_ingresos_mensuales+$_otros_tres_ingresos_mensuales;
             $_total_gastos_mensuales=$_alimentacion_gastos_mensuales+$_arriendos_gastos_mensuales+$_educacion_gastos_mensuales+$_vestuario_gastos_mensuales+$_servicios_publicos_gastos_mensuales+$_movilizacion_gastos_mensuales+$_ahorros_cooperativas_gastos_mensuales+$_cuotas_tarjetas_gastos_mensuales+$_cuotas_prestamo_gastos_mensuales+$_otros_gastos_uno_gastos_mensuales;
-            $_fecha_presentacion= getdate();
-            $_fecha_aprobacion= getdate();
-            
-            
-            $funcion = "ins_solicitud_hipotecario";
-            $respuesta = 0 ;
-            $mensaje = "";
-            $funcionadicionaluno="ins_solicitud_hipotecario_adicional_uno";
-            $funcionadicionaldos="ins_solicitud_hipotecario_adicional_uno";
+           
             
             
             
+           
+            
+            $_fecha_actual =    getdate();
+            $_fecha_año    =	$_fecha_actual['year'];
+            $_fecha_mes    =	$_fecha_actual['mon'];
+            $_fecha_dia    =	$_fecha_actual['mday'];
+            
+            $_fecha_presentacion=$_fecha_año.'-'.$_fecha_mes.'-'.$_fecha_dia;
+            $_id_usuarios_registra = $_SESSION['id_usuarios'];
             
             
             
             
-            $_imagen_croquis_domicilio = '';
-            $_imagen_croquis_otro_negocio = '';
+           
             
-            if ($_FILES['imagen_croquis_domicilio']['tmp_name']!="")
-            {
-                $directorio = $_SERVER['DOCUMENT_ROOT'].'/webcapremci/fotografias_croquis/';
+                 
+            if($_id_solicitud_hipotecario > 0){
+            
                 
-                $nombre = $_FILES['imagen_croquis_domicilio']['name'];
-                //$tipo = $_FILES['imagen_activos_fijos']['type'];
-                //$tamano = $_FILES['imagen_activos_fijos']['size'];
+                // para actualizar la solicitud de credito hipotexario 
                 
-                move_uploaded_file($_FILES['imagen_croquis_domicilio']['tmp_name'],$directorio.$nombre);
-                $data = file_get_contents($directorio.$nombre);
-                $_imagen_croquis_domicilio = pg_escape_bytea($data);
                 
-            }else{
                 
-                $directorio = dirname(__FILE__).'\..\view\images\nodisponible.jpg';
                 
-                if( is_file( $directorio )){
-                    $data = file_get_contents($directorio);
-                    $_imagen_croquis_domicilio = pg_escape_bytea($data);
-                }
-            }
-            
-            if ($_FILES['imagen_croquis_otro_negocio']['tmp_name']!="")
-            {
-                $directorio = $_SERVER['DOCUMENT_ROOT'].'/webcapremci/fotografias_croquis/';
                 
-                $nombre = $_FILES['imagen_croquis_otro_negocio']['name'];
-                //$tipo = $_FILES['imagen_activos_fijos']['type'];
-                //$tamano = $_FILES['imagen_activos_fijos']['size'];
                 
-                move_uploaded_file($_FILES['imagen_croquis_otro_negocio']['tmp_name'],$directorio.$nombre);
-                $data = file_get_contents($directorio.$nombre);
-                $_imagen_croquis_otro_negocio = pg_escape_bytea($data);
                 
             }else{
+                    
+                  
                 
-                $directorio = dirname(__FILE__).'\..\view\images\nodisponible.jpg';
+            // para guardar la solicitud de credito hipotecario    
+              
                 
-                if( is_file( $directorio )){
-                    $data = file_get_contents($directorio);
-                    $_imagen_croquis_otro_negocio = pg_escape_bytea($data);
-                }
-            }
-            
-            
-            
-            
-            
-                
-            if($_id_solicitud_hipotecario == 0){
                 
                 
                 $_identificador_consecutivos=0;
-                $resultConsecutivos=$consecutivos->getBy("nombre_consecutivos='SOLICITUD_PRESTAMOS'");
+                $resultConsecutivos=$consecutivos->getBy("nombre_consecutivos='PRUEBAS'");
                 $_identificador_consecutivos=$resultConsecutivos[0]->identificador_consecutivos;
                 
                 
@@ -898,8 +869,9 @@ class SolicitudHipotecarioController extends ControladorBase{
                 $id_oficial_credito=0;
                 
           
-                    $_identificador_consecutivos_deudor="";
-                    
+                   
+                
+                //empicesa if de sucursales
                     
                     if($_id_sucursales == 1){
                         
@@ -923,21 +895,21 @@ class SolicitudHipotecarioController extends ControladorBase{
                         }
                         
                         
-                        $resultoficial1=$solicitud_hipotecario->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_1' AND tipo_participe_datos_prestamo='Deudor'");
+                        $resultoficial1=$solicitud_hipotecario->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_1' and to_char(creado, 'YYYY')='$_fecha_año' and to_char(creado, 'MM')=LPAD('$_fecha_mes',2,'0')");
                         
                         if(!empty($resultoficial1)){
                             
                             $res1=count($resultoficial1);
                         }
                         
-                        $resultoficial2=$solicitud_hipotecario->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_2' AND tipo_participe_datos_prestamo='Deudor'");
+                        $resultoficial2=$solicitud_hipotecario->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_2' and to_char(creado, 'YYYY')='$_fecha_año' and to_char(creado, 'MM')=LPAD('$_fecha_mes',2,'0')");
                         
                         if(!empty($resultoficial2)){
                             $res2=count($resultoficial2);
                         }
                         
                         
-                        $resultoficial3=$solicitud_hipotecario->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_3' AND tipo_participe_datos_prestamo='Deudor'");
+                        $resultoficial3=$solicitud_hipotecario->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_3' and to_char(creado, 'YYYY')='$_fecha_año' and to_char(creado, 'MM')=LPAD('$_fecha_mes',2,'0')");
                         
                         if(!empty($resultoficial3)){
                             $res3=count($resultoficial3);
@@ -955,17 +927,11 @@ class SolicitudHipotecarioController extends ControladorBase{
                             
                             $id_oficial_credito=$id_usuarios_1;
                         }else{
-                            $id_oficial_credito=$id_usuarios_3;
                             
+                            $id_oficial_credito=$id_usuarios_1;
                         }
                         
-                        
-                        /////////// por lo que se fue la angie va todo a carlos narvaez //////////
-                        
-                        //$id_oficial_credito=0;
-                        //$id_oficial_credito=15425;
-                        
-                        
+                       
                         
                     }else{
                         
@@ -987,13 +953,13 @@ class SolicitudHipotecarioController extends ControladorBase{
                             }
                         }
                         
-                        $resultoficial1=$solicitud_hipotecario->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_1' AND tipo_participe_datos_prestamo='Deudor'");
+                        $resultoficial1=$solicitud_hipotecario->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_1' and to_char(creado, 'YYYY')='$_fecha_año' and to_char(creado, 'MM')=LPAD('$_fecha_mes',2,'0')");
                         
                         if(!empty($resultoficial1)){
                             $res1=count($resultoficial1);
                         }
                         
-                        $resultoficial2=$solicitud_hipotecario->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_2' AND tipo_participe_datos_prestamo='Deudor'");
+                        $resultoficial2=$solicitud_hipotecario->getBy("id_usuarios_oficial_credito_aprueba='$id_usuarios_2' and to_char(creado, 'YYYY')='$_fecha_año' and to_char(creado, 'MM')=LPAD('$_fecha_mes',2,'0')");
                         
                         if(!empty($resultoficial2)){
                             $res2=count($resultoficial2);
@@ -1015,16 +981,18 @@ class SolicitudHipotecarioController extends ControladorBase{
                     }
                     
                 
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                $parametros = " '$_valor_dolares_datos_credito',
+                    
+                    //termina if de sucursales
+                    
+                    
+                    
+                    try {
+                        
+                        $solicitud_hipotecario->beginTran();
+                        
+                        
+                        $funcion = "ins_solicitud_hipotecario";
+                        $parametros = " '$_valor_dolares_datos_credito',
                                 '$_plazo_meses_datos_credito',
                                 '$_destino_dinero_datos_credito',
                                 '$_nombres_datos_personales',
@@ -1078,7 +1046,7 @@ class SolicitudHipotecarioController extends ControladorBase{
                                 '$_id_canton_datos_laborales',
                                 '$_id_parroquia_datos_laborales',
                                 '$_calle_datos_laborales',
-                                '$_numero_calle_datos_laborales',                        
+                                '$_numero_calle_datos_laborales',
                                 '$_interseccion_datos_laborales',
                                 '$_referencia_direccion_trabajo_datos_laborales',
                                 '$_cargo_actual_datos_laborales',
@@ -1123,22 +1091,32 @@ class SolicitudHipotecarioController extends ControladorBase{
                                 '$_apellidos_propietario_datos_independientes',
                                 '$_telefono_propietario_datos_independientes',
                                 '$_tiempo_funcionamiento_datos_independientes',
-                                '$_numero_patronal_datos_independientes'
-
-                                 ";
-                
-                
-                $solicitud_hipotecario->setFuncion($funcion);
-                $solicitud_hipotecario->setParametros($parametros);
-                $resultado = $solicitud_hipotecario->llamafuncionPG();
-                
-                
-                
-                if($_id_solicitud_hipotecario > 0){
-                    
-                    
-                    
-                    $parametros = " '$_numero_empleados_datos_independientes',
+                                '$_identificador_consecutivos'";
+                        
+                        
+                        $solicitud_hipotecario->setFuncion($funcion);
+                        $solicitud_hipotecario->setParametros($parametros);
+                        $resultado = $solicitud_hipotecario->llamafuncionPG();
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        $error = "";
+                        $error = pg_last_error();
+                        if (!empty($error) || (int)$resultado[0] <= 0){
+                            throw new Exception('error ingresando solicitud hipotecario');
+                        }
+                        else{
+                            
+                            $id = $resultado[0];
+                            
+                           
+                            $funcionadicionaluno="ins_solicitud_hipotecario_adicional_uno";
+                            $parametros1 = " '$id',
+                                 '$_numero_empleados_datos_independientes',
                                 '$_id_bancos_referencia_bancaria',
                                 '$_tipo_cuenta_referencia_bancaria',
                                 '$_numero_cuenta_referencia_bancaria',
@@ -1236,25 +1214,24 @@ class SolicitudHipotecarioController extends ControladorBase{
                                 '$_vehiculo_tres_detalle_activos',
                                 '$_valor_vehiculo_tres_detalle_activos',
                                 '$_uso_tres_detalle_activos',
-                                '$_asegurado_tres_detalle_activos'
-                                
-                                 ";
-                    
-                    
-                    $solicitud_hipotecario->setFuncion($funcionadicionaluno);
-                    $solicitud_hipotecario->setParametros($parametros);
-                    $resultado = $solicitud_hipotecario->llamafuncionPG();
-                    
-                    
-                    
-                }
-                
-                
-                
-                
-                if($_id_solicitud_hipotecario > 0){
-          
-                    $parametros = " '$_vehiculo_cuatro_detalle_activos',
+                                '$_asegurado_tres_detalle_activos'";
+                            
+                            
+                            $solicitud_hipotecario->setFuncion($funcionadicionaluno);
+                            $solicitud_hipotecario->setParametros($parametros1);
+                            $resultado1 = $solicitud_hipotecario->llamafuncionPG();
+                            
+                            $error="";
+                            $error = pg_last_error();
+                            if (!empty($error) || (int)$resultado1[0] <= 0){
+                                throw new Exception('error ingresando solicitud hipotecario');
+                            }
+                            
+                            
+                            
+                            $funcionadicionaldos="ins_solicitud_hipotecario_adicional_dos";
+                            $parametros2 = " '$id',
+                                '$_vehiculo_cuatro_detalle_activos',
                                 '$_valor_vehiculo_cuatro_detalle_activos',
                                 '$_uso_cuatro_detalle_activos',
                                 '$_asegurado_cuatro_detalle_activos',
@@ -1318,8 +1295,7 @@ class SolicitudHipotecarioController extends ControladorBase{
                                 '$_cuotas_prestamo_gastos_mensuales',
                                 '$_otros_detalle_uno_gastos_mensuales',
                                 '$_otros_gastos_uno_gastos_mensuales',
-                                '$_imagen_croquis_domicilio',
-                                '$_imagen_croquis_otro_negocio',
+                                '$_id_codigo_verificacion',
                                 '$_total_activos_corrientes',
                                 '$_total_activos_fijos',
                                 '$_total_activos',
@@ -1329,32 +1305,142 @@ class SolicitudHipotecarioController extends ControladorBase{
                                 '$_total_ingresos_mensuales',
                                 '$_total_gastos_mensuales',
                                 '$_id_usuarios_registra',
-                                '$_id_usuarios_oficial_credito_aprueba',
+                                '$id_oficial_credito',
                                 '$_identificador_consecutivos',
                                 '$_fecha_presentacion',
-                                '$_fecha_aprobacion'
-                                
-                                 ";
+                                 null,
+                                '$_id_sucursales',
+                                '$_numero_patronal_datos_independientes'";
+                            
+                            
+                            $solicitud_hipotecario->setFuncion($funcionadicionaldos);
+                            $solicitud_hipotecario->setParametros($parametros2);
+                            $resultado2 = $solicitud_hipotecario->llamafuncionPG();
+                            
+                            
+                            
+                            
+                            
+                            $error="";
+                            $error = pg_last_error();
+                            if (!empty($error) || (int)$resultado2[0] <= 0){
+                                throw new Exception('error ingresando solicitud hipotecario');
+                            }
+                            
+                            
+                        }
+                        
+                        
+                        $consecutivos->UpdateBy("identificador_consecutivos = identificador_consecutivos+1", "consecutivos", "nombre_consecutivos = 'PRUEBAS'");
+                        
+                        
+                        // envia el correo electronio al señor
+                        
+                        $solicitud_hipotecario->EnviarMailSolCredHipotecario($_email_datos_personales, $id_oficial_credito, $_nombres_datos_personales, $_apellidos_datos_personales);
+                        
+                        $solicitud_hipotecario->endTran('COMMIT');
+                        
+                        
+                        echo json_encode(array('id'=>$id,'mensaje'=>"Solicitud Guardada Correctamente"));
+                        exit();
+                        
+                       
+                        
+                        
+                        
+                    } catch (Exception $e) {
+                        
+                        $solicitud_hipotecario->endTran();
+                       
+                        
+                        echo json_encode(array('id'=>0,'mensaje'=>"Error Generando Solicitud ".$e->getMessage()));
+                         die();
+                        
+                    }
                     
                     
-                    $solicitud_hipotecario->setFuncion($funcionadicionaldos);
-                    $solicitud_hipotecario->setParametros($parametros);
-                    $resultado = $solicitud_hipotecario->llamafuncionPG();
-                
-                }
-                
-                
-                
-                if(is_int((int)$resultado[0])){
                     
                     
-                    $respuesta = $resultado[0];
-                    $mensaje = "Solicitud Ingresada Correctamente";
-                }
-            }
+                    
+                    
+                    
+                
+              
          }
-       }
+         
+         
+         
+         
+         $this->redirect("SolicitudHipotecario", "index2");
+         
+         
+         
+         
+        }else{
+            
+            
+            $error = TRUE;
+            $mensaje = "Te sesión a caducado, vuelve a iniciar sesión.";
+            $this->view("Login",array(
+                "resultSet"=>"$mensaje", "error"=>$error
+            ));
+            
+            die();
+            
+        }
+        
+        
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public function index2(){
+        
+        session_start();
+        if (isset(  $_SESSION['nombre_usuarios']) )
+        {
+            $solicitud_prestamo = new SolicitudPrestamoModel();
+            $nombre_controladores = "SolicitudHipotecario";
+            $id_rol= $_SESSION['id_rol'];
+            $resultPer = $solicitud_prestamo->getPermisosVer("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
+            
+            if (!empty($resultPer))
+            {
+                $this->view("ConsultaSolicitudHipotecario",array(
+                    ""=>""
+                ));
+            }
+            else
+            {
+                $this->view("Error",array(
+                    "resultado"=>"No tiene Permisos de Acceso a consultar una solicitud de prestamo hipotecario."
+                ));
+            }
+        }
+        else
+        {
+            $error = TRUE;
+            $mensaje = "Te sesión a caducado, vuelve a iniciar sesión.";
+            
+            $this->view("Login",array(
+                "resultSet"=>"$mensaje", "error"=>$error
+            ));
+            die();
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
     
 }
 ?>
