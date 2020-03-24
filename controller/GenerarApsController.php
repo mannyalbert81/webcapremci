@@ -22,7 +22,7 @@ class GenerarApsController extends ControladorBase{
 		
 	    $columnas="*";
 	    $tablas="exportar_aps";
-	    $where="1=1 AND anio='2018'";
+	    $where="1=1 AND anio='2019'";
 	    $id="cedula";
 	    
 	    $resulSet =  $exportar_aps->getCondiciones($columnas, $tablas, $where, $id);
@@ -36,7 +36,7 @@ class GenerarApsController extends ControladorBase{
 	        $texto .= '<TipoIDInformante>R</TipoIDInformante>';
 	        $texto .= '<IdInformante>1791700376001</IdInformante>';
 	        $texto .= '<TipoSociedad>07</TipoSociedad>';
-	        $texto .= '<Anio>2016</Anio>';
+	        $texto .= '<Anio>2019</Anio>';
 	        $texto .= '<Mes>00</Mes>';
 	        $texto .= '<PorcentajeAccionarioNoBolsa>0.00</PorcentajeAccionarioNoBolsa>';
 	        $texto .= '<codigoOperativo>APS</codigoOperativo>';
@@ -79,6 +79,38 @@ class GenerarApsController extends ControladorBase{
 	        }
 	        
 	        
+	        
+	        
+	        $texto .= '<accionista>';
+	        $texto .= '<tipoIdentificacion>C</tipoIdentificacion>';
+	        $texto .= '<numeroIdentificacion>1720471109</numeroIdentificacion>';
+	        $texto .= '<nombresRazonSocial>ZURITA CEDENO STEPHANY ALEXANDRA</nombresRazonSocial>';
+	        $texto .= '<tipoSociedadExt>NA</tipoSociedadExt>';
+	        $texto .= '<figuraJuridicaExt>NA</figuraJuridicaExt>';
+	        $texto .= '<esSociedadPublicaExt>NO</esSociedadPublicaExt>';
+	        $texto .= '<porcentajeAccionarioNoBolsaExt>0.0</porcentajeAccionarioNoBolsaExt>';
+	        $texto .= '<porcentajeAccionarioBolsaExt>0.0</porcentajeAccionarioBolsaExt>';
+	        $texto .= '<identificacionInformantePadre>1791700376001</identificacionInformantePadre>';
+	        $texto .= '<tipoRegimenFiscal>01</tipoRegimenFiscal>';
+	        $texto .= '<infoParticipacionAccionaria>';
+	        $texto .= '<codigoNivel>1</codigoNivel>';
+	        $texto .= '<tipoRelacionadoSociedad>05</tipoRelacionadoSociedad>';
+	        $texto .= '<porcentajeParticipacion>0.0</porcentajeParticipacion>';
+	        $texto .= '<parteRelacionadaInformante>NO</parteRelacionadaInformante>';
+	        $texto .= '</infoParticipacionAccionaria>';
+	        $texto .= '<ubicacionResidenciaFiscal>';
+	        $texto .= '<paisRegimenFiscal>593</paisRegimenFiscal>';
+	        $texto .= '</ubicacionResidenciaFiscal>';
+	        $texto .= '</accionista>';
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
 	        $texto .= '</accionistas>';
 	        
 	        
@@ -93,7 +125,7 @@ class GenerarApsController extends ControladorBase{
 	        
 	        // Grabamos el XML en el servidor como un fichero plano, para
 	        // poder ser leido por otra aplicación.
-	        $gestor = fopen("C:\PRUEBA_TWAIN\miXML.xml", 'w');
+	        $gestor = fopen("C:\PRUEBA_TWAIN\APS-2019.xml", 'w');
 	        fwrite($gestor, $textoXML);
 	        fclose($gestor);
 	        
