@@ -1754,6 +1754,1468 @@ function checkIt(evt) {
 				}
 		    	
 		    	
+		    	if (interseccion_datos_personales == "")
+		    	{
+			    	
+		    		$("#mensaje_interseccion_datos_personales").text("Ingrese una Intsrsección");
+		    		$("#mensaje_interseccion_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_interseccion_datos_personales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_interseccion_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	if (tipo_vivienda_datos_personales == "")
+		    	{
+			    	
+		    		$("#mensaje_tipo_vivienda_datos_personales").text("Tipo de Vivienda");
+		    		$("#mensaje_tipo_vivienda_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_tipo_vivienda_datos_personales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_tipo_vivienda_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (vivienda_hipotecada_datos_personales == "")
+		    	{
+			    	
+		    		$("#mensaje_vivienda_hipotecada_datos_personales").text("seleccione");
+		    		$("#mensaje_vivienda_hipotecada_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_vivienda_hipotecada_datos_personales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_vivienda_hipotecada_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (tiempo_residencia_datos_personales == "")
+		    	{
+			    	
+		    		$("#mensaje_tiempo_residencia_datos_personales").text("Ingrese un Tiempo de Residencia");
+		    		$("#mensaje_tiempo_residencia_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_tiempo_residencia_datos_personales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_tiempo_residencia_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (referencia_domiciliaria_datos_perdonales == "")
+		    	{
+			    	
+		    		$("#mensaje_referencia_domiciliaria_datos_perdonales").text("Ingrese una Referencia");
+		    		$("#mensaje_referencia_domiciliaria_datos_perdonales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_referencia_domiciliaria_datos_perdonales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_referencia_domiciliaria_datos_perdonales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	if(tipo_vivienda_datos_personales=="Arrendada"){
+		    		
+		    		
+		    		if (nombre_arrendatario_datos_personales == "")
+			    	{
+				    	
+			    		$("#mensaje_nombre_arrendatario_datos_personales").text("Ingrese un Nombre");
+			    		$("#mensaje_nombre_arrendatario_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+			    		 
+			    		 $("html, body").animate({ scrollTop: $(mensaje_nombre_arrendatario_datos_personales).offset().top }, tiempo);
+			    		 return false;
+			           
+				    }
+			    	else 
+			    	{
+			    		$("#mensaje_nombre_arrendatario_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+			            
+					}
+		    		
+		    		
+		    		if (apellido_arrendatario_datos_personales == "")
+			    	{
+				    	
+			    		$("#mensaje_apellido_arrendatario_datos_personales").text("Ingrese un Apellido");
+			    		$("#mensaje_apellido_arrendatario_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+			    		 
+			    		 $("html, body").animate({ scrollTop: $(mensaje_apellido_arrendatario_datos_personales).offset().top }, tiempo);
+			    		 return false;
+			           
+				    }
+			    	else 
+			    	{
+			    		$("#mensaje_apellido_arrendatario_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+			            
+					}
+		    		
+		    		
+		    		if (celular_arrendatario_datos_personales == "")
+			    	{
+				    	
+			    		$("#mensaje_celular_arrendatario_datos_personales").text("Ingrese un Teléfono");
+			    		$("#mensaje_celular_arrendatario_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+			    		 
+			    		 $("html, body").animate({ scrollTop: $(mensaje_celular_arrendatario_datos_personales).offset().top }, tiempo);
+			    		 return false;
+			           
+				    }
+			    	else 
+			    	{
+			    		$("#mensaje_celular_arrendatario_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+			            
+					}
+		    		
+		    		
+		    	}
+		    	
+		    	if (telefono_datos_personales == "")
+		    	{
+			    	
+		    		$("#mensaje_telefono_datos_personales").text("Ingrese un Teléfono");
+		    		$("#mensaje_telefono_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_telefono_datos_personales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_telefono_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (celular_datos_personales == "")
+		    	{
+			    	
+		    		$("#mensaje_celular_datos_personales").text("Ingrese un Celulár");
+		    		$("#mensaje_celular_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_celular_datos_personales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_celular_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (telf_trabajo_datos_personales == "")
+		    	{
+			    	
+		    		$("#mensaje_telf_trabajo_datos_personales").text("Ingrese un Teléfono");
+		    		$("#mensaje_telf_trabajo_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_telf_trabajo_datos_personales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_telf_trabajo_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (ext_telef_datos_personales == "")
+		    	{
+			    	
+		    		$("#mensaje_ext_telef_datos_personales").text("Ingrese una Extención");
+		    		$("#mensaje_ext_telef_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_ext_telef_datos_personales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_ext_telef_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	if (nombres_referencia_familiar_datos_personales == "")
+		    	{
+			    	
+		    		$("#mensaje_nombres_referencia_familiar_datos_personales").text("Ingrese un Nombre");
+		    		$("#mensaje_nombres_referencia_familiar_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_nombres_referencia_familiar_datos_personales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_nombres_referencia_familiar_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (apellidos_referencia_familiar_datos_personales == "")
+		    	{
+			    	
+		    		$("#mensaje_apellidos_referencia_familiar_datos_personales").text("Ingrese un Apellido");
+		    		$("#mensaje_apellidos_referencia_familiar_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_apellidos_referencia_familiar_datos_personales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_apellidos_referencia_familiar_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (parentesco_referencia_familiar_datos_personales == "")
+		    	{
+			    	
+		    		$("#mensaje_parentesco_referencia_familiar_datos_personales").text("Seleccione un parentezco");
+		    		$("#mensaje_parentesco_referencia_familiar_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_parentesco_referencia_familiar_datos_personales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_parentesco_referencia_familiar_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (primer_telefono_ref_familiar_datos_personales == "")
+		    	{
+			    	
+		    		$("#mensaje_primer_telefono_ref_familiar_datos_personales").text("Ingrese un Telefono");
+		    		$("#mensaje_primer_telefono_ref_familiar_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_primer_telefono_ref_familiar_datos_personales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_primer_telefono_ref_familiar_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (segundo_telefono_ref_familiar_datos_personales == "")
+		    	{
+			    	
+		    		$("#mensaje_segundo_telefono_ref_familiar_datos_personales").text("Ingrese un Celular");
+		    		$("#mensaje_segundo_telefono_ref_familiar_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_segundo_telefono_ref_familiar_datos_personales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_segundo_telefono_ref_familiar_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (nombres_referencia_personal_datos_personales == "")
+		    	{
+			    	
+		    		$("#mensaje_nombres_referencia_personal_datos_personales").text("Ingrese un Nombre");
+		    		$("#mensaje_nombres_referencia_personal_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_nombres_referencia_personal_datos_personales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_nombres_referencia_personal_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (apellidos_referencia_personal_datos_personales == "")
+		    	{
+			    	
+		    		$("#mensaje_apellidos_referencia_personal_datos_personales").text("Ingrese un Apellido");
+		    		$("#mensaje_apellidos_referencia_personal_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_apellidos_referencia_personal_datos_personales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_apellidos_referencia_personal_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (relacion_referencia_personal_datos_personales == "")
+		    	{
+			    	
+		    		$("#mensaje_relacion_referencia_personal_datos_personales").text("Ingrese una Relación");
+		    		$("#mensaje_relacion_referencia_personal_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_relacion_referencia_personal_datos_personales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_relacion_referencia_personal_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	
+		    	if (primer_telefono_ref_personal_datos_personales == "")
+		    	{
+			    	
+		    		$("#mensaje_primer_telefono_ref_personal_datos_personales").text("Ingrese un Teléfono");
+		    		$("#mensaje_primer_telefono_ref_personal_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_primer_telefono_ref_personal_datos_personales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_primer_telefono_ref_personal_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	
+		    	if (segundo_telefono_ref_personal_datos_personales == "")
+		    	{
+			    	
+		    		$("#mensaje_segundo_telefono_ref_personal_datos_personales").text("Ingrese un Celular");
+		    		$("#mensaje_segundo_telefono_ref_personal_datos_personales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_segundo_telefono_ref_personal_datos_personales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_primer_telefono_ref_personal_datos_personales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	
+		    	if (id_entidades == 0)
+		    	{
+			    	
+		    		$("#mensaje_id_entidades").text("Seleccione una Institución");
+		    		$("#mensaje_id_entidades").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_id_entidades).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_entidades").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (reparto_unidad_datos_laborales == "")
+		    	{
+			    	
+		    		$("#mensaje_reparto_unidad_datos_laborales").text("Ingrese una Unidad");
+		    		$("#mensaje_reparto_unidad_datos_laborales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_reparto_unidad_datos_laborales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_reparto_unidad_datos_laborales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (seccion_datos_laborales == "")
+		    	{
+			    	
+		    		$("#mensaje_seccion_datos_laborales").text("Ingrese una Sección");
+		    		$("#mensaje_seccion_datos_laborales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_seccion_datos_laborales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_seccion_datos_laborales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (nombres_jefe_datos_laborales == "")
+		    	{
+			    	
+		    		$("#mensaje_nombres_jefe_datos_laborales").text("Ingrese un Nombre");
+		    		$("#mensaje_nombres_jefe_datos_laborales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_nombres_jefe_datos_laborales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_nombres_jefe_datos_laborales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (apellidos_jefe_datos_laborales == "")
+		    	{
+			    	
+		    		$("#mensaje_apellidos_jefe_datos_laborales").text("Ingrese un Apellido");
+		    		$("#mensaje_apellidos_jefe_datos_laborales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_apellidos_jefe_datos_laborales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_apellidos_jefe_datos_laborales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	if (telefono_jefe_datos_laborales == "")
+		    	{
+			    	
+		    		$("#mensaje_telefono_jefe_datos_laborales").text("Ingrese un Teléfono");
+		    		$("#mensaje_telefono_jefe_datos_laborales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_telefono_jefe_datos_laborales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_telefono_jefe_datos_laborales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (cargo_actual_datos_laborales == "")
+		    	{
+			    	
+		    		$("#mensaje_cargo_actual_datos_laborales").text("Ingrese un Cargo");
+		    		$("#mensaje_cargo_actual_datos_laborales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_cargo_actual_datos_laborales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_cargo_actual_datos_laborales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (anios_servicio_datos_laborales == "")
+		    	{
+			    	
+		    		$("#mensaje_anios_servicio_datos_laborales").text("Ingrese un Año");
+		    		$("#mensaje_anios_servicio_datos_laborales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_anios_servicio_datos_laborales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_anios_servicio_datos_laborales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (anios_servicio_datos_laborales == "")
+		    	{
+			    	
+		    		$("#mensaje_anios_servicio_datos_laborales").text("Ingrese un Año");
+		    		$("#mensaje_anios_servicio_datos_laborales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_anios_servicio_datos_laborales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_anios_servicio_datos_laborales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	
+		    	if (id_provincia_datos_laborales == 0)
+		    	{
+			    	
+		    		$("#mensaje_id_provincia_datos_laborales").text("Seleccione una Provincia");
+		    		$("#mensaje_id_provincia_datos_laborales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_id_provincia_datos_laborales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_provincia_datos_laborales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (id_canton_datos_laborales == 0)
+		    	{
+			    	
+		    		$("#mensaje_id_canton_datos_laborales").text("Seleccione un Cantón");
+		    		$("#mensaje_id_canton_datos_laborales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_id_canton_datos_laborales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_canton_datos_laborales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (id_parroquia_datos_laborales == 0)
+		    	{
+			    	
+		    		$("#mensaje_id_parroquia_datos_laborales").text("Seleccione una Parroquia");
+		    		$("#mensaje_id_parroquia_datos_laborales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_id_parroquia_datos_laborales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_parroquia_datos_laborales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (calle_datos_laborales == "")
+		    	{
+			    	
+		    		$("#mensaje_calle_datos_laborales").text("Ingrese una Calle");
+		    		$("#mensaje_calle_datos_laborales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_calle_datos_laborales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_calle_datos_laborales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	
+		    	if (numero_calle_datos_laborales == "")
+		    	{
+			    	
+		    		$("#mensaje_numero_calle_datos_laborales").text("Ingrese un Número de Calle");
+		    		$("#mensaje_numero_calle_datos_laborales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_numero_calle_datos_laborales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_numero_calle_datos_laborales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (interseccion_datos_laborales == "")
+		    	{
+			    	
+		    		$("#mensaje_interseccion_datos_laborales").text("Ingrese una Intersección");
+		    		$("#mensaje_interseccion_datos_laborales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_interseccion_datos_laborales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_interseccion_datos_laborales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (referencia_direccion_trabajo_datos_laborales == "")
+		    	{
+			    	
+		    		$("#mensaje_referencia_direccion_trabajo_datos_laborales").text("Ingrese una Referencia");
+		    		$("#mensaje_referencia_direccion_trabajo_datos_laborales").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_referencia_direccion_trabajo_datos_laborales).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_referencia_direccion_trabajo_datos_laborales").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (cedula_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_cedula_datos_conyuge").text("Ingrese una Cédula");
+		    		$("#mensaje_cedula_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_cedula_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_cedula_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	
+		    	if (nombres_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_nombres_datos_conyuge").text("Ingrese un Nombre");
+		    		$("#mensaje_nombres_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_nombres_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_nombres_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (apellidos_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_apellidos_datos_conyuge").text("Ingrese un Apellido");
+		    		$("#mensaje_apellidos_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_apellidos_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_apellidos_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (id_sexo_datos_conyuge == 0)
+		    	{
+			    	
+		    		$("#mensaje_id_sexo_datos_conyuge").text("Ingrese un Género");
+		    		$("#mensaje_id_sexo_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_id_sexo_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_sexo_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (fecha_nacimiento_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_fecha_nacimiento_datos_conyuge").text("Ingrese una Fecha");
+		    		$("#mensaje_fecha_nacimiento_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_fecha_nacimiento_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_fecha_nacimiento_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	if (vive_residencia_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_vive_residencia_datos_conyuge").text("Seleccione");
+		    		$("#mensaje_vive_residencia_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_vive_residencia_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_vive_residencia_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (telefono_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_telefono_datos_conyuge").text("Ingrese un Teléfono");
+		    		$("#mensaje_telefono_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_telefono_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_telefono_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (celular_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_celular_datos_conyuge").text("Ingrese un Celulár");
+		    		$("#mensaje_celular_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_celular_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_celular_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if(vive_residencia_datos_conyuge=="No"){
+		    		
+		    		if (id_provincia_datos_conyuge == 0)
+			    	{
+				    	
+			    		$("#mensaje_id_provincia_datos_conyuge").text("Ingrese una Provincia");
+			    		$("#mensaje_id_provincia_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+			    		 
+			    		 $("html, body").animate({ scrollTop: $(mensaje_id_provincia_datos_conyuge).offset().top }, tiempo);
+			    		 return false;
+			           
+				    }
+			    	else 
+			    	{
+			    		$("#mensaje_id_provincia_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+			            
+					}	
+		    		
+		    		if (id_canton_datos_conyuge == 0)
+			    	{
+				    	
+			    		$("#mensaje_id_canton_datos_conyuge").text("Ingrese un Cantón");
+			    		$("#mensaje_id_canton_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+			    		 
+			    		 $("html, body").animate({ scrollTop: $(mensaje_id_canton_datos_conyuge).offset().top }, tiempo);
+			    		 return false;
+			           
+				    }
+			    	else 
+			    	{
+			    		$("#mensaje_id_canton_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+			            
+					}
+		    		
+		    		
+		    		if (id_parroquia_datos_conyuge == 0)
+			    	{
+				    	
+			    		$("#mensaje_id_parroquia_datos_conyuge").text("Ingrese una Parroquia");
+			    		$("#mensaje_id_parroquia_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+			    		 
+			    		 $("html, body").animate({ scrollTop: $(mensaje_id_parroquia_datos_conyuge).offset().top }, tiempo);
+			    		 return false;
+			           
+				    }
+			    	else 
+			    	{
+			    		$("#mensaje_id_parroquia_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+			            
+					}
+		    		
+		    		
+		    		
+		    		
+		    		if (barrio_datos_conyuge == "")
+			    	{
+				    	
+			    		$("#mensaje_barrio_datos_conyuge").text("Ingrese un Barrio");
+			    		$("#mensaje_barrio_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+			    		 
+			    		 $("html, body").animate({ scrollTop: $(mensaje_barrio_datos_conyuge).offset().top }, tiempo);
+			    		 return false;
+			           
+				    }
+			    	else 
+			    	{
+			    		$("#mensaje_barrio_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+			            
+					}
+		    		
+		    		
+		    		
+		    		if (ciudadela_datos_conyuge == "")
+			    	{
+				    	
+			    		$("#mensaje_ciudadela_datos_conyuge").text("Ingrese una Ciudadela");
+			    		$("#mensaje_ciudadela_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+			    		 
+			    		 $("html, body").animate({ scrollTop: $(mensaje_ciudadela_datos_conyuge).offset().top }, tiempo);
+			    		 return false;
+			           
+				    }
+			    	else 
+			    	{
+			    		$("#mensaje_ciudadela_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+			            
+					}
+		    		
+		    		
+		    		if (calle_datos_conyuge == "")
+			    	{
+				    	
+			    		$("#mensaje_calle_datos_conyuge").text("Ingrese una Calle");
+			    		$("#mensaje_calle_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+			    		 
+			    		 $("html, body").animate({ scrollTop: $(mensaje_calle_datos_conyuge).offset().top }, tiempo);
+			    		 return false;
+			           
+				    }
+			    	else 
+			    	{
+			    		$("#mensaje_calle_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+			            
+					}
+		    		
+		    		if (numero_calle_datos_conyuge == "")
+			    	{
+				    	
+			    		$("#mensaje_numero_calle_datos_conyuge").text("Ingrese un Número de Calle");
+			    		$("#mensaje_numero_calle_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+			    		 
+			    		 $("html, body").animate({ scrollTop: $(mensaje_numero_calle_datos_conyuge).offset().top }, tiempo);
+			    		 return false;
+			           
+				    }
+			    	else 
+			    	{
+			    		$("#mensaje_numero_calle_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+			            
+					}
+		    		
+		    		if (interseccion_datos_conyuge == "")
+			    	{
+				    	
+			    		$("#mensaje_interseccion_datos_conyuge").text("Ingrese una Intersección");
+			    		$("#mensaje_interseccion_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+			    		 
+			    		 $("html, body").animate({ scrollTop: $(mensaje_interseccion_datos_conyuge).offset().top }, tiempo);
+			    		 return false;
+			           
+				    }
+			    	else 
+			    	{
+			    		$("#mensaje_interseccion_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+			            
+					}
+		    		
+		    		
+		    	}
+		    	
+		    	if (actividad_economica_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_actividad_economica_datos_conyuge").text("Seleccione un Tipo de Empleado");
+		    		$("#mensaje_actividad_economica_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_actividad_economica_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_actividad_economica_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (empresa_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_empresa_datos_conyuge").text("Ingrese una Empresa");
+		    		$("#mensaje_empresa_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_empresa_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_empresa_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	if (naturaleza_negocio_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_naturaleza_negocio_datos_conyuge").text("Ingrese una Naturaleza");
+		    		$("#mensaje_naturaleza_negocio_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_naturaleza_negocio_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_naturaleza_negocio_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (cargo_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_cargo_datos_conyuge").text("Ingrese un Cargo");
+		    		$("#mensaje_cargo_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_cargo_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_cargo_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (anios_laborados_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_anios_laborados_datos_conyuge").text("Ingrese los años laborados");
+		    		$("#mensaje_anios_laborados_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_anios_laborados_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_anios_laborados_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+
+		    	if (tipo_contrato_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_tipo_contrato_datos_conyuge").text("Ingrese el Tipo de Contrato");
+		    		$("#mensaje_tipo_contrato_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_tipo_contrato_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_tipo_contrato_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	if (nombres_jefe_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_nombres_jefe_datos_conyuge").text("Ingrese un Nombre");
+		    		$("#mensaje_nombres_jefe_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_nombres_jefe_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_nombres_jefe_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (apellidos_jefe_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_apellidos_jefe_datos_conyuge").text("Ingrese un Apellido");
+		    		$("#mensaje_apellidos_jefe_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_apellidos_jefe_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_apellidos_jefe_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (telefono_jefe_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_telefono_jefe_datos_conyuge").text("Ingrese un Teléfono");
+		    		$("#mensaje_telefono_jefe_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_telefono_jefe_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_telefono_jefe_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (id_provincia_trabajo_datos_conyuge == 0)
+		    	{
+			    	
+		    		$("#mensaje_id_provincia_trabajo_datos_conyuge").text("Seleccione una Provincia");
+		    		$("#mensaje_id_provincia_trabajo_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_id_provincia_trabajo_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_provincia_trabajo_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (id_canton_trabajo_datos_conyuge == 0)
+		    	{
+			    	
+		    		$("#mensaje_id_canton_trabajo_datos_conyuge").text("Seleccione un Catón");
+		    		$("#mensaje_id_canton_trabajo_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_id_canton_trabajo_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_canton_trabajo_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (id_parroquia_trabajo_datos_conyuge == 0)
+		    	{
+			    	
+		    		$("#mensaje_id_parroquia_trabajo_datos_conyuge").text("Seleccione una Parroquia");
+		    		$("#mensaje_id_parroquia_trabajo_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_id_parroquia_trabajo_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_parroquia_trabajo_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (calle_trabajo_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_calle_trabajo_datos_conyuge").text("Ingrese una Calle");
+		    		$("#mensaje_calle_trabajo_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_calle_trabajo_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_calle_trabajo_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (nuemero_calle_trabajo_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_nuemero_calle_trabajo_datos_conyuge").text("Ingrese un Número de Calle");
+		    		$("#mensaje_nuemero_calle_trabajo_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_nuemero_calle_trabajo_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_nuemero_calle_trabajo_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (interseccion_trabajo_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_interseccion_trabajo_datos_conyuge").text("Ingrese una Intersección");
+		    		$("#mensaje_interseccion_trabajo_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_interseccion_trabajo_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_interseccion_trabajo_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (referencia_trabajo_datos_conyuge == "")
+		    	{
+			    	
+		    		$("#mensaje_referencia_trabajo_datos_conyuge").text("Ingrese una Referencia");
+		    		$("#mensaje_referencia_trabajo_datos_conyuge").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_referencia_trabajo_datos_conyuge).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_referencia_trabajo_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	if(actividad_economica_datos_conyuge=="Independiente"){		    	
+		    	
+		    	if (actividad_principal_datos_independientes == "")
+		    	{
+			    	
+		    		$("#mensaje_actividad_principal_datos_independientes").text("Ingrese una Actividad");
+		    		$("#mensaje_actividad_principal_datos_independientes").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_actividad_principal_datos_independientes).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_actividad_principal_datos_independientes").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (ruc_datos_independientes == "")
+		    	{
+			    	
+		    		$("#mensaje_ruc_datos_independientes").text("Ingrese un Ruc");
+		    		$("#mensaje_ruc_datos_independientes").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_ruc_datos_independientes).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_ruc_datos_independientes").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	  
+		    	if (detalle_actividades_datos_independientes == "")
+		    	{
+			    	
+		    		$("#mensaje_detalle_actividades_datos_independientes").text("Ingrese un Detalle");
+		    		$("#mensaje_detalle_actividades_datos_independientes").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_detalle_actividades_datos_independientes).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_detalle_actividades_datos_independientes").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (local_datos_independientes == "")
+		    	{
+			    	
+		    		$("#mensaje_local_datos_independientes").text("Ingrese un Local");
+		    		$("#mensaje_local_datos_independientes").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_local_datos_independientes).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_local_datos_independientes").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (local_datos_independientes == "")
+		    	{
+			    	
+		    		$("#mensaje_local_datos_independientes").text("Ingrese un Local");
+		    		$("#mensaje_local_datos_independientes").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_local_datos_independientes).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_local_datos_independientes").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	if (nombres_propietario_datos_independientes == "")
+		    	{
+			    	
+		    		$("#mensaje_nombres_propietario_datos_independientes").text("Ingrese un Nombre");
+		    		$("#mensaje_nombres_propietario_datos_independientes").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_nombres_propietario_datos_independientes).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_nombres_propietario_datos_independientes").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (apellidos_propietario_datos_independientes == "")
+		    	{
+			    	
+		    		$("#mensaje_apellidos_propietario_datos_independientes").text("Ingrese un Apellido");
+		    		$("#mensaje_apellidos_propietario_datos_independientes").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_apellidos_propietario_datos_independientes).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_apellidos_propietario_datos_independientes").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	if (telefono_propietario_datos_independientes == "")
+		    	{
+			    	
+		    		$("#mensaje_telefono_propietario_datos_independientes").text("Ingrese un Teléfono");
+		    		$("#mensaje_telefono_propietario_datos_independientes").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_telefono_propietario_datos_independientes).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_telefono_propietario_datos_independientes").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (tiempo_funcionamiento_datos_independientes == "")
+		    	{
+			    	
+		    		$("#mensaje_tiempo_funcionamiento_datos_independientes").text("Ingrese un Tiempo de Funcionamiento");
+		    		$("#mensaje_tiempo_funcionamiento_datos_independientes").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_tiempo_funcionamiento_datos_independientes).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_tiempo_funcionamiento_datos_independientes").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	
+		    	if (numero_patronal_datos_independientes == "")
+		    	{
+			    	
+		    		$("#mensaje_numero_patronal_datos_independientes").text("Ingrese un Número Patronal");
+		    		$("#mensaje_numero_patronal_datos_independientes").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_numero_patronal_datos_independientes).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_numero_patronal_datos_independientes").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (numero_empleados_datos_independientes == "")
+		    	{
+			    	
+		    		$("#mensaje_numero_empleados_datos_independientes").text("Ingrese un Número de empleados");
+		    		$("#mensaje_numero_empleados_datos_independientes").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_numero_empleados_datos_independientes).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_numero_empleados_datos_independientes").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (id_bancos_referencia_bancaria == 0)
+		    	{
+			    	
+		    		$("#mensaje_id_bancos_referencia_bancaria").text("Ingrese un Banco");
+		    		$("#mensaje_id_bancos_referencia_bancaria").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_id_bancos_referencia_bancaria).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_id_bancos_referencia_bancaria").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (tipo_cuenta_referencia_bancaria == "")
+		    	{
+			    	
+		    		$("#mensaje_tipo_cuenta_referencia_bancaria").text("Ingrese un Tipo de Cuenta");
+		    		$("#mensaje_tipo_cuenta_referencia_bancaria").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_tipo_cuenta_referencia_bancaria).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_tipo_cuenta_referencia_bancaria").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	
+		    	
+		    	if (numero_cuenta_referencia_bancaria == "")
+		    	{
+			    	
+		    		$("#mensaje_numero_cuenta_referencia_bancaria").text("Ingrese un Número de Cuenta");
+		    		$("#mensaje_numero_cuenta_referencia_bancaria").fadeIn("slow"); //Muestra mensaje de error
+		    		 
+		    		 $("html, body").animate({ scrollTop: $(mensaje_numero_cuenta_referencia_bancaria).offset().top }, tiempo);
+		    		 return false;
+		           
+			    }
+		    	else 
+		    	{
+		    		$("#mensaje_numero_cuenta_referencia_bancaria").fadeOut("slow"); //Muestra mensaje de error
+		            
+				}
+		    	  
+		    	  
+		    	}
+		    	
+		    	
 		    	//aqui validar
 		    	
 		    	
@@ -2117,5 +3579,286 @@ function checkIt(evt) {
 	$( "#numero_hijos_datos_personales" ).focus(function() {
 		  $("#mensaje_numero_hijos_datos_personales").fadeOut("slow");
 	    });
+	$( "#email_datos_personales" ).focus(function() {
+		  $("#mensaje_email_datos_personales").fadeOut("slow");
+	    });
+	$( "#nivel_educativo_datos_personales" ).focus(function() {
+		  $("#mensaje_nivel_educativo_datos_personales").fadeOut("slow");
+	    });
+	$( "#id_provincia" ).focus(function() {
+		  $("#mensaje_id_provincia").fadeOut("slow");
+	    });
+	$( "#id_canton" ).focus(function() {
+		  $("#mensaje_id_canton").fadeOut("slow");
+	    });
+	$( "#id_parroquia" ).focus(function() {
+		  $("#mensaje_id_parroquia").fadeOut("slow");
+	    });
+	$( "#barrio_datos_personales" ).focus(function() {
+		  $("#mensaje_barrio_datos_personales").fadeOut("slow");
+	    });
+	$( "#ciudadela_datos_personales" ).focus(function() {
+		  $("#mensaje_ciudadela_datos_personales").fadeOut("slow");
+	    });
+	$( "#calle_datos_personales" ).focus(function() {
+		  $("#mensaje_calle_datos_personales").fadeOut("slow");
+	    });
+	$( "#numero_calle_datos_personales" ).focus(function() {
+		  $("#mensaje_numero_calle_datos_personales").fadeOut("slow");
+	    });
+	$( "#interseccion_datos_personales" ).focus(function() {
+		  $("#mensaje_interseccion_datos_personales").fadeOut("slow");
+	    });
+	$( "#tipo_vivienda_datos_personales" ).focus(function() {
+		  $("#mensaje_tipo_vivienda_datos_personales").fadeOut("slow");
+	    });
+	$( "#vivienda_hipotecada_datos_personales" ).focus(function() {
+		  $("#mensaje_vivienda_hipotecada_datos_personales").fadeOut("slow");
+	    });
+	$( "#tiempo_residencia_datos_personales" ).focus(function() {
+		  $("#mensaje_tiempo_residencia_datos_personales").fadeOut("slow");
+	    });
+	$( "#referencia_domiciliaria_datos_perdonales" ).focus(function() {
+		  $("#mensaje_referencia_domiciliaria_datos_perdonales").fadeOut("slow");
+	    });
+	$( "#nombre_arrendatario_datos_personales" ).focus(function() {
+		  $("#mensaje_nombre_arrendatario_datos_personales").fadeOut("slow");
+	    });
+	$( "#apellido_arrendatario_datos_personales" ).focus(function() {
+		  $("#mensaje_apellido_arrendatario_datos_personales").fadeOut("slow");
+	    });
+	$( "#celular_arrendatario_datos_personales" ).focus(function() {
+		  $("#mensaje_celular_arrendatario_datos_personales").fadeOut("slow");
+	    });
+	$( "#telefono_datos_personales" ).focus(function() {
+		  $("#mensaje_telefono_datos_personales").fadeOut("slow");
+	    });
+	$( "#celular_datos_personales" ).focus(function() {
+		  $("#mensaje_celular_datos_personales").fadeOut("slow");
+	    });
+	$( "#telf_trabajo_datos_personales" ).focus(function() {
+		  $("#mensaje_telf_trabajo_datos_personales").fadeOut("slow");
+	    });
+	$( "#ext_telef_datos_personales" ).focus(function() {
+		  $("#mensaje_ext_telef_datos_personales").fadeOut("slow");
+	    });
+	$( "#node_telef_datos_personales" ).focus(function() {
+		  $("#mensaje_node_telef_datos_personales").fadeOut("slow");
+	    });
+	$( "#numero_codigo_verificacion" ).focus(function() {
+		  $("#mensaje_numero_codigo_verificacion").fadeOut("slow");
+	    });
+	$( "#nombres_referencia_familiar_datos_personales" ).focus(function() {
+		  $("#mensaje_nombres_referencia_familiar_datos_personales").fadeOut("slow");
+	    });
+	$( "#apellidos_referencia_familiar_datos_personales" ).focus(function() {
+		  $("#mensaje_apellidos_referencia_familiar_datos_personales").fadeOut("slow");
+	    });
+	$( "#parentesco_referencia_familiar_datos_personales" ).focus(function() {
+		  $("#mensaje_parentesco_referencia_familiar_datos_personales").fadeOut("slow");
+	    });
+	$( "#primer_telefono_ref_familiar_datos_personales" ).focus(function() {
+		  $("#mensaje_primer_telefono_ref_familiar_datos_personales").fadeOut("slow");
+	    });
+	$( "#segundo_telefono_ref_familiar_datos_personales" ).focus(function() {
+		  $("#mensaje_segundo_telefono_ref_familiar_datos_personales").fadeOut("slow");
+	    });
+	$( "#nombres_referencia_personal_datos_personales" ).focus(function() {
+		  $("#mensaje_nombres_referencia_personal_datos_personales").fadeOut("slow");
+	    });
+	$( "#apellidos_referencia_personal_datos_personales" ).focus(function() {
+		  $("#mensaje_apellidos_referencia_personal_datos_personales").fadeOut("slow");
+	    });
+	$( "#relacion_referencia_personal_datos_personales" ).focus(function() {
+		  $("#mensaje_relacion_referencia_personal_datos_personales").fadeOut("slow");
+	    });
+	$( "#primer_telefono_ref_personal_datos_personales" ).focus(function() {
+		  $("#mensaje_primer_telefono_ref_personal_datos_personales").fadeOut("slow");
+	    });
+	$( "#segundo_telefono_ref_personal_datos_personales" ).focus(function() {
+		  $("#mensaje_segundo_telefono_ref_personal_datos_personales").fadeOut("slow");
+	    });
+	$( "#id_entidades" ).focus(function() {
+		  $("#mensaje_id_entidades").fadeOut("slow");
+	    });
+	$( "#reparto_unidad_datos_laborales" ).focus(function() {
+		  $("#mensaje_reparto_unidad_datos_laborales").fadeOut("slow");
+	    });
+	$( "#seccion_datos_laborales" ).focus(function() {
+		  $("#mensaje_seccion_datos_laborales").fadeOut("slow");
+	    });
+	$( "#nombres_jefe_datos_laborales" ).focus(function() {
+		  $("#mensaje_nombres_jefe_datos_laborales").fadeOut("slow");
+	    });
+	$( "#apellidos_jefe_datos_laborales" ).focus(function() {
+		  $("#mensaje_apellidos_jefe_datos_laborales").fadeOut("slow");
+	    });
+	$( "#telefono_jefe_datos_laborales" ).focus(function() {
+		  $("#mensaje_telefono_jefe_datos_laborales").fadeOut("slow");
+	    });
+	$( "#cargo_actual_datos_laborales" ).focus(function() {
+		  $("#mensaje_cargo_actual_datos_laborales").fadeOut("slow");
+	    });
+	$( "#anios_servicio_datos_laborales" ).focus(function() {
+		  $("#mensaje_anios_servicio_datos_laborales").fadeOut("slow");
+	    });
+	$( "#id_provincia_datos_laborales" ).focus(function() {
+		  $("#mensaje_id_provincia_datos_laborales").fadeOut("slow");
+	    });
+	$( "#id_canton_datos_laborales" ).focus(function() {
+		  $("#mensaje_id_canton_datos_laborales").fadeOut("slow");
+	    });
+	$( "#id_parroquia_datos_laborales" ).focus(function() {
+		  $("#mensaje_id_parroquia_datos_laborales").fadeOut("slow");
+	    });
+	$( "#calle_datos_laborales" ).focus(function() {
+		  $("#mensaje_calle_datos_laborales").fadeOut("slow");
+	    });
+	$( "#numero_calle_datos_laborales" ).focus(function() {
+		  $("#mensaje_numero_calle_datos_laborales").fadeOut("slow");
+	    });
+	$( "#interseccion_datos_laborales" ).focus(function() {
+		  $("#mensaje_interseccion_datos_laborales").fadeOut("slow");
+	    });
+	$( "#referencia_direccion_trabajo_datos_laborales" ).focus(function() {
+		  $("#mensaje_referencia_direccion_trabajo_datos_laborales").fadeOut("slow");
+	    });
+	$( "#cedula_datos_conyuge" ).focus(function() {
+		  $("#mensaje_cedula_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#nombres_datos_conyuge" ).focus(function() {
+		  $("#mensaje_nombres_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#apellidos_datos_conyuge" ).focus(function() {
+		  $("#mensaje_apellidos_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#id_sexo_datos_conyuge" ).focus(function() {
+		  $("#mensaje_id_sexo_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#fecha_nacimiento_datos_conyuge" ).focus(function() {
+		  $("#mensaje_fecha_nacimiento_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#vive_residencia_datos_conyuge" ).focus(function() {
+		  $("#mensaje_vive_residencia_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#telefono_datos_conyuge" ).focus(function() {
+		  $("#mensaje_telefono_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#celular_datos_conyuge" ).focus(function() {
+		  $("#mensaje_celular_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#id_provincia_datos_conyuge" ).focus(function() {
+		  $("#mensaje_id_provincia_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#id_canton_datos_conyuge" ).focus(function() {
+		  $("#mensaje_id_canton_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#id_parroquia_datos_conyuge" ).focus(function() {
+		  $("#mensaje_id_parroquia_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#barrio_datos_conyuge" ).focus(function() {
+		  $("#mensaje_barrio_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#ciudadela_datos_conyuge" ).focus(function() {
+		  $("#mensaje_ciudadela_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#calle_datos_conyuge" ).focus(function() {
+		  $("#mensaje_calle_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#numero_calle_datos_conyuge" ).focus(function() {
+		  $("#mensaje_numero_calle_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#interseccion_datos_conyuge" ).focus(function() {
+		  $("#mensaje_interseccion_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#actividad_economica_datos_conyuge" ).focus(function() {
+		  $("#mensaje_actividad_economica_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#empresa_datos_conyuge" ).focus(function() {
+		  $("#mensaje_empresa_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#naturaleza_negocio_datos_conyuge" ).focus(function() {
+		  $("#mensaje_naturaleza_negocio_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#cargo_datos_conyuge" ).focus(function() {
+		  $("#mensaje_cargo_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#anios_laborados_datos_conyuge" ).focus(function() {
+		  $("#mensaje_anios_laborados_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#tipo_contrato_datos_conyuge" ).focus(function() {
+		  $("#mensaje_tipo_contrato_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#nombres_jefe_datos_conyuge" ).focus(function() {
+		  $("#mensaje_nombres_jefe_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#apellidos_jefe_datos_conyuge" ).focus(function() {
+		  $("#mensaje_apellidos_jefe_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#telefono_jefe_datos_conyuge" ).focus(function() {
+		  $("#mensaje_telefono_jefe_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#id_provincia_trabajo_datos_conyuge" ).focus(function() {
+		  $("#mensaje_id_provincia_trabajo_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#id_canton_trabajo_datos_conyuge" ).focus(function() {
+		  $("#mensaje_id_canton_trabajo_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#id_parroquia_trabajo_datos_conyuge" ).focus(function() {
+		  $("#mensaje_id_parroquia_trabajo_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#calle_trabajo_datos_conyuge" ).focus(function() {
+		  $("#mensaje_calle_trabajo_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#nuemero_calle_trabajo_datos_conyuge" ).focus(function() {
+		  $("#mensaje_nuemero_calle_trabajo_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#interseccion_trabajo_datos_conyuge" ).focus(function() {
+		  $("#mensaje_interseccion_trabajo_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#referencia_trabajo_datos_conyuge" ).focus(function() {
+		  $("#mensaje_referencia_trabajo_datos_conyuge").fadeOut("slow");
+	    });
+	$( "#actividad_principal_datos_independientes" ).focus(function() {
+		  $("#mensaje_actividad_principal_datos_independientes").fadeOut("slow");
+	    });
+	$( "#ruc_datos_independientes" ).focus(function() {
+		  $("#mensaje_ruc_datos_independientes").fadeOut("slow");
+	    });
+	$( "#detalle_actividades_datos_independientes" ).focus(function() {
+		  $("#mensaje_detalle_actividades_datos_independientes").fadeOut("slow");
+	    });
+	$( "#local_datos_independientes" ).focus(function() {
+		  $("#mensaje_local_datos_independientes").fadeOut("slow");
+	    });
+	$( "#nombres_propietario_datos_independientes" ).focus(function() {
+		  $("#mensaje_nombres_propietario_datos_independientes").fadeOut("slow");
+	    });
+	$( "#apellidos_propietario_datos_independientes" ).focus(function() {
+		  $("#mensaje_apellidos_propietario_datos_independientes").fadeOut("slow");
+	    });
+	$( "#telefono_propietario_datos_independientes" ).focus(function() {
+		  $("#mensaje_telefono_propietario_datos_independientes").fadeOut("slow");
+	    });
+	$( "#tiempo_funcionamiento_datos_independientes" ).focus(function() {
+		  $("#mensaje_tiempo_funcionamiento_datos_independientes").fadeOut("slow");
+	    });
+	$( "#numero_patronal_datos_independientes" ).focus(function() {
+		  $("#mensaje_numero_patronal_datos_independientes").fadeOut("slow");
+	    });
+	$( "#numero_empleados_datos_independientes" ).focus(function() {
+		  $("#mensaje_numero_empleados_datos_independientes").fadeOut("slow");
+	    });
+	$( "#id_bancos_referencia_bancaria" ).focus(function() {
+		  $("#mensaje_id_bancos_referencia_bancaria").fadeOut("slow");
+	    });
+	$( "#tipo_cuenta_referencia_bancaria" ).focus(function() {
+		  $("#mensaje_tipo_cuenta_referencia_bancaria").fadeOut("slow");
+	    });
+	$( "#numero_cuenta_referencia_bancaria" ).focus(function() {
+		  $("#mensaje_numero_cuenta_referencia_bancaria").fadeOut("slow");
+	    });
+
+
 
 

@@ -55,6 +55,7 @@ $controladores=$_SESSION['controladores'];
                     <ul class="nav child_menu">
                     <li style="<?php echo getcontrolador("Memos",$controladores) ?>"><a href="index.php?controller=Memos&action=index">Crear Memorandun</a></li>
                 	<li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index3">Solicitud Prestamo</a></li>
+                
                      </ul>
                  </li>
                   
@@ -139,6 +140,7 @@ $controladores=$_SESSION['controladores'];
                     <ul class="nav child_menu">
                        <li style="<?php echo getcontrolador("Memos",$controladores) ?>"><a href="index.php?controller=Memos&action=index">Crear Memorandun</a></li>
                 	   <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index5">Solicitud Prestamo</a></li>
+                	   	<li style="<?php echo getcontrolador("SolicitudHipotecario",$controladores) ?>"><a href="index.php?controller=SolicitudHipotecario&action=index">Solicitud Hipotecario</a></li>
                      </ul>
                  </li>
                   

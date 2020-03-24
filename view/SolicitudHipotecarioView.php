@@ -989,8 +989,8 @@
                 		<label for="vive_residencia_datos_conyuge" class="control-label">Vive en la Residencia:</label>
                     	<select name="vive_residencia_datos_conyuge" id="vive_residencia_datos_conyuge"  class="form-control">
                                       <option value="" selected="selected">--Seleccione--</option>
-                                      <option value="1">Si</option>
-        							  <option value="2">No</option>
+                                      <option value="Si">Si</option>
+        							  <option value="No">No</option>
         			    </select> 
                         <div id="mensaje_vive_residencia_datos_conyuge" class="errores"></div>
                  	</div>
@@ -2653,7 +2653,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
 
-<script src="view/js/SolicitudHipotecario.js?2.8"></script> 
+<script src="view/js/SolicitudHipotecario.js?2.9"></script> 
 
 	
   </body>
