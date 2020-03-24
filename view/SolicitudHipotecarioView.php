@@ -989,8 +989,8 @@
                 		<label for="vive_residencia_datos_conyuge" class="control-label">Vive en la Residencia:</label>
                     	<select name="vive_residencia_datos_conyuge" id="vive_residencia_datos_conyuge"  class="form-control">
                                       <option value="" selected="selected">--Seleccione--</option>
-                                      <option value="1">Si</option>
-        							  <option value="2">No</option>
+                                      <option value="Si">Si</option>
+        							  <option value="No">No</option>
         			    </select> 
                         <div id="mensaje_vive_residencia_datos_conyuge" class="errores"></div>
                  	</div>
@@ -2586,41 +2586,6 @@
      	  </div> 
      	  
      	  
-     	   <div class="panel panel-info">
-	         <div class="panel-heading">
-	         <h4><i class='glyphicon glyphicon-home'></i>Croquis</h4>
-	         </div>
-	         <div class="panel-body">
-	     
-	      <div class="row">
-                    		   
-             <table class="col-lg-12 col-md-12 col-xs-12 tablesorter table table-striped table-bordered dt-responsive nowrap">
-             
-             <tr>
-             <td>Domicilio</td>
-             <td>Negocio</td>
-             </tr>
-             <tr>
-                  <td>
-                  <input type="file" class="form-control" id="imagen_croquis_domicilio" name="imagen_croquis_domicilio" value="">
-                  <div id="mensaje_imagen_croquis_domicilio" class="errores"></div>
-                  </td>
-    		
-                  <td>
-                  <input type="file" class="form-control" id="imagen_croquis_otro_negocio" name="imagen_croquis_otro_negocio" value="">
-                  <div id="mensaje_imagen_croquis_otro_negocio" class="errores"></div>
-                  </td>
-    		 </tr>  
-    		 </table>  
-             
-            </div>
-	    
-	   
-	       
-	       
-	     
-	      </div>
-     	  </div> 
      	  
      	  
   			<div class="row">
@@ -2688,7 +2653,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
 
-<script src="view/js/SolicitudHipotecario.js?2.1"></script> 
+<script src="view/js/SolicitudHipotecario.js?2.9"></script> 
 
 	
   </body>
