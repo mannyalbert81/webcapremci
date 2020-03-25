@@ -100,7 +100,11 @@ $controladores=$_SESSION['controladores'];
 					   <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=estado_sep_2019" target="_blank">Estados Financieros al 30 de Septiembre del 2019</a></li>
 					   <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=estado_oct_2019" target="_blank">Estados Financieros al 31 de Octubre del 2019</a></li>
 					   <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=estado_nov_2019" target="_blank">Estados Financieros al 30 de Noviembre del 2019</a></li>
-					 
+					   
+					   <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=estado_dic_2019" target="_blank">Estados Financieros al 31 de Diciembre del 2019</a></li>
+					   
+					   <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=gestion_dic_2019" target="_blank">Informe de Gestión Diciembre 2019</a></li>
+					 <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=estado_ene_2020" target="_blank">Estados Financieros al 31 de Enero del 2020</a></li>
 					 
 					 
                         <li><a>Auditoria Nuñez Serrano Asociados<span class="fa fa-chevron-down"></span></a>
@@ -111,6 +115,20 @@ $controladores=$_SESSION['controladores'];
                             <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=dic_2014_Informe_Auditoría_Rubro" target="_blank">Informe de Auditoría al Rubro de Inversiones Privativas 31-12-2014</a></li>
                             </ul>
                         </li>
+                        
+                         <li><a>ACEVEDO & ASOCIADOS<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=2017_2016_2015_Informe_Auditores_Independientes" target="_blank">Informe de Auditoría año 2015, 2016 y 2017</a></li>
+                            </ul>
+                        </li>
+                        
+                        
+                         <li><a>AENA<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&fec=2018_Informe_Auditores_Independientes" target="_blank">Informe de Auditoría año 2018</a></li>
+                           </ul>
+                        </li>
+                        
                    </ul>
                   </li>
                   
@@ -127,8 +145,9 @@ $controladores=$_SESSION['controladores'];
                        <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&reg=reg_cre" target="_blank">Reglamento de Crédito</a></li>
                        <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&reg=reg_recau" target="_blank">Reglamento de Recaudaciones</a></li>
                      
+                      <li><a href="index.php?controller=SaldosCuentaIndividual&action=attachment&reg=reg_elec" target="_blank">Reglamento de Elecciones</a></li>
                      
-                     
+                    
                      
                      
                      </ul>

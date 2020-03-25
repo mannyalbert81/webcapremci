@@ -374,7 +374,7 @@
 
     	
     	
-    	 function cargarUsuarios(){
+    function cargarUsuarios(){
        	 
 		let $mod_id_nuevo_oficial = $("#mod_id_nuevo_oficial");
 		

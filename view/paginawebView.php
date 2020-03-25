@@ -54,18 +54,16 @@
              <p style="text-align: center;"><b>CONVOCATORIA A ELECCIONES PARA REPRESENTANTES DE LA ASAMBLEA GENERAL DEL FONDO COMPLEMENTARIO PREVISIONAL CERRADO DE CESANTÍA DE SERVIDORES Y TRABAJADORES PÚBLICOS DE FUERZAS ARMADAS – CAPREMCI</b>
 			</p> 
            </div>
-           <div class="modal-body">
-            
+           <div class="modal-body" style="text-align: center;" >
+            <img src="view/img/elecciones2.png" alt="" class="img-fluid">
 				
-			
 			<p style="text-align: justify;">
-			De conformidad con lo establecido en el Reglamento de Elecciones y toda vez que se ha dado cumplimiento a lo dispuesto en el marco jurídico aplicable LA  JUNTA  GENERAL ELECTORAL, legalmente nombrada el 8 de enero de 2020, en plenitud de sus facultades CONVOCA a las elecciones libres y voluntarias a los señores y señoras partícipes activos plenamente facultados para el proceso de elecciones a fin de ELEGIR a diecinueve (19) Representantes Principales y diecinueve (19) Representantes Suplentes que integrarán la Asamblea General de Representantes del FONDO COMPLEMENTARIO PREVISIONAL CERRADO DE CESANTÍA DE SERVIDORES Y TRABAJADORES PÚBLICOS DE FUERZAS ARMADAS – CAPREMCI, a desarrollarse el viernes 13 de marzo de 2020 desde las 08H00 hasta las 18H00 en las diferentes Juntas Receptoras del Voto previamente establecidas.
 			</p> 			  
-                
+            
                
                 			  
-			   <a href="documentos/CONVOCATORIA/Convocatoria Elecciones 13 marzo 2020.pdf" target="_blank" style="margin-left: 0px;" class="btn btn-primary" ><i class="glyphicon glyphicon-edit"> Conoce la Juntas Receptoras del Voto</i></a>
-    	     <a href="documentos/CONVOCATORIA/Requisitos para partícipes con derecho al voto y para ser candidatos.pdf" target="_blank" style="margin-left: 0px;" class="btn btn-info"><i class="glyphicon glyphicon-print">Conoce los Requisitos para el Derecho al Voto</i></a>
+			 <a href="documentos/CONVOCATORIA/CONVOCATORIA_ELECCIONES.pdf" target="_blank" style="margin-left: 0px;" class="btn btn-primary" ><i class="glyphicon glyphicon-edit"> Conoce la Convocatoria</i></a>
+    	     <a href="documentos/CONVOCATORIA/Requisitos para partícipes con derecho al voto y para ser candidatos.pdf" target="_blank" style="margin-left: 0px;" class="btn btn-info"><i class="glyphicon glyphicon-print">Conoce los Requisitos</i></a>
     	     
 			   
           </div>
@@ -906,7 +904,22 @@
 			     <li><i class="ion-ios-arrow-right"></i> <a href="documentos/SOLICITUD DE CRÉDITO HIPOTECARIO.pdf" target="_blank">Solicitud de Crédito Hipotecario</a></li>
               <li><i class="ion-ios-arrow-right"></i> <a href="documentos/SOLICITUD DE PRESTACIONES.pdf" target="_blank">Solicitud de Prestaciones</a></li>
             </ul>
+            
+            <br>
+            <div class="col-lg-12 col-md-12 footer-links">
+            <h4>Informe de Gestión</h4>
+            <ul>
+              <li><i class="ion-ios-arrow-right"></i> <a href="documentos/INFORMES DE GESTION/INFORME DE GESTION DIC-2019.pdf" target="_blank">Informe de Gestión Diciembre 2019</a></li>
+            </ul>
           </div>
+            
+          </div>
+          
+          
+        
+          
+          
+          
 		   <div class="col-lg-3 col-md-6 footer-links">
             <h4>Reglamentos</h4>
             <ul>

@@ -5110,6 +5110,59 @@ $_superavit = new SuperavitModel();
 				
 				
 				
+				if($fec=="2017_2016_2015_Informe_Auditores_Independientes"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/AUDITORIA EXTERNA 2015-2016-2017.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Informe de Auditoría ACEVEDO & ASOCIADOS año 2015-2016-2017'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
+				
+				
+				if($fec=="2018_Informe_Auditores_Independientes"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/AUDITORIA EXTERNA-2018.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Informe de Auditoría AENA año 2018'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
+				
+				
+				
 				if($fec=="estado_feb_2019"){
 				    
 				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
@@ -5363,6 +5416,90 @@ $_superavit = new SuperavitModel();
 				}
 				
 				
+				if($fec=="estado_dic_2019"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/ESTADO_DIC_2019.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Estados Financieros al 30 de Noviembre del 2019'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
+				
+				
+				
+				if($fec=="gestion_dic_2019"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/INFORMES DE GESTION/INFORME DE GESTION DIC-2019.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Informe de Gestión Diciembre 2019'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
+				
+				
+				if($fec=="estado_ene_2020"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/documentos/ESTADO_ENE_2020.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Estados Financieros al 31 de Enero de 2020'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
+				
+				
+				
+				
+				
+				
+				
 				
 				
 				
@@ -5590,6 +5727,30 @@ $_superavit = new SuperavitModel();
 				
 				
 				
+				if($reg=="reg_elec"){
+				    
+				    $directorio = $_SERVER ['DOCUMENT_ROOT'];
+				    
+				    $mi_pdf = $directorio.'/webcapremci/reglamentos/REGLAMENTO DE ELECCIONES.pdf';
+				    
+				    if(file_exists($mi_pdf))
+				    {
+				        $funcion = "consulta_documentos";
+				        $parametros = " '$id_usuarios', 'Reglamento de Elecciones'";
+				        $consulta_documentos->setFuncion($funcion);
+				        $consulta_documentos->setParametros($parametros);
+				        $resultado=$consulta_documentos->Insert();
+				        
+				        header('Content-type: application/pdf');
+				        header('Content-Disposition: inline; filename="'.$mi_pdf.'"');
+				        readfile($mi_pdf);
+				    }else
+				    {
+				        echo 'ESTIMADO PARTICIPE SE PRESENTAN INCONVENIENTES PARA ABRIR EL PDF, INTENTELO MAS TARDE.';
+				    }
+				    
+				    
+				}
 				
 				
 				
