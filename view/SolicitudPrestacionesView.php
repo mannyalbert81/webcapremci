@@ -198,7 +198,7 @@
           		<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
                 		<label for="fecha_nacimiento_solicitud_prestaciones" class="control-label">Fecha de Nacimiento:</label>
-                    	<input type="date" data-inputmask="'mask': '9999999999'" class="form-control" id="fecha_nacimiento_solicitud_prestaciones" name="fecha_nacimiento_solicitud_prestaciones" value="<?php echo $resEdit->fecha_nacimiento_solicitud_prestaciones; ?>">
+                    	<input type="date" class="form-control" id="fecha_nacimiento_solicitud_prestaciones" name="fecha_nacimiento_solicitud_prestaciones" value="<?php echo $resEdit->fecha_nacimiento_solicitud_prestaciones; ?>">
                         <div id="mensaje_fecha_nacimiento_solicitud_prestaciones" class="errores"></div>
                  	</div>
              	</div>
@@ -421,7 +421,7 @@
              	<div class="col-lg-2 col-xs-12 col-md-2">
                  <div class="form-group">
                                                       <label for="numero_codigo_verificacion" class="control-label">Código Verificación:</label>
-                                                      <input type="number" class="form-control" id="numero_codigo_verificacion" name="numero_codigo_verificacion" value="" placeholder="sms.." value="<?php echo $resEdit->numero_codigo_verificacion; ?>" readonly>
+                                                      <input type="number" class="form-control" id="numero_codigo_verificacion" name="numero_codigo_verificacion"  placeholder="sms.." value="<?php echo $resEdit->numero_codigo_verificacion; ?>" readonly>
                                                       <input type="hidden" class="form-control" id="id_codigo_verificacion" name="id_codigo_verificacion" value="<?php echo $resEdit->id_codigo_verificacion; ?>" readonly>
                                                      
                                                       <div id="mensaje_numero_codigo_verificacion" class="errores"></div>
@@ -760,7 +760,7 @@
           		<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
                 		<label for="fecha_nacimiento_solicitud_prestaciones" class="control-label">Fecha de Nacimiento:</label>
-                    	<input type="date" data-inputmask="'mask': '9999999999'" class="form-control" id="fecha_nacimiento_solicitud_prestaciones" name="fecha_nacimiento_solicitud_prestaciones" >
+                    	<input type="date"  class="form-control" id="fecha_nacimiento_solicitud_prestaciones" name="fecha_nacimiento_solicitud_prestaciones" >
                         <div id="mensaje_fecha_nacimiento_solicitud_prestaciones" class="errores"></div>
                  	</div>
              	</div>

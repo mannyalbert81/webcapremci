@@ -61,32 +61,61 @@ $controladores=$_SESSION['controladores'];
                  </li>
                   
                   
+                  
+                  
+                  
+                  
+                  
                   <li  style="<?php echo getcontrolador("MenuServiciosLinea",$controladores) ?>"  ><a    ><i class="fa fa-bars"></i> Servicios en Linea <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li style="<?php echo getcontrolador("SaldosCuentaIndividual",$controladores) ?>"><a href="index.php?controller=SaldosCuentaIndividual&action=index">Consulta de Saldos Cuenta Individual y Créditos</a></li>
-                      <!--<li style="<?php echo getcontrolador("Usuarios",$controladores) ?>"><a href="index.php?controller=Usuarios&action=resetear_clave">Solicita tu clave personal</a></li>-->
+                     <li style="<?php echo getcontrolador("SaldosCuentaIndividual",$controladores) ?>"><a href="index.php?controller=SaldosCuentaIndividual&action=index">Consulta de Saldos Cuenta Individual y Créditos</a></li>
                      <li style="<?php echo getcontrolador("SimuladorCredito",$controladores) ?>"><a href="http://186.4.157.125/rp_c/index.php?controller=CargarParticipes&action=index&cedula=<?php echo $cedula_usuarios;?>"  target="_blank">Simulador de Crédito</a></li>
                      
-					 <!--<li style="<?php echo getcontrolador("SimuladorCredito",$controladores) ?>"><a href="http://186.4.157.125/rp_c/index.php?controller=CargarParticipes&action=index&cedula=<?php echo $_SESSION['cedula_usuarios'];?>"  target="_blank">Simulador de Crèdito</a></li>-->
+					
+						<li><a>Solicitudes<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                          	 <li><a>Prestamos<span class="fa fa-chevron-down"></span></a>
+                          		<ul class="nav child_menu">
+                           		 <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index">Quirografario</a></li>
+                              </ul>
+                        	</li>
+                           <li style="<?php echo getcontrolador("SolicitudPrestaciones",$controladores) ?>"><a href="index.php?controller=SolicitudPrestaciones&action=index">Prestaciones</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li><a>Consulta Solicitudes<span class="fa fa-chevron-down"></span></a>
+                           <ul class="nav child_menu">
+                          	 <li><a>Prestamos<span class="fa fa-chevron-down"></span></a>
+                          		<ul class="nav child_menu">
+                           		  <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index2">Quirografario</a></li>
+						 </ul>
+                        	</li>
+                            <li style="<?php echo getcontrolador("SolicitudPrestaciones",$controladores) ?>"><a href="index.php?controller=SolicitudPrestaciones&action=index2">Prestaciones</a></li>
+						 </ul>
+                        </li>
+						
+						
+						
+						
+						
+						
+						 <!--<li style="<?php echo getcontrolador("SimuladorCredito",$controladores) ?>"><a href="http://186.4.157.125/rp_c/index.php?controller=CargarParticipes&action=index&cedula=<?php echo $_SESSION['cedula_usuarios'];?>"  target="_blank">Simulador de Crèdito</a></li>-->
                       <!--<li style="<?php echo getcontrolador("SimuladorCredito",$controladores) ?>"><a href="index.php?controller=SimuladorCredito&action=index">Simulador de Crédito</a></li>-->
-                       <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index">Generar Solicitud Préstamo</a></li>
-                       <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index2">Consultar Solicitud Préstamo</a></li>
-						
-						
-						
-						
-						<li style="<?php echo getcontrolador("SolicitudPrestaciones",$controladores) ?>"><a href="index.php?controller=SolicitudPrestaciones&action=index">Generar Solicitud Prestación</a></li>
-                       <li style="<?php echo getcontrolador("SolicitudPrestaciones",$controladores) ?>"><a href="index.php?controller=SolicitudPrestaciones&action=index2">Consultar Solicitud Prestación</a></li>
-						
-						
-						
-						
-						
-						
+                     <!--<li style="<?php echo getcontrolador("Usuarios",$controladores) ?>"><a href="index.php?controller=Usuarios&action=resetear_clave">Solicita tu clave personal</a></li>-->
+                     
+
 						
 						<li style="<?php echo getcontrolador("ConsultaTramites",$controladores) ?>"><a href="index.php?controller=ConsultaTramites&action=index">Consulta Trámites</a></li>
                       </ul>
                   </li>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
                   
                   
                     <li ><a    ><i class="fa fa-file-o"></i> Documentos <span class="fa fa-chevron-down"></span></a>

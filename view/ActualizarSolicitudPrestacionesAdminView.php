@@ -127,23 +127,24 @@
       
          <?php if ($resultEdit !="" ) { foreach($resultEdit as $resEdit) {?>
          
-        
-         
-         
-            
+             
+             
              <div class="panel panel-info">
-	         <div class="panel-heading">
-	         <h4><i class='glyphicon glyphicon-user'></i> Datos Personales</h4>
-	         </div>
-	         <div class="panel-body">
-	         
-	          <div class="row">
-	         <div class="col-lg-2 col-xs-12 col-md-2">
-                    		    <div class="form-group">
-                                                      <label for="id_sucursales" class="control-label">Sucursal a Tramitar:</label>
-                                                       <select name="id_sucursales" id="id_sucursales"  class="form-control" disabled>
-                                                          <option value="<?php echo $resEdit->id_tipo_creditos; ?>" selected="selected"></option>
-                        									
+             <div class="panel-heading">
+             <h4><i class='glyphicon glyphicon-user'></i> Datos Personales</h4>
+             </div>
+             <div class="panel-body">
+             
+             <div class="row">
+             <div class="col-lg-2 col-xs-12 col-md-2">
+             <div class="form-group">
+             <label for="id_sucursales" class="control-label">Sucursal a Tramitar:</label>
+             <select name="id_sucursales" id="id_sucursales"  class="form-control" disabled>
+             <option value="0" selected="selected">--Seleccione--</option>
+             <?php foreach($resultSucursales as $res) {?>
+                        										<option value="<?php echo $res->id_sucursales; ?>" <?php if ($res->id_sucursales == $resEdit->id_sucursales ){  echo  ' selected="selected" '  ;}  ?> ><?php echo $res->nombre_sucursales; ?> </option>
+                        							        
+                        							        <?php } ?>	
                         							   </select> 
                                                       <div id="mensaje_id_sucursales" class="errores"></div>
                                 </div>
@@ -178,7 +179,13 @@
             		    					  
                           <label for="id_sexo" class="control-label">Género:</label>
                           <select  class="form-control" id="id_sexo" name="id_sexo">
-                          	<option value="<?php echo $resEdit->id_sexo; ?>" selected="selected"></option>
+                          	   <option value="0" selected="selected">--Seleccione--</option>
+                        								
+                          	 <?php foreach($resultGenero as $res) {?>
+                        		<option value="<?php echo $res->id_sexo; ?>" <?php if ($res->id_sexo == $resEdit->id_sexo ){  echo  ' selected="selected" '  ;}  ?>><?php echo $res->nombre_sexo; ?> </option>
+                        							        
+                        	<?php } ?>
+                          	
                           </select>                         
                           <div id="mensaje_id_sexo" class="errores"></div>
                         </div>
@@ -190,7 +197,7 @@
           		<div class="col-xs-6 col-md-3 col-lg-3 ">
             		<div class="form-group">
                 		<label for="fecha_nacimiento_solicitud_prestaciones" class="control-label">Fecha de Nacimiento:</label>
-                    	<input type="date" data-inputmask="'mask': '9999999999'" class="form-control" id="fecha_nacimiento_solicitud_prestaciones" name="fecha_nacimiento_solicitud_prestaciones" value="<?php echo $resEdit->fecha_nacimiento_solicitud_prestaciones; ?>">
+                    	<input type="date" class="form-control" id="fecha_nacimiento_solicitud_prestaciones" name="fecha_nacimiento_solicitud_prestaciones" value="<?php echo $resEdit->fecha_nacimiento_solicitud_prestaciones; ?>">
                         <div id="mensaje_fecha_nacimiento_solicitud_prestaciones" class="errores"></div>
                  	</div>
              	</div>
@@ -199,7 +206,13 @@
             		    					  
                           <label for="id_estado_civil" class="control-label">Estado Civil:</label>
                           <select  class="form-control" id="id_estado_civil" name="id_estado_civil">
-                          	<option value="<?php echo $resEdit->id_estado_civil; ?>" selected="selected"></option>
+                          
+                             <option value="0" selected="selected">--Seleccione--</option>
+                        								
+                          		<?php foreach($resultEstadoCivil as $res) {?>
+                        										<option value="<?php echo $res->id_estado_civil; ?>" <?php if ($res->id_estado_civil == $resEdit->id_estado_civil ){  echo  ' selected="selected" '  ;}  ?> ><?php echo $res->nombre_estado_civil; ?> </option>
+                        							        
+                        							        <?php } ?>
                           </select>                         
                           <div id="mensaje_id_estado_civil" class="errores"></div>
                         </div>
@@ -246,7 +259,11 @@
             		    					  
                           <label for="id_provincias" class="control-label">Provincias:</label>
                           <select  class="form-control" id="id_provincias" name="id_provincias">
-                          	<option value="<?php echo $resEdit->id_provincias; ?>" selected="selected"></option>
+                          	<option value="0" selected="selected">--Seleccione--</option>
+                          	<?php foreach($resultProvincias as $res) {?>
+                        										<option value="<?php echo $res->id_provincias; ?>" <?php if ($res->id_provincias == $resEdit->id_provincias ){  echo  ' selected="selected" '  ;}  ?> ><?php echo $res->nombre_provincias; ?> </option>
+                        							        
+                        							        <?php } ?>
                           </select>                         
                           <div id="mensaje_id_provincias" class="errores"></div>
                         </div>
@@ -257,7 +274,11 @@
             		    					  
                           <label for="id_cantones" class="control-label">Cantones:</label>
                           <select  class="form-control" id="id_cantones" name="id_cantones">
-                          	<option value="<?php echo $resEdit->id_cantones; ?>" selected="selected"></option>
+                          	<option value="0" selected="selected">--Seleccione--</option>
+                          	<?php foreach($resultCantones as $res) {?>
+                        										<option value="<?php echo $res->id_cantones; ?>" <?php if ($res->id_cantones == $resEdit->id_cantones ){  echo  ' selected="selected" '  ;}  ?> ><?php echo $res->nombre_cantones; ?> </option>
+                        							        
+                        							        <?php } ?>
                           </select>                         
                           <div id="mensaje_id_cantones" class="errores"></div>
                         </div>
@@ -268,7 +289,12 @@
             		    					  
                           <label for="id_parroquias" class="control-label">Parroquias:</label>
                           <select  class="form-control" id="id_parroquias" name="id_parroquias">
-                          	<option value="<?php echo $resEdit->id_parroquias; ?>" selected="selected"></option>
+                          	<option value="0" selected="selected">--Seleccione--</option>
+                          	<?php foreach($resultParroquias as $res) {?>
+                        										<option value="<?php echo $res->id_parroquias; ?>" <?php if ($res->id_parroquias == $resEdit->id_parroquias ){  echo  ' selected="selected" '  ;}  ?> ><?php echo $res->nombre_parroquias; ?> </option>
+                        							        
+                        							        <?php } ?>
+                          	
                           </select>                         
                           <div id="mensaje_id_parroquias" class="errores"></div>
                         </div>
@@ -394,7 +420,7 @@
              	<div class="col-lg-2 col-xs-12 col-md-2">
                  <div class="form-group">
                                                       <label for="numero_codigo_verificacion" class="control-label">Código Verificación:</label>
-                                                      <input type="number" class="form-control" id="numero_codigo_verificacion" name="numero_codigo_verificacion" value="" placeholder="sms.." value="<?php echo $resEdit->numero_codigo_verificacion; ?>" readonly>
+                                                      <input type="number" class="form-control" id="numero_codigo_verificacion" name="numero_codigo_verificacion"  placeholder="sms.." value="<?php echo $resEdit->numero_codigo_verificacion; ?>" readonly>
                                                       <input type="hidden" class="form-control" id="id_codigo_verificacion" name="id_codigo_verificacion" value="<?php echo $resEdit->id_codigo_verificacion; ?>" readonly>
                                                      
                                                       <div id="mensaje_numero_codigo_verificacion" class="errores"></div>
@@ -587,7 +613,11 @@
             		    					  
                           <label for="id_bancos" class="control-label">Banco:</label>
                           <select  class="form-control" id="id_bancos" name="id_bancos">
-                          	<option value="<?php echo $resEdit->id_bancos; ?>" selected="selected"></option>
+                          	<option value="0" selected="selected">--Seleccione--</option>
+                          	 	<?php foreach($resultBancos as $res) {?>
+                        										<option value="<?php echo $res->id_bancos; ?>" <?php if ($res->id_bancos == $resEdit->id_bancos ){  echo  ' selected="selected" '  ;}  ?> ><?php echo $res->nombre_bancos; ?> </option>
+                        							        
+                        							        <?php } ?>
                           </select>                         
                           <div id="mensaje_id_bancos" class="errores"></div>
                         </div>

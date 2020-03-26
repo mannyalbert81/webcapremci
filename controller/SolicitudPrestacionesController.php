@@ -1284,7 +1284,7 @@ class SolicitudPrestacionesController extends ControladorBase{
                     $resultado1=$SolicitudPrestaciones->UpdateBy($colval_afi, $tabla_afi, $where_afi);
                     
                     
-                    $this->redirect("SolicitudPrestamo", "index3");
+                    $this->redirect("SolicitudPrestaciones", "index3");
                     
                 }
                 
@@ -1540,6 +1540,33 @@ class SolicitudPrestacionesController extends ControladorBase{
             $SolicitudPrestaciones = new SolicitudPrestacionesModel();
             
             
+            
+            $sucursales = new SucursalesModel();
+            $resultSucursales= $sucursales->getAll("nombre_sucursales");
+            
+            
+            $genero = new SexoModel();
+            $resultGenero= $genero->getAll("nombre_sexo");
+            
+            
+            $estado_civil = new Estado_civilModel();
+            $resultEstadoCivil= $estado_civil->getAll("nombre_estado_civil");
+            
+            $provincias = new ProvinciasModel();
+            $resultProvincias= $provincias->getAll("nombre_provincias");
+            
+            $cantones = new CantonesModel();
+            $resultCantones= $cantones->getAll("nombre_cantones");
+            
+            
+            $parroquias = new ParroquiasModel();
+            $resultParroquias= $parroquias->getAll("nombre_parroquias");
+            
+            $banco = new BancosModel();
+            $resultBancos= $banco->getAll("nombre_bancos");
+            
+            
+            
             $nombre_controladores = "SolicitudPrestaciones";
             $id_rol= $_SESSION['id_rol'];
             $resultPer = $SolicitudPrestaciones->getPermisosVer("controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
@@ -1590,7 +1617,9 @@ class SolicitudPrestacionesController extends ControladorBase{
                 
                 
                 $this->view("ActualizarSolicitudPrestacionesAdmin",array(
-                    "resultEdit"=>$resultEdit, "cedula"=>$cedula, "nombres"=>$nombres, "correo"=>$correo
+                    "resultEdit"=>$resultEdit, "cedula"=>$cedula, "nombres"=>$nombres, "correo"=>$correo,
+                    "resultSucursales"=>$resultSucursales, "resultGenero"=>$resultGenero, "resultEstadoCivil"=>$resultEstadoCivil, "resultProvincias"=>$resultProvincias,
+                    "resultCantones"=>$resultCantones, "resultParroquias"=>$resultParroquias, "resultBancos"=>$resultBancos
                 ));
                 
                 die();
@@ -2171,6 +2200,7 @@ class SolicitudPrestacionesController extends ControladorBase{
                       solicitud_prestaciones.segundo_telefono_referencia_personal,
                       solicitud_prestaciones.ultimo_cargo_solicitud_prestaciones,
                       solicitud_prestaciones.fecha_salida_solicitud_prestaciones,
+                      solicitud_prestaciones.tipo_cuenta_bancaria,
                       bancos.id_bancos,
                       bancos.nombre_bancos,
                       solicitud_prestaciones.numero_cuenta_bancaria,
@@ -2234,6 +2264,7 @@ class SolicitudPrestacionesController extends ControladorBase{
         $datos_reporte['SEXO']=$rsdatos[0]->nombre_sexo;
         $datos_reporte['NUMERO_CUENTA']=$rsdatos[0]->numero_cuenta_bancaria;
         $datos_reporte['FECHA_SOLICITADA']=$rsdatos[0]->creado;
+        $datos_reporte['TIPO_CUENTA']=$rsdatos[0]->tipo_cuenta_bancaria;
         
         $fechalarga=$rsdatos[0]->creado;
         $fecha=date("Y", $fechalarga);
