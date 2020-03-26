@@ -18,6 +18,23 @@ class SolicitudPrestacionesController extends ControladorBase{
         {
             $SolicitudPrestaciones = new SolicitudPrestacionesModel();
              
+            
+            
+            
+            $sucursales = new SucursalesModel();
+            $resultSucursales= $sucursales->getAll("nombre_sucursales");
+            
+            
+            $genero = new SexoModel();
+            $resultGenero= $genero->getAll("nombre_sexo");
+            
+            
+            $estado_civil = new Estado_civilModel();
+            $resultEstadoCivil= $estado_civil->getAll("nombre_estado_civil");
+            
+            
+            
+            
             $nombre_controladores = "SolicitudPrestaciones";
             $id_rol= $_SESSION['id_rol'];
             $resultPer = $SolicitudPrestaciones->getPermisosVer("   controladores.nombre_controladores = '$nombre_controladores' AND permisos_rol.id_rol = '$id_rol' " );
@@ -54,7 +71,8 @@ class SolicitudPrestacionesController extends ControladorBase{
                     
                     
                     $this->view("SolicitudPrestaciones",array(
-                        "resultEdit"=>$resultEdit, "cedula"=>$cedula, "nombres"=>$nombres, "correo"=>$correo
+                        "resultEdit"=>$resultEdit, "cedula"=>$cedula, "nombres"=>$nombres, "correo"=>$correo,
+                        "resultSucursales"=>$resultSucursales, "resultGenero"=>$resultGenero, "resultEstadoCivil"=>$resultEstadoCivil
                     ));
                     
                     die();
@@ -72,7 +90,8 @@ class SolicitudPrestacionesController extends ControladorBase{
                     
                     $this->view("SolicitudPrestaciones",array(
                         
-                        "resultEdit"=>$resultEdit, "cedula"=>$cedula, "nombres"=>$nombres, "correo"=>$correo
+                        "resultEdit"=>$resultEdit, "cedula"=>$cedula, "nombres"=>$nombres, "correo"=>$correo,
+                        "resultSucursales"=>$resultSucursales, "resultGenero"=>$resultGenero, "resultEstadoCivil"=>$resultEstadoCivil
                     ));
                         
                         die();
@@ -1528,10 +1547,16 @@ class SolicitudPrestacionesController extends ControladorBase{
                 $resultEdit="";
                 
                 if(isset($_GET["id_solicitud_prestaciones"])){
-                    
-                    
+                   
                     
                     $_id_solicitud_prestaciones= $_GET["id_solicitud_prestaciones"];
+                    
+                    
+                    $colval_afi = "id_estado_tramites=4";
+                    $tabla_afi = "solicitud_prestaciones";
+                    $where_afi = "id_solicitud_prestaciones = '$_id_solicitud_prestaciones'";
+                    $resultado1=$SolicitudPrestaciones->UpdateBy($colval_afi, $tabla_afi, $where_afi);
+                    
                     
                     $columnas="solicitud_prestaciones.*,
                             codigo_verificacion.id_codigo_verificacion,
@@ -2195,9 +2220,10 @@ class SolicitudPrestacionesController extends ControladorBase{
         $datos_reporte['NUMERO_CUENTA']=$rsdatos[0]->numero_cuenta_bancaria;
         $datos_reporte['FECHA_SOLICITADA']=$rsdatos[0]->creado;
         
+        $fechalarga=$rsdatos[0]->creado;
+        $fecha=date("Y", $fechalarga);
         
-        
-        
+        $datos_reporte['FECHA_SOLI']=$fecha;
         
         
         $this->verReporte("SolicitudPrestaciones", array('datos_reporte'=>$datos_reporte ));

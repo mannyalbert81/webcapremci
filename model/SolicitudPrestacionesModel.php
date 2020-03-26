@@ -38,7 +38,7 @@ class SolicitudPrestacionesModel extends ModeloBase{
 	
 	
 	public function __construct(){
-		$this->table="SolicitudPrestaciones";
+		$this->table="solicitud_prestaciones";
 		
 		parent::__construct($this->table);
 	}

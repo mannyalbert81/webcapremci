@@ -141,8 +141,11 @@
                     		    <div class="form-group">
                                                       <label for="id_sucursales" class="control-label">Sucursal a Tramitar:</label>
                                                        <select name="id_sucursales" id="id_sucursales"  class="form-control" disabled>
-                                                          <option value="<?php echo $resEdit->id_tipo_creditos; ?>" selected="selected"></option>
-                        									
+                                                         <option value="0" selected="selected">--Seleccione--</option>
+                        									<?php foreach($resultSucursales as $res) {?>
+                        										<option value="<?php echo $res->id_sucursales; ?>" <?php if ($res->id_sucursales == $resEdit->id_sucursales ){  echo  ' selected="selected" '  ;}  ?> ><?php echo $res->nombre_sucursales; ?> </option>
+                        							        
+                        							        <?php } ?>	
                         							   </select> 
                                                       <div id="mensaje_id_sucursales" class="errores"></div>
                                 </div>
@@ -177,7 +180,13 @@
             		    					  
                           <label for="id_sexo" class="control-label">Género:</label>
                           <select  class="form-control" id="id_sexo" name="id_sexo">
-                          	<option value="<?php echo $resEdit->id_sexo; ?>" selected="selected"></option>
+                          	   <option value="0" selected="selected">--Seleccione--</option>
+                        								
+                          	 <?php foreach($resultGenero as $res) {?>
+                        		<option value="<?php echo $res->id_sexo; ?>" <?php if ($res->id_sexo == $resEdit->id_sexo ){  echo  ' selected="selected" '  ;}  ?>><?php echo $res->nombre_sexo; ?> </option>
+                        							        
+                        	<?php } ?>
+                          	
                           </select>                         
                           <div id="mensaje_id_sexo" class="errores"></div>
                         </div>
@@ -672,6 +681,10 @@
                                                       <label for="id_sucursales" class="control-label">Sucursal a Tramitar:</label>
                                                        <select name="id_sucursales" id="id_sucursales"  class="form-control">
                                                           <option value="0">--Seleccione--</option>
+                                                          <?php foreach($resultSucursales as $res) {?>
+                        										<option value="<?php echo $res->id_sucursales; ?>" ><?php echo $res->nombre_sucursales; ?> </option>
+                        							        
+                        							        <?php } ?>
                         									
                         							   </select> 
                                                       <div id="mensaje_id_sucursales" class="errores"></div>
@@ -708,6 +721,11 @@
                           <label for="id_sexo" class="control-label">Género:</label>
                           <select  class="form-control" id="id_sexo" name="id_sexo">
                           	<option value="0">--Seleccione--</option>
+                          	 <?php foreach($resultGenero as $res) {?>
+                        		<option value="<?php echo $res->id_sexo; ?>" ><?php echo $res->nombre_sexo; ?> </option>
+                        							        
+                        	<?php } ?>
+                          	
                           </select>                         
                           <div id="mensaje_id_sexo" class="errores"></div>
                         </div>
@@ -729,6 +747,11 @@
                           <label for="id_estado_civil" class="control-label">Estado Civil:</label>
                           <select  class="form-control" id="id_estado_civil" name="id_estado_civil">
                           	<option value="0">--Seleccione--</option>
+                          	<?php foreach($resultEstadoCivil as $res) {?>
+                        										<option value="<?php echo $res->id_estado_civil; ?>" ><?php echo $res->nombre_estado_civil; ?> </option>
+                        							        
+                        							        <?php } ?>
+                          	
                           </select>                         
                           <div id="mensaje_id_estado_civil" class="errores"></div>
                         </div>
@@ -1211,7 +1234,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
 
-<script src="view/js/SolicitudPrestaciones.js?2.1"></script> 
+<script src="view/js/SolicitudPrestaciones.js?2.2"></script> 
 
 	
   </body>
