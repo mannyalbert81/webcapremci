@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+	cargaSucursales();
 	cargaGenero();
 	cargaEstadoCivil();
 	cargaProvincias();
@@ -71,6 +71,42 @@ function cargaEstadoCivil(){
 	})
 	
 }
+
+
+
+
+
+function cargaSucursales(){
+	
+	let $ddlSucursales = $("#id_sucursales");
+
+	
+	$.ajax({
+		beforeSend:function(){},
+		url:"index.php?controller=SolicitudPrestaciones&action=cargaSucursales",
+		type:"POST",
+		dataType:"json",
+		data:null
+	}).done(function(datos){		
+		
+		$ddlSucursales.empty();
+		$ddlSucursales.append("<option value='0' >--Seleccione--</option>");
+		
+		$.each(datos.data, function(index, value) {
+			$ddlSucursales.append("<option value= " +value.id_sucursales +" >" + value.nombre_sucursales  + "</option>");	
+  		});
+		
+	}).fail(function(xhr,status,error){
+		var err = xhr.responseText
+		console.log(err)
+		$ddlSucursales.empty();
+		$ddlSucursales.append("<option value='0' >--Seleccione--</option>");
+		
+	})
+	
+}
+
+
 
 
 function limpiar(){
@@ -315,7 +351,8 @@ $("#Guardar").click(function() {
 	
 	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
 	var validaFecha = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})/;
-	
+	 var id_sucursales                                  = $("#id_sucursales").val();
+	 
 	var cedula_participes  = $("#cedula_participes").val();
 	var nombres_solicitud_prestaciones  = $("#nombres_solicitud_prestaciones").val();
 	var apellidos_solicitud_prestaciones  = $("#apellidos_solicitud_prestaciones").val();
@@ -348,16 +385,35 @@ $("#Guardar").click(function() {
 	var ultimo_cargo_solicitud_prestaciones  = $("#ultimo_cargo_solicitud_prestaciones").val();
 	var fecha_salida_solicitud_prestaciones  = $("#fecha_salida_solicitud_prestaciones").val();
 	var id_bancos  = $("#id_bancos").val();
-	var numero_cuenta_ahorros_bancaria  = $("#numero_cuenta_ahorros_bancaria").val();
-	var numero_cuenta_corriente_bancaria  = $("#numero_cuenta_corriente_bancaria").val();
+	var tipo_cuenta_bancaria  = $("#tipo_cuenta_bancaria").val();
+	var numero_cuenta_bancaria  = $("#numero_cuenta_bancaria").val();
 	var id_codigo_verificacion        			     = $("#id_codigo_verificacion").val();
 	var numero_codigo_verificacion                     = $("#numero_codigo_verificacion").val();
-	
+	 var tiempo = tiempo || 1000;
+	  
+	 
+	 if (id_sucursales == 0)
+ 	{
+	    	
+ 		$("#mensaje_id_sucursales").text("Seleccione Sucursal");
+ 		$("#mensaje_id_sucursales").fadeIn("slow"); //Muestra mensaje de error
+ 		 
+ 		 $("html, body").animate({ scrollTop: $(mensaje_id_sucursales).offset().top }, tiempo);
+ 		 return false;
+        
+	    }
+ 	else 
+ 	{
+ 		$("#mensaje_id_sucursales").fadeOut("slow"); //Muestra mensaje de error
+         
+		} 
 
 	if (cedula_participes  == "")
 	{    	
 		$("#mensaje_cedula_participes").text("Ingrese un número de cédula");
 		$("#mensaje_cedula_participes").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_cedula_participes).offset().top }, tiempo);
+          
         return false
     }    
 	
@@ -373,7 +429,9 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_nombres_solicitud_prestaciones").text("Ingrese los  Nombres");
 		$("#mensaje_nombres_solicitud_prestaciones").fadeIn("slow"); //Muestra mensaje de error
-        return false
+		$("html, body").animate({ scrollTop: $(mensaje_nombres_solicitud_prestaciones).offset().top }, tiempo);
+        
+		return false
     }    
 	
 	else
@@ -388,7 +446,9 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_apellidos_solicitud_prestaciones").text("Ingrese los Apellidos");
 		$("#mensaje_apellidos_solicitud_prestaciones").fadeIn("slow"); //Muestra mensaje de error
-        return false
+		$("html, body").animate({ scrollTop: $(mensaje_apellidos_solicitud_prestaciones).offset().top }, tiempo);
+        
+		return false
     }    
 	
 	else
@@ -403,6 +463,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_id_sexo").text("Ingrese un Género");
 		$("#mensaje_id_sexo").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_id_sexo).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -418,6 +480,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_fecha_nacimiento_solicitud_prestaciones").text("Ingrese una Fecha");
 		$("#mensaje_fecha_nacimiento_solicitud_prestaciones").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_fecha_nacimiento_solicitud_prestaciones).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -433,6 +497,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_id_estado_civil").text("Ingrese un Estado");
 		$("#mensaje_id_estado_civil").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_id_estado_civil).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -448,6 +514,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_correo_solicitud_prestaciones").text("Ingrese un E-mail");
 		$("#mensaje_correo_solicitud_prestaciones").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_correo_solicitud_prestaciones).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -463,6 +531,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_nivel_educativo_solicitud_prestaciones").text("Ingrese un Nivel");
 		$("#mensaje_nivel_educativo_solicitud_prestaciones").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_nivel_educativo_solicitud_prestaciones).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -479,6 +549,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_id_provincias").text("Ingrese una Provincias");
 		$("#mensaje_id_provincias").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_id_provincias).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -493,6 +565,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_id_cantones").text("Ingrese un Cantón");
 		$("#mensaje_id_cantones").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_id_cantones).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -507,6 +581,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_id_parroquias").text("Ingrese una Parroquia");
 		$("#mensaje_id_parroquias").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_id_parroquias).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -521,6 +597,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_barrio_solicitud_prestaciones").text("Ingrese Barrio");
 		$("#mensaje_barrio_solicitud_prestaciones").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_barrio_solicitud_prestaciones).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -535,6 +613,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_ciudadela_solicitud_prestaciones").text("Ingrese una Ciudadela");
 		$("#mensaje_ciudadela_solicitud_prestaciones").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_ciudadela_solicitud_prestaciones).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -549,6 +629,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_calle_solicitud_prestaciones").text("Ingrese una Calle");
 		$("#mensaje_calle_solicitud_prestaciones").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_calle_solicitud_prestaciones).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -564,6 +646,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_numero_calle_solicitud_prestaciones").text("Ingrese un número de calle");
 		$("#mensaje_numero_calle_solicitud_prestaciones").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_numero_calle_solicitud_prestaciones).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -579,6 +663,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_interseccion_solicitud_prestaciones").text("Ingrese una Intersección");
 		$("#mensaje_interseccion_solicitud_prestaciones").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_interseccion_solicitud_prestaciones).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -594,6 +680,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_tipo_vivienda_solicitud_prestaciones").text("Ingrese una Tipo de Vivienda");
 		$("#mensaje_tipo_vivienda_solicitud_prestaciones").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_tipo_vivienda_solicitud_prestaciones).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -609,6 +697,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_vivienda_hipotecada_solicitud_prestaciones").text("Eliga una Opción");
 		$("#mensaje_vivienda_hipotecada_solicitud_prestaciones").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_vivienda_hipotecada_solicitud_prestaciones).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -624,6 +714,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_referencia_dir_solicitud_prestaciones").text("Ingrese una Referencia");
 		$("#mensaje_referencia_dir_solicitud_prestaciones").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_referencia_dir_solicitud_prestaciones).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -639,6 +731,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_telefono_solicitud_prestaciones").text("Ingrese una numero Teléfono");
 		$("#mensaje_telefono_solicitud_prestaciones").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_telefono_solicitud_prestaciones).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -735,6 +829,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_nombres_referencia_familiar").text("Ingrese un nombre");
 		$("#mensaje_nombres_referencia_familiar").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_nombres_referencia_familiar).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -750,6 +846,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_apellidos_referencia_familiar").text("Ingrese un apellido");
 		$("#mensaje_apellidos_referencia_familiar").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_apellidos_referencia_familiar).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -765,6 +863,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_parentesco_referencia_familiar").text("Ingrese un parentesco");
 		$("#mensaje_parentesco_referencia_familiar").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_parentesco_referencia_familiar).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -780,6 +880,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_primer_telefono_referencia_familiar").text("Ingrese un teléfonor");
 		$("#mensaje_primer_telefono_referencia_familiar").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_primer_telefono_referencia_familiar).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -795,6 +897,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_segundo_telefono_referencia_familiar").text("Ingrese un teléfono");
 		$("#mensaje_segundo_telefono_referencia_familiar").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_segundo_telefono_referencia_familiar).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -810,6 +914,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_nombres_referencia_personal").text("Ingrese un Nombre");
 		$("#mensaje_nombres_referencia_personal").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_nombres_referencia_personal).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -825,6 +931,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_apellidos_referencia_personal").text("Ingrese un apellido");
 		$("#mensaje_apellidos_referencia_personal").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_apellidos_referencia_personal).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -840,7 +948,9 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_parentesco_referencia_personal").text("Ingrese un Parentesco");
 		$("#mensaje_parentesco_referencia_personal").fadeIn("slow"); //Muestra mensaje de error
-        return false
+		$("html, body").animate({ scrollTop: $(mensaje_parentesco_referencia_personal).offset().top }, tiempo);
+        
+		return false
     }    
 	
 	else
@@ -855,6 +965,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_primer_telefono_referencia_personal").text("Ingrese un número de teléfono");
 		$("#mensaje_primer_telefono_referencia_personal").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_primer_telefono_referencia_personal).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -870,6 +982,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_segundo_telefono_referencia_personal").text("Ingrese un número de teléfono");
 		$("#mensaje_segundo_telefono_referencia_personal").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_segundo_telefono_referencia_personal).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -885,6 +999,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_ultimo_cargo_solicitud_prestaciones").text("Ingrese un cargo");
 		$("#mensaje_ultimo_cargo_solicitud_prestaciones").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_ultimo_cargo_solicitud_prestaciones).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -900,6 +1016,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_fecha_salida_solicitud_prestaciones").text("Ingrese una Fecha");
 		$("#mensaje_fecha_salida_solicitud_prestaciones").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_fecha_salida_solicitud_prestaciones).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -915,6 +1033,8 @@ $("#Guardar").click(function() {
 	{    	
 		$("#mensaje_id_bancos").text("Ingrese un Banco");
 		$("#mensaje_id_bancos").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_id_bancos).offset().top }, tiempo);
+        
         return false
     }    
 	
@@ -927,9 +1047,57 @@ $("#Guardar").click(function() {
      }
 	
 	
+	if (tipo_cuenta_bancaria  == 0)
+	{    	
+		$("#mensaje_tipo_cuenta_bancaria").text("Seleccione Tipo");
+		$("#mensaje_tipo_cuenta_bancaria").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_tipo_cuenta_bancaria).offset().top }, tiempo);
+        
+        return false
+    }    
+	
+	else
+		{
+		
+		$("#mensaje_tipo_cuenta_bancaria").fadeOut("slow"); //Muestra mensaje de error
+	    	
+		
+     }
+	
+	
+	if (numero_cuenta_bancaria  == "")
+	{    	
+		$("#mensaje_numero_cuenta_bancaria").text("Seleccione Tipo");
+		$("#mensaje_numero_cuenta_bancaria").fadeIn("slow"); //Muestra mensaje de error
+		$("html, body").animate({ scrollTop: $(mensaje_numero_cuenta_bancaria).offset().top }, tiempo);
+        
+        return false
+    }    
+	
+	else
+		{
+		
+		$("#mensaje_numero_cuenta_bancaria").fadeOut("slow"); //Muestra mensaje de error
+	    	
+		
+     }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
                     				
 });
 
+		$( "#id_sucursales" ).focus(function() {
+			  $("#mensaje_id_sucursales").fadeOut("slow");
+		  });
+		
 		$( "#cedula_participes" ).focus(function() {
 			  $("#mensaje_cedula_participes").fadeOut("slow");
 		   });
@@ -1057,6 +1225,17 @@ $("#Guardar").click(function() {
 		
 		$( "#id_bancos" ).focus(function() {
 			  $("#mensaje_id_bancos").fadeOut("slow");
+			  
+		   });
+		
+		
+		$( "#tipo_cuenta_bancaria" ).focus(function() {
+			  $("#mensaje_tipo_cuenta_bancaria").fadeOut("slow");
+			  
+		   });
+		
+		$( "#numero_cuenta_bancaria" ).focus(function() {
+			  $("#mensaje_numero_cuenta_bancaria").fadeOut("slow");
 			  
 		   });
 		
@@ -1237,4 +1416,18 @@ $("#Guardar").click(function() {
 		 	return ((key >= 48 && key <= 57) || (key==8))
 		 }
 		 
-		
+		 
+		 
+		 var enviando = false; //Obligaremos a entrar el if en el primer submit
+         
+         function checkSubmit() {
+             if (!enviando) {
+         		enviando= true;
+         		return true;
+             } else {
+                 //Si llega hasta aca significa que pulsaron 2 veces el boton submit
+                
+               
+                 return false;
+             }
+         }
