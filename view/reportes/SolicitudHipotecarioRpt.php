@@ -5,7 +5,7 @@ include dirname(__FILE__).'\..\mpdf60\mpdf.php';
 //echo getcwd().''; //para ver ubicacion de directorio
 
 
-$template = file_get_contents('view/reportes/template/SolicitudPrestaciones.html');
+$template = file_get_contents('view/reportes/template/SolicitudHipotecario.html');
 
 /*if(!empty($datos_cabecera))
 {
@@ -48,7 +48,7 @@ $mpdf->setAutoTopMargin = 'stretch';
 $mpdf->setAutoBottomMargin = 'stretch';
 $mpdf->SetHTMLHeader(utf8_encode($header)); 
 $mpdf->SetHTMLFooter($footer);
-$stylesheet = file_get_contents('view/reportes/template/solicitudPrestaciones.css'); // la ruta a tu css
+$stylesheet = file_get_contents('view/reportes/template/solicitudHipotecario.css'); // la ruta a tu css
 $mpdf->WriteHTML($stylesheet,1);
 $mpdf->WriteHTML($template,2);
 $mpdf->debug = true;

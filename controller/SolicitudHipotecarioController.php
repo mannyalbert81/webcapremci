@@ -1437,7 +1437,153 @@ class SolicitudHipotecarioController extends ControladorBase{
     }
     
     
-    
+    public function reporte_Hipotecario(){
+        session_start();
+        
+        //   $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+        
+        /*
+         $entidades = new EntidadesModel();
+         $datos_empresa = array();
+         $rsdatosEmpresa = $entidades->getBy("id_entidades = 1");
+         
+         if(!empty($rsdatosEmpresa) && count($rsdatosEmpresa)>0){
+         //llenar nombres con variables que va en html de reporte
+         $datos_empresa['NOMBREEMPRESA']=$rsdatosEmpresa[0]->nombre_entidades;
+         $datos_empresa['DIRECCIONEMPRESA']=$rsdatosEmpresa[0]->direccion_entidades;
+         $datos_empresa['TELEFONOEMPRESA']=$rsdatosEmpresa[0]->telefono_entidades;
+         $datos_empresa['RUCEMPRESA']=$rsdatosEmpresa[0]->ruc_entidades;
+         $datos_empresa['FECHAEMPRESA']=date('Y-m-d H:i');
+         $datos_empresa['USUARIOEMPRESA']=(isset($_SESSION['usuario_usuarios']))?$_SESSION['usuario_usuarios']:'';
+         }
+         
+         //NOTICE DATA
+         $datos_cabecera = array();
+         $datos_cabecera['USUARIO'] = (isset($_SESSION['nombre_usuarios'])) ? $_SESSION['nombre_usuarios'] : 'N/D';
+         $datos_cabecera['FECHA'] = date('Y/m/d');
+         $datos_cabecera['HORA'] = date('h:i:s');
+         
+         */
+        
+        
+        
+        
+        $solicitudPrestaciones = new SolicitudPrestacionesModel();
+        $id_solicitud_pretaciones =  (isset($_REQUEST['id_solicitud_prestaciones'])&& $_REQUEST['id_solicitud_prestaciones'] !=NULL)?$_REQUEST['id_solicitud_prestaciones']:'';
+        
+        $datos_reporte = array();
+        
+        $columnas = "  solicitud_prestaciones.id_solicitud_prestaciones,
+                      solicitud_prestaciones.apellidos_solicitud_prestaciones,
+                      solicitud_prestaciones.nombres_solicitud_prestaciones,
+                      solicitud_prestaciones.cedula_participes,
+                      solicitud_prestaciones.fecha_nacimiento_solicitud_prestaciones,
+                      estado_civil.id_estado_civil,
+                      estado_civil.nombre_estado_civil,
+                      provincias.id_provincias,
+                      provincias.nombre_provincias,
+                      cantones.id_cantones,
+                      cantones.nombre_cantones,
+                      parroquias.id_parroquias,
+                      parroquias.nombre_parroquias,
+                      solicitud_prestaciones.barrio_solicitud_prestaciones,
+                      solicitud_prestaciones.ciudadela_solicitud_prestaciones,
+                      solicitud_prestaciones.calle_solicitud_prestaciones,
+                      solicitud_prestaciones.numero_calle_solicitud_prestaciones,
+                      solicitud_prestaciones.interseccion_solicitud_prestaciones,
+                      solicitud_prestaciones.tipo_vivienda_solicitud_prestaciones,
+                      solicitud_prestaciones.vivienda_hipotecada_solicitud_prestaciones,
+                      solicitud_prestaciones.referencia_dir_solicitud_prestaciones,
+                      solicitud_prestaciones.telefono_solicitud_prestaciones,
+                      solicitud_prestaciones.celular_solicitud_prestaciones,
+                      solicitud_prestaciones.correo_solicitud_prestaciones,
+                      solicitud_prestaciones.nivel_educativo_solicitud_prestaciones,
+                      solicitud_prestaciones.nombres_referencia_familiar,
+                      solicitud_prestaciones.apellidos_referencia_familiar,
+                      solicitud_prestaciones.parentesco_referencia_familiar,
+                      solicitud_prestaciones.primer_telefono_referencia_familiar,
+                      solicitud_prestaciones.segundo_telefono_referencia_familiar,
+                      solicitud_prestaciones.nombres_referencia_personal,
+                      solicitud_prestaciones.apellidos_referencia_personal,
+                      solicitud_prestaciones.parentesco_referencia_personal,
+                      solicitud_prestaciones.primer_telefono_referencia_personal,
+                      solicitud_prestaciones.segundo_telefono_referencia_personal,
+                      solicitud_prestaciones.ultimo_cargo_solicitud_prestaciones,
+                      solicitud_prestaciones.fecha_salida_solicitud_prestaciones,
+                      bancos.id_bancos,
+                      bancos.nombre_bancos,
+                      solicitud_prestaciones.numero_cuenta_bancaria,
+                      solicitud_prestaciones.creado,
+                      solicitud_prestaciones.modificado,
+                      sexo.id_sexo,
+                      sexo.nombre_sexo";
+        
+        $tablas = "  public.solicitud_prestaciones,
+                      public.estado_civil,
+                      public.provincias,
+                      public.cantones,
+                      public.parroquias,
+                      public.bancos,
+                      public.sexo";
+        $where= "  estado_civil.id_estado_civil = solicitud_prestaciones.id_estado_civil AND
+  provincias.id_provincias = solicitud_prestaciones.id_provincias AND
+  cantones.id_cantones = solicitud_prestaciones.id_cantones AND
+  parroquias.id_parroquias = solicitud_prestaciones.id_parroquias AND
+  bancos.id_bancos = solicitud_prestaciones.id_bancos AND
+  sexo.id_sexo = solicitud_prestaciones.id_sexo AND
+  solicitud_prestaciones.id_solicitud_prestaciones='$id_solicitud_pretaciones'";
+        $id="solicitud_prestaciones.nombres_solicitud_prestaciones";
+        
+        $rsdatos = $solicitudPrestaciones->getCondiciones($columnas, $tablas, $where, $id);
+        
+        
+        $datos_reporte['APELLIDOS']=$rsdatos[0]->apellidos_solicitud_prestaciones;
+        $datos_reporte['NOMBRE']=$rsdatos[0]->nombres_solicitud_prestaciones;
+        $datos_reporte['CEDULA']=$rsdatos[0]->cedula_participes;
+        $datos_reporte['FECHA_NACIMIENTO']=$rsdatos[0]->fecha_nacimiento_solicitud_prestaciones;
+        $datos_reporte['ESTADO_CIVIL']=$rsdatos[0]->nombre_estado_civil;
+        $datos_reporte['PROVINCIAS']=$rsdatos[0]->nombre_provincias;
+        $datos_reporte['CANTONES']=$rsdatos[0]->nombre_cantones;
+        $datos_reporte['PARROQUIAS']=$rsdatos[0]->nombre_parroquias;
+        $datos_reporte['BARRIO']=$rsdatos[0]->barrio_solicitud_prestaciones;
+        $datos_reporte['CIUDADELA']=$rsdatos[0]->ciudadela_solicitud_prestaciones;
+        $datos_reporte['CALLE']=$rsdatos[0]->calle_solicitud_prestaciones;
+        $datos_reporte['NUMERO_CALLE']=$rsdatos[0]->numero_calle_solicitud_prestaciones;
+        $datos_reporte['INTERSECCION']=$rsdatos[0]->interseccion_solicitud_prestaciones;
+        $datos_reporte['TIPO_VIVIENDA']=$rsdatos[0]->tipo_vivienda_solicitud_prestaciones;
+        $datos_reporte['VIVIENDA_HIPOTECADA']=$rsdatos[0]->vivienda_hipotecada_solicitud_prestaciones;
+        $datos_reporte['REFERENCIA_DIRECCION']=$rsdatos[0]->referencia_dir_solicitud_prestaciones;
+        $datos_reporte['TELEFONO']=$rsdatos[0]->telefono_solicitud_prestaciones;
+        $datos_reporte['CELULAR']=$rsdatos[0]->celular_solicitud_prestaciones;
+        $datos_reporte['CORREO']=$rsdatos[0]->correo_solicitud_prestaciones;
+        $datos_reporte['NIVEL_EDUCTIVO']=$rsdatos[0]->nivel_educativo_solicitud_prestaciones;
+        $datos_reporte['NOMBRE_REFERENCIA']=$rsdatos[0]->nombres_referencia_familiar;
+        $datos_reporte['APELLIDO_REFERENCIA']=$rsdatos[0]->apellidos_referencia_familiar;
+        $datos_reporte['PARENTEZCO_REFERENCIA']=$rsdatos[0]->parentesco_referencia_familiar;
+        $datos_reporte['PRIMER_TELEFONO']=$rsdatos[0]->primer_telefono_referencia_familiar;
+        $datos_reporte['SEGUNDO_TELEFONO']=$rsdatos[0]->segundo_telefono_referencia_familiar;
+        $datos_reporte['NOMBRE_REF_PERSONAL']=$rsdatos[0]->nombres_referencia_personal;
+        $datos_reporte['APELLIDO_REF_PERSONAL']=$rsdatos[0]->apellidos_referencia_personal;
+        $datos_reporte['PARENTEZCO_REF_PERSONAL']=$rsdatos[0]->parentesco_referencia_personal;
+        $datos_reporte['PRIMER_TEL_REF_PERSONAL']=$rsdatos[0]->primer_telefono_referencia_personal;
+        $datos_reporte['SEGUNDO_TEL_REF_PERSONAL']=$rsdatos[0]->segundo_telefono_referencia_personal;
+        $datos_reporte['ULTIMO_CARGO']=$rsdatos[0]->ultimo_cargo_solicitud_prestaciones;
+        $datos_reporte['FECHA_SALIDA']=$rsdatos[0]->fecha_salida_solicitud_prestaciones;
+        $datos_reporte['BANCO']=$rsdatos[0]->nombre_bancos;
+        $datos_reporte['SEXO']=$rsdatos[0]->nombre_sexo;
+        $datos_reporte['NUMERO_CUENTA']=$rsdatos[0]->numero_cuenta_bancaria;
+        $datos_reporte['FECHA_SOLICITADA']=$rsdatos[0]->creado;
+        
+        
+        
+        
+        
+        
+        $this->verReporte("SolicitudHipotecario", array('datos_reporte'=>$datos_reporte ));
+        
+        
+        
+    }
     
     
     
