@@ -207,7 +207,13 @@
             		    					  
                           <label for="id_estado_civil" class="control-label">Estado Civil:</label>
                           <select  class="form-control" id="id_estado_civil" name="id_estado_civil">
-                          	<option value="<?php echo $resEdit->id_estado_civil; ?>" selected="selected"></option>
+                          
+                             <option value="0" selected="selected">--Seleccione--</option>
+                        								
+                          		<?php foreach($resultEstadoCivil as $res) {?>
+                        										<option value="<?php echo $res->id_estado_civil; ?>" <?php if ($res->id_estado_civil == $resEdit->id_estado_civil ){  echo  ' selected="selected" '  ;}  ?> ><?php echo $res->nombre_estado_civil; ?> </option>
+                        							        
+                        							        <?php } ?>
                           </select>                         
                           <div id="mensaje_id_estado_civil" class="errores"></div>
                         </div>
@@ -254,7 +260,11 @@
             		    					  
                           <label for="id_provincias" class="control-label">Provincias:</label>
                           <select  class="form-control" id="id_provincias" name="id_provincias">
-                          	<option value="<?php echo $resEdit->id_provincias; ?>" selected="selected"></option>
+                          	<option value="0" selected="selected">--Seleccione--</option>
+                          	<?php foreach($resultProvincias as $res) {?>
+                        										<option value="<?php echo $res->id_provincias; ?>" <?php if ($res->id_provincias == $resEdit->id_provincias ){  echo  ' selected="selected" '  ;}  ?> ><?php echo $res->nombre_provincias; ?> </option>
+                        							        
+                        							        <?php } ?>
                           </select>                         
                           <div id="mensaje_id_provincias" class="errores"></div>
                         </div>
@@ -265,7 +275,11 @@
             		    					  
                           <label for="id_cantones" class="control-label">Cantones:</label>
                           <select  class="form-control" id="id_cantones" name="id_cantones">
-                          	<option value="<?php echo $resEdit->id_cantones; ?>" selected="selected"></option>
+                          	<option value="0" selected="selected">--Seleccione--</option>
+                          	<?php foreach($resultCantones as $res) {?>
+                        										<option value="<?php echo $res->id_cantones; ?>" <?php if ($res->id_cantones == $resEdit->id_cantones ){  echo  ' selected="selected" '  ;}  ?> ><?php echo $res->nombre_cantones; ?> </option>
+                        							        
+                        							        <?php } ?>
                           </select>                         
                           <div id="mensaje_id_cantones" class="errores"></div>
                         </div>
@@ -276,7 +290,12 @@
             		    					  
                           <label for="id_parroquias" class="control-label">Parroquias:</label>
                           <select  class="form-control" id="id_parroquias" name="id_parroquias">
-                          	<option value="<?php echo $resEdit->id_parroquias; ?>" selected="selected"></option>
+                          	<option value="0" selected="selected">--Seleccione--</option>
+                          	<?php foreach($resultParroquias as $res) {?>
+                        										<option value="<?php echo $res->id_parroquias; ?>" <?php if ($res->id_parroquias == $resEdit->id_parroquias ){  echo  ' selected="selected" '  ;}  ?> ><?php echo $res->nombre_parroquias; ?> </option>
+                        							        
+                        							        <?php } ?>
+                          	
                           </select>                         
                           <div id="mensaje_id_parroquias" class="errores"></div>
                         </div>
@@ -595,7 +614,11 @@
             		    					  
                           <label for="id_bancos" class="control-label">Banco:</label>
                           <select  class="form-control" id="id_bancos" name="id_bancos">
-                          	<option value="<?php echo $resEdit->id_bancos; ?>" selected="selected"></option>
+                          	<option value="0" selected="selected">--Seleccione--</option>
+                          	 	<?php foreach($resultBancos as $res) {?>
+                        										<option value="<?php echo $res->id_bancos; ?>" <?php if ($res->id_bancos == $resEdit->id_bancos ){  echo  ' selected="selected" '  ;}  ?> ><?php echo $res->nombre_bancos; ?> </option>
+                        							        
+                        							        <?php } ?>
                           </select>                         
                           <div id="mensaje_id_bancos" class="errores"></div>
                         </div>
@@ -799,6 +822,10 @@
                           <label for="id_provincias" class="control-label">Provincias:</label>
                           <select  class="form-control" id="id_provincias" name="id_provincias">
                           	<option value="0">--Seleccione--</option>
+                          	  <?php foreach($resultProvincias as $res) {?>
+                        										<option value="<?php echo $res->id_provincias; ?>" ><?php echo $res->nombre_provincias; ?> </option>
+                        							        
+                        							        <?php } ?>
                           </select>                         
                           <div id="mensaje_id_provincias" class="errores"></div>
                         </div>
@@ -810,6 +837,10 @@
                           <label for="id_cantones" class="control-label">Cantones:</label>
                           <select  class="form-control" id="id_cantones" name="id_cantones">
                           	<option value="0">--Seleccione--</option>
+                          	 <?php foreach($resultCantones as $res) {?>
+                        		<option value="<?php echo $res->id_cantones; ?>" ><?php echo $res->nombre_cantones; ?> </option>
+                        							        
+                        	<?php } ?>
                           </select>                         
                           <div id="mensaje_id_cantones" class="errores"></div>
                         </div>
@@ -821,6 +852,10 @@
                           <label for="id_parroquias" class="control-label">Parroquias:</label>
                           <select  class="form-control" id="id_parroquias" name="id_parroquias">
                           	<option value="0">--Seleccione--</option>
+                          	 <?php foreach($resultParroquias as $res) {?>
+                        		<option value="<?php echo $res->id_parroquias; ?>" ><?php echo $res->nombre_parroquias; ?> </option>
+                        							        
+                        	<?php } ?>
                           </select>                         
                           <div id="mensaje_id_parroquias" class="errores"></div>
                         </div>
@@ -1140,6 +1175,10 @@
                           <label for="id_bancos" class="control-label">Banco:</label>
                           <select  class="form-control" id="id_bancos" name="id_bancos">
                           	<option value="0">--Seleccione--</option>
+                          	<?php foreach($resultBancos as $res) {?>
+                        		<option value="<?php echo $res->id_bancos; ?>" ><?php echo $res->nombre_bancos; ?> </option>
+                        							        
+                        	<?php } ?>
                           </select>                         
                           <div id="mensaje_id_bancos" class="errores"></div>
                         </div>

@@ -32,6 +32,19 @@ class SolicitudPrestacionesController extends ControladorBase{
             $estado_civil = new Estado_civilModel();
             $resultEstadoCivil= $estado_civil->getAll("nombre_estado_civil");
             
+            $provincias = new ProvinciasModel();
+            $resultProvincias= $provincias->getAll("nombre_provincias");
+            
+            $cantones = new CantonesModel();
+            $resultCantones= $cantones->getAll("nombre_cantones");
+            
+            
+            $parroquias = new ParroquiasModel();
+            $resultParroquias= $parroquias->getAll("nombre_parroquias");
+            
+            $banco = new BancosModel();
+            $resultBancos= $banco->getAll("nombre_bancos");
+            
             
             
             
@@ -72,7 +85,8 @@ class SolicitudPrestacionesController extends ControladorBase{
                     
                     $this->view("SolicitudPrestaciones",array(
                         "resultEdit"=>$resultEdit, "cedula"=>$cedula, "nombres"=>$nombres, "correo"=>$correo,
-                        "resultSucursales"=>$resultSucursales, "resultGenero"=>$resultGenero, "resultEstadoCivil"=>$resultEstadoCivil
+                        "resultSucursales"=>$resultSucursales, "resultGenero"=>$resultGenero, "resultEstadoCivil"=>$resultEstadoCivil, "resultProvincias"=>$resultProvincias,
+                        "resultCantones"=>$resultCantones, "resultParroquias"=>$resultParroquias, "resultBancos"=>$resultBancos
                     ));
                     
                     die();
@@ -91,7 +105,8 @@ class SolicitudPrestacionesController extends ControladorBase{
                     $this->view("SolicitudPrestaciones",array(
                         
                         "resultEdit"=>$resultEdit, "cedula"=>$cedula, "nombres"=>$nombres, "correo"=>$correo,
-                        "resultSucursales"=>$resultSucursales, "resultGenero"=>$resultGenero, "resultEstadoCivil"=>$resultEstadoCivil
+                        "resultSucursales"=>$resultSucursales, "resultGenero"=>$resultGenero, "resultEstadoCivil"=>$resultEstadoCivil, "resultProvincias"=>$resultProvincias,
+                        "resultCantones"=>$resultCantones, "resultParroquias"=>$resultParroquias, "resultBancos"=>$resultBancos
                     ));
                         
                         die();
