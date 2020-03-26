@@ -1095,3 +1095,126 @@ $("#Guardar").click(function() {
                  return false;
              }
          }
+         
+         
+         
+         
+         
+         
+         
+
+     		$(document).ready(function(){
+
+     			$("#id_provincias").change(function(){
+     			
+     	            // obtenemos el combo de resultado combo 2
+     	           var $id_cantones_vivienda = $("#id_cantones");
+     	       	
+
+     	            // lo vaciamos
+     	           var id_provincias_vivienda = $(this).val();
+
+     	          
+     	          
+     	            if(id_provincias_vivienda != 0)
+     	            {
+     	            	 $id_cantones_vivienda.empty();
+     	            	
+     	            	 var datos = {
+     	                   	   
+     	            			 id_provincias_vivienda:$(this).val()
+     	                  };
+     	             
+     	              $.post("index.php?controller=Afiliacion&action=devuelveCanton", datos, function(resultado) {
+
+     	          		  if(resultado.length==0)
+     	          		   {
+     	          				$id_cantones_vivienda.append("<option value='0' >--Seleccione--</option>");	
+     	             	   }else{
+     	             		    $id_cantones_vivienda.append("<option value='0' >--Seleccione--</option>");
+     	          		 		$.each(resultado, function(index, value) {
+     	          		 			$id_cantones_vivienda.append("<option value= " +value.id_cantones +" >" + value.nombre_cantones  + "</option>");	
+     	                     		 });
+     	             	   }	
+     	            	      
+     	         		  }, 'json');
+
+
+     	            }else{
+
+     	            	var id_cantones_vivienda=$("#id_cantones");
+     	            	id_cantones_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+     	            	var id_parroquias_vivienda=$("#id_parroquias");
+     	            	id_parroquias_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+     	            	
+     	            	
+     	            	
+     	            }
+     	            
+
+     			});
+     		});
+     	
+     		 
+     		 
+     		 
+     		 
+     		 
+     		 
+     		$(document).ready(function(){
+
+     			$("#id_cantones").change(function(){
+     				
+     	            // obtenemos el combo de resultado combo 2
+     	           var $id_parroquias_vivienda = $("#id_parroquias");
+     	       	
+
+     	            // lo vaciamos
+     	           var id_cantones_vivienda = $(this).val();
+     	          
+     	            if(id_cantones_vivienda != 0)
+     	            {
+     	            	 $id_parroquias_vivienda.empty();
+     	            	
+     	            	 var datos = {
+     	                   	   
+     	            			 id_cantones_vivienda:$(this).val()
+     	                  };
+     	             
+     	            	
+     	         	   $.post("index.php?controller=Afiliacion&action=devuelveParroquias", datos, function(resultado) {
+
+     	          		  if(resultado.length==0)
+     	          		   {
+     	          				$id_parroquias_vivienda.append("<option value='0' >--Seleccione--</option>");	
+     	             	   }else{
+     	             		    $id_parroquias_vivienda.append("<option value='0' >--Seleccione--</option>");
+     	          		 		$.each(resultado, function(index, value) {
+     	          		 			$id_parroquias_vivienda.append("<option value= " +value.id_parroquias +" >" + value.nombre_parroquias  + "</option>");	
+     	                     		 });
+     	             	   }	
+     	            	      
+     	         		  }, 'json');
+
+
+     	            }else{
+
+     	            	var id_parroquias_vivienda=$("#id_parroquias");
+     	            	id_parroquias_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+     	            	
+     	            	
+     	            }
+     	            
+
+     			});
+     		});
+     	
+            
+
+     		    
+ 
+         
+         
+         
+         
+         
