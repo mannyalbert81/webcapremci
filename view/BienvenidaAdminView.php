@@ -114,7 +114,38 @@
 	     </div>
 	   </div>
            
-        -->   
+        -->  
+        
+          <!-- PARA ENCUESTAS DE CUOTAS  -->
+        <div class="modal fade" id="mdlQuizCuotas" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+        <div class="modal-content">
+           <div class="modal-header">
+             <p style="text-align: center;"><b>PREGUNTA SI APLAZAMIENTO CUOTAS</b>
+			</p> 
+           </div>
+            <div class="modal-body" style="text-align: center;" >
+            <img src="" alt="" class="img-fluid">
+				
+			<p style="text-align: justify;">
+			AQUI PONES ALGUNA DESCRIPCION
+			</p> 			  
+            
+               
+                			  
+			 <a href="#" target="_blank" style="margin-left: 0px;" class="btn btn-primary" >
+			 <i class="glyphicon glyphicon-edit"> NO</i></a>
+    	     <a href="http://186.4.157.125/rp_c/index.php?controller=CargarParticipes&action=IngresarSiCuotas&cedula=<?php echo $allusers;?>" target="_blank" style="margin-left: 0px;" class="btn btn-info">
+    	     <i class="glyphicon glyphicon-print"> SI</i></a>
+    	     
+			   
+          </div>
+           <div class="modal-footer">
+           <!-- <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>  -->
+           </div>
+	      </div>
+	     </div>
+	   </div> 
            
           
         </div>
@@ -157,6 +188,10 @@
 				    pone_encuestas_realizadas();
         		   cargar_banner();
 				   cargar_calificaciones();
+
+				   setTimeout(function() {
+				        $("#mdlQuizCuotas").modal("show");
+				    },1500);
 	   			});
 
 
