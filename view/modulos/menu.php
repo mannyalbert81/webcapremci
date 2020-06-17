@@ -54,7 +54,8 @@ $controladores=$_SESSION['controladores'];
                 <li style="<?php echo getcontrolador("MenuGestionTramites",$controladores) ?>"  ><a><i class="fa fa-file-o"></i> Gestión de Trámites <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                     <li style="<?php echo getcontrolador("Memos",$controladores) ?>"><a href="index.php?controller=Memos&action=index">Crear Memorandun</a></li>
-                	<li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index3">Solicitud Prestamo</a></li>
+                	<li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index3">Solicitud Prestamo Quirografario</a></li>
+                    <li style="<?php echo getcontrolador("SolicitudHipotecario",$controladores) ?>"><a href="index.php?controller=SolicitudHipotecario&action=index3">Solicitud Prestamo Hipotecario</a></li>
                     <li style="<?php echo getcontrolador("SolicitudPrestaciones",$controladores) ?>"><a href="index.php?controller=SolicitudPrestaciones&action=index3">Solicitud Prestaciones</a></li>
                 
                      </ul>
@@ -72,11 +73,12 @@ $controladores=$_SESSION['controladores'];
                      <li style="<?php echo getcontrolador("SimuladorCredito",$controladores) ?>"><a href="http://186.4.157.125/rp_c/index.php?controller=CargarParticipes&action=index&cedula=<?php echo $cedula_usuarios;?>"  target="_blank">Simulador de Crédito</a></li>
                      
 					
-						<li><a>Solicitudes<span class="fa fa-chevron-down"></span></a>
+						<li><a>Generar Solicitudes<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                           	 <li><a>Prestamos<span class="fa fa-chevron-down"></span></a>
                           		<ul class="nav child_menu">
                            		 <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index">Quirografario</a></li>
+                           		 <li style="<?php echo getcontrolador("SolicitudHipotecario",$controladores) ?>"><a href="index.php?controller=SolicitudHipotecario&action=index">Hipotecario</a></li>
                               </ul>
                         	</li>
                            <li style="<?php echo getcontrolador("SolicitudPrestaciones",$controladores) ?>"><a href="index.php?controller=SolicitudPrestaciones&action=index">Prestaciones</a></li>
@@ -88,6 +90,7 @@ $controladores=$_SESSION['controladores'];
                           	 <li><a>Prestamos<span class="fa fa-chevron-down"></span></a>
                           		<ul class="nav child_menu">
                            		  <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index2">Quirografario</a></li>
+                           		  <li style="<?php echo getcontrolador("SolicitudHipotecario",$controladores) ?>"><a href="index.php?controller=SolicitudHipotecario&action=index2">Hipotecario</a></li>
 						 </ul>
                         	</li>
                             <li style="<?php echo getcontrolador("SolicitudPrestaciones",$controladores) ?>"><a href="index.php?controller=SolicitudPrestaciones&action=index2">Prestaciones</a></li>
@@ -201,10 +204,10 @@ $controladores=$_SESSION['controladores'];
                   <li style="<?php echo getcontrolador("MenuMemos",$controladores) ?>"  ><a><i class="fa fa-file-o"></i> Gestión de Trámites <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                        <li style="<?php echo getcontrolador("Memos",$controladores) ?>"><a href="index.php?controller=Memos&action=index">Crear Memorandun</a></li>
-                	   <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index5">Solicitud Prestamo</a></li>
+                	   <li style="<?php echo getcontrolador("SolicitudPrestamo",$controladores) ?>"><a href="index.php?controller=SolicitudPrestamo&action=index5">Solicitud Prestamo Quirografarios</a></li>
+                	   <li style="<?php echo getcontrolador("SolicitudHipotecario",$controladores) ?>"><a href="index.php?controller=SolicitudHipotecario&action=index5">Solicitud Prestamo Hipotecarios</a></li>
                 	   <li style="<?php echo getcontrolador("SolicitudPrestaciones",$controladores) ?>"><a href="index.php?controller=SolicitudPrestaciones&action=index5">Solicitud Prestaciones</a></li>
                 	   
-                	   	<li style="<?php echo getcontrolador("SolicitudHipotecario",$controladores) ?>"><a href="index.php?controller=SolicitudHipotecario&action=index">Solicitud Hipotecario</a></li>
                      </ul>
                  </li>
                   

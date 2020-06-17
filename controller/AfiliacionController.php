@@ -373,6 +373,10 @@ class AfiliacionController extends ControladorBase{
 	
 	
 		}
+		
+		
+		
+		
 			
 		echo json_encode($resultCan);
 	

@@ -1,27 +1,5 @@
 $(document).ready(function(){
-	
-	cargaGeneroDatosPersonales();
-	cargaEstadoCivilDatosPersonales();
-	cargaProvinciasDatosPersonales();
-	cargaCantonesDatosPersonales();
-	cargaParroquiasDatosPersonales();
-	cargaProvinciasDatosLaborales();
-	cargaCantonesDatosLaborales();
-	cargaParroquiasDatosLaborales();
-	cargaGeneroDatosConyuge();
-	cargaProvinciasDatosConyuge();
-	cargaProvinciasEconomicosDatosConyuge();
-	cargaBancosDatosEconomicos();
-	cargaBancosDosDatosEconomicos();
-	cargaBancostresDatosEconomicos();
-	cargaBancoscuatroDatosEconomicos();
-	cargaBancosCincoDatosEconomicos();
-	cargaBancosUnodetalleActivos();
-	cargaBancosDosdetalleActivos();
-	cargaBancosTresdetalleActivos();
-	cargaBancosCuatrodetalleActivos();
-	cargaInstitucionesDatosLaborables();
-	cargaSucursalesDatosGenerales();
+
 
 
 	
@@ -30,73 +8,284 @@ $(document).ready(function(){
 
 
 
-function cargaGeneroDatosPersonales(){
-	
-	let $ddlGenero = $("#id_sexo");
-
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaGeneroDatosPersonales",
-		type:"POST",
-		dataType:"json",
-		data:null
-	}).done(function(datos){		
-		
-		$ddlGenero.empty();
-		$ddlGenero.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$ddlGenero.append("<option value= " +value.id_sexo +" >" + value.nombre_sexo  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$ddlGenero.empty();
-		$ddlGenero.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-	
-}
-
-
-function cargaEstadoCivilDatosPersonales(){
-	
-	let $ddlEsCivil = $("#id_estado_civil");
-
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaEstadoCivilDatosPersonales",
-		type:"POST",
-		dataType:"json",
-		data:null
-	}).done(function(datos){		
-		
-		$ddlEsCivil.empty();
-		$ddlEsCivil.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$ddlEsCivil.append("<option value= " +value.id_estado_civil +" >" + value.nombre_estado_civil  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$ddlEsCivil.empty();
-		$ddlEsCivil.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-	
-}
 
 
 function limpiar(){
 	
-	
-	 $("#id_estado_civil").val('0');
-	 $("#apellidos_solicitud_prestaciones").val('');
+	$("#id_solicitud_hipotecario").val('0');
+	$("#valor_dolares_datos_credito").val('');
+	$("#plazo_meses_datos_credito").val('');
+	$("#destino_dinero_datos_credito").val('');
+	$("#cedula_datos_personales").val('');
+	$("#nombres_datos_personales").val('');
+	$("#apellidos_datos_personales").val('');
+	$("#id_sexo").val('0');
+	$("#id_estado_civil").val('0');
+	$("#fecha_nacimiento_datos_personales").val('');
+	$("#separacion_bienes_datos_personales").val('');
+	$("#cargas_familiares_datos_personales").val('');
+	$("#numero_hijos_datos_personales").val('');
+	$("#email_datos_personales").val('');
+	$("#nivel_educativo_datos_personales").val('');
+	$("#id_provincia").val('0');
+	$("#id_canton").val('0');
+	$("#id_parroquia").val'0'();
+	$("#barrio_datos_personales").val('');
+	$("#ciudadela_datos_personales").val('');
+	$("#calle_datos_personales").val('');
+	$("#numero_calle_datos_personales").val('');
+	$("#interseccion_datos_personales").val('');
+	$("#tipo_vivienda_datos_personales").val('');
+	$("#vivienda_hipotecada_datos_personales").val('');
+	$("#tiempo_residencia_datos_personales").val('');
+	$("#referencia_domiciliaria_datos_perdonales").val('');
+	$("#nombre_arrendatario_datos_personales").val('');
+	$("#apellido_arrendatario_datos_personales").val('');
+	$("#celular_arrendatario_datos_personales").val('');
+	$("#telefono_datos_personales").val('');
+	$("#celular_datos_personales").val('');
+	$("#telf_trabajo_datos_personales").val('');
+	$("#ext_telef_datos_personales").val('');
+	$("#node_telef_datos_personales").val('');
+	$("#id_codigo_verificacion").val('0');
+	$("#nombres_referencia_familiar_datos_personales").val('');
+	$("#apellidos_referencia_familiar_datos_personales").val('');
+	$("#parentesco_referencia_familiar_datos_personales").val('');
+	$("#primer_telefono_ref_familiar_datos_personales").val('');
+	$("#segundo_telefono_ref_familiar_datos_personales").val('');
+	$("#nombres_referencia_personal_datos_personales").val('');
+	$("#apellidos_referencia_personal_datos_personales").val('');
+	$("#relacion_referencia_personal_datos_personales").val('');
+	$("#primer_telefono_ref_personal_datos_personales").val('');
+	$("#segundo_telefono_ref_personal_datos_personales").val('');
+	$("#id_entidades").val('0');
+	$("#reparto_unidad_datos_laborales").val('');
+	$("#seccion_datos_laborales").val('');
+	$("#nombres_jefe_datos_laborales").val('');
+	$("#apellidos_jefe_datos_laborales").val('');
+	$("#telefono_jefe_datos_laborales").val('');
+	$("#cargo_actual_datos_laborales").val('');
+	$("#anios_servicio_datos_laborales").val('');
+	$("#id_provincia_datos_laborales").val('0');
+	$("#id_canton_datos_laborales").val('0');
+	$("#id_parroquia_datos_laborales").val('0');
+	$("#calle_datos_laborales").val('');
+	$("#numero_calle_datos_laborales").val('');
+	$("#interseccion_datos_laborales").val('');
+	$("#referencia_direccion_trabajo_datos_laborales").val('');
+	$("#cedula_datos_conyuge").val('');
+	$("#nombres_datos_conyuge").val('');
+	$("#apellidos_datos_conyuge").val('');
+	$("#id_sexo_datos_conyuge").val('0');
+	$("#fecha_nacimiento_datos_conyuge").val('');
+	$("#vive_residencia_datos_conyuge").val('');
+	$("#telefono_datos_conyuge").val('');
+	$("#celular_datos_conyuge").val('');
+	$("#id_provincia_datos_conyuge").val('0');
+	$("#id_canton_datos_conyuge").val('0');
+	$("#id_parroquia_datos_conyuge").val('0');
+	$("#barrio_datos_conyuge").val('');
+	$("#ciudadela_datos_conyuge").val('');
+	$("#calle_datos_conyuge").val('');
+	$("#numero_calle_datos_conyuge").val('');
+	$("#interseccion_datos_conyuge").val('');
+	$("#actividad_economica_datos_conyuge").val('');
+	$("#empresa_datos_conyuge").val('');
+	$("#naturaleza_negocio_datos_conyuge").val('');
+	$("#cargo_datos_conyuge").val('');
+	$("#anios_laborados_datos_conyuge").val('');
+	$("#tipo_contrato_datos_conyuge").val('');
+	$("#nombres_jefe_datos_conyuge").val('');
+	$("#apellidos_jefe_datos_conyuge").val('');
+	$("#telefono_jefe_datos_conyuge").val('');
+	$("#id_provincia_trabajo_datos_conyuge").val('0');
+	$("#id_canton_trabajo_datos_conyuge").val('0');
+	$("#id_parroquia_trabajo_datos_conyuge").val('0');
+	$("#calle_trabajo_datos_conyuge").val('');
+	$("#nuemero_calle_trabajo_datos_conyuge").val('');
+	$("#interseccion_trabajo_datos_conyuge").val('');
+	$("#referencia_trabajo_datos_conyuge").val('');
+	$("#actividad_principal_datos_independientes").val('');
+	$("#ruc_datos_independientes").val('');
+	$("#detalle_actividades_datos_independientes").val('');
+	$("#local_datos_independientes").val('');
+	$("#nombres_propietario_datos_independientes").val('');
+	$("#apellidos_propietario_datos_independientes").val('');
+	$("#telefono_propietario_datos_independientes").val('');
+	$("#tiempo_funcionamiento_datos_independientes").val('');
+	$("#numero_patronal_datos_independientes").val('');
+	$("#numero_empleados_datos_independientes").val('');
+	$("#id_bancos_referencia_bancaria").val('0');
+	$("#tipo_cuenta_referencia_bancaria").val('');
+	$("#numero_cuenta_referencia_bancaria").val('');
+	$("#id_bancos_uno_datos_economicos").val('0');
+	$("#tipo_cuenta_uno_datos_economicos").val('');
+	$("#numero_cuenta_uno_datos_economicos").val('');
+	$("#id_bancos_dos_datos_economicos").val('0');
+	$("#tipo_cuenta_dos_datos_economicos").val('');
+	$("#numero_cuenta_dos_datos_economicos").val('');
+	$("#id_bancos_tres_datos_economicos").val('0');
+	$("#tipo_cuenta_tres_datos_economicos").val('');
+	$("#numero_cuenta_tres_datos_economicos").val('');
+	$("#id_bancos_cuatro_datos_economicos").val('0');
+	$("#tipo_cuenta_cuatro_datos_economicos").val('');
+	$("#numero_cuenta_cuatro_datos_economicos").val('');
+	$("#empresa_uno_datos_economicos").val('');
+	$("#direccion_uno_datos_economicos").val('');
+	$("#numero_telefono_uno_datos_economicos").val('');
+	$("#empresa_dos_datos_economicos").val('');
+	$("#direccion_dos_datos_economicos").val('');
+	$("#numero_telefono_dos_datos_economicos").val('');
+	$("#empresa_tres_datos_economicos").val('');
+	$("#direccion_tres_datos_economicos").val('');
+	$("#numero_telefono_tres_datos_economicos").val('');
+	$("#empresa_cuatro_datos_economicos").val('');
+	$("#direccion_cuatro_datos_economicos").val('');
+	$("#numero_telefono_cuatro_datos_economicos").val('');
+	$("#efectivo_activos_corrientes").val('');
+	$("#prestamo_menor_anio_pasivo_corriente").val('');
+	$("#bancos_activos_corrientes").val('');
+	$("#prestamo_emergente_pasivo_corriente").val('');
+	$("#cuentas_cobrar_activos_corrientes").val('');
+	$("#cuentas_pagar_pasivo_corriente").val('');
+	$("#inversiones_activos_corrientes").val('');
+	$("#proveedores_pasivo_corriente").val('');
+	$("#inventarios_activos_corrientes").val('');
+	$("#obligaciones_menores_anio_pasivo_corriente").val('');
+	$("#muebles_activos_corrientes").val('');
+	$("#con_banco_pasivo_corriente").val('');
+	$("#otros_activos_corrientes").val('');
+	$("#con_cooperativas_pasivo_corriente").val('');
+	$("#terreno_activos_fijos").val('');
+	$("#prestamo_mayor_anio_pasivos_largo_plazo").val('');
+	$("#vivienda_activos_fijos").val('');
+	$("#obligaciones_mayores_anio_pasivos_largo_plazo").val('');
+	$("#vehiculo_activos_fijos").val('');
+	$("#con_banco_pasivos_largo_plazo").val('');
+	$("#maquinaria_activos_fijos").val('');
+	$("#con_cooperativas_pasivos_largo_plazo").val('');
+	$("#otros_activos_fijos").val('');
+	$("#otros_pasivos_largo_plazo").val('');
+	$("#patrimonio").val('');
+	$("#valor_prestacion_activos_intangibles").val('');
+	$("#garantias_capremci").val('');
+	$("#id_bancos_uno_detalle_activos").val('0');
+	$("#tipo_producto_uno_detalle_activos").val('');
+	$("#valor_uno_detalle_activos").val('');
+	$("#plazo_uno_detalle_activos").val('');
+	$("#id_bancos_dos_detalle_activos").val('0');
+	$("#tipo_producto_dos_detalle_activos").val('');
+	$("#valor_dos_detalle_activos").val('');
+	$("#plazo_dos_detalle_activos").val('');
+	$("#id_bancos_tres_detalle_activos").val('0');
+	$("#tipo_producto_tres_detalle_activos").val('');
+	$("#valor_tres_detalle_activos").val('');
+	$("#plazo_tres_detalle_activos").val('');
+	$("#id_bancos_cuatro_detalle_activos").val('0');
+	$("#tipo_producto_cuatro_detalle_activos").val('');
+	$("#valor_cuatro_detalle_activos").val('');
+	$("#plazo_cuatro_detalle_activos").val('');
+	$("#muebles_uno_detalle_activos").val('');
+	$("#direccion_uno_detalle_activos").val('');
+	$("#valor_muebles_uno_detalle_activos").val('');
+	$("#esta_hipotecado_uno_detalle_activos").val('');
+	$("#muebles_dos_detalle_activos").val('');
+	$("#direccion_dos_detalle_activos").val('');
+	$("#valor_muebles_dos_detalle_activos").val('');
+	$("#esta_hipotecado_dos_detalle_activos").val('');
+	$("#muebles_tres_detalle_activos").val('');
+	$("#direccion_tres_detalle_activos").val('');
+	$("#valor_muebles_tres_detalle_activos").val('');
+	$("#esta_hipotecado_tres_detalle_activos").val('');
+	$("#muebles_cuatro_detalle_activos").val('');
+	$("#direccion_cuatro_detalle_activos").val('');
+	$("#valor_muebles_cuatro_detalle_activos").val('');
+	$("#esta_hipotecada_cuatro_detalle_activos").val('');
+	$("#vehiculo_uno_detalle_activos").val('');
+	$("#valor_vehiculo_uno_detalle_activos").val('');
+	$("#uso_uno_detalle_activos").val('');
+	$("#asegurado_uno_detalle_activos").val('');
+	$("#vehiculo_dos_detalle_activos").val('');
+	$("#valor_vehiculo_dos_detalle_activos").val('');
+	$("#uso_dos_detalle_activos").val('');
+	$("#asegurado_dos_detalle_activos").val('');
+	$("#vehiculo_tres_detalle_activos").val('');
+	$("#valor_vehiculo_tres_detalle_activos").val('');
+	$("#uso_tres_detalle_activos").val('');
+	$("#asegurado_tres_detalle_activos").val('');
+	$("#vehiculo_cuatro_detalle_activos").val('');
+	$("#valor_vehiculo_cuatro_detalle_activos").val('');
+	$("#uso_cuatro_detalle_activos").val('');
+	$("#asegurado_cuatro_detalle_activos").val('');
+	$("#otros_uno_detalle_activos").val('');
+	$("#valor_otros_uno_detalle_activos").val('');
+	$("#observacion_otro_uno_detalle_activos").val('');
+	$("#otros_dos_detalle_activos").val('');
+	$("#valor_otros_dos_detalle_activos").val('');
+	$("#observacion_dos_detalle_activos").val('');
+	$("#institucion_uno_detalle_pasivos").val('');
+	$("#valor_uno_detalle_pasivos").val('');
+	$("#destino_uno_detalle_pasivos").val('');
+	$("#garantia_uno_detalle_pasivos").val('');
+	$("#plazo_uno_detalle_pasivos").val('');
+	$("#saldo_uno_detalle_pasivos").val('');
+	$("#institucion_dos_detalle_pasivos").val('');
+	$("#valor_dos_detalle_pasivos").val('');
+	$("#destino_dos_detalle_pasivos").val('');
+	$("#garantia_dos_detalle_pasivos").val('');
+	$("#plazo_dos_detalle_pasivos").val('');
+	$("#saldo_dos_detalle_pasivos").val('');
+	$("#institucion_tres_detalle_pasivos").val('');
+	$("#valor_tres_detalle_pasivos").val('');
+	$("#destino_tres_detalle_pasivos").val('');
+	$("#garantia_tres_detalle_pasivos").val('');
+	$("#plazo_tres_detalle_pasivos").val('');
+	$("#saldo_tres_detalle_pasivos").val('');
+	$("#institucion_cuatro_detalle_pasivos").val('');
+	$("#valor_cuatro_detalle_pasivos").val('');
+	$("#destino_cuatro_detalle_pasivos").val('');
+	$("#garantia_cuatro_detalle_pasivos").val('');
+	$("#plazo_cuatro_detalle_pasivos").val('');
+	$("#saldo_cuatro_detalle_pasivos").val('');
+	$("#institucion_cinco_detalle_pasivos").val('');
+	$("#valor_cinco_detalle_pasivos").val('');
+	$("#destino_cinco_detalle_pasivos").val('');
+	$("#garantia_cinco_detalle_pasivos").val('');
+	$("#plazo_cinco_detalle_pasivos").val('');
+	$("#saldo_cinco_detalle_pasivos").val('');
+	$("#sueldo_afiliado_ingresos_mensuales").val('');
+	$("#alimentacion_gastos_mensuales").val('');
+	$("#sueldo_conyuge_ingresos_mensuales").val('');
+	$("#arriendos_gastos_mensuales").val('');
+	$("#comisiones_ingresos_mensuales").val('');
+	$("#educacion_gastos_mensuales").val('');
+	$("#arriendos_ingresos_mensuales").val('');
+	$("#vestuario_gastos_mensuales").val('');
+	$("#dividendos_ingresos_mensuales").val('');
+	$("#servicios_publicos_gastos_mensuales").val('');
+	$("#ingresos_negocio_ingresos_mensuales").val('');
+	$("#movilizacion_gastos_mensuales").val('');
+	$("#pensiones_ingresos_mensuales").val('');
+	$("#ahorros_cooperativas_gastos_mensuales").val('');
+	$("#cuotas_tarjetas_gastos_mensuales").val('');
+	$("#otros_detalle_uno_ingresos_mensuales").val('');
+	$("#otros_uno_ingresos_mensuales").val('');
+	$("#cuotas_prestamo_gastos_mensuales").val('');
+	$("#otros_detalle_dos_ingresos_mensuales").val('');
+	$("#otros_dos_ingresos_mensuales").val('');
+	$("#otros_detalle_tres_ingresos_mensuales").val('');
+	$("#otros_tres_ingresos_mensuales").val('');
+	$("#otros_detalle_uno_gastos_mensuales").val('');
+	$("#otros_gastos_uno_gastos_mensuales").val('');
+	$("#id_sucursales").val('0');
+
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 	 
 	
 	
@@ -104,121 +293,6 @@ function limpiar(){
 
 
 
-function cargaProvinciasDatosPersonales(){
-	
-	let $ddlProvincias = $("#id_provincia");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaProvinciasDatosPersonales",
-		type:"POST",
-		dataType:"json",
-		data:null
-	}).done(function(datos){		
-		
-		$ddlProvincias.empty();
-		$ddlProvincias.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$ddlProvincias.append("<option value= " +value.id_provincias +" >" + value.nombre_provincias  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$ddlProvincias.empty();
-		$ddlProvincias.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-}
-//cargar cantones
-function cargaCantonesDatosPersonales(id_provincia){
-	
-	let $dllCantones = $("#id_canton");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaCantonesDatosPersonales",
-		type:"POST",
-		dataType:"json",
-		data:{id_provincias:id_provincia}
-	}).done(function(datos){		
-		
-		$dllCantones.empty();
-		$dllCantones.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$dllCantones.append("<option value= " +value.id_cantones +" >" + value.nombre_cantones  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$dllCantones.empty();
-		$dllCantones.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-	
-}
-
-$("#id_provincia").change(function() {
-	
-
-	
-      var id_provincias = $(this).val();
-      let $dllCantones = $("#id_canton");
-      $dllCantones.empty();
-      cargaCantonesDatosPersonales(id_provincias);
-      
-      
-   
-   });
-	
-
-// cargar parroquias
-
-
-function cargaParroquiasDatosPersonales(id_canton){
-	
-	let $dllParroquias = $("#id_parroquia");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaParroquiasDatosPersonales",
-		type:"POST",
-		dataType:"json",
-		data:{id_cantones:id_canton}
-	}).done(function(datos){		
-		
-		$dllParroquias.empty();
-		$dllParroquias.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$dllParroquias.append("<option value= " +value.id_parroquias +" >" + value.nombre_parroquias  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$dllParroquias.empty();
-		$dllParroquias.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-	
-}
-
-$("#id_canton").change(function() {
-	
-
-	
-      var id_cantones = $(this).val();
-      let $dllParroquias = $("#id_parroquia");
-      $dllParroquias.empty();
-      cargaParroquiasDatosPersonales(id_cantones);
-      
-      
-   
-   });
 
 
 /// enviar codigo
@@ -392,719 +466,7 @@ $("#btn_verificar").click(function()
 //cargar direccion datos laborales
 
 
-function cargaProvinciasDatosLaborales(){
-	
-	let $ddlProvincias = $("#id_provincia_datos_laborales");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaProvinciasDatosPersonales",
-		type:"POST",
-		dataType:"json",
-		data:null
-	}).done(function(datos){		
-		
-		$ddlProvincias.empty();
-		$ddlProvincias.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$ddlProvincias.append("<option value= " +value.id_provincias +" >" + value.nombre_provincias  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$ddlProvincias.empty();
-		$ddlProvincias.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-}
 
-//cargar cantones
-function cargaCantonesDatosLaborales(id_provincia_datos_laborales){
-	
-	let $dllCantones = $("#id_canton_datos_laborales");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaCantonesDatosPersonales",
-		type:"POST",
-		dataType:"json",
-		data:{id_provincias:id_provincia_datos_laborales}
-	}).done(function(datos){		
-		
-		$dllCantones.empty();
-		$dllCantones.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$dllCantones.append("<option value= " +value.id_cantones +" >" + value.nombre_cantones  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$dllCantones.empty();
-		$dllCantones.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-	
-}
-
-$("#id_provincia_datos_laborales").change(function() {
-	
-
-	
-      var id_provincias = $(this).val();
-      let $dllCantones = $("#id_canton_datos_laborales");
-      $dllCantones.empty();
-      cargaCantonesDatosLaborales(id_provincias);
-      
-      
-   
-   });
-	
-//cargar parroquias
-
-
-function cargaParroquiasDatosLaborales(id_canton_datos_laborales){
-	
-	let $dllParroquias = $("#id_parroquia_datos_laborales");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaParroquiasDatosPersonales",
-		type:"POST",
-		dataType:"json",
-		data:{id_cantones:id_canton_datos_laborales}
-	}).done(function(datos){		
-		
-		$dllParroquias.empty();
-		$dllParroquias.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$dllParroquias.append("<option value= " +value.id_parroquias +" >" + value.nombre_parroquias  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$dllParroquias.empty();
-		$dllParroquias.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-	
-}
-
-$("#id_canton_datos_laborales").change(function() {
-	
-
-	
-      var id_cantones = $(this).val();
-      let $dllParroquias = $("#id_parroquia_datos_laborales");
-      $dllParroquias.empty();
-      cargaParroquiasDatosLaborales(id_cantones);
-      
-      
-   
-   });
-	
-function cargaGeneroDatosConyuge(){
-	
-	let $ddlGenero = $("#id_sexo_datos_conyuge");
-
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaGeneroDatosPersonales",
-		type:"POST",
-		dataType:"json",
-		data:null
-	}).done(function(datos){		
-		
-		$ddlGenero.empty();
-		$ddlGenero.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$ddlGenero.append("<option value= " +value.id_sexo +" >" + value.nombre_sexo  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$ddlGenero.empty();
-		$ddlGenero.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-	
-}
-
-
-
-function cargaSucursalesDatosGenerales(){
-	
-	let $ddlSucursal = $("#id_sucursales");
-
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaSucursalesDatosGenerales",
-		type:"POST",
-		dataType:"json",
-		data:null
-	}).done(function(datos){		
-		
-		$ddlSucursal.empty();
-		$ddlSucursal.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$ddlSucursal.append("<option value= " +value.id_sucursales +" >" + value.nombre_sucursales  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$ddlSucursal.empty();
-		$ddlSucursal.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-	
-}
-
-function cargaInstitucionesDatosLaborables(){
-	
-	let $ddlInstituciones = $("#id_entidades");
-
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaInstitucionesDatosLaborables",
-		type:"POST",
-		dataType:"json",
-		data:null
-	}).done(function(datos){		
-		
-		$ddlInstituciones.empty();
-		$ddlInstituciones.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$ddlInstituciones.append("<option value= " +value.id_entidades +" >" + value.nombre_entidades  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$ddlInstituciones.empty();
-		$ddlInstituciones.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-	
-}
-
-
-//cargar Provincias Datos Conyuge
-
-function cargaProvinciasDatosConyuge(){
-	
-	let $ddlProvincias = $("#id_provincia_datos_conyuge");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaProvinciasDatosPersonales",
-		type:"POST",
-		dataType:"json",
-		data:null
-	}).done(function(datos){		
-		
-		$ddlProvincias.empty();
-		$ddlProvincias.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$ddlProvincias.append("<option value= " +value.id_provincias +" >" + value.nombre_provincias  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$ddlProvincias.empty();
-		$ddlProvincias.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-}
-
-//cargar cantones
-function cargaCantonesDatosConyuge(id_provincia_datos_conyuge){
-	
-	let $dllCantones = $("#id_canton_datos_conyuge");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaCantonesDatosPersonales",
-		type:"POST",
-		dataType:"json",
-		data:{id_provincias:id_provincia_datos_conyuge}
-	}).done(function(datos){		
-		
-		$dllCantones.empty();
-		$dllCantones.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$dllCantones.append("<option value= " +value.id_cantones +" >" + value.nombre_cantones  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$dllCantones.empty();
-		$dllCantones.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-	
-}
-
-$("#id_provincia_datos_conyuge").change(function() {
-	
-
-	
-      var id_provincias = $(this).val();
-      let $dllCantones = $("#id_canton_datos_conyuge");
-      $dllCantones.empty();
-      cargaCantonesDatosConyuge(id_provincias);
-      
-      
-   
-   });
-	
-//cargar parroquias
-
-
-function cargaParroquiasDatosConyuge(id_canton_datos_conyuge){
-	
-	let $dllParroquias = $("#id_parroquia_datos_conyuge");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaParroquiasDatosPersonales",
-		type:"POST",
-		dataType:"json",
-		data:{id_cantones:id_canton_datos_conyuge}
-	}).done(function(datos){		
-		
-		$dllParroquias.empty();
-		$dllParroquias.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$dllParroquias.append("<option value= " +value.id_parroquias +" >" + value.nombre_parroquias  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$dllParroquias.empty();
-		$dllParroquias.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-	
-}
-
-$("#id_canton_datos_conyuge").change(function() {
-	
-
-	
-      var id_cantones = $(this).val();
-      let $dllParroquias = $("#id_parroquia_datos_conyuge");
-      $dllParroquias.empty();
-      cargaParroquiasDatosConyuge(id_cantones);
-      
-      
-   
-   });
-
-
-
-//cargar Provincias Datos Económicos Conyuge
-
-function cargaProvinciasEconomicosDatosConyuge(){
-	
-	let $ddlProvincias = $("#id_provincia_trabajo_datos_conyuge");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaProvinciasDatosPersonales",
-		type:"POST",
-		dataType:"json",
-		data:null
-	}).done(function(datos){		
-		
-		$ddlProvincias.empty();
-		$ddlProvincias.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$ddlProvincias.append("<option value= " +value.id_provincias +" >" + value.nombre_provincias  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$ddlProvincias.empty();
-		$ddlProvincias.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-}
-
-//cargar cantones
-function cargaCantonesEconomicosDatosConyuge(id_provincia_trabajo_datos_conyuge){
-	
-	let $dllCantones = $("#id_canton_trabajo_datos_conyuge");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaCantonesDatosPersonales",
-		type:"POST",
-		dataType:"json",
-		data:{id_provincias:id_provincia_trabajo_datos_conyuge}
-	}).done(function(datos){		
-		
-		$dllCantones.empty();
-		$dllCantones.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$dllCantones.append("<option value= " +value.id_cantones +" >" + value.nombre_cantones  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$dllCantones.empty();
-		$dllCantones.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-	
-}
-
-$("#id_provincia_trabajo_datos_conyuge").change(function() {
-	
-
-	
-      var id_provincias = $(this).val();
-      let $dllCantones = $("#id_canton_trabajo_datos_conyuge");
-      $dllCantones.empty();
-      cargaCantonesEconomicosDatosConyuge(id_provincias);
-      
-      
-   
-   });
-	
-//cargar parroquias
-
-
-function cargaParroquiasEconomicosDatosConyuge(id_canton_trabajo_datos_conyuge){
-	
-	let $dllParroquias = $("#id_parroquia_trabajo_datos_conyuge");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaParroquiasDatosPersonales",
-		type:"POST",
-		dataType:"json",
-		data:{id_cantones:id_canton_trabajo_datos_conyuge}
-	}).done(function(datos){		
-		
-		$dllParroquias.empty();
-		$dllParroquias.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$dllParroquias.append("<option value= " +value.id_parroquias +" >" + value.nombre_parroquias  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$dllParroquias.empty();
-		$dllParroquias.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-	
-}
-
-$("#id_canton_trabajo_datos_conyuge").change(function() {
-	
-
-	
-      var id_cantones = $(this).val();
-      let $dllParroquias = $("#id_parroquia_trabajo_datos_conyuge");
-      $dllParroquias.empty();
-      cargaParroquiasEconomicosDatosConyuge(id_cantones);
-      
-      
-   
-   });
-
-///cargar bancos datos económicos
-
-
-
-function cargaBancosDatosEconomicos(){
-	
-	let $ddlBancos = $("#id_bancos_referencia_bancaria");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaBancos",
-		type:"POST",
-		dataType:"json",
-		data:null
-	}).done(function(datos){		
-		
-		$ddlBancos.empty();
-		$ddlBancos.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$ddlBancos.append("<option value= " +value.id_bancos +" >" + value.nombre_bancos  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$ddlBancos.empty();
-		$ddlBancos.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-}
-
-function cargaBancosDosDatosEconomicos(){
-	
-	let $ddlBancos = $("#id_bancos_uno_datos_economicos");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaBancos",
-		type:"POST",
-		dataType:"json",
-		data:null
-	}).done(function(datos){		
-		
-		$ddlBancos.empty();
-		$ddlBancos.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$ddlBancos.append("<option value= " +value.id_bancos +" >" + value.nombre_bancos  + "</option>");	
-  		});
-		
-		
-		
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$ddlBancos.empty();
-		$ddlBancos.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-}
-
-function cargaBancostresDatosEconomicos(){
-	
-	let $ddlBancos = $("#id_bancos_dos_datos_economicos");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaBancos",
-		type:"POST",
-		dataType:"json",
-		data:null
-	}).done(function(datos){		
-		
-		$ddlBancos.empty();
-		$ddlBancos.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$ddlBancos.append("<option value= " +value.id_bancos +" >" + value.nombre_bancos  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$ddlBancos.empty();
-		$ddlBancos.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-}
-
-
-function cargaBancoscuatroDatosEconomicos(){
-	
-	let $ddlBancos = $("#id_bancos_tres_datos_economicos");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaBancos",
-		type:"POST",
-		dataType:"json",
-		data:null
-	}).done(function(datos){		
-		
-		$ddlBancos.empty();
-		$ddlBancos.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$ddlBancos.append("<option value= " +value.id_bancos +" >" + value.nombre_bancos  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$ddlBancos.empty();
-		$ddlBancos.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-}
-
-
-
-
-
-
-function cargaBancosCincoDatosEconomicos(){
-	
-	let $ddlBancos = $("#id_bancos_cuatro_datos_economicos");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaBancos",
-		type:"POST",
-		dataType:"json",
-		data:null
-	}).done(function(datos){		
-		
-		$ddlBancos.empty();
-		$ddlBancos.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$ddlBancos.append("<option value= " +value.id_bancos +" >" + value.nombre_bancos  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$ddlBancos.empty();
-		$ddlBancos.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-}
-
-function cargaBancosUnodetalleActivos(){
-	
-	let $ddlBancos = $("#id_bancos_uno_detalle_activos");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaBancos",
-		type:"POST",
-		dataType:"json",
-		data:null
-	}).done(function(datos){		
-		
-		$ddlBancos.empty();
-		$ddlBancos.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$ddlBancos.append("<option value= " +value.id_bancos +" >" + value.nombre_bancos  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$ddlBancos.empty();
-		$ddlBancos.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-}
-
-
-function cargaBancosDosdetalleActivos(){
-	
-	let $ddlBancos = $("#id_bancos_dos_detalle_activos");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaBancos",
-		type:"POST",
-		dataType:"json",
-		data:null
-	}).done(function(datos){		
-		
-		$ddlBancos.empty();
-		$ddlBancos.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$ddlBancos.append("<option value= " +value.id_bancos +" >" + value.nombre_bancos  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$ddlBancos.empty();
-		$ddlBancos.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-}
-
-function cargaBancosTresdetalleActivos(){
-	
-	let $ddlBancos = $("#id_bancos_tres_detalle_activos");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaBancos",
-		type:"POST",
-		dataType:"json",
-		data:null
-	}).done(function(datos){		
-		
-		$ddlBancos.empty();
-		$ddlBancos.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$ddlBancos.append("<option value= " +value.id_bancos +" >" + value.nombre_bancos  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$ddlBancos.empty();
-		$ddlBancos.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-}
-
-
-function cargaBancosCuatrodetalleActivos(){
-	
-	let $ddlBancos = $("#id_bancos_cuatro_detalle_activos");
-	
-	$.ajax({
-		beforeSend:function(){},
-		url:"index.php?controller=SolicitudHipotecario&action=cargaBancos",
-		type:"POST",
-		dataType:"json",
-		data:null
-	}).done(function(datos){		
-		
-		$ddlBancos.empty();
-		$ddlBancos.append("<option value='0' >--Seleccione--</option>");
-		
-		$.each(datos.data, function(index, value) {
-			$ddlBancos.append("<option value= " +value.id_bancos +" >" + value.nombre_bancos  + "</option>");	
-  		});
-		
-	}).fail(function(xhr,status,error){
-		var err = xhr.responseText
-		console.log(err)
-		$ddlBancos.empty();
-		$ddlBancos.append("<option value='0' >--Seleccione--</option>");
-		
-	})
-}
 
 function checkIt(evt) {
     evt = (evt) ? evt : window.event
@@ -1399,7 +761,7 @@ function checkIt(evt) {
 		    	var otros_gastos_uno_gastos_mensuales = $("#otros_gastos_uno_gastos_mensuales").val();
 		    	var id_sucursales = $("#id_sucursales").val();
 		    	var tiempo = tiempo || 1000;
-		    	
+		    	var identificador_consecutivos = $("#identificador_consecutivos").val();
 		    	
 		    	
 		    	
@@ -2421,6 +1783,26 @@ function checkIt(evt) {
 		    	
 		    	
 		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	if(id_estado_civil_datos_personales != 1 && id_estado_civil_datos_personales != 5 && id_estado_civil_datos_personales != 3) 
+		    	{
+		    		
+		    	
+		    		
+		    		
+		    	
+		    	
+		    	
+		    	
+		    	
 		    	if (cedula_datos_conyuge == "")
 		    	{
 			    	
@@ -2973,6 +2355,57 @@ function checkIt(evt) {
 		    		$("#mensaje_referencia_trabajo_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
 		            
 				}
+		    	
+		    	
+		    	
+		    	}else{
+					
+		    		$("#mensaje_cedula_datos_conyuge").fadeOut("slow"); //Muestra mensaje de error
+		    		$("#mensaje_nombres_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_apellidos_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_id_sexo_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_fecha_nacimiento_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_vive_residencia_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_telefono_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_celular_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_id_provincia_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_id_canton_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_id_parroquia_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_barrio_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_ciudadela_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_calle_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_numero_calle_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_interseccion_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_actividad_economica_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_empresa_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_naturaleza_negocio_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_cargo_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_anios_laborados_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_tipo_contrato_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_nombres_jefe_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_apellidos_jefe_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_telefono_jefe_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_id_provincia_trabajo_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_id_canton_trabajo_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_id_parroquia_trabajo_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_calle_trabajo_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_nuemero_calle_trabajo_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_interseccion_trabajo_datos_conyuge").fadeOut("slow"); 
+		    		$("#mensaje_referencia_trabajo_datos_conyuge").fadeOut("slow"); 
+
+		    		
+		    		//aqui lo que va dentro de conyuge
+
+
+					
+					
+
+				}
+		    	
+		    	
+		    	
+		    	
+		    	
 		    	if(actividad_economica_datos_conyuge=="Independiente"){		    	
 		    	
 		    	if (actividad_principal_datos_independientes == "")
@@ -3162,6 +2595,28 @@ function checkIt(evt) {
 				}
 		    	
 		    	
+		    	}else{
+					$("#mensaje_actividad_principal_datos_independientes").fadeOut("slow"); 
+					$("#mensaje_ruc_datos_independientes").fadeOut("slow");
+					$("#mensaje_detalle_actividades_datos_independientes").fadeOut("slow");
+					$("#mensaje_local_datos_independientes").fadeOut("slow");
+					$("#mensaje_nombres_propietario_datos_independientes").fadeOut("slow");
+					$("#mensaje_apellidos_propietario_datos_independientes").fadeOut("slow");
+					$("#mensaje_telefono_propietario_datos_independientes").fadeOut("slow");
+					$("#mensaje_tiempo_funcionamiento_datos_independientes").fadeOut("slow");
+					$("#mensaje_numero_patronal_datos_independientes").fadeOut("slow");
+					$("#mensaje_numero_empleados_datos_independientes").fadeOut("slow");
+					// aqui van todos los de independientes
+					
+					
+	
+
+				}
+		    	
+		    	
+		    	
+		    	
+		    	
 		    	if (id_bancos_referencia_bancaria == 0)
 		    	{
 			    	
@@ -3213,7 +2668,7 @@ function checkIt(evt) {
 				}
 		    	  
 		    	  
-		    	}
+		    	
 		    	
 		    	
 		    	//aqui validar
@@ -3491,7 +2946,8 @@ function checkIt(evt) {
 		    			otros_tres_ingresos_mensuales:otros_tres_ingresos_mensuales,
 		    			otros_detalle_uno_gastos_mensuales:otros_detalle_uno_gastos_mensuales,
 		    			otros_gastos_uno_gastos_mensuales:otros_gastos_uno_gastos_mensuales,
-		    			id_sucursales:id_sucursales
+		    			id_sucursales:id_sucursales,
+		    			identificador_consecutivos:identificador_consecutivos
 		    			
 		    			
 		    	
@@ -3503,16 +2959,49 @@ function checkIt(evt) {
 	    			type:"POST",
 	    			dataType:"json",
 	    			data:parametros
-	    		}).done(function(respuesta){
+	    		}).done(function(x){
 	    					
-	    			if(respuesta.id > 0 ){
+	    			
+	    			
+
+	    			
+	    	if(x.id > 0 ){	
+	    			
+	    			if(x.mensaje=='Solicitud Actualizada Correctamente'){
 	    				
-	    				swal("Alerta!", respuesta.mensaje, "success")
-	               	
-	    		    }else{
-	    		    	
-	    		    	swal("Alerta!", respuesta.mensaje, "error")
-		    		}
+	    				
+
+	    				
+	    				swal({title:"",text:x.mensaje,icon:"success"})
+	    	    		.then((value) => {
+	    	    			window.location.href= 'index.php?controller=SolicitudHipotecario&action=index2';
+	    	    		});
+	    				
+	    			}else{
+	    				
+
+	    				
+	    				swal({title:"",text:x.mensaje,icon:"success"})
+	    	    		.then((value) => {
+	    	    			
+	    	    			
+	    	    			window.location.href= 'index.php?controller=SolicitudHipotecario&action=index2';
+	    		  		});
+	    				
+	    				
+	    			}
+	    			
+	    			
+	    	}else{
+	    		
+	    		swal("Alerta!", x.mensaje, "error")
+	    		
+	    	}	
+	    			
+	    			
+	    			
+	    			
+	    			
 	    			
 	    			
 	    		}).fail(function(xhr,status,error){
@@ -3861,4 +3350,595 @@ function checkIt(evt) {
 
 
 
+	
+		$(document).ready(function(){
 
+ 			$("#id_provincia").change(function(){
+ 			
+ 	            // obtenemos el combo de resultado combo 2
+ 	           var $id_cantones_vivienda = $("#id_canton");
+ 	       	
+
+ 	            // lo vaciamos
+ 	           var id_provincias_vivienda = $(this).val();
+
+ 	          
+ 	          
+ 	            if(id_provincias_vivienda != 0)
+ 	            {
+ 	            	 $id_cantones_vivienda.empty();
+ 	            	
+ 	            	 var datos = {
+ 	                   	   
+ 	            			 id_provincias_vivienda:$(this).val()
+ 	                  };
+ 	             
+ 	              $.post("index.php?controller=Afiliacion&action=devuelveCanton", datos, function(resultado) {
+
+ 	          		  if(resultado.length==0)
+ 	          		   {
+ 	          				$id_cantones_vivienda.append("<option value='0' >--Seleccione--</option>");	
+ 	             	   }else{
+ 	             		    $id_cantones_vivienda.append("<option value='0' >--Seleccione--</option>");
+ 	          		 		$.each(resultado, function(index, value) {
+ 	          		 			$id_cantones_vivienda.append("<option value= " +value.id_cantones +" >" + value.nombre_cantones  + "</option>");	
+ 	                     		 });
+ 	             	   }	
+ 	            	      
+ 	         		  }, 'json');
+
+
+ 	            }else{
+
+ 	            	var id_cantones_vivienda=$("#id_canton");
+ 	            	id_cantones_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+ 	            	var id_parroquias_vivienda=$("#id_parroquia");
+ 	            	id_parroquias_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+ 	            	
+ 	            	
+ 	            	
+ 	            }
+ 	            
+
+ 			});
+ 		});
+ 	
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		$(document).ready(function(){
+
+ 			$("#id_canton").change(function(){
+ 				
+ 	            // obtenemos el combo de resultado combo 2
+ 	           var $id_parroquias_vivienda = $("#id_parroquia");
+ 	       	
+
+ 	            // lo vaciamos
+ 	           var id_cantones_vivienda = $(this).val();
+ 	          
+ 	            if(id_cantones_vivienda != 0)
+ 	            {
+ 	            	 $id_parroquias_vivienda.empty();
+ 	            	
+ 	            	 var datos = {
+ 	                   	   
+ 	            			 id_cantones_vivienda:$(this).val()
+ 	                  };
+ 	             
+ 	            	
+ 	         	   $.post("index.php?controller=Afiliacion&action=devuelveParroquias", datos, function(resultado) {
+
+ 	          		  if(resultado.length==0)
+ 	          		   {
+ 	          				$id_parroquias_vivienda.append("<option value='0' >--Seleccione--</option>");	
+ 	             	   }else{
+ 	             		    $id_parroquias_vivienda.append("<option value='0' >--Seleccione--</option>");
+ 	          		 		$.each(resultado, function(index, value) {
+ 	          		 			$id_parroquias_vivienda.append("<option value= " +value.id_parroquias +" >" + value.nombre_parroquias  + "</option>");	
+ 	                     		 });
+ 	             	   }	
+ 	            	      
+ 	         		  }, 'json');
+
+
+ 	            }else{
+
+ 	            	var id_parroquias_vivienda=$("#id_parroquia");
+ 	            	id_parroquias_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+ 	            	
+ 	            	
+ 	            }
+ 	            
+
+ 			});
+ 		});
+ 	
+        
+
+
+
+ 		
+ 		
+ 		
+ 		
+ 		
+		$(document).ready(function(){
+
+ 			$("#id_provincia_datos_laborales").change(function(){
+ 			
+ 	            // obtenemos el combo de resultado combo 2
+ 	           var $id_cantones_vivienda = $("#id_canton_datos_laborales");
+ 	       	
+
+ 	            // lo vaciamos
+ 	           var id_provincias_vivienda = $(this).val();
+
+ 	          
+ 	          
+ 	            if(id_provincias_vivienda != 0)
+ 	            {
+ 	            	 $id_cantones_vivienda.empty();
+ 	            	
+ 	            	 var datos = {
+ 	                   	   
+ 	            			 id_provincias_vivienda:$(this).val()
+ 	                  };
+ 	             
+ 	              $.post("index.php?controller=Afiliacion&action=devuelveCanton", datos, function(resultado) {
+
+ 	          		  if(resultado.length==0)
+ 	          		   {
+ 	          				$id_cantones_vivienda.append("<option value='0' >--Seleccione--</option>");	
+ 	             	   }else{
+ 	             		    $id_cantones_vivienda.append("<option value='0' >--Seleccione--</option>");
+ 	          		 		$.each(resultado, function(index, value) {
+ 	          		 			$id_cantones_vivienda.append("<option value= " +value.id_cantones +" >" + value.nombre_cantones  + "</option>");	
+ 	                     		 });
+ 	             	   }	
+ 	            	      
+ 	         		  }, 'json');
+
+
+ 	            }else{
+
+ 	            	var id_cantones_vivienda=$("#id_canton_datos_laborales");
+ 	            	id_cantones_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+ 	            	var id_parroquias_vivienda=$("#id_parroquia_datos_laborales");
+ 	            	id_parroquias_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+ 	            	
+ 	            	
+ 	            	
+ 	            }
+ 	            
+
+ 			});
+ 		});
+ 	
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		$(document).ready(function(){
+
+ 			$("#id_canton_datos_laborales").change(function(){
+ 				
+ 	            // obtenemos el combo de resultado combo 2
+ 	           var $id_parroquias_vivienda = $("#id_parroquia_datos_laborales");
+ 	       	
+
+ 	            // lo vaciamos
+ 	           var id_cantones_vivienda = $(this).val();
+ 	          
+ 	            if(id_cantones_vivienda != 0)
+ 	            {
+ 	            	 $id_parroquias_vivienda.empty();
+ 	            	
+ 	            	 var datos = {
+ 	                   	   
+ 	            			 id_cantones_vivienda:$(this).val()
+ 	                  };
+ 	             
+ 	            	
+ 	         	   $.post("index.php?controller=Afiliacion&action=devuelveParroquias", datos, function(resultado) {
+
+ 	          		  if(resultado.length==0)
+ 	          		   {
+ 	          				$id_parroquias_vivienda.append("<option value='0' >--Seleccione--</option>");	
+ 	             	   }else{
+ 	             		    $id_parroquias_vivienda.append("<option value='0' >--Seleccione--</option>");
+ 	          		 		$.each(resultado, function(index, value) {
+ 	          		 			$id_parroquias_vivienda.append("<option value= " +value.id_parroquias +" >" + value.nombre_parroquias  + "</option>");	
+ 	                     		 });
+ 	             	   }	
+ 	            	      
+ 	         		  }, 'json');
+
+
+ 	            }else{
+
+ 	            	var id_parroquias_vivienda=$("#id_parroquia_datos_laborales");
+ 	            	id_parroquias_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+ 	            	
+ 	            	
+ 	            }
+ 	            
+
+ 			});
+ 		});
+ 	
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+		$(document).ready(function(){
+
+ 			$("#id_provincia_datos_conyuge").change(function(){
+ 			
+ 	            // obtenemos el combo de resultado combo 2
+ 	           var $id_cantones_vivienda = $("#id_canton_datos_conyuge");
+ 	       	
+
+ 	            // lo vaciamos
+ 	           var id_provincias_vivienda = $(this).val();
+
+ 	          
+ 	          
+ 	            if(id_provincias_vivienda != 0)
+ 	            {
+ 	            	 $id_cantones_vivienda.empty();
+ 	            	
+ 	            	 var datos = {
+ 	                   	   
+ 	            			 id_provincias_vivienda:$(this).val()
+ 	                  };
+ 	             
+ 	              $.post("index.php?controller=Afiliacion&action=devuelveCanton", datos, function(resultado) {
+
+ 	          		  if(resultado.length==0)
+ 	          		   {
+ 	          				$id_cantones_vivienda.append("<option value='0' >--Seleccione--</option>");	
+ 	             	   }else{
+ 	             		    $id_cantones_vivienda.append("<option value='0' >--Seleccione--</option>");
+ 	          		 		$.each(resultado, function(index, value) {
+ 	          		 			$id_cantones_vivienda.append("<option value= " +value.id_cantones +" >" + value.nombre_cantones  + "</option>");	
+ 	                     		 });
+ 	             	   }	
+ 	            	      
+ 	         		  }, 'json');
+
+
+ 	            }else{
+
+ 	            	var id_cantones_vivienda=$("#id_canton_datos_conyuge");
+ 	            	id_cantones_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+ 	            	var id_parroquias_vivienda=$("#id_parroquia_datos_conyuge");
+ 	            	id_parroquias_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+ 	            	
+ 	            	
+ 	            	
+ 	            }
+ 	            
+
+ 			});
+ 		});
+ 	
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		$(document).ready(function(){
+
+ 			$("#id_canton_datos_conyuge").change(function(){
+ 				
+ 	            // obtenemos el combo de resultado combo 2
+ 	           var $id_parroquias_vivienda = $("#id_parroquia_datos_conyuge");
+ 	       	
+
+ 	            // lo vaciamos
+ 	           var id_cantones_vivienda = $(this).val();
+ 	          
+ 	            if(id_cantones_vivienda != 0)
+ 	            {
+ 	            	 $id_parroquias_vivienda.empty();
+ 	            	
+ 	            	 var datos = {
+ 	                   	   
+ 	            			 id_cantones_vivienda:$(this).val()
+ 	                  };
+ 	             
+ 	            	
+ 	         	   $.post("index.php?controller=Afiliacion&action=devuelveParroquias", datos, function(resultado) {
+
+ 	          		  if(resultado.length==0)
+ 	          		   {
+ 	          				$id_parroquias_vivienda.append("<option value='0' >--Seleccione--</option>");	
+ 	             	   }else{
+ 	             		    $id_parroquias_vivienda.append("<option value='0' >--Seleccione--</option>");
+ 	          		 		$.each(resultado, function(index, value) {
+ 	          		 			$id_parroquias_vivienda.append("<option value= " +value.id_parroquias +" >" + value.nombre_parroquias  + "</option>");	
+ 	                     		 });
+ 	             	   }	
+ 	            	      
+ 	         		  }, 'json');
+
+
+ 	            }else{
+
+ 	            	var id_parroquias_vivienda=$("#id_parroquia_datos_conyuge");
+ 	            	id_parroquias_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+ 	            	
+ 	            	
+ 	            }
+ 	            
+
+ 			});
+ 		});
+ 	
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+
+		$(document).ready(function(){
+
+ 			$("#id_provincia_trabajo_datos_conyuge").change(function(){
+ 			
+ 	            // obtenemos el combo de resultado combo 2
+ 	           var $id_cantones_vivienda = $("#id_canton_trabajo_datos_conyuge");
+ 	       	
+
+ 	            // lo vaciamos
+ 	           var id_provincias_vivienda = $(this).val();
+
+ 	          
+ 	          
+ 	            if(id_provincias_vivienda != 0)
+ 	            {
+ 	            	 $id_cantones_vivienda.empty();
+ 	            	
+ 	            	 var datos = {
+ 	                   	   
+ 	            			 id_provincias_vivienda:$(this).val()
+ 	                  };
+ 	             
+ 	              $.post("index.php?controller=Afiliacion&action=devuelveCanton", datos, function(resultado) {
+
+ 	          		  if(resultado.length==0)
+ 	          		   {
+ 	          				$id_cantones_vivienda.append("<option value='0' >--Seleccione--</option>");	
+ 	             	   }else{
+ 	             		    $id_cantones_vivienda.append("<option value='0' >--Seleccione--</option>");
+ 	          		 		$.each(resultado, function(index, value) {
+ 	          		 			$id_cantones_vivienda.append("<option value= " +value.id_cantones +" >" + value.nombre_cantones  + "</option>");	
+ 	                     		 });
+ 	             	   }	
+ 	            	      
+ 	         		  }, 'json');
+
+
+ 	            }else{
+
+ 	            	var id_cantones_vivienda=$("#id_canton_trabajo_datos_conyuge");
+ 	            	id_cantones_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+ 	            	var id_parroquias_vivienda=$("#id_parroquia_trabajo_datos_conyuge");
+ 	            	id_parroquias_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+ 	            	
+ 	            	
+ 	            	
+ 	            }
+ 	            
+
+ 			});
+ 		});
+ 	
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		 
+ 		$(document).ready(function(){
+
+ 			$("#id_canton_trabajo_datos_conyuge").change(function(){
+ 				
+ 	            // obtenemos el combo de resultado combo 2
+ 	           var $id_parroquias_vivienda = $("#id_parroquia_trabajo_datos_conyuge");
+ 	       	
+
+ 	            // lo vaciamos
+ 	           var id_cantones_vivienda = $(this).val();
+ 	          
+ 	            if(id_cantones_vivienda != 0)
+ 	            {
+ 	            	 $id_parroquias_vivienda.empty();
+ 	            	
+ 	            	 var datos = {
+ 	                   	   
+ 	            			 id_cantones_vivienda:$(this).val()
+ 	                  };
+ 	             
+ 	            	
+ 	         	   $.post("index.php?controller=Afiliacion&action=devuelveParroquias", datos, function(resultado) {
+
+ 	          		  if(resultado.length==0)
+ 	          		   {
+ 	          				$id_parroquias_vivienda.append("<option value='0' >--Seleccione--</option>");	
+ 	             	   }else{
+ 	             		    $id_parroquias_vivienda.append("<option value='0' >--Seleccione--</option>");
+ 	          		 		$.each(resultado, function(index, value) {
+ 	          		 			$id_parroquias_vivienda.append("<option value= " +value.id_parroquias +" >" + value.nombre_parroquias  + "</option>");	
+ 	                     		 });
+ 	             	   }	
+ 	            	      
+ 	         		  }, 'json');
+
+
+ 	            }else{
+
+ 	            	var id_parroquias_vivienda=$("#id_parroquia_trabajo_datos_conyuge");
+ 	            	id_parroquias_vivienda.find('option').remove().end().append("<option value='0' >--Seleccione--</option>").val('0');
+ 	            	
+ 	            	
+ 	            }
+ 	            
+
+ 			});
+ 		});
+ 	
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		 $(document).ready(function(){
+
+ 	          
+ 		      $("#id_estado_civil").click(function() {
+ 					
+ 		          var id_estado_civil_datos_personales = $(this).val();
+ 					
+ 		          if(id_estado_civil_datos_personales == 1 || id_estado_civil_datos_personales == 5 || id_estado_civil_datos_personales == 3)
+ 		          {
+ 		        	  if(id_estado_civil_datos_personales == 0 )
+ 		              {
+ 		           	   
+ 		              }else{
+ 		            	 $("#cedula_datos_conyuge").val("");
+ 		            	 $("#nombres_datos_conyuge").val("");
+ 		            	 $("#apellidos_datos_conyuge").val("");
+ 		            	 $("#id_sexo_datos_conyuge").val(0);
+ 		            	 $("#fecha_nacimiento_datos_conyuge").val("");
+ 		            	 $("#vive_residencia_datos_conyuge").val("");
+ 		            	 $("#telefono_datos_conyuge").val("");
+ 		            	 $("#celular_datos_conyuge").val("");
+ 		            	 $("#id_provincia_datos_conyuge").val(0);
+ 		            	 $("#id_canton_datos_conyuge").val(0);
+ 		            	 $("#id_parroquia_datos_conyuge").val(0);
+ 		            	 $("#barrio_datos_conyuge").val("");
+ 		            	 $("#ciudadela_datos_conyuge").val("");
+ 		            	 $("#calle_datos_conyuge").val("");
+ 		            	 $("#numero_calle_datos_conyuge").val("");
+ 		            	 $("#interseccion_datos_conyuge").val("");
+ 		            	 $("#actividad_economica_datos_conyuge").val("");
+ 		            	 $("#empresa_datos_conyuge").val("");
+ 		            	 $("#naturaleza_negocio_datos_conyuge").val("");
+ 		            	 $("#cargo_datos_conyuge").val("");
+ 		            	 $("#anios_laborados_datos_conyuge").val("");
+ 		            	 $("#tipo_contrato_datos_conyuge").val("");
+ 		            	 $("#nombres_jefe_datos_conyuge").val("");
+ 		            	 $("#apellidos_jefe_datos_conyuge").val("");
+ 		            	 $("#telefono_jefe_datos_conyuge").val("");
+ 		            	 $("#id_provincia_trabajo_datos_conyuge").val(0);
+ 		            	 $("#id_canton_trabajo_datos_conyuge").val(0);
+ 		            	 $("#id_parroquia_trabajo_datos_conyuge").val(0);
+ 		            	 $("#nuemero_calle_trabajo_datos_conyuge").val("");
+ 		            	 $("#interseccion_trabajo_datos_conyuge").val("");
+ 		            	 $("#referencia_trabajo_datos_conyuge").val("");
+ 		            
+ 		            	
+ 		            	 
+ 		            	    
+ 		            	    
+ 		            	    
+ 		            	    
+ 		            	    
+ 		            	    
+ 		            	  
+ 		              }
+ 		          }
+ 		       	
+ 		         
+ 		         
+ 			    });
+ 			    
+ 			    $("#id_estado_civil").change(function() {
+ 					
+ 		              
+ 		              var id_estado_civil_datos_personales = $(this).val();
+ 						
+ 		              
+ 		              if(id_estado_civil_datos_personales == 1 || id_estado_civil_datos_personales == 5 || id_estado_civil_datos_personales == 3)
+ 		              {
+ 		            	  if(id_estado_civil_datos_personales == 0 )
+ 		                  {
+ 		               	   
+ 		                  }else{
+ 	 		            	 $("#cedula_datos_conyuge").val("");
+ 	 		            	 $("#nombres_datos_conyuge").val("");
+ 	 		            	 $("#apellidos_datos_conyuge").val("");
+ 	 		            	 $("#id_sexo_datos_conyuge").val(0);
+ 	 		            	 $("#fecha_nacimiento_datos_conyuge").val("");
+ 	 		            	 $("#vive_residencia_datos_conyuge").val("");
+ 	 		            	 $("#telefono_datos_conyuge").val("");
+ 	 		            	 $("#celular_datos_conyuge").val("");
+ 	 		            	 $("#id_provincia_datos_conyuge").val(0);
+ 	 		            	 $("#id_canton_datos_conyuge").val(0);
+ 	 		            	 $("#id_parroquia_datos_conyuge").val(0);
+ 	 		            	 $("#barrio_datos_conyuge").val("");
+ 	 		            	 $("#ciudadela_datos_conyuge").val("");
+ 	 		            	 $("#calle_datos_conyuge").val("");
+ 	 		            	 $("#numero_calle_datos_conyuge").val("");
+ 	 		            	 $("#interseccion_datos_conyuge").val("");
+ 	 		            	 $("#actividad_economica_datos_conyuge").val("");
+ 	 		            	 $("#empresa_datos_conyuge").val("");
+ 	 		            	 $("#naturaleza_negocio_datos_conyuge").val("");
+ 	 		            	 $("#cargo_datos_conyuge").val("");
+ 	 		            	 $("#anios_laborados_datos_conyuge").val("");
+ 	 		            	 $("#tipo_contrato_datos_conyuge").val("");
+ 	 		            	 $("#nombres_jefe_datos_conyuge").val("");
+ 	 		            	 $("#apellidos_jefe_datos_conyuge").val("");
+ 	 		            	 $("#telefono_jefe_datos_conyuge").val("");
+ 	 		            	 $("#id_provincia_trabajo_datos_conyuge").val(0);
+ 	 		            	 $("#id_canton_trabajo_datos_conyuge").val(0);
+ 	 		            	 $("#id_parroquia_trabajo_datos_conyuge").val(0);
+ 	 		            	 $("#nuemero_calle_trabajo_datos_conyuge").val("");
+ 	 		            	 $("#interseccion_trabajo_datos_conyuge").val("");
+ 	 		            	 $("#referencia_trabajo_datos_conyuge").val("");
+ 	 		            
+ 	 		            	
+ 		                	   
+ 		                	   
+ 		                	   
+ 		                	   
+ 		                	  
+ 		                  }
+ 		              	   
+ 		              }
+ 		           	
+ 		             
+ 		              
+ 		              
+ 				    });
+ 			}); 	
+ 			   
+
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		

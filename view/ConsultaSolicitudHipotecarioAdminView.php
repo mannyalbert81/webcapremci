@@ -38,7 +38,6 @@
      
         	   $(document).ready( function (){
         		   pone_espera();
-        		   $("#mostrarmodal").modal("show");
         		   load_solicitud_hipotecario_registrados(1);
         		});
 
@@ -65,6 +64,9 @@
         	   
         	   function load_solicitud_hipotecario_registrados(pagina){
 
+
+        		   var search=$("#search_solicitud").val();
+                   
         		   var con_datos={
         					  action:'ajax',
         					  page:pagina
@@ -74,16 +76,16 @@
            	               beforeSend: function(objeto){
            	                 $("#load_registrados").html('<center><img src="view/images/ajax-loader.gif"> Cargando...</center>')
            	               },
-           	               url: 'index.php?controller=SolicitudHipotecario&action=search',
+           	               url: 'index.php?controller=SolicitudHipotecario&action=searchadmin&search='+search,
            	               type: 'POST',
            	               data: con_datos,
            	               success: function(x){
            	                 $("#solicitud_hipotecario_registrados").html(x);
-           	               	 $("#tabla_solicitud_hipotecrio_registrados").tablesorter(); 
+           	               	 $("#tabla_solicitud_hipotecario_registrados").tablesorter(); 
            	                 $("#load_registrados").html("");
            	               },
            	              error: function(jqXHR,estado,error){
-           	                $("#solicitud_hipotecario_registrados").html("Ocurrio un error al cargar la informacion de solicitud de Hipotecario generadas..."+estado+"    "+error);
+           	                $("#solicitud_hipotecario_registrados").html("Ocurrio un error al cargar la informacion de solicitud de prestaciones generadas..."+estado+"    "+error);
            	              }
            	            });
 
@@ -135,56 +137,12 @@
         <!-- page content -->
 		<div class="right_col" role="main">        
        
-       
-       
-      
-       
-       
-       
-       <!-- VENTANA MODAL INFORMACIÓN OFICIAL DE CRÉDITO -->
-       
-       
-             
-        <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-        <div class="modal-dialog modal-md">
-        <div class="modal-content">
-           <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h3 style="margin-left: 15px;">Estimado Participe.</h3>
-           </div>
-           <div class="modal-body">
-          
-          <p>Si ya registro una solicitud de crédito hipotecario envie la siguiente información al correo electrónico de su oficial de prestación asignado para agilizar el proceso.</p>
-          <p><b>1.-</b> 3 últimos roles de pago firmados por su entidad pagadora.<br><b>2.-</b> Certificado de tiempo de servicio.<br><b>3.-</b> Copia de cédula y papeleta de votación (4 febrero 2018).<br><b>4.-</b> Copia planilla de servicio básico (Actualizada).<br><b>5.-</b> Copia de libreta de ahorros.</p>
-         
-              <center><img src="view/images/enviar_info_cred.gif" class="img-rounded" alt="Cinque Terre" style="text-align:center;  width: 50%;"/></center> 
-         
-          </div>
-           	
-          
-          
-           <div class="modal-footer">
-           
-            <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>
-           </div>
-	      </div>
-	     </div>
-	   </div>
-          
-       
-       
-       <!-- TERMINA MODAL INFORMACIÓN OFICIAL DE CRÉDITO -->
-       
-       
-       
-       
-       
     <div class="container">
         <section class="content-header">
          <small><?php echo $fecha; ?></small>
          <ol class=" pull-right breadcrumb">
          <li><a href="<?php echo $helper->url("Usuarios","Bienvenida"); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-         <li class="active">Solicitud de Hipotecario Generadas</li>
+         <li class="active">Solicitud Hipotecario Generadas</li>
          </ol>
          </section>
        
@@ -193,7 +151,7 @@
 		<div class="col-md-12 col-lg-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Solicitud<small>de Hipotecario Generadas</small></h2>
+                    <h2>Solicitud<small>Hipotecario Registradas</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -205,6 +163,10 @@
                   </div>
                   <div class="x_content">
                     	
+                    <div class="pull-right" style="margin-right:11px;">
+					<input type="text" value="" class="form-control" id="search_solicitud" name="search_solicitud" onkeyup="load_solicitud_hipotecario_registrados(1)" placeholder="search.."/>
+					</div>
+                    	
 					<div id="load_registrados" ></div>	
 					<div id="solicitud_hipotecario_registrados"></div>	
 				  
@@ -213,12 +175,11 @@
         </div>
         
         
+         
         
         
         
        </div>
-       
-       
      </div>
    </div>
  </div>    

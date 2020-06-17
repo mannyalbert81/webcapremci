@@ -4,73 +4,67 @@ table.1 {
   
    font-size:15px;
    text-align: center;
-     border-collapse: collapse;
+   border-collapse: collapse;
 }
 
 table.2 {
   
-
-   text-align: center;
-     border-collapse: collapse;
-}
-
-
-table.3 {
-  
 	width:100%;
    text-align: center;
      border-collapse: collapse;
-     font-size:12px;
 }
-table.4 {
-  
-	width:100%;
-   text-align: left;
-     border-collapse: collapse;
-     font-size:12px;
-}
+
 
 
 td.1{
 	
-	   font-size:15px;
+	background-color: #241F73;
+	color:#FCFBFD;
+	
 	
 }
 
+
 td.2{
-	
-	   font-size:12px;
-	
+	 text-align: left;
+	 
+	   
 }
 
 td.3{
-	 text-align: left;
-	   	width:500px;
-	   font-size:12px;
+	height: 55px;
+
 }
 td.4{
 	 text-align: center;
 	   	width:200px;
 	   font-size:12px;
 }
-
 td.5{
 	height: 40px;
 
 }
+
 td.6{
-	height: 30px;
+	height: 200px;
 
 }
+
 
 td.7{
-	border-top: hidden;
 
+text-align : justify;
+font-size:12px;
 }
-
 td.8{
-	height: 25px;
 
+	height: 100px;
 }
+ td.9{
+
+	height: 25px;
+}
+
+
 
 

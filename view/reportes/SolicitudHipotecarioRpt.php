@@ -4,6 +4,7 @@ include dirname(__FILE__).'\..\mpdf60\mpdf.php';
 
 //echo getcwd().''; //para ver ubicacion de directorio
 
+//var_dump(error_get_last()); die();
 
 $template = file_get_contents('view/reportes/template/SolicitudHipotecario.html');
 
@@ -23,13 +24,14 @@ if(!empty($datos_empresa))
     }
 }
 
-*/
+*/ //YA EST MIJIN ya mjo pay 
+
 
 if(!empty($datos_reporte))
 {
     
     foreach ($datos_reporte as $clave=>$valor) {
-        echo $clave; echo "\n";
+        //echo $clave; echo "\n";
         $template = str_replace('{'.$clave.'}', $valor, $template);
     }
 }
