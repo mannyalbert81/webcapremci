@@ -150,6 +150,25 @@
                                                       <div id="mensaje_id_sucursales" class="errores"></div>
                                 </div>
                                 </div>
+                                
+                                
+                                
+                <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="id_tipo_prestaciones" class="control-label">Tipo Tramite:</label>
+                    	<select name="id_tipo_prestaciones" id="id_tipo_prestaciones"  class="form-control">
+                                      <option value="" selected="selected">--Seleccione--</option>
+                                      <option value="1" <?php if($resEdit->id_tipo_prestaciones == '1'){echo ' selected="selected" ' ;}else{} ?>>CESANTÍA</option>
+        							  <option value="2" <?php if($resEdit->id_tipo_prestaciones == '2'){echo ' selected="selected" ' ;}else{} ?>>DESFILIACIÓN</option>
+        							  <option value="3" <?php if($resEdit->id_tipo_prestaciones == '3'){echo ' selected="selected" ' ;}else{} ?>>CESANTÍA POR FALLECIMIENTO</option>
+        							  <option value="4" <?php if($resEdit->id_tipo_prestaciones == '4'){echo ' selected="selected" ' ;}else{} ?>>DESMBOLSO DE APORTES PATRONALES</option>
+        							  <option value="5" <?php if($resEdit->id_tipo_prestaciones == '5'){echo ' selected="selected" ' ;}else{} ?>>EXPULSIÓN</option>
+                        </select> 
+                        <div id="mensaje_id_tipo_prestaciones" class="errores"></div>
+                 	</div>
+             	</div>
+                                
+                  
 	        </div>
    		 
    		 <div class="row">
@@ -609,6 +628,19 @@
 			 
 			 <div class="row">
 			 
+			 
+			 <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="id_tipo_pago" class="control-label">Tipo Pago:</label>
+                    	<select name="id_tipo_pago" id="id_tipo_pago"  class="form-control">
+                                      <option value="" selected="selected">--Seleccione--</option>
+                                      <option value="1" <?php if($resEdit->id_tipo_pago == '1'){echo ' selected="selected" ' ;}else{} ?>>TRANSFERENCIA</option>
+        							  <option value="2" <?php if($resEdit->id_tipo_pago == '2'){echo ' selected="selected" ' ;}else{} ?>>CHEQUE</option>
+        				 </select> 
+                        <div id="mensaje_id_tipo_pago" class="errores"></div>
+                 	</div>
+             	</div>
+			 
 			 <div class="col-xs-12 col-md-3 col-md-3 ">
             		    <div class="form-group">
             		    					  
@@ -699,7 +731,7 @@
 	         <div class="panel-body">
 	         
 	         <div class="row">
-	         <div class="col-lg-2 col-xs-12 col-md-2">
+	          <div class="col-xs-6 col-md-3 col-lg-3 ">
                     		    <div class="form-group">
                                                       <label for="id_sucursales" class="control-label">Sucursal a Tramitar:</label>
                                                        <select name="id_sucursales" id="id_sucursales"  class="form-control">
@@ -713,6 +745,23 @@
                                                       <div id="mensaje_id_sucursales" class="errores"></div>
                                 </div>
                                 </div>
+                                
+                                
+                                
+                <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="id_tipo_prestaciones" class="control-label">Tipo Tramite:</label>
+                    	<select name="id_tipo_prestaciones" id="id_tipo_prestaciones"  class="form-control">
+                                      <option value="" selected="selected">--Seleccione--</option>
+                                      <option value="1">CESANTÍA</option>
+        							  <option value="2">DESAFILIACIÓN</option>
+        							  <option value="3">CESANTÍA POR FALLECIMIENTO</option>
+        							  <option value="4">DESEMBOLSO DE APORTES PATRONALES</option>
+        							  <option value="5">EXPULSIÓN</option>
+                        </select> 
+                        <div id="mensaje_id_tipo_prestaciones" class="errores"></div>
+                 	</div>
+             	</div>
 	        </div>
    		 
    		 <div class="row">
@@ -1169,6 +1218,20 @@
 			 
 			 <div class="row">
 			 
+			 
+			 <div class="col-xs-6 col-md-3 col-lg-3 ">
+            		<div class="form-group">
+                		<label for="id_tipo_pago" class="control-label">Tipo Pago:</label>
+                    	<select name="id_tipo_pago" id="id_tipo_pago"  class="form-control">
+                                      <option value="" selected="selected">--Seleccione--</option>
+                                      <option value="1">TRANSFERENCIA</option>
+        							  <option value="2">CHEQUE</option>
+        							 
+                        </select> 
+                        <div id="mensaje_id_tipo_pago" class="errores"></div>
+                 	</div>
+             	</div>
+			 
 			 <div class="col-xs-12 col-md-3 col-md-3 ">
             		    <div class="form-group">
             		    					  
@@ -1273,7 +1336,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
 
-<script src="view/js/SolicitudPrestaciones.js?2.2"></script> 
+<script src="view/js/SolicitudPrestaciones.js?2.3"></script> 
 
 	
   </body>

@@ -53,6 +53,10 @@ $("#Guardar").click(function() {
 	var numero_cuenta_bancaria  = $("#numero_cuenta_bancaria").val();
 	var id_codigo_verificacion        			     = $("#id_codigo_verificacion").val();
 	var numero_codigo_verificacion                     = $("#numero_codigo_verificacion").val();
+	
+	var id_tipo_prestaciones        			     = $("#id_tipo_prestaciones").val();
+	var id_tipo_pago        			     = $("#id_tipo_pago").val();
+	
 	 var tiempo = tiempo || 1000;
 	  
 	 
@@ -71,6 +75,24 @@ $("#Guardar").click(function() {
  		$("#mensaje_id_sucursales").fadeOut("slow"); //Muestra mensaje de error
          
 		} 
+	 
+	 
+	 if (id_tipo_prestaciones   == 0)
+		{    	
+			$("#mensaje_id_tipo_prestaciones").text("Ingrese un tipo de prestación");
+			$("#mensaje_id_tipo_prestaciones").fadeIn("slow"); //Muestra mensaje de error
+			$("html, body").animate({ scrollTop: $(mensaje_id_sexo).offset().top }, tiempo);
+	        
+	        return false
+	    }    
+		
+		else
+			{
+			
+			$("#mensaje_id_tipo_prestaciones").fadeOut("slow"); //Muestra mensaje de error
+		    	
+			
+	     }
 
 	if (cedula_participes  == "")
 	{    	
@@ -692,6 +714,23 @@ $("#Guardar").click(function() {
 	    	
 		
      }
+	
+	 if (id_tipo_pago   == 0)
+		{    	
+			$("#mensaje_id_tipo_pago").text("Ingrese Tipo de pago");
+			$("#mensaje_id_tipo_pago").fadeIn("slow"); //Muestra mensaje de error
+			$("html, body").animate({ scrollTop: $(mensaje_id_sexo).offset().top }, tiempo);
+	        
+	        return false
+	    }    
+		
+		else
+			{
+			
+			$("#mensaje_id_tipo_pago").fadeOut("slow"); //Muestra mensaje de error
+		    	
+			
+	     }
 	
 	if (id_bancos  == 0)
 	{    	

@@ -244,6 +244,9 @@ class SolicitudPrestacionesController extends ControladorBase{
             $_id_solicitud_prestaciones = (isset($_POST["id_solicitud_prestaciones"])) ? $_POST["id_solicitud_prestaciones"] : 0 ;
             $_id_codigo_verificacion = (isset($_POST["id_codigo_verificacion"])) ? $_POST["id_codigo_verificacion"] : 0 ;
             
+            $_id_tipo_prestaciones = (isset($_POST["id_tipo_prestaciones"])) ? $_POST["id_tipo_prestaciones"] : 0 ;
+            $_id_tipo_pago = (isset($_POST["id_tipo_pago"])) ? $_POST["id_tipo_pago"] : 0 ;
+            
             $_fecha_actual =    getdate();
             $_fecha_año    =	$_fecha_actual['year'];
             $_fecha_mes    =	$_fecha_actual['mon'];
@@ -440,7 +443,9 @@ class SolicitudPrestacionesController extends ControladorBase{
                                 '$_id_sucursales',
                                 '$_fecha_presentacion',
                                 '$_id_usuarios_registra',
-                                '$id_oficial_credito'";
+                                '$id_oficial_credito',
+                                '$_id_tipo_prestaciones',
+                                '$_id_tipo_pago'";
                 
                
                 $solicitud->setFuncion($funcion);
@@ -516,7 +521,9 @@ class SolicitudPrestacionesController extends ControladorBase{
 						fecha_salida_solicitud_prestaciones='$_fecha_salida_solicitud_prestaciones',
 						id_bancos='$_id_bancos',
 						tipo_cuenta_bancaria='$_tipo_cuenta_bancaria',
-						numero_cuenta_bancaria='$_numero_cuenta_bancaria'
+						numero_cuenta_bancaria='$_numero_cuenta_bancaria',
+                        id_tipo_prestaciones='$_id_tipo_prestaciones',
+                        id_tipo_pago='$_id_tipo_pago'
 						";
                 $tablas="solicitud_prestaciones";
                 $where="id_solicitud_prestaciones = '$_id_solicitud_prestaciones'";
@@ -1586,6 +1593,11 @@ class SolicitudPrestacionesController extends ControladorBase{
                 $_id_solicitud_prestaciones = (isset($_POST["id_solicitud_prestaciones"])) ? $_POST["id_solicitud_prestaciones"] : 0 ;
                 $_id_codigo_verificacion = (isset($_POST["id_codigo_verificacion"])) ? $_POST["id_codigo_verificacion"] : 0 ;
                 
+                
+                $_id_tipo_prestaciones = (isset($_POST["id_tipo_prestaciones"])) ? $_POST["id_tipo_prestaciones"] : 0 ;
+                $_id_tipo_pago = (isset($_POST["id_tipo_pago"])) ? $_POST["id_tipo_pago"] : 0 ;
+                
+                
                 $_fecha_actual =    getdate();
                 $_fecha_año    =	$_fecha_actual['year'];
                 $_fecha_mes    =	$_fecha_actual['mon'];
@@ -1640,7 +1652,9 @@ class SolicitudPrestacionesController extends ControladorBase{
 						fecha_salida_solicitud_prestaciones='$_fecha_salida_solicitud_prestaciones',
 						id_bancos='$_id_bancos',
 						tipo_cuenta_bancaria='$_tipo_cuenta_bancaria',
-						numero_cuenta_bancaria='$_numero_cuenta_bancaria'
+						numero_cuenta_bancaria='$_numero_cuenta_bancaria',
+                        id_tipo_prestaciones='$_id_tipo_prestaciones',
+                        id_tipo_pago='$_id_tipo_pago'
 						";
                     $tablas="solicitud_prestaciones";
                     $where="id_solicitud_prestaciones = '$_id_solicitud_prestaciones'";
